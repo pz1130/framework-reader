@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-12.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops audit-log tampering or rewriting from going undetected when an admin
+      with log-manipulation rights quietly changes who, what, or when of recorded
+      events - without that change being its own attributable record visible to those
+      who don't own the logs.
+    basis: inferred
+  plain_zh:
+    value: When someone with the power to alter the audit log makes a change, that
+      change itself must be carried out only by named, authorized people, and it must
+      be visible to people who don't control the log - so the people who depend on
+      the log can still trust it.
+    basis: inferred
+  practice:
+    value:
+      '1': Only a small, named set of admins can modify audit-log configuration, retention,
+        or content; the list is documented and reviewed at least annually.
+      '2': Log changes are themselves logged to a separate, append-only store (or
+        sent off-host) with the identity of the changer, what was changed, and when;
+        a second pair of eyes reviews periodic change reports.
+      '3': 'Enforcement is done in the logging system itself, not by policy alone:
+        the audit-log owner''s role cannot also modify the log without a break-glass
+        record visible to an independent reviewer; modifications generate real-time
+        alerts to a team that doesn''t own the log-generating system.'
+    basis: inferred
+  evidence:
+    value: List of roles permitted to modify audit settings; configuration-change
+      records for the audit subsystem; separation-of-duties evidence showing the log
+      owner cannot silently rewrite history; alert records from past log-configuration
+      changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that because 'only admins touch the audit log' the control is
+      met - in practice those same admins also own the system being audited, so a
+      quiet log edit is invisible to anyone independent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me who has permission to modify audit-log settings on the system we just
+      looked at, and walk me through what happens when they do.
+    - Can the team that owns the audited system also rewrite or delete its audit records
+      without an external record being created?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.529029Z'
+  signed_digest: 6e666fa634f6e54aa9354cf4120938b293acf264e1660e0849a5335b354a99f9
+  interview_seconds: null
+  inherited_from: null

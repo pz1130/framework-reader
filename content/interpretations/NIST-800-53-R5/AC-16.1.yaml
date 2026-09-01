@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:AC-16.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against security attributes that drift out of sync with the data
+      they are supposed to protect — once attributes (classification, handling caveats,
+      releasability, provenance) are decoupled from the object, decisions about access,
+      encryption, routing, and sharing silently break, and an auditor cannot reconstruct
+      who decided what based on what label.
+    basis: inferred
+  plain_zh:
+    value: Bind security attributes to data and to subjects dynamically — as objects
+      move, are copied, or are accessed in new contexts, their attributes must travel
+      with them and be enforced in real time, instead of being a one-time tag written
+      at creation and forgotten.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical objects carry security attributes (classification, owner, handling
+        rules) at creation; a manual or scripted process re-checks attributes when
+        files are moved, copied, or shared externally.
+      '2': Attributes are bound through a defined mechanism (metadata service, tagging
+        tool, policy engine) for the main data flows; re-evaluation is triggered on
+        defined events (export, share, version change) and recorded.
+      '3': Attributes are enforced by infrastructure — DLP, access control, encryption,
+        and routing decisions read the live attribute state; attribute changes are
+        logged; conflict between object attribute and subject clearance is blocked
+        automatically rather than relying on user judgment.
+    basis: inferred
+  evidence:
+    value: Sample objects with their bound attributes, evidence that attributes travel
+      with copies/exports, logs of dynamic re-evaluation events, enforcement policy
+      that references the attribute store, and at least one case where a mismatch
+      was blocked or escalated.
+    basis: inferred
+  common_myth:
+    value: Treating the tag written at file creation as the control — assuming that
+      once a document is labeled 'Confidential' the control is done, when in practice
+      attributes are stripped on copy, re-shared without re-evaluation, or never consulted
+      by the access decision at the moment of use.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a file that left the organization last quarter — what attribute did it
+      carry, and what mechanism enforced that attribute on the receiving side?
+    - When a user copies a protected object into a new location or shares it externally,
+      what re-evaluates the attribute and where is that decision logged?
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors (especially in IC/DoD environments) press hardest
+      here because attribute-based access and release are core to classification handling;
+      EU audits under GDPR tend to focus on the 'releasability' angle but more often
+      via DPIA and lawful-basis evidence than via real-time attribute binding. Outside
+      regulated sectors on either side, this control is frequently accepted on paper
+      and barely tested.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.012043Z'
+  signed_digest: a2533a7c9de7c9506830318770d4fb85bf449c4a1fb02b99a6d1e980c0b50bf5
+  interview_seconds: null
+  inherited_from: null

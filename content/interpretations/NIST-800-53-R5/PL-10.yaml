@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PL-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where an organization adopts a one-size-fits-all
+      security baseline and then either over-secures low-impact systems (wasting budget
+      and slowing the business) or under-secures high-impact ones (because the controls
+      feel excessive for 'just' an internal tool). Without an explicit, documented
+      selection logic, control tailoring becomes tribal knowledge and cannot be defended
+      in audit or repeated after turnover.
+    basis: inferred
+  plain_zh:
+    value: Pick and document which set of baseline controls applies to each system
+      based on its security impact, and do not silently let one default baseline cover
+      everything.
+    basis: inferred
+  practice:
+    value:
+      '1': Each system has an assigned impact level (low/moderate/high) recorded somewhere;
+        the chosen baseline for that level is named and retrievable.
+      '2': Baseline selection follows a written method tied to FIPS 199 categorization;
+        deviations (overlays, tailoring) are justified and approved, not ad-hoc.
+      '3': Selection is revisited whenever the system's information type, connectivity,
+        or scope changes; the chosen baseline and tailoring decisions are traceable
+        from system inventory to control implementation.
+    basis: inferred
+  evidence:
+    value: System security plan excerpts showing FIPS 199 categorization, the baseline
+      (e.g., NIST SP 800-53 low/moderate/high) selected for each system, and any tailoring
+      or overlay decisions with approvals.
+    basis: inferred
+  common_myth:
+    value: Assuming the organization's overall FIPS 199 'moderate' determination automatically
+      sets the baseline for every individual system, so no per-system selection work
+      is needed. The org-level categorization feeds the baseline, but each system
+      still needs its own impact assignment and, often, tailoring.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where this specific system was categorized and which baseline was selected
+      for it.
+    - Why was this system not placed on the higher baseline given the data it processes?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.660040Z'
+  signed_digest: 3cc18d14a30c5b85a53d5b99eb9304e64cdcc8bbc9574acaae9f626b919f7a50
+  interview_seconds: null
+  inherited_from: null

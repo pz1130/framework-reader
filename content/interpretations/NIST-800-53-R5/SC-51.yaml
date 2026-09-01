@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-51
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against software-only attackers who own the machine - malware,
+      OS compromise, or an attacker already on the host cannot be trusted to enforce
+      their own limits, so sensitive decisions (key release, boot integrity checks,
+      privileged operations) must be anchored in hardware that the operating system
+      or kernel cannot silently rewrite.
+    basis: inferred
+  plain_zh:
+    value: Put critical security checks or protections behind a hardware mechanism
+      that the host OS and its administrators cannot bypass or tamper with, and use
+      that mechanism for the things that matter most.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the few sensitive operations that justify the cost and overhead
+        of hardware-based protection; spell out on paper why each one needs to be
+        anchored in hardware rather than the OS.
+      '2': Document the policy that says which operations must run in the trusted
+        hardware environment, how the hardware is provisioned and updated, and who
+        is allowed to change configuration; keep configuration baselines and change
+        records.
+      '3': Verify that the hardware mechanism is actually in use for the listed operations
+        (not bypassed because of driver or firmware downgrade); enforce that no privileged
+        party can silently change the protections; periodically test that the hardware
+        still detects or blocks the threats it was meant to.
+    basis: inferred
+  evidence:
+    value: Policy listing the operations that must use hardware-based protection,
+      design or architecture rationale for each, provisioning and configuration records
+      for the hardware components, test or attestation results showing the hardware
+      mechanism is active and effective, change-control records for any hardware/firmware/configuration
+      update.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a TPM, HSM, or secure boot module means the control
+      is satisfied - the chip can sit there unused, or its policies can be turned
+      off in firmware, or the secret can be exported to software when something breaks,
+      leaving nothing hardware-rooted about the operation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For which specific operations is the hardware mechanism actually the thing enforcing
+      the policy today, and where is that shown?
+    - Show me where someone could disable, bypass, or downgrade this hardware protection
+      without leaving an alert or change record.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.666200Z'
+  signed_digest: 3bf7beac83bd28e5fa3b1aacd95a35dff9c8f903036dd998c0940a569569e85b
+  interview_seconds: null
+  inherited_from: null

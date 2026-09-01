@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-15.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops developers from shipping insecure or compromised code paths during
+      incident recovery. When the IR plan fires, development pressure spikes; without
+      an explicit rule that banned, abandoned, or vulnerable components stay excluded,
+      the temptation to re-enable a 'critical' deprecated feature or revert to an
+      unsafe build to restore service will quietly put the same flaw back into production.
+    basis: inferred
+  plain_zh:
+    value: When executing the incident response plan, exclude from system components
+      any function, port, service, or software that is known to be insecure, prohibited,
+      or otherwise restricted, and keep that exclusion enforced throughout recovery.
+    basis: inferred
+  practice:
+    value:
+      '1': The IR plan contains an explicit statement that prohibited/insecure components
+        stay disabled during recovery; responders can name which list (e.g., deprecated
+        cipher suite, banned library, disabled port) is in force.
+      '2': Recovery procedures include a pre-deployment check against the authoritative
+        inventory of banned/prohibited components and the documented insecure-by-design
+        items; deviations require written exception approval.
+      '3': Automated build/deploy gates reject configurations that reintroduce excluded
+        components; post-incident reviews verify the exclusion held throughout recovery,
+        and findings feed back into the component inventory and threat model.
+    basis: inferred
+  evidence:
+    value: IR plan section covering prohibited/insecure component exclusion, recovery
+      runbooks with the check step, exception approval records (if any), and post-incident
+      review notes confirming the exclusion held.
+    basis: inferred
+  common_myth:
+    value: Treating the IR plan as 'restore service fast' and assuming exclusions
+      from the baseline policy can be relaxed because the system is in a known-bad
+      state. The whole point of this control is that exclusions are the one thing
+      you do not relax under pressure; skipping the check because 'we are in recovery'
+      is exactly what reintroduces the original weakness.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me the last incident where the recovery runbook was used: which prohibited
+      components were checked for, and how was reintroduction prevented?'
+    - Has anyone ever requested an exception to re-enable a banned component during
+      recovery? Where is that decision recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.063644Z'
+  signed_digest: 4376e794add413f4d582e2cc7903606642243d81dbbb66cdd332d6f503df43cc
+  interview_seconds: null
+  inherited_from: null

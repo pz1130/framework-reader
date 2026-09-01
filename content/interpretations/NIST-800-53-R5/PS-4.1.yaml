@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PS-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the window between a person leaving and their access, knowledge,
+      and obligations actually being cut off—where a former employee, contractor,
+      or detailee can still reach systems, walk out with sensitive material, or claim
+      ignorance of ongoing confidentiality duties because nothing was signed or enforced
+      at exit.
+    basis: inferred
+  plain_zh:
+    value: When someone leaves the organization—employee, contractor, or someone on
+      detail—make sure their system access is removed, their sensitive materials are
+      returned or accounted for, and they are still bound by the security and confidentiality
+      obligations they took on, including after separation.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a written termination checklist that turns off access, recovers devices
+        and badges, and reminds the leaver of continuing obligations; the checklist
+        is used at every departure.
+      '2': 'The checklist is role-aware: higher-risk roles (privileged access, sensitive
+        data, key management) get extra steps such as exit interviews, NDAs reaffirmed,
+        and knowledge-transfer review; records of completion are kept per departure.'
+      '3': Termination controls are tracked and measured—time-to-disable is monitored,
+        high-risk departures are reviewed for completeness, and the process is tested
+        periodically so a failure to revoke or to bind the leaver surfaces instead
+        of staying silent.
+    basis: inferred
+  evidence:
+    value: Termination/separation checklist template, completed checklists per leaver
+      with timestamps for access removal and asset return, exit interview notes or
+      signed acknowledgements of continuing obligations, and reports showing time-to-disable
+      for departing accounts.
+    basis: inferred
+  common_myth:
+    value: Treating PS-4 as just an HR offboarding form that disables the SSO account
+      and returns the laptop, while ignoring that signed NDAs, non-compete and intellectual-property
+      clauses, and ongoing confidentiality duties need to be reaffirmed at exit—those
+      obligations are what stop a former insider from leveraging insider knowledge
+      later.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent high-risk departure: when were their privileged and remote access
+      rights disabled, and who verified it?'
+    - Show me where continuing security and confidentiality obligations are reaffirmed
+      to leavers—where is that signature stored?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.832047Z'
+  signed_digest: 6067289087ac672ddb12bd917545b6114eed06a079e1bc4503ba7fbc20cfb01d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against monoculture failure modes where a single flaw in one parser,
+      library, or format-handling component cascades into a single point of compromise
+      across the system, and against filter-list or signature-trust abuse where all
+      decision-making leans on the same source.
+    basis: inferred
+  plain_zh:
+    value: Where the system has to make a security-relevant judgment from outside
+      data, deliberately use more than one independent implementation, source, or
+      parsing path so that a bug or compromise in any one of them cannot be the whole
+      story.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the spots where untrusted input is parsed, validated, or transformed
+        before it is trusted, and confirm at least the most exposed of them have a
+        second, independent check behind the primary one.
+      '2': Document which inputs are subject to redundant processing or diverse sources,
+        why those sites were chosen, and who owns keeping the diversifiers current.
+      '3': Periodically verify that the diversifiers are still distinct (not the same
+        library repackaged), measure how often they actually disagree, and route disagreements
+        to a defined escalation or quarantine rather than letting one side silently
+        win.
+    basis: inferred
+  evidence:
+    value: Inventory of parser/validator/decider components and their alternatives,
+      design rationale for which sites use diversity, test or production evidence
+      of divergent outputs and how they were handled, ownership records and review
+      cadence.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a secondary scanner/validator' as automatic compliance,
+      when in production the primary path is the only one consulted and the secondary
+      one is disabled, stale, or just logs the same verdict.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one input path you say uses diversity — show the last time the two implementations
+      disagreed and what the system did with the disagreement.
+    - How do you confirm the 'independent' second component is not the same library
+      or the same vendor under the hood?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.953287Z'
+  signed_digest: 2ce35ed87d8f503c96fe7143e7c430ca2c181e678d0040e2ef7ef85da601ed47
+  interview_seconds: null
+  inherited_from: null

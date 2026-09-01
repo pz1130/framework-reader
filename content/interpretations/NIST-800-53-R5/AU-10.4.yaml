@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AU-10.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker (or a careless insider) replaying, forging,
+      or hijacking a legitimate reviewer's identity to alter, suppress, or forge audit
+      records - because audit data is only trustworthy if it is provably bound to
+      the specific human (or specific service account) who actually made the decision
+      to review or certify it.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when someone reviews or attests to an audit record, the
+      system cryptographically and procedurally proves it was that specific reviewer
+      - and that the binding cannot be silently transferred, replayed, or rerouted
+      to someone else mid-process.
+    basis: inferred
+  practice:
+    value:
+      '1': Reviewer names on sign-off are tied to authenticated accounts (no shared
+        logins, no copy-paste approvals); basic digital signature or hash-bound attestation
+        on critical audit sign-offs.
+      '2': Signature/identity binding enforced at the application layer (SIEM, GRC,
+        log-review tooling) using non-repudiable mechanisms; replay attempts detected
+        and logged; shared/break-glass accounts excluded from sign-off paths.
+      '3': Cryptographic binding (server-side signing keys, hardware-backed or HSM-protected)
+        with full chain of custody; reviewer identity re-validated at each material
+        step in multi-stage reviews; alerts on signature anomaly, re-issued keys,
+        or binding substitution; periodic independent verification that stored bindings
+        still map to live reviewers.
+    basis: inferred
+  evidence:
+    value: Architecture/design docs for reviewer authentication and signature binding,
+      signed-attestation samples from the SIEM or GRC tool, key-management records
+      (issuance, rotation, revocation), test results showing replays or substitutions
+      are rejected, access logs distinguishing individual reviewers from shared accounts
+      on sign-off events.
+    basis: inferred
+  common_myth:
+    value: Treating an SSO login as proof of binding - if SSO covers a shared service
+      account, a kiosk, or a delegated review queue, the 'reviewer' on the audit trail
+      is whoever happened to be at the keyboard, and the binding is meaningless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a sign-off from last quarter and the cryptographic binding that ties
+      it to one specific person.
+    - If reviewer A starts a review and reviewer B finishes it, where in the system
+      does the binding change - and is that change recorded and alerted on?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.512042Z'
+  signed_digest: d9b4d225117dd645dd64a044d27468f6dd740c7d647f8c51e3692733afb2cd73
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-8.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the chaos of components being installed, configured, or inventoried
+      without a clear owner system — leading to unmanaged assets, missed patching,
+      and blind spots for incident response.
+    basis: inferred
+  plain_zh:
+    value: Every component (hardware, software, firmware) must be explicitly assigned
+      to a system boundary so that ownership, risk, and maintenance responsibilities
+      are clear. Without this, components exist in a gray zone, unmonitored and unpatched.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify all components and map them to a system or asset group; maintain
+        a simple inventory list with owner and location.
+      '2': Formalize the assignment process—defined roles for assigning components,
+        periodic review, and reconciliation with the actual environment.
+      '3': Automate discovery and assignment where feasible, enforce assignment as
+        part of change management, and verify coverage against the full asset ledger
+        periodically.
+    basis: inferred
+  evidence:
+    value: An up-to-date component-to-system mapping (spreadsheet or CMDB data), change
+      tickets that reference system assignment, and periodic reconciliation reports
+      showing discrepancies resolved.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a generic IT asset inventory satisfies this control—without
+      an explicit business or security system owner, components remain effectively
+      unassigned and unmanaged.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick any unclassified server or network device—which system is it assigned to
+      and who is the owner?
+    - How do you handle new hardware or software that enters the environment but isn't
+      tied to a defined system boundary?
+    - What is your process when a component is decommissioned or moved between systems—how
+      is the assignment updated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.892065Z'
+  signed_digest: 4df69bb30bd7499c1979d64680fc82f35dbb68c21b04fb08d3c05f692ac3b653
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-4.24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the situation where intrusion indicators are detected but the
+      organization cannot name them, share them, or act on them quickly enough to
+      contain an active or incipient compromise.
+    basis: inferred
+  plain_zh:
+    value: Define a known set of compromise indicators, deploy detection that uses
+      them, and make sure the right people and systems receive and react to those
+      indicators in time.
+    basis: inferred
+  practice:
+    value:
+      '1': A short, written list of compromise indicators exists (hashes, IPs/domains,
+        behavioral patterns, account/host signals) and detection rules reference it.
+      '2': Indicators are refreshed on a defined cadence from internal incidents,
+        threat intel, and authoritative external feeds; distribution to sensors and
+        SOC playbooks is tracked.
+      '3': 'IOC-to-detection-to-response is measurable end-to-end: ingestion time,
+        coverage across critical assets, false-positive tuning, and time from indicator
+        arrival to detection to containment are tracked and improved.'
+    basis: inferred
+  evidence:
+    value: Documented IOC inventory and taxonomy, feed subscriptions and ingestion
+      logs, detection rule mapping to IOCs, distribution records to sensors/SIEM,
+      SOC playbooks referencing IOCs, and metrics on time-to-detect and time-to-contain
+      for IOC-driven events.
+    basis: inferred
+  common_myth:
+    value: Treating 'we subscribed to a threat intel feed' as the control. The list
+      sitting in a portal does nothing unless specific IOCs are parsed, pushed to
+      the sensors that cover your critical assets, and tied to a response step people
+      actually run.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one external IOC from the last 30 days and show where it landed in your
+      detection stack and what fired on it.
+    - Which critical asset classes or network segments are not covered by the sensors
+      receiving your IOC feed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.037932Z'
+  signed_digest: 770374c4f6971c456fdd82f0504dc9ebd8f33d83773aa0f126d30e601d6e856a
+  interview_seconds: null
+  inherited_from: null

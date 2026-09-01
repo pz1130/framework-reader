@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-3.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security team from only blocking or removing malware without
+      understanding how it got in, what it was trying to do, and whether it left persistent
+      footholds or exfiltrated data. Without this, signature updates and deletions
+      treat symptoms, and you remain blind to the campaign's actual goal, its entry
+      point, and what else it may have touched.
+    basis: inferred
+  plain_zh:
+    value: When you find malicious code, don't just delete it and move on. Analyze
+      the sample deeply enough to understand the attack vector, the payload's behavior
+      and capabilities, and the indicators that would let you detect or prevent the
+      same or similar attack elsewhere.
+    basis: inferred
+  practice:
+    value:
+      '1': When malware is found, you preserve the sample, record basic metadata (hash,
+        file type, location), and at least determine the delivery method (e.g., phishing
+        link, exploit, USB).
+      '2': 'You have a defined analysis workflow: static analysis (strings, imports,
+        signatures) and dynamic execution in a sandbox to extract network indicators
+        (C2 domains), file system changes, and privilege escalation attempts. Results
+        are documented and shared with the team handling the incident.'
+      '3': 'Malware analysis is systematic and integrated with your broader defense:
+        extracted indicators are fed into detection rules (e.g., SIEM, EDR, firewall),
+        the analysis informs a full incident response timeline (entry, lateral movement,
+        exfiltration), and lessons learned update security awareness or technical
+        controls to close the initial attack vector.'
+    basis: inferred
+  evidence:
+    value: A collection of malware analysis reports (even simple ones) that include
+      sample hash, analysis date, method used (e.g., 'static', 'sandbox run'), key
+      findings (C2 IP, persistence mechanism, mutex name), and a note connecting the
+      analysis to a specific incident or alert.
+    basis: inferred
+  common_myth:
+    value: Teams often assume that if the antivirus quarantines a file and you have
+      a hash, that constitutes 'analysis.' A hash is just an identifier; real analysis
+      is the behavioral and code-level understanding that lets you identify the entry
+      vector and what the malware actually did on the host.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an analysis report for a recent malware incident. What was the entry
+      vector and what were the key indicators of compromise?
+    - How do you decide which samples get deep analysis versus just being deleted,
+      and who makes that call?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.960987Z'
+  signed_digest: f34add319689301172851ab9d2ab527327025cbc769f6557f44b16b4b4c12256
+  interview_seconds: null
+  inherited_from: null

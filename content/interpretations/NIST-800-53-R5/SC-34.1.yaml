@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-34.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against persistent tampering where an attacker with physical or
+      logical access to a system component writes malicious code, implants a backdoor,
+      or modifies firmware/OS images that survive reboots and reinstalls. If storage
+      is writable, a foothold survives even after the next patch cycle, so the control
+      assumes a hostile environment where something on the box itself cannot be trusted
+      to stay clean.
+    basis: inferred
+  plain_zh:
+    value: For the most critical system components, eliminate or physically disable
+      writable storage so that nothing running on the box can persistently change
+      what is on disk or in firmware. The goal is that even if the OS or hypervisor
+      is compromised, the attacker cannot plant code that survives a reboot.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of components that truly need this protection (e.g.,
+        network devices at the perimeter, HSM-adjacent hosts, boot servers). Document
+        why each one is on the list. For those, disable USB, optical, and other removable
+        storage; lock down management interfaces to read-only.
+      '2': 'Move identified components to a verified boot image: read-only or write-once
+        media, signed OS/firmware images loaded from immutable sources, configuration
+        pushed from an external signed source. Maintain an authoritative signed image
+        per device and a documented rebuild procedure.'
+      '3': Enforce no-writable-storage by hardware/architecture (EFI write-protect,
+        ROMMON lockdown, signed firmware with secure boot) rather than policy alone.
+        Verify at each boot that the running image matches a known-good signed hash,
+        and alert on any deviation. Periodically re-attest components and remove any
+        that drifted from the no-writable baseline.
+    basis: inferred
+  evidence:
+    value: List of components in scope for no-writable-storage with justification,
+      configuration snapshots showing write-protection or read-only media, signed
+      image build pipeline with hash records, boot attestation logs, and change records
+      showing exceptions granted only for a defined window.
+    basis: inferred
+  common_myth:
+    value: Assuming 'the OS is hardened' or 'we have EDR on the device' satisfies
+      this control. Hardening and EDR run on writable media; if an attacker owns the
+      OS, they own the storage and can rewrite the very tooling meant to detect them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through one device on this list - show me physically or in config that
+      there is no writable storage the running OS can use.
+    - If I pulled the power on this device and rebooted, what verifies that what comes
+      up is the image you built, and what alerts you if it isn't?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.546381Z'
+  signed_digest: 2fdb8bc4a144d932d28e2e6877c2d8ec7dc9151e4a960f82106345f08e41a350
+  interview_seconds: null
+  inherited_from: null

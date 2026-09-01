@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PS-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where people discover that policy violations
+      have no real personal cost — they keep happening because nobody is held accountable,
+      and the sanction policy exists only on paper to satisfy auditors.
+    basis: inferred
+  plain_zh:
+    value: Define, communicate, and actually apply consistent sanctions to employees
+      and contractors who violate security policies, so that violations are followed
+      by real consequences tied to the severity of the act.
+    basis: inferred
+  practice:
+    value:
+      '1': A written sanctions policy exists; new hires and contractors sign an acknowledgement
+        that violations have consequences; HR and legal know who owns enforcement.
+      '2': Sanctions are graded by severity, applied consistently, and documented
+        case by case (what happened, what sanction, who decided); the function that
+        enforces is independent of the violator's chain of command.
+      '3': Sanction cases are reviewed for consistency across the organization; trends
+        feed back into training and policy updates; repeat offenders or unaddressed
+        violations are visible to leadership and corrected.
+    basis: inferred
+  evidence:
+    value: Sanctions policy approved by HR and leadership, signed acknowledgements
+      from staff and contractors, case files showing type of violation, sanction applied,
+      decision-maker, and dates, plus periodic consistency reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming that publishing a policy that mentions 'disciplinary action up
+      to and including termination' is enough — without recorded cases showing sanctions
+      actually applied, auditors treat the control as not implemented, especially
+      when prior incidents were handled informally.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent case where the sanctions policy was applied — what was the
+      violation, what was the sanction, and who decided.
+    - For the last three confirmed policy violations, what happened to the people
+      involved?
+    basis: inferred
+  regional_note:
+    value: EU auditors (especially under DORA and NIS2 expectations) tend to press
+      for evidence that sanctions are actually applied across all staff levels including
+      management; US audits often focus on whether the policy covers federal contractor
+      requirements and is consistently enforced across the workforce.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.855435Z'
+  signed_digest: ed8a89f9ec6ba4580c66b5592adca998554cbb367831b38c8810f4457c99c12e
+  interview_seconds: null
+  inherited_from: null

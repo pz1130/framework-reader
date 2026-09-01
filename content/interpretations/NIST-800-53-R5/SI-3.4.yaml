@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SI-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents malware-concealing control changes by ensuring only trusted, accountable
+      operators can push malicious code updates to the protection mechanism itself
+      — otherwise an attacker can simply turn the scanner off or feed it clean samples.
+    basis: inferred
+  plain_zh:
+    value: Make sure only privileged, accountable operators can install or update
+      the malicious-code protection software and its signatures, and that the system
+      blocks anyone else from doing it.
+    basis: inferred
+  practice:
+    value:
+      '1': Restrict update permissions on EDR/AV consoles and signature sources to
+        a named admin group; non-admins cannot push or modify.
+      '2': Updates go through a documented change/approval flow with initiator, approver,
+        and timestamp recorded; logs retained.
+      '3': Update actions are enforced by the tool itself (role-based access, signed
+        packages), with alerting and periodic review of who actually performed the
+        update.
+    basis: inferred
+  evidence:
+    value: Role/permission configuration on the protection tool, change tickets or
+      approvals for signature and engine updates, audit logs of update actions, review
+      records showing only privileged accounts performed them.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the AV/EDR is centrally managed, the control is satisfied
+      — admins can still install unsigned or unreviewed updates locally, or the management
+      server's own credentials are shared across many people, so 'privileged' is not
+      actually narrow.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of accounts permitted to push signature or engine updates,
+      and the log of the last ten updates performed.
+    - Can a standard domain user install or modify the protection client on their
+      endpoint without going through this process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.964840Z'
+  signed_digest: 0bbbc21b95674ca0bca07c47f746792dbc0f83df94eae1eecd3156257fea9a3f
+  interview_seconds: null
+  inherited_from: null

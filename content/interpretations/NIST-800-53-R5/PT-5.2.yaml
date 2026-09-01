@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PT-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure of subjects being unaware that their personally
+      identifiable information (PII) is being collected, under what authority, and
+      for what purpose — so they cannot meaningfully exercise consent, redress, or
+      statutory rights, and the organization cannot demonstrate a lawful basis at
+      the moment of collection.
+    basis: inferred
+  plain_zh:
+    value: When you collect PII through a system or form that directly interacts with
+      a person (especially to the extent the Privacy Act applies), give them a clear
+      statement covering the legal authority for collection, the purpose, the routine
+      uses, and the consequences of not providing it — before or at the point of collection.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which intake forms, web pages, kiosks, call-center scripts and
+        case-management screens collect information covered by a Privacy Act Statement;
+        attach a statement to each that names the authority, purpose, and routine
+        uses in plain language.
+      '2': Maintain a reviewed template library for the statements, route any new
+        collection through a privacy review checkpoint, and require the statement
+        to appear before the submit/continue action so it cannot be bypassed.
+      '3': Periodically audit live collection points to confirm the rendered statement
+        matches the approved template, the cited authority and routine uses are still
+        current, and the statement is reachable in the language and channel the subject
+        actually uses; remove or correct stale statements on a defined cadence.
+    basis: inferred
+  evidence:
+    value: Inventory of collection points requiring a Privacy Act Statement, approved
+      statement templates with authority and routine-use citations, screenshots or
+      recordings showing the statement rendered to the subject, privacy review records
+      for new collections, and audit results of post-deployment accuracy.
+    basis: inferred
+  common_myth:
+    value: Treating the Privacy Act Statement as a one-time legal boilerplate drafted
+      years ago and copy-pasted onto every form — even when the underlying authority,
+      routine uses, or system of records have changed, so the statement on screen
+      no longer matches what the organization is actually doing with the data.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three collection points where the authority and routine uses on the
+      statement are still valid against the current System of Records Notice.
+    - What stops a new intake form from going live without an approved Privacy Act
+      Statement attached?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.897396Z'
+  signed_digest: 1a3ae034105f6a0256c6b42ee930211c3cd4d5814e05d1bf4fce8c4d4997b2f6
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PE-3.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against unauthorized piggybacking, tailgating, and forced entry
+      into physically secured areas: a single locked door with a card reader is bypassable
+      the moment someone holds the door for a stranger or shoves in behind an authorized
+      employee, exposing servers, wiring closets, and any space where data lives.'
+    basis: inferred
+  plain_zh:
+    value: Where two or more doors form a small enclosed passage into a sensitive
+      area, control both doors so only one person, who has just authenticated, can
+      pass at a time, and prevent two people from slipping through on a single credential.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify doors into sensitive areas (data rooms, control rooms, wiring
+        closets) that currently rely on a single card reader and document them; post
+        signage reminding staff not to hold doors for others.
+      '2': 'Install a two-door vestibule with interlocking logic: when the first door
+        opens, the second remains locked until the first closes and the person authenticates
+        again; log every entry with timestamp and credential.'
+      '3': Add sensors that confirm only one person is in the vestibule (mantrap scale
+        or override for tailgating), alarm on forced or held-open doors, route logs
+        into the physical security monitoring system, and test the interlock quarterly.
+    basis: inferred
+  evidence:
+    value: Floor plan marking vestibule locations, vestibule interlock configuration
+      and alarm settings, entry/exit records tied to credentials, periodic test results
+      of the interlock, and incident logs for forced or piggyback attempts.
+    basis: inferred
+  common_myth:
+    value: Treating a card reader on a single door as equivalent to a vestibule. One
+      authenticated door can be tailgated in seconds; without a second controlled
+      barrier that interlocks with the first, the control is not actually in place
+      regardless of the lock brand.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the floor plan for the data center entry and walk me through what stops
+      a person from walking in behind an authenticated employee.
+    - What does the system do if the inner door is forced open or held open past the
+      timeout?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.615442Z'
+  signed_digest: 3c03e303ded01b9e795858a8045d2010a2cf39da1e2ba3256725099cb3d2d2f4
+  interview_seconds: null
+  inherited_from: null

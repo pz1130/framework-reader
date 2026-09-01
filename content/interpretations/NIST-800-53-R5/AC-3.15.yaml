@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-3.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where an account or process inherits broad authorities
+      that let it read, change, or grant access to data it should never touch — bypassing
+      the access decisions made elsewhere and turning 'who can log in' into 'who can
+      do anything on the box'.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when something is allowed to use an information system,
+      the privileges it receives on that system are explicitly limited to what it
+      needs — not the full set the system could grant.
+    basis: inferred
+  practice:
+    value:
+      '1': Remove or disable built-in administrator/root memberships from user and
+        service accounts; admins use a separate privileged account for elevated tasks.
+      '2': Define an approved list of privileges that each system or account class
+        may hold, with justification, and review it when roles change.
+      '3': Enforce privilege restrictions in the system itself (group policy, sudoers,
+        IAM policy boundary, SELinux/AppArmor profiles) so that even a compromised
+        identity cannot exceed its approved privilege set, and alert when inheritance
+        or elevation is granted outside the approved list.
+    basis: inferred
+  evidence:
+    value: System configuration showing the privileges granted to each class of account,
+      the policy boundary or role definition that caps those privileges, removal of
+      default admin-group memberships, and a record of recent privilege changes with
+      approval.
+    basis: inferred
+  common_myth:
+    value: Believing that creating a non-admin service account is enough — if that
+      account still inherits Domain Admins, has sudo NOPASSWD, or carries a wildcard
+      IAM policy, 'non-admin' is a label, not a control. Auditors open the actual
+      membership list and policy document, not the account description.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the exact group memberships and effective rights of a sample service
+      account versus a sample admin account — what is the privilege gap on paper?
+    - Which systems are still configured so that a standard account could execute
+      with full administrative rights without an explicit elevation step?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.221670Z'
+  signed_digest: 0da7c99ee16c64f5cc35c7b1943d335ac8d1679f9ce1b441720abbc25d9b832e
+  interview_seconds: null
+  inherited_from: null

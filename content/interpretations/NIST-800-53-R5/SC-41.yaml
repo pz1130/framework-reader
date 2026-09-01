@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-41
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker who already has brief hands-on or software access
+      to a system from exfiltrating data, injecting malware, or establishing persistence
+      through removable media, auxiliary ports, and peripheral devices that the OS
+      or endpoint agent never expected to interact with.
+    basis: inferred
+  plain_zh:
+    value: Restrict or disable which physical ports and I/O devices (USB, Thunderbolt,
+      Bluetooth, optical, external storage, etc.) each system can use, so that only
+      approved media and devices work and unknown ones are blocked or visibly alerted.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which port types and device classes exist on in-scope systems;
+        disable in BIOS/UEFI or OS settings what is not needed (e.g., unused USB ports,
+        Bluetooth, FireWire); physically label or block ports that must remain inert.
+      '2': Define an allow-list of approved device classes/users per system tier;
+        enforce via endpoint management (device control, MDM, GPO, Intune, etc.);
+        log connection events; require business justification for new device classes.
+      '3': Centralized policy pushed from endpoint management with deviation alerts;
+        integrate with EDR/SIEM to flag unauthorized device attachment in real time;
+        periodic audit of policy vs. actual device use; exception process with expiry
+        dates; tested incident playbooks for rogue device discovery.
+    basis: inferred
+  evidence:
+    value: Port/device control policy, endpoint management configuration snapshots,
+      sample logs of blocked or allowed device events, change records for exceptions,
+      periodic audit reports comparing policy to observed devices.
+    basis: inferred
+  common_myth:
+    value: Treating endpoint antivirus or disk encryption as sufficient and assuming
+      the OS will simply ignore unknown USB devices — in reality, many OSes auto-install
+      drivers and mount storage by default, and BadUSB-class attacks weaponize HID
+      devices that AV does not flag.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the policy that says which port types or device classes are allowed
+      on a standard corporate laptop, and how it is enforced centrally.
+    - Walk me through what happens when an employee plugs in an unknown USB drive
+      today — what blocks it, what logs it, who sees the alert.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.601723Z'
+  signed_digest: ed1b6b320efe4ed032bde6bb076680f33fd6815df32005a451eb227314afd7aa
+  interview_seconds: null
+  inherited_from: null

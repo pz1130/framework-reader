@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-3.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shared or group logins from obscuring who actually touched a system
+      - without per-user identities, you cannot attribute actions to a person, detect
+      insider misuse, or reconstruct an incident. The control defends against the
+      failure mode where accountability collapses because everyone logs in as "admin"
+      or a shared service account, so a forensic trail ends at a name that is not
+      a person.
+    basis: inferred
+  plain_zh:
+    value: Every person who uses a system must have and use their own account; shared,
+      group, or generic logins are not allowed except in tightly controlled exceptions,
+      and any exception must be justified, logged, and time-bound.
+    basis: inferred
+  practice:
+    value:
+      '1': No shared or generic accounts for normal user access; each individual has
+        a unique ID; shared credentials that exist today are inventoried with a documented
+        business reason.
+      '2': A written policy prohibits shared accounts and lists approved exceptions
+        with justification, scope, and an end date; account creation and deprovisioning
+        are tied to a single person's identity in HR or IAM.
+      '3': Technical enforcement prevents shared-account login on systems that support
+        it (unique-ID requirement at auth); exceptions are time-bound, monitored,
+        and reviewed periodically; audit logs tie every action back to an individual
+        even when a shared service account is used as a system principal.
+    basis: inferred
+  evidence:
+    value: Unique-user account inventory, shared/generic account register with justifications
+      and review dates, account lifecycle records tying each ID to a person, policy
+      prohibiting shared accounts, exception approvals, and authentication logs showing
+      one identity per person.
+    basis: inferred
+  common_myth:
+    value: Assuming a generic "admin" or "kiosk" account is fine as long as the password
+      is strong and rotated. Strong credentials do not restore accountability - if
+      three people share an account, an audit log entry only tells you one of them
+      acted, so the control still fails for attribution, non-repudiation, and incident
+      reconstruction.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me every shared or generic account in this system and the justification
+      for each one.
+    - If I pick an action from last month's audit log, can you tell me which individual
+      performed it and how you verified it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.217776Z'
+  signed_digest: 10dccfb19460b29be9dfaba9dfe950a803b363512fed46d1edcc015dec00ad07
+  interview_seconds: null
+  inherited_from: null

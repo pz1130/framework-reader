@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-5.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the day the primary audit pipeline dies and no one can
+      tell you what happened — an attacker suppressing logs, a logging host failing,
+      or a storage outage should not create a blind window where compromise goes unprovable
+      and unreconstructable.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when your main audit logging path is broken, under attack,
+      or out of capacity, a verifiable secondary path keeps recording and you can
+      actually use it.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical log sources that must never go silent (auth, admin,
+        boundary, key systems); for each, name who can switch to the alternate path
+        and how.
+      '2': An alternate logging capability exists (secondary server, local buffer
+        with replay, or write-once storage), with a written trigger and handoff procedure
+        tested at least once a year.
+      '3': Switchover is automatic or tested under realistic failure (host down, primary
+        log server unreachable, disk full); gaps in the primary feed are detected
+        and backfilled; the alternate path itself is monitored for integrity.
+    basis: inferred
+  evidence:
+    value: Documented alternate logging architecture, trigger criteria, switchover
+      runbook, dated test records showing logs were captured by the alternate path,
+      and proof that primary-feed gaps were detected and reconciled.
+    basis: inferred
+  common_myth:
+    value: Believing that having a second syslog server pointed at in the config equals
+      coverage — unless the team has actually proven it catches events when the primary
+      is down, and can tell which events arrived late or were lost, the alternate
+      path is theoretical.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the alternate logging path last tested, and how do you know no events
+      were lost during the simulated primary failure?
+    - Which log sources currently have no alternate path, and what is the acceptable
+      outage window for them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.594018Z'
+  signed_digest: 95abf0db269ed4846c54735272f6be332a68a703c55c015628ebcdec0f085f2f
+  interview_seconds: null
+  inherited_from: null

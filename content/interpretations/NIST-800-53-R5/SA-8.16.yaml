@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SA-8.16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a single critical component (hardware,
+      firmware, or service) becomes a single point of compromise for the whole system.
+      If you depend entirely on one vendor, one supply chain, or one implementation
+      for a trust-critical function, a compromise upstream silently becomes your compromise
+      - and you cannot detect, isolate, or recover from it on your own.
+    basis: inferred
+  plain_zh:
+    value: For security-critical functions, design the system so its trustworthiness
+      does not depend on a single vendor, supply chain, or implementation. Build in
+      alternatives - different providers, different technologies, or independently
+      verifiable components - so that if one source fails or is subverted, the system
+      can still be checked or kept safe.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the trust-critical functions (root of trust, crypto, boot, identity,
+        key management) and document which of them depend on a single source today.
+      '2': 'For each trust-critical function, define a deliberate strategy for self-reliance:
+        diversity of supplier, diversity of implementation, or independent verification.
+        Record it in the system security design.'
+      '3': 'Engineer and test the system so that self-reliance is real, not nominal:
+        alternate components are integrated, independently verifiable, and can actually
+        carry the trust load if the primary is compromised or unavailable.'
+    basis: inferred
+  evidence:
+    value: System security design artifacts identifying trust-critical functions,
+      the self-reliance strategy chosen per function, rationale for the chosen approach,
+      and test/verification results showing the alternative can in fact carry the
+      trust load.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a second vendor or listing two products in a bill
+      of materials satisfies the control. Procurement diversity is not design diversity
+      - if both paths run the same firmware, share the same upstream crypto library,
+      or trust the same root, you have one trust path with two labels.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a trust-critical function in this system and walk through what would
+      still hold if the primary supplier or implementation were compromised.
+    - How do the alternate components actually differ from the primary - different
+      code base, different hardware root, independently verifiable - or is it the
+      same trust path with a different label?
+    basis: inferred
+  regional_note:
+    value: European auditors under supply chain resilience frameworks (e.g. DORA,
+      NIS2-aligned practices) push harder on demonstrable independence of ICT providers
+      for critical functions. US practice under 800-53 tends to accept documented
+      design rationale more readily when alternatives are not operationally feasible.
+      The substantive requirement is the same; the pressure to prove genuine independence
+      is higher in Europe.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.237166Z'
+  signed_digest: 3a4582bddd691d62d339b7b84101f5bd5bd650a643d6839a63a30e8993958c93
+  interview_seconds: null
+  inherited_from: null

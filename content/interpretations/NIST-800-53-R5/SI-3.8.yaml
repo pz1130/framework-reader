@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SI-3.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against malicious or accidental in-band system commands that should
+      never execute — the kind that arrive via crafted inputs to legitimate-looking
+      processes (buffer overflow shellcode, smuggled CLI arguments, rogue management
+      packets). Without this, an attacker who reaches any command-accepting surface
+      can run things the system was never meant to run, and you find out only from
+      the damage.
+    basis: inferred
+  plain_zh:
+    value: Detect, at runtime, any command that should not be running on the system
+      and raise an alert, instead of silently passing it through because it came in
+      on an expected port.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the system components that accept commands (OS shells, network
+        devices, management interfaces, application endpoints) and have a basic rule
+        set flagging known-bad patterns or unexpected invocations; alerts go somewhere
+        a person can see.
+      '2': Rules are documented and tuned per platform; detections are tied to known
+        attack patterns and unauthorized maintenance windows; alerts are triaged,
+        not just logged; there is a written runbook for what gets blocked, escalated,
+        or allowed with justification.
+      '3': Detection runs continuously with low false-positive rate, is tested against
+        red-team or replayed malicious commands, integrates with the SIEM and incident
+        response, feeds lessons back into baseline rules, and the unauthorized-command
+        signal is tracked as a control-effectiveness metric over time.
+    basis: inferred
+  evidence:
+    value: Inventory of command-accepting components, detection rules and their rationale,
+      alert logs and triage records, runbooks for unauthorized-command response, test/validation
+      evidence showing the control fires on malicious input.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a port is encrypted or authenticated (SSH, HTTPS,
+      vendor management console) the commands flowing through it are all legitimate
+      — so no extra detection is needed. Authentication tells you who, not what; a
+      compromised admin account, an exploited service handling input, or a rogue management
+      packet all still arrive on the 'allowed' port.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last unauthorized-command alert you received and what happened next.
+    - Which systems that accept commands are NOT covered by this detection, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.972891Z'
+  signed_digest: f0d38c3c27b2782336beb9d551a45bf0fa3e0c600d5a0e154157db816873fe23
+  interview_seconds: null
+  inherited_from: null

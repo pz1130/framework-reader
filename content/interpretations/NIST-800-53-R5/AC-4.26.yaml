@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-4.26
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the information flow control itself from becoming a blind spot
+      - if filters silently drop, rewrite, or block traffic, an attacker can use that
+      opacity to hide exfiltration or intrusion, and operators have no way to tell
+      whether the control is actually working or has been subverted.
+    basis: inferred
+  plain_zh:
+    value: When the system filters, blocks, quarantines, or rewrites information flows,
+      those filtering actions must be captured as auditable records so you can prove
+      the control did what it was supposed to and detect when it was bypassed or tampered
+      with.
+    basis: inferred
+  practice:
+    value:
+      '1': 'The data flow protection system (proxy, DLP, firewall, email gateway,
+        API gateway) is configured to emit a log entry for every filtering decision:
+        block, allow-with-modification, quarantine, redirect, or sanitize.'
+      '2': Logs include enough context to reconstruct who/what was affected, what
+        rule fired, what action was taken, and timestamp; logs feed into the central
+        SIEM and are retained per the audit log policy.
+      '3': Filtering actions are correlated with change management and rule updates,
+        alerting on sudden drops in volume, mass-allow of previously-blocked content,
+        or filter rule changes without corresponding tickets - so a hijacked rule
+        or compromised filter cannot quietly disable protection.
+    basis: inferred
+  evidence:
+    value: Sample log entries showing each filter action type with full context, configuration
+      screenshots of the filter devices showing audit logging enabled, SIEM ingestion
+      rules for filter events, retention settings, and any alert rules tied to filter
+      behaviour anomalies.
+    basis: inferred
+  common_myth:
+    value: Treating the access control / flow control enforcement itself as separate
+      from the audit logging programme - the team configures block rules but assumes
+      the device vendor's default syslog is sufficient, with no verification that
+      filter decisions actually land in the SIEM or are reviewed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a log entry from last week where the filter blocked a data flow - what
+      rule fired and what was the payload context?
+    - If someone disables or modifies a filter rule, how would you detect it from
+      the audit trail?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.316204Z'
+  signed_digest: 4ba3a0b8fdae6a0a702b31484091879131bcca3406958a045a5c04ab141fd575
+  interview_seconds: null
+  inherited_from: null

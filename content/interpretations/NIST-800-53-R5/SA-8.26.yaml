@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-8.26
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents systems from silently degrading under load or hostile inputs that
+      aim to exhaust CPU, memory, disk, I/O, or network resources — a failure mode
+      where the application appears alive but stops responding, drops legitimate users,
+      or crashes in a repeatable, exploitable way.
+    basis: inferred
+  plain_zh:
+    value: Engineer systems so that they continue to function at an acceptable level
+      when resources are stretched or attacked. Capacity, throughput, and degradation
+      behavior must be designed in, not discovered during an outage.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical services and define a minimum acceptable throughput/latency
+        under stress; document known resource ceilings (connections, queue depth,
+        CPU, memory).
+      '2': Run load and stress tests against representative workloads; record degradation
+        behavior and resource exhaustion thresholds; document and test graceful degradation
+        paths (e.g., shed load, return cached results, fail closed).
+      '3': Performance and resource limits are part of the design review checklist;
+        abuse-case stress testing (malformed input, floods, slow clients) is run alongside
+        functional testing; limits and degradation logic are monitored in production
+        with alerts before users feel impact; fixes feed back into design.
+    basis: inferred
+  evidence:
+    value: Design records that specify performance and resource requirements, test
+      plans and results from load/stress/abuse-case testing, documented degradation
+      behavior, production monitoring dashboards and alert thresholds tied to resource
+      limits, and change records showing when limits were revised after incidents.
+    basis: inferred
+  common_myth:
+    value: Treating performance testing as a one-time pre-launch gate. A system that
+      passed load tests on day one can become fragile after a dependency changes,
+      a database grows, or a new endpoint is added — and attackers specifically look
+      for the resource shape that has shifted since launch.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the latest stress or load test for a critical service and what resource
+      limit it identified.
+    - When a dependency or component changed recently, how did you re-confirm performance
+      behavior under abuse conditions?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.280121Z'
+  signed_digest: 896dad6646f2aac06695f5e0b379e9ee88c8cddfd696e499762398b483782efd
+  interview_seconds: null
+  inherited_from: null

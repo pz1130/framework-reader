@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure of having intrusion-detection, file-integrity, and
+      similar monitoring tools deployed as isolated islands that never cross-check
+      each other—so an attacker who silences or spoofs one sensor, or exploits a gap
+      between two tools, goes unnoticed because nothing reconciles what each one says.
+    basis: inferred
+  plain_zh:
+    value: Make the automated monitoring and detection tools talk to each other and
+      to central mechanisms in a defined way, instead of running as disconnected point
+      products that each report to a different console.
+    basis: inferred
+  practice:
+    value:
+      '1': List the in-scope detection and integrity tools (IDS/IPS, EDR, FIM, AV,
+        DLP, SIEM collectors, etc.) and document what each one feeds and where; a
+        sketch of the data flows between them exists.
+      '2': Each tool has defined event formats, a shared or mapped taxonomy, and is
+        integrated into the central SIEM/SOAR or equivalent correlation layer; alerts
+        trigger downstream actions via documented interfaces (APIs, syslog, agents).
+      '3': Tool integrations are tested end-to-end on a schedule and after changes;
+        gaps between tools (e.g. endpoint sees nothing, network does; or vice versa)
+        are reconciled through documented procedures with measurable coverage; isolated
+        or unmonitored segments are tracked and remediated.
+    basis: inferred
+  evidence:
+    value: Tool inventory with integration map, event/format standards, SIEM correlation
+      rules showing cross-tool logic, integration test results, coverage reports of
+      gaps where one tool should have seen something and another did not.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the SIEM dashboard shows events from every sensor,
+      the tools are integrated—they may just be co-located in a console. True integration
+      means the outputs cross-check each other and the central mechanism can drive
+      actions, not just display rows.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one recent incident: which detection tools saw it, which should have but
+      did not, and how do you know?'
+    - Show me one place where two tools are configured to corroborate each other rather
+      than just both reporting to the same console.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.045192Z'
+  signed_digest: f453f5d9441c9170dde8f171516049a008283065afabb4c933d6bdfc0786f615
+  interview_seconds: null
+  inherited_from: null

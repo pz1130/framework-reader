@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-2.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the same flaw recurring because the original trigger was
+      never understood. Without root-cause analysis, each incident ends with a patch
+      on the symptom, and the next incident on the same underlying cause writes the
+      same finding again into next year's audit.
+    basis: inferred
+  plain_zh:
+    value: When a flaw is found, you must dig past the immediate failure to identify
+      the underlying cause (process gap, design defect, configuration drift, training
+      gap, etc.), document it, and act on that cause - not just close the ticket that
+      reported the symptom.
+    basis: inferred
+  practice:
+    value:
+      '1': When a significant flaw is fixed, someone writes down what they think caused
+        it and who agreed, before the ticket is closed.
+      '2': A documented root-cause method is used (e.g., fishbone, 5-why) for flaws
+        above a defined severity bar; the analysis and the resulting corrective actions
+        are recorded and tracked to completion.
+      '3': Root-cause findings feed back into the SDLC, change management, configuration
+        baselines, or training so the same class of flaw stops appearing; trend data
+        on root causes is reviewed periodically to spot systemic patterns.
+    basis: inferred
+  evidence:
+    value: Sample of closed flaw tickets showing a documented root-cause statement,
+      the method used, and corrective actions tied back to that cause rather than
+      only to the symptom.
+    basis: inferred
+  common_myth:
+    value: Treating the fix itself as the root-cause analysis - writing 'patched and
+      verified' as the cause. The patch addresses the symptom; the control wants the
+      question of why the flaw existed in the first place answered.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two recently closed high-severity flaws and walk me through the root cause,
+      not the fix.
+    - What changed in your process, build, or training as a result of that root cause,
+      and how do you know it worked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.941858Z'
+  signed_digest: 88a17774069327269bbd0140ba6cc2965a5af48e18116d4b08479a95970cce97
+  interview_seconds: null
+  inherited_from: null

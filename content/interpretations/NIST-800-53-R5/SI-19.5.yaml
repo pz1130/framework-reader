@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SI-19.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the leakage of personally identifiable information through published
+      or shared aggregate statistics, such as counts, averages, or percentages, where
+      individuals can be re-identified by differencing or by combining multiple releases.
+    basis: inferred
+  plain_zh:
+    value: When you release statistics, you must make sure no one can reverse-engineer
+      individual records from the numbers. This is not just about removing names —
+      it is about protecting the mathematical relationship between the data points.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a documented policy stating that any statistics derived from personal
+        data must be reviewed before release; the review confirms that the release
+        meets the organization's re-identification risk threshold.
+      '2': Use standard statistical disclosure control techniques (e.g., suppression,
+        rounding, perturbation, k-anonymity) applied by a trained team, with a review
+        log recording what was released, why it was safe, and who approved it.
+      '3': Maintain a formal release process integrated with the data governance program;
+        use tools that automate risk assessment for each dataset; regularly test re-identification
+        scenarios (e.g., differencing across releases) and update thresholds based
+        on real-world attempts.
+    basis: inferred
+  evidence:
+    value: A written disclosure control policy, examples of completed disclosure risk
+      assessments for released statistics, the list of techniques used (e.g., suppression,
+      rounding), approval logs, and any automated tool outputs or test reports from
+      simulated re-identification attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that removing direct identifiers like names and social security
+      numbers means the data is safe; but attackers can re-identify individuals from
+      unique combinations of quasi-identifiers or by comparing multiple releases over
+      time.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is your re-identification risk threshold, and where is it documented?
+    - Show me the last three statistical releases you approved — what did you suppress
+      or perturb, and why was that enough?
+    basis: inferred
+  regional_note:
+    value: EU auditors, especially under GDPR, tend to focus on whether the statistical
+      release is truly anonymized (not merely pseudonymized), and they may expect
+      more aggressive risk mitigation, even to the point of refusing certain releases;
+      US auditors often accept a more pragmatic risk-based approach, relying on the
+      organization's own threshold.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.907546Z'
+  signed_digest: ca9c9e980141200b690e31b6fa1ed56304949a13b2ecd04e0aaf04ba99fd28f4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-14.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent tampering of firmware, microcode, or boot code by
+      malware or compromised update infrastructure. Without verified refreshes, persistent
+      malicious code survives reboots, OS reinstalls, and disk wipes — the attacker
+      owns the machine even after you 'rebuild' it.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when firmware, microcode, or boot code is updated, the update
+      actually came from the vendor you trust and was not altered in transit — and
+      reject or quarantine anything that cannot be proven authentic.
+    basis: inferred
+  practice:
+    value:
+      '1': Document a short list of which firmware components (BIOS/UEFI, BMC, NIC,
+        drives, hypervisor) are in scope and which vendor is the trusted source; disable
+        automatic updates from anywhere else.
+      '2': Verify signatures or hashes on every update before applying; keep records
+        of what was applied, when, by whom, and from which signed source; reject unsigned
+        or out-of-band updates.
+      '3': Pin updates to vendor-signed channels with hardware root-of-trust verification
+        (e.g., measured boot, TPM attestation), alert on mismatches, and treat any
+        firmware change as a security-relevant event that triggers review.
+    basis: inferred
+  evidence:
+    value: List of in-scope firmware and named trusted sources, signature/hash verification
+      logs for updates applied, change records showing source provenance, policy prohibiting
+      updates from non-listed sources, and attestation or alert evidence for rejected/tampered
+      updates.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the update tool fetched from the vendor's HTTPS site,
+      authenticity is guaranteed — without checking the cryptographic signature against
+      the vendor's key, a compromised vendor portal, mirror, or supply-chain injection
+      still installs attacker code on the bare metal.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last firmware update you applied and how you verified it came from
+      the vendor you trust.
+    - Which firmware components in your environment are not covered by signature verification,
+      and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.852284Z'
+  signed_digest: bc1f40d831a47cccb6e708a823fb8c0c18991864c324f745be49ce8f5257f425
+  interview_seconds: null
+  inherited_from: null

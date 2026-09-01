@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-31.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a covert side-channel that quietly exfiltrates data or
+      covertly communicates by modulating electromagnetic, acoustic, optical, or power
+      signals — without you ever seeing network traffic or endpoint logs, because
+      the signal never rides your infrastructure.
+    basis: inferred
+  plain_zh:
+    value: Measure how much information could leak out of operational environments
+      through side-channels (EM, acoustic, line disturbances, etc.), so you know whether
+      the threat is theoretical or actually exploitable at your site, and can size
+      mitigations to reality rather than to assumption.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the operational environments where side-channel bandwidth matters
+        (government, SCADA, R&D, classified processing); pick one and take a baseline
+        measurement with a spectrum analyzer or equivalent tooling to see if a usable
+        signal is detectable at all.
+      '2': Define a measurement methodology (test source, distance, shielding assumptions)
+        and document results in a lab or controlled surrogate environment; compare
+        measured bandwidth against the threat models that justify the control and
+        record the gap.
+      '3': Repeat measurements periodically and on environmental change (new equipment,
+        layout, power, cabling); tie the measured bandwidth to design decisions (zoning,
+        TEMPEST mitigations, red/black separation) and trigger re-evaluation when
+        measurements drift.
+    basis: inferred
+  evidence:
+    value: Measurement plan, equipment and calibration records, measured bandwidth
+      results per environment, comparison against threat model, and any resulting
+      design or zoning changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a TEMPEST-rated shielded room or a 'TEMPEST' labeled
+      device satisfies the control without ever measuring actual emissions — the control
+      explicitly asks you to measure, not to wrap the room. Without measurements you
+      cannot tell whether the shield is needed, is sufficient, or is even working.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a measured bandwidth figure from one of your operational environments
+      and the instrument setup that produced it.
+    - When did you last repeat the measurement, and what change in the environment
+      would cause you to do it again?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors in national-security or classified-processing contexts treat
+      this seriously because of TEMPEST/NSA evaluation programs; outside that scope
+      it is rarely probed. EU practice tends to fold equivalent concerns into broader
+      emission-control or TEMPEST-style requirements tied to classified handling and
+      critical-infrastructure protection, with comparable weight only where classified
+      work is in scope.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.538197Z'
+  signed_digest: 2328109baa90ee366b4d7ba2f70bc67b00661507ca9cacb10b6566b8c5227e1f
+  interview_seconds: null
+  inherited_from: null

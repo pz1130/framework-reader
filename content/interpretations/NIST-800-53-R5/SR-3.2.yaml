@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SR-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'To prevent a compromised or defective supply chain component from causing
+      collateral damage across the enterprise. The concern is not about the component
+      failing alone, but about blast radius: an infected firmware update, a malicious
+      library, or a corrupted hardware module spreading laterally once it enters the
+      environment.'
+    basis: inferred
+  plain_zh:
+    value: It asks you to architect your systems, processes, and response plans so
+      that when a third-party component goes bad, the impact is contained to that
+      component and its immediate vicinity—not allowed to propagate to unrelated systems,
+      networks, or data stores.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which supply chain components are most critical and document them;
+        ensure that when one of them is compromised, you can isolate it from the rest
+        of the network (e.g., via network segmentation or manual kill switch).
+      '2': Implement technical controls to limit the access and privileges of all
+        supply chain components—they operate with least privilege, cannot traverse
+        network segments, and their behavior is monitored; document the response playbook
+        and practice it.
+      '3': 'Adopt a zero-trust architecture for supply chain components: they are
+        authenticated, their traffic is inspected, their runtime behavior is compared
+        against a baseline, and automated containment actions trigger when they deviate;
+        the supply chain''s inherent blast radius is designed out of the architecture,
+        not just mitigated after the fact.'
+    basis: inferred
+  evidence:
+    value: Network architecture diagrams showing segmentation of SC components; access
+      control lists (ACLs) restricting SC traffic; baseline behavior profiles and
+      anomaly detection alerts; isolation/containment runbook with drill results;
+      incident reports showing successful containment of a real SC event.
+    basis: inferred
+  common_myth:
+    value: Teams often think this control is satisfied by having a supplier incident
+      response plan on file. A document about 'who to call when a supplier has a breach'
+      does nothing to stop a malicious component from moving laterally once it's inside
+      your environment. The point is to architect your own environment so that a bad
+      component cannot roam.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If a critical software library from a supplier were to behave maliciously tomorrow,
+      what technical control would stop it from reading data on a different server?
+    - Show me the network path this vendor-provided hardware component can reach—does
+      it have access to the production database, and if so, who approved that route?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.164049Z'
+  signed_digest: 8222cd0ba01b66e12ddb8d04c94a357dc8c52b87657e57c9f7ae0b28d2cbe7a0
+  interview_seconds: null
+  inherited_from: null

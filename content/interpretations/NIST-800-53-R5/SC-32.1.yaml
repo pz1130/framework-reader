@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-32.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged sessions being piggybacked or observed by anyone
+      walking past a workstation — if admins type root credentials or handle sensitive
+      data in an open cubicle, shoulder-surfing, planted peripherals, and casual screen-watching
+      turn routine admin work into a breach. The control exists so that "being an
+      admin" happens in a place, not just on a machine.
+    basis: inferred
+  plain_zh:
+    value: Make sure that people performing privileged actions (root logins, key handling,
+      sensitive configuration) work in a physically separated space that ordinary
+      staff and visitors cannot casually see, hear, or plug into — not the same desks
+      they do email from.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which functions count as privileged; designate a separate room
+        or locked enclosure (e.g., a caged terminal area, locked server-room kiosk,
+        or dedicated admin office) where those tasks are performed; prohibit privileged
+        sessions from shared/open desks.
+      '2': Document the physical separation in policy, label the dedicated space,
+        restrict access with badge or key, and require admins to log into a tracking
+        system when entering; remove removable media and unmanaged USB ports from
+        those workstations.
+      '3': Treat the privileged space as a controlled zone with its own access list,
+        video coverage, tamper-evident seals on console hardware, and periodic walk-throughs
+        to verify no admin is routinely falling back to a non-separated desk; monitor
+        for logins from privileged accounts originating outside the designated area.
+    basis: inferred
+  evidence:
+    value: Policy describing which functions are privileged and the designated physical
+      space, access control logs for the privileged area, badge/key issuance records,
+      workstation inventory and location map showing separation, and audit logs or
+      alerts for privileged-account sessions from non-designated locations.
+    basis: inferred
+  common_myth:
+    value: Assuming that because admin accounts require MFA and the workstation is
+      in a badge-only building, the control is met — MFA proves identity, not that
+      the admin's screen and keyboard are out of reach of visitors, cleaners, or a
+      USB drop-box on an unguarded desk.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where do administrators actually perform privileged work, and is that location
+      separate from normal user desks?
+    - Show me the last privileged session that originated outside the designated area
+      — what happened?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.542325Z'
+  signed_digest: 6be1afaef1f83d872a092d54467d580571150b9e2aa1abd6d7b1e5d1a6f29574
+  interview_seconds: null
+  inherited_from: null

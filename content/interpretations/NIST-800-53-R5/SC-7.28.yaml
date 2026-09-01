@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-7.28
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker who has already compromised an internal system from
+      using it as a springboard into an external public network to exfiltrate data,
+      attack third parties, or establish external command-and-control that bypasses
+      the organization's ingress filtering. The defense assumes breach and limits
+      the blast radius of outbound reach from sensitive enclaves.
+    basis: inferred
+  plain_zh:
+    value: Isolate systems that handle sensitive or regulated data so they cannot
+      freely initiate outbound connections to public networks; control, restrict,
+      or block the egress paths between protected enclaves and the internet.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which internal subnets hold sensitive data or critical services
+        and document that outbound traffic from these enclaves to public networks
+        is restricted at the perimeter firewall or router.
+      '2': Maintain an explicit allow-list of approved egress destinations and protocols
+        for the protected enclaves; route their outbound traffic through a dedicated
+        proxy, gateway, or filter where connections are inspected and logged.
+      '3': Implement one-way diodes, pinned routes, or enclave-specific egress proxies
+        that prevent arbitrary outbound flows from sensitive zones; alert on any unapproved
+        outbound connection attempt and verify the controls are still in place through
+        periodic rule review and outbound traffic testing.
+    basis: inferred
+  evidence:
+    value: Network architecture diagrams marking sensitive enclaves, firewall and
+      proxy egress rule sets with justification for each allowed outbound destination,
+      logs of outbound traffic from protected enclaves, results of periodic tests
+      attempting unsanctioned egress.
+    basis: inferred
+  common_myth:
+    value: Treating strong ingress firewall rules as sufficient and assuming internal
+      systems can be trusted to initiate any outbound connection - the misconception
+      that firewalls only need to block what comes in, not what goes out.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which internal enclaves are designated as protected from arbitrary outbound
+      connectivity, and where is that designation documented?
+    - Show me the firewall or proxy rules governing outbound traffic from those enclaves
+      - how is a new outbound destination approved or denied?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.744082Z'
+  signed_digest: 2f2e6178616253b560ecbbdd1808c86d2e10ae590f384382a2719d9e052fb241
+  interview_seconds: null
+  inherited_from: null

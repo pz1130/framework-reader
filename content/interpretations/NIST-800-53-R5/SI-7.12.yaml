@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-7.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent corruption or tampering of software, firmware, and
+      data that bypasses traditional malware and signature-based detection. The goal
+      is to catch integrity violations even when the producing system is compromised,
+      so attackers cannot persist undetected by altering what runs.
+    basis: inferred
+  plain_zh:
+    value: Verify that software, firmware, and information have not been modified
+      outside of the authorized baseline, and prove it with cryptographic checks rather
+      than trust.
+    basis: inferred
+  practice:
+    value:
+      '1': Apply vendor-provided digital signatures and hash verification before installing
+        or executing software, firmware, and updates; reject anything that fails verification.
+      '2': Define what is in the integrity baseline, who signs/releases it, and how
+        verification results are logged; store verification artifacts and handle failures
+        with a defined response.
+      '3': Use a hardware root of trust (e.g., TPM, secure boot) where feasible; continuously
+        or on-event verify critical components; tie integrity failures to alerts,
+        configuration management, and incident response; cover third-party and supply-chain
+        artifacts end-to-end.
+    basis: inferred
+  evidence:
+    value: Integrity baseline definition, cryptographic verification procedures and
+      logs, signing/hashing tooling configuration, failed-verification handling records,
+      and evidence of how integrity checks are integrated with change and release
+      processes.
+    basis: inferred
+  common_myth:
+    value: Believing that anti-virus, code signing of installers, or TLS alone satisfies
+      this control. Integrity verification must extend to the loaded image, firmware,
+      boot components, and the data being acted on, and must be enforceable even when
+      the source or build pipeline is compromised.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which critical software, firmware, and data are covered by your integrity baseline,
+      and which are explicitly out of scope?
+    - 'Show a recent verification failure: what was the artifact, when was it caught,
+      and what was done?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.083344Z'
+  signed_digest: 7c3a98413b9952831585e249691976845ecf2f1aa1dd6ff753df658bbb5cb0b5
+  interview_seconds: null
+  inherited_from: null

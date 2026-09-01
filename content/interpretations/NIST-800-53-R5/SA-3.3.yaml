@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Protects against a system quietly aging out: hardware nearing end-of-support,
+      crypto libraries behind on patches, or an architecture locked to a vendor that
+      is about to disappear. If you never plan the refresh, you discover the gap on
+      the day the patch stops shipping, and by then replacement is a crisis, not a
+      plan.'
+    basis: inferred
+  plain_zh:
+    value: Plan, budget, and schedule the replacement or upgrade of system components,
+      hardware, and software before they reach end-of-life or stop receiving support,
+      and keep that plan current as the system changes.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical components of the system and know the vendor end-of-support
+        date for each one; flag anything within the planning horizon.
+      '2': Have a written refresh plan tied to budget cycles, listing what gets replaced,
+        when, and the funding source; revisit it at least annually or after major
+        architecture changes.
+      '3': Track vendor support status continuously, trigger refresh projects ahead
+        of cut-off dates, test replacements before cut-over, and have a contingency
+        path if a vendor exits the market or a component fails before the planned
+        swap.
+    basis: inferred
+  evidence:
+    value: System component inventory with vendor support dates, written refresh plan
+      with funding and milestones, change records showing planned replacements executed,
+      and contingency arrangements for unsupported components.
+    basis: inferred
+  common_myth:
+    value: Treating 'system development lifecycle' as ending at deployment and assuming
+      the SDLC plan written five years ago still covers a hardware refresh. SA-3 is
+      a lifecycle plan, not a one-time design document — without a scheduled, funded
+      refresh, components rot in place until they fail or become unpatchable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the component list with vendor support end dates and the planned replacement
+      dates for each.
+    - What happened the last time a component reached end-of-support earlier than
+      expected — how was it handled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.165614Z'
+  signed_digest: 7c4df7abbe205cec62617339d05022123e24e78b8c9379ec31d9fd9a11d49761
+  interview_seconds: null
+  inherited_from: null

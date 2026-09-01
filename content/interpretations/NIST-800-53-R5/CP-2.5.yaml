@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CP-2.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a 'plan on paper' contingency that collapses the moment
+      the disaster is real because no one decided, in advance, which functions must
+      keep running and at what degraded cost. If you skip this, the plan defaults
+      to 'restore everything for everyone' and never restores anything on time.
+    basis: inferred
+  plain_zh:
+    value: Decide, before any incident, which mission and business functions are so
+      essential they must continue (or resume within an acceptable window) during
+      a disruption, and make those decisions explicit, prioritized, and resourced
+      — not something the BC team invents mid-crisis.
+    basis: inferred
+  practice:
+    value:
+      '1': List the critical functions with an owner; state, for each, the maximum
+        tolerable downtime and minimum staffing/resources to keep it going; get a
+        manager to sign off.
+      '2': Prioritize functions and allocate budget, alternate sites, and staffing
+        against the priorities; record the rationale and trade-offs (which functions
+        acceptably degrade, which do not).
+      '3': Test that the prioritized functions actually continue under a simulated
+        loss of people, site, or key systems; revisit priorities when the business
+        changes; tie them into investment and DR design.
+    basis: inferred
+  evidence:
+    value: Approved list of essential functions with owners, documented continuity
+      priorities and tolerances (e.g., MTPD/RTO), resource and budget allocation tied
+      to those priorities, test results showing the prioritized functions continued
+      under simulated disruption, and change history when priorities are revised.
+    basis: inferred
+  common_myth:
+    value: Treating the BCP/DRP as proof that 'everything must be recovered' — assuming
+      a single RTO applied to all processes. The control exists precisely so the organization
+      chooses what to protect first; without that choice, recovery sequencing is guesswork
+      and nothing meaningful is restored in time.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the prioritized list of mission-essential functions and who signed it.
+    - For the top-priority function, what did you actually do when you tested it,
+      and what proved it could continue?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.939173Z'
+  signed_digest: 706ab83dcb0320724bddf33f879e140acf5b7aaabb60baea9a3b34479224a976
+  interview_seconds: null
+  inherited_from: null

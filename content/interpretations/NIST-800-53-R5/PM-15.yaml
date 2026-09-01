@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PM-15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the organization operating in an information vacuum — making
+      security and privacy decisions without external threat intel, peer benchmarks,
+      or shared lessons, so the same mistakes get repeated and emerging threats are
+      missed until they hit production.
+    basis: inferred
+  plain_zh:
+    value: Make sure the security and privacy function actively participates in outside
+      groups, associations, and information-sharing communities so the team gets early
+      warning on threats and learns how peers handle similar problems.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate owners who belong to at least one relevant external group (ISAC,
+        industry consortium, vendor working group) and receive their bulletins.
+      '2': Document which groups are joined, the membership rationale, and a regular
+        cadence for ingesting shared intel; feed relevant items into internal risk
+        and control discussions with a record.
+      '3': 'Contribute back (not just consume): share anonymized incidents, lessons
+        learned, or threat indicators; track which external inputs triggered internal
+        changes; review group participation against strategic threat landscape at
+        least annually.'
+    basis: inferred
+  evidence:
+    value: List of external groups/associations with owner and purpose, membership
+      records, shared intel ingestion log, minutes or tickets showing external intel
+      flowing into internal risk/change decisions, contribution records.
+    basis: inferred
+  common_myth:
+    value: Treating a subscription to a threat feed or a personal membership as the
+      control — without an internal pipeline to actually consume the intel and change
+      something, the feed is just inbox noise.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one external group you participate in: which item from the last quarter
+      led to a change inside this organization, and where is that traceable?'
+    - Who owns each external membership, and when did someone last verify the group
+      is still relevant to your current threat model?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.708999Z'
+  signed_digest: 25d662263047eab23aa5733ae17da2365419126d79a2bef0f8e972938f4bd763
+  interview_seconds: null
+  inherited_from: null

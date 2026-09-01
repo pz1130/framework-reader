@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:PE-17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that 'laptops have VPN, so home and travel
+      work is covered.' When staff work off the corporate campus, physical and environmental
+      protections (locked doors, screened visitors, shielded screens, secure disposal,
+      monitored alarms) that the office provides by default are absent — and attackers
+      or insiders exploit that gap to view, copy, or tamper with information.
+    basis: inferred
+  plain_zh:
+    value: Define the security requirements people must follow when they work from
+      any location that is not the primary office — home, client sites, hotels, transport
+      hubs — and make sure those requirements actually get used.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written checklist of minimum physical and environmental rules for
+        off-site work exists and is handed to staff who work remotely or travel (screen
+        privacy, no unattended devices, secure Wi-Fi, paper handling, what to do on
+        loss).
+      '2': Assess the types of alternate sites used (home, travel, third-party premises)
+        and tailor requirements to the realistic threats of each; staff acknowledge
+        the rules; lost/stolen device and suspicious-physical-access reporting is
+        wired into the incident process.
+      '3': Periodic checks confirm the rules are being followed — spot calls to remote
+        staff, reviews of help-desk tickets that hint at unsafe setups, and updates
+        to the requirements when work patterns or threats change. Travel and high-risk
+        locations get stricter guidance; sensitive work at home has enforceable technical
+        controls (full-disk encryption, MDM, auto-lock).
+    basis: inferred
+  evidence:
+    value: Documented alternate work site policy with site-specific requirements,
+      signed staff acknowledgements, incident records showing how off-site physical
+      events were handled, and evidence of periodic review of the policy against how
+      people actually work.
+    basis: inferred
+  common_myth:
+    value: Assuming that issuing a laptop with full-disk encryption and VPN satisfies
+      PE-17 because 'the data is protected.' PE-17 is about physical and environmental
+      protection at the work location itself — shoulder-surfing on a train, papers
+      left on a kitchen table, a family member walking past a screen, an unencrypted
+      printout tossed in home recycling. Encryption on the device does not stop any
+      of those.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one employee who works from home two or more days a week — what physical
+      and environmental rules were they given, and how do you know they follow them?
+    - Show me a physical-security incident that happened off-site in the last year
+      and how it was handled.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.559185Z'
+  signed_digest: 3d5df77e3068314aae23edad17ab2991b1d3f9702044be42727241607c084171
+  interview_seconds: null
+  inherited_from: null

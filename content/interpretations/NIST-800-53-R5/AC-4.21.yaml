@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:AC-4.21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who, once inside one network segment, can pivot
+      laterally to systems handling data of a different sensitivity (e.g., from a
+      user VLAN into cardholder data, from an R&D subnet into production credentials,
+      from a guest network into OT). Logical or physical separation forces every cross-flow
+      through a controlled choke point so it can be filtered, inspected, and accounted
+      for; without it, segmentation is only on a diagram.
+    basis: inferred
+  plain_zh:
+    value: Information flows that carry different sensitivity levels must be separated
+      — physically on different hardware or logically on different enforced domains
+      — so that crossing between them is only possible through an approved, monitored
+      boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the sensitivity classes of information handled (e.g., PCI, PII,
+        OT, public). Decide for each pair whether separation is required and whether
+        it must be physical or logical. Document this on the architecture.
+      '2': 'Enforce the separation in the actual network: separate VLANs or VRFs with
+        inter-VLAN routing only through firewalls/ACLs, or physically distinct infrastructure
+        for the highest-sensitivity zones. Firewall rules between zones are written,
+        reviewed, and have an owner.'
+      '3': Periodically test that the separation still holds (e.g., attempt to reach
+        a higher-sensitivity zone from a lower one and confirm the attempt is blocked
+        and logged). New applications or M&A activities trigger re-evaluation. Any
+        legitimate cross-flow exception is documented, time-bound, and routed through
+        the same change-control and review cadence as firewall changes.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing the sensitivity zones, firewall/ACL rule
+      sets between zones, documented classification of information per zone, change
+      records for any allowed cross-zone flows, and test reports (penetration test
+      or segmentation check) demonstrating that crossing from a lower-sensitivity
+      zone into a higher-sensitivity one is blocked.
+    basis: inferred
+  common_myth:
+    value: Believing that putting everything in one big VLAN and relying on host-based
+      firewalls on each server counts as 'logical separation'. Host firewalls on endpoints
+      the attacker may already control do not create a security boundary between information
+      flows — separation has to exist at the path between the zones, not on the assets
+      inside them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the firewall rule that prevents a workstation in the corporate VLAN
+      from reaching the PCI segment directly.
+    - Pick one cross-zone exception that was approved last quarter — what was the
+      justification, who approved it, and is it still in place?
+    basis: inferred
+  regional_note:
+    value: PCI DSS in the US has historically driven the most visible enforcement
+      of cross-zone separation for cardholder data, while European auditors under
+      NIS2 and GDPR more often probe separation between OT/IT zones and between production
+      and development environments. The principle is the same; the zone pairs that
+      get tested differ.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.296495Z'
+  signed_digest: fa600410fdcaf2300cca98e6bf5710f43170a773093b84dfd144bb75ad9b531f
+  interview_seconds: null
+  inherited_from: null

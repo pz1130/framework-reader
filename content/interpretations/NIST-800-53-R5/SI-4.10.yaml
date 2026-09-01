@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SI-4.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Stops attackers from hiding malicious traffic inside encrypted flows:
+      if you cannot inspect encrypted sessions for signs of compromise (malware C2,
+      exfiltration, lateral movement), TLS becomes a blind spot and you only learn
+      about the breach after data is already out the door.'
+    basis: inferred
+  plain_zh:
+    value: You must be able to see inside encrypted traffic entering or leaving your
+      network — at a point where inspection is feasible — so that malware, command-and-control,
+      and data theft cannot simply ride TLS to evade detection. Encryption is not
+      an excuse for blind monitoring.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where encrypted flows traverse the network and acknowledge which
+        segments are currently uninspected; deploy basic TLS inspection at the perimeter
+        for known malicious indicators and block known-bad destinations.
+      '2': Document which traffic classes are decrypted vs. bypassed and why (privacy,
+        legal, technical limits); integrate the decrypted feed into IDS/IPS and DLP
+        so signatures and behaviour rules fire on the cleartext; record exceptions.
+      '3': Cover inbound, outbound, and east-west encrypted traffic at scale with
+        managed decryption points; correlate decrypted content with threat intel,
+        sandboxing, and DLP; continuously test that inspection actually catches samples
+        (e.g., known-malware TLS, test exfil); review bypass lists on a schedule.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing inspection points, policy stating what is
+      decrypted/bypassed and the legal/privacy basis, IDS/IPS and DLP rules referencing
+      decrypted payloads, logs proving decrypted traffic is actually analyzed, bypass
+      list with justification and review cadence, test results demonstrating inspection
+      effectiveness.
+    basis: inferred
+  common_myth:
+    value: 'Believing that ''we use TLS everywhere so we cannot inspect'' is an acceptable
+      answer — or that purchasing a decryption appliance satisfies the control. The
+      appliance sitting in bypass mode for the traffic that matters most is the common
+      failure: legal/privacy concerns push teams to disable inspection on the very
+      flows (cloud SaaS, internal east-west) where attackers actually operate.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - What percentage of your encrypted traffic is actually decrypted and inspected
+      at the perimeter, and what is on the bypass list with what justification?
+    - Show me a detection from the last quarter where your inspection of encrypted
+      traffic caught something a flow-only check would have missed.
+    basis: inferred
+  regional_note:
+    value: EU auditors (especially under NIS2 and DORA) push harder on justifying
+      bypasses under GDPR/Schrems II and on proving east-west visibility in cloud
+      workloads, where lawful basis and data minimization complicate decryption. US
+      auditors tend to focus on perimeter coverage and whether bypassed categories
+      are risk-accepted in writing rather than challenged on data-protection grounds.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.981009Z'
+  signed_digest: 1c7fc1bc73e9ee864be51e36fd72e395ffd66ff7c99720594f5f4782238e3cd2
+  interview_seconds: null
+  inherited_from: null

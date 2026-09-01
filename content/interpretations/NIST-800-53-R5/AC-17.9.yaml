@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-17.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the failure mode where a remote session — user, contractor,
+      vendor, or attacker who has already authenticated — lingers after the legitimate
+      reason for access is gone: terminated employees keeping a tunnel open, lost
+      laptops still VPN''d in, or a hijacked session sitting idle while the operator
+      waits for the right moment to move.'
+    basis: inferred
+  plain_zh:
+    value: When a remote access session should no longer be active — user terminated,
+      device lost, suspicious activity detected, or just idle too long — the connection
+      must be cut automatically or manually by a defined process, not left to someone
+      remembering to do it.
+    basis: inferred
+  practice:
+    value:
+      '1': Remote access devices/sessions can be disconnected by an admin on request;
+        termination and lost-device tickets trigger a manual session kill within a
+        documented response window.
+      '2': Idle and absolute session timeouts are configured on remote access gateways
+        and enforced by policy; HR-driven termination feeds automatically or via a
+        tight SLA into session revocation.
+      '3': Disconnection happens automatically on multiple triggers — inactivity timeout,
+        max session duration, anomalous behavior, device posture change, or termination
+        event — with alerts when sessions are killed outside the normal pattern; coverage
+        is verified by periodic testing.
+    basis: inferred
+  evidence:
+    value: Remote access gateway configuration showing idle and absolute timeouts,
+      session disconnect logs, termination-to-revocation tickets with timestamps,
+      and records of tested/manual disconnections for incident and lost-device cases.
+    basis: inferred
+  common_myth:
+    value: Believing a VPN idle timeout of 30 minutes is sufficient, when in reality
+      many compromises begin within minutes of session establishment and the session
+      persists after the user's intent to use it is gone — short inactivity, absolute-duration
+      limits, and posture-aware re-authentication are what actually break the attacker's
+      foothold.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you killed a remote session because of a termination or
+      lost device — what was the gap between the trigger and the disconnect?
+    - What idle and maximum session timeouts are set on each remote access method,
+      and who approved those values?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.077763Z'
+  signed_digest: c5aa9f37cc5fdcebf7a66ac9aaad86a47c9665732344982f0fb3e3d8fde8fffe
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IA-11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a session that outlives the reason it was trusted — a user
+      steps away, a token keeps acting in their name, or a long-running session silently
+      accumulates privilege-relevant actions without ever proving the human is still
+      there. The control forces periodic, risk-driven re-proof of identity so that
+      compromise, shoulder-surfing, or unattended workstations cannot ride the original
+      login indefinitely.
+    basis: inferred
+  plain_zh:
+    value: Make users prove who they are again during an active session — at defined
+      intervals and at meaningful moments — so the system does not keep trusting the
+      initial login forever.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Identify the systems and data that warrant re-authentication (admin consoles,
+        sensitive records, financial transactions) and define minimum re-auth triggers:
+        inactivity timeout, session-length cap, and before privileged actions.'
+      '2': Configure those systems to enforce re-authentication at the defined triggers;
+        document the intervals and the rationale behind them; record exceptions with
+        approver and expiry.
+      '3': Trigger re-authentication on risk events such as network change, geolocation
+        anomaly, or privilege escalation; verify the controls periodically by attempting
+        to bypass the timeout; feed findings back into the interval definition.
+    basis: inferred
+  evidence:
+    value: Re-authentication policy and per-application configuration showing enforced
+      timeouts and trigger conditions, sample access logs demonstrating re-auth challenges,
+      exception register with approvals, and the most recent review of which systems
+      fall in scope.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a system has an idle-screen-lock, re-authentication
+      is covered. A lock that comes back to the same authenticated session is not
+      re-authentication — the original proof of identity is never re-presented, so
+      a stolen or borrowed session survives the lock.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three admin console sessions over four hours — at what point
+      was the user challenged to re-authenticate?
+    - Which systems in your crown-jewel inventory do not enforce re-authentication
+      before privileged actions, and what is the documented exception?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.063185Z'
+  signed_digest: d3b7c9f6987d0f2874131f19b5ceaa8255c98267b79554a26c71b998b4b63587
+  interview_seconds: null
+  inherited_from: null

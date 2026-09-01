@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PE-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers walking into a facility during a utility failure
+      - when lighting, HVAC, fire suppression, or power controls go dark, doors and
+      barriers that normally require credentials can become ineffective, and tailgating
+      or forced entry goes unnoticed. The control requires planning for the worst
+      case where the environmental safety systems that also serve as access deterrents
+      are the very thing being lost.
+    basis: inferred
+  plain_zh:
+    value: Identify the facilities supporting your most critical mission and business
+      functions, and make sure their emergency lighting, power, and utility systems
+      stay available or can be restored quickly when needed - so that during an outage
+      those sites do not become soft targets.
+    basis: inferred
+  practice:
+    value:
+      '1': List the facilities tied to essential mission/business functions; verify
+        they have working emergency lighting at exits and access points; confirm backup
+        power (UPS/generator) covers doors, cameras, and life-safety systems.
+      '2': Document which utilities (power, lighting, HVAC, fire suppression) each
+        essential site depends on; maintain fuel and test logs for generators; have
+        a documented outage response that names who secures the site when controls
+        fail.
+      '3': Periodically test the full utility-loss scenario for an essential site;
+        verify lighting, power, and access controls actually come back inside the
+        RTO; track failure modes from past tests and fix them; integrate with the
+        business continuity plan so site security is part of recovery priorities,
+        not an afterthought.
+    basis: inferred
+  evidence:
+    value: List of essential-mission facilities, emergency lighting and backup-power
+      test records, generator fuel and maintenance logs, outage-response procedures,
+      after-action notes from any real or simulated utility-loss event.
+    basis: inferred
+  common_myth:
+    value: Assuming the building's life-safety systems (emergency lights, exit signs,
+      fire alarms) automatically cover the physical-security requirement - they are
+      designed for life safety, not to keep an unauthenticated person from walking
+      in unobserved, so coverage of access points and cameras under backup power must
+      be checked separately.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which facilities are designated as essential and what made them essential.
+    - When utility power was last lost at an essential site, what did cameras, doors,
+      and lighting actually do - and how was it verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.528294Z'
+  signed_digest: 54d86ac67eb8a52c085ccd5eb98d1af9482df51c6791de138ada3eca30674d07
+  interview_seconds: null
+  inherited_from: null

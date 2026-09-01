@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-7.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged accounts being reachable from broad, untrusted
+      network zones—so a single compromised workstation or a lateral move in the DMZ
+      does not directly turn into domain-admin or infrastructure-control access. Without
+      this control, segmentation is nominal and privileged paths cross zones that
+      an attacker already holds.
+    basis: inferred
+  plain_zh:
+    value: It asks you to separate the network paths that privileged administrators
+      use from ordinary user or less-trusted traffic, and to document and enforce
+      that separation—so that administrative access does not ride the same lanes as
+      everything else.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which administrator accounts are privileged; list the source and
+        destination segments they use; restrict those paths with a basic firewall
+        or VLAN rule.
+      '2': Document the architecture (e.g., jump hosts, dedicated admin VLANs, or
+        bastion segments); enforce least-privilege routing; keep an up-to-date topology
+        with change control.
+      '3': Automate discovery of privileged-path changes; continuously verify that
+        no unapproved route exists (e.g., through monitoring or periodic attestation);
+        integrate with identity and session management for traceability.
+    basis: inferred
+  evidence:
+    value: A network diagram or segmentation matrix showing privileged-access source-to-destination
+      paths; firewall/ACL rule sets tied to privileged account groups; change tickets
+      for those rules; a scan or audit log that proves no fallback to a broad route
+      exists.
+    basis: inferred
+  common_myth:
+    value: Assuming that a separate VLAN or firewall zone automatically guarantees
+      isolation—if the routing rules still allow any-to-any default traffic, or if
+      a jump host sits in the same segment as normal users, the architectural intent
+      is defeated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Can you show me the exact rule that allows a domain admin to reach a domain
+      controller, and the segment it runs over?
+    - Who has the rights to change that rule, and what process did they follow the
+      last time it was touched?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.694159Z'
+  signed_digest: 95d7c2f86ec6a0642375cb657ba72ca785667f16c989d3cc9f1b38273bd7c2f7
+  interview_seconds: null
+  inherited_from: null

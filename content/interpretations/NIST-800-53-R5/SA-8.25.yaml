@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-8.25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents systems from being built on components whose supply chain economics
+      silently shift under the operator — counterfeit parts, sub-referenced chips,
+      uncompensated single-source fabs, or financially distressed suppliers — that
+      introduce hardware trojans, hidden kill paths, or sudden unavailability once
+      the integrator cannot replace them.
+    basis: inferred
+  plain_zh:
+    value: Engineer systems knowing that the economic health and sourcing economics
+      of every component supplier shape what is actually inside the hardware and whether
+      it will still be available tomorrow; do not treat procurement as 'paid = trusted'.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical components and their upstream suppliers; flag sole-source
+        or financially fragile vendors before design commits.
+      '2': Document economic-security criteria in procurement and engineering requirements;
+        require suppliers to disclose ownership changes, financial distress signals,
+        and chip provenance.
+      '3': Re-evaluate supplier economic security on a defined cadence and after market
+        events; tie design choices (second-source, qualified alternates, counterfeit-detection
+        testing) to documented economic risk findings.
+    basis: inferred
+  evidence:
+    value: Component criticality list with supplier financial/economic assessments,
+      design decisions referencing economic-risk findings, counterfeit-test records
+      for high-risk parts, second-source or alternate-vendor qualifications, and change-history
+      on supplier ownership or financial status.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a component was purchased from a franchise distributor
+      with a valid invoice, the part is economically and supply-chain trustworthy
+      — invoice authenticity says nothing about the fab's financial stability or whether
+      the upstream foundry is sanctioned, distressed, or subject to design diversion.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which critical components in your bill of materials come from a sole-source
+      or financially distressed supplier, and what did design do about it?
+    - How do you detect and respond to counterfeit or re-marked parts in your incoming
+      inspection process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.276470Z'
+  signed_digest: 73afdf9967a625188a844c0b1bd38f07e8cd771519bfd7e252b0854e68001fa5
+  interview_seconds: null
+  inherited_from: null

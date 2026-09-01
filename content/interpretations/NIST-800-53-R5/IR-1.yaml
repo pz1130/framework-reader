@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IR-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against an incident response program that drifts without an authoritative
+      anchor: when no current, signed policy exists, every team improvises, responders
+      disagree on roles, retention is arbitrary, and after an incident nobody can
+      prove what the organization actually committed to doing.'
+    basis: inferred
+  plain_zh:
+    value: Write, approve, publish, and maintain an incident response policy and the
+      procedures that support it; review them on a defined cadence and after major
+      changes so everyone works from the same current document.
+    basis: inferred
+  practice:
+    value:
+      '1': A single written IR policy exists, is dated, and is signed by a named accountable
+        owner. At minimum it covers scope, roles, and a commitment to the IR lifecycle
+        (preparation, detection, analysis, containment, eradication, recovery, post-incident
+        activity).
+      '2': Supporting procedures (reporting channels, severity levels, escalation,
+        evidence handling, communications, retention) exist as separate documents
+        tied back to the policy. Review cadence (typically annual) and a trigger for
+        out-of-cycle updates are written in. Reviews have minutes or change records.
+      '3': Policy and procedures are version-controlled, distributed to all relevant
+        roles (not only posted on an intranet), acknowledged by users in scope, and
+        revised when there is a real change in threat, regulation, business, or after
+        lessons learned from an incident. Out-of-date versions are withdrawn so people
+        cannot accidentally follow the old one.
+    basis: inferred
+  evidence:
+    value: Current signed IR policy, the set of supporting procedures with version
+      dates, distribution/acknowledgment records, review minutes and change log, and
+      evidence that superseded versions were withdrawn.
+    basis: inferred
+  common_myth:
+    value: Treating the IR policy as a one-time artifact copied from a template years
+      ago and never re-signed. A policy that has no current owner signature, no review
+      date, and no visible revision history does not satisfy IR-1 even if its text
+      is correct.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the IR policy last reviewed and re-approved, and who signed it?
+    - Show me the version of the policy that was in force during the last major incident,
+      and how I can tell it was the active one at that time.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.253385Z'
+  signed_digest: 1a7e776c7b770d5289c0d9d7111476b1363dd85eba93061def3bde71129fee74
+  interview_seconds: null
+  inherited_from: null

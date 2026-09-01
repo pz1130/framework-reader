@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:IA-2.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who have already compromised the primary authentication
+      channel (credentials, session tokens, device the user is logging in from) and
+      would otherwise sail through MFA prompts presented on the same channel — phishing
+      proxies, on-device malware, stolen session cookies, SIM-swap or push-fatigue
+      tricks. The control forces a second factor to traverse a separate channel or
+      device that the attacker does not simultaneously control, so possession of one
+      factor alone cannot complete sign-in.
+    basis: inferred
+  plain_zh:
+    value: When a user authenticates, require at least one factor to be verified through
+      a separate, out-of-band channel or device than the one carrying the primary
+      sign-in, so a compromise of that channel cannot satisfy both factors.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems that hold sensitive data or privileged access and
+        where phishing or credential theft is a realistic threat; document in policy
+        that these systems require an out-of-band second factor (separate device,
+        separate network path, or separate channel) rather than a second factor on
+        the same device.
+      '2': Define a small set of acceptable out-of-band mechanisms (e.g., hardware
+        token over USB/NFC, one-time code delivered to a separately managed device,
+        cryptographic authenticator bound to a second device) and which user populations
+        and applications they apply to; record this in the access-control standard
+        and tag in the asset inventory.
+      '3': Enforce the policy in the IdP / access gateway so that the configured authentication
+        strength cannot be weakened by user self-service choices (e.g., users cannot
+        enroll a second factor on the same compromised device); periodically re-test
+        that enrolled factors truly are out-of-band and that no fallback or recovery
+        path silently reverts to same-channel factors.
+    basis: inferred
+  evidence:
+    value: Policy excerpt requiring out-of-band authentication for in-scope systems,
+      list of those systems, configuration of the IdP/access gateway showing the factor
+      types and the devices they are bound to, enrollment records showing the second
+      factor is on a separate device, test or audit log entry demonstrating a same-channel-only
+      attempt was rejected.
+    basis: inferred
+  common_myth:
+    value: Equating 'MFA is enabled' with out-of-band authentication — pushing a one-time
+      prompt to the same phone the user is logging in from, or sending an SMS to the
+      same SIM being phished, still rides one compromised channel; the control is
+      not met just because two factors are configured.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one privileged account: walk me through each factor used at last log-in
+      and show that the second factor travelled a different device or network path
+      than the first.'
+    - Can a user enroll a second factor on the same device they use to sign in, and
+      if so under what circumstances?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.116997Z'
+  signed_digest: 614ce1d2c194cdffd5f451b8f544f1d2515ae590c17fa6e7b854860de96e29c9
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-17.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against developers and acquirers relying on informal, unverified
+      claims about a component's security behavior. Without a defined process for
+      identifying and resolving security-relevant assumptions, a component may be
+      accepted despite behavior that weakens system safeguards or violates architectural
+      requirements.
+    basis: inferred
+  plain_zh:
+    value: Identify and document every informal assumption about a component that
+      could affect security, verify it, and resolve discrepancies before the component
+      is used.
+    basis: inferred
+  practice:
+    value:
+      '1': Require developers or suppliers to identify security-relevant assumptions
+        made through informal descriptions, demonstrations, prototypes, or undocumented
+        communication; record unresolved assumptions before acceptance.
+      '2': Define a review process that translates informal assumptions into testable
+        requirements, assigns responsibility for verification, and records how each
+        assumption was confirmed, corrected, rejected, or formally accepted.
+      '3': Integrate assumption verification into architecture reviews, acquisition
+        gates, automated analysis, and testing; trace each material assumption to
+        enforceable requirements and block use or acceptance when it remains unverifiable
+        and unapproved.
+    basis: inferred
+  evidence:
+    value: A documented informal-assumption identification and review process, including
+      component or interface requirements, verification results, disposition records,
+      and acceptance approvals showing how security-relevant assumptions were resolved.
+    basis: inferred
+  common_myth:
+    value: Assuming a component is secure because a supplier's demonstration, sample
+      configuration, or verbal explanation looked convincing; that does not verify
+      the behavior assumed for the deployed environment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which informal assumptions affecting security were identified for the reviewed
+      component, and how was each verified?
+    - Show the record for an unresolved assumption and explain who accepted the resulting
+      risk and why the component was allowed to proceed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.119127Z'
+  signed_digest: e2aee5069534050ee66cd0ec07f0a8652fefe0ef771d320b6022d30e3c50f593
+  interview_seconds: null
+  inherited_from: null

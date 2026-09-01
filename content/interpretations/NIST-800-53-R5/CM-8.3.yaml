@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop the failure mode where rogue, end-of-life, or compromised components
+      sit on the network because nobody notices they appeared. Without automated detection,
+      the inventory is whatever the last manual sweep remembered, and attackers or
+      shadow-IT additions persist inside the perimeter untouched.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools to continuously look for hardware and software that
+      are connected but not in the authorized inventory, and trigger a defined response
+      when such items show up.
+    basis: inferred
+  practice:
+    value:
+      '1': Run an active scanner (network sweep, endpoint agent, or similar) on a
+        schedule that finds connected devices and installed software; produce a list
+        of items not present in the authorized inventory.
+      '2': Compare scanner output against the component inventory on a defined cadence,
+        route every unauthorized match to a named responder or queue, and log the
+        outcome (remove, quarantine, or formally authorize).
+      '3': Detection runs near real-time (not just nightly); coverage spans on-prem,
+        remote, and cloud-attached assets; unauthorized hits are blocked or isolated
+        automatically and the inventory is updated as the single source of truth,
+        so the next scan cannot re-flag the same item as new.
+    basis: inferred
+  evidence:
+    value: Scanner configuration and coverage scope, scheduled scan reports, unauthorized-component
+      tickets with resolution status, inventory diff history showing how detected
+      items were handled, and proof that the inventory is the reference for comparison.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied because the team runs an asset scanner
+      once a month. A scheduled scan only generates data; the control is unmet if
+      there is no comparison against an authorized inventory and no defined action
+      on every diff.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the most recent scan report and the list of devices it flagged as not
+      in the inventory — what happened to each one?
+    - Which network segments, remote sites, or cloud environments are excluded from
+      the automated detection scope?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.872824Z'
+  signed_digest: ef83f88e50d0fdc223a25e65299de9017638f0c56d10edcfacd240084a9ed937
+  interview_seconds: null
+  inherited_from: null

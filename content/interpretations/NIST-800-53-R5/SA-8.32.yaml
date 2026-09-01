@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-8.32
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents systems being built and operated on tribal knowledge and vendor
+      hand-waving — when an incident hits, nobody can answer how the system is supposed
+      to work, what its security assumptions are, or whether a change broke a prior
+      control.
+    basis: inferred
+  plain_zh:
+    value: Make sure every system has enough written material — architecture, interfaces,
+      security assumptions, hardening choices — that a competent engineer unfamiliar
+      with it can understand, operate, and defend it without leaning on the original
+      builder's memory.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Each production system has a basic doc set: what it does, who owns it,
+        the trust boundaries, the ports and protocols it exposes, and where credentials
+        sit.'
+      '2': Design docs explicitly call out the security-relevant assumptions (auth
+        model, data classification handled, threat surface) and the alternatives considered;
+        hardening baseline and deviation list are maintained alongside change tickets.
+      '3': Doc set is reviewed on every meaningful change, versioned with the system,
+        periodically re-validated against the live build, and the assumption list
+        is tested (e.g., assumptions that the network was trusted fail when the network
+        fails).
+    basis: inferred
+  evidence:
+    value: System security design documents, architecture and data-flow diagrams,
+      security assumption register, hardening baseline with documented deviations,
+      change records showing docs updated, review/validation evidence.
+    basis: inferred
+  common_myth:
+    value: Treating 'the vendor's manual' or a Confluence page from three years ago
+      as the documentation — vendor docs cover function, not your specific deployment's
+      threat model; the missing piece is the security-relevant assumptions (what we
+      trust, what data crosses where) that only your team decided.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system I name: where is the doc that tells me how it is supposed to
+      work, and what security assumptions it relies on?'
+    - When was that documentation last validated against what's actually running,
+      and who did the validation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.307453Z'
+  signed_digest: 7082d41ee6ae76a90494e2a99326980733041d49d3932972710d30938c3d81ce
+  interview_seconds: null
+  inherited_from: null

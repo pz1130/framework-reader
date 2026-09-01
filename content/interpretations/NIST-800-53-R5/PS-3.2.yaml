@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PS-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against people walking into sensitive roles without a documented,
+      signed acknowledgement of their security obligations and handling constraints
+      — so that when something leaks or is misused, the organization cannot prove
+      the person was on notice and cannot hold them (or itself) accountable.
+    basis: inferred
+  plain_zh:
+    value: Before someone gets access to systems or information that carry special
+      handling duties, put them through a formal briefing, get their signed acknowledgement
+      of the rules, and record it — then keep that record current.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which positions carry indoctrination duties; have a briefing checklist
+        and a signed acknowledgement form on file before initial access is granted.
+      '2': Briefings cover the specific systems, classification levels, and handling
+        rules the role touches; records include who briefed, who attended, the date,
+        and the topics covered; refresher briefings happen when duties change materially.
+      '3': Records are tracked and retrievable per individual; non-completion automatically
+        blocks access in connected systems; refresher cadence is risk-based and tied
+        to role changes or incident-driven re-indoctrination; departures trigger an
+        explicit debrief.
+    basis: inferred
+  evidence:
+    value: Indoc policy, list of in-scope roles, completed briefing checklists, signed
+      acknowledgement forms (current and historical), access-block evidence for missing
+      records, and debrief records for separating personnel.
+    basis: inferred
+  common_myth:
+    value: Treating the annual security awareness training as a substitute for formal
+      indoctrination — awareness is general and repeated; indoctrination is role-specific,
+      signed, and tied to the moment access is granted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the signed indoctrination record for [specific person] before they were
+      granted access to [specific system].
+    - Which role changes in the last 12 months triggered a re-indoctrination, and
+      where are those records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.820643Z'
+  signed_digest: 27103cc484cda0d43c7a8a8223bbe03882f0df0ba4353f56c74b6c18aeae365d
+  interview_seconds: null
+  inherited_from: null

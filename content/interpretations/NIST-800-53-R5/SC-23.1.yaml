@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-23.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against session hijacking via stale, cached, or stolen session
+      identifiers: if a session token outlives logout (in the browser, a proxy, a
+      load balancer, or on a stolen device), anyone who later obtains it is still
+      authenticated as that user. The control forces the server to actively destroy
+      the token so reuse fails.'
+    basis: inferred
+  plain_zh:
+    value: When a user logs out, the server must immediately destroy their session
+      identifier so it cannot be reused — not just hide the UI, not just clear the
+      client cookie. The session must be dead on the server side the moment logout
+      happens.
+    basis: inferred
+  practice:
+    value:
+      '1': Logout endpoint exists and invalidates the session on the server (session
+        store entry removed or marked expired); frontend also drops its cookie/token.
+      '2': Every application uses the same logout behavior; idle and absolute session
+        timeouts are configured and enforced server-side; logout is covered by basic
+        tests.
+      '3': Session lifecycle is centralized (shared session store or identity layer);
+        logout, idle timeout, and absolute timeout are tested in regression; reusing
+        an invalidated token returns a clean rejection and is logged; long-lived tokens
+        and cookies are scoped and protected.
+    basis: inferred
+  evidence:
+    value: Design notes or code references showing server-side session destruction
+      on logout, session-timeout configuration per application, test or regression
+      evidence that a token captured before logout is rejected afterwards, and sample
+      log entries of rejected post-logout token reuse.
+    basis: inferred
+  common_myth:
+    value: Assuming that clearing the cookie or returning to the login page is enough.
+      Many apps drop the client cookie but leave the session record alive in the server
+      store, so the same token replayed from a stolen browser, proxy cache, or copied
+      header still authenticates.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a captured session token being replayed after logout — what response
+      does it get?
+    - Where in the code or session store is the session actually destroyed, and is
+      that path exercised on every logout route?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.458009Z'
+  signed_digest: c44a56b407aa3eb47784c0748ae234383c5b0f58a17f581fc619b590305ce9c5
+  interview_seconds: null
+  inherited_from: null

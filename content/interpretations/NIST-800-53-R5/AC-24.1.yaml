@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:AC-24.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against access decisions being made on stale or fabricated authorization
+      - if a user, process, or device transmits access requests without verifiable,
+      current authorization claims (and the receiving system cannot distinguish a
+      legitimate authorization from a replayed or spoofed one), you get privilege
+      escalation, lateral movement, and audit gaps where the system acted on a request
+      it could not prove it was entitled to act on.
+    basis: inferred
+  plain_zh:
+    value: When a subject requests access to a resource, the authorization information
+      attached to that request must be protected from tampering and replay so the
+      receiving system can trust it before granting access - the protection (signing,
+      encryption, session binding, etc.) travels with the request, not just the credentials.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems where access decisions cross trust boundaries (user-to-app,
+        app-to-app, app-to-API); confirm authorization claims are not transmitted
+        in plaintext or with static, reusable tokens that any intermediary could replay.
+      '2': Document per system which authorization attributes are transmitted, how
+        they are protected (signed assertions, encrypted channels, short-lived tokens
+        bound to session), and which control standard or protocol is in use; retain
+        evidence that the protection is enforced, not optional.
+      '3': Validate authorization claims cryptographically at the enforcement point,
+        bind tokens to the originating session/identity, reject expired or tampered
+        assertions, and continuously verify the protection holds (e.g., fail tests
+        for token replay, downgrade to unprotected transport, and missing signatures).
+    basis: inferred
+  evidence:
+    value: Architecture and protocol documentation showing which authorization information
+      is transmitted and how it is protected, configuration or test output proving
+      signatures/encryption/session binding are enforced, sample rejected requests
+      where protection failed, and a list of systems with cross-trust-boundary access
+      decisions.
+    basis: inferred
+  common_myth:
+    value: Assuming that because authentication (login) is over TLS, the authorization
+      information that travels with each subsequent request is also protected - in
+      reality, the access decision often relies on attributes, claims, or tokens that
+      can be replayed, downgraded to an unprotected path, or stripped of signing if
+      not explicitly protected at the authorization layer.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one application that calls another application's API - show me how the
+      authorization claim is protected in transit and how the receiving system validates
+      it has not been tampered with or replayed.
+    - What happens if a client removes the signature on the authorization token -
+      is access denied, or does the system still serve the request?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.190464Z'
+  signed_digest: ede799a7eb71a829446e0df339eabcaa4a5baa49cad8ccad6dcb6d05119c013d
+  interview_seconds: null
+  inherited_from: null

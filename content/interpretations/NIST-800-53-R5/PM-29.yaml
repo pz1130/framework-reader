@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:PM-29
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Risk decisions get made every week by whoever shows up to the meeting;
+      without named, accountable senior roles, security risk becomes an undirected
+      conversation that no one owns and everyone can defer. This control forces an
+      organization to designate specific leaders who are responsible for steering
+      the risk management program — so that strategy, resources, exceptions, and trade-offs
+      have a person behind them, not a committee in name only.
+    basis: inferred
+  plain_zh:
+    value: 'Designate senior leaders (typically a Risk Executive / function lead and
+      supporting roles) who are accountable for the risk management program: setting
+      strategy, allocating resources, resolving cross-organizational conflicts, and
+      reporting risk posture up the chain. Make sure these roles are filled by named
+      individuals with real authority, not titles on an org chart.'
+    basis: inferred
+  practice:
+    value:
+      '1': A document (charter, policy, or appointment memo) names a senior official
+        responsible for the enterprise risk management program and lists their duties;
+        the appointment is signed at the top of the organization.
+      '2': The role description covers strategy, resourcing, conflict resolution,
+        and upward reporting; supporting roles (e.g., for business units, IT, cyber,
+        privacy) are also named; the leaders meet on a defined cadence and minutes
+        are kept.
+      '3': Leaders are wired into real decisions — exception approvals, major risk
+        acceptances, budget trade-offs — and their decisions are traceable; risk-related
+        escalations have a documented path that ends at a named accountable person,
+        not a generic committee.
+    basis: inferred
+  evidence:
+    value: Appointment memo or charter naming the senior accountable official and
+      supporting leaders, written role descriptions, cadence and minutes of program
+      leadership meetings, samples of recent decisions (exception approvals, risk
+      acceptances, resource allocations) that show the named role actually acting,
+      escalation path documentation.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we have a CISO and a CRO, therefore it's covered.' Two
+      executives with overlapping or unclear scopes satisfy nothing — the control
+      asks for a single accountable leader of the risk program whose authority to
+      resolve cross-cutting conflicts is explicit, plus supporting roles whose remit
+      does not collide.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the single accountable official for the risk management program, and
+      where is that appointment documented?
+    - Pick the last major risk acceptance or exception that crossed two business units
+      — which named leader resolved it, and where is the record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.768716Z'
+  signed_digest: 5279313fd0abdd8ed9372bdb0ca2ab805fe056e912c69697b20431693379f912
+  interview_seconds: null
+  inherited_from: null

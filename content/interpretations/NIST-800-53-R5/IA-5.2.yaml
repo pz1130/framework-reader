@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IA-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents credential theft via shared secrets, replay, or interception on
+      untrusted channels — without PKI, organizations fall back on passwords, API
+      keys, or shared tokens that can be phished, copied, or replayed, and the audit
+      trail of 'who signed what' becomes guessable.
+    basis: inferred
+  plain_zh:
+    value: Where strong authentication is required, use public-key cryptography (certificates,
+      smart cards, hardware tokens, or equivalent asymmetric mechanisms) so that the
+      private key never crosses the wire and identity can be verified cryptographically.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems and user populations require PKI-based authentication;
+        issue certificates or hardware tokens to those users; private keys live only
+        on the user's device or token, never transmitted.
+      '2': Operate or source a managed CA hierarchy with documented issuance, renewal,
+        and revocation procedures; certificates map to identified users/machines;
+        revocation status is checked at authentication time.
+      '3': Keys are generated inside hardware (HSM, TPM, smart card) so they cannot
+        be extracted; certificate lifecycle is automated; short-lived credentials;
+        failed authentications and revoked certificates feed monitoring; key compromise
+        triggers a defined response.
+    basis: inferred
+  evidence:
+    value: Policy naming where PKI is required, CA hierarchy and certificate policy
+      (CP/CPS), certificate issuance and revocation records, sample mapping of certificates
+      to user/device identities, evidence of private-key protection (e.g., hardware
+      token inventory or attestation), and logs showing certificate status is validated
+      at sign-in.
+    basis: inferred
+  common_myth:
+    value: Assuming that issuing a smart card or buying a CA means the control is
+      satisfied. The control is unmet if private keys can be exported, if revocation
+      is never checked (so a terminated employee still authenticates with a non-revoked
+      cert), or if fallback to password is left enabled and used.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a certificate issued to a privileged user and prove the corresponding
+      private key cannot be exported from its device or token.
+    - When an employee is terminated, how long until their certificate is revoked,
+      and does the authentication path actually check revocation status?
+    - Is there any password or shared-secret fallback that still works for the same
+      accounts that are supposed to use PKI?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.203381Z'
+  signed_digest: 37e44311427f371372fc1a3d647a87016cd17c757bcf19e5ad3d2753e29cbada
+  interview_seconds: null
+  inherited_from: null

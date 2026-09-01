@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MA-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against maintenance tools being repurposed as an attacker's foothold
+      inside the production environment. If the same tools that install patches are
+      allowed to roam the live network unchecked, a compromised or misused tool becomes
+      a lateral-movement engine into systems the operator was never meant to touch.
+    basis: inferred
+  plain_zh:
+    value: Limit which maintenance tools can run in the production environment, where
+      they can connect from, what they can reach, and who authorizes their use. The
+      point is not the inventory list — it is preventing a maintenance tool from quietly
+      reaching things outside the maintenance task.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of approved maintenance tools (imaging, RMM, patch
+        agents, remote consoles); restrict who can launch them; deny use of unapproved
+        tools on production assets.
+      '2': 'Document per-tool allowed scope: source host, destination segment, ports/protocols,
+        time window, and the change ticket that authorizes each session; enforce via
+        network policy or jump host.'
+      '3': Monitor maintenance sessions against the authorized scope; alert or block
+        when a tool attempts an out-of-scope target or an unapproved tool is detected
+        on a production host; review exceptions periodically.
+    basis: inferred
+  evidence:
+    value: Approved maintenance tool inventory with per-tool allowed scope, authorization
+      records (ticket/cab approval) tied to specific sessions, network or jump-host
+      policy enforcing source-destination restrictions, monitoring/log evidence of
+      out-of-scope attempts and the response.
+    basis: inferred
+  common_myth:
+    value: Assuming that having an approved-tools list or a central RMM platform satisfies
+      the control on its own. The list is just the input; what actually defends is
+      whether the tools are technically constrained to the systems and tasks they
+      were authorized for, and whether deviations are caught.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a maintenance session from the last quarter and how its scope compared
+      to what the ticket authorized.
+    - How is an unapproved maintenance tool prevented from running on a production
+      host, and what happens when one is detected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.393030Z'
+  signed_digest: d94b57d7530d3864f23bf5d7c24d1259f03e18b7015c703c19f23542d3fe40c7
+  interview_seconds: null
+  inherited_from: null

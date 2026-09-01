@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AU-6.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insider threats, social engineering, and physical–logical
+      attack chains that purely technical logs cannot see — without correlation, an
+      anomalous badge swipe plus a helpdesk call plus a file copy at 2am looks like
+      three separate, harmless events instead of a single intrusion in progress.
+    basis: inferred
+  plain_zh:
+    value: Audit review must deliberately cross-reference what the systems record
+      with what people, processes, and the physical world report, so that events which
+      are meaningless alone become visible together.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the nontechnical sources that matter (badge/visitor logs, helpdesk
+        tickets, HR changes, physical access exceptions, travel/absence calendars,
+        vendor site visits) and pull them into the same review space as the technical
+        logs.
+      '2': Define a small set of correlation rules or analyst playbooks that join
+        nontechnical signals to technical events — e.g. after-hours badge access plus
+        new privileged account plus bulk file read; record each cross-source review
+        with what was checked and the conclusion.
+      '3': Make the correlation repeatable and queryable, tune the rules from past
+        incidents, feed correlated findings into incident response, and cover the
+        gap between physical security, HR, IT support, and the SOC in both directions.
+    basis: inferred
+  evidence:
+    value: A documented list of nontechnical sources used, the correlation rules or
+      review checklists, sample cross-source investigations showing how a nontechnical
+      signal changed the technical assessment, and evidence that the resulting alerts
+      reach the incident response pipeline.
+    basis: inferred
+  common_myth:
+    value: Treating AU-6.9 as satisfied because the SIEM already ingests everything
+      — correlation with nontechnical sources is a human and procedural activity,
+      not a feed; if nobody is actively joining a tailgate report, a helpdesk password
+      reset, and a VPN login in the same review, the SIEM cannot do it for you.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one investigation from the last year where a nontechnical source (badge,
+      ticket, HR change) changed the conclusion of a technical log review.
+    - Which nontechnical sources are out of scope today, and why — what attack scenario
+      falls into that gap?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.624920Z'
+  signed_digest: ad4a3ee06898bc89574474f244b2611af45cb75912033dc48c2f9fd4108765b8
+  interview_seconds: null
+  inherited_from: null

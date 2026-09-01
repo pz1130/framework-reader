@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shipped software from quietly exposing capabilities an attacker
+      can weaponize — admin panels left enabled, debug endpoints, sample apps, default
+      content, scripting runtimes the product never needs. Each unused feature is
+      a vulnerability you chose to keep and now must patch.
+    basis: inferred
+  plain_zh:
+    value: Build and deploy software with only the functions it actually needs to
+      do its job; strip out or disable everything else (admin tools, debug ports,
+      sample code, interpreters, default accounts), so the attack surface stays as
+      small as possible.
+    basis: inferred
+  practice:
+    value:
+      '1': Document an allow-list of required functions per system; disable or remove
+        obvious nonessential features before going to production; change default credentials.
+      '2': Codify the restriction in build/deployment standards; track removed components
+        and reasons; review new features against the allow-list before release; verify
+        on a sample of systems.
+      '3': Hardening baselines are versioned, automated in deployment, and tested
+        in CI; deviations require exception approval; periodic scans confirm no disabled
+        feature has been re-enabled and no unnecessary ports/services have reappeared.
+    basis: inferred
+  evidence:
+    value: Hardening baseline per system type, build/deploy configuration enforcing
+      the baseline, exception register with approvals, sample scan output showing
+      only allowed services/ports/features, change records showing features reviewed
+      against the allow-list before release.
+    basis: inferred
+  common_myth:
+    value: Believing installing the vendor-recommended hardening profile once means
+      the control is met. Baselines rot — patches and upgrades re-enable services,
+      new administrators turn features back on for convenience, and shadow deployments
+      skip the baseline entirely. The control only holds if the restriction is re-checked
+      after every change.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a production host running this application — which ports and services are
+      listening, and which ones are not on your allow-list?
+    - Show me the last three changes that added a feature or capability to this system
+      and how each was reviewed against the allow-list.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.504649Z'
+  signed_digest: 3520d925cd766206d29f6aae33be775be2e3194e5e37304d4b44d820db5f20ee
+  interview_seconds: null
+  inherited_from: null

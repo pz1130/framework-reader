@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-30.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who anticipate where processing and storage
+      physically live and route their attack (legal jurisdiction seizure, insider
+      at a known site, supply-chain interdiction at a known data center) - if your
+      components only ever run in one predictable place, that place becomes your single
+      point of failure against both technical and non-technical pressure.
+    basis: inferred
+  plain_zh:
+    value: Make sure that the systems, components, and storage that run and hold your
+      data are not all sitting in one fixed location, so that an attacker who targets
+      that one location cannot take everything down or take everything out.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which mission-critical processing and storage assets exist, and
+        document where each one physically and logically lives; recognize single-location
+        concentration risk on paper.
+      '2': Distribute critical processing and storage across distinct locations (different
+        sites, different providers, or different logical regions) with documented
+        rationale; verify distribution is real, not just claimed in architecture diagrams.
+      '3': Periodically test that the distributed locations actually function independently
+        (failover, geo-isolation, jurisdictional separation); reassess when footprint
+        changes so concentration does not silently re-accumulate.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams and asset inventories showing location of critical
+      processing and storage, distribution rationale, failover or geographic isolation
+      test results, periodic reassessment records.
+    basis: inferred
+  common_myth:
+    value: Assuming multi-AZ or multi-region deployment inside one cloud provider
+      counts as distribution - it usually does not, because a single provider still
+      shares legal jurisdiction, supply chain, and compromise blast radius.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which processing or storage components are still concentrated in a single location,
+      and what is the rationale for accepting that concentration?
+    - Show the last test that proved a distributed location can actually operate independently
+      if the primary is taken down or seized.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.519388Z'
+  signed_digest: 904766e4dc7a866fb0130e80a86d2bd6aa911431bac803b46700cb98bc333d23
+  interview_seconds: null
+  inherited_from: null

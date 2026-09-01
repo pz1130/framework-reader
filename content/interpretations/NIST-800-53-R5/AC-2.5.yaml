@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-2.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker or curious bystander from walking up to a logged-in,
+      unattended workstation and using the existing session to read mail, pivot to
+      other systems, or quietly exfiltrate data. Without an enforced inactivity lock,
+      physical presence at a screen becomes equivalent to authenticated access, defeating
+      every other identity and access control.
+    basis: inferred
+  plain_zh:
+    value: Detect that a user has been idle on a session and lock it (or log it out)
+      so a passing person cannot simply resume their work. The lock must be enforced
+      by the system, not left to the user's good behavior.
+    basis: inferred
+  practice:
+    value:
+      '1': Operating system / workstation inactivity screen lock is turned on by default
+        with a short timeout; users have a written rule not to disable it.
+      '2': Inactivity timeout policy applies to workstations, VPN, remote sessions,
+        and shared/admin consoles; exceptions require approval; deviations are tracked.
+      '3': Timeouts are pushed and enforced centrally via group policy / MDM; kiosk,
+        shared, and privileged sessions cannot bypass; inactivity is monitored and
+        non-compliant devices are flagged.
+    basis: inferred
+  evidence:
+    value: Configuration baselines showing inactivity lock enforced on workstations,
+      remote sessions and admin consoles, exceptions register with justification and
+      approver, sample compliance reports from MDM or GPO showing deployed settings.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the screen-locks-after-X-minutes setting exists on
+      the laptop image, the control is satisfied. Laptops shipped with the setting
+      off, users given local admin who disable it, shared kiosks and remote/RDP sessions
+      configured separately, and admin jump hosts with no timeout all silently break
+      the control while the policy document looks fine.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a report of devices that do not have the inactivity lock policy applied
+      — what is on that list and why?
+    - What inactivity timeout applies to remote/RDP and admin jump-host sessions,
+      and how is it technically enforced rather than just documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.135079Z'
+  signed_digest: af5eff68d47e7eb875657361a8b9b73ebd87db3bc5b6edea24308edd9c425baa
+  interview_seconds: null
+  inherited_from: null

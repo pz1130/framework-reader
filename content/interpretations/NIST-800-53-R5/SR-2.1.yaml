@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SR-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against supply-chain risk being handled by whoever happens to care
+      — no one owns it, decisions stall, and a serious supplier incident has nowhere
+      to land. Without a named team with a charter, escalation paths, and authority,
+      SCRM degrades into ad-hoc fire drills the moment a real event hits.
+    basis: inferred
+  plain_zh:
+    value: 'Stand up a supply-chain risk management team with a real charter: who
+      sits on it, who leads it, what decisions it owns, and how it pulls in legal,
+      procurement, security, and the business when something goes wrong.'
+    basis: inferred
+  practice:
+    value:
+      '1': A charter or memo names the SCRM team, its lead, and its members from security,
+        procurement, legal, and a key business function; someone is clearly accountable.
+      '2': The charter defines decision rights, escalation paths, and meeting cadence;
+        the team meets on schedule and minutes show real decisions, not just status
+        updates.
+      '3': Team performance is reviewed against SCRM goals, members have assigned
+        responsibilities tracked to closure, and the charter is updated when the supplier
+        landscape or threat picture changes materially.
+    basis: inferred
+  evidence:
+    value: Approved charter or founding memo, roster with roles and ownership, meeting
+      cadence and minutes showing decisions taken, escalation records from real or
+      simulated supplier incidents, charter revision history.
+    basis: inferred
+  common_myth:
+    value: Treating the SCRM team as a label on an org chart — naming a 'supply chain
+      security lead' with no charter, no authority to convene legal/procurement, and
+      no recurring meeting. When a supplier breach actually happens, no one knows
+      who calls the shots.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the charter that establishes this team and identifies who is accountable
+      for SCRM outcomes.
+    - Walk me through the last time the team handled a real supplier incident — who
+      was convened, who made the call, and where is that documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.156271Z'
+  signed_digest: 265560f4e93a857d25a9665cca72dafcc106159b7a729d36ecf8c5baf37bbb88
+  interview_seconds: null
+  inherited_from: null

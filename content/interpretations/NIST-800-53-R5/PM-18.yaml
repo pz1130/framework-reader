@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PM-18
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a privacy program existing only as scattered policies,
+      DPO wish-list slides, or annual training attestations that nobody can point
+      to when a regulator asks how PII is actually protected across the lifecycle.
+      Without a single living plan, controls get invented per system, breach response
+      is improvised, and accountability gaps surface the moment something goes wrong.
+    basis: inferred
+  plain_zh:
+    value: Write a privacy program plan that names who is responsible, what the program
+      covers, how it is run, and how it is reviewed, and operate against it in practice.
+      Not a policy binder — a working plan.
+    basis: inferred
+  practice:
+    value:
+      '1': A single privacy program plan document exists, is approved by leadership,
+        identifies a privacy officer or equivalent, and lists the basic elements (purpose,
+        scope, roles, applicable laws, key processes for notice/consent/data subject
+        rights/incident response).
+      '2': 'The plan is tied to real operations: risk assessments, system-level privacy
+        plans, training, complaint handling, and PII inventory updates reference it;
+        version history is maintained; staff can locate it and know who owns updates.'
+      '3': The plan is reviewed on a defined cadence and on triggers (new law, new
+        system processing high-risk PII, major incident findings); metrics on plan
+        execution are reported to leadership; gaps identified in reviews lead to documented
+        remediation with owners and dates.
+    basis: inferred
+  evidence:
+    value: Approved and version-controlled privacy program plan, leadership approval
+      record, assigned privacy official with role description, mapping of plan to
+      operational processes (assessments, training, complaints, incident response),
+      review records and change history, remediation items from plan reviews.
+    basis: inferred
+  common_myth:
+    value: Believing that having a privacy policy on the website plus a DPO appointment
+      letter satisfies the control. A policy tells users what you do; a program plan
+      tells your own organization how it operates, who does what, and how it is measured
+      — those are different artifacts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your current privacy program plan and the version history.
+    - Who owns updating the plan, when was it last reviewed, and what changed as a
+      result?
+    basis: inferred
+  regional_note:
+    value: EU regulators (under GDPR) typically expect the plan to map directly to
+      Articles 5, 24, 25, 30, 32–34, 35 (DPIA), and to show DPO involvement and a
+      record of processing basis. US auditors under 800-53 generally accept a more
+      flexible structure, though sector overlays (HIPAA, FERPA) impose specific content.
+      The bar is higher and more prescriptive on the EU side.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.721448Z'
+  signed_digest: 1468dffc94af9ea812e0a416454a96916efc3dc1ff23bb994f769b90ae94fa76
+  interview_seconds: null
+  inherited_from: null

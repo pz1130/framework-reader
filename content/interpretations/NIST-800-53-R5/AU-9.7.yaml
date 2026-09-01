@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AU-9.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defense against audit log loss when the host running the audited system
+      is compromised or wiped: if logs live on the same OS/image as the audited components,
+      an attacker who owns the box can also delete the trail. Storing logs on a separate,
+      differently administered operating system makes a single intrusion far less
+      likely to erase the evidence.'
+    basis: inferred
+  plain_zh:
+    value: Put audit records on a separate system that runs a different operating
+      system from the one being audited, so a compromise of the audited host cannot
+      also wipe or tamper with its own logs.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems whose logs must be protected from local tampering;
+        send their audit records to a syslog/SIEM host on a different OS family than
+        the source.
+      '2': Document which OS separates the log store from each audited source; restrict
+        administrative access on the log host to a small, named group; verify segregation
+        during onboarding of new audited systems.
+      '3': Treat the log store as a hardened, independently administered component
+        with its own patching and access lifecycle; test periodically that logs cannot
+        be silently deleted or modified from the audited OS, and that loss of a source
+        host does not destroy its prior records.
+    basis: inferred
+  evidence:
+    value: Architecture diagram or inventory showing the audited systems and the separate
+      log store with its distinct operating system, forwarding configuration from
+      source to store, access controls on the log store, and evidence (e.g., a tabletop
+      or test) that a compromised source cannot erase its own historical records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because logs are 'centralized in a SIEM' the OS-separation
+      requirement is met — centralization is not the same as separation when the SIEM
+      collector or the same OS family shares admin trust with the source, and the
+      auditor will still ask which OS actually holds the records.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which OS holds the audit records for this system, and is it different from the
+      audited system's OS?
+    - Show me what happens to historical logs if the audited host is fully reimaged
+      or its admin account is stolen.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.655857Z'
+  signed_digest: 95abc2362a503fd011b044d7400aa71c19383fa47dc3fb3410c45997f295cb12
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PE-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker slipping past the lobby, tailgating through
+      a side door, or bypassing reception after hours without anyone noticing until
+      systems start lighting up - the control forces physical intrusion to surface
+      as an alert while staff can still intervene, instead of being reconstructed
+      hours later from badge logs.
+    basis: inferred
+  plain_zh:
+    value: Monitor the facility's entry points and sensitive areas with intrusion-detection
+      or surveillance equipment that actually alerts people when triggered, covers
+      what it needs to cover, and is tested so it isn't a silent box.
+    basis: inferred
+  practice:
+    value:
+      '1': Exterior doors to server rooms, data centers, and key facilities have an
+        alarm or sensor that triggers on unauthorized entry; staff know it exists.
+      '2': Coverage is documented per area; alarms route to a manned response (guard
+        desk, on-call, monitoring center) with escalation paths; devices are tested
+        on a defined cadence and failures are logged and fixed.
+      '3': Coverage maps are reviewed against threat scenarios (after-hours access,
+        propped doors, bypass of reception); intrusion events are correlated with
+        badge and camera data; missed tests or chronic blind spots trigger governance
+        review.
+    basis: inferred
+  evidence:
+    value: Inventory of intrusion sensors and cameras by area, coverage map, alarm
+      routing and escalation procedure, test and maintenance logs with failure remediation,
+      sample intrusion event records showing detection-to-response timeline.
+    basis: inferred
+  common_myth:
+    value: Assuming a working sensor on the wall means the control is met. A detector
+      that isn't monitored, isn't tested, or doesn't reach anyone who can respond
+      is functionally inert - the audit failure comes from the missing response path,
+      not the missing device.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If the server-room door sensor tripped at 2 a.m. tomorrow, who gets notified
+      and how, and how long until someone responds on-site?
+    - Show me the last two failed intrusion-sensor tests and what was done about each.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.627157Z'
+  signed_digest: 383ceb406bd082217ddc1a920ab50fea5bb8c885e7238fecd859e25634d37a64
+  interview_seconds: null
+  inherited_from: null

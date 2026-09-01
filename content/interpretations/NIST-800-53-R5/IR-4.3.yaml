@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IR-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the incident-handling process from collapsing the moment the people,
+      sites, or tools you rely on become unavailable — responders lose access to ticketing,
+      evidence stores, or each other precisely when they are needed most, and the
+      incident drags on or gets mishandled.
+    basis: inferred
+  plain_zh:
+    value: 'Make sure your incident response actually keeps working when something
+      breaks: people, places, systems, and communications used to handle incidents
+      must have a tested fallback so the response does not stop at the worst possible
+      time.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the people, sites, tools, and communications channels the IR process
+        depends on; document an alternate for each (backup responders, secondary site
+        or remote kit, out-of-band comms).
+      '2': Write the continuity expectations into the IR plan; cross-train responders
+        so primary/backup roles are not single points of failure; carry periodic tabletop
+        or failover exercises that exercise the alternates.
+      '3': Test the alternates end-to-end against realistic loss (e.g., primary SOC
+        tooling unreachable, key responder unavailable, primary site offline); measure
+        time-to-recover; feed gaps back into the plan and exercise schedule.
+    basis: inferred
+  evidence:
+    value: IR plan section on continuity of operations, list of primary/alternate
+      responders and roles, alternate site or remote-work arrangements, out-of-band
+      communications procedure, exercise records and after-action findings, corrective
+      actions tracked to closure.
+    basis: inferred
+  common_myth:
+    value: Treating the IR plan's mention of a 'backup site' or 'secondary analysts'
+      as proof on its own — without ever testing that the alternate responders can
+      actually pick up tickets, reach evidence, and coordinate when the primary path
+      is down, the continuity claim is just a line in a document.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you exercised the IR continuity plan — what failed-over,
+      who stepped in, and what broke.
+    - Which incident-handling roles have a named backup, and how do you know that
+      backup can actually perform the role under pressure?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.309892Z'
+  signed_digest: 8b6b10ffa76700cf3cc5c582998783386d66346ca4fef98bc142cf8f7d56250c
+  interview_seconds: null
+  inherited_from: null

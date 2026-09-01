@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:SI-4.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where each monitoring tool sees only its
+      own slice of activity and the SOC cannot tell a coordinated, multi-domain attack
+      from a pile of unrelated low-severity alerts — situational awareness stays siloed
+      inside individual sensors and dashboards, and a real intrusion walks across
+      ID, network, endpoint, and application telemetry without ever forming a single
+      picture that triggers the right response.
+    basis: inferred
+  plain_zh:
+    value: Make the monitoring outputs from different parts of the system (network,
+      endpoint, identity, application, etc.) get correlated and presented as one coherent
+      view of what is happening, so analysts can see an attack unfolding across boundaries
+      instead of guessing from disconnected alerts.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a minimum set of sources that must feed the common view (network,
+        endpoint, identity, and one application or cloud source); an analyst can pull
+        at least two domains at once and see a single event with its related signals
+        across them.
+      '2': Document the correlation rules and the data model that ties events from
+        different sources together; cross-domain incidents are reviewed in case notes
+        that reference the combined picture; the correlation logic is reviewed after
+        notable misses.
+      '3': The combined view is the working surface for triage, not a secondary tab;
+        correlation is updated when a new attack pattern is identified; coverage gaps
+        across domains are measured and have a remediation path; red-team or tabletop
+        findings are used to test whether a multi-stage attack would actually surface
+        as one incident.
+    basis: inferred
+  evidence:
+    value: Data sources feeding the integrated view, correlation rules and data model,
+      cross-domain incident case notes, after-action reviews of correlation misses,
+      and any tests that exercised multi-stage attack detection.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a SIEM and pointing logs at it satisfies the control
+      — the logs may all be collected, but if dashboards still show one domain at
+      a time, if correlation is only keyword matching, and if analysts have to manually
+      open four tools to follow one intrusion, the situational awareness is still
+      siloed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent incident that crossed network and identity (or endpoint and
+      cloud) — what did the integrated view show and where is that written down?
+    - Which domains are not yet feeding the common view, and what is the plan to bring
+      them in?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.008321Z'
+  signed_digest: ebf43f5e50dbbe127128802e906c4b9bafcd69e150a01f4eadb0ca71ab90ccba
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-8.31
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops engineers from being the only people who can change production systems
+      safely. If modifications are not partitioned, enforced, and audited, a single
+      compromised build pipeline, contractor laptop, or hotfix-from-laptop becomes
+      the easiest path to a full environment takeover, and you cannot tell a legitimate
+      change from an attacker's.
+    basis: inferred
+  plain_zh:
+    value: Make sure only authorized code and configuration can change the production
+      environment, that the people and systems doing the changing are isolated from
+      normal work, and that every modification leaves a trace you can review.
+    basis: inferred
+  practice:
+    value:
+      '1': Production changes go through a defined channel (ticketing or pipeline)
+        with a change record; admins do not edit running systems directly from their
+        workstations; basic logging of who changed what is retained.
+      '2': Build and deploy systems run on hardened, network-isolated infrastructure
+        separate from developer laptops; changes require two-party approval and are
+        tied to source commits; logs are centralized and time-synced; modifications
+        to the change pipeline itself are reviewed like any other privileged change.
+      '3': The change path is end-to-end reproducible from signed source to deployed
+        artifact, with code review and security checks as enforced gates; the build/deploy
+        environment is treated as a high-trust zone with its own identity, access
+        reviews, and intrusion detection; drift between declared and running configuration
+        is detected and alerted.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing isolation of build/deploy infrastructure,
+      change tickets tied to commits and approvals, signed artifact or change logs,
+      access reviews for the pipeline environment, and detection records for unapproved
+      changes or configuration drift.
+    basis: inferred
+  common_myth:
+    value: Treating 'developers commit code, CI deploys it' as already meeting this
+      control. The control is about the partition itself - if an engineer with repo
+      access can also reach the production environment, can sign their own deploys,
+      or can modify the pipeline that ships code, the partition is cosmetic regardless
+      of how good the code review looks.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Walk me from a source commit to a running production instance: which systems
+      and identities can intervene, and how are they isolated from each other?'
+    - If a developer wanted to push an unauthorized change tonight, which step in
+      that chain would stop them, and what evidence would it leave?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.303600Z'
+  signed_digest: 97affd2577efea886559f1b48e69d31ceac4f6d93a4607a3fabe0870e4b48df4
+  interview_seconds: null
+  inherited_from: null

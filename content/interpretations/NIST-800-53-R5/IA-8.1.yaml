@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a situation where a federal employee or contractor from
+      another agency shows up needing logical or physical access, and the host agency
+      either rejects legitimate PIV cards (slowing mission work) or accepts any card
+      in any context (defeating identity assurance). The control forces the host agency
+      to make an explicit, documented choice about whose PIV-issued identities it
+      trusts, where, and for what.
+    basis: inferred
+  plain_zh:
+    value: Decide in writing whether the system or facility accepts PIV credentials
+      issued by other federal agencies, and apply that decision consistently instead
+      of improvising at the door or the login screen.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written statement naming which other-agency PIV credentials are
+        accepted, in which systems or facilities, and who made the call.
+      '2': The acceptance decision is tied to a specific PIV profile or assurance
+        level, includes any conditions (e.g., escort, sponsor, time-bound), and is
+        referenced in onboarding and access-provisioning procedures.
+      '3': The list is reviewed on a schedule or when the issuer's PIV program changes;
+        non-PIV visitors fall back to a separate identity-proofing path that does
+        not silently stretch this one.
+    basis: inferred
+  evidence:
+    value: Documented acceptance decision naming the relying party, the issuer(s),
+      the systems or facilities covered, the assurance level relied on, and the approval
+      signature.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the badge reader accepts any smart card the control
+      is met. Acceptance is a documented relying-party decision about a specific class
+      of credentials, not a property of the reader; without the written decision,
+      an auditor cannot tell which card got in and on what basis.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the document that authorizes accepting another agency's PIV credential
+      on this system or at this facility.
+    - When a PIV card from an agency not on that list presents itself, what procedure
+      is followed and where is it written?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.234191Z'
+  signed_digest: ae3340435b6b08c816b5928dc083b4a0b954daaa2681d66113c7caba716b4f69
+  interview_seconds: null
+  inherited_from: null

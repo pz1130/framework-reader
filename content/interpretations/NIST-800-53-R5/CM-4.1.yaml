@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against code, data, or configuration in lower environments contaminating
+      production: untested changes promoted because the ''test'' box is the same host,
+      same dataset, or same credentials as live; or worse, production traffic quietly
+      routed to a dev system because nobody kept them apart.'
+    basis: inferred
+  plain_zh:
+    value: Keep development, test, and production environments physically or logically
+      separate — different machines, networks, data, and credentials — so test activity
+      cannot leak into, impersonate, or take down live systems.
+    basis: inferred
+  practice:
+    value:
+      '1': Test systems run on separate hardware or VMs from production; test data
+        is fabricated or scrubbed, never a copy of live records; test accounts are
+        not real user accounts.
+      '2': Documented separation rules per environment covering network segments,
+        identity boundaries, and data handling; promotion of code or config into production
+        requires crossing an explicit boundary (change ticket, separate credentials).
+      '3': 'Enforced separation: production network is unreachable from dev/test,
+        production secrets are not present in lower environments, automated checks
+        block promotion of code or config that was built or signed in a non-production
+        context, and separation is reviewed when systems or vendors change.'
+    basis: inferred
+  evidence:
+    value: Environment architecture diagram or inventory showing separation of dev/test/prod,
+      network segmentation evidence, data-handling rules for non-production, separation
+      review records from recent changes.
+    basis: inferred
+  common_myth:
+    value: Treating 'separate VMs on the same host with the same service account and
+      a snapshot of last week's production database' as a test environment. Logical
+      separation without distinct identities, networks, and data is not separation
+      — it is a staging area that can still hit production.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the credentials used to deploy into production — are they ever present
+      on a developer or test workstation?
+    - What data sits in the test database, and when did it last come from production?
+    - Can a developer reach the production network from a test environment?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.800224Z'
+  signed_digest: 712aae049811bf2fa009d031717dd8a1ca7ef92b017626d2e2c892c843899b84
+  interview_seconds: null
+  inherited_from: null

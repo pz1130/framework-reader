@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IR-9.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the 'we contained it, we're done' failure — cleanup of data spills
+      leaves residual access, cached copies, secondary stores, or compromised credentials
+      that an attacker can still reach after the incident is closed. Post-spill operations
+      ensure the environment is genuinely clean, not just declared clean.
+    basis: inferred
+  plain_zh:
+    value: 'After a sensitive data spill is contained, run a deliberate post-cleanup
+      pass: identify what copies, sessions, caches, and credentials the data touched,
+      confirm each one was actually purged, and prove the environment is clean before
+      calling the incident closed.'
+    basis: inferred
+  practice:
+    value:
+      '1': After containment, list everywhere the spilled data may have landed (mailboxes,
+        shares, endpoints, cloud shares, logs) and verify whether each copy was removed
+        or quarantined.
+      '2': 'Run a documented post-spill review with named owners: identify stale copies
+        and orphaned references, purge session tokens and cached views, and record
+        the results before closing the IR ticket.'
+      '3': Use technical verification (hash searches, DLP rescans, credential rotation)
+        rather than self-attestation; the post-spill checklist is a ticket gate tied
+        to incident closure criteria, and lessons update detection or handling runbooks.
+    basis: inferred
+  evidence:
+    value: A post-spill checklist or runbook tied to incident closure, evidence of
+      where the spilled data was traced (shares, mailboxes, endpoints, cloud stores),
+      confirmation of purges including cached/secondary locations and session credentials,
+      and a record showing this gate was passed before the incident was closed.
+    basis: inferred
+  common_myth:
+    value: Believing that purging the original document (e.g., deleting the email
+      from the inbox) means the data is gone — copies in shared mailboxes, auto-archived
+      folders, endpoint caches, and OAuth tokens/SAS links from the initial exposure
+      are typically still valid and reusable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a recent spill incident and walk me through the post-spill cleanup checklist
+      — who verified each step and what did they find?
+    - What copies, caches, or credentials had to be invalidated after the obvious
+      deletion, and how were they tracked down?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.368013Z'
+  signed_digest: dd5976eae25583e3ce84de52254bbcaf6d32596672a36894e698ede46a78b680
+  interview_seconds: null
+  inherited_from: null

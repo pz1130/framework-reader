@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:CM-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against changes pushed live and immediately breaking production
+      or opening a hole — change tickets get approved but no one proves the change
+      actually works as intended in a representative environment, so defects, regressions,
+      and security regressions reach users before anyone notices.
+    basis: inferred
+  plain_zh:
+    value: Before a change goes live, test and validate it in a realistic environment,
+      document the results, and keep that record so the change can be traced back
+      to evidence that it was checked.
+    basis: inferred
+  practice:
+    value:
+      '1': Standard and emergency changes have a checklist requiring pre-deploy test
+        notes; the person deploying signs that tests were run.
+      '2': Test plans exist per change class (infra, app, security) with defined pass
+        criteria; results, tester, and environment are captured in the ticket; failed
+        tests block promotion.
+      '3': Validation uses an environment representative of production, includes security
+        regression checks, and results are linked from the change record; rollback
+        evidence is required for high-risk changes; post-implementation verification
+        confirms the change behaves as documented.
+    basis: inferred
+  evidence:
+    value: Change tickets containing the test plan, validation results, environment
+      used, tester identity, pass/fail outcome, and (for high-risk changes) rollback
+      verification, with post-implementation review notes where applicable.
+    basis: inferred
+  common_myth:
+    value: Believing a change ticket signed by an approver is enough proof of testing
+      — without the actual test plan, environment, results, and who ran them attached
+      to the record, 'tested' is an unverifiable claim, not evidence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent high-risk change: show me the test plan, where it ran, who executed
+      it, and the pass/fail result.'
+    - What happens when validation fails — is promotion actually blocked, or does
+      the change still go through?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.773963Z'
+  signed_digest: e268389890f5f17d4945f5de1f13f054c9f15b762c5f92089adf0a4758c43251
+  interview_seconds: null
+  inherited_from: null

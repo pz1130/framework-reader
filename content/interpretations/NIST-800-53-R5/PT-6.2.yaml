@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PT-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the scenario where privacy exemptions are granted ad hoc, without
+      defined boundaries, review, or recall — allowing individuals to claim broad
+      exceptions from privacy controls and leaving no way to challenge or audit those
+      decisions.
+    basis: inferred
+  plain_zh:
+    value: If you allow exemptions from privacy requirements, you must write down
+      who can grant them, how long they last, what they cover, and how they get reviewed
+      or revoked. It stops exemptions from becoming permanent, unaccountable loopholes.
+    basis: inferred
+  practice:
+    value:
+      '1': A named role is authorized to approve privacy exemptions; exemptions are
+        recorded (who, what, why, when).
+      '2': Exemption records track duration, scope, and the specific privacy control
+        being bypassed; a regular review cycle exists to re-validate or terminate
+        them.
+      '3': Exemption decisions are tied to a formal risk acceptance process; automated
+        or audited alerts flag expiring or abnormally broad exemptions; a senior owner
+        oversees the full inventory and can be challenged by privacy/compliance functions.
+    basis: inferred
+  evidence:
+    value: The exemption register (including approver, rationale, scope, expiry),
+      the documented approval workflow, periodic review meeting notes showing renewal/termination
+      decisions, and any reports on outstanding exemptions presented to management.
+    basis: inferred
+  common_myth:
+    value: Assuming that because an exemption is documented in an email or a ticket,
+      it is controlled — without a defined expiry or a scheduled review, the exemption
+      silently becomes permanent and is later cited as precedent for broader exceptions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an exemption that was granted in the last six months — who approved
+      it, what specific control does it bypass, and when does it expire?
+    - What happens when an exemption reaches its expiry date — is it automatically
+      revoked or silently renewed? Where is that process defined?
+    basis: inferred
+  regional_note:
+    value: EU auditors, under GDPR accountability expectations, tend to scrutinize
+      whether exemptions from privacy controls are justified by a documented balancing
+      test and traceable to a legal basis. US auditors are more likely to focus on
+      whether the exemption process aligns with the organization's stated risk tolerance
+      and whether the approver has the authority to accept that risk.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.904980Z'
+  signed_digest: 571f6b083bba639f25d7df88807402848bec3efa4967b2b9de546ffbb2f21297
+  interview_seconds: null
+  inherited_from: null

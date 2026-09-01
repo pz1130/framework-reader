@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-9.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where a provider's downstream supplier or subcontractor
+      quietly becomes a part of your data, identity, or operational path without your
+      security team knowing - so an incident, breach, or compliance gap at a fourth
+      party shows up in your environment before anyone realizes that party was ever
+      in scope.
+    basis: inferred
+  plain_zh:
+    value: Make explicit which third parties are allowed to use other providers on
+      your behalf, what those downstream providers are allowed to touch, and how that
+      chain is tracked, reviewed, and enforced across the relationship.
+    basis: inferred
+  practice:
+    value:
+      '1': Contracts with critical providers include language requiring notice or
+        approval before they subcontractor the work, especially anything touching
+        your data or core services.
+      '2': Maintain a register of known subcontractors and downstream providers for
+        critical relationships, with the scope of what each one can access or process,
+        and review it on a schedule.
+      '3': Subcontractor changes trigger re-assessment of the provider relationship;
+        the register is tied to your third-party risk process so additions, replacements,
+        or removals of downstream providers flow into your normal review and exit
+        planning, not just into a contract clause.
+    basis: inferred
+  evidence:
+    value: Contract clauses on subcontracting and downstream providers, the subcontractor/downstream
+      register with scope per party, re-assessment records triggered by changes, and
+      review or exit records that show the chain was actually checked.
+    basis: inferred
+  common_myth:
+    value: Treating the prime provider's SOC report or security questionnaire as proof
+      that their entire supply chain is covered - the report usually only attests
+      to the provider's own controls, and a breach in their unmanaged cloud vendor
+      or outsourced support desk still lands in your environment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where you recorded that your critical provider started using a new downstream
+      vendor in the last 12 months and what you did about it.
+    - Which of your providers are contractually allowed to subcontractor the part
+      of the service that handles your data, and how do you know who they actually
+      use?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.349039Z'
+  signed_digest: 28131500fb667c926a12fee7080cdf25d7fe3636d33cb744216b71fbc8ce5cc2
+  interview_seconds: null
+  inherited_from: null

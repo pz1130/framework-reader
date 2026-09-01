@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:RA-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Static risk assessments age out the moment new threats, vulnerabilities,
+      or business changes appear — defenders keep making decisions on a snapshot of
+      risk that no longer matches reality, so incidents land on gaps nobody was watching.
+    basis: inferred
+  plain_zh:
+    value: Keep updating the threat picture on an ongoing basis so the organization
+      knows what adversaries, campaigns, and weaknesses currently apply to it, and
+      feeds that into risk decisions and defenses.
+    basis: inferred
+  practice:
+    value:
+      '1': Subscribe to credible threat feeds for the sectors and technologies you
+        use; have a person or team that reads them and flags items worth acting on.
+      '2': Maintain a current threat profile tied to your assets and suppliers; review
+        it on a defined cadence and after major incidents or changes; record what
+        changed and what you did.
+      '3': Automate ingestion and correlation of threat intel against your asset and
+        vulnerability inventory; trigger control or assessment updates when relevance
+        crosses a threshold; track which intel drove which decision and measure whether
+        actions reduced exposure.
+    basis: inferred
+  evidence:
+    value: Threat intelligence sources and feeds in use, the current threat profile
+      mapped to assets, cadence of updates, records of changes made in response, and
+      examples linking a specific threat observation to a control or risk decision
+      change.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we have a threat intel subscription, so we're covered.'
+      A feed you read but never translate into a control change, a watchlist update,
+      or a risk reassessment is just noise — the control fails the moment intel lands
+      and nobody acts on it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last threat intel item that changed a control or a risk rating,
+      and the trail from intel to action.
+    - How often is the threat profile refreshed, and who owns the decision to escalate
+      a new threat against our environment?
+    basis: inferred
+  regional_note:
+    value: European regulators (especially in finance and critical infrastructure
+      under DORA and NIS2) push harder on documented threat-led processes and evidence
+      of decisions changing because of intel; US practice under RMF typically accepts
+      the same shape but samples less aggressively on the 'intel-to-decision' chain.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.942844Z'
+  signed_digest: 857ae503c5ffba1b0bb18498ca7baa2614e007f8ed942ba0b798947c1e515cae
+  interview_seconds: null
+  inherited_from: null

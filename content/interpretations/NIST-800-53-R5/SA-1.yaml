@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a security system engineering and development policy that
+      exists only as folklore, a forgotten SharePoint page, or a one-time memo from
+      years ago. Without an authored, approved, disseminated and maintained policy
+      and procedure set for SA, every other control in the family drifts: who owns
+      SDLC security, how deviations get raised, when assessments happen, and how exceptions
+      expire all become tribal knowledge that leaves with whoever happens to be on
+      the team.'
+    basis: inferred
+  plain_zh:
+    value: Write down, approve, publish, and maintain a documented policy and supporting
+      procedures for system and services acquisition / system development life cycle
+      security, so that the rules of the road are knowable, current, and enforced
+      rather than improvised.
+    basis: inferred
+  practice:
+    value:
+      '1': A policy document for the SA family exists, names an owner, is dated, and
+        covers secure development, acquisition, and external system services at a
+        high level.
+      '2': Procedures exist for the recurring activities (secure coding standards,
+        acquisition reviews, developer training, assessment before deployment); owners
+        and review cadence are stated; the set has been acknowledged by engineering
+        and procurement leads.
+      '3': Policy and procedures carry a defined review cycle with evidence of actual
+        updates, tie into the broader organizational policy hierarchy, and deviations
+        or exceptions are logged and time-bound; staff can find the current version
+        faster than they can find a coworker who 'knows the answer.'
+    basis: inferred
+  evidence:
+    value: Approved SA policy and procedure documents with version history, owner
+      and review cadence, dissemination records (acknowledgements or training attendance),
+      and evidence of at least one review/update cycle.
+    basis: inferred
+  common_myth:
+    value: Treating SA-1 as administrative filler satisfied by inheriting an enterprise-wide
+      'Information Security Policy' that never mentions SDLC, acquisition, or developer
+      practices. The control specifically expects SA-family content; a generic umbrella
+      policy without SA procedures does not meet it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current SA policy and procedures and tell me when they were last
+      reviewed.
+    - How do engineers and procurement staff know these exist, and where do they go
+      when they need the current version?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.994486Z'
+  signed_digest: b43848bb098f5e2d992445ce8d3f8ec570c6fcbbc844db3c4e1bed4cdf7844e9
+  interview_seconds: null
+  inherited_from: null

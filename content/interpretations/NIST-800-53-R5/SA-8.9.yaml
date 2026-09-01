@@ -1,0 +1,81 @@
+control_id: NIST-800-53-R5:SA-8.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Mitigates the risk of building systems on components whose internal behavior
+      cannot be reasoned about, so a vendor, contractor, or upstream open-source maintainer
+      silently introduces a backdoor, hardcoded credential, undocumented interface,
+      or design flaw that bypasses every other control layered on top. Without this,
+      organizations inherit the security posture of whoever wrote the chip, library,
+      or module and discover compromises only after exploitation.
+    basis: inferred
+  plain_zh:
+    value: Require that the components you depend on (chips, firmware, modules, libraries)
+      be designed, built, and delivered so that their internal workings are inspectable,
+      change-controlled, and verifiable — not just functionally black boxes — and
+      document which parts of your system meet that bar and which do not.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the components whose compromise would directly undermine the system
+        (root of trust, crypto modules, auth subsystems); require a vendor attestation
+        or public statement that they are designed as trusted components and have
+        not been repurposed from higher-trust use.
+      '2': 'Define a written trusted-component criterion tied to specific system boundaries:
+        which components must be self-contained, have controlled internal interfaces,
+        undergo formal or structured design review, and be sourced from suppliers
+        with documented secure-development and provenance practices; apply it in procurement
+        and architecture review.'
+      '3': Verify, rather than trust, the criterion — review design documentation
+        and integrity-protection evidence at acquisition and on major change, test
+        for undocumented interfaces or hardcoded credentials, track provenance and
+        build chain integrity, and feed deviations into the system's threat model
+        and risk register with explicit acceptance or remediation.
+    basis: inferred
+  evidence:
+    value: A trusted-component selection criterion tied to system architecture, the
+      resulting per-component designation list (what is in scope and why), vendor
+      or supplier attestations and design artifacts, provenance and build-chain records,
+      test results for undocumented interfaces or embedded credentials, and a documented
+      risk decision for components that cannot meet the criterion.
+    basis: inferred
+  common_myth:
+    value: Treating 'trusted component' as a marketing label that the vendor already
+      supplies, so the organization only needs to buy a 'trusted' SKU and cite it
+      in the system security plan. The control is about the organization's own selection
+      and verification of which parts of the system warrant that level of scrutiny
+      and what evidence supports it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which components in this system have you designated as trusted, and what criterion
+      placed them on that list?
+    - Show the evidence — design docs, provenance, or test results — that the most
+      security-critical trusted component actually behaves as a self-contained, change-controlled
+      module today.
+    - What did you do with the components that could not meet the trusted-component
+      bar — accepted the risk formally, or left it implicit?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors in national-security or critical-infrastructure engagements
+      push harder for supply-chain provenance and build-chain integrity artifacts;
+      European auditors more often fold the same expectation into broader supply-chain
+      due-diligence and digital-sovereignty discussions. The control wording is the
+      same, but the evidence an auditor finds persuasive skews accordingly.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.336501Z'
+  signed_digest: 141e5c03447a98744c9f20d7556cf7debd28bdf5ee2cd8a9f2ad31531969ea06
+  interview_seconds: null
+  inherited_from: null

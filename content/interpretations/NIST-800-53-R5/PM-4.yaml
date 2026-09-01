@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PM-4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against weakness catalogs that exist on paper but never shrink
+      — when findings pile up across audits, scans, and pentests and nothing closes,
+      the org carries the same exposures year after year and senior leaders cannot
+      see real progress or residual risk.
+    basis: inferred
+  plain_zh:
+    value: Maintain a single, actionable Plan of Action and Milestones (POA&M) for
+      every security weakness identified, with owners, deadlines, resources, and evidence
+      of closure, and report progress to leadership so items actually close.
+    basis: inferred
+  practice:
+    value:
+      '1': Every finding (audit, vuln scan, pen test, incident root cause) gets a
+        POA&M entry with owner, target date, and basic status; closure is acknowledged
+        in writing.
+      '2': POA&M is a living tracker with severity/priority, dependencies, resources
+        needed, and recurring reporting to a governance body; closures require evidence
+        attached.
+      '3': POA&M is tied to enterprise risk and budget cycles; aging items and repeated
+        overdue items trigger escalation; completed items are verified by someone
+        other than the owner and metrics feed leadership dashboards.
+    basis: inferred
+  evidence:
+    value: A maintained POA&M register with findings, owners, due dates, status changes,
+      closure evidence (remediation artifacts, re-test results), and governance reports
+      showing aging and closure trends.
+    basis: inferred
+  common_myth:
+    value: Treating the POA&M as a compliance artifact to satisfy the auditor — filling
+      in an owner and a 'will-fix-by' date, then never looking at it again. A POA&M
+      without enforced tracking, evidence of closure, and leadership review is just
+      a deferred-finding list.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the POA&M entries older than their target date right now — what is the
+      escalation path that was triggered?
+    - 'Pick a closed item at random: what evidence was attached, and who independent
+      of the owner verified the fix?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.787114Z'
+  signed_digest: 760b17f5e24623bc3532c4936bbf0aa814d4140cea0bb0db0898ed330893587b
+  interview_seconds: null
+  inherited_from: null

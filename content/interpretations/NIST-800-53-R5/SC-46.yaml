@@ -1,0 +1,77 @@
+control_id: NIST-800-53-R5:SC-46
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers (or insiders) exploiting the lack of a controlled
+      boundary between security domains — e.g., moving data from a low-trust or untrusted
+      network into a high-trust enclave, or vice versa — by smuggling it through ad-hoc
+      paths that no policy explicitly governs. If you do not enforce a written policy
+      across domains, every transfer point becomes an unmonitored channel and the
+      whole point of domain separation collapses.
+    basis: inferred
+  plain_zh:
+    value: When data crosses between security domains (for example, between an untrusted
+      network and an internal enclave, or between classified and unclassified zones),
+      there must be a written, enforced policy that controls what may cross, in which
+      direction, and through which approved mechanisms. Implicit or ad-hoc transfers
+      are not acceptable.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the security domains that exist in the environment and the points
+        where data crosses between them; produce a short written policy describing
+        what is allowed across each boundary and who approves exceptions.
+      '2': Constrain transfers to a defined set of approved mechanisms (e.g., specific
+        cross-domain guards, diodes, or hardened transfer hosts); block direct transfers
+        between endpoints in different domains; require documented review and approval
+        per transfer class.
+      '3': All cross-domain traffic is forced through policy-enforcing intermediaries
+        with content inspection, logging, and default-deny rules; departures from
+        policy generate alerts; the policy and approved-transfer list are reviewed
+        periodically and after architecture changes.
+    basis: inferred
+  evidence:
+    value: Written cross-domain policy, inventory of domains and approved transfer
+      mechanisms, configuration showing traffic between domains is mediated by the
+      approved mechanisms (not direct), exception/approval records, and logs of cross-domain
+      transfers with associated policy decisions.
+    basis: inferred
+  common_myth:
+    value: Assuming that because two networks are physically or logically separated,
+      no cross-domain policy is needed — when in reality, every human-driven transfer
+      (file copies, email, USB, vendor uploads, screenshots) is a cross-domain event
+      that bypasses the technical separation and must be governed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the paths data actually takes when it moves from [lower-trust domain]
+      to [higher-trust domain] — which device or service mediates it, and where is
+      that documented?
+    - When a business unit needs to move data across domains outside the standard
+      flow, where is that exception reviewed and recorded?
+    basis: inferred
+  regional_note:
+    value: In U.S. federal environments, this control is read strictly when classified
+      or sensitive compartmented information is involved, with auditors expecting
+      accredited cross-domain solutions. In commercial contexts, auditors focus less
+      on the formal accreditation regime and more on whether unmediated transfer paths
+      exist between trust zones such as corporate and production, or corporate and
+      OT. Outside the U.S. federal space, the control is often absent from scope unless
+      the organization handles government-classified work.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.636380Z'
+  signed_digest: 9f4827adf4c232afd50d4f36da07ebf483193605dae9d460d402aae08b12779f
+  interview_seconds: null
+  inherited_from: null

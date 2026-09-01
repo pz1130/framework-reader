@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the organization becoming structurally blind to its own
+      failure modes — when everyone assumes the contingency plan works because nobody
+      has tried to break it on paper, a real disaster exposes gaps that 'we have a
+      plan' never caught.
+    basis: inferred
+  plain_zh:
+    value: Stress-test the contingency plan by deliberately asking how it would fail,
+      identify the weak points it reveals, and fix them before a real event does it
+      for you.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Run at least one structured ''red-team'' review of the contingency plan
+        per year: list plausible scenarios the plan does not cover, document the gaps
+        found.'
+      '2': Assign owners to each gap, set remediation dates, and track them to closure;
+        have a written record of the self-challenge and the resulting changes.
+      '3': Combine self-challenge with exercises and after-action reviews; weak points
+        feed into plan revisions, training, and resource allocation, and the cycle
+        repeats on a fixed cadence with measurable reduction in repeat findings.
+    basis: inferred
+  evidence:
+    value: A self-challenge report or working session notes showing the scenarios
+      probed, the gaps surfaced, owners assigned, remediation actions taken, and dates
+      the plan was updated as a result.
+    basis: inferred
+  common_myth:
+    value: Treating the annual tabletop exercise as proof that self-challenge is happening.
+      Exercises test whether people can execute the plan as written; self-challenge
+      tests whether the plan itself is wrong, missing, or based on assumptions that
+      no longer hold — without an adversarial read of the plan, exercises only rehearse
+      comfortable failure modes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one weakness in the contingency plan that your self-challenge surfaced
+      in the last year and what you changed because of it.
+    - Who runs the self-challenge, what method do they use to stress the assumptions,
+      and how is that separate from the exercise program?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.975783Z'
+  signed_digest: e341878c503ab902fa27768299fd0f4110a0bf440bd408e6cc944c5a55ec8225
+  interview_seconds: null
+  inherited_from: null

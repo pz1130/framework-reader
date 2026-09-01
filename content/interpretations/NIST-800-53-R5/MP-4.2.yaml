@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:MP-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against media being quietly moved, read, or destroyed by anyone
+      who happens to walk up to a drive or tape slot — including insiders, contractors,
+      and curious visitors — because a physical key or a logged-but-unmonitored door
+      is not the same thing as the system itself refusing the request.
+    basis: inferred
+  plain_zh:
+    value: Make sure that access to information system media (drives, tapes, cartridges,
+      removable media) is enforced by automated mechanisms — not just by a locked
+      cabinet someone could tailgate into or a manual sign-out log that gets bypassed.
+    basis: inferred
+  practice:
+    value:
+      '1': Restrict the rooms and racks where media is stored and handled to authorized
+        people, and keep a written log of who is allowed in.
+      '2': Use automated controls — badge-controlled cabinets, key-management systems
+        that record who took which cartridge and when, or rack PDUs and drive bays
+        that require authentication before the device mounts.
+      '3': Bind the automated access system to identity (individual credentials, not
+        shared keys), alert on failed or after-hours attempts, revoke access automatically
+        when staff change roles, and review the access logs on a schedule.
+    basis: inferred
+  evidence:
+    value: Configuration of the automated media access controls, list of authorized
+      individuals, access logs showing issuance and return of media, change records
+      showing access removed when roles change, review reports.
+    basis: inferred
+  common_myth:
+    value: Believing a locked media room plus a clipboard sign-out sheet satisfies
+      the control because it is 'restricted access with logging'. The control specifically
+      requires *automated* enforcement — a manual log is not an automated mechanism
+      and does not stop a determined person with a stolen badge or a tailgate from
+      walking out with a tape.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which automated mechanism enforces access to backup tapes and removable
+      drives, and who is currently authorized.
+    - Walk me through the last time someone without authorization tried to access
+      stored media — how was it blocked and how was it logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.471817Z'
+  signed_digest: 188a8e047522a067d8bcade9b7f5a2c360d82dedd55dfded17f346cd97461cda
+  interview_seconds: null
+  inherited_from: null

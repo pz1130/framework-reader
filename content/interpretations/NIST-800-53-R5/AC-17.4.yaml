@@ -1,0 +1,77 @@
+control_id: NIST-800-53-R5:AC-17.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker who has already reached a remote access foothold
+      and is now trying to escalate. Remote channels almost never carry the same risk
+      profile as console logon, so any user who can reach privileged functions over
+      them is one phished VPN credential or one hijacked jump host away from owning
+      the system. The control forces the privileged surface across remote access to
+      be treated as a distinct, harder-to-enter tier, not an extension of normal remote
+      use.
+    basis: inferred
+  plain_zh:
+    value: 'When someone connects remotely, the ways they can run privileged commands
+      or reach privileged data must be extra-restricted beyond the normal remote access
+      checks: separate paths, separate credentials or stronger ones, and explicit
+      allow-listing of what is permitted — not just ''they can log in like everyone
+      else''.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which remote-access methods (VPN, RDP, SSH, jump host, bastion,
+        vendor remote support) can reach privileged commands or privileged accounts;
+        require an additional step (separate admin credential, dedicated bastion,
+        MFA factor) before any privileged action is possible remotely.
+      '2': Maintain an allow-list of privileged commands executable via remote channels
+        per system; require separate admin credentials distinct from the user's normal
+        remote login; record who used which privileged command from where and when.
+      '3': Make the privileged-over-remote path architecturally separate (dedicated
+        admin bastion with hardware-backed MFA, just-in-time elevation, no standing
+        privileged remote sessions) and feed the telemetry into detection; non-allow-listed
+        privileged actions from remote sources trigger alerting and are blocked by
+        policy.
+    basis: inferred
+  evidence:
+    value: Architecture diagram or written description of the remote-to-privileged
+      path, allow-list of privileged commands reachable remotely, separate admin credential
+      inventory and credential vault, remote privileged session logs with command
+      capture, MFA enforcement evidence on the privileged tier, blocking/alerting
+      evidence for non-allow-listed actions.
+    basis: inferred
+  common_myth:
+    value: Treating MFA on the normal VPN login as satisfying this control. The point
+      is not that remote users authenticate; it is that the privileged commands reachable
+      from a remote session are gated beyond that authentication — using a different
+      credential, a separate host, and an explicit allow-list. A user who VPNs in
+      with MFA and then 'sudo su -' on the target has bypassed this control even though
+      MFA is on.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me a remote session where a privileged command was run: which credential
+      was used, which host mediated it, and was that command on your allow-list?'
+    - How is the admin credential used remotely different from the user's own remote
+      credential, and where is that enforced?
+    - Which privileged commands on which systems are reachable via remote access,
+      and which are deliberately not?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.069155Z'
+  signed_digest: 261ef06de4d994b062cb0123d47b54b1dd15b95794f2e183716f7deb08cf23c7
+  interview_seconds: null
+  inherited_from: null

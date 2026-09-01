@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-7.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against software being deployed or executed while its integrity
+      cannot be be proven, which means a tampered binary, a compromised update channel,
+      or a rootkit could run with full trust and the organization would not be able
+      to tell it apart from the legitimate one.
+    basis: inferred
+  plain_zh:
+    value: Beyond verifying signatures at install time, make sure the software actually
+      running, and each piece of firmware or update pulled in, has not been silently
+      altered since it was built or signed.
+    basis: inferred
+  practice:
+    value:
+      '1': Generate a known-good hash or use vendor signatures for every trusted image,
+        firmware bundle, and update package, and store the reference values somewhere
+        offline or write-once so an attacker cannot rewrite them too.
+      '2': On boot and at scheduled intervals, compare running firmware, bootloaders,
+        hypervisors, and critical software against the stored reference values, and
+        route mismatches to a tamper-response workflow with logs.
+      '3': Wire the verification into the boot chain (measured boot, secure boot,
+        attested launch) so a failed check refuses to load the next stage, and instrument
+        it so each verification event is reported centrally for continuous monitoring
+        and incident correlation.
+    basis: inferred
+  evidence:
+    value: Stored reference values (hashes, vendor signatures, manifests) for software
+      and firmware, configuration showing where and how integrity is checked, sample
+      logs or reports of verification outcomes including mismatches, and incident
+      records showing what happened when a check failed.
+    basis: inferred
+  common_myth:
+    value: Treating 'we use signed vendor updates' as if it satisfied this control,
+      when the actual gap is at runtime and boot time — most compromises happen after
+      install, against binaries that were never re-checked against their reference,
+      and a signature on an update does nothing if the running image is then swapped
+      in memory or on disk.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one critical system: where is its known-good hash stored, and who can
+      modify that store?'
+    - Show me the last time an integrity check failed on a production system and what
+      happened next.
+    - How do you detect a tampered firmware or bootloader on a device that has already
+      booted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.110032Z'
+  signed_digest: aa5c7c430f9a09572571b3bf4cbff892d7bf01e0d79a78b3242605a09664acf8
+  interview_seconds: null
+  inherited_from: null

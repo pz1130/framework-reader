@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:AC-2.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Manual account reviews miss dormant, orphaned, or over-privileged accounts
+      between review cycles, so attackers or insiders keep access that nobody notices
+      until an incident exposes it.
+    basis: inferred
+  plain_zh:
+    value: Make the system itself check account activity on a schedule and flag or
+      block what humans reviewing spreadsheets would otherwise miss.
+    basis: inferred
+  practice:
+    value:
+      '1': Enable built-in audit features on identity systems (e.g., last-logon, inactive-account
+        reports) and run them on a fixed cadence.
+      '2': Define rules for what counts as anomalous (dormant period, privilege escalation,
+        off-hours use) and have the tool produce alerts routed to a named owner.
+      '3': 'Audit actions are enforced in real time: dormant accounts auto-disabled,
+        anomalous creations blocked or quarantined, with tickets and remediation tracked
+        to closure and the rules themselves reviewed for drift.'
+    basis: inferred
+  evidence:
+    value: Configuration of automated audit features on directory and privileged-access
+      systems, alert routing rules, sample alerts with resulting tickets and remediation,
+      and records showing rules were reviewed and tuned.
+    basis: inferred
+  common_myth:
+    value: Assuming the directory's default audit policy is on, so 'we have automated
+      auditing.' Out-of-the-box settings usually log nothing actionable, and alerts
+      without an owner or a response path are just noise that still satisfies the
+      checkbox.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last alert your automated account audit produced and what happened
+      next.
+    - Which account anomalies are configured to be blocked automatically versus only
+      emailed, and who owns the mailbox?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.131510Z'
+  signed_digest: 0eb11a26896efee54a0439a23fcfa6252d5b5a55201f00a475fc9df979414640
+  interview_seconds: null
+  inherited_from: null

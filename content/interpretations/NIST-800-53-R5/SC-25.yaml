@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers using thin client endpoints as pivot points into
+      the broader enterprise—if the device itself holds no sensitive state and cannot
+      persist malware, compromise of one node yields nothing to reuse, no credentials
+      to steal, and no foothold to pivot from.
+    basis: inferred
+  plain_zh:
+    value: 'Deploy end-user devices and similar endpoints as thin nodes: no local
+      storage of sensitive data, no persistent applications or services that could
+      harbor malware, and processing pushed back to a server the organization controls.
+      The goal is that losing a device costs nothing.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which endpoints (kiosks, field terminals, call-center stations,
+        contractor laptops in sensitive areas) should be thin; remove local data caches
+        and disable removable storage; route processing to a centralized server.
+      '2': Standardize a thin-node image with locked-down configuration; document
+        which data classes may never reside locally; enforce via policy and periodic
+        configuration checks; have a wipe/re-image procedure that is actually fast.
+      '3': 'Treat thin nodes as untrusted: all processing and storage of sensitive
+        data lives on hardened servers with logging and session controls; device loss
+        triggers automatic session termination and credential invalidation, not just
+        a ''please return it'' email.'
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing data flow between endpoints and central servers,
+      thin-node configuration standard, list of endpoint classes classified as thin,
+      configuration audit results, and incident records showing what was actually
+      exposed when a thin-node device was lost or stolen.
+    basis: inferred
+  common_myth:
+    value: Assuming a thin client is automatically a thin node. A device can be a
+      'thin client' by marketing name while still caching documents locally, running
+      a full browser, allowing USB drives, or persisting credentials—none of which
+      actually reduces the attack surface. The control cares about what the device
+      refuses to hold, not what label the vendor put on it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me what data from the last incident actually resided on a thin-node endpoint
+      versus only on the central server.
+    - Walk me through what happens the moment a thin-node device is reported lost
+      or stolen—how quickly are sessions killed and credentials invalidated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.473797Z'
+  signed_digest: a14f85166f99c98dc021be45855d82c865ba521a1ffbf5129905b1750cd3a8e7
+  interview_seconds: null
+  inherited_from: null

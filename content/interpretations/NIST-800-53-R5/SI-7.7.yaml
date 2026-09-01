@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-7.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against software-integrity checks and system responses that exist
+      as separate, unconnected pieces — where the tool says 'bad' on Monday but nothing
+      acts on it until Thursday, or detection only flags known signatures while novel
+      tampering passes silently.
+    basis: inferred
+  plain_zh:
+    value: 'Make software/firmware/information-integrity detection and the response
+      it triggers work as one loop: when the check finds something wrong, a defined
+      action fires automatically or under tight human control, and the action covers
+      the full range of corruption — not just known-bad signatures.'
+    basis: inferred
+  practice:
+    value:
+      '1': Integrity checks (file hashes, boot measurements, code signing) are configured
+        on critical systems; an alert email or ticket is the documented response.
+      '2': Detection findings are wired into an incident or change workflow with owners
+        and time-bound steps; response actions (quarantine, rollback, reimage) are
+        written down per system class.
+      '3': 'Detection and response are tested end-to-end on a schedule: synthetic
+        tampering triggers the action, response time and coverage are measured, gaps
+        (e.g., unknown variants, in-memory tampering not covered by hash checks) are
+        tracked and remediated.'
+    basis: inferred
+  evidence:
+    value: Integrity-monitoring configuration and scope, documented response procedures
+      tied to each finding type, incident or change tickets that close the loop from
+      detection to action, end-to-end test results showing detection triggering the
+      documented response.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a file-integrity-monitoring tool deployed satisfies
+      the control on its own — auditors then ask what happens when it fires and find
+      that tickets sit unassigned, response times are undefined, or the checks only
+      catch known-good vs. known-bad and miss novel or in-memory tampering.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last integrity alert on a critical system and the action that followed
+      it — who got paged, what was done, and how long it took.
+    - What does your integrity check fail to detect, and how do you know — have you
+      tested it against something your signature or hash baseline would not recognize?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.113995Z'
+  signed_digest: 7a5a72049c243ae3132ab47cf7b680dda1f909cb98d52fbd6cf2f19dc2441fe0
+  interview_seconds: null
+  inherited_from: null

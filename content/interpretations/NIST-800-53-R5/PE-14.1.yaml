@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PE-14.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a physical intrusion going unnoticed because no one is
+      watching the space and the alarm didn't dial out — automatic controls fire and
+      tell the right people without a guard being awake, on duty, or within earshot.
+    basis: inferred
+  plain_zh:
+    value: When no one is present in the protected space, fire detection, gas detection,
+      intrusion alarms, and similar physical-protection systems must trigger responses
+      automatically and notify the appropriate responders on their own.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical spaces have sensors (smoke, heat, gas, motion) that sound a local
+        alarm and flash a visible indicator; on-call rosters exist with phone numbers
+        posted in operations.
+      '2': Alarms are wired to a continuously-manned monitoring point (security operations
+        center or contracted monitoring service) and generate dated, time-stamped
+        notifications; suppression systems (sprinklers, gas, extinguishing) activate
+        without human intervention; response procedures cover what each alert triggers.
+      '3': Automatic notifications reach responders via multiple channels (console,
+        phone, SMS, app) with escalation timers; alerts tie to a ticket or incident
+        record; periodic testing proves the sensor-to-notification chain end-to-end,
+        including after-hours; failure of any link triggers a degraded-mode procedure.
+    basis: inferred
+  evidence:
+    value: Test records of sensor triggering and notification delivery, monitoring
+      station logs (with after-hours entries), configuration showing alarm-to-notification
+      routing, escalation procedure documents, incident records of automatic alerts
+      that fired and were responded to, maintenance and inspection logs for detection
+      and suppression systems.
+    basis: inferred
+  common_myth:
+    value: Treating a loud siren on-site as the whole control — the bell rings in
+      an empty building at 2 a.m. and nobody outside hears it. An automatic control
+      has to reach someone who can act, not just make noise locally.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through what happens at 3 a.m. when smoke is detected in a comms room
+      — who gets notified, by what mechanism, and in how many seconds?
+    - Show me a monitor-station log entry for an after-hours alarm in the last quarter
+      and the corresponding incident ticket.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.543887Z'
+  signed_digest: 835c2c2f042efc7493b3907638751263c2a6562c87c7a95e59657e84d3d00788
+  interview_seconds: null
+  inherited_from: null

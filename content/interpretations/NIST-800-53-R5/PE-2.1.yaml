@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PE-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents physical access controls from becoming a revolving door - without
+      tying badge, key, or PIN issuance to a verified position or role, terminated
+      staff, contractors on disengaged projects, and never-authorized visitors can
+      still walk in because the access list drifts away from who actually belongs.
+    basis: inferred
+  plain_zh:
+    value: Physical access to the facility must be issued based on the person's verified
+      position or role, not on ad-hoc requests; and that linkage has to be kept current
+      so the access list reflects who legitimately needs to be there.
+    basis: inferred
+  practice:
+    value:
+      '1': Physical access requests reference a position or role on file (not a person's
+        name alone); sponsoring manager confirms; access is revoked on termination
+        or role change.
+      '2': Role-to-access mappings are documented and reused for similar hires; HR
+        feeds role changes into the physical access system; periodic reconciliation
+        between active employees/contractors and badge holders is performed and logged.
+      '3': Joiner/mover/leaver events automatically update physical access through
+        HR-system integration; access-by-role rules are reviewed on a schedule; exceptions
+        and emergency additions are time-bound and reviewed.
+    basis: inferred
+  evidence:
+    value: Role-based access request forms, HR-to-physical-access provisioning records,
+      joiner/mover/leaver audit logs, reconciliation reports between active workforce
+      and badge holders, and termination-triggered revocation evidence.
+    basis: inferred
+  common_myth:
+    value: 'Treating physical access as a one-time badge issuance: assuming that because
+      a badge was once tied to a job title, it remains correct after role changes,
+      department transfers, or contractor offboarding. The control fails the moment
+      the roster and the badge list diverge.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a terminated employee from the last quarter and the timestamp their
+      physical access stopped working.
+    - How does a role change in HR actually propagate into the physical access system
+      - is it manual or automated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.566848Z'
+  signed_digest: c9eaccb9e8cdfe37478fc8c12a50d888bb28b8bd658be6cda3e2c2ec15949969
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SR-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Failure to define who must be told, in what order, and with what information
+      when an incident crosses organizational lines - so a partner learns about a
+      shared breach from the press, regulators or attackers, not from you. The control
+      defends against the legal, reputational, and operational damage that follows
+      when notification timing, content, or recipients are improvised after the fact.
+    basis: inferred
+  plain_zh:
+    value: 'Spell out in advance how the organization notifies supply chain partners,
+      customers, regulators, and law enforcement about cyber incidents affecting them
+      or their data - including what is said, who says it, and within what window.
+      Cover both directions: you notify them, and they notify you.'
+    basis: inferred
+  practice:
+    value:
+      '1': List the parties that need notification (partners, customers, regulators,
+        law enforcement, incident responders); each has a contact point; basic notification
+        expectations exist in key contracts.
+      '2': Written notification procedures cover triggers, content template, channels,
+        and time targets for each party class; reviewed annually; responsibility assigned
+        by role rather than by name.
+      '3': Procedures are exercised end-to-end with a partner or in a tabletop; contact
+        data is current and verified; procedures integrate with incident response
+        playbooks and contract obligations; post-incident review updates the procedures.
+    basis: inferred
+  evidence:
+    value: Notification agreements or contract clauses, contact lists with verification
+      dates, notification procedures with triggers and time targets, exercise or tabletop
+      records, incident logs showing notification actions taken.
+    basis: inferred
+  common_myth:
+    value: Treating a generic clause in a supplier contract or a one-line "we will
+      notify of incidents" sentence as a notification agreement - it omits the timing
+      window, the content template, the verified contacts, and the direction of notification.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the clause or agreement that commits you to notify partner X, and how many
+      hours from discovery it allows.
+    - How do you verify that the contact on file for a key partner still routes to
+      the right person when an incident occurs?
+    basis: inferred
+  regional_note:
+    value: EU auditors under NIS2 expect notification windows and content aligned
+      to national CSIRT reporting timelines, and check that contracts reflect those;
+      US auditors typically look at sector-specific breach notification statutes (state-level
+      for personal data, federal for specific sectors) and contractual obligations.
+      Auditors in both regions ask for proof that the agreements are exercised, not
+      just signed.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.202333Z'
+  signed_digest: 2f81056d867182c94f4d23686cca27182c4984e35a3825839485069b331b5816
+  interview_seconds: null
+  inherited_from: null

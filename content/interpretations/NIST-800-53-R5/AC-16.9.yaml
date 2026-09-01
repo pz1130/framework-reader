@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-16.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against attributes drifting out of sync with their original meaning:
+      when tags, labels, or security attributes are stripped, swapped, or silently
+      rerated, access decisions and audit trails become unreliable, and a downgrade
+      that looks legitimate in the system actually expands access or hides classification.'
+    basis: inferred
+  plain_zh:
+    value: Define and enforce a controlled way to change or strip security attributes
+      (classification, owner, handling rules) on objects and subjects. Regrading requires
+      authorized reviewers, documented justification, and audit trails; bulk or silent
+      reassignment is not allowed.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule exists that security attributes on data, accounts, and resources
+        cannot be changed without approval; the system or process blocks direct editing
+        by data owners.
+      '2': Regrading requests go through a defined workflow with authoriser identity,
+        reason, scope, and before/after values recorded; changes are logged and the
+        attribute's history is retrievable.
+      '3': Downgrades (e.g., lowering classification, removing handling markers) require
+        stronger justification than upgrades, are time-bound or scoped, trigger review
+        of downstream access, and are detectable by monitoring; older or superseded
+        attributes cannot be silently overwritten.
+    basis: inferred
+  evidence:
+    value: Regrading policy and workflow definition, sample regrading requests with
+      approvals and justifications, before/after attribute logs, monitoring/alerts
+      on unauthorised attribute changes, evidence that downgrades trigger downstream
+      access review.
+    basis: inferred
+  common_myth:
+    value: Assuming that because attributes exist on objects and people can edit them
+      in the console, regrading is already governed. Most environments let data owners
+      or admins overwrite classification and handling tags directly; the control is
+      met only when regrading is constrained, justified, and auditable, not when the
+      attribute field is merely present.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show a regrading from the last quarter: who requested it, who approved it,
+      and what justification was recorded.'
+    - What stops a data owner or admin from silently changing or removing a security
+      attribute on a dataset or account?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.048751Z'
+  signed_digest: 1596be3630d8e156b4bac07ca5ec02b4c022d0aa50f1c44b4a5b4866e91f28bc
+  interview_seconds: null
+  inherited_from: null

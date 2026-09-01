@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:SR-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: To prevent the organization from treating a supplier's supply chain security
+      as a static fact—if the supplier's identity or its role in your process changes,
+      your security assumptions are no longer valid. Without explicit identity management,
+      you can't distinguish between a legitimate supplier and an impersonator, a reseller
+      with no actual control over the product, or a supplier that changes legal entities
+      in the middle of a contract, leaving you exposed to unvetted third parties.
+    basis: inferred
+  plain_zh:
+    value: This control asks you to actively manage the identity of your critical
+      suppliers as a security attribute, not just a contract detail. It means knowing
+      who you are actually dealing with, verifying that the entity you contract with
+      is the entity that fulfills the service, and maintaining that understanding
+      as suppliers merge, rebrand, or pivot.
+    basis: inferred
+  practice:
+    value:
+      '1': At a minimum, maintain a current list of critical suppliers with legal
+        entity names, country of registration, and the specific products/services
+        each is contracted to provide. Include a record of the point-of-contact for
+        security matters.
+      '2': Implement a documented onboarding process that verifies a supplier's identity
+        through an official registration check or equivalent, and ties that verified
+        identity to the contract and to access granted to your systems. Re-verify
+        identity of high-risk suppliers at a set frequency.
+      '3': Continuously monitor for changes in supplier legal status (mergers, acquisitions,
+        bankruptcy, rebranding) and trigger a re-evaluation when such changes occur.
+        Maintain an organizational asset inventory that links each critical product
+        or service to a specific supplier identity, and make identity verification
+        part of every renewal or major contract change.
+    basis: inferred
+  evidence:
+    value: A formal supplier register or master file containing verified legal entity
+      information, records of identity verification (e.g., registration or tax ID
+      checks, notarized documents), contractual agreements that name the beneficiary
+      and explicitly note any subcontracting, and audit trails showing periodic re-verification
+      and trigger-based reviews. Also include evidence of any changes to supplier
+      identity and the resulting risk assessments or contract amendments.
+    basis: inferred
+  common_myth:
+    value: Teams often assume that a purchase order or signed contract with a supplier
+      is sufficient evidence of identity—forgetting that the contracting entity might
+      be a shell or a reseller, and that the actual manufacturer or service provider
+      may be entirely different, rendering all subsequent security due diligence irrelevant.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If you contract with a reseller, how do you know which manufacturer is actually
+      fulfilling the product?
+    - When a critical supplier merges with another company, what's the process to
+      re-verify its identity and re-assess the risk?
+    - Can you show me the last three supplier onboarding files and tell me which one
+      lacked a formal identity check?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.172662Z'
+  signed_digest: 4e5210ceafefd468ca933f1fe126e42d9ed1d54d1ff4ff8ac5c9e95c92bfc472
+  interview_seconds: null
+  inherited_from: null

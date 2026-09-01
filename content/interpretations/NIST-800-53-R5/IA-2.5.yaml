@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-2.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a shared account from becoming an untraceable entry point - when
+      one credential unlocks a system for many people, an incident cannot be tied
+      to a single human and insider misuse goes invisible. The control forces each
+      member of a group to authenticate as themselves while still allowing the group
+      account to be used, so accountability survives the convenience of shared access.
+    basis: inferred
+  plain_zh:
+    value: When a group account is used, each individual must still prove who they
+      are with their own credential before the group session begins, so every action
+      can be traced to a real person.
+    basis: inferred
+  practice:
+    value:
+      '1': Group or shared accounts exist only where business need is documented;
+        before the shared session starts the individual enters their own password,
+        smartcard, or biometric tied to a personal account.
+      '2': The personal authentication event is logged with timestamp, user, target
+        shared account, and source system; logs are reviewed and retained per the
+        organization's standard; exceptions are approved and time-boxed.
+      '3': Technical enforcement makes the individual re-authentication mandatory
+        at the system layer (cannot be bypassed by scripting or cached sessions);
+        group accounts cannot be reached without a fresh personal authentication;
+        anomalous patterns such as one person unlocking many different group accounts
+        trigger alerts.
+    basis: inferred
+  evidence:
+    value: List of approved group/shared accounts with justification, system configuration
+      showing individual authentication is enforced at logon, sample log entries linking
+      a personal user ID to a shared account session, and exception records with expiry
+      dates.
+    basis: inferred
+  common_myth:
+    value: Treating the group account's password itself as the authentication control
+      - assuming that because only a few people know the shared secret, accountability
+      is preserved. The control is about the individual proving identity separately
+      from the shared credential, not about protecting the shared password.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a shared service account that was used last week and the log row that
+      proves which person authenticated into it.
+    - Can a user start a session under a group account without first entering their
+      own credential, and how would configuration prevent that?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.124995Z'
+  signed_digest: 1c9497f9547aaa40a249337056204d6c63ea5c58abdeb274bd8ba0eefa02ce23
+  interview_seconds: null
+  inherited_from: null

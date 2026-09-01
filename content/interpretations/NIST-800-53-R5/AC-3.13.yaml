@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-3.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against access decisions that ignore who the user actually is in
+      context — their role, duties, clearance, location, or other attributes — and
+      instead rely on a static user identity or group list that can be reused, inherited,
+      or misused across boundaries the policy never intended.
+    basis: inferred
+  plain_zh:
+    value: Make access decisions by evaluating the attributes of the user, the resource,
+      and the situation against policy, instead of just checking a username or hard-coded
+      group; enforce this in the systems that gate the data.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which attributes (e.g., role, department, clearance, location,
+        device posture) are required for access to the protected resources; ensure
+        the gating system can read at least the main attributes before granting access.
+      '2': Build a policy that spells out allowed attribute combinations for each
+        resource class; have the access system evaluate attributes on every request,
+        not just at session start; keep an audit trail of which attributes were used.
+      '3': Make attribute evaluation the default for sensitive resources; enforce
+        deny-by-default when required attributes are missing or out of date; review
+        attribute sources (e.g., HR, IdP, MDM) for staleness; test that attribute
+        changes actually revoke or grant access without delay.
+    basis: inferred
+  evidence:
+    value: Attribute-based access policy documents, system configuration showing attributes
+      checked at decision time, sample access logs tying decisions to attribute values,
+      records of attribute source updates and their effect on access, test results
+      for attribute revocation.
+    basis: inferred
+  common_myth:
+    value: Assuming that having roles or groups in the IdP means ABAC is in place
+      — group membership is one possible attribute, but ABAC requires evaluating multiple,
+      situation-dependent attributes against a written policy at the moment of access,
+      not a static role check.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an access decision from last week and the attributes that were evaluated
+      to make it.
+    - If a user's department or clearance changes today, when does that change actually
+      stop them from reaching yesterday's resources?
+    - Which attributes does your policy require that your current access system cannot
+      evaluate?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.213656Z'
+  signed_digest: 0a62e08a0f1939a84fa1e19a8f0b6440330ce2d95be571ae78298f83508bc533
+  interview_seconds: null
+  inherited_from: null

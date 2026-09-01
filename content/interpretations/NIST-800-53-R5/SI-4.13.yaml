@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-4.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against monitoring that collects traffic and logs but never turns
+      them into detection — analysts drown in alerts, novel attacks blend in with
+      normal baseline shifts, and exfiltration looks like ordinary traffic growth
+      until it is too late.
+    basis: inferred
+  plain_zh:
+    value: Look at the network and event data you already collect, build a picture
+      of what normal looks like, and use that picture to flag deviations, correlations,
+      and patterns that indicate an attack rather than just collecting more logs.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a basic baseline of normal traffic volumes, protocols, and event
+        rates for critical segments; manually review notable spikes or drops when
+        they appear.
+      '2': Document the analysis methodology (baseline thresholds, correlation rules,
+        anomaly indicators); run periodic reviews against incidents to refine the
+        rules; record findings.
+      '3': Use automated analytics over traffic and event streams to detect deviations,
+        command-and-control patterns, beaconing, and cross-source correlations; feed
+        findings back into detection rules and validate against red-team or tabletop
+        scenarios.
+    basis: inferred
+  evidence:
+    value: Baseline documentation, analysis methodology and detection rule set, periodic
+      review reports, correlation outputs or dashboards, post-incident tuning records
+      showing rules were changed based on what was learned.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have IDS/IPS and SIEM collecting everything' as equivalent
+      to analyzing traffic — collection without baselining, correlation, and tuning
+      means alerts fire on signatures only and behavioral attacks walk through unchallenged.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a baseline for segment X and the rule that flagged the last suspicious
+      pattern you investigated.
+    - How often do you tune detection rules, and what triggered the last change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.992066Z'
+  signed_digest: 805319133af4032470fe5261f97e3a541aeaf252adc4315ef974a3433c9a3a44
+  interview_seconds: null
+  inherited_from: null

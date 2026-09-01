@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CP-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: If the primary site is wiped out or unreachable, recovery fails not because
+      backups are missing but because the alternate site cannot actually resume the
+      workload — bandwidth too thin, data not current, staff unfamiliar with the environment.
+      This control forces the alternate to be a real, usable twin, not a contract
+      line item.
+    basis: inferred
+  plain_zh:
+    value: 'Make sure the alternate processing and storage site is genuinely ready
+      to take over: equipment and connectivity are in place, data is current enough
+      to operate, and people know how to run it under stress.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify an alternate site with documented separation from the primary
+        (geographic, power, network); define the minimum hardware, network, and data
+        needed to resume critical services.
+      '2': Maintain agreements or contracts that guarantee resource availability when
+        invoked; replicate critical data to the alternate on a defined cadence; assign
+        staff with site-specific runbooks.
+      '3': Periodically activate or exercise the alternate for real workloads (full
+        or partial failover); measure Recovery Time and Recovery Point against targets;
+        close gaps found; ensure the contract and configuration stay aligned with
+        current production.
+    basis: inferred
+  evidence:
+    value: Alternate site agreement with separation characteristics, replication logs
+      and last-known RPO, site-specific runbooks, exercise reports showing measured
+      recovery times, and remediation records from the most recent test.
+    basis: inferred
+  common_myth:
+    value: Treating a signed hot-site contract as proof the control is met — the contract
+      only promises a room; without current data replication, pre-staged configuration,
+      and people trained on that environment, activation still takes days and loses
+      transactions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the replication status of the last critical dataset — when did it last
+      land at the alternate site in a usable state?
+    - When did staff last actually operate a workload from the alternate, and what
+      was the measured recovery time?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.942716Z'
+  signed_digest: 1dd61426e0af0de319a8eacf214959c1d41c1178c5da649ca22a62f8ea82c670
+  interview_seconds: null
+  inherited_from: null

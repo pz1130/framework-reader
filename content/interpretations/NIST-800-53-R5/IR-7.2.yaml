@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IR-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It defends against IR capabilities silently rotting because the in-house
+      team never rehearses handoffs with the outsourcers, MSSPs, or sister agencies
+      that would actually help during a real incident—people you have never put on
+      a call together will not perform under pressure.
+    basis: inferred
+  plain_zh:
+    value: Make sure that whoever you would call from outside during an incident is
+      identified before the incident, that the interfaces (who calls whom, what data
+      crosses the boundary, who has authority) are documented, and that the joint
+      play is rehearsed.
+    basis: inferred
+  practice:
+    value:
+      '1': List the external providers (MSSP, incident-response retainer, law enforcement,
+        sector ISAC, cloud provider security desk) that would be pulled in for each
+        class of incident; record a phone number and an escalation contact for each.
+      '2': 'Document coordination procedures: what triggers the call, what each side
+        hands over, who signs off on external statements, and how evidence and intel
+        are shared without leaking unrelated customer data; circulate to the providers.'
+      '3': Run joint exercises or tabletop walkthroughs with the named external parties
+        at planned intervals; capture gaps in the coordination procedure and feed
+        them back into the IR plan; verify that contact data is still accurate and
+        that the provider's escalation path still works.
+    basis: inferred
+  evidence:
+    value: External provider coordination matrix, signed or acknowledged coordination
+      procedures, exercise/tabletop records involving the external parties, post-exercise
+      action items closed back into the IR plan, evidence that contact data was reverified.
+    basis: inferred
+  common_myth:
+    value: Treating a signed retainer or a vendor SOC report as proof of coordination—the
+      provider exists on paper, but no one has tested that the pager number reaches
+      a real human at 3 a.m. or that your team knows what to send them first.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time your IR team and your MSSP/retainer were on the same call
+      during an exercise—who said what, and what was handed over?
+    - Which external providers were you supposed to notify in your last real incident,
+      and how do you prove the contact details on file are still current?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.356367Z'
+  signed_digest: 17ad3f858353509b79a153b5f0e66be30e52f99c03764a9bf0305df3229b591c
+  interview_seconds: null
+  inherited_from: null

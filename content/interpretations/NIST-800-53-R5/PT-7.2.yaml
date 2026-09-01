@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:PT-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Preventing the organization from censoring or suppressing personal information
+      that individuals have a constitutional right to share—silently redacting or
+      blocking First Amendment-protected expression in monitoring, behavioral analytics,
+      or data exposure scoring creates legal liability and erodes trust in the security
+      program itself.
+    basis: inferred
+  plain_zh:
+    value: When the system uses, stores, or analyzes information that could affect
+      someone's right to free speech (public social media, petition activity, news
+      tips, political affiliation signals, etc.), make sure those uses are explicitly
+      limited to lawful purposes, do not chill or alter lawful expression, and are
+      visible to oversight. Don't quietly sweep it into general analytics.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where First Amendment-relevant data (public expression, political/religious
+        signals, media interactions, whistleblower communications) flows into security
+        systems; flag those feeds so they are not handled like ordinary telemetry.
+      '2': 'Define a written policy on permissible use: who can access, for what purpose,
+        with what retention; require a documented lawful basis before such data feeds
+        any behavioral scoring, insider-threat, or DLP logic.'
+      '3': Require independent review (privacy or legal) before First Amendment-relevant
+        data influences any automated decision; track each approved use with purpose,
+        scope, and sunset; audit annually that no protected expression has been inadvertently
+        ingested into insider-threat or monitoring models.
+    basis: inferred
+  evidence:
+    value: Inventory of data sources touching First Amendment-relevant content, the
+      written use-limitation policy, records of legal/privacy review and approval
+      for each such feed, access logs scoped to that data, and an annual review showing
+      no protected expression was silently incorporated into behavioral or insider-threat
+      analytics.
+    basis: inferred
+  common_myth:
+    value: Assuming this control only applies to intelligence agencies or law-enforcement-adjacent
+      systems. Any enterprise that ingests public web/social telemetry, monitors employee
+      external communications for 'insider risk', or feeds news/petition data into
+      analytics models is in scope—and quietly scoring that content is exactly what
+      the control exists to prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your monitoring or insider-threat data sources include publicly posted
+      expression (social media, news comments, petitions), and what is the approved
+      purpose for each?
+    - Show me the last instance where First Amendment-relevant data was reviewed before
+      being used in an automated decision, and the legal sign-off attached to it.
+    basis: inferred
+  regional_note:
+    value: This control is U.S.-specific by design (First Amendment). EU and most
+      non-U.S. auditors will recognize it as a U.S. federal requirement rather than
+      a universal obligation, but they will still press on whether protected expression
+      is being silently ingested—framed under GDPR lawful-basis and purpose-limitation
+      rather than constitutional rights.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.913270Z'
+  signed_digest: f16e64da1142fe80898f308b2db6295089fec63afa4353dc08ab70601fbdef51
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AU-9.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit logs being silently altered or deleted by an attacker
+      or an insider who has gained privileged access — without write protection, the
+      evidence trail itself becomes untrustworthy, so investigations and compliance
+      reviews have nothing solid to rely on.
+    basis: inferred
+  plain_zh:
+    value: The control requires that audit log files, once written, be readable but
+      not modifiable or deletable by the same personas who operate the system — meaning
+      accounts with administrative or application-level rights should not be able
+      to rewrite history. The goal is to make the logs tamper-evident, not merely
+      accessible.
+    basis: inferred
+  practice:
+    value:
+      '1': Audit logs are stored on systems or volumes where only a small, separate
+        set of accounts can write; day-to-day operators and users have read-only access,
+        and there is a stated procedure for requesting log access.
+      '2': Write access to audit logs is centralized in a dedicated logging or SIEM
+        platform with role-based controls; log rotation and retention are automated,
+        and any write, modification, or deletion event is itself logged and reviewed
+        monthly.
+      '3': Logs are cryptographically signed or written to append-only storage (e.g.,
+        WORM), with strict separation of duties between those who generate, store,
+        and review logs; automated alerts fire on any attempt to modify or delete
+        audit records, and this monitoring is tested quarterly.
+    basis: inferred
+  evidence:
+    value: A documented log access policy; a system architecture diagram showing the
+      logging flow and where write permissions are locked; role definitions with least-privilege
+      for log administration; evidence of automated rotation and retention; screenshots
+      or logs of attempts to modify audit records being blocked or alerted; a quarterly
+      review of write-permission assignments.
+    basis: inferred
+  common_myth:
+    value: Assuming that because logs are stored in a SIEM, they are automatically
+      hardened — many SIEMs still allow an admin with elevated access to delete or
+      modify events through the GUI, so the control requires actually restricting
+      and auditing that write path, not just collecting data.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which accounts or roles have write or modify rights to the audit logs, and who
+      approved that list?
+    - Can you show me a recent incident where an audit record modification or deletion
+      was attempted, and how it was detected and escalated?
+    - How do you verify that the SIEM or log store itself is not exposed to the same
+      credentials as the application servers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.652149Z'
+  signed_digest: 79bb0b3c23c70d38a837ca4cf84f26768c65358c2b284103d9450f15ffe54d7d
+  interview_seconds: null
+  inherited_from: null

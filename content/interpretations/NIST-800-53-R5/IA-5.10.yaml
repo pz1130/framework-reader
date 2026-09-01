@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-5.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops attackers who replay, lift, or piggyback on a valid credential across
+      systems or sessions — credentials that work only in their original dynamic context
+      (client, session, transaction) cannot be reused by someone who steals them after
+      the fact.
+    basis: inferred
+  plain_zh:
+    value: Credentials must be cryptographically or contextually bound to the specific
+      client, session, or transaction they were issued for, so a captured or copied
+      credential is useless outside that single binding.
+    basis: inferred
+  practice:
+    value:
+      '1': Use session-bound tokens (e.g., tied to TLS session, client certificate,
+        or device identity) for at least privileged and remote access; static shared
+        secrets are not accepted for these paths.
+      '2': Document the binding mechanisms per credential type and per system; binding
+        is enforced at the verifier, not just at issuance; captured tokens fail when
+        replayed from a different session or device.
+      '3': Cryptographic binding is default for human and service credentials (mTLS,
+        signed assertions, WebAuthn-style authenticators); replay and cross-system
+        use are detected and rejected; binding strength is reviewed when new credential
+        types are introduced.
+    basis: inferred
+  evidence:
+    value: Architecture or design documents describing the binding mechanism per credential
+      type, configuration samples of verifier-side enforcement, test or log evidence
+      that a bound credential rejected when replayed out of context, and the inventory
+      mapping credential types to their binding scheme.
+    basis: inferred
+  common_myth:
+    value: Treating short token lifetimes or TLS alone as equivalent — a short-lived
+      bearer token that is not bound to client or session is still reusable by whoever
+      captures it within its lifetime; lifetime is not the same as binding.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If I steal an access token at minute 3 of a 10-minute session, can I use it
+      from my own machine against your API?
+    - Show me the verifier configuration that rejects a credential presented from
+      a different session or device than the one it was issued for.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.174893Z'
+  signed_digest: f77909a66ed0d1f92fb41426fda61551f6e8659362bf8581ccc6c5525ea42fcd
+  interview_seconds: null
+  inherited_from: null

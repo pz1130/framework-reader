@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CP-12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a facility becoming inaccessible or unsafe (power loss,
+      environmental hazard, fire, evacuation, civil event) while operators are mid-action
+      on critical systems - the risk is that recovery, shutdown, or continuity actions
+      fail because the systems needed to perform them are themselves unavailable or
+      in an unknown state.
+    basis: inferred
+  plain_zh:
+    value: Establish and enforce a safe-mode capability on the organization's key
+      systems so that, when conditions threaten continued operation or safe shutdown,
+      the system can be brought to a known, recoverable state without requiring the
+      very capabilities that are failing.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems that must support emergency actions; document a manual
+        or built-in procedure to place them in a safe state and verify it works at
+        least once.
+      '2': Define what 'safe mode' means per system (which functions stop, which data
+        is preserved, how to verify the state); train the people who would invoke
+        it; capture the procedure in runbooks and rehearse it.
+      '3': Safe-mode invocation is exercised periodically under realistic conditions;
+        the resulting state is tested for recoverability; exceptions and unsupported
+        systems are tracked with risk acceptance and remediation.
+    basis: inferred
+  evidence:
+    value: System list requiring safe-mode capability, per-system safe-mode procedures,
+      exercise or test records showing successful invocation and recovery from that
+      state, training records for personnel authorized to trigger it.
+    basis: inferred
+  common_myth:
+    value: Assuming 'safe mode' is purely a vendor feature on desktops and laptops,
+      so server and OT environments are exempt - in reality, the control applies to
+      any system whose continued operation could jeopardize the mission during a contingency,
+      and most enterprise and operational platforms require a customer-defined procedure
+      rather than a built-in switch.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of systems required to support safe mode and how each one's
+      safe state is defined.
+    - When did you last successfully invoke safe mode under test, and how did you
+      confirm the system could recover from that state?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.919830Z'
+  signed_digest: 7dc9a903f43b2c4ce0336fe518ee6a211a6702ea1f2ef1947badb7dfad427e33
+  interview_seconds: null
+  inherited_from: null

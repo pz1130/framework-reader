@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-12.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It prevents users from being silently cut off mid-task because the screen
+      suddenly locks or the session ends — a user with unsaved work or an open privileged
+      action gets a working warning, so loss of in-progress work, half-committed transactions,
+      and surprise lockouts don't turn into either angry helpdesk calls or skipped
+      re-authentication.
+    basis: inferred
+  plain_zh:
+    value: When a session is about to time out and force re-authentication or log
+      the user out, show an on-screen warning far enough in advance that the user
+      can save work, finish the step, or extend the session — and make sure the warning
+      actually reaches a logged-in user, not just appear on a login page.
+    basis: inferred
+  practice:
+    value:
+      '1': Operating system or application session idle-timeout is configured; users
+        see a warning dialog at least one minute before the forced logout or lock.
+      '2': Warning is documented in the configuration baseline (seconds of inactivity
+        → warning → forced action); the same behavior covers RDP/console, web apps
+        handling sensitive data, and privileged admin consoles; users on active calls
+        or scripts are not just disconnected without notice.
+      '3': Warning content and timing are tested; warnings cannot be suppressed silently
+        or hidden behind other windows; configuration is checked by automated compliance
+        scans and deviations (e.g., 0-second warning) are flagged as findings.
+    basis: inferred
+  evidence:
+    value: Configuration baseline entries for session idle timeout and warning lead
+      time, screenshots or recorded demos of the warning dialog appearing in each
+      in-scope system, automated scan output (e.g., STIG) showing the warning setting
+      is present.
+    basis: inferred
+  common_myth:
+    value: Treating 'the screen lock kicks in after N minutes' as the whole control,
+      while the actual gap is the missing or invisible warning — a screen that goes
+      straight to the lock screen with no countdown dialog technically has a timeout
+      but gives the user zero chance to react, which is what this control exists to
+      prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me what a user actually sees 60 seconds before the screen locks on a standard
+      workstation.
+    - For your primary business application, how many seconds of warning does it give
+      before forcing re-authentication, and where is that setting documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.008076Z'
+  signed_digest: f9338ceb4e0a37dfdba66114d266b84592ece3be3bde47faf1a02c3341a13306
+  interview_seconds: null
+  inherited_from: null

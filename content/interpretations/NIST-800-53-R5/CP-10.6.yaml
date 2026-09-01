@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CP-10.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against an adversary who tampers with, substitutes, or quietly
+      alters hardware, firmware, or software components between the point of manufacture
+      and the point of use — supply-chain attacks where what you receive is not what
+      was ordered, or what you deploy has been modified after inspection.
+    basis: inferred
+  plain_zh:
+    value: 'Protect information system components from unauthorized modification or
+      substitution before and during deployment: control how they are acquired, inspected,
+      handled, stored, and installed so that what runs in production matches what
+      was approved.'
+    basis: inferred
+  practice:
+    value:
+      '1': Designate component handling and storage areas; restrict physical and logical
+        access; verify tamper-evident seals or packaging on receipt before components
+        enter inventory.
+      '2': Document chain of custody from receipt through installation; record hashes
+        or signatures of firmware/software at intake and compare at deployment; require
+        two-person acceptance for high-value components; track who has touched what.
+      '3': Maintain an authorized-component baseline tied to vendor SKUs and known-good
+        hashes; use cryptographic verification (signed firmware, attestation) at boot
+        or install time; detect and alert on unauthorized component changes; integrate
+        component integrity checks into incident detection.
+    basis: inferred
+  evidence:
+    value: Component handling and storage procedures, chain-of-custody logs, intake
+      inspection records (seal checks, serial verification), tamper-evidence records,
+      authorized-component baseline with hashes or signatures, cryptographic verification
+      logs at deployment, and incident records for any suspected substitution or modification.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by 'we buy from authorized resellers'
+      or 'vendor is trusted' — the threat is not untrusted vendors but interception
+      and modification between vendor and you, or insider substitution after delivery;
+      receipt-time checks and integrity verification at deployment are the actual
+      control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the chain of custody for a critical component from the time it was received
+      to the time it was installed — who handled it and where was it stored?
+    - How do you verify at deployment that the firmware or software running matches
+      what was approved — by hash, signature, or trust?
+    - What happens when a component arrives with a broken or missing tamper seal?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.911675Z'
+  signed_digest: a03da8bffda5d2853198638de509198989c54f90073b61140320427550db525b
+  interview_seconds: null
+  inherited_from: null

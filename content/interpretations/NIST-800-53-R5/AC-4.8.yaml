@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-4.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure where policy decisions are written down but the network
+      actually routes traffic on other rules—firewalls, routers, and SDN controllers
+      pass flows that the organization's information flow policy forbids, so regulated
+      data leaves the enclave or untrusted sources reach internal systems despite
+      a correct-looking policy.
+    basis: inferred
+  plain_zh:
+    value: Implement technical filters on every boundary device that actually enforce
+      the documented information flow policy, not just ACLs that approximate it; filtered
+      flows, allowed exceptions, and rule rationale must be visible.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the boundary devices that mediate information flows subject to
+        policy; confirm a baseline rule exists on each that reflects the documented
+        policy intent.
+      '2': Filter rules on each boundary device are mapped back to specific policy
+        statements; exceptions have a documented approver, expiry, and review cadence;
+        changes to rules follow change control.
+      '3': Rules are tested for shadowed or contradicted entries before deployment;
+        monitoring flags flows that violate policy intent (not just unmatched packets);
+        the rule set is reviewed on a schedule and after every topology or policy
+        change, with evidence of rules removed when no longer justified.
+    basis: inferred
+  evidence:
+    value: Boundary device inventory, the filter rule sets with rationale linking
+      each entry to a policy clause, exception register with approver and expiry,
+      change tickets for rule modifications, rule-set review records, and monitoring
+      output of policy-violating flows.
+    basis: inferred
+  common_myth:
+    value: Treating any outbound ACL on the perimeter firewall as equivalent to information
+      flow enforcement—when downstream routers, cloud security groups, SDN policies,
+      and east-west gateways also pass the same flows, the policy is only as strong
+      as the weakest hop and exceptions accumulate silently because nobody reconciles
+      rule sets against the written policy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show one policy clause that is enforced by multiple devices; how do you know
+      all of them still block the same traffic?
+    - Which exceptions to information flow policy are currently in force, who approved
+      each one, and when do they expire?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.364791Z'
+  signed_digest: 1585781abcd739ade53248f4ae0a480af0ddbde96c129caa32b7cf7176c1c533
+  interview_seconds: null
+  inherited_from: null

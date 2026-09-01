@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SI-13.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a critical security function (TLS
+      termination, logging, key management, access enforcement) is silently moved
+      between components - e.g., offloaded to a CDN, proxy, cloud service, or third-party
+      appliance - and the organization never re-validates that the control still works
+      in the new place. The original control owner thinks someone else has it; the
+      new owner never agreed; the gap sits there until an incident proves it.
+    basis: inferred
+  plain_zh:
+    value: When the organization shifts a security-relevant function from one component
+      to another, you must re-check that the function still operates as required,
+      the new owner is accountable, and the old path is no longer trusted as a backstop.
+      Document the transfer and re-verify.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify functions critical to security (encryption in transit, authentication,
+        logging, integrity checks). When moving one, record where it went and have
+        someone sign off that it still works at the destination.
+      '2': Maintain a register of planned or historical transfers of security functions
+        (e.g., TLS offload to a load balancer, auth moved to an IdP, logging moved
+        to a SaaS). Each entry names the original component, the new component, the
+        date, the owner, and re-verification evidence (test result, config screenshot,
+        vendor attestation).
+      '3': Transfers are gated by a change-control step that explicitly triggers a
+        re-validation checklist; rejected or unverified transfers cannot go live;
+        periodic audits confirm no security function has been quietly relocated without
+        an entry in the register; the register feeds into the system security plan
+        and continuous monitoring.
+    basis: inferred
+  evidence:
+    value: A register or log of transferred security functions, each entry showing
+      source component, destination, date, accountable owner, and the re-verification
+      artifact (test, attestation, or configuration evidence) demonstrating the function
+      still operates correctly after the move.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a vendor or cloud provider now handles TLS termination
+      or authentication, the control is automatically satisfied at the new location.
+      Transfer of implementation is not transfer of accountability - the organization
+      still has to verify the function works, that the new component is in scope for
+      assessments, and that the old path is not silently still trusted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one system where a security function moved in the last year (e.g., TLS,
+      auth, logging). Where did it move, who owns it now, and what did you do to confirm
+      it still works?
+    - Show me the change record for a recent transfer. What did the re-validation
+      actually check, and what is the artifact proving the control still holds?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.837476Z'
+  signed_digest: 286d8d58e9833950657e5cef46684448356ca6dd624eb9131d24ef96018a8800
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-44
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against malicious or otherwise suspicious files, URLs, and content
+      reaching the production environment before their harmful behavior is observed.
+      Without an isolated execution environment for suspect inputs, an organization
+      has to choose between blocking aggressively (which breaks legitimate workflows)
+      and allowing traffic through (which lets zero-days, phishing payloads, and ransomware
+      in on first sight).
+    basis: inferred
+  plain_zh:
+    value: Stand up an isolated environment where files, links, and attachments suspected
+      of being malicious are actually executed or rendered, so their behavior can
+      be observed before anything reaches users, mailboxes, or production systems.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate a segmented host or VM, fully isolated from production, where
+        analysts can manually detonate suspect samples; email and web flows have a
+        documented path for routing items there instead of delivering them.
+      '2': A dedicated sandboxing tool or service performs automated detonation of
+        attachments, URLs, and downloaded files before delivery; malicious verdicts
+        are blocked or quarantined and the results are logged for analyst review.
+      '3': Detonation is inline for email, web, and file-transfer chokepoints, not
+        an after-the-fact lab step; behavior indicators (network calls, persistence,
+        evasion) feed detection rules; sandbox images are routinely refreshed to match
+        current production so attackers cannot fingerprint the environment.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing the detonation environment isolated from user
+      and production networks, automated detonation logs with verdicts, configuration
+      of email/web/file-transfer pipelines that route suspect content through the
+      chamber, and records showing the chamber's images and detection signatures are
+      updated.
+    basis: inferred
+  common_myth:
+    value: Treating detonation as only a malware-analysis lab activity rather than
+      an inline content-control point, so suspect attachments still land in mailboxes
+      first and only get detonated reactively after a user complaint.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent email attachment that was flagged or blocked by the detonation
+      chamber and the verdict it produced.
+    - How is the chamber network-segmented so a successful detonation cannot reach
+      production or user devices?
+    - How often are the detonation environment's OS, applications, and detection rules
+      refreshed so attackers cannot fingerprint it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.624367Z'
+  signed_digest: 13fad642659de5491e96df31d8746e76ce5ecf640c43b362eb227fcec73658f7
+  interview_seconds: null
+  inherited_from: null

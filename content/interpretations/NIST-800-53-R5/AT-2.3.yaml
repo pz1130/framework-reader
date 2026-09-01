@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AT-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against staff being manipulated into handing over credentials,
+      funds, or access through phishing, vishing, smishing, or impersonation — and
+      against attackers weaponizing information staff casually disclose online. Generic
+      security awareness does not stop these attacks; people need practice recognizing
+      the specific tactics used against them.
+    basis: inferred
+  plain_zh:
+    value: Train staff (including contractors and temps with system access) on social
+      engineering tactics — phishing, pretext calls, tailgating, baiting — and on
+      what they should and should not share on social media or public forums, then
+      make the training relevant to the role they actually perform.
+    basis: inferred
+  practice:
+    value:
+      '1': Annual awareness touchpoint mentions social engineering; staff know the
+        basics of not clicking unknown links and not giving credentials by phone;
+        a reporting channel exists.
+      '2': Role-based content exists (helpdesk, finance, executives handle different
+        lure types); training covers social media exposure of organizational and personal
+        info; completed training is recorded per person.
+      '3': Hands-on phishing and vishing simulations run on a defined cadence against
+        all relevant groups with metrics tracked over time; failures trigger targeted
+        re-training, not just more slides; simulated pretext calls test phone-based
+        staff; the program is updated when new lure types appear in incident data
+        or threat intel.
+    basis: inferred
+  evidence:
+    value: Role-based training materials and attendance records, social media usage
+      guidance, simulation program scope and cadence, results and trending of phishing/vishing
+      tests, records of remedial actions triggered by failures, updates to the program
+      tied to observed incidents or threat intel.
+    basis: inferred
+  common_myth:
+    value: Treating the annual awareness completion checkbox as proof the control
+      is met — without simulations or role-specific content, staff pass the training
+      and still hand over a password to someone who sounds like the CEO on the phone.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last 12 months of phishing simulation results, broken out by department
+      and by user role.
+    - When someone fails a simulation or falls for a real lure, what specific re-training
+      or process change happens, and can you show the records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.457195Z'
+  signed_digest: 0d8550e3cccf868c11a4cd4edad46742dae53205445d8b6ceb6a139b64e2b7d6
+  interview_seconds: null
+  inherited_from: null

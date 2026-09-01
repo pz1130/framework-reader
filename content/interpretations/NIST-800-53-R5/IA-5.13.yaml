@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:IA-5.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk of a stolen or reused cached authenticator outliving
+      the session it belonged to — if the client keeps the hash or ticket around,
+      a session-fixation or replay attacker can walk back in after the user thinks
+      they logged out.
+    basis: inferred
+  plain_zh:
+    value: Make sure cached authenticators on the client side expire on a defined
+      schedule and on logout, so old sessions cannot be replayed.
+    basis: inferred
+  practice:
+    value:
+      '1': Authentication code uses a standard mechanism (e.g. short session token
+        TTL, server-side session invalidation on logout) and the client does not persist
+        credentials beyond what the flow requires.
+      '2': Documented policy states the cache lifetime for authenticators, enforced
+        by configuration of the auth library or identity provider; logout clears server-side
+        state.
+      '3': TTL and logout invalidation are tested in code or QA; cache expiry values
+        are reviewed when the auth stack is upgraded; a stale cached authenticator
+        replay attempt has been demonstrated to fail.
+    basis: inferred
+  evidence:
+    value: Authenticator cache policy, configuration of session/identity provider
+      (TTL settings, logout invalidation behavior), code or configuration review notes
+      showing enforcement, test or penetration-test result demonstrating that an expired
+      cached authenticator is rejected.
+    basis: inferred
+  common_myth:
+    value: Treating a short JWT access-token TTL as proof the cached authenticator
+      is gone. The token may expire but the refresh token, session cookie, or stored
+      credential sitting in browser storage is a separate cached authenticator with
+      its own lifecycle that nobody is watching.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a cached authenticator on a client device and tell me when it stops
+      being usable.
+    - What happens server-side when the user clicks logout — is the session destroyed,
+      only the cookie cleared, or neither?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.182143Z'
+  signed_digest: e921360da7b17eab1aadd8c758b84d8be2ae288ac00328ab4557afc4f4c2ba79
+  interview_seconds: null
+  inherited_from: null

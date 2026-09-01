@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-7.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against implicit trust in network paths — the failure mode where
+      anything not explicitly blocked is reachable, so a forgotten subnet, a new cloud
+      VPC, or a misconfigured firewall rule quietly exposes internal systems to attackers
+      moving laterally or to sensitive assets leaking out.
+    basis: inferred
+  plain_zh:
+    value: 'Treat the network as hostile: block all traffic flows by default and only
+      open the specific paths that business has justified and documented. If a path
+      isn''t on the allow list, it must be dropped.'
+    basis: inferred
+  practice:
+    value:
+      '1': Default-deny posture written into a network policy; firewalls and security
+        groups reject any flow not on an approved list; exceptions are approved by
+        name, not blanket 'open inside the VPC'.
+      '2': Each exception has a documented business justification, an owner, an expiry
+        or review date, and is tracked in a register; changes go through change control.
+      '3': Rulesets are reviewed on a cadence and pruned of stale exceptions; default-deny
+        is enforced at multiple layers (perimeter, segmentation, host) and verified
+        by periodic tests that probe for unintended reachability.
+    basis: inferred
+  evidence:
+    value: Default-deny policy, rule/firewall configuration showing deny-any baseline,
+      exception register with justification/owner/review date, change tickets for
+      new rules, and the latest rule-review records or penetration test results showing
+      what was reachable from where.
+    basis: inferred
+  common_myth:
+    value: Assuming a 'deny any' rule at the bottom of a firewall list means default-deny
+      is in effect — in practice, an earlier broad allow rule, an any/any security
+      group, or 'established/related' exceptions re-open the path, so traffic flows
+      freely despite the deny on the last line.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current firewall rule where an undocumented source could reach a
+      sensitive internal system — how would that have been blocked?
+    - 'Walk me through the last rule-review: which exceptions got removed or expired,
+      and which ones were renewed and why?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.759148Z'
+  signed_digest: 19bdc654df25467638965cbb3358bdbb42c3187281f1364541b7f5620240a1bb
+  interview_seconds: null
+  inherited_from: null

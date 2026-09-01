@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SR-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we have a supply chain security policy' existing only
+      as a claimed document — without written, approved, current procedures the rest
+      of the SR family has nothing to anchor to, so expectations differ across teams
+      and auditors cannot verify intent.
+    basis: inferred
+  plain_zh:
+    value: Develop, document, approve, publish, and maintain a supply chain risk management
+      policy and the procedures that operationalize it, and review them on a defined
+      cadence.
+    basis: inferred
+  practice:
+    value:
+      '1': A short, management-approved supply chain risk management policy exists;
+        a handful of procedures cover the most critical supplier interactions; someone
+        is named as owner.
+      '2': Procedures cover the full SR lifecycle (supplier intake, assessment, contracting,
+        monitoring, offboarding); roles are defined; review cadence is documented;
+        prior versions are retained.
+      '3': Policy and procedures are version-controlled, tied to risk drivers and
+        regulatory obligations, reviewed on a fixed schedule with logged approvals,
+        communicated to relevant staff, and updated when significant supplier, threat,
+        or business changes occur.
+    basis: inferred
+  evidence:
+    value: Current and prior versions of the supply chain risk management policy and
+      supporting procedures, management approval records, review/approval history
+      with dates, distribution or training records showing the policy is communicated
+      to relevant roles.
+    basis: inferred
+  common_myth:
+    value: Treating the policy as a one-time deliverable — writing it once, filing
+      it, and never revisiting it, so the document drifts away from current suppliers,
+      contracts, and threat landscape while still being shown to auditors as 'current'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the supply chain risk management policy last reviewed and who approved
+      the current version?
+    - Show me the documented procedures that operationalize the policy for supplier
+      onboarding, monitoring, and termination.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.133146Z'
+  signed_digest: 15f542b98559153d3fd808bd348391c16da0cce0b993c787cd30362647f6898f
+  interview_seconds: null
+  inherited_from: null

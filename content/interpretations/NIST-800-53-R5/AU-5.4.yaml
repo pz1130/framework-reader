@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AU-5.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents silent loss of audit visibility when the audit system itself fails
+      or fills up — without an automated shutdown or overload response, attackers
+      can deliberately crash logging, fill disk, or trigger faults so their actions
+      leave no trail, and the team only finds out days later from a missing log gap.
+    basis: inferred
+  plain_zh:
+    value: When audit logging fails, runs out of space, or is attacked, the system
+      must take a defined response — usually alert and, for high-risk systems, refuse
+      to keep processing rather than continue blind — so a failure cannot be used
+      to hide malicious activity.
+    basis: inferred
+  practice:
+    value:
+      '1': Audit components (collectors, storage, agents) are monitored for health
+        and capacity; on failure or near-full, an alert is sent to whoever owns the
+        platform within a defined timeframe.
+      '2': 'Each system class has a documented response when audit fails: alert threshold,
+        who responds, what gets suspended or shed, and when manual logging kicks in;
+        high-risk systems are listed explicitly.'
+      '3': Critical systems are configured to fail-closed or to stop processing when
+        audit cannot be guaranteed; the failure path is tested, the response is automated,
+        and capacity is sized so the trigger is never routine noise.
+    basis: inferred
+  evidence:
+    value: Audit subsystem health/capacity monitoring configuration, documented failure-response
+      procedure per system class, list of systems required to fail-closed, alert routing
+      and on-call ownership, test or exercise record showing the failure path was
+      exercised, recent capacity/trend reports.
+    basis: inferred
+  common_myth:
+    value: 'Treating this as a disk-space alert: ''we have monitoring on log volume,
+      so we''re covered.'' The control is about the *response* to a logging failure,
+      not the detection of one — an alert nobody acts on, or an alert that does not
+      stop processing on systems where integrity matters, is the same as no control.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the alert you get when the central log store fills up or stops writing,
+      and who is paged.
+    - Which systems are required to stop or refuse processing when their audit function
+      fails, and how is that enforced — by config, by policy, or by hope?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.590378Z'
+  signed_digest: c80d197c9c3afd848e99a5bb83dce984cfb5fa0ea41e4f9046bf828b414f2a30
+  interview_seconds: null
+  inherited_from: null

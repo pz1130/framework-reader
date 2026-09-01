@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-17.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protect against the failure mode where a remote administrator (or remote
+      attacker who has reached an admin foothold) issues privileged commands on internal
+      systems without the session itself being cryptographically authenticated and
+      bound to that admin - so that logs cannot prove who issued a destructive command
+      and a stolen cookie or replayed handshake cannot be used to silently run things
+      remotely.
+    basis: inferred
+  plain_zh:
+    value: Require every remote-admin command path to cryptographically authenticate
+      both the user and the device/session, so that commands can be tied back to a
+      specific authenticated principal and a tampered or replayed session cannot issue
+      commands silently.
+    basis: inferred
+  practice:
+    value:
+      '1': Remote admin access (SSH, RDP, jump host, API admin endpoints) uses authenticated
+        encryption with per-user credentials; shared or anonymous remote command paths
+        are removed.
+      '2': Remote command sessions are tied to a specific authenticated user, with
+        session binding, time-boxing, and command-level logging that records the principal,
+        source, target, command and timestamp.
+      '3': Mutual authentication (user + device/certificate) is enforced; replay or
+        token-theft is detected and blocks remote command execution; the session cannot
+        be detached from the principal that authenticated it; this is tested.
+    basis: inferred
+  evidence:
+    value: Configuration of remote admin protocols and tools, MFA and certificate
+      requirements, session-binding design, command-level audit logs tying principal
+      to command, test results for replay and stolen-token scenarios.
+    basis: inferred
+  common_myth:
+    value: Assuming that putting MFA in front of the VPN or SSH gateway means the
+      control is met, because once past that portal any session can issue commands.
+      Authentication at the portal does not bind the ongoing command session to the
+      principal; a hijacked session or a service account reused inside the bastion
+      still gets to run commands unattributed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a recent privileged command issued by a remote admin - which principal,
+      device and session issued it, and how is that replayable from your logs?
+    - If an attacker steals an authenticated remote session token, what stops them
+      from running commands with it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.056663Z'
+  signed_digest: 72dbc8bcf51a481e71e061d2efdc6b3abe8de362e8dda4e21c34edb85d0e21d6
+  interview_seconds: null
+  inherited_from: null

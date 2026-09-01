@@ -45,6 +45,30 @@ FRAMEWORKS: dict[str, dict] = {
         "order": ("A.5", "A.6", "A.7", "A.8"),
         "names": {"A.5": "Organizational", "A.6": "People", "A.7": "Physical", "A.8": "Technological"},
     },
+    "NIST-800-53-R5": {
+        "name": "NIST SP 800-53 Rev.5",
+        "note": "Published by NIST, public domain. Control numbers and English titles reproduced as-is.",
+        "group": lambda local: local.split("-", 1)[0],
+        "order": (
+            "AC", "AT", "AU", "CA", "CM", "CP", "IA", "IR", "MA", "MP",
+            "PE", "PL", "PM", "PS", "PT", "RA", "SA", "SC", "SI", "SR",
+        ),
+        "names": {
+            "AC": "Access Control", "AT": "Awareness and Training",
+            "AU": "Audit and Accountability",
+            "CA": "Assessment, Authorization, and Monitoring",
+            "CM": "Configuration Management", "CP": "Contingency Planning",
+            "IA": "Identification and Authentication", "IR": "Incident Response",
+            "MA": "Maintenance", "MP": "Media Protection",
+            "PE": "Physical and Environmental", "PL": "Planning",
+            "PM": "Program Management", "PS": "Personnel Security",
+            "PT": "PII Processing", "RA": "Risk Assessment",
+            "SA": "System and Services Acquisition",
+            "SC": "System and Communications",
+            "SI": "System and Information Integrity",
+            "SR": "Supply Chain Risk Management",
+        },
+    },
 }
 
 

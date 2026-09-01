@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-17.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Preventing remote-access sessions from leaking the credentials, keys, or
+      protocol internals that an attacker could replay or misuse—stolen or cached
+      VPN/SSH secrets let intruders re-enter undetected, and exposed mechanism details
+      help them craft bypasses.
+    basis: inferred
+  plain_zh:
+    value: When staff or systems connect remotely, protect the connection itself and
+      the secrets it relies on (credentials, keys, configuration, internal addresses)
+      so they cannot be captured, cached in the clear, or exposed to other parties
+      on the remote host.
+    basis: inferred
+  practice:
+    value:
+      '1': Remote access uses encrypted, authenticated channels; default credentials
+        are changed; shared or vendor-default secrets are removed before production
+        use.
+      '2': Remote-access clients and servers are hardened to avoid caching credentials
+        on remote hosts; secrets are stored in managed vaults rather than on user
+        devices or jump servers; access by third parties is wrapped in brokered or
+        short-lived sessions.
+      '3': Cryptographic protections are centrally managed and rotated; the remote-access
+        stack is continuously validated against weak ciphers or exposed management
+        ports; protections cover not only users but also system-to-system remote administration,
+        and configuration is tested rather than assumed.
+    basis: inferred
+  evidence:
+    value: Configuration of remote-access gateways and clients (cipher suites, authentication
+      methods, secret storage), evidence of credential hardening (no default or shared
+      secrets), logs or settings showing session isolation/brokerage, and review records
+      covering both user and administrative remote access.
+    basis: inferred
+  common_myth:
+    value: Assuming that turning on the VPN or SSH covers this control—tunneling the
+      traffic is only the first step; the audit typically fails because default admin
+      credentials were never changed, secrets sit on remote hosts, or third-party
+      remote tools were added without the same protections.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show how vendor-default credentials on the remote-access appliance were changed
+      and where the current secrets are stored.
+    - Are remote sessions brokered so credentials are not cached on the target host,
+      and what evidence do you have of this?
+    - How are third-party remote support sessions handled, and where is that configuration
+      documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.073437Z'
+  signed_digest: 6ab1ec7bdbae0ebcf69421be9cbc1967a5efd7f570a9b4805518bad448eee34f
+  interview_seconds: null
+  inherited_from: null

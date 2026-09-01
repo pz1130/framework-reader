@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where integrity verification tools only
+      run on a handful of hand-picked systems or one-off scan results, leaving most
+      endpoints — especially remote and branch devices — silently unverified. The
+      risk is that an attacker who compromises a distributed system can rely on the
+      odds that nobody is checking it; distributed automated testing closes the coverage
+      gap.
+    basis: inferred
+  plain_zh:
+    value: Make the integrity testing tool itself reach across distributed systems
+      (not just the datacenter), so checks actually run everywhere they should and
+      you have proof they ran.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick or build an integrity verification tool that can push tests to remote/branch
+        systems, not just localhost; document which site classes it covers.
+      '2': Define a schedule and scope so the tool runs on every relevant distributed
+        location on its own; results come back to a central console and exceptions
+        are logged.
+      '3': Coverage and execution are continuously enforced — missing agents or skipped
+        runs alert, out-of-scope hosts are detected and added, and results feed into
+        a tamper-evident record reviewed against the inventory.
+    basis: inferred
+  evidence:
+    value: Architecture or config showing the integrity tool's distributed reach,
+      the central collector where results land, scope/coverage mapping against the
+      asset inventory, and example run records from geographically or logically separate
+      systems.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the integrity tool exists and runs in headquarters,
+      distributed sites are covered by implication. A scanner installed on one host
+      that requires manual kick-off per site is not distributed testing — coverage
+      is whatever the deployment footprint actually reaches.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which classes of systems (remote offices, field devices, cloud workloads) does
+      the integrity tool reach without a human starting it each time?
+    - Show me the last integrity run from a system outside the primary datacenter.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.068139Z'
+  signed_digest: e7a5b0b11d88bccd562fb5aa34b31e37a6f62e68c80d2ffefc1ece12528d5cf0
+  interview_seconds: null
+  inherited_from: null

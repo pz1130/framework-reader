@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PE-19.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops information leakage through uncontrolled power-line and electrical-signal
+      emanations — without a controlled emissions posture, sensitive facilities can
+      be intercepted or burned through from the outside even when physical access
+      is locked down.
+    basis: inferred
+  plain_zh:
+    value: Identify facilities handling sensitive information that radiate detectable
+      signals through power, wiring, or other unintentional paths, apply the right
+      shielding and suppression measures, and keep that posture current.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify rooms, floors, or zones that process especially sensitive information;
+        mark them as needing emissions protection; keep basic shielding in place where
+        already installed.
+      '2': Apply TEMPEST/RED/BLACK separation principles on identified zones, including
+        shielded cabling, filtered power, and controlled equipment placement; document
+        the assessment and mitigation choices in writing.
+      '3': Have the affected zones re-evaluated by qualified personnel when equipment,
+        layout, or threat picture changes; track inspections and suppression-equipment
+        maintenance to a schedule; verify that zoning decisions still match the information
+        classification actually being handled.
+    basis: inferred
+  evidence:
+    value: Identification of emission-protected zones, the inspection/assessment record
+      for those zones, shielding and filtering specifications actually installed,
+      maintenance records for suppression equipment, and change history tied to equipment
+      or layout moves.
+    basis: inferred
+  common_myth:
+    value: Assuming this control only applies to classified-government work and can
+      be ignored entirely in commercial environments. In practice, any facility whose
+      threat model (financial clearing, R&D, government contracts, healthcare records
+      at scale) calls for protection has to show that the question was at least asked
+      and answered with reasoning.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your facilities or rooms fall under this control and what is the assessment
+      behind that scope?
+    - Show me the most recent re-evaluation of an emission-protected zone — what changed,
+      who signed it off?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.563185Z'
+  signed_digest: 433046684e7b193135d682aca666ee0ad9a5aa38df7d64ed8e0c7432d41d7afd
+  interview_seconds: null
+  inherited_from: null

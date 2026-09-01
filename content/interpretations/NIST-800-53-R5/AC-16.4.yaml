@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-16.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attribute labels getting attached to data by anyone with
+      write access, so security tags lose meaning and access decisions based on those
+      tags become unreliable. Without this control, a user can slap 'sensitive' or
+      'public' on a record to game classification, and downstream enforcement trusts
+      the lie.
+    basis: inferred
+  plain_zh:
+    value: Only people who are explicitly allowed to set or change security attributes
+      on information and system resources can do so, and the rules for who can tag
+      what are written down and enforced.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of attribute types (e.g., classification, handling
+        caveats) used in the environment and name the roles permitted to set each
+        one; document this in a short policy addendum.
+      '2': Restrict tagging privileges through the system's access control mechanism
+        so only the named roles can write attributes; keep a maintained list of those
+        roles and re-approve them periodically.
+      '3': Enforce attribute binding cryptographically or through a signed attribute
+        service so that tampered or self-applied tags are rejected at read time; alert
+        on tagging attempts by unauthorized identities and audit every attribute change
+        with who set it, when, and under what authority.
+    basis: inferred
+  evidence:
+    value: Written list of attribute types and the specific roles authorized to set
+      each, system-enforced access rules restricting tag writes to those roles, audit
+      logs of attribute changes showing authorizer identity, and any alert or rejection
+      records from unauthorized tagging attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that because attributes exist in the schema and only certain groups
+      'should' set them, the control is met. In practice, attribute write privileges
+      are often inherited from broad data-write rights, so any user with edit access
+      can also reclassify their own data, which makes the classification meaningless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the access list that proves only role X can set attribute Y on this
+      system.
+    - Pick three recent attribute changes in the audit log — walk me through how each
+      was authorized and how you would have detected an unauthorized change.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.027978Z'
+  signed_digest: a6c980523be70f0b222a66233041cc0382c33f1e235d87d4a168661b52f8dd65
+  interview_seconds: null
+  inherited_from: null

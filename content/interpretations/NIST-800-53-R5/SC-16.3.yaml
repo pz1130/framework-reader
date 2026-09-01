@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SC-16.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker swapping, splicing, or replaying a signed/encrypted
+      payload so it lands somewhere it was never meant to reach - e.g., a command
+      signed on host A is replayed against host B, or a token from one session is
+      replayed into another. Without binding the protected data to its originating
+      context, cryptography only proves 'something was signed', not 'this exact thing,
+      here, right now, by that identity'.
+    basis: inferred
+  plain_zh:
+    value: When you use cryptography to protect something (a command, a token, a record),
+      the protection has to be tied to the specific originator, the specific target,
+      and the specific moment - not just to the bytes. Otherwise a captured-and-replayed
+      artifact still passes the check.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of artifacts that actually get cryptographically
+        protected in transit or at rest (auth tokens, signed commands, code-signing
+        blobs, signed logs); confirm each is tied to at least an identity or a target,
+        not only to the payload content.
+      '2': Document, per artifact class, which binding fields are included (originator
+        identity, destination/endpoint, timestamp or nonce, session or transaction
+        identifier) and how they are generated and verified; the spec lives in the
+        design doc, not just in code comments.
+      '3': Verification rejects any artifact whose binding fields do not match the
+        current context (wrong target, replayed nonce, expired window, wrong session);
+        exceptions are logged and reviewed; the check is exercised in tests and monitored
+        in production.
+    basis: inferred
+  evidence:
+    value: Per-artifact cryptographic binding specification, sample code or config
+      showing the bound fields, test results demonstrating that a rebound or replayed
+      artifact is rejected, and production logs/monitoring of binding-failure events.
+    basis: inferred
+  common_myth:
+    value: Treating 'it's signed, so it's authentic' as sufficient. A signature over
+      only the payload proves the bytes were not altered and were produced by the
+      holder of a key - it does not prove the artifact is being used against the intended
+      target, in the intended session, or within the intended time window. Teams that
+      skip this control often discover it only after a lateral-movement or replay
+      incident.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one signed or tokenized artifact you actually use - what fields beyond
+      the payload are covered by the cryptographic protection, and which one ties
+      it to the destination and moment?
+    - Show me a test case where an artifact with a valid signature but the wrong target,
+      stale timestamp, or reused nonce was rejected. Where is that test, and when
+      did it last run?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.417013Z'
+  signed_digest: 0eda4ed353eebebe149f8ed5fe2d90704f3ae9004281ad812136a23ef882103f
+  interview_seconds: null
+  inherited_from: null

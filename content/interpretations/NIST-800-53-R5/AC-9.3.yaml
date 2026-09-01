@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:AC-9.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against employees staying unaware that their account has been touched
+      — privileged or otherwise — so tampered, misused, or quietly escalated accounts
+      go unnoticed until the damage is already done (fraud, lateral movement, insider
+      misuse).
+    basis: inferred
+  plain_zh:
+    value: When a user's account is created, modified, disabled, or deleted, notify
+      that user (and, where relevant, an independent party) so they can spot something
+      they did not request.
+    basis: inferred
+  practice:
+    value:
+      '1': Notify account holders via email or another registered channel when their
+        account is created, password is reset, or the account is disabled/deleted.
+      '2': Notifications cover role/privilege changes too (not just password resets)
+        and include date, source system, and what changed; out-of-band delivery (registered
+        contact, separate channel) is defined.
+      '3': Notification is automated from the identity source of truth, sent to an
+        out-of-band channel the user controls; suspected account takeover triggers
+        immediate re-notification; failed delivery is itself alerted on.
+    basis: inferred
+  evidence:
+    value: Sample of notification messages (email/portal), identity-system configuration
+      showing the notification rule, delivery logs, and an incident example where
+      a user reported an unexpected notification.
+    basis: inferred
+  common_myth:
+    value: Assuming password-reset emails and SSO welcome messages already satisfy
+      the control — they cover a small slice of changes (logon, password), while privilege
+      escalation, group changes, MFA resets, and account deletion often go unspoken.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a notification that was sent for a privilege change, not a password
+      reset.
+    - If a user's registered email is the one being attacked, where else is the notification
+      sent?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.436833Z'
+  signed_digest: 9b54e885564c319525710b78591ce351a8c2d597f5bafec7d8b60fe32b33db46
+  interview_seconds: null
+  inherited_from: null

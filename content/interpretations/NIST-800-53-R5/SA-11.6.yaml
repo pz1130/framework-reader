@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-11.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shipping or changing a system without anyone having asked 'what
+      new exposure does this give an attacker?' — code and config that pass functional
+      review but quietly widen the attack surface end up in production, and the gap
+      is only noticed after an incident.
+    basis: inferred
+  plain_zh:
+    value: Require a structured review of the system's attack surface during development
+      and testing, so that design changes, new components, and configuration choices
+      are examined for the exposure they add before release.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a checklist of attack-surface dimensions (entry points, protocols,
+        services, accounts, data flows, third-party components) and require it to
+        be walked through before any significant change goes out.
+      '2': 'Document the review as part of the SDLC gate: who reviewed, what was found,
+        what was mitigated, and what was accepted as residual risk, with evidence
+        attached to the change record.'
+      '3': Re-run the review on a defined cadence (after major releases, after architecture
+        shifts, after threat-landscape changes); track attack-surface size as a metric;
+        require explicit sign-off when surface grows without compensating controls.
+    basis: inferred
+  evidence:
+    value: Attack-surface review records linked to change tickets or release records,
+      showing inputs considered, findings, mitigations applied, residual-risk decisions,
+      and reviewer sign-off.
+    basis: inferred
+  common_myth:
+    value: Assuming a passing SAST/DAST scan or a successful pen test satisfies this
+      control — tool output is not an attack-surface review; a review has to consider
+      what the system exposes to an adversary (interfaces, trust boundaries, data
+      exposure), not just whether scans found vulnerabilities.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the attack-surface review for the last major release — what did you
+      consider, what did you find, what did you change?
+    - Who has the authority to accept residual attack-surface risk, and where is that
+      decision recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.044843Z'
+  signed_digest: ed78986dde4adeb6d4066dd383623420e394e4a40f812052888de499dadd5c9a
+  interview_seconds: null
+  inherited_from: null

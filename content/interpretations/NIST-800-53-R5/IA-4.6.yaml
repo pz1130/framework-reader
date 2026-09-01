@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:IA-4.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against identity-attribute collisions when the same individual
+      exists across multiple organizations in a federated or shared environment —
+      without coordinated identifier management, the wrong person gets provisioned,
+      deprovisioned, or audited because two agencies each think they own a different
+      'John Smith'.
+    basis: inferred
+  plain_zh:
+    value: When identities span more than one organization, agree on how identifiers,
+      account lifecycles, and audit trails are coordinated across those organizations
+      so that one person is one person across all of them.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems hold cross-organization identities; document an
+        agreed naming/identifier scheme and a shared contact for account lifecycle
+        changes between the parties.
+      '2': Formalize a coordination agreement covering provisioning, modification,
+        and especially timely revocation across organizations; include an escalation
+        path for disputed identities.
+      '3': Implement a shared authoritative identity source or directory (or a vetted
+        federated trust); automate cross-org provisioning/deprovisioning events; routinely
+        reconcile identifiers and audit who owns each account.
+    basis: inferred
+  evidence:
+    value: Cross-organization identity coordination agreement, identifier scheme documentation,
+      provisioning/revocation logs spanning participating organizations, reconciliation
+      reports, and named points of contact.
+    basis: inferred
+  common_myth:
+    value: Assuming that once a federated SSO trust is configured, cross-organization
+      identity management is solved — federation only authenticates; it does not reconcile
+      who the person is, when they leave one org, or whose logs apply.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the agreement or MoU that governs how identifiers and lifecycle events
+      are coordinated across the participating organizations.
+    - When a user leaves organization A but retains access in organization B, how
+      is that detected and how long does it take to revoke?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.159253Z'
+  signed_digest: 76d9c92261e4ddac51496e6d6827ab580a608b5e490317a1dd261229c0bb27f3
+  interview_seconds: null
+  inherited_from: null

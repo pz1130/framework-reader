@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CA-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where internal teams rubber-stamp their
+      own defenses because they built them, or miss logic flaws that only an outsider
+      with attacker perspective would find. Without an independent pen test, the organization
+      is essentially grading its own exam and assuming the attacker agrees.
+    basis: inferred
+  plain_zh:
+    value: Hire people who are not part of the team that built and operates the target
+      to actively try to break into it, and use what they find to drive real fixes.
+      Independence is the point, not the act of testing itself.
+    basis: inferred
+  practice:
+    value:
+      '1': Engage a clearly external party (different org, separate reporting line,
+        no build responsibility) to perform a baseline pen test on critical systems;
+        results go to a manager independent of the system owner.
+      '2': Scope and rules of engagement are documented; testers have access comparable
+        to realistic threats; findings go into a tracked remediation plan with owners
+        and deadlines; retest verifies closure.
+      '3': Pen tests are scheduled on a risk-based cadence and triggered by significant
+        changes (new internet-facing system, major redesign, post-incident); tester
+        quality is vetted (methodology, credentials, references); findings feed back
+        into threat models and architecture decisions, not just a closure list.
+    basis: inferred
+  evidence:
+    value: Signed engagement letter or SOW with named external testers, rules of engagement
+      document, pen test reports showing tester independence, tracked remediation
+      tickets, retest results, and evidence that findings influenced subsequent design
+      or control changes.
+    basis: inferred
+  common_myth:
+    value: Treating pen test as satisfied by running an automated scanner or a 'red
+      team' staffed by the same engineers who built the system, just because they
+      sit in a different team chat channel. Independence means no stake in the outcome
+      of the build, not just a different org chart box.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who performed your last pen test, and what was their reporting line relative
+      to the team that built and runs the system under test?
+    - Show me a finding from your last pen test that changed a design or control decision
+      - what changed, who decided, when was it deployed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.714121Z'
+  signed_digest: e2e41aff9c84e902938884a10e3352a06c38ef3bf8b20dc9af77dcdcefbc1ea1
+  interview_seconds: null
+  inherited_from: null

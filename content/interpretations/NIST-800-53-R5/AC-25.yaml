@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the absence of a single, tamper-resistant enforcement point
+      in the system — without it, access decisions are scattered across components
+      that can be bypassed, modified, or disabled by an attacker who has gained a
+      foothold, and every other access control becomes advisory rather than binding.
+    basis: inferred
+  plain_zh:
+    value: Make sure access enforcement is carried out by a reference monitor that
+      is always invoked, cannot be tampered with by anyone including its own admins,
+      and is small enough to actually be analyzed and trusted.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components actually issue access decisions for protected
+        resources; confirm they sit in the mediation path and cannot be bypassed by
+        direct calls to lower layers.
+      '2': Document the reference monitor's isolation from subjects it mediates (separate
+        domain, dedicated kernel/userspace boundary); restrict who can modify it and
+        log all such changes.
+      '3': Keep the reference monitor small, formally or structurally verifiable,
+        subjected to penetration testing and code review focused on bypass paths,
+        with cryptographic integrity protection and continuous monitoring for tamper
+        attempts.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing the mediation point on every access path,
+      tamper-protection configuration, change-control and logging for the monitor
+      itself, isolation evidence (separate execution domain), and test results targeting
+      bypass scenarios.
+    basis: inferred
+  common_myth:
+    value: Assuming that because an OS or application has 'access control' built in,
+      a reference monitor exists — most commercial software enforces policy alongside
+      other functionality and can be subverted by anyone who compromises the surrounding
+      process, so it fails the 'tamperproof' and 'small enough to analyze' requirements
+      without deliberate isolation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the path an attacker with code execution on a client would need to bypass
+      your access enforcement without being mediated.
+    - Who can modify the component that enforces access policy, and how would you
+      detect if it was altered at runtime?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.198278Z'
+  signed_digest: 74fcaf621d80668a7012787183f3934c13545ca9a10c4e25f94fd6f271ffc7a8
+  interview_seconds: null
+  inherited_from: null

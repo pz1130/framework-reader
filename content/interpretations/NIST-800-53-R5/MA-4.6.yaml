@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:MA-4.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents field maintenance sessions and diagnostic traffic from being intercepted,
+      replayed, or tampered with — when a vendor or technician services equipment
+      off-network, an attacker on the same link can ride the session, steal credentials,
+      push malicious firmware, or impersonate the technician to the device. Plain
+      TCP or telnet to a remote management card gives them the keys.
+    basis: inferred
+  plain_zh:
+    value: Require cryptographically protected channels (TLS, IPsec, SSH, WPA3, signed/encrypted
+      diagnostics) for all non-local maintenance traffic — remote vendor sessions,
+      laptop-to-console, diagnostic uploads, configuration pushes — and verify the
+      protection actually runs end-to-end, not just on the brochure.
+    basis: inferred
+  practice:
+    value:
+      '1': Every maintenance procedure document names the encryption/authentication
+        mechanism to use (SSH/TLS/IPsec/encrypted vendor portal); plain telnet, HTTP,
+        FTP, and unencrypted serial-over-IP are banned in writing.
+      '2': Each field tech and vendor is issued an authenticated, encrypted access
+        method; passwords are not reusable across sessions; the session type (remote
+        console vs. local hands-on) is logged.
+      '3': Maintenance traffic is validated end-to-end (strong ciphers, mutual auth
+        where possible, signed firmware/diagnostic images), weak protocols are blocked
+        at network and device level, deviations are alerted, and the verification
+        is re-tested after every device firmware or management-tool change.
+    basis: inferred
+  evidence:
+    value: Maintenance procedures specifying the cryptographic method, configuration
+      screenshots of devices (management cards, vendor portals, VPN concentrators)
+      showing enabled TLS/SSH/IPsec, network ACLs blocking telnet/HTTP/FTP to field
+      devices, session logs with session type and user, firmware signing policy and
+      recent signed-image verification records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the maintenance is performed by a trusted vendor
+      technician on-site, no crypto is needed — the link itself (laptop to console
+      port via IP, vendor remote-access VPN, public Wi-Fi at the customer site) is
+      hostile, and a plaintext session over it exposes every config and credential
+      passed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three remote-capable field devices and show me the configuration proving
+      management traffic is encrypted end-to-end, including the segment between the
+      tech's laptop and the device.
+    - What mechanism stops a plaintext telnet or HTTP session from being initiated
+      to a maintenance interface even by mistake, and how would you know if it happened?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.419587Z'
+  signed_digest: 4a8cef60c16e5cc37411ad45843ae63eaad2152bd0b42c578ccd540a19bc5863
+  interview_seconds: null
+  inherited_from: null

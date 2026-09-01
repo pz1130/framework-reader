@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AU-12.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against audit records that cannot actually be used during an investigation
+      because every system writes timestamps, severity, and identity fields its own
+      way — the breach happens, the logs are technically present, but correlating
+      them across hosts, vendors, and SIEM rules is guesswork and the timeline collapses.
+    basis: inferred
+  plain_zh:
+    value: Make every system that generates audit records write them in a shared,
+      documented format so a reader (human or SIEM) can compare fields across sources
+      without manual translation.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick or define a common audit-record schema (fields, names, value formats)
+        and publish it; tell each in-scope team their logs must match it.
+      '2': Enumerate every audit-generating source and map each one's fields to the
+        shared schema; track gaps where a source cannot produce a required field,
+        and record deviations.
+      '3': Enforce conformance in CI/CD or onboarding (new sources cannot go live
+        until they emit the schema), periodically re-check existing sources after
+        upgrades, and prove during an exercise that records from different sources
+        join cleanly on common fields.
+    basis: inferred
+  evidence:
+    value: The documented audit-record schema, a source-to-schema mapping register
+      showing coverage and known deviations, conformance test results or sample logs
+      from multiple sources demonstrating alignment, and records of schema updates
+      after source or platform changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a SIEM 'normalizes' audit logs, so the source systems
+      can keep emitting whatever they want. Normalization in the SIEM hides the problem
+      for routine parsing but breaks the moment you need the raw record for forensics,
+      legal hold, or cross-tool sharing — and the source schema is what auditors will
+      check.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two audit-generating systems and show me a log line from each in the documented
+      format — do the shared fields line up without manual translation?
+    - Where is the source-to-schema mapping, and which sources are currently failing
+      to produce a required field?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.524684Z'
+  signed_digest: 2ccc0acf1fa3938a525eb436b4f8c56a39b6e4684191d35bd51c83bfc12494a0
+  interview_seconds: null
+  inherited_from: null

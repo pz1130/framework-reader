@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-16.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single set of credentials, request, or signal being presented
+      from an attacker-controlled source and accepted as legitimate - the spoof is
+      invisible without something that ties the traffic to the genuine sender (system,
+      channel, or endpoint).
+    basis: inferred
+  plain_zh:
+    value: Make sure the source of a transmission, request, or signal actually belongs
+      to who/what it claims to be - not just who sent it, but that it came from a
+      known-good system or channel. Reject or flag what you cannot prove.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which flows carry security-relevant decisions (DNS, email, API
+        auth, network control, telemetry, BGP, location claims, etc.) and apply basic
+        source validation such as SPF/DKIM/DMARC on email, source-IP ACLs on management,
+        or signed endpoints at the boundary.
+      '2': Document the threat model per channel - what is spoofed, by whom, and how
+        it is detected; apply cryptographic or protocol-level anti-spoofing (DNSSEC,
+        signed tokens, mTLS, authenticator-bound credentials) where the failure cost
+        warrants it; review exception paths that bypass.
+      '3': 'Operating techniques and tooling give systematic coverage: egress filtering,
+        BCP38/BCP84-style source validation, DMARC enforcement in quarantine/reject,
+        continuous monitoring for unsigned or cross-zone traffic, and automated alerts
+        when anti-spoofing signals degrade - tuned to detect anomalies, not just configured
+        once.'
+    basis: inferred
+  evidence:
+    value: A documented mapping of trusted channels and the anti-spoofing technique
+      applied to each (SPF/DKIM/DMARC records, DNSSEC status, signed-token or mTLS
+      configurations, source-authentication logs), plus exception registers and monitoring
+      output that shows spoofed or unverifiable traffic being rejected.
+    basis: inferred
+  common_myth:
+    value: Assuming that if requests come from 'inside' the corporate network or carry
+      valid user credentials they must be legitimate - the control fails the moment
+      an attacker positions themselves on a trusted segment or replays a captured
+      session, because the channel itself was never authenticated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which traffic types can you confirm actually originated from your own systems
+      versus which ones you are taking on trust?
+    - When source authentication signals fail or are absent (unsigned email, unsigned
+      BGP announcement, token from unknown endpoint), what happens and where is that
+      decision logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.412996Z'
+  signed_digest: ee7ab550135f26212310fdcd3e3061e3bbe59166bd2ac23a2b146ba2c6452b56
+  interview_seconds: null
+  inherited_from: null

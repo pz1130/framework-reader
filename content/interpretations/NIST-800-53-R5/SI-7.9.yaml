@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-7.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents silent boot-time compromise where malware, rootkits, or unauthorized
+      firmware take control before the OS loads—defending against attackers who subvert
+      the very first instruction the hardware executes, which no antivirus running
+      inside that OS can see.
+    basis: inferred
+  plain_zh:
+    value: Make the device cryptographically confirm that nothing tampered with the
+      boot chain (firmware, bootloader, OS kernel) from power-on to OS handoff, and
+      refuse to start—or alert—when the chain does not match what was authorized.
+    basis: inferred
+  practice:
+    value:
+      '1': Enable whatever built-in boot verification the platform provides (e.g.,
+        UEFI Secure Boot, TPM-based measured boot) on endpoints and servers; do not
+        disable it to make legacy OS images boot.
+      '2': Define which devices must use verified boot, document the configuration
+        baseline, and capture verification status (PCR values, attestation logs) in
+        a centralized tool that security can review.
+      '3': Tie boot integrity to a remote attestation service that blocks or quarantines
+        devices reporting mismatched firmware/boot measurements; react to attestation
+        failures as security incidents and integrate findings into patch and configuration
+        management.
+    basis: inferred
+  evidence:
+    value: Configuration baseline showing verified boot is enabled, attestation logs
+      or TPM measurements from a sample of devices, exception register for any device
+      permitted to boot unverified, and incident tickets triggered by failed attestation.
+    basis: inferred
+  common_myth:
+    value: Treating UEFI Secure Boot as a one-time setup that stays on forever—admins
+      routinely disable it to install unsigned OS images, recovery tools, or dual-boot
+      Linux, then forget to re-enable it, leaving the boot chain open exactly where
+      the control was meant to protect.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the attestation record for this laptop—what did the TPM report at last
+      boot, and did it match the expected baseline?
+    - How many endpoints currently boot with Secure Boot or measured boot disabled,
+      and what is the approval process for those exceptions?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.121265Z'
+  signed_digest: e71617385f2adb5fbd8ec08ecc0f4f41981fb06e804b121d5d8a7de4a656a8ae
+  interview_seconds: null
+  inherited_from: null

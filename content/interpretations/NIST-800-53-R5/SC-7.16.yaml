@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-7.16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers easily mapping your environment after a foothold
+      - if internal IPs, hostnames, ports, services, and device fingerprints are openly
+      discoverable, lateral movement and target selection become trivial. The control
+      is about forcing adversaries to do real work to learn what is on your network,
+      not handing them a directory.
+    basis: inferred
+  plain_zh:
+    value: Stop internal devices, services, and components from advertising themselves
+      or being easily enumerated. Hide internal addresses, names, versions, and topology
+      from anyone who shouldn't see them - including insider threats and attackers
+      already inside the perimeter.
+    basis: inferred
+  practice:
+    value:
+      '1': Disable unnecessary service discovery protocols (LLMNR/mDNS/NetBIOS where
+        feasible); block direct internet exposure of internal management interfaces;
+        segment networks so scans from one zone can't reach all assets.
+      '2': Apply host/network controls to suppress banners, version strings, and SNMP
+        system descriptions; filter responses to unsolicited discovery probes; document
+        which segments are explicitly hidden vs. exposed by design.
+      '3': Continuously test with internal reconnaissance - port/service sweeps, fingerprinting
+        - to verify what an attacker with a foothold would actually see; use deception
+        (honeypots, decoys) to detect enumeration; refine segmentation based on findings.
+    basis: inferred
+  evidence:
+    value: Network architecture and segmentation diagrams, configuration baselines
+      showing discovery-protocol suppression and banner hardening, internal penetration-test
+      or red-team reconnaissance reports demonstrating what was/is not discoverable,
+      and logs of detected scanning activity against decoys or filtered ranges.
+    basis: inferred
+  common_myth:
+    value: Assuming network segmentation already satisfies this control, or assuming
+      that because internal IPs are RFC1918 they are 'automatically hidden.' Internal
+      hosts advertise plenty of information even without an internet path, and a segmented
+      but discoverable network still tells an attacker exactly which segment to attack
+      next.
+    basis: inferred
+  auditor_asks:
+    value:
+    - From a foothold on a user workstation, what can you enumerate about servers,
+      services, and versions in other segments? Show me the last internal reconnaissance
+      test.
+    - Which discovery protocols are disabled on which segments, and where is that
+      exception documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.697876Z'
+  signed_digest: fe0e848a75c51c40ba939f0fb565d42adf1cc2dcf3c50f4feaee27e8cd4c1a2e
+  interview_seconds: null
+  inherited_from: null

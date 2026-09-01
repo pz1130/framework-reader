@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-14.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Bypass risk during the boot window. When a system powers on or reboots,
+      audit mechanisms are not yet enforcing; if logging does not start early enough,
+      an attacker with physical or pre-boot access can disable logging, tamper with
+      the OS, or stage activity that is never recorded. The control forces audit capability
+      to be active from the first moment the system runs, not bolted on after services
+      come up.
+    basis: inferred
+  plain_zh:
+    value: Make sure audit logging is running from the moment the system starts up
+      or reboots, so no window exists where actions on the machine go unrecorded.
+    basis: inferred
+  practice:
+    value:
+      '1': Confirm logging services are configured to start automatically at boot
+        on every in-scope system; do not rely on manual start or on a technician being
+        present.
+      '2': Define which audit components (host agents, syslog forwarders, file integrity
+        monitoring) must be active pre-OS and post-OS, and document the boot-order
+        expectation for each platform class.
+      '3': Verify at next reboot that the first events captured include the boot itself
+        and any pre-logon activity; alert when an expected audit service is not running
+        at startup; cover physical, virtual, and cloud images with the same expectation.
+    basis: inferred
+  evidence:
+    value: Boot-time audit configuration baselines, reboot verification logs showing
+      audit services active before user logon, change records for startup configurations,
+      and incident-less proof from periodic reboot tests.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the audit service is set to 'automatic' it is guaranteed
+      to be recording at boot. In practice the service may start after user logon,
+      after a dependency fails, or be disabled by a pre-boot attacker — and the team
+      never notices because they only check that logging works after the desktop appears.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent server reboot and the first audit record it produced — was
+      anything captured before user logon?
+    - How do you know the audit service actually started at boot on this host, rather
+      than after logon or after a dependency finished loading?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.548327Z'
+  signed_digest: f9ec5e628bde55fa693d73bd0a8ad739cc0c63b3582e83e8022bcd5ad11ef7d9
+  interview_seconds: null
+  inherited_from: null

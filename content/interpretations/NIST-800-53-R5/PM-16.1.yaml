@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PM-16.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against threat intelligence staying trapped in one analyst's inbox
+      or ticketing system where it decays before action is taken - when indicators,
+      TTPs, and sightings cannot be pushed and pulled automatically between the SOC,
+      EDR, SIEM, TIP, peer organizations, and ISACs, the team learns about campaigns
+      hours or weeks late and cannot block what they already saw.
+    basis: inferred
+  plain_zh:
+    value: Make threat intelligence (indicators, adversary TTPs, sightings) flow to
+      and from internal security tools and outside partners automatically, not by
+      manual copy-paste or email forwarding.
+    basis: inferred
+  practice:
+    value:
+      '1': A threat intel platform (TIP) or equivalent store exists; at least one
+        feed (commercial or ISAC) is ingested automatically into the SIEM or EDR;
+        outbound sharing is ad-hoc.
+      '2': Ingestion and enrichment are automated with documented taxonomies (e.g.,
+        STIX/TAXII); internal tools (SIEM, EDR, firewall, email gateway) consume indicators
+        without manual re-entry; sharing partnerships exist with named peers or ISACs.
+      '3': 'Bi-directional, machine-to-machine sharing: indicators flow in from multiple
+        sources, get deduplicated and scored, push to enforcement points within agreed
+        freshness windows; outbound indicators generated from internal detections
+        are shared back to partners and ISACs automatically; sharing scope and freshness
+        are measured.'
+    basis: inferred
+  evidence:
+    value: Architecture diagram or config showing automated ingest and egress of threat
+      intel between TIP, SIEM, EDR, and external partners; STIX/TAXII or equivalent
+      feeds in use; sample indicator traced from feed to a blocking/detection rule;
+      sharing partner list and cadence; metrics on indicator age and action latency.
+    basis: inferred
+  common_myth:
+    value: Assuming that subscribing to a commercial feed and forwarding the daily
+      PDF to the SOC team satisfies the control. Without machine-readable automation
+      into enforcement tools, indicators arrive too late and too unstructured to block
+      the activity the feed is warning about.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one indicator from an external feed and show the path it took from ingestion
+      to a blocking rule or detection - how long did that take?
+    - Which internal detection from the last 90 days was turned into an outbound indicator,
+      and to which peer or ISAC was it shared?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.712902Z'
+  signed_digest: 9ebf4fd85a200fa6a72ef703dd8ab1cfe65901d7addbeaa1cb5bbfb787c74034
+  interview_seconds: null
+  inherited_from: null

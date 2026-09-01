@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CP-9.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Backups stored only at the primary site collapse with the primary site:
+      a ransomware outbreak, building fire, or site-wide outage takes the backups
+      down with the production data they are meant to rescue. The control forces a
+      copy to live somewhere the same disaster cannot reach.'
+    basis: inferred
+  plain_zh:
+    value: System backups must be kept at a geographically separate alternate site
+      so that a disaster destroying the primary location does not also destroy the
+      ability to recover.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one complete, recent backup copy is stored off-site from the primary
+        data center; someone can name the site and the transport method on demand.
+      '2': Off-site storage is contractually defined with a defined transfer cadence
+        and retrieval window; backups are verified retrievable on a schedule; the
+        alternate site has documented physical and environmental controls.
+      '3': 'Alternate storage is treated as part of the recovery architecture: site
+        is far enough away to avoid a shared single point of failure (utility, regional
+        event), transfers are automated and encrypted in transit and at rest, restoration
+        drills from the alternate copy are performed on a fixed cadence, and gaps
+        or failures trigger documented remediation.'
+    basis: inferred
+  evidence:
+    value: Contract or service agreement for the alternate storage site, records of
+      backup transfers with timestamps, periodic restore test reports from the off-site
+      copy, and physical/environmental control documentation for the storage facility.
+    basis: inferred
+  common_myth:
+    value: Treating an off-site backup as proven safe because the tape or cloud bucket
+      exists somewhere else. If the storage site shares the same power grid, campus,
+      region, or single vendor account as production, or if the copy has never been
+      actually restored from, the 'alternate' site offers no real resilience.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the most recent restore test performed from the off-site copy and how
+      long the retrieval took.
+    - What is the geographic distance and shared-infrastructure exposure between the
+      primary site and the alternate storage site?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.039777Z'
+  signed_digest: 0b6a540ebc9569e7c0610fc1566d0c8fc48585d3cc84bbc8a59e9357b536a01c
+  interview_seconds: null
+  inherited_from: null

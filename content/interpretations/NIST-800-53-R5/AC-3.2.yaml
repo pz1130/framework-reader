@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single insider acting alone to perform a high-blast-radius
+      security action (e.g., disabling logging, exporting bulk sensitive data, issuing
+      rogue certificates, changing firewall rules in production). One person's hand
+      on the wheel, with no second pair of eyes, is exactly how catastrophic but quiet
+      abuse happens — and how it gets denied in investigation because there is no
+      corroborating witness.
+    basis: inferred
+  plain_zh:
+    value: For defined high-risk security-relevant actions, require two independent
+      people to approve and execute them, so no single account can do it alone and
+      there is always a second human in the loop to attest it happened.
+    basis: inferred
+  practice:
+    value:
+      '1': List the privileged actions that could cause real harm (signing certs,
+        exporting prod data, modifying access control lists, disabling security tooling).
+        For each, require a second authorized person to approve before the action
+        runs.
+      '2': Build the dual-authorization step into the workflow (ticketing, PAM session,
+        change record) so it is not a verbal handshake. Logs capture both identities,
+        the action, the timestamp, and the justification. The two approvers cannot
+        be the same account.
+      '3': Enforce dual authorization at the tool layer (PAM, key management, CI/CD,
+        network device admin) so it cannot be bypassed by a power user or shared credential.
+        Periodically test that the control actually blocks a single-person attempt,
+        and review the list of dual-controlled actions when the threat model or environment
+        changes.
+    basis: inferred
+  evidence:
+    value: Written list of actions requiring dual authorization, workflow or system
+      configuration showing the two-person gate, sample logs/change tickets with both
+      approvers named, and test records demonstrating the control blocks a lone attempt.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a second person 'in the room' or copied on a chat
+      message satisfies dual authorization. A copy in a channel is not an independent
+      approval gate tied to the action — the actor can still proceed alone, and the
+      audit trail shows one approver rubber-stamping the other, or the same person
+      wearing two hats.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three changes to the production firewall rules — who were the
+      two people on each, and where is the approval recorded?
+    - Pick one of the actions on your dual-authorization list and walk me through
+      what stops me from doing it alone if I sat down at the admin console right now.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.225672Z'
+  signed_digest: 25dc56cd7e6f6b6144673290cc3e63cfbd985a7464dfdfe35b834b6b069f443f
+  interview_seconds: null
+  inherited_from: null

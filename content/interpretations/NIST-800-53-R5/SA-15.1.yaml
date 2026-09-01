@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-15.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where developers claim a system is 'secure
+      enough' but nobody can show what 'enough' means in measurable terms—so defects
+      ship, regressions are invisible, and post-deployment patches become the de facto
+      quality bar.
+    basis: inferred
+  plain_zh:
+    value: Define measurable security and quality goals for the development process
+      and the resulting system, then actually measure against them and act when numbers
+      go off-track.
+    basis: inferred
+  practice:
+    value:
+      '1': A short list of quality goals exists (e.g., static-analysis defect density,
+        critical vulnerabilities open at release, failed test rate) and developers
+        can point to them.
+      '2': Metrics are collected on each build/release, trends are reviewed in a recurring
+        meeting, and there is a written threshold that triggers remediation or release
+        hold.
+      '3': 'Metrics tie back to risk: teams adjust process or design when goals are
+        missed, goals are revisited when threat or architecture changes, and the data
+        is auditable end-to-end from code to deployed artifact.'
+    basis: inferred
+  evidence:
+    value: Documented quality goals and thresholds, per-release or per-build metric
+      reports, trend reviews with action items, evidence that thresholds actually
+      stopped or required rework on a release, change log showing goals revised after
+      architectural or threat shifts.
+    basis: inferred
+  common_myth:
+    value: Equipping the build pipeline with a scanner and reporting its counts counts
+      as 'quality metrics.' Raw scanner output is not a goal; without thresholds,
+      owners, and decisions tied to the numbers, the dashboard is decoration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last three releases: which quality goals were measured, what were
+      the numbers, and what was decided because of them?'
+    - Which threshold, if missed, would have stopped a release in the last year—and
+      has that ever actually fired?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.059808Z'
+  signed_digest: 5e213b9fe1a93a3cd364ad1a3d58fa4489132ff9d7c01eb6180defbddd2b4b0a
+  interview_seconds: null
+  inherited_from: null

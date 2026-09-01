@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CP-9.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'everything is backed up to the same place as everything
+      else' - so a single fire, ransomware encryption, or accidental wipe that takes
+      down production also takes down the one copy you needed to recover from, and
+      you find out during the disaster it was designed for.
+    basis: inferred
+  plain_zh:
+    value: Keep a clearly separated copy of the most critical information and backup
+      components, with its own physical and logical separation, so one bad event cannot
+      destroy both the live system and the recovery copy at the same time.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which data and backup assets are truly critical; store at least
+        one copy at a distinct site or in an isolated logical location (air-gapped,
+        immutable, or on a separate network) from production.
+      '2': Document the separation architecture (who owns the secondary site, network
+        paths between sites, restoration procedures); include the separation in the
+        backup and recovery plan and review it each cycle.
+      '3': Test restoration from the separated copy end to end on a schedule; enforce
+        technical controls (immutability, network isolation, access segregation) so
+        production-side compromise cannot reach the secondary copy; track and investigate
+        any deviation.
+    basis: inferred
+  evidence:
+    value: Backup architecture diagram and location inventory showing the separated
+      site/tier, classification of which data is deemed critical, restoration test
+      reports from the separated copy, access logs showing restricted reachability
+      between production and secondary storage, and the plan clause that defines the
+      separation.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we back up to the cloud' already satisfies separate storage -
+      backup targets that share the same account, network, identity, or hypervisor
+      as production are still reachable from a compromised production host and are
+      commonly encrypted together during ransomware incidents.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the network path and credentials between production and the secondary
+      backup copy - if a domain admin on production is compromised, can it reach or
+      delete the copy?
+    - Which data classes are designated critical, and where is each one's separated
+      copy stored and tested from?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.036073Z'
+  signed_digest: ee4323119f0a03c4d3cf1ea208e9d956283d292965dbd1b5ad4eaf2ec5dadec1
+  interview_seconds: null
+  inherited_from: null

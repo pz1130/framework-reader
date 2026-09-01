@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CM-11.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents privileged software installs from creating invisible attack surface
+      - users (or malware running as them) silently dropping tools, agents, persistence
+      mechanisms, or unsigned binaries into a system, where those binaries then run
+      with rights the user never earned. If you allow unrestricted privileged installs,
+      an attacker who phishes one account can plant a backdoor that survives reboots
+      and looks legitimate because the installer was authorized.
+    basis: inferred
+  plain_zh:
+    value: Decide and enforce which users are allowed to install software that runs
+      with elevated privileges, restrict everyone else, and make sure those allowed
+      installs are actually authorized software - not whatever an admin happens to
+      click.
+    basis: inferred
+  practice:
+    value:
+      '1': Document a short list of who is allowed to install privileged software
+        (typically a small admin group); everyone else is blocked from installs that
+        require elevation; admins know this list.
+      '2': Enforce the restriction technically on endpoints and servers (no admin-by-default
+        for standard users); maintain an allow-list of approved software; any deviation
+        is logged and reviewed.
+      '3': Privileged installs are blocked or centrally brokered (application allow-listing,
+        privileged access management, or vetted software repositories); installation
+        events feed SIEM with user, host, package, and hash; unauthorized installs
+        trigger alerting and automated containment.
+    basis: inferred
+  evidence:
+    value: Written policy naming who may install privileged software and the approval
+      process, technical enforcement configuration on endpoints/servers, allow-list
+      of approved software with version/publisher, sample install logs tied to tickets
+      or change records, and alerting/response evidence for rejected or unauthorized
+      install attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that giving users local admin when they ask for it (so a driver
+      installs, an IDE works, a browser plugin loads) does not weaken this control
+      - it does. Every 'just this once' local admin is the loophole that turns CM-11(2)
+      into theater.
+    basis: inferred
+  auditor_asks:
+    value:
+    - On a standard-issue laptop, what stops an employee from running an installer
+      that requires elevation?
+    - Show me the last time a privileged install was attempted by someone not on the
+      allow-list - what happened?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.736810Z'
+  signed_digest: b5122aa7e9c03e4514c5c7767f61e17be4c325ebb0c5fa87449ca1851b1e4097
+  interview_seconds: null
+  inherited_from: null

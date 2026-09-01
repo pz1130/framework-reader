@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SI-7.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent subversion of the platform itself - malicious or
+      accidental corruption of boot firmware (BIOS/UEFI, BMC, controllers, option
+      ROMs) that lets an attacker persist below the operating system, survive reinstalls,
+      and evade every higher-layer control in the stack. If boot firmware integrity
+      is not verified, an attacker who lands anywhere once can hide there for the
+      life of the hardware.
+    basis: inferred
+  plain_zh:
+    value: Make sure the boot firmware on each system cannot be silently modified,
+      rolled back to a weak version, or run from an unauthorized image - detect when
+      it has been changed and refuse to boot from compromised firmware.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which boot firmware components (BIOS/UEFI, BMC, drive controllers,
+        network/RAID option ROMs) must be protected on each system class, and enable
+        whatever vendor-provided integrity verification exists out of the box.
+      '2': Maintain a signed baseline of approved firmware versions per platform;
+        require signed updates; record firmware changes in a change-management system;
+        alert on deviations from the baseline.
+      '3': Enforce measured/verified boot end-to-end (root of trust, measured launch,
+        TPM-backed attestation), block rollback to unapproved older firmware versions,
+        cryptographically authenticate firmware sources, and automatically alert or
+        quarantine systems that fail boot-integrity checks.
+    basis: inferred
+  evidence:
+    value: Approved firmware baseline inventory, firmware signing and update policy,
+      boot-integrity configuration per platform class, TPM/measured-boot attestation
+      reports, change records for firmware updates, and alerts/incidents from failed
+      boot-integrity checks.
+    basis: inferred
+  common_myth:
+    value: Assuming TPM presence equals this control is met - having a TPM chip does
+      nothing for firmware integrity unless measured boot is actually enabled, attestation
+      is being collected, and the baseline of approved firmware versions is enforced
+      against what the hardware is actually running.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time a system refused to boot because its firmware did not
+      match the baseline - which platform, what happened, who was notified.
+    - Which boot firmware components on which platform classes are covered by measured/verified
+      boot, and which are not - and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.079518Z'
+  signed_digest: 27e9ee362de497c848dbea2a1f12ec5293bc9b8289c39e5c9fcc07ce61861854
+  interview_seconds: null
+  inherited_from: null

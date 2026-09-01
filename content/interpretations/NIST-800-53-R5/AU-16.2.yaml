@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AU-16.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents audit data being siloed in one team so that an attacker who compromises
+      or pressures that team can hide their tracks, and so that detection, IR, and
+      oversight functions each only see a fragment of what actually happened.
+    basis: inferred
+  plain_zh:
+    value: Make sure the right groups (operations, incident response, management,
+      oversight bodies, and outside auditors) actually get the relevant audit records
+      and findings they need, in a form they can use, instead of each side working
+      from a different incomplete picture.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify who needs which audit feeds (SOC, IR, compliance, oversight) and
+        confirm each group is at least receiving the records scoped to their job;
+        document the distribution list.
+      '2': Define what is shared, in what format, on what cadence, and through which
+        channel per recipient; log or otherwise record when shared; cover both routine
+        distribution and ad-hoc requests.
+      '3': Cross-check that recipients actually consume and act on what they receive;
+        review the sharing matrix on personnel or tool changes; include external auditors
+        and oversight under formal data-sharing agreements with integrity and confidentiality
+        controls on the audit data itself.
+    basis: inferred
+  evidence:
+    value: Documented audit-information sharing matrix (who gets what, how, when),
+      distribution or transmission logs, sample shared reports or feeds, agreements
+      covering external recipients, and review records showing the matrix is kept
+      current.
+    basis: inferred
+  common_myth:
+    value: Believing the SIEM's default dashboard access for the SOC and a periodic
+      PDF to management satisfies the control. The auditor is checking whether IR,
+      oversight, and external parties can obtain the specific records they need without
+      going through a bottleneck, and whether that distribution is reliable and auditable,
+      not whether the SOC can see its own console.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how an outside auditor or oversight body formally requests a specific
+      category of audit records from you and how that request is fulfilled.
+    - Which groups currently receive audit information, and which groups have asked
+      for records in the last year and been refused or delayed because the data was
+      locked with one team?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.560389Z'
+  signed_digest: 981c854a1014eea31b7bf1628e5dcd032509d83a1212eb27a6eac9f1a42ec1b2
+  interview_seconds: null
+  inherited_from: null

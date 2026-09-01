@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:AC-2.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers and insiders who quietly misuse legitimate accounts
+      in ways that don't fit the user's normal pattern — stolen credentials, privilege
+      creep abused slowly, compromised service accounts calling at odd hours. If you
+      only watch for failed logins and known-bad signatures, the attacker who looks
+      like a normal user doing slightly unusual things will live in your environment
+      for months.
+    basis: inferred
+  plain_zh:
+    value: Watch user and service accounts for behavior that doesn't match how that
+      account normally behaves — unusual hours, new geolocations, sudden privilege
+      use, atypical data access — and investigate when the pattern breaks. The goal
+      is to catch accounts that are technically valid but behaving wrong.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Define a short list of ''atypical'' signals worth a human look: logins
+        from new countries, logins at unusual hours for that user, sudden use of admin
+        privileges on an account that never uses them, large data downloads by accounts
+        that don''t normally touch that data. Document who reviews alerts and how.'
+      '2': Build per-user and per-service-account behavioral baselines (typical login
+        time, typical source, typical systems touched). Alerts route to a named queue
+        with a documented response procedure and a closure log showing what was found.
+      '3': Baselines refresh automatically; atypical-usage alerts are correlated with
+        other signals (ticket systems, travel calendars, recent role changes) to suppress
+        noise; confirmed misuse feeds back into detection rules; atypical usage of
+        privileged and service accounts is monitored with tighter thresholds than
+        regular users.
+    basis: inferred
+  evidence:
+    value: Documented list of atypical-usage indicators, baseline methodology, alert-to-investigation
+      records (with disposition for each), tuning history showing false positives
+      reduced, and examples of atypical usage that led to confirmed findings or response
+      actions.
+    basis: inferred
+  common_myth:
+    value: Assuming that login anomaly detection from the IdP, or a SIEM rule on 'impossible
+      travel', equals account monitoring for atypical usage. Those cover one slice;
+      atypical usage also includes what an authenticated account does after login
+      — which systems, which data, which privileges — not just where and when they
+      authenticated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last atypical-usage alert on a privileged or service account and
+      what happened after.
+    - How does a baseline know what is 'typical' for a service account that almost
+      never logs in interactively?
+    - Which types of atypical behavior on an already-authenticated session do you
+      actually detect, beyond login anomalies?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.114997Z'
+  signed_digest: 5a859a66a733412375edc9ca50233fb16529be2d17968ad150c3fdb29e7013d9
+  interview_seconds: null
+  inherited_from: null

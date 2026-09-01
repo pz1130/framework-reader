@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-15.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a compromised or exploited device silently remaining attached
+      to the network and continuing to exfiltrate, pivot, or sabotage after the user
+      walks away. A session that is only screen-locked is still live, still reachable,
+      and still owned by whoever holds the other end.
+    basis: inferred
+  plain_zh:
+    value: Devices that handle sensitive systems must fully break their connection
+      to those systems when not in use - not just lock the screen. The disconnect
+      must happen at the network or data-link level so that the path is actually gone,
+      and getting back in must require a fresh, deliberate action.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems and device classes that touch sensitive data (admin
+        workstations, jump hosts, kiosk terminals, field laptops used for classified
+        or regulated work). Require users to log off, disconnect the session, or remove
+        the cable before walking away.
+      '2': Configure those devices so the disconnect is enforced - session timeouts
+        that tear down the connection, VPN auto-disconnect on idle, port-level or
+        logical disconnection on logout. Document which device classes and which connections
+        are in scope.
+      '3': 'Verify the disconnect works end to end: after the supposed disconnect,
+        an external probe or test packet should not reach the protected system through
+        the user device. Periodically audit devices in scope to confirm settings have
+        not drifted, and re-test after any device or policy change.'
+    basis: inferred
+  evidence:
+    value: List of in-scope devices and the sensitive systems they reach, configuration
+      showing enforced disconnect (timeout values, logout settings, port/interface
+      state), test records or screenshots demonstrating that a disconnected device
+      cannot still reach the protected system, and a change-management trail for the
+      configuration.
+    basis: inferred
+  common_myth:
+    value: Treating a screen lock or 'sleep' as a disconnect. Locking the screen keeps
+      the session, the VPN tunnel, and any cached credentials alive - the device is
+      still on the network and still trusted, so an attacker who got on the box keeps
+      the path. The control specifically calls for a physical or logical disconnect,
+      not a UI lock.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a device in scope that was just 'disconnected' - can you prove the protected
+      system is no longer reachable from it without a fresh login?
+    - Which device classes and which destination systems are covered, and where is
+      that list maintained?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.397967Z'
+  signed_digest: 42c9ea50552b86351efcac0ef32aae4f74272901c67dcf586202b637e7d22bae
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AU-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the loss or tampering of audit records when the storage
+      holding them is itself rewritable or networked—someone with host access, a malicious
+      admin, or ransomware can rewrite or delete logs before anyone notices. Write-once
+      media is the last line that says 'this record cannot be silently edited'.
+    basis: inferred
+  plain_zh:
+    value: Make sure audit records that matter most—particularly those that establish
+      what happened on highly protected systems—end up on hardware that physically
+      cannot be rewritten or erased through software, so the evidence stays intact
+      even if the system that produced it is compromised.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which audit logs are critical (e.g., from privileged systems,
+        security tools, boundary devices); designate where they go; ensure at least
+        one path lands on media that cannot be overwritten in normal operation.
+      '2': Have a written policy naming the systems, the write-once destination per
+        system, and the retention period; document how media is rotated, sealed, stored,
+        and verified; keep chain-of-custody records.
+      '3': Use dedicated write-once hardware (e.g., WORM appliances or optical media)
+        integrated with the log pipeline; verify integrity periodically by hashing
+        and comparing against expected digests; restrict physical access to the media;
+        test recovery from write-once stores as part of evidence drills.
+    basis: inferred
+  evidence:
+    value: Policy listing systems routed to write-once storage, configuration/screenshots
+      of the write-once destination, chain-of-custody logs, integrity-hash records,
+      and a recent recovery or integrity-check exercise.
+    basis: inferred
+  common_myth:
+    value: Believing that forwarding logs to a syslog server, SIEM, or cloud bucket
+      automatically satisfies this control. Most of those stores are rewritable by
+      design—a privileged account on the SIEM or the storage admin can edit or delete
+      records, which is exactly what the control is meant to prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems in scope today send their audit trail to write-once storage, and
+      can you show the routing configuration for one of them?
+    - Show me a record retrieved from the write-once store in the last year and the
+      integrity check that confirmed it was not altered.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.632444Z'
+  signed_digest: 8d2d3e7e0b4b3398ba9c15f47bc83e930d603b0cc63b70d4079ad1afe127a70a
+  interview_seconds: null
+  inherited_from: null

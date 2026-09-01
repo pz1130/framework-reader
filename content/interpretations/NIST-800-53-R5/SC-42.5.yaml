@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-42.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against sensor and endpoint data collection drifting beyond the
+      minimum needed for the stated purpose — cameras, microphones, location, telemetry,
+      and similar capture mechanisms silently accumulate context (faces, voices, surroundings,
+      behavior) that later gets retained, shared, or breached. The control fails when
+      the device gathers everything by default and policy asks forgiveness later.
+    basis: inferred
+  plain_zh:
+    value: Configure the sensors on systems and facilities (cameras, mics, location,
+      telemetry, IoT) so they collect only what is required for the documented purpose,
+      and make sure the gathered data is deleted once that purpose is met.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify sensors and capture-capable endpoints (cameras, mics, GPS, telemetry,
+        smart devices); document the purpose each one supports and disable or physically
+        cover what is not needed.
+      '2': Apply configuration to limit collection to the documented purpose (resolution,
+        frame rate, audio capture, location granularity, telemetry fields); define
+        retention aligned to purpose and delete on schedule.
+      '3': Periodically re-justify each sensor's purpose against current business
+        need; verify configuration drift has not re-enabled broader collection; remove
+        sensors that no longer have a defensible purpose.
+    basis: inferred
+  evidence:
+    value: Sensor inventory with documented purpose per device, configuration baselines
+      or hardening profiles showing minimized collection, retention and deletion records,
+      periodic purpose re-justification reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming 'the camera is on for security' is enough justification — purpose
+      must be specific enough to drive retention, scope, and deletion, otherwise the
+      sensor keeps capturing everything by default and the policy is decorative.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the inventory of sensors and capture-capable devices and the stated
+      purpose for each.
+    - How do you verify a sensor is not collecting beyond what its documented purpose
+      requires, and when did you last check?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.616232Z'
+  signed_digest: 2509b588d6600cc5622da4e3127ad450bc9e0c63f3d48ffb04def76066118118
+  interview_seconds: null
+  inherited_from: null

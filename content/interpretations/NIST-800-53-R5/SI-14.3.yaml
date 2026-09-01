@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-14.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers (or malware) reusing a foothold to maintain a
+      quiet, long-lived channel back into the environment; without forced disconnect/reconnect
+      cycles, a compromised session keeps quietly bleeding data or waiting for instructions.
+    basis: inferred
+  plain_zh:
+    value: 'Make network connections from and to the system short-lived on purpose:
+      terminate them after a defined period or volume, then re-establish fresh ones,
+      so a captured session cannot be replayed or held open indefinitely.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the connections that are obvious candidates (operator/admin sessions,
+        egress to third parties, device-to-cloud links) and put a hard timeout on
+        them; document why each class is non-persistent.
+      '2': Configure the timeout and re-authenticate-on-reconnect in the relevant
+        components (jump hosts, VPN clients, API gateways, agent-to-server channels);
+        log each disconnect/reconnect so it is reviewable.
+      '3': Periodically test that a session token or captured tunnel cannot be reused
+        after the timer expires; fold the timeout values into change management so
+        they do not silently drift back to 'persistent'.
+    basis: inferred
+  evidence:
+    value: Design notes naming which connection classes are non-persistent and the
+      timeout values, configuration snippets or screenshots from the enforcing component,
+      sample logs showing disconnect/reconnect cycles, and a recent test record proving
+      a captured session is refused after expiry.
+    basis: inferred
+  common_myth:
+    value: Assuming a VPN client with auto-reconnect already gives you non-persistence.
+      The session tunnel is refreshed, but the underlying authorization token and
+      inside-network foothold often survive the reconnect, so an attacker who captured
+      the session keeps the same access. Non-persistence requires forcing fresh authentication
+      and a new authorization decision on every reconnect, not just a new TCP socket.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one of your remote admin or jump-host sessions: show me the exact timer
+      that disconnects it and what the user has to do to reconnect.'
+    - Show me a log entry from the last month where a session was terminated by the
+      timeout and a new one was established with a new authentication.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.859713Z'
+  signed_digest: 409a14c17156714bbc2e0277a5f25575e6fd0c3b9faad7f3ecf617e0068069cb
+  interview_seconds: null
+  inherited_from: null

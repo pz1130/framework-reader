@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-17.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Failures stemming from monoculture: when one component class, OS, library,
+      or design pattern is exploited or breaks, the whole stack collapses in the same
+      way. By mandating that critical functions use diverse designs or implementations,
+      the control ensures that a single flaw, vulnerability, or vendor compromise
+      cannot cascade across all paths.'
+    basis: inferred
+  plain_zh:
+    value: For security-critical functions, deliberately use different designs, implementations,
+      or vendors so that one bug or one compromise does not take down every path at
+      once. It is a 'do not put all eggs in one basket' rule applied to architecture.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the security-critical functions (e.g., authentication, crypto,
+        parsing, command execution) and document where single-design dependency exists.
+      '2': For each critical function, require at least two technically independent
+        implementations or vendors, or a diverse design pattern, with the selection
+        criteria and rationale recorded.
+      '3': 'Design diversity is tested: failures, patches, or compromises in one implementation
+        are shown not to propagate to the alternate path; reviews and drills reference
+        the diverse path; supply chain and architecture decisions track and refresh
+        the diversity posture.'
+    basis: inferred
+  evidence:
+    value: Critical-function inventory with single-design risk flags, design-diversity
+      requirements and rationale, selection/approval records for diverse implementations,
+      test or failure-simulation results demonstrating non-cascading behavior, and
+      architecture diagrams showing independent paths.
+    basis: inferred
+  common_myth:
+    value: Assuming buying products from two different vendors automatically gives
+      design diversity - two products may share the same library, crypto stack, parser,
+      or upstream component, so a vulnerability in the shared subcomponent takes both
+      down. Diversity must be at the layer that actually fails.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a function you marked 'critical'. Show the two independent implementations
+      and where they actually diverge at the code, library, or algorithm level.
+    - Show a past incident or test where one path was broken or compromised - what
+      evidence is there that the alternate path stayed functional?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.139177Z'
+  signed_digest: f24cd1ccb9f530e8789539a922ed5b790ababf2f172d5c0767b1115c1938a647
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IR-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident responders learning about a breach second, through
+      gossip or the press, because no one told them first. If IR personnel are not
+      trained on what counts as a breach and how to recognize one, containment drags,
+      evidence is lost, and reporting deadlines slip.
+    basis: inferred
+  plain_zh:
+    value: Train the people on the incident-response team specifically on how to recognize
+      a breach - what signals look like, what evidence to preserve, what legal clocks
+      start - and keep that training current. Not generic IR training; the focus is
+      the moment of a breach.
+    basis: inferred
+  practice:
+    value:
+      '1': IR team members have attended at least one breach-focused session in the
+        past year, covering indicators of compromise, evidence preservation, and reporting
+        triggers.
+      '2': Breach training is a recurring item on the IR calendar with attendance
+        records; scenarios (e.g., data exfiltration, ransomware, insider breach) are
+        walked through; legal and privacy advisors participate so responders know
+        the clock starts when, not after legal review.
+      '3': Breach training is tied to tabletop exercises that simulate detection-to-declaration
+        cycles; lessons feed back into playbooks; competence is verified, not assumed
+        - responders can articulate, on demand, what makes an incident a breach and
+        what the first three actions are.
+    basis: inferred
+  evidence:
+    value: Breach-specific training curriculum and materials, attendance and frequency
+      records, tabletop or breach-scenario exercise notes, updated playbooks that
+      reflect lessons learned, and proof that responders can identify breach signals
+      in a recent incident.
+    basis: inferred
+  common_myth:
+    value: Treating IR-2 (general incident response training) as if it covered breach-specific
+      training. General IR training usually covers the process end-to-end and skips
+      the recognition details that matter at hour zero - what a breach looks like
+      before attribution is finished, what evidence to grab without tipping off an
+      attacker, and which reporting clocks have already started.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time your IR team was trained on recognizing a breach, not
+      just responding to one.
+    - Pick any responder - what is the first thing they do when they suspect a data
+      exfiltration, and which reporting deadline does that start?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.264611Z'
+  signed_digest: bd163300c2593e1202a98a906a6b63a01141ce5cc2e83a4bbfd2264067e2e928
+  interview_seconds: null
+  inherited_from: null

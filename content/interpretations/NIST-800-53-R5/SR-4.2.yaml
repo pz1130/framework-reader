@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:SR-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents counterfeit, tampered, or diverted components from silently entering
+      the supply chain — without end-to-end traceability, a tainted part can sit in
+      production for months before anyone notices the provenance is broken.
+    basis: inferred
+  plain_zh:
+    value: For every critical component, maintain a documented trail of where it came
+      from, who handled it, and where it went, so origin and integrity can be verified
+      back to the source.
+    basis: inferred
+  practice:
+    value:
+      '1': Record supplier, lot/serial, and receipt for critical components; keep
+        basic chain-of-custody logs.
+      '2': Use serialized tracking (barcode/RFID/ledger) across receiving, storage,
+        assembly, and shipping; deviations in chain-of-custody are investigated.
+      '3': Tamper-evident packaging and authenticity verification at intake; traceability
+        data integrated with quality and incident systems, with periodic sample audits
+        of the trail end-to-end.
+    basis: inferred
+  evidence:
+    value: Supplier and lot/serial records, chain-of-custody logs from receipt through
+      delivery, tamper-evidence inspection records, sample traceability exercises
+      showing a component traced back to origin.
+    basis: inferred
+  common_myth:
+    value: Assuming a procurement receipt with a PO number constitutes traceability
+      — a paper PO tells you who you paid, not whether the part inside is genuine
+      or whether custody was continuous.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a component currently in a finished unit and trace it back through receiving,
+      storage, and assembly to the supplier and lot — show me each handoff.
+    - How do you detect a counterfeit or tampered component at intake, and what did
+      you do the last time a chain-of-custody gap appeared?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.176647Z'
+  signed_digest: f2ede967fca4087c5c6809017c4aba7547fdbacbe3974cc7ba8defb350413274
+  interview_seconds: null
+  inherited_from: null

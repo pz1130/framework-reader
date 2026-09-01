@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:PE-21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that an EMP or similar electromagnetic disturbance
+      will just pass through the facility. Without it, a deliberate or incidental
+      high-energy EM event can wipe unprotected electronics, destroy backups stored
+      on-site, and take out recovery capability at the moment you most need it.
+    basis: inferred
+  plain_zh:
+    value: Decide whether your site actually needs protection from electromagnetic
+      pulse or similar events, and if so, shield the systems, power feeds and storage
+      media that must survive such an event. Don't apply it where it doesn't make
+      sense.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Document a short, honest assessment of whether EMP/similar EM threats
+        are in scope for each facility (most sites: no). For sites where it is in
+        scope, identify the specific rooms, racks, cables and storage media that must
+        keep working and apply off-the-shelf shielding or Faraday-style enclosures
+        to them.'
+      '2': Have a written rationale per facility explaining the inclusion/exclusion
+        decision, signed off by the right authority. For included sites, shielding
+        is in place for the listed assets, power and data lines entering the area
+        are filtered, and staff know the rules (no unshielded devices, no media rotation
+        that breaks the enclosure).
+      '3': Reassess when the threat picture or the asset list changes (new critical
+        system, new external emitter, change of mission). Test shielding effectiveness
+        periodically rather than trusting it forever. Verify that the protected assets
+        can actually be brought back online after an EM event, and that off-site recovery
+        copies remain usable.
+    basis: inferred
+  evidence:
+    value: Per-facility EMP scope decision and rationale, list of protected assets
+      and their shielding/filtering measures, evidence that power and signal entry
+      points are filtered, periodic verification of shielding integrity, and a tested
+      recovery path that does not depend solely on on-site media.
+    basis: inferred
+  common_myth:
+    value: Treating EMP protection as either 'buy a Faraday bag, done' or 'this only
+      matters for DoD/government, so we can skip the decision.' The actual control
+      is the documented scope decision plus, where in scope, real shielding of the
+      assets that have to survive - and most failures come from either ignoring the
+      decision entirely or assuming a single product purchase equals coverage of every
+      cable, port and backup tape in the room.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the per-site decision that says whether EMP protection is or is not
+      in scope, and who signed it.
+    - For the sites where it is in scope, which assets are protected, how are incoming
+      power and data lines filtered, and when was the shielding last verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.582057Z'
+  signed_digest: 23bc4483eb9c98390bead48f26ad653322846015e796a3da77cf0b5c5e3b1ada
+  interview_seconds: null
+  inherited_from: null

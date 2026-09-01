@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:CM-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents changes to systems or operational processes from silently bypassing
+      security controls. Without verification, a technically approved change can introduce
+      exploitable paths, weaken detection, or create compliance gaps while the change
+      record still appears complete.
+    basis: inferred
+  plain_zh:
+    value: Before deploying a change, determine which security controls it may affect,
+      test those controls afterward, and keep evidence that they still work as intended.
+      Do not rely only on testing the change itself or on reviewer approval.
+    basis: inferred
+  practice:
+    value:
+      '1': Require every change to identify potentially affected security controls
+        and the person responsible for checking them before release.
+      '2': Define verification steps and acceptance criteria in the change record,
+        perform the checks after implementation, and record results, failures, and
+        any corrective action.
+      '3': Integrate automated control checks into the change pipeline where feasible;
+        route failed checks back for remediation and independent approval, and periodically
+        confirm that changed systems retain the expected safeguards.
+    basis: inferred
+  evidence:
+    value: Approved change records showing affected controls, test plans and acceptance
+      criteria, post-implementation test results, failed-check and remediation records,
+      and release approvals.
+    basis: inferred
+  common_myth:
+    value: Assuming a successful application test or normal system test proves that
+      the change preserved all security controls.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a recent change where a security control was identified as potentially
+      affected and the verification result that supported release.
+    - How are failed security-control checks prevented from moving the change into
+      production?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.803621Z'
+  signed_digest: 54d11ffc199c923993cfc36b6d096b923961c408c4d44059e7ac458889f26f54
+  interview_seconds: null
+  inherited_from: null

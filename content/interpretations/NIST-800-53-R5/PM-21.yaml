@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the organization losing track of what personal data it
+      has shared, with whom, and under what authority - so that when a regulator,
+      a data subject, or an incident responder needs to reconstruct the disclosure
+      trail, the answer is not reconstructed from memory.
+    basis: inferred
+  plain_zh:
+    value: Keep a record of every disclosure of personal or sensitive information
+      to an external party - who got it, what was released, when, under what legal
+      or operational basis, and who authorized it - so the trail is reconstructable
+      on demand.
+    basis: inferred
+  practice:
+    value:
+      '1': A basic disclosure log exists covering routine external sharing (complaints
+        to law enforcement, requests to service providers, court orders); entries
+        capture recipient, data items, date, and authority.
+      '2': Disclosures are logged at the point they happen, tied to the case or request
+        that triggered them; the log is reviewed periodically; records are retained
+        long enough to satisfy data-subject access and regulatory inquiries.
+      '3': Logging is automated where feasible (e-tickets, legal-hold systems, data
+        export pipelines) so a disclosure cannot occur without a record; the log feeds
+        subject-rights request fulfillment and incident notification without manual
+        reconciliation.
+    basis: inferred
+  evidence:
+    value: Disclosure log or register showing recipient, data categories, date, legal/operational
+      basis, authorizer, and retention; retention schedule; sample reconciliation
+      between the log and an actual subject-rights request or incident report.
+    basis: inferred
+  common_myth:
+    value: Treating 'we can ask the team that handled it' as the accounting. By the
+      time a regulator or data subject asks, the team has rotated, the email is gone,
+      and 'we think we sent it to X' is not an accounting.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick the last three subject-rights access requests you fulfilled - show how
+      you traced each disclosure of that person's data back through your systems.
+    - When was the last time the disclosure log was reviewed, and what gap did that
+      review surface?
+    basis: inferred
+  regional_note:
+    value: EU auditors (especially under GDPR) routinely demand an actual per-individual
+      disclosure trail because data subjects have a legal right to know who got their
+      data; US auditors under privacy statutes with narrower scope tend to focus on
+      statutory disclosures (law enforcement, courts) rather than every routine share.
+      The EU posture is materially stricter.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.737014Z'
+  signed_digest: a38f98b00f551374a901ef8b0f84c36460b7f19f3307862ac831934bd47b974b
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents recovery sites from being useless when the worst happens: a backup
+      location that staff cannot physically reach, cannot operate from, or cannot
+      communicate through under crisis conditions renders the entire continuity plan
+      a paper exercise.'
+    basis: inferred
+  plain_zh:
+    value: Make sure the alternate storage and processing sites, and the alternate
+      communication paths you depend on for disaster recovery, are actually reachable
+      and usable by the people who need them when the primary site is down.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify who needs access to alternate sites and communication paths; verify
+        those people can physically get there and have the credentials/equipment needed;
+        document any constraints.
+      '2': Define and test access procedures for alternate sites (badging, escort,
+        after-hours entry) and alternate communications (out-of-band voice, satellite,
+        secondary ISP); keep contact rosters current.
+      '3': Exercise the access path under realistic conditions, including situations
+        where primary credentials, badges, or normal transport are unavailable; rotate
+        and re-verify on a fixed cadence; track and close gaps.
+    basis: inferred
+  evidence:
+    value: Access agreements or MOUs for alternate sites, contact rosters with last
+      update dates, exercise records showing staff successfully reached and operated
+      from alternate sites using documented communications.
+    basis: inferred
+  common_myth:
+    value: Assuming a signed facility lease or a vendor SLA for hot-site seating means
+      the control is satisfied — the lease covers four walls and a rack, not whether
+      your incident responders can get through a locked gate at 2 a.m. with no power
+      badges.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent test where someone actually had to reach the alternate site
+      or use the alternate communications path — what broke?
+    - Whose names are on the access list for the alternate site today, and when was
+      that list last reconciled against current staff?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.987171Z'
+  signed_digest: 519c50f50adc003cb2cd71287545c32b5d93d860b2bfa3035053b45b536626bd
+  interview_seconds: null
+  inherited_from: null

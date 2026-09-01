@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SC-31.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defend against failure or degradation of security monitoring when communication
+      capacity is exhausted. Without a bandwidth ceiling, bulk traffic can consume
+      the path and prevent security events, status updates, or control traffic from
+      being delivered, increasing the chance that malicious activity goes undetected.
+    basis: inferred
+  plain_zh:
+    value: Put enforceable limits on how much communication capacity critical security
+      functions may use, so routine bulk traffic cannot crowd out security monitoring
+      and control messages.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical security and monitoring functions that depend on
+        constrained communication paths, and document the maximum bandwidth they may
+        consume.
+      '2': Define capacity thresholds, monitor usage against them, and record the
+        action taken when a threshold is approached or exceeded.
+      '3': Enforce limits through technical controls, alert on sustained saturation,
+        periodically validate that legitimate security traffic still receives capacity,
+        and tune thresholds as workloads change.
+    basis: inferred
+  evidence:
+    value: System and network diagrams identifying constrained paths, documented maximum-bandwidth
+      requirements and thresholds, bandwidth-monitoring records, alert and response
+      records, configuration evidence showing enforcement, and test results demonstrating
+      continued security-service operation under constrained capacity.
+    basis: inferred
+  common_myth:
+    value: Assuming ordinary network monitoring automatically keeps security traffic
+      available, even though monitors and data collectors are also competing for the
+      same bandwidth and can fail or delay reporting when capacity is exhausted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which security and monitoring functions were included when maximum bandwidth
+      limits were set?
+    - Show the last three recorded cases in which a bandwidth threshold was approached
+      or exceeded and describe the resulting action.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.534357Z'
+  signed_digest: b15b69eb4f1520cabf6f8db23e420dd5885e7abba0bf1e457529d52fbe3f2a4e
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where actions, sessions, or transactions can
+      be linked back to a specific user, device, or context once they leave a system
+      boundary — letting observers correlate what should be separate, deanonymize
+      subjects, or rebuild profiles from supposedly disconnected data flows.
+    basis: inferred
+  plain_zh:
+    value: Make sure that within a system, the actions, attributes, or outputs of
+      one user, role, or session cannot be tied to those of another, and that this
+      separation is preserved when data crosses system boundaries — so that the system
+      does not leak the links it was supposed to hide.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the privacy- or compartment-sensitive boundaries in scope (by
+        user role, tenant, mission, classification); document where disassociability
+        is promised and where it can plausibly break.
+      '2': Apply separation mechanisms at those boundaries — distinct identifiers,
+        namespaces, sessions, pools, or aggregation points — and verify in testing
+        that outputs, logs, and exported data cannot be re-linked to the originating
+        subject without out-of-band information.
+      '3': 'Treat disassociability as a property to be measured: periodic re-tests
+        against re-identification attacks (including joining exported datasets), automated
+        checks that no shared identifier leaks across boundaries, and change-control
+        gates that fail when a new feature would re-link what was separated.'
+    basis: inferred
+  evidence:
+    value: Boundary inventory, disassociability design notes per boundary, test results
+      attempting re-linkage of separated data, change-control records showing reviews
+      against re-identification risk, and any aggregation/anonymization procedures
+      used at export points.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a system stores names and a separate system stores
+      behavior, disassociability is satisfied — when in fact the two systems share
+      an internal user ID, a session token, a device fingerprint, or a common log
+      line that re-links everything the moment data moves.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two subjects from different compartments or roles and show whether their
+      records can be joined using only what is visible inside the system and its exported
+      outputs.
+    - Where in logs, backups, or exports does an identifier cross the boundary you
+      said was separated, and what stops it?
+    basis: inferred
+  regional_note:
+    value: European auditors, operating under GDPR-style data minimization and pseudonymization
+      expectations, tend to probe whether de-identified exports can be re-linked using
+      reasonably likely means; US auditors more often accept aggregation plus policy
+      and test the operational seam (logs, keys, backups) rather than the statistical
+      re-identification angle.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.446533Z'
+  signed_digest: b3ca76363ca7ed78254eaf7e82d2bcd76b482888eeb92da50a6e20b356b98c5c
+  interview_seconds: null
+  inherited_from: null

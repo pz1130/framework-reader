@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-7.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a compromised or malicious internal host being able to
+      use the organization's outbound channels to reach attacker infrastructure, exfiltrate
+      data, beacon to command-and-control, or pivot outward into partners and customers
+      - because allowing any internal system to talk to anywhere on the Internet is
+      what makes lateral blast radius and data theft possible in the first place.
+    basis: inferred
+  plain_zh:
+    value: Decide which destinations and protocols internal systems are allowed to
+      reach outbound, enforce that at the network boundary, and detect or block anything
+      that tries to go elsewhere - especially traffic that looks like a host reaching
+      out to something threatening.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Default-deny egress on perimeter firewalls: block outbound by default,
+        allow only the destinations/protocols business has explicitly justified, and
+        log what is denied.'
+      '2': Maintain an approved outbound-destination list tied to a business owner;
+        route user and server egress through proxies or gateway controls where TLS
+        can be inspected for known-bad destinations; alert on denied or unusual outbound
+        flows.
+      '3': Layered egress controls (perimeter + internal segmentation + DNS filtering
+        + cloud egress controls) with continuous monitoring for beaconing patterns,
+        anomalous destinations, and data-volume outliers; tested response when a host
+        is confirmed threatening.
+    basis: inferred
+  evidence:
+    value: Egress firewall rule sets showing default-deny posture, approved-destination
+      register with business justification, proxy/DNS filtering logs, alerts on denied
+      or anomalous outbound traffic, and incident records of confirmed-threatening
+      hosts being contained.
+    basis: inferred
+  common_myth:
+    value: Assuming inbound firewall rules and endpoint antivirus cover this - they
+      do not. Egress filtering is a separate control plane; without it, a compromised
+      laptop or server can reach attacker infrastructure freely and you will see nothing
+      in the logs.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your outbound firewall rule on the perimeter - is it default-deny or
+      default-allow?
+    - Which internal subnets or cloud workloads can reach the Internet directly without
+      traversing an egress control, and why?
+    - Walk me through the last time a host was flagged for threatening outbound traffic
+      - what triggered it and what happened next.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.770417Z'
+  signed_digest: ac2cb134012937d401dda294f9ded8431868a400752dc74a5bf7c5d4a7a2e30a
+  interview_seconds: null
+  inherited_from: null

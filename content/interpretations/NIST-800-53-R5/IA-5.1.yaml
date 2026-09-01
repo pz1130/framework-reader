@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against password compromise by ensuring password-based authentication
+      is not the only or weakest barrier—adversaries who steal, guess, buy, or replay
+      credentials still cannot walk in because the control is enforced system-side,
+      not left to user choice.
+    basis: inferred
+  plain_zh:
+    value: When passwords are used to log in, the system must enforce complexity,
+      lifetime, reuse, and storage rules itself. Users cannot opt out, defaults cannot
+      be weak, and stored credentials must be protected against extraction.
+    basis: inferred
+  practice:
+    value:
+      '1': Documented password policy covering minimum length, character set, rotation,
+        and reuse limits; enforced by configuration on critical systems (not just
+        a policy doc).
+      '2': Policy applies centrally through directory or identity provider; password
+        storage uses approved salted hashing; default and vendor passwords are changed
+        before systems go live; verification possible via a sample account audit.
+      '3': Password rules are tied to authenticator assurance (e.g., longer or stronger
+        passwords for privileged and remote access); compromised-password screening
+        against known breach corpora; password manager rollout; periodic attestation
+        that stored hashes meet current cryptographic standards; exceptions are time-bound
+        and signed.
+    basis: inferred
+  evidence:
+    value: Identity provider or directory password policy configuration export, hashing
+      algorithm reference, sample audit of accounts showing rules are actually enforced,
+      default-password-change records, exception register.
+    basis: inferred
+  common_myth:
+    value: Treating a written password policy that users 'agree to' as compliance—the
+      rules must be enforced by the authentication system, not by reminding people
+      in training.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a privileged account and confirm its current password policy, last change,
+      and stored hash format.
+    - How do you ensure vendor and service account default passwords are changed before
+      a system becomes reachable?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.171116Z'
+  signed_digest: 560a8074984a2e6997ef3558153643425c550356be80a026e54843ca70439f92
+  interview_seconds: null
+  inherited_from: null

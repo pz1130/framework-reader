@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-11.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops a team from declaring a component 'security tested' on the strength
+      of a report that never actually exercised the parts under attack surface - the
+      failure mode is attackers living in code paths, integrations, or configurations
+      the test never touched while leadership believes coverage is complete.
+    basis: inferred
+  plain_zh:
+    value: Make sure the testing and evaluation that gets handed to you actually covers
+      the system, components, and interfaces that matter, not just the pieces the
+      developer or vendor chose to show.
+    basis: inferred
+  practice:
+    value:
+      '1': Before accepting any test report, write down which system(s), components,
+        versions, and interfaces are in scope and get the tester to sign off on it.
+      '2': Compare the agreed scope against the real attack surface (modules, APIs,
+        third-party libs, configs) and reject reports whose scope is narrower than
+        what is deployed; require gap statements for what was excluded.
+      '3': Independently re-derive scope from architecture, SBOM, and deployed config;
+        require testers to justify why each excluded element carries acceptable risk;
+        track exclusions in a register that is reviewed when scope or architecture
+        changes.
+    basis: inferred
+  evidence:
+    value: Signed scope statement attached to each test/evaluation deliverable, a
+      scope-vs-attack-surface mapping showing what was in and what was excluded with
+      reasons, and acceptance/rejection records when scope did not match the deployed
+      system.
+    basis: inferred
+  common_myth:
+    value: Trusting 'we tested the application' as proof of coverage when the report
+      only covers the main module while integrations, admin interfaces, and third-party
+      libraries were never exercised - the team believes testing happened, but the
+      exploitable paths were never probed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which interfaces, modules, or third-party components were excluded from the
+      most recent test, and what justification did the tester give for each exclusion?
+    - Show me how the test scope was derived from the actual deployed system rather
+      than from what the developer chose to submit.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.048556Z'
+  signed_digest: 4b5370a32cda8d3d0babf9a4b6e80f1c7f91119cdf4c2a04cd4a2750fe669e17
+  interview_seconds: null
+  inherited_from: null

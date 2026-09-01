@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-4.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents procurement of security products that look compliant on paper
+      but lack the cryptographic and assurance functions actually needed — so that
+      a weak IA product becomes the weak link in a system handling sensitive data.
+    basis: inferred
+  plain_zh:
+    value: When buying or upgrading any security product (encryption, firewalls, IAM,
+      HSM, etc.), require that it actually performs the assurance and cryptographic
+      functions claimed, validated against recognized standards, before it is trusted
+      to protect the system.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement checklist requires vendors to state the assurance level and
+        cryptographic standards their product meets; FIPS-validated modules are noted
+        when applicable.
+      '2': Security review during acquisition checks product certifications (e.g.,
+        Common Criteria EAL, FIPS 140 validation IDs), records the validation status,
+        and flags products lacking required assurance for the system's impact level.
+      '3': Procurement policy hard-blocks deployment of IA products in classified/high-impact
+        systems without current, verified certifications; validation IDs are tracked
+        and re-checked as modules are re-issued; non-compliant products cannot be
+        exception-approved without a written risk acceptance tied to the system's
+        data sensitivity.
+    basis: inferred
+  evidence:
+    value: Procurement security review records listing the IA product, claimed assurance
+      level, certification reference (validation ID or certificate number), verification
+      result, and approval decision tied to the target system's impact level.
+    basis: inferred
+  common_myth:
+    value: Assuming a vendor's marketing claims or a generic 'FIPS-compliant' label
+      on a data sheet satisfy the control — without checking that the specific module/algorithm
+      combination is actually on a validation certificate for the version being deployed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the IA products protecting your highest-impact systems, show the validation
+      certificate ID and confirm the deployed software version matches what was certified.
+    - When a product lacked the required assurance level, what did you do — refuse
+      it, request exception, or accept on a risk basis?
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors strictly enforce FIPS 140 validation references for
+      cryptographic modules in systems processing federal data; European audits under
+      cryptography assurance regimes follow similar logic but reference different
+      scheme identifiers. The principle is the same, the certificate registries differ.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.196547Z'
+  signed_digest: b8c1a1a53f48864a671920a3704a1e8922823555d05fb9ea45de62cd34c9b8d8
+  interview_seconds: null
+  inherited_from: null

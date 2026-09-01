@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CP-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that having a backup site on paper equals
+      resilience. If the alternate site cannot actually be brought up at the contracted
+      service level—with current data, in-network connectivity, and the people to
+      run it—the primary outage will still halt the business.
+    basis: inferred
+  plain_zh:
+    value: Make sure the alternate processing site is genuinely ready to operate the
+      system within the required recovery time, with the data, network, environment,
+      and staffing needed—not just a contracted address.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the alternate site; document what it must support; ensure a contract
+        or internal agreement is in place; know how staff would reach it.
+      '2': Maintain current system images, data, and configuration at the site or
+        capable of being restored to it within RTO; verify environmental and connectivity
+        readiness on a fixed cadence; record results.
+      '3': Operations at the alternate site are exercised under realistic conditions
+        at the planned recovery time, with current data and cutover rehearsed; findings
+        drive remediation; the site's readiness is re-verified after any infrastructure,
+        network, or staffing change.
+    basis: inferred
+  evidence:
+    value: Alternate site agreement or service description, current backup media or
+      replication evidence, environment and network readiness checklist, exercise
+      plan and results showing recovery within the stated objective, remediation log,
+      change records that triggered re-verification.
+    basis: inferred
+  common_myth:
+    value: Treating the existence of a hot-site or cloud DR contract as proof of capability.
+      A signed contract does not confirm that the environment, data, network paths,
+      and operators can actually meet the recovery objective on the day it matters.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the most recent exercise at the alternate site and how long activation
+      actually took.
+    - What is the youngest production data resting at or recoverable to the alternate
+      site, and how is that latency measured?
+    - What change since the last test could have broken readiness, and how was it
+      caught?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.965346Z'
+  signed_digest: fa706da898cb25b296f8e09703dcee6224ca34ddb9aa29460aabb72362069f4b
+  interview_seconds: null
+  inherited_from: null

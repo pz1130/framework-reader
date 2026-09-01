@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the moment your primary audit log volume fills up, gets
+      corrupted, or is destroyed by an attacker — without an alternate storage path,
+      evidence of what happened is lost precisely when you need it most.
+    basis: inferred
+  plain_zh:
+    value: Audit log capacity reaching its ceiling mid-incident, and the attacker
+      or a fault wiping the only copy, means you have nothing to investigate or prove.
+      Make sure log records keep flowing to a separate storage when the primary one
+      cannot accept them, and that nothing important is silently dropped.
+    basis: inferred
+  practice:
+    value:
+      '1': Know which audit log sources can fill their volume or fail; have an off-host
+        or separate partition/host that receives a copy of the records when the primary
+        cannot write.
+      '2': Document the overflow path per source, verify it is in place, and alert
+        when records start landing in alternate storage so it is not discovered a
+        week later.
+      '3': Prove the fallback fires on demand (loss of primary, full disk, tampered
+        volume), records are complete and identical to what the primary saw, and operators
+        are paged — not just that a second sink exists.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing alternate audit storage, configuration proving
+      overflow/failover triggers, alert rule and a recent triggered test or real event,
+      sample of records stored when primary was unavailable.
+    basis: inferred
+  common_myth:
+    value: Setting up a second syslog server and assuming that fulfills the control
+      — without configuring it to receive records when the primary is full, down,
+      or compromised, it is just an idle destination and does nothing the moment logs
+      are most needed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time audit records were written to alternate storage — what
+      triggered it and were any records missed?
+    - If I pulled the primary log volume right now, what would the failover record
+      look like and who would be alerted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.576036Z'
+  signed_digest: 558f9017532c9ec09d6b0dd707f2aa1b1fe6b7539ae5fd037c0c97cb6b91d9d0
+  interview_seconds: null
+  inherited_from: null

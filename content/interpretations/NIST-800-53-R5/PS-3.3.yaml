@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:PS-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents people from being screened at one baseline level and then placed
+      in roles or given access to highly sensitive information (classified, PII, financial,
+      health, law-enforcement, export-controlled) without the extra vetting, briefings,
+      or agreements those assets demand — meaning insider exposure becomes invisible
+      until something leaks.
+    basis: inferred
+  plain_zh:
+    value: Identify which types of information you hold need stronger protection than
+      normal, and make sure anyone who can reach that information has the additional
+      screening, briefings, and signed agreements required before they get access
+      — and that this is re-checked, not assumed.
+    basis: inferred
+  practice:
+    value:
+      '1': List the categories of information in your environment that require special
+        handling (e.g., classified, regulated PII, payment card data, health records,
+        source code subject to export control); tag the roles and systems that touch
+        each category.
+      '2': Define the extra pre-screening steps, briefings, and signed agreements
+        (NDAs, non-disclosure, conflict-of-interest, citizenship/clearance attestations)
+        required for each sensitive category; gate access to those roles behind HR/security
+        sign-off and record it in the personnel file.
+      '3': Embed the categorization in onboarding, transfer, and re-screening workflows
+        so the extra controls are triggered automatically; audit quarterly that every
+        current occupant of a sensitive role actually has the required screening and
+        signed agreements on file, and remove access when criteria lapse.
+    basis: inferred
+  evidence:
+    value: Inventory of information categories requiring special protection, mapping
+      of roles to categories, records of additional screening and signed agreements
+      per individual in those roles, and audit results showing no one holds sensitive-role
+      access without the required safeguards.
+    basis: inferred
+  common_myth:
+    value: Treating PS-3 as a one-time baseline screening and assuming everyone passes
+      the same bar — the special-protective-measures flag exists precisely because
+      some information (classified, certain PII, export-controlled, etc.) needs vetting,
+      briefings, or agreements that ordinary staff never go through, and those extras
+      are what this control checks for.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which categories of information in your environment are on your special-protection
+      list, and where is that list documented?
+    - Pick a current employee in a role touching one of those categories — show me
+      the extra screening record and signed agreement for them.
+    basis: inferred
+  regional_note:
+    value: U.S. auditors working with federal contractors or systems handling classified,
+      CUI, or export-controlled data press hard on the linkage between information
+      categorization and the additional steps (clearance level, briefing, citizenship
+      attestation). EU auditors, operating under GDPR, tend to redirect the same risk
+      through their lawful-basis and special-category-data processing controls; both
+      will accept a documented mapping, but the conversation framing and the categories
+      they enumerate are different.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.824763Z'
+  signed_digest: 9f5c71fcb28e912b74b66388fa341da3cf99566c11419e3fcd282a4aeb1794a4
+  interview_seconds: null
+  inherited_from: null

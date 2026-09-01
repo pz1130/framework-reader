@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:CP-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against communications blackouts during a contingency. If primary
+      voice, data, and message paths go down and there is no pre-arranged alternate
+      provider, recovery stalls, leadership loses decision-making capability, and
+      the incident extends far beyond its actual technical scope.
+    basis: inferred
+  plain_zh:
+    value: Identify an alternate communications service provider in advance, formalize
+      the arrangement, and be ready to activate it when primary voice, data, or messaging
+      paths fail during a disaster.
+    basis: inferred
+  practice:
+    value:
+      '1': Document an alternate provider option for critical communications services;
+        ensure a basic activation path and contact list exist on paper and offline.
+      '2': Have a written agreement or MOU with the alternate provider that addresses
+        service scope, activation triggers, and priority treatment; review it periodically.
+      '3': Periodically test failover to the alternate provider, validate priority
+        restoration after a real outage, and reassess the agreement whenever primary
+        services or threat exposure change materially.
+    basis: inferred
+  evidence:
+    value: Alternate provider agreement or MOU, activation procedures, periodic failover
+      test results, and records showing agreement reviews and updates.
+    basis: inferred
+  common_myth:
+    value: Assuming a backup contract on file is enough - the arrangement is useless
+      if no one knows the activation procedure, the provider has not confirmed priority
+      treatment, or failover has never been exercised against the actual primary failure
+      mode.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last test failover to the alternate communications provider and
+      what was the result?
+    - What is the contractual guarantee for priority restoration and how is it maintained
+      when the provider's own customers are also impacted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.020874Z'
+  signed_digest: 316f74db757babc1554ce61f02649d3a473accb5ccd9c78654d854a02b790a9c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where configuration drift or a known-bad setting sits
+      in production for days while a human reviews a ticket — the control forces the
+      system to react on its own so the window between detection and rollback is measured
+      in minutes, not in queue time.
+    basis: inferred
+  plain_zh:
+    value: When a configuration change breaks a baseline or violates a security rule,
+      the environment must undo, block, or quarantine it automatically — not wait
+      for a person to read a ticket and click something.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one critical security setting (e.g., an S3 bucket going public,
+        a firewall rule opening 0.0.0.0/0, a privileged account being created) is
+        wired so detection triggers an automated revert or containment, with a human
+        paged afterward.
+      '2': A defined set of high-risk configuration events is mapped to specific automated
+        responses, and the response actions are logged with enough detail to reconstruct
+        what was rolled back, by whom/which system, and when.
+      '3': Automated response coverage is tracked as a metric; unhandled configurations
+        are an exception with a documented reason; the playbook is tested periodically
+        against simulated drift; roll-forward for false positives requires explicit
+        approval.
+    basis: inferred
+  evidence:
+    value: Mapping of security-significant configuration changes to automated responses,
+      sample tickets or logs showing detection-to-containment elapsed time, exception
+      register for changes without automation, and test records of the automated rollback
+      or quarantine workflow.
+    basis: inferred
+  common_myth:
+    value: Equating 'we have a SOAR playbook' with meeting this control — a playbook
+      that opens a ticket and waits for a human is manual response, not automated;
+      the action has to be taken by the system without waiting on a person.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent case where a bad configuration change was rolled back automatically
+      — what triggered it and how long from detection to containment?
+    - Which configuration changes are deliberately NOT auto-reverted, and what is
+      the documented reason for each exception?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.785191Z'
+  signed_digest: 6f8902015f05529ac74e450faa2fdee0add428fa4a0c7589e08cf2cd1ff9e868
+  interview_seconds: null
+  inherited_from: null

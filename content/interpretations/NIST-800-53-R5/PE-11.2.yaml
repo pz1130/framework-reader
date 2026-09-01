@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-11.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against extended power loss that drains UPS batteries and silently
+      shuts down systems before anyone notices — the failure is not 'we have a UPS',
+      it is 'the UPS runs flat and the building still has not restored power, so processing
+      stops mid-incident'.
+    basis: inferred
+  plain_zh:
+    value: Provide a self-contained alternate power source (typically a generator)
+      that keeps critical systems running after the UPS batteries are exhausted, so
+      the facility can stay operational through a prolonged outage.
+    basis: inferred
+  practice:
+    value:
+      '1': A generator or equivalent self-contained power source exists for the facility;
+        fuel is on hand; someone knows how to start it manually if the auto-start
+        fails.
+      '2': Generator is exercised under load on a documented schedule; UPS-to-generator
+        handoff is tested; fuel contracts and maintenance records are kept; runtime
+        at expected load is calculated.
+      '3': Monthly or quarterly load-bank testing, automatic transfer switch testing
+        under simulated outage, fuel-quality checks, runtime validated against the
+        longest plausible outage, and test results reviewed with facility and IT leadership.
+    basis: inferred
+  evidence:
+    value: Generator specifications and fuel capacity, load-test records, automatic
+      transfer switch test results, UPS-to-generator transition logs, fuel delivery
+      and quality records, maintenance contracts, calculation showing generator runtime
+      covers the maximum historical outage duration at current critical load.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the UPS holds for fifteen minutes and a generator
+      is 'on site', the control is met — the generator is never tested under load,
+      the fuel tank is half-empty, and the transfer switch has not been tripped in
+      years, so the first real outage is the first time it runs.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did the generator last run under load, and for how long, and what load
+      was applied?
+    - How many hours of runtime do you have at current critical load, and how was
+      that number calculated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.524157Z'
+  signed_digest: f7dc19a58f584bc0c9e7dbb9360cba9edb55e960287b8bccb48f0a366796f2df
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-16.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop 'anyone with edit rights can flip security attributes' — if configuration
+      of security tags travels on whoever inherits write access, attackers (or careless
+      admins) reclassify data on the fly, and downstream access decisions collapse
+      because the attribute the policy trusted is no longer the one on the object.
+    basis: inferred
+  plain_zh:
+    value: Only specifically authorized people may change or set security attributes
+      on information and systems; every change is controlled, recorded, and traceable
+      so the attribute value the access policy relies on cannot be silently altered.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which roles are allowed to set/modify each security attribute (e.g.,
+        classification, handling caveats) and document it; require a change request
+        for any attribute change.
+      '2': Enforce the rule in the system (attribute writes go through a controlled
+        service/role, not generic admin); log who changed what attribute, when, and
+        from what previous value; review logs periodically.
+      '3': Make the enforcement cryptographic or platform-level (only the attribute-management
+        service holds the key/permission to tag), alert on out-of-band attribute writes,
+        and prove via reconciliation that the attribute on the object matches the
+        attribute of record.
+    basis: inferred
+  evidence:
+    value: List of individuals/roles authorized to configure each attribute, system
+      enforcement showing attribute writes are restricted to those roles, change logs
+      with before/after values, periodic review of attribute-change logs, and reconciliation
+      reports comparing live attributes to the authoritative record.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the IT helpdesk or data owners 'own' the data, they
+      are implicitly authorized to tag or re-tag it — when no role is named and no
+      path is enforced, attribute writes end up scattered across whoever has file
+      or admin rights, and the tag the policy checks is no longer trustworthy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of people authorized to change a security attribute and how
+      the system blocks anyone outside that list from doing so.
+    - 'Pick one recent attribute change: who made it, who approved it, and what was
+      the previous value?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.015981Z'
+  signed_digest: a936a7b6b9c98ec939d6df260056548d7a2c34f8a53530ef1313573562e74a55
+  interview_seconds: null
+  inherited_from: null

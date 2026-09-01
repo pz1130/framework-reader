@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MP-6.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insider misuse and accidental detonation of media sanitization,
+      destruction, or transfer operations. Without dual authorization, a single person
+      with the keys can walk classified media out the door, bypass the destruction
+      log, or 'accidentally' lose a drive containing regulated data — and no one outside
+      the room ever knows it happened.
+    basis: inferred
+  plain_zh:
+    value: Require two separate people to independently authorize and execute any
+      sanitization, destruction, or transfer action on media that holds sensitive
+      data. No one person — even a trusted admin — should be able to wipe, destroy,
+      or move that media on their own authority.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which media classes and which actions (sanitize, destroy, transfer
+        to another storage location or organization) require dual authorization; write
+        that list down; require two human approvals before the action runs.
+      '2': 'Enforce the rule in the tool or workflow itself: the system refuses to
+        execute the action until it records two distinct authenticators; both names
+        are captured in an audit log; the second approver cannot be the operator.'
+      '3': Periodically reconcile the dual-authorization log against actual media
+        movements and destruction records; alert on mismatches; report exceptions;
+        ensure separation of duties holds even at vendor or cloud-managed media endpoints.
+    basis: inferred
+  evidence:
+    value: Written list of media classes and actions requiring dual authorization,
+      system-enforced dual approval records showing two distinct identities per action,
+      reconciliation reports between approval logs and physical/asset records, exception
+      handling log.
+    basis: inferred
+  common_myth:
+    value: Treating dual authorization as satisfied by a 'two-person rule' printed
+      in a procedure document while the technical tool allows a single admin to trigger
+      sanitization, destruction, or export from the console. The control fails the
+      moment one person can actually push the button — paperwork without a system-enforced
+      second signature does not stop the failure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three sanitization or destruction events from the last quarter and the
+      two approvers recorded for each.
+    - Can the operator who runs the sanitization job also record the second approval,
+      or does the system enforce that the approver and executor are different identities?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.490067Z'
+  signed_digest: 6473c48423b6b7afec9c4b6aa3f19d4ca7f5e97e458499581384f6962ee1f738
+  interview_seconds: null
+  inherited_from: null

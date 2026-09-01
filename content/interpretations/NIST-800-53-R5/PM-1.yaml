@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:PM-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security program from being a collection of ad-hoc activities
+      with no owner, no documented direction, and no way to demonstrate to auditors
+      or leadership that the program is actually managed and resourced. Without this,
+      security decisions are reactive, inconsistent, and unaccountable.
+    basis: inferred
+  plain_zh:
+    value: It requires you to write down and officially adopt a plan that says what
+      your information security program is trying to achieve, who is in charge of
+      it, what resources it gets, and how it connects to the organization’s mission.
+      The plan must be reviewed and updated periodically.
+    basis: inferred
+  practice:
+    value:
+      '1': A document exists that names the program's purpose and scope, identifies
+        the senior accountable person, and is signed or otherwise approved by leadership.
+      '2': The plan includes program goals, priorities, resource commitments, and
+        how it fits with the organization's risk management and mission; it is reviewed
+        on a defined cycle and revised when major changes happen.
+      '3': The plan drives annual planning and budget decisions, is linked to risk
+        assessment results and control implementation status, and its updates are
+        tracked with version history and visible to stakeholders.
+    basis: inferred
+  evidence:
+    value: Signed and dated Information Security Program Plan, with version history,
+      associated approval meeting minutes, and periodic review records showing updates;
+      optionally, mapping to organizational planning and budget documents.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a security policy or a set of technical controls is
+      enough to satisfy this control—this specifically requires a program-level plan,
+      not just a collection of lower-level policies or procedures.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who approves the security program plan and when was it last signed?
+    - How does the plan get updated when the company changes its mission or technology
+      direction?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.685840Z'
+  signed_digest: 764bd40f2cb1dd8d4af16b8e70ee4d9003ce4f1fde47cc73bd8abb29c3d9f859
+  interview_seconds: null
+  inherited_from: null

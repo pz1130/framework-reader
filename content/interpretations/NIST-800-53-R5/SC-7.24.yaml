@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-7.24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents bulk PII from flowing over the same network paths as everything
+      else, where a compromise of one boundary exposes every record at once. The failure
+      mode is a flat internal network where a single foothold (phishing endpoint,
+      contractor laptop, lateral attacker) lets an adversary pivot straight to the
+      PII datastore without crossing a choke point that can filter, log, or block
+      the transfer.
+    basis: inferred
+  plain_zh:
+    value: Keep PII traffic on its own separated network path or boundary so it cannot
+      be quietly pulled out the same way ordinary traffic moves. The point is segregation
+      plus a controlled interface, not a label on the data.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where PII is stored and processed; draw the network path PII takes;
+        put a firewall or equivalent boundary device on that path so it is not the
+        same unfiltered segment as general user traffic.
+      '2': Enforce explicit allow-rules on the PII boundary (source/destination/protocol),
+        log flows crossing it, and review rules when systems or data stores change.
+      '3': Segment PII workloads into their own security zone or VPC, with separate
+        routing and an explicit deny-by-default policy; alert on anomalous cross-zone
+        transfers; routinely test that the boundary actually blocks prohibited flows.
+    basis: inferred
+  evidence:
+    value: Network diagram showing PII zone and boundary device, firewall/ACL rule
+      sets scoped to PII flows, logs of traffic crossing the boundary, change records
+      when PII systems are added or moved, test results demonstrating the boundary
+      blocks unauthorized transfer.
+    basis: inferred
+  common_myth:
+    value: 'Treating this as a data-classification exercise: tagging databases as
+      ''PII'' in a register and assuming the network is covered. Tagging the data
+      does nothing unless the traffic itself crosses a separate, enforced boundary.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the network path between a standard user workstation and the PII datastore,
+      and name every boundary device in between.
+    - What traffic is explicitly blocked at that boundary today, and how would you
+      prove it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.728942Z'
+  signed_digest: 1fcd040fb6d9b37438dfe1e892bbd5eabf7ba82c74e68e336dd93c9fe437c31f
+  interview_seconds: null
+  inherited_from: null

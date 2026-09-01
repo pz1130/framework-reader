@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against modules being wired together in ways that leak trust boundaries
+      - a weakly coupled, poorly factorised system forces security to be enforced
+      at the perimeter only, so the moment any one module is compromised, attacker
+      movement becomes trivial and protections can't be applied close to the data.
+    basis: inferred
+  plain_zh:
+    value: Design and build systems as cohesive, loosely coupled modules so that security
+      controls can be applied at well-defined boundaries and a failure in one module
+      does not silently propagate to others.
+    basis: inferred
+  practice:
+    value:
+      '1': Systems are decomposed into identifiable modules with documented responsibilities;
+        inter-module communication uses defined interfaces rather than shared mutable
+        state.
+      '2': Module boundaries and dependencies are recorded (e.g. architecture diagrams,
+        interface contracts); security-relevant coupling decisions (shared auth, shared
+        logging, shared trust) are reviewed at design time.
+      '3': Coupling and cohesion are treated as design review criteria - changes that
+        increase cross-module trust dependencies (shared sessions, shared tokens,
+        shared DB) require sign-off, and residual tightly-coupled components are tracked
+        as security debt.
+    basis: inferred
+  evidence:
+    value: Architecture documentation showing module decomposition, interface specifications,
+      design-review records addressing coupling/cohesion decisions, and a register
+      of modules whose coupling has security implications.
+    basis: inferred
+  common_myth:
+    value: Treating coupling and cohesion as a pure code-quality concern handled by
+      developers, not security. Security teams only see the final system and assume
+      the architecture is fine, then later discover a single compromised library gives
+      an attacker lateral movement everywhere.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an architecture view of one critical system - how are its modules bounded
+      and how do they talk to each other?
+    - Which modules in that system share authentication, sessions, or data stores,
+      and how was that decision reviewed for security?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.508279Z'
+  signed_digest: 0ea39b61238b1d59bdc9fb5ae04efdf9469c29a525158fa653eead9d583009f5
+  interview_seconds: null
+  inherited_from: null

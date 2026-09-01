@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-4.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker entering the building or campus airspace with
+      a rogue access point, ad-hoc network, or spoofed SSID that bypasses the wired
+      perimeter - because perimeter firewalls do not see radio frequency, an unauthorized
+      wireless link can bridge directly onto the LAN before any network control has
+      a chance to react.
+    basis: inferred
+  plain_zh:
+    value: Put sensors on the radio spectrum inside your physical space so you can
+      spot, locate, and respond to unauthorized Wi-Fi or other wireless devices -
+      including those that do not connect to your network and would otherwise stay
+      invisible to firewalls and endpoint tools.
+    basis: inferred
+  practice:
+    value:
+      '1': Run periodic wireless scans with laptops or mobile tools to look for unauthorized
+        SSIDs and access points; have a basic process to remove confirmed rogue devices.
+      '2': Deploy dedicated wireless IDS/IPS sensors covering the actual occupied
+        space; classify authorized devices, log events, and integrate alerts into
+        the SOC with a written response runbook.
+      '3': Sensors placed to cover all occupied areas including meeting rooms, guest
+        spaces, and edge of coverage; coverage gaps periodically validated; rogue
+        device detection feeds physical security response with documented mean-time-to-locate.
+    basis: inferred
+  evidence:
+    value: Wireless IDS sensor inventory and coverage map, list of authorized APs/SSIDs,
+      rogue device detection logs with disposition, incident response records for
+      wireless events, and periodic coverage validation reports.
+    basis: inferred
+  common_myth:
+    value: Assuming that MAC filtering on corporate APs or WPA2-Enterprise alone stops
+      rogue devices - an attacker plugging a $30 travel router into a conference room
+      outlet bridges onto the LAN without ever joining the corporate SSID, and your
+      enterprise authentication never sees it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which areas of your facility are not covered by wireless sensors, and how do
+      you know?
+    - 'Show the last three rogue device alerts: how were they detected, located, and
+      removed?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.995889Z'
+  signed_digest: 7d75c2410c5934e1b4c3a64eb1c8c9337ee93231193f9196fa662a2668551e27
+  interview_seconds: null
+  inherited_from: null

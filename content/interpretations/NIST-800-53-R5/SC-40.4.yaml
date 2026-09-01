@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-40.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker piggybacking on the wired side-channel that
+      every connected device leaks by default — RF characteristics, voltage fluctuations,
+      clock jitter, and similar unintentional emissions — to infer keystrokes, reconstruct
+      video, or fingerprint what is running, without ever touching the host or its
+      network. Without this control, a determined adversary within physical or near-physical
+      proximity can listen to your cables and screens as if they were microphones.
+    basis: inferred
+  plain_zh:
+    value: Make the system actively tell you which unintended signals its components
+      emit (and accept) — clock, voltage, RF, thermal, acoustic — so you can judge
+      whether they leak sensitive information and decide whether to suppress, mask,
+      or accept the risk.
+    basis: inferred
+  practice:
+    value:
+      '1': List the most exposed systems (comms rooms, embassy-class kit, crypto gear,
+        screeneed workstations, IoT in shared spaces) and note which side-channels
+        are realistic in their environment; have a written rule that new installations
+        in sensitive areas must declare expected emissions.
+      '2': Run a structured identification exercise per class of equipment — measure
+        or model clock, RF, power-line, acoustic, and thermal signatures; record which
+        parameters actually carry information about data, keys, or workload; review
+        findings with the asset owner and decide per signal whether to suppress, shield,
+        mask, or accept.
+      '3': Re-test on hardware or firmware changes and on environmental changes (new
+        neighbor equipment, new cabling, new power source); feed identified parameters
+        into TEMPEST-style shielding plans, zone separation, and emission-control
+        budgets; track residual leakage as a tracked risk with an owner.
+    basis: inferred
+  evidence:
+    value: Signal identification methodology, per-asset emission profile records,
+      classification of which signals are information-bearing, decisions taken (suppress
+      / shield / mask / accept), and re-test logs after changes.
+    basis: inferred
+  common_myth:
+    value: Treating SC-40 as a hardware-only TEMPEST problem for classified government
+      work, so commercial teams skip it entirely — the underlying risk (side-channel
+      leakage from ordinary enterprise devices) exists far below classified thresholds,
+      and the control asks for identification, not a shielded room.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For which asset classes have you actually identified the emitted signals, not
+      just assumed the device is 'normal IT'?
+    - Which specific signal parameters did you decide were information-bearing, and
+      what did you do about each one?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.598063Z'
+  signed_digest: 16b80b752ed2f98e662ad1d37c80f7e7b3fc17c2cd50298deb5f540b43863e1d
+  interview_seconds: null
+  inherited_from: null

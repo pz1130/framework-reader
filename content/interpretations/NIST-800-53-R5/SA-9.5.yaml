@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-9.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an organization believing its data stays where it always
+      did—because the cloud contract or the third-party's SLA is not constrained,
+      a provider can move workloads, backups, or logs to another country or region
+      without the customer realizing it, pulling data across jurisdictions or outside
+      approved boundaries.
+    basis: inferred
+  plain_zh:
+    value: Set and enforce rules on where the external system is allowed to process,
+      store, and serve your data, and keep that location known over time.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which external systems handle the organization's data and note
+        in the contract or terms of service the countries or regions where processing
+        and storage are allowed.
+      '2': Require the provider to notify the organization before relocating data,
+        backups, or processing to a different country or region, and keep records
+        of approved locations.
+      '3': Periodically verify that live processing, storage, and service locations
+        match what was approved, and have a defined response when a provider moves
+        data outside the agreed jurisdictions without consent.
+    basis: inferred
+  evidence:
+    value: Approved list of allowed processing/storage/service locations, contract
+      clauses covering data location and relocation notice, change records for any
+      approved location moves, and verification logs showing current versus approved
+      locations.
+    basis: inferred
+  common_myth:
+    value: Treating the provider's default region selection in a console as the binding
+      location. The technical setting is only one input; the contractual and operational
+      controls (notice before relocation, ability to refuse) are what actually pin
+      the data down.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show where in the contract the provider is obligated to tell you before moving
+      your data to another region.
+    - How do you confirm today that the data for each outsourced system is still in
+      the country or region you approved?
+    basis: inferred
+  regional_note:
+    value: European auditors (especially under GDPR-related scrutiny) routinely press
+      on whether transfers outside the EEA have a legal basis and on provider relocation
+      rights; U.S. auditors generally treat this as a contractual and operational
+      question rather than a jurisdictional one.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.356415Z'
+  signed_digest: 3e2ad23e8676d5684ba76f06d444eacfced8af065d7a22dc6d663b75d548a35c
+  interview_seconds: null
+  inherited_from: null

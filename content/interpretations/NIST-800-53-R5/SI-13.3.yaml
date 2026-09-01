@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:SI-13.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents information from being corrupted, lost, duplicated, or inconsistently
+      reordered when data moves between system components without relying on the normal
+      transfer mechanism.
+    basis: inferred
+  plain_zh:
+    value: If the standard automated transfer path cannot be used, define and control
+      a manual way to move information so that authorization, handling, and reconciliation
+      prevent mistakes or tampering.
+    basis: inferred
+  practice:
+    value:
+      '1': Document when manual transfer is permitted, who may perform it, which information
+        may be moved, and the approved source, destination, and handling method.
+      '2': Use recorded transfer requests, dual review for sensitive or high-impact
+        data, secure transmission and storage, and documented reconciliation against
+        the source and destination.
+      '3': Integrate manual transfer with change and incident workflows, monitor repeat
+        or exceptional use, test the process, and retain evidence showing that every
+        transfer was authorized, complete, and accurately received.
+    basis: inferred
+  evidence:
+    value: Manual transfer procedures, authorization records, source-to-destination
+      reconciliation records, exception logs, custody or transmission records, review
+      results, and test or incident findings.
+    basis: inferred
+  common_myth:
+    value: Assuming that using encrypted media, email, or a spreadsheet automatically
+      satisfies the control; the transfer still needs defined eligibility, authorization,
+      and reconciliation requirements.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What conditions permit a manual transfer, and who is authorized to perform one?
+    - How do you reconcile information transferred manually with both the source and
+      the destination?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.841202Z'
+  signed_digest: cbdf9225d3e4398054c2ac87a8230203cb755593bda66b57c4581f62388e3751
+  interview_seconds: null
+  inherited_from: null

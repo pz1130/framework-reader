@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-15.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from shipping a system whose exposed interfaces,
+      services, and code paths were never deliberately scoped down — the failure mode
+      where everything is reachable by default and the only defense is perimeter monitoring
+      that arrives after exploitation.
+    basis: inferred
+  plain_zh:
+    value: 'Deliberately shrink what an attacker can reach and try on each system:
+      inventory exposed interfaces, turn off or harden what is not needed, and keep
+      that smaller surface under review as the system changes.'
+    basis: inferred
+  practice:
+    value:
+      '1': Document the exposed interfaces (network ports, APIs, services, admin endpoints)
+        for the system; disable or firewall what is not required for the stated mission.
+      '2': Apply a documented hardening baseline (CIS or equivalent) to the components;
+        track deviations with justification; review the surface before each release
+        or major change.
+      '3': Treat attack-surface decisions as a design input with measurable targets
+        (e.g., open ports, reachable services, admin paths), block regressions in
+        CI/CD, and re-baseline after architecture changes or threat-relevant events.
+    basis: inferred
+  evidence:
+    value: System-level attack-surface inventory, hardening baseline applied with
+      documented exceptions, pre-release review records, and regression checks showing
+      the surface did not grow unnoticed.
+    basis: inferred
+  common_myth:
+    value: Assuming a vulnerability scanner report equals attack-surface reduction
+      — scanning only finds what is already exposed; reduction means removing, disabling,
+      or isolating the attacker's reachability in the first place, not just cataloging
+      it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick this system: which ports and services are intentionally exposed, and who
+      approved that list?'
+    - Show the most recent change that added or removed an exposed interface and the
+      review record for it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.087376Z'
+  signed_digest: 7e32935468a4189d6400e5bfb7b36d2ba644e1567475a3054bef5a4a29030848
+  interview_seconds: null
+  inherited_from: null

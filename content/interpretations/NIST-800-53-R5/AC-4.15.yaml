@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-4.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure where employees, contractors, or compromised accounts
+      move sensitive data through channels no one approved - personal email, unmanaged
+      cloud drives, shadow SaaS, unsanctioned chat - and the security team only finds
+      out after a breach notification arrives, because nothing was actually watching
+      the traffic leaving the perimeter.
+    basis: inferred
+  plain_zh:
+    value: Detect when information is being transmitted to destinations or via services
+      that the organization has not authorized, so you can block it, investigate it,
+      or at least know it happened. Sanctioned channels are monitored by design; the
+      blind spot is everything outside that list.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a written list of approved external destinations, services, and
+        transfer methods for sensitive information; configure monitoring on egress
+        points to flag traffic going elsewhere.
+      '2': Define what counts as unsanctioned (unapproved SaaS, personal email accounts,
+        non-corporate file shares, mismatched destinations for the data class); alert
+        and route detections to investigation; review the list at least annually.
+      '3': Layer detection on network egress, cloud API egress, and endpoint DLP channels
+        so coverage is not single-point; tune for false positives; tie detections
+        to incident response; measure how often unsanctioned flows actually reach
+        the outside vs. being blocked at the proxy, email gateway, or endpoint.
+    basis: inferred
+  evidence:
+    value: The sanctioned destinations/services list, detection rules on egress and
+      DLP systems, alert triage and investigation records, incident tickets triggered
+      by unsanctioned transfers, and a summary showing coverage and volume of detections
+      over a recent period.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a DLP product' as the control - DLP tools configured
+      to look for credit-card or PII patterns do not, by themselves, flag traffic
+      going to an unapproved destination; the destination policy is a separate rule
+      and is often left at defaults.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current list of sanctioned external destinations for sensitive data
+      and the date it was last reviewed.
+    - Pick a recent unsanctioned-transfer alert - walk me through what was detected,
+      who investigated, and what action was taken.
+    - Which egress paths (web proxy, email, cloud sync, endpoint) actually enforce
+      the sanctioned-destination rule, and which are not covered?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.276725Z'
+  signed_digest: d44e96890bd76370122d8797f40a3e8995158dc1e0d5638217a36efa93d40727
+  interview_seconds: null
+  inherited_from: null

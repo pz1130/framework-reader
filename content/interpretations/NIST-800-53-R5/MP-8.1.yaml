@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:MP-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against media sanitization being treated as folklore rather than
+      a controllable process — without a written, repeatable procedure, devices get
+      wiped inconsistently, 'cleaned' media leaks data, and auditors cannot reconstruct
+      who decided what was enough.
+    basis: inferred
+  plain_zh:
+    value: Write down, in a usable form, how the organization sanitizes media before
+      disposal or release — so the same steps are followed every time and can be checked
+      later.
+    basis: inferred
+  practice:
+    value:
+      '1': There is at least one short, written procedure that names which sanitization
+        method (clear, purge, destroy, or vendor process) applies to each class of
+        media, and who can perform it.
+      '2': The procedure covers incoming media, media leaving the org (donation, resale,
+        return), failed media, and cloud/USB/SSD cases separately; sanitization is
+        recorded per item with method, tool/version, operator, and date.
+      '3': The procedure is version-controlled, exceptions are approved in writing,
+        completion records are auditable, and the process is reviewed when tools or
+        media types change.
+    basis: inferred
+  evidence:
+    value: A documented media sanitization procedure (dated, version-controlled) plus
+      sanitization records for sampled media showing method chosen, tool used, operator,
+      date, and verification where applicable.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we use the tool's default wipe' counts as a documented process.
+      The control requires the org's own documented procedure describing which method
+      applies to which media; relying on vendor defaults without a written org-level
+      process is the common gap.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the document that says which sanitization method applies to which type
+      of media, and who approved it.
+    - Pick three pieces of media processed in the last quarter — what method was used,
+      who did it, and where is the record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.501687Z'
+  signed_digest: 0651b20d01302b96d6de112f20b2d93eacbc373b3e752efe3be6ed681c87feb6
+  interview_seconds: null
+  inherited_from: null

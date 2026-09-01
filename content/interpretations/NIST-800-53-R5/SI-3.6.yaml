@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SI-3.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure mode where malicious code protections are deployed
+      on the assumption they work, but no one ever proves it. Untested anti-malware
+      tools silently miss novel payloads, fail to update, or get disabled by a configuration
+      drift — leaving the very gap they were bought to close. This control forces
+      periodic, evidence-based confirmation that detection and prevention still actually
+      fire on real malicious content.
+    basis: inferred
+  plain_zh:
+    value: Periodically put the malicious-code protections through a real test — not
+      a vendor screenshot — to confirm they detect, block, and alert on actual malware,
+      and that signature/heuristic updates are flowing as expected. Document what
+      was tested, what happened, and how any gap was fixed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the endpoints, servers, email, and web gateways that carry anti-malware;
+        pick a sample to verify that the engine is enabled, signatures are current
+        within the vendor window, and a known test file is caught.
+      '2': Run scheduled, documented tests (e.g., EICAR or equivalent benign samples)
+        across in-scope systems; record detection outcomes, alert generation, and
+        quarantine behavior; track updates and version drift.
+      '3': Periodically validate detection of fresh, real-world samples in a controlled
+        environment; trend false negatives/positives; drive failures into a remediation
+        workflow with owners and deadlines; cover configurations, coverage gaps, and
+        alert-to-ticket chain end-to-end.
+    basis: inferred
+  evidence:
+    value: Test plan defining scope, method, and cadence; dated test results showing
+      detection, alert, and block behavior across representative systems; update/version
+      currency logs; remediation tickets and closure evidence for any failures; trend
+      or dashboard showing recurring test outcomes.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the anti-malware console shows a green status and
+      signatures updated last night, the control is effective. The console reports
+      what the agent told it; it does not prove the engine would catch a malicious
+      payload dropped on disk or sent through the mail gateway today. Without an actual
+      test fire, drift in policies, exclusions, or decrypt-and-scan settings goes
+      unnoticed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three test results for malicious-code protection, including
+      which systems were covered and what sample was used.
+    - When a test sample was not detected or blocked, who fixed it and how do you
+      know it works now?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.968713Z'
+  signed_digest: cfde213ce3966d85912bb529fcac2bb8346d08b80ca4acf5e5a84ae4b4110c1d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:IR-4.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops a SOC from being a wall of dashboards that goes quiet when something
+      real happens. The risk is that alerts, tips, and suspected events pile up in
+      a tool no one owns end-to-end, so an actual incident goes undeclared, mis-routed,
+      or stuck waiting for a human who never comes. A SOC control forces a defined
+      intake, triage, escalation, and disposition path so no plausible signal dies
+      in the queue.
+    basis: inferred
+  plain_zh:
+    value: Run or engage a security operations capability that detects, triages, escalates,
+      and resolves suspected security events end-to-end, with clear ownership and
+      handoffs - not just a pile of monitoring tools.
+    basis: inferred
+  practice:
+    value:
+      '1': Someone or a team is named as responsible for monitoring and initial response;
+        alerts have a written intake path and an on-call contact; obvious security
+        events get a ticket that is acknowledged.
+      '2': SOC duties are documented (scope, hours, escalation tiers, handoff to IR);
+        analysts follow runbooks; alerts carry severity and SLA; suspicious events
+        are correlated and either closed with reason or escalated with a record.
+      '3': Coverage gaps (assets, segments, hours) are known and reported; metrics
+        (MTTA, MTTR, false-positive rate, backlog) are tracked and reviewed; suspected
+        events flow into a tested IR process with feedback loops that tune detection;
+        outsourcing and co-managed arrangements have explicit responsibility split
+        and a tested bridge.
+    basis: inferred
+  evidence:
+    value: SOC charter or charter-equivalent document defining scope, ownership, hours,
+      escalation tiers and handoff to incident response; on-call rosters and shift
+      coverage; runbooks for common alert and event classes; alert and ticket logs
+      showing intake, severity, SLA, triage and disposition; SOC metrics and trend
+      reports; incident records showing handoff into IR; for outsourced or hybrid
+      SOCs, the contract or RACI and a tested hand-off exercise.
+    basis: inferred
+  common_myth:
+    value: Treating the SOC as satisfied because monitoring tools (SIEM, EDR, NDR)
+      are purchased and dashboards are up. Tools are inputs; the control fails when
+      no one owns the queue, when alerts lack a defined triage owner, when there is
+      no tested handoff into incident response, or when coverage of assets, segments
+      and hours is undocumented. A SOC exists as a function with intake, triage, escalation
+      and disposition - not as a stack of licenses.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the document that names who is responsible for the SOC and what is in or
+      out of scope, including hours and which networks or assets are not covered.
+    - 'Pick a recent suspected security event: how did it enter the SOC, who triaged
+      it, what severity and SLA applied, and where did it go after triage - closed,
+      escalated to IR, or stuck?'
+    - If the SOC is outsourced or co-managed, where is the written split of responsibility
+      and when was the hand-off between your team and the provider last exercised?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.298075Z'
+  signed_digest: a7d5a7227857598a11ac2a05c94de1277a0edb0a3071c88af5a07a325dffce96
+  interview_seconds: null
+  inherited_from: null

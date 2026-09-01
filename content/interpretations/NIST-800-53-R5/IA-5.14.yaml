@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:IA-5.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the false assumption that once a certificate authority
+      (CA) is trusted, it can be trusted forever—an attacker or a compromised CA can
+      issue rogue certificates that your systems will blindly accept, so the trust
+      store content must be actively managed rather than set-and-forget.
+    basis: inferred
+  plain_zh:
+    value: Make sure the list of CAs your systems trust is intentionally chosen, not
+      just inherited from an operating system or browser default—and that you regularly
+      review and prune that list to reflect who you actually want to trust.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which CAs are acceptable for internal use; document in a policy;
+        apply to major systems.
+      '2': Maintain a central inventory of trust stores (OS, browser, application);
+        change control requires review before adding/removing a CA; document the review.
+      '3': Automate monitoring of trust stores against the approved baseline; alert
+        on drift; have a documented revocation process when a CA is compromised or
+        its practices change.
+    basis: inferred
+  evidence:
+    value: The approved CA list or policy, inventory of trust stores, change-control
+      tickets for every CA addition/removal, monitoring or audit logs showing the
+      current trust store matches the approved list.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the trust store came from the vendor (e.g., Microsoft
+      or Apple) and gets regular updates, it is automatically fine—but the default
+      list often contains CAs you never use or may not want, and an incident could
+      require removing one quickly.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you reviewed the contents of your trust stores—what was
+      the trigger and who signed off?
+    - If you discovered a CA in your trust store that you didn't intend to trust,
+      what's the documented process to remove it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.185577Z'
+  signed_digest: 4faaa89b2681ca93f2aea9c85fefbb364d652cdf0a159644d9ec71ba56f32f7d
+  interview_seconds: null
+  inherited_from: null

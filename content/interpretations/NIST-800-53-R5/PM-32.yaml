@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PM-32
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an organization accidentally drifting into roles, services,
+      or partnerships that violate its purpose, principles, or legal boundaries —
+      pursuing revenue, partnerships, or capabilities that conflict with stated mission,
+      ethics, or jurisdictional rules because no one articulated or enforced what
+      the organization is and is not for.
+    basis: inferred
+  plain_zh:
+    value: Write down, in enforceable terms, what the organization exists to do and
+      what it explicitly will not do, and use that document to screen new initiatives,
+      partnerships, and capabilities before they start rather than after problems
+      appear.
+    basis: inferred
+  practice:
+    value:
+      '1': A written purpose statement exists, approved by leadership, that names
+        what the organization does and does not do, with at least one screening question
+        applied before new services or partnerships are entered.
+      '2': 'The purpose statement drives concrete decisions: contracts, product launches,
+        and vendor selections reference it; ethics, privacy, and legal review use
+        it as a filter; departures are documented with reasons.'
+      '3': The purpose is reviewed periodically and when business direction changes;
+        misalignments are caught in proposal or design stages, not after launch; metrics
+        or cases show where the statement actively prevented an off-mission initiative.
+    basis: inferred
+  evidence:
+    value: Approved purpose/principles document, decision records showing it was applied
+      to real proposals, screening checklist or gate used before new initiatives,
+      examples of accepted and rejected alignments, review and revision history.
+    basis: inferred
+  common_myth:
+    value: Treating a polished mission statement on the company website as satisfying
+      this control. The statement exists for marketing; the control requires an internal,
+      operational artifact that decisions can be tested against — without that, the
+      organization has a slogan, not a purposing function.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show one decision in the last year where the purpose statement caused a project
+      to be modified, paused, or rejected.
+    - Who owns the purpose statement, when was it last reviewed, and what triggered
+      that review?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.783367Z'
+  signed_digest: e875da2ea8db2a587a7c6da6b49114512193588dd2f090927c79691854fae32e
+  interview_seconds: null
+  inherited_from: null

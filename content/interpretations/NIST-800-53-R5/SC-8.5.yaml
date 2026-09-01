@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-8.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against interception of unencrypted signals as they travel across
+      a boundary the organization cannot fully control (conduit, patch panel, telco
+      wiring, shared telecom room). Cryptography on the endpoints means nothing if
+      the wire between them is tapped, so the path itself must be physically or cryptographically
+      protected end-to-end.
+    basis: inferred
+  plain_zh:
+    value: Make sure the cables, fibers, and signal paths that carry sensitive or
+      unencrypted data cannot be silently tapped, spliced, or replaced along the way.
+      Use either a physically protected conduit/wiring system, or extend the crypto
+      to cover the full path between trusted endpoints.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the links that carry classified, sensitive, or unencrypted data
+        outside a secure space; mark or route them through visibly distinct, controlled
+        pathways; keep telco rooms and patch panels locked with access logged.
+      '2': Document the protected distribution system on a diagram that shows every
+        segment, splice, and endpoint; define inspection cadence, tamper reporting,
+        and who is allowed to touch the path; record any changes.
+      '3': Periodically inspect the physical path against the diagram (look for new
+        splices, unauthorized patch cords, parallel runs); treat the PDS as a controlled
+        item with change control, anomaly reporting, and acceptance testing after
+        any work on the path.
+    basis: inferred
+  evidence:
+    value: PDS diagram with segment inventory and inspection points, access logs for
+      conduit/rooms, tamper-inspection records and anomaly reports, change-control
+      records for any work on the path, acceptance test results after modifications.
+    basis: inferred
+  common_myth:
+    value: Assuming TLS or IPsec on the endpoints satisfies confidentiality, so the
+      physical run between them does not matter. In practice, taps on a copper run
+      or an undocumented splice in a shared telecom closet defeat endpoint crypto
+      without ever breaking the protocol.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the diagram of the path between endpoint A and endpoint B and point to
+      the physical protection on every segment.
+    - When was the last physical inspection of this conduit or wiring run, and what
+      did it find?
+    - Who is authorized to open the telco room or patch panel, and where is that access
+      recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.790178Z'
+  signed_digest: a421080c40b4b9bb871f6e69365ad145d44ceb536b37bb3b03ab7d0646bacc65
+  interview_seconds: null
+  inherited_from: null

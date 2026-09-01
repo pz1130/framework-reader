@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CP-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where the organization treats 'restoring
+      a system' as the finish line of resilience, leaving services technically online
+      but functionally broken — dirty data, half-restored configurations, unverified
+      integrations, and untrusted states that look recovered but quietly corrupt operations
+      or expose residual compromise.
+    basis: inferred
+  plain_zh:
+    value: After a continuity event, the system and its environment must be returned
+      to a fully working, trusted state — not merely 'up'. Recovery actions, validations,
+      and the resulting evidence have to be captured as records.
+    basis: inferred
+  practice:
+    value:
+      '1': Recovery checklist distinguishes 'service is reachable' from 'service is
+        fully operational'; manual smoke tests cover core functions and data integrity.
+      '2': Reconstitution steps cover configuration baselines, data validation, security
+        state checks, and dependency re-attestation; actions and outcomes are logged
+        during real or test events.
+      '3': Full reconstitution is rehearsed end-to-end on a defined cadence with independent
+        verification (e.g., another team or automated checks) that the system matches
+        its pre-disaster secure and functional baseline before traffic is restored.
+    basis: inferred
+  evidence:
+    value: Recovery and reconstitution plans, post-event or test logs showing each
+      step executed and validated, comparison of restored state against pre-event
+      baseline, sign-off before returning the system to production.
+    basis: inferred
+  common_myth:
+    value: Treating failover success as proof of full recovery — a system can boot,
+      pass synthetic pings, and still serve stale data, run with weakened configurations,
+      or carry attacker footholds; 'up' is not the same as 'recovered'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you prove a restored system matches its secure and functional baseline,
+      not just that it answers network calls?
+    - What is checked before traffic is turned back on, and who signs off?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.972392Z'
+  signed_digest: 0f4ce6f59ffa70f8f4c98ab8f5e98de40fa5defff30be4dee6f3bae979d43750
+  interview_seconds: null
+  inherited_from: null

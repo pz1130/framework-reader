@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:IR-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'If ''breach'' has no agreed definition across the organization, the incident
+      response plan collapses the moment one is needed: legal says it''s not a breach
+      until regulators are notified, security calls everything a breach, and executives
+      freeze because no one agrees on what they are looking at. This control forces
+      a written, shared meaning of ''breach'' before an incident forces the question.'
+    basis: inferred
+  plain_zh:
+    value: Write down, in a way the whole organization accepts, what counts as a 'breach'
+      — and align that definition with what your incident response plan, your legal/regulatory
+      notification duties, and your executives actually have to act on.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written definition of 'breach' exists, signed off by legal, security,
+        and a senior business owner; it is referenced from the IR plan and the breach
+        notification procedure.
+      '2': The definition maps to concrete incident categories (e.g., PII exposure,
+        system intrusion, data loss) and to the triggers for legal/regulatory notification;
+        IR playbooks use the same terminology.
+      '3': The definition is rehearsed in tabletop exercises and updated after real
+        incidents or regulatory changes; notification thresholds, escalation paths,
+        and decision rights are tested, not just described.
+    basis: inferred
+  evidence:
+    value: Approved definition of 'breach', the IR plan or playbook sections that
+      reference it, mapping of incident types to notification obligations, and tabletop
+      or post-incident records showing the definition was actually applied.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the law defines 'breach' (e.g., for personal data)
+      the organization already has a usable internal definition. Statutory definitions
+      cover legal notification; they do not tell the on-call engineer, the CISO, and
+      the GC that they are all talking about the same event when one is unfolding
+      at 2 a.m.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the document where 'breach' is defined and who approved it.
+    - 'Walk me through your last real incident: at what point did you decide it was
+      a breach, and which definition did you apply?'
+    basis: inferred
+  regional_note:
+    value: European auditors routinely cross-check the internal breach definition
+      against GDPR's personal-data breach concept and ask whether non-personal-data
+      incidents fall under any NIS2 or sectoral notification regime. US auditors under
+      HIPAA, GLBA, or state laws tend to focus on whether the internal definition
+      covers each applicable statutory category; the question is similar but the statutory
+      anchors differ.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.360167Z'
+  signed_digest: 5061720647bdf56b880e771a0bc252adc5f2c47fae4abb85637b3e5ab9f267e8
+  interview_seconds: null
+  inherited_from: null

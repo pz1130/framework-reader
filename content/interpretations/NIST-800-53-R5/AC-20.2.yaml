@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-20.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against trusted insiders or attackers with brief physical access
+      copying sensitive data onto thumb drives, external SSDs, or SD cards and walking
+      it out the door — a channel that bypasses every network control, DLP agent,
+      and email filter in the stack.
+    basis: inferred
+  plain_zh:
+    value: Restrict or block the use of portable/removable storage devices (USB sticks,
+      external drives, memory cards) on systems that hold sensitive data, with enforcement
+      strong enough that a stolen laptop or borrowed workstation cannot quietly exfiltrate.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule states which systems and data classes forbid removable media;
+        endpoint product settings block unknown USB mass-storage devices; users know
+        the rule.
+      '2': Enforcement is centrally managed (group policy / MDM / EDR policy) across
+        all in-scope endpoints; exceptions require a named approver and an expiry
+        date; detected insertions are logged.
+      '3': Encryption or device whitelisting (specific serial-number or model allowlist)
+        is layered on top of the block; blocked-attempt alerts go to monitoring; the
+        policy is re-tested after major endpoint rollouts.
+    basis: inferred
+  evidence:
+    value: Written portable-storage policy, endpoint configuration snapshots or GPO/MDM
+      exports showing the block, exception register with approver and expiry, USB
+      insertion/attempt logs and corresponding alerts, recent verification that a
+      sample of endpoints actually enforces the block.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have an endpoint product that can block USB' as equivalent
+      to the control being met. The tool is unlicensed, in audit mode, scoped to a
+      pilot OU, or users are local administrators who can disable it — the policy
+      looks real in the console and does nothing on the device.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Plug an unknown USB stick into a sample laptop on each business unit — does
+      the OS actually refuse to mount it, and is the attempt logged?
+    - 'Show the list of approved exceptions from the past quarter: who approved each
+      one, when does it expire, and what compensating control covers the gap?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.158306Z'
+  signed_digest: bd0431366f53561de13eddb03b06ab1d29073ee1db50e3e5bc3667c6a0edebd3
+  interview_seconds: null
+  inherited_from: null

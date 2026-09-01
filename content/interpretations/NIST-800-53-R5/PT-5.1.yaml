@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:PT-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against employees being asked to consent to privacy monitoring
+      or data collection after the fact, when denial is no longer meaningful — by
+      the time a survey arrives, the conduct has already been captured and used. It
+      also blocks the failure mode where 'we told them somewhere' is the legal team's
+      only fallback when a regulator asks whether the person had a real chance to
+      refuse before the data flowed.
+    basis: inferred
+  plain_zh:
+    value: Tell people about PII collection, monitoring, or other privacy practices
+      at the moment it starts to affect them — close enough in time that they could
+      actually act on it — and do not rely on a one-time onboarding form signed months
+      earlier as ongoing consent.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify each system, form, or monitoring activity that collects PII or
+        tracks employees/users; give a short notice at the point of collection that
+        names what is collected and why.
+      '2': Standardize notice templates tied to each collection point (intranet, endpoint
+        agent, web form, recording banner); record delivery and acceptance where required;
+        refresh notices when purpose or data types change.
+      '3': Wire notice delivery into the workflow itself so it cannot be skipped (agent
+        enrollment scripts, CRM record creation, meeting recording start); track who
+        received what notice when; periodically verify notices still match what the
+        system actually collects and is used for.
+    basis: inferred
+  evidence:
+    value: Point-of-collection notice templates, system-to-notice mapping showing
+      each collection point and the notice delivered there, logs/records of notice
+      delivery, change log when notices are revised, and a sample walkthrough showing
+      an employee receiving notice before data is captured.
+    basis: inferred
+  common_myth:
+    value: Treating the privacy act training acknowledgement or onboarding NDA as
+      the 'just-in-time notice' — those are general awareness, not timely notice tied
+      to a specific collection event, and they do not let the person decline the particular
+      monitoring or data use at hand.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through one example where an employee or user is notified about PII
+      collection at the moment collection starts — what do they see and when?
+    - How do you ensure the notice matches what the system actually collects, and
+      what is your process when a notice drifts out of sync with a new data field
+      or purpose?
+    basis: inferred
+  regional_note:
+    value: EU auditors (and those working under GDPR-aligned regimes) treat timeliness
+      and the ability to object before processing as substantive; US practice, outside
+      sector-specific rules, tends to be more accepting of annual training acknowledgements
+      or handbook language as substitute notice.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.893643Z'
+  signed_digest: 47a2f9071bc729e90c4e9fff8553b27bbc6e43d85ae43e26259d164dc033b615
+  interview_seconds: null
+  inherited_from: null

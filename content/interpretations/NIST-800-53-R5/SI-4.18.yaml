@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-4.18
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who slip data out inside permitted channels
+      — DNS tunneling, steganography in images, protocol field abuse, timing channels
+      — where a firewall that only blocks 'bad' destinations never notices because
+      the destination itself is allowed. If you only watch headers and known-bad indicators,
+      an insider or compromised host can carry out gigabytes of loss through channels
+      you rubber-stamp.
+    basis: inferred
+  plain_zh:
+    value: Not just block or allow traffic — actually look inside the flows for patterns
+      that show someone is sneaking data out, including techniques that hide inside
+      otherwise legitimate protocols, and act on what you find.
+    basis: inferred
+  practice:
+    value:
+      '1': IDS/IPS rules and egress filters are in place; security team gets alerted
+        on anomalous outbound volume or unusual external destinations.
+      '2': Detections explicitly cover covert-channel techniques (DNS tunneling, ICMP
+        payloads, HTTP header abuse, steganography in common file types); alerts are
+        triaged and tied to response playbooks; covert-exfil findings are documented.
+      '3': Behavioral analytics baseline normal protocol field sizes and frequencies;
+        deviations trigger investigation; coverage is tested with red-team or purple-team
+        exfil scenarios and gaps feed back into detection engineering; findings drive
+        policy or architecture changes.
+    basis: inferred
+  evidence:
+    value: Detection content covering covert-channel techniques, sample alerts and
+      triage notes, egress traffic analysis reports, red/purple-team exfil exercise
+      results and follow-up actions, tuning logs showing how detections evolved.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have an IDS and egress filtering' as covering this control.
+      Header-level blocking and signature IDS miss data hidden in protocol fields
+      or in the payload itself, so an allowed channel with embedded exfiltration sails
+      past.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a detection rule or analytic that would catch data smuggled inside DNS
+      queries or responses.
+    - When was the last time you tested whether your egress monitoring would actually
+      catch a covert exfiltration attempt, and what did you change as a result?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.012281Z'
+  signed_digest: 2075af50193ede5b1be784295c2a23f9feac3e618761999dcaa82db99608271c
+  interview_seconds: null
+  inherited_from: null

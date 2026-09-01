@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the baseline configuration going stale silently. A documented
+      baseline that nobody reconciles against real systems drifts the moment a server
+      is patched, a container image is rebuilt, or an emergency change is applied—after
+      which "the baseline" no longer matches production, and every later control (vulnerability
+      scanning, change detection, incident triage) is measured against a fiction.
+    basis: inferred
+  plain_zh:
+    value: Maintain the baseline configuration with automated tools that keep it accurate
+      and current—not a static document refreshed once a year, but a live link between
+      the authoritative baseline and what is actually running.
+    basis: inferred
+  practice:
+    value:
+      '1': Use a configuration management or hardening tool (e.g., Ansible, Puppet,
+        Chef, SCCM, Intune) to push the baseline rather than relying on golden-image
+        snapshots in shared drives.
+      '2': Tool runs on a defined cadence against in-scope assets, reports drift,
+        and produces records showing which assets are compliant vs. drifted at any
+        point in time.
+      '3': 'Automation is the enforcement mechanism: drift triggers an alert and either
+        auto-remediation back to baseline or a ticketed exception with an expiry;
+        the baseline itself is version-controlled and updates flow through change
+        control.'
+    basis: inferred
+  evidence:
+    value: Configuration management tool configuration and run logs, drift reports
+      with timestamps, version-controlled baseline definitions, change tickets linking
+      baseline updates to approved changes, and exception records with owners and
+      expiry dates.
+    basis: inferred
+  common_myth:
+    value: Believing a configuration baseline document checked into a wiki or SharePoint
+      satisfies the control because the document exists. A document that nobody reconciles
+      against live systems is not a baseline—it is an aspiration, and the auditor
+      will look for proof that the document and the systems actually match.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last drift report for a sampled system—how many items were drifted
+      and what happened to them?
+    - When the baseline was last changed, how was that change pushed to the fleet,
+      and can you trace one asset end-to-end from approved baseline to running config?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.755146Z'
+  signed_digest: a1e7476da3bdcc0442cb2dae7877e0bdb1259cb04024566576c16e2ddf49f2b0
+  interview_seconds: null
+  inherited_from: null

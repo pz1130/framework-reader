@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PS-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the failure mode where security policy is folklore — passed
+      down verbally, lives in someone''s head, or exists as an orphaned draft that
+      nobody reads. Without a written, approved, current policy, every other control
+      becomes unprovable: there is no benchmark to audit against, no authority to
+      cite, and no baseline that can be enforced consistently as people and systems
+      change.'
+    basis: inferred
+  plain_zh:
+    value: Write down who is covered, what the rules are, who approved them, when
+      they were last reviewed, and how people learn them. Without this artifact, nothing
+      else in the program holds up on paper.
+    basis: inferred
+  practice:
+    value:
+      '1': A personnel security policy document exists, names the roles it covers
+        (employees, contractors, vendors), has a version date, and is signed by someone
+        with authority.
+      '2': The policy covers the topics PS-2 through PS-8 explicitly (or by reference),
+        is reviewed on a defined cadence, and revisions are versioned. New hires and
+        role changes get the relevant policy handed to them with a record.
+      '3': Policy review is on a calendar with a named owner; deviations require a
+        documented exception path; the policy is referenced from onboarding, training,
+        and access-provisioning workflows, not just stored in a shared drive.
+    basis: inferred
+  evidence:
+    value: The approved policy document with version history, signature, and review
+      dates; mapping of PS-1 to subordinate PS controls it covers; records showing
+      the policy was communicated (acknowledgements, training completion, onboarding
+      checklists); and any documented exceptions against it.
+    basis: inferred
+  common_myth:
+    value: 'Treating the policy as a one-time writing exercise: the team drafts it,
+      leadership signs it once, and it sits untouched for years while the workforce,
+      systems, and threats change. The control fails the moment the document is stale
+      relative to actual practice.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the personnel security policy last reviewed, who approved the current
+      version, and what triggered the last revision?
+    - Show me how a new hire or contractor receives and acknowledges this policy before
+      being granted access.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.809726Z'
+  signed_digest: 619b0c41edff25ff10fff581c26cf9aee78238e0dbb2ef626242c11093260744
+  interview_seconds: null
+  inherited_from: null

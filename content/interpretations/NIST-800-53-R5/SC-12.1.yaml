@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against cryptographic keys being generated, stored, or distributed
+      by ad-hoc means that the organization cannot trace, revoke, or recover when
+      a key is compromised, lost, or when personnel leave — turning a key-management
+      gap into an outage or a breach.
+    basis: inferred
+  plain_zh:
+    value: Require that cryptographic keys used to protect organizational data come
+      from an established, managed key-management process with defined owners, lifecycle,
+      and recovery — not from whoever set up the system last.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where symmetric and asymmetric keys are in use across critical
+        systems; document who owns each key and where the key material lives; ensure
+        no keys are hard-coded in source or config without an owner.
+      '2': Operate keys through a key-management system or formal process covering
+        generation, distribution, storage, rotation, revocation, and destruction;
+        record key lifecycle events (creation, activation, retirement) in auditable
+        logs.
+      '3': Keys are provisioned, rotated, and revoked via automated workflows tied
+        to identity and asset systems; recovery procedures are tested; key compromise
+        triggers a defined, rehearsed response; key usage is monitored for anomalies.
+    basis: inferred
+  evidence:
+    value: Key inventory mapping keys to systems and owners, key management policy
+      and procedures, key lifecycle event logs (generation, distribution, rotation,
+      revocation, destruction), key recovery test records, and incident response records
+      for past key compromise events.
+    basis: inferred
+  common_myth:
+    value: Assuming that because TLS or disk encryption is enabled with 'managed'
+      certificates, the underlying keys are under control — the certificates and the
+      application-layer or data-encryption keys are two different things, and the
+      latter are often generated locally, never rotated, and unrecoverable when the
+      server that holds them is rebuilt.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the inventory of cryptographic keys protecting our most sensitive data
+      and the owner of each one.
+    - Walk me through what happens when a key is compromised tomorrow — who is notified,
+      who revokes it, and how do systems recover?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.382697Z'
+  signed_digest: 2039d60c9b0dff17ae53797be3c2060a8150dbc3c0de4af4c98ab65276c9759d
+  interview_seconds: null
+  inherited_from: null

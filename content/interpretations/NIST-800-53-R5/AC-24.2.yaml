@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-24.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against situations where an action, transaction, or request is
+      accepted without any accountable identity attached - meaning a breach, fraud,
+      or error happens and there is no person or service to trace it back to, so containment,
+      forensics, and accountability all collapse.
+    basis: inferred
+  plain_zh:
+    value: Every action taken on the system must be attributable to a specific authenticated
+      user or service identity. Anonymous, shared, or identity-less access must be
+      blocked by policy and by enforcement.
+    basis: inferred
+  practice:
+    value:
+      '1': Policy states that no action may occur without an authenticated user or
+        service identity; shared and anonymous accounts are prohibited on systems
+        that process sensitive data.
+      '2': Technical enforcement prevents anonymous access (no guest logons, no blank
+        service principals); shared accounts are exceptions that require approval,
+        are tracked, and have compensating controls such as session-level attribution.
+      '3': Continuous monitoring flags identity-less or shared activity; access reviews
+        explicitly check for anonymity or shared-account drift; audit logs always
+        carry an attributable subject for every privileged or sensitive action.
+    basis: inferred
+  evidence:
+    value: Acceptable-use / access policy prohibiting anonymous and shared accounts,
+      configuration baselines showing anonymous access disabled, exception register
+      for any approved shared accounts with compensating controls, and audit-log samples
+      demonstrating every sensitive action carries a user or service principal.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have SSO and unique logins' satisfies the control, while legacy
+      service accounts, local admin accounts, or break-glass accounts still operate
+      without individual attribution - the control fails the moment any sensitive
+      action runs under an unattributed identity.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the accounts on the most sensitive system - which ones are shared or
+      break-glass, and how is each individual action attributed back to a person?
+    - Can you pull a sample audit log entry for a privileged action and show the user
+      or service principal that performed it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.194485Z'
+  signed_digest: a91e5b86ed35657781f6cad10dcb596c3b1f85459b12b0540a46edb33238c254
+  interview_seconds: null
+  inherited_from: null

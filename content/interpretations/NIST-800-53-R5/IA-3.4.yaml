@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a device that presents itself as authorized yet has been
+      tampered with, swapped, or cloned: an attacker who steals a valid credential,
+      or who slips a rogue machine onto the network, bypasses normal device-identity
+      checks and walks in as if it were an enrolled endpoint.'
+    basis: inferred
+  plain_zh:
+    value: When a device tries to connect, prove it really is the specific, unmodified
+      hardware you issued — not just that it has the right username/password or the
+      right MAC address.
+    basis: inferred
+  practice:
+    value:
+      '1': Use a platform mechanism (TPM, Secure Enclave, measured boot) that produces
+        a signed attestation report at connect time, and reject devices that cannot
+        produce one.
+      '2': Bind attestation to a hardware root of trust; record the report (PCR values,
+        certificate chain, firmware version) in connection logs and alert when expected
+        values drift.
+      '3': Validate attestation against a managed inventory of issued devices and
+        known-good firmware images; quarantine or deny devices whose attestation fails,
+        whose firmware is out of policy, or whose identity does not match the assigned
+        asset record.
+    basis: inferred
+  evidence:
+    value: Architecture showing where attestation is invoked during device authentication,
+      sample attestation reports tied to specific devices, policy of expected firmware/PCR
+      baselines, and logs of denied or quarantined devices with reason codes.
+    basis: inferred
+  common_myth:
+    value: Assuming MAC filtering, certificate-based 802.1X, or a device serial-number
+      check satisfies this control. Those prove who the device claims to be, not that
+      its software and hardware have not been altered — a stolen laptop with a valid
+      cert still passes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show a recent connection from a managed device: what was in its attestation
+      report and how did the network decide to trust it?'
+    - What happens when a device fails attestation or presents firmware outside the
+      approved baseline?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.144292Z'
+  signed_digest: caef473c535ff0e81cbd2f8bb9777a792b6ecc7278e1cca4bd6b4f497a55a449
+  interview_seconds: null
+  inherited_from: null

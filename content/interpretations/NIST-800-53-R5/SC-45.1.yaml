@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-45.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against logs, alerts, and forensic timelines becoming unusable
+      because endpoints, servers, and network gear disagree on what time it is. When
+      clocks drift, you cannot correlate events across systems, prove the order of
+      an intrusion, or detect replay and time-based attacks. Without authoritative
+      synchronization, an incident is reconstructed by guesswork, not evidence.
+    basis: inferred
+  plain_zh:
+    value: Make sure every system in scope pulls time from a trusted, authoritative
+      source so timestamps on logs, transactions, and alerts line up and stay trustworthy.
+      Drift, manual setting, and unsynchronized islands are not acceptable for systems
+      that produce evidence or enforce time-sensitive rules.
+    basis: inferred
+  practice:
+    value:
+      '1': An authoritative internal time source (NTP server) is defined and reachable
+        from in-scope systems; manual time setting is disabled on endpoints and servers.
+      '2': Multiple time sources feed a documented hierarchy; clients are configured
+        with authentication where supported; drift is monitored and alerts fire when
+        a source or client strays beyond threshold.
+      '3': Time sources are themselves synchronized to a legally/operationally trusted
+        upstream, with documented accuracy, redundancy, and tamper protection; periodic
+        audits verify clients are enrolled, authenticated, and within tolerance; time-service
+        failures are tested as part of incident and forensic exercises.
+    basis: inferred
+  evidence:
+    value: Documented time-service architecture and source hierarchy, configuration
+      samples showing NTP/NTS/PTP clients pointing to authorized servers with authentication,
+      screenshots or logs proving manual time changes are blocked, monitoring dashboards
+      and alerts on time drift, audit reports of client enrollment and skew, and test
+      records from exercises where time accuracy mattered.
+    basis: inferred
+  common_myth:
+    value: Treating NTP as plumbing that 'just works' once a pool address is configured
+      - clients left on default public servers, authentication not used, virtual machines
+      syncing to a hypervisor that syncs to nothing, and no one checking whether logs
+      are actually within an acceptable skew of each other.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the configuration of three randomly chosen in-scope systems - which
+      NTP source do they point to, and is authentication enabled?
+    - When was the last time a time-source failure or significant drift was detected,
+      and what is the documented tolerance threshold?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.628259Z'
+  signed_digest: b322d1811bdcc3b5645f145d68e711d1c17e19e5554ed057475b539bc996566f
+  interview_seconds: null
+  inherited_from: null

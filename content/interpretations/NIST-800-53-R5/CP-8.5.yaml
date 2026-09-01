@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-8.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where an organization believes a backup telecom
+      path exists simply because a contract or diagram shows one, but the path is
+      never actually exercised under failure conditions—so the first real outage exposes
+      that failover is broken, misrouted, or terminated at the wrong endpoint.
+    basis: inferred
+  plain_zh:
+    value: Confirm that the backup communications link you would rely on during a
+      primary outage actually works end-to-end, and prove it by testing on a real
+      cadence rather than trusting the paperwork.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the alternate telecom services for each critical system or site;
+        document what they cover and how they would be activated.
+      '2': Run the alternates on a defined schedule (at least annually and after any
+        relevant change); record pass/fail, issues found, and fixes applied.
+      '3': Test under realistic failure conditions—primary path down, realistic load,
+        correct endpoints—and require the alternate to carry real traffic for a sustained
+        window; track defects to closure and re-test.
+    basis: inferred
+  evidence:
+    value: Alternate telecom service inventory, test plan and schedule, dated test
+      results with named endpoints and traffic patterns, defect and remediation log,
+      post-test sign-off.
+    basis: inferred
+  common_myth:
+    value: Assuming a signed contract with a second carrier or a redrawn network diagram
+      means the alternate works—untested failover paths routinely fail on first use
+      because routes, DNS, firewall rules, or capacity were never validated end-to-end.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last actually fail over to the alternate telecom path for a critical
+      site, and what traffic did it carry?
+    - Show me a test record that exercised the alternate end-to-end under load, not
+      just a link-light check.
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors (especially in financial services and FedRAMP-leaning
+      environments) tend to press hardest on demonstrated failover evidence; EU auditors
+      framed by DORA lean the same way for ICT continuity but otherwise do not treat
+      telecom failover testing as a separate hot spot.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.024329Z'
+  signed_digest: 5fe1c6e0e7963081415264e4227fe8efa0536af54cbab29908f86cf8a561defd
+  interview_seconds: null
+  inherited_from: null

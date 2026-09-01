@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:SC-7.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker who has gained a foothold on the internal network
+      from using the security tooling itself as a pivot or as a source of sensitive
+      data; if security tools share the same flat network as the assets they protect,
+      a compromised endpoint can reach and tamper with the tool, or the tool's own
+      credentials and logs become a second target.
+    basis: inferred
+  plain_zh:
+    value: Put your defensive kit on its own island. Firewalls, SIEM, EDR servers,
+      key management, and their admin consoles should live on a separate, restricted
+      network segment, not side-by-side with the systems they monitor. That way, even
+      if an attacker gets into the production zone, they can't just walk over to the
+      security stack and turn it off or read its secrets.
+    basis: inferred
+  practice:
+    value:
+      '1': List the security tools and support components in scope; put them on a
+        dedicated network segment or VLAN with their own firewall rules. No production
+        traffic to or from the security segment except for what is required for the
+        tool to send or receive alerts and updates.
+      '2': Define and enforce explicit access rules to the security segment—only approved
+        administrators and only from managed jump hosts. Add technical controls like
+        a separate authentication domain or strong MFA. Record the architecture and
+        the changes in a change control log.
+      '3': 'Make the isolation verifiable: continuous monitoring of the security segment''s
+        flow logs to detect anomalous connections, regular penetration tests from
+        the production segment against the security segment, and a documented incident
+        response playbook for when the isolation is breached. Integrate the isolation
+        rules into the infrastructure-as-code or network change management so future
+        changes don''t silently widen the exposure.'
+    basis: inferred
+  evidence:
+    value: A network architecture diagram showing the dedicated security segment and
+      its boundary firewalls; the firewall rule sets or ACLs for that segment; the
+      change history for those rules; the access review records for who can reach
+      the security segment and from where; any flow logs or alerts covering the security
+      segment.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a 'security appliance' and plugging it into the core
+      switch is enough. The tool is still just another host on the network; if its
+      management console is reachable from the same VLAN as the servers it protects,
+      the isolation has no effect.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your security tools can be reached directly from the production network?
+    - How do you verify that the firewall rules separating the security segment haven't
+      drifted?
+    - If one of your SIEM or EDR servers is compromised, what is the blast radius
+      and how do you detect it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.686307Z'
+  signed_digest: 335b33897ed485812fc9f6e5f97f81d993c9936828926017052c4d0cf8a8d133
+  interview_seconds: null
+  inherited_from: null

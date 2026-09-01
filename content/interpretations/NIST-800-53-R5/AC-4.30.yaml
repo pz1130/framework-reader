@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.30
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the assumption that one filtering engine, one vendor,
+      or one path is enough — a single misconfiguration, a single bypass, or a single
+      compromise leaves every cross-domain flow unfiltered. Defense-in-depth at the
+      filter layer means a malicious or malformed packet has to defeat more than one
+      independent enforcement point before it crosses a trust boundary.
+    basis: inferred
+  plain_zh:
+    value: When information moves between security domains (e.g., across enclaves,
+      between classification levels, in/out of OT zones, between tenants in a cloud
+      service), make sure the filtering is done by more than one independent process
+      or component, not just one device or rule set doing all the work.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which cross-domain flows need multi-stage filtering; put at least
+        two independent filter components on the path (e.g., a router ACL plus a firewall,
+        or a proxy plus an egress filter), configured by different teams or drawn
+        from different rule sources.
+      '2': Each filter on the path has its own rule set, owner, and change-control
+        process; a bypass of one (fail-open, misconfig, compromise) is detected and
+        the second still enforces policy; review records exist.
+      '3': Multi-process filtering is part of the architecture standard; failures
+        of any single component are exercised in test (e.g., take down one filter
+        and prove the other still blocks prohibited traffic); rule-set drift between
+        the two is monitored; logs from both filters are correlated.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing multiple independent filter components on
+      each cross-domain path, separate rule sets and change histories for each, test
+      or failure-mode results showing that bypassing one filter does not bypass policy,
+      and correlated logs from each filtering process.
+    basis: inferred
+  common_myth:
+    value: Assuming that stacking two firewalls from the same vendor with the same
+      rule set counts as 'multiple processes' — it does not. If both filters run identical
+      rules, share one management plane, or can be knocked out by the same exploit,
+      you still have a single point of failure and the control is not met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one cross-domain flow and show me each independent filter on the path —
+      are the rule sets and the people who change them actually different?
+    - If the primary filter fails open or is misconfigured, what stops prohibited
+      traffic from crossing? Show me a test or incident where that happened.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.336849Z'
+  signed_digest: 1486f5beb73f2c95f838bfb50ea46e2f2f15965851531cc78ae2a08958cb594d
+  interview_seconds: null
+  inherited_from: null

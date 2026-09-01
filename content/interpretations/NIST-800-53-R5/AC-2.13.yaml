@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-2.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure to cut off access promptly when a user is flagged
+      as high-risk (terminated for cause, under investigation, insider-threat indicators,
+      disciplinary action, or compromised credentials) - because the hours or days
+      between 'we know' and 'we cut access' are exactly when damage happens.
+    basis: inferred
+  plain_zh:
+    value: When someone is flagged as a high-risk individual (fired for cause, under
+      investigation, showing insider-threat signals, disciplined, or credibly compromised),
+      their accounts across systems must be disabled fast and predictably - not handled
+      one-off at the help desk.
+    basis: inferred
+  practice:
+    value:
+      '1': A short, named list of trigger conditions for 'high-risk individual' (e.g.,
+        termination for cause, insider-threat investigation, confirmed credential
+        compromise) is documented and reachable by HR, legal, and IT. Disable access
+        across all in-scope systems within a defined short window after the trigger.
+      '2': The disable action is a documented runbook with named owners per system,
+        executed in parallel rather than serially; identity provider / SSO is used
+        to cascade disable to downstream apps; a second pair of eyes confirms completion
+        within the SLA; evidence is logged.
+      '3': High-risk disable is exercised in tabletop or live drill at least annually;
+        metrics on time-to-disable are tracked and reviewed; trigger list is updated
+        as new risk patterns emerge (e.g., leaving for a direct competitor, workplace
+        violence indicators); disable is reversible under controlled re-provisioning,
+        not improvised.
+    basis: inferred
+  evidence:
+    value: Documented high-risk individual definition and trigger list, runbook for
+      parallel disable with per-system owners, SSO/IdP cascade configuration, drill
+      or tabletop records with measured time-to-disable, log evidence of recent executions.
+    basis: inferred
+  common_myth:
+    value: Assuming the standard offboarding process is enough. Normal offboarding
+      takes days because HR, IT, and the manager coordinate; a high-risk case is the
+      one where a person already knows they are leaving and may be angry - that is
+      exactly when 'we'll handle it Monday' becomes the breach.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through what happens from the moment HR decides to terminate someone
+      for cause until their last account is disabled - who does what, and how long
+      does it take?
+    - Show me the last time you actually ran this for a real case (or a drill) - what
+      time did the trigger fire and what time did the last system confirm disabled?
+    - Which systems are NOT covered by your IdP cascade, and how are they disabled
+      for a high-risk case?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.119084Z'
+  signed_digest: dfe565d4bcfb830b70e3326726301d1733173adef2a9de838ee84b7860a5b57f
+  interview_seconds: null
+  inherited_from: null

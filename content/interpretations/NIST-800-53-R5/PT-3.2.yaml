@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:PT-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where Personally Identifiable Information
+      (PII) consent and authorization decisions are scattered across forms, emails,
+      and tribal knowledge, so when regulators ask who agreed to what, when, and under
+      which notice, the organization cannot reconstruct it. Manual tracking breaks
+      down as soon as consent records need to be queried, audited, or revoked at scale.
+    basis: inferred
+  plain_zh:
+    value: Make sure that every decision an individual makes about their PII—consents,
+      opt-ins, opt-outs, authorizations—is captured and managed by automated systems
+      that can reliably record, retrieve, and update those decisions, instead of being
+      left in paper forms or scattered inboxes.
+    basis: inferred
+  practice:
+    value:
+      '1': Consent decisions are recorded somewhere searchable (database or ticketing
+        system), not only on paper or in email threads, and there is at least one
+        person responsible for keeping the records current.
+      '2': A dedicated system (consent management platform, CRM field, or privacy
+        tool) holds the consent record with timestamp, channel, version of notice
+        shown, and the specific purpose or data category authorized; updates and revocations
+        flow back into that record.
+      '3': Consent records are linked to the actual data flows that rely on them (e.g.,
+        marketing sends, data shares), so that withdrawing consent automatically stops
+        downstream processing; periodic reconciliation checks that the system of record
+        matches what business processes are doing.
+    basis: inferred
+  evidence:
+    value: Consent management system configuration and data model, sample consent
+      records showing capture fields and timestamps, integration evidence linking
+      consent to downstream processing, logs of consent withdrawal and the resulting
+      cessation of processing, reconciliation reports.
+    basis: inferred
+  common_myth:
+    value: Assuming that storing signed paper forms or PDFs in a folder satisfies
+      the control. The requirement is explicitly about automation—manual or document-based
+      tracking cannot reliably demonstrate per-individual consent status at the moment
+      of processing or support timely revocation across systems.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a consent record for a specific individual and walk me through how a withdrawal
+      made today would propagate to the systems actually using that data.
+    - Which system is the system of record for consent, and how do you keep it synchronized
+      with the operational systems that act on it?
+    basis: inferred
+  regional_note:
+    value: European auditors (under GDPR) tend to press harder on demonstrable linkage
+      between consent records and downstream processing, and on the ease of withdrawal;
+      US sectoral auditors (e.g., HIPAA, GLBA, COPPA) more often focus on whether
+      the consent was captured at all and whether the notice matched what was authorized,
+      with less emphasis on automated propagation.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.877501Z'
+  signed_digest: b30d43cab6ebf19ac28145bc40bd2d2cbeab2da55e056e0ac1366701b3278c49
+  interview_seconds: null
+  inherited_from: null

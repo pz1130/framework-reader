@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CA-7.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents 'continuous monitoring' from being a manual checkbox exercise
+      that misses events between reviews and cannot scale with the environment—without
+      automation, the control degrades into quarterly samples and stale dashboards
+      that no one trusts during an incident.
+    basis: inferred
+  plain_zh:
+    value: Make the organization's continuous monitoring work through automated mechanisms
+      that detect changes, collect evidence, and feed assessment data on an ongoing
+      basis, not rely on people to remember to check.
+    basis: inferred
+  practice:
+    value:
+      '1': At least the highest-volume security data sources (asset inventory, vulnerability
+        scans, configuration checks, identity events) are pulled by scheduled jobs
+        into a central place; results trigger alerts or tickets without manual copy-paste.
+      '2': Monitoring controls have defined frequencies automated in tooling (e.g.,
+        daily config drift, weekly vuln rescans, event-log shipping); manual steps
+        exist only where automation is genuinely not possible, and those gaps are
+        documented.
+      '3': Coverage, frequency, and freshness of automated monitoring are themselves
+        measured and reported; new system components are onboarded into the automated
+        pipeline by default; manual-only monitoring is the documented exception, not
+        the default.
+    basis: inferred
+  evidence:
+    value: Architecture or process document showing which controls are monitored by
+      automated means and at what cadence, sample tool configuration or scheduled
+      jobs that perform the collection, and reporting that demonstrates automated
+      feeds are current and acted upon.
+    basis: inferred
+  common_myth:
+    value: Equating 'we have a SIEM and a vulnerability scanner' with automation support.
+      A tool that is not connected to the inventory, not scheduled, not producing
+      tickets, and not covering newly added assets is just a license purchase—automation
+      means the data flow runs without a human initiating it each time.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which monitoring activities still require a person to start them, and why is
+      automation not used there?
+    - Show me the last time a new server or application was added—how did it get into
+      the automated monitoring pipeline?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.710163Z'
+  signed_digest: 2c51dc494bc74852070093dff5adb67133f43f8c3cccf9eac45a87b5e0a7a1c9
+  interview_seconds: null
+  inherited_from: null

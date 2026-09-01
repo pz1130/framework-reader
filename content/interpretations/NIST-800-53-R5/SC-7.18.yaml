@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SC-7.18
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems that, when a security boundary or control fails,
+      default open - letting traffic, users, or data flow through an unmonitored or
+      unfiltered path. The point is that failure mode itself is a security decision,
+      not an accident of engineering.
+    basis: inferred
+  plain_zh:
+    value: When a boundary device, filter, or segmentation control breaks or loses
+      power, it must fail into a state that blocks traffic rather than passing everything
+      - and this must be designed in, tested, and visible, not assumed.
+    basis: inferred
+  practice:
+    value:
+      '1': Documented decision per critical boundary (fail-closed vs. fail-open) with
+        a business reason; default posture is fail-closed unless explicitly justified
+        otherwise.
+      '2': Test records showing the failure mode has actually been exercised (power
+        pull, link down, failover); known fail-open exceptions are tracked and time-bound.
+      '3': Periodic reverification that production devices still fail as designed;
+        fail-open exceptions reviewed and minimized; alerting on unexpected failure
+        states.
+    basis: inferred
+  evidence:
+    value: Fail-secure posture document per boundary, test/verification records for
+      each critical control, exception register with justification and expiry, change
+      records showing decisions were revisited.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a firewall is deployed and a rule set exists, it
+      fails closed - vendors ship default behaviors, bypass paths, and maintenance
+      modes that often pass traffic, and the actual failure state is rarely verified
+      by the operator.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one boundary device and walk me through what happens to traffic when it
+      loses power or its link goes down.
+    - Which of your boundaries are configured to fail open, and what is the justification
+      and review cadence for each?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.705472Z'
+  signed_digest: 73d8af314a3db26a3531eb3a97c621c552e06852bf25dd6fcb00f2786dded9c9
+  interview_seconds: null
+  inherited_from: null

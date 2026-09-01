@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents the failure mode where the organization keeps using vulnerable
+      software/services because no one noticed a vendor patch, CISA advisory, or CERT
+      bulletin was issued for something already running in production. The control
+      defends against silent exposure: a known fix exists, your inventory does not
+      surface it, and attackers exploit the gap before patching happens.'
+    basis: inferred
+  plain_zh:
+    value: Set up automated feeds from vendors, CERTs, and government/industry advisory
+      sources, match them against what you actually run, and push alerts to the people
+      who can act on them - then verify those alerts actually got remediated.
+    basis: inferred
+  practice:
+    value:
+      '1': Someone is subscribed to vendor and CERT/CISA mailing lists; a manual check
+        against known assets happens when an advisory lands.
+      '2': Advisories are matched against a maintained software/hardware inventory;
+        affected systems are recorded as tickets with owners and due dates.
+      '3': Advisory feeds are automated, deduplicated, and scored by severity; matching
+        against the authoritative CMDB is machine-driven; SLA timers and escalation
+        rules fire when remediation slips; closure is verified by re-scan or patch
+        evidence, not self-attestation.
+    basis: inferred
+  evidence:
+    value: Subscription list of advisory sources, automated feed configuration, inventory-to-advisory
+      matching reports, sample tickets from advisories showing detection-to-remediation
+      timeline, escalation records for overdue items, and verification artifacts (scan
+      results or patch logs) confirming closure.
+    basis: inferred
+  common_myth:
+    value: Subscribing to a vendor or CISA RSS feed and forwarding it to a distro
+      list is treated as compliance. The real failure is the gap between 'advisory
+      received' and 'advisory matched to an asset someone owns and is fixing' - if
+      the mail lands in a shared inbox nobody triages against what you actually run,
+      you are exposed exactly the same as without the feed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an advisory from the last 90 days and walk me from feed receipt to the
+      patch that closed it - how long did each handoff take?
+    - Which advisory sources feed your system, and how do you confirm a match against
+      an asset you actually own vs. one that only looks similar by name?
+    basis: inferred
+  regional_note:
+    value: U.S. federal audits (and contractors handling federal data) lean harder
+      on CISA/NSA advisories and BOD-style timeliness expectations; EU audits under
+      NIS2 and sector regimes care more about ENISA/CSIRT feeds and cross-border early-warning
+      participation. The mechanics overlap, but the named sources and timeliness expectations
+      auditors cite differ.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.064399Z'
+  signed_digest: 70afefe41f05aa7061736136e6cd913d62235ad752cb31af9e4c6ecf4e149430
+  interview_seconds: null
+  inherited_from: null

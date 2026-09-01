@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AT-4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where training was held but no one can prove
+      it happened, who attended, what was covered, or whether refresher cycles were
+      ever met—leaving the organization unable to demonstrate awareness activities
+      actually occurred or to spot people who slipped through the gaps.
+    basis: inferred
+  plain_zh:
+    value: 'Keep documented records of every security awareness and role-based training
+      event: who attended, when, what was taught, who delivered it, and when each
+      person is due for refresher. Records must be retrievable, retained, and used
+      to chase non-completion.'
+    basis: inferred
+  practice:
+    value:
+      '1': Individual training sign-in sheets or electronic attendance logs exist
+        for each session; basic roster of who has had initial training; completion
+        flagged manually.
+      '2': Records held centrally in a learning or HR system with completion status
+        per person and per course; refresher due dates tracked; non-completion escalated
+        to managers; records retained per organizational policy.
+      '3': Training records integrated with role assignments and risk tiering so gaps
+        are automatically surfaced; periodic audits confirm record completeness and
+        accuracy; records retained and protected from tampering; non-completion blocks
+        access to systems until remedied.
+    basis: inferred
+  evidence:
+    value: 'Training records: attendee lists per session, dates, topics covered, instructor/material
+      references, completion status per individual, refresher due dates, retention
+      policy, sample audit of records against actual attendance, evidence that non-completion
+      is acted upon.'
+    basis: inferred
+  common_myth:
+    value: Believing that running the training session is the control—because no one
+      checks the sign-in sheet against the employee roster, the same handful of staff
+      attend every year while the rest silently fall out of compliance and the records
+      still look fine on paper.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three people at random from different departments: show me their training
+      record, the date of last refresher, and when the next one is due.'
+    - How do you identify employees who never completed required training, and what
+      happens to them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.488399Z'
+  signed_digest: 8e519e0b2867e46e961ae7afa08f8c9659fe4c601364e3b5de6d691a49c4dfc6
+  interview_seconds: null
+  inherited_from: null

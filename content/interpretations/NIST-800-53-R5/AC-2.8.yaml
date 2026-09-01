@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-2.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against accounts that linger with privileges they no longer need
+      because no one is dynamically adjusting them as users change roles, projects
+      end, or risk signals appear. Without it, dormant, excessive, and orphaned accounts
+      accumulate and become the foothold attackers use long after the legitimate user's
+      activity has ended.
+    basis: inferred
+  plain_zh:
+    value: Create, modify, disable, and remove information system accounts on the
+      fly, based on triggers like role changes, attribute changes, risk events, or
+      time - not just when HR files a ticket weeks late.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which events should cause account changes (transfer, termination,
+        project end, failed login, anomalous behavior); have a manual or scripted
+        process to act on them within an agreed window.
+      '2': Wire identity sources (HR system, IAM, risk signals) so a role or attribute
+        change auto-tickets account actions; SLAs exist for execution; exceptions
+        are logged and reviewed.
+      '3': Account lifecycle is driven by an authoritative source of truth in near
+        real time; risky events (e.g., UEBA alert, geolocation anomaly) auto-trigger
+        privilege tightening; orphan and dormant accounts are detected and removed
+        without manual chasing; coverage is measured and reported.
+    basis: inferred
+  evidence:
+    value: Policy defining dynamic triggers, integration between authoritative identity
+      sources and account provisioning systems, ticketing/workflow logs showing automated
+      or time-bound account actions, metrics on time-to-disable vs. trigger, exception
+      register, periodic orphan account report.
+    basis: inferred
+  common_myth:
+    value: Treating AC-2.8 as satisfied by having a provisioning tool with workflows,
+      while the joiner/mover/leaver data still arrives via weekly HR emails and the
+      'dynamic' part never gets wired up. The control is about the dynamic part, not
+      the workflow engine.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three account changes that were triggered automatically by
+      a role or risk signal, not by a human ticket.
+    - What is your measured time between a termination event in the HR system and
+      the account actually being disabled in the target systems?
+    - Which systems are excluded from this dynamic lifecycle, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.147082Z'
+  signed_digest: f03f4ff73f0b1ef0d96817571ae0170c31be761237ac3854b0d0f4d2cdd9da1f
+  interview_seconds: null
+  inherited_from: null

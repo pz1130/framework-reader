@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-2.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged and shared accounts being usable outside the
+      conditions under which they were meant to be used—night shifts, foreign travel,
+      contractor laptops, shared kiosks—where the same technical access that is acceptable
+      in a controlled office becomes an outsized risk when the context changes. Without
+      usage conditions, an authorized identity can quietly pivot from a normal workstation
+      to an unmanaged device or a hostile network and still meet every "authorized
+      user" check the system performs.
+    basis: inferred
+  plain_zh:
+    value: Define where, when, on what device, and under what circumstances specific
+      accounts (especially privileged, shared, or high-risk ones) may be used, and
+      make the system enforce those conditions instead of trusting the user or the
+      admin to remember.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the account classes that need usage conditions (privileged, shared,
+        service, emergency, contractor); write a short rule for each (device class,
+        network, time window, allowed systems).
+      '2': Encode the rules in the directory or IdP (group/role tags, logon restrictions,
+        allowed workstations, conditional access policies) and have them reviewed
+        when role membership changes; track exceptions in a ticket.
+      '3': Use risk- and context-aware conditional access (device posture, geo, network,
+        MFA step-up, just-in-time elevation) so the conditions are evaluated at every
+        authentication, not just at provisioning; alert and auto-disable on violation.
+    basis: inferred
+  evidence:
+    value: Documented usage-condition rules per account class, IdP/conditional-access
+      policy configuration showing the rules are enforced, exception tickets and approvals,
+      sample of recent authentication attempts showing conditions being checked (and
+      the resulting allow/block/alert).
+    basis: inferred
+  common_myth:
+    value: Treating usage conditions as a paragraph in the access-control policy that
+      nobody enforces. The policy says "privileged accounts are restricted" but every
+      privileged user can still log in from any device, any country, any network.
+      The control is not met until the identity layer actually evaluates and blocks
+      the wrong context.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the conditional-access or logon-restriction policy that enforces the
+      usage condition for domain admins.
+    - Pick one privileged account from the last access report and walk me through
+      the device, network, and time checks that were applied at that login.
+    - How is an exception to a usage condition requested, approved, and time-bounded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.110821Z'
+  signed_digest: 7b1510eea01162f23bd247c70f500efaf433845554542a099c9cab782be9d9ad
+  interview_seconds: null
+  inherited_from: null

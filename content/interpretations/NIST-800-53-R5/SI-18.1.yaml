@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-18.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against mobile code executing silently or running wild inside the
+      environment — viruses, worms, scripts, macros, active content — bypassing policy
+      because nobody told a tool to enforce it. Manual review at scale misses things;
+      the risk is that allowed mobile code gets in, runs, persists, or spreads without
+      an automated gate that matches the policy you wrote.
+    basis: inferred
+  plain_zh:
+    value: Automatically detect, prevent, and remediate mobile code that violates
+      your mobile code policy, using tools that act without a human in the loop for
+      every decision.
+    basis: inferred
+  practice:
+    value:
+      '1': Run a mainstream anti-malware / endpoint protection product on systems
+        where mobile code can land; real-time scan is on; signatures are not months
+        out of date.
+      '2': Coverage extends beyond endpoints to email, web gateways, file shares,
+        and removable media; policy-driven allow/deny/block-quarantine actions are
+        configured (not just detection); alerts route to someone who acts on them.
+      '3': Mobile-code-specific technical enforcement is in place for the categories
+        the policy calls out (e.g. unsigned macros, scripts from web, Java/ActiveX,
+        mobile code in documents); sandboxing or detonation is used where appropriate;
+        exceptions are tracked, time-bound, and reviewed.
+    basis: inferred
+  evidence:
+    value: Mobile code policy, EDR/anti-malware deployment and coverage report, gateway
+      / email / web filtering rules tied to the policy, alert-to-ticket flow showing
+      action on detections, exception register with expiry dates, sample detections
+      and what was done about them.
+    basis: inferred
+  common_myth:
+    value: Conflating this control with SI-3 (malicious code protection) and stopping
+      at 'we have an antivirus product installed.' SI-18 is about the policy-driven,
+      automated handling of mobile code itself — what is allowed to run, where, from
+      where — not generic AV. A blanket EDR without policy-driven mobile-code rules
+      (e.g. unsigned Office macros still execute because nobody configured blocking)
+      does not meet this control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one example of a mobile code artifact your tooling blocked in the last
+      30 days and the policy rule it violated.
+    - Which mobile code categories are explicitly allowed or denied, and where is
+      that rule configured?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.875558Z'
+  signed_digest: 153fd21e027a74834e96ce5867b00264be55d18a697ca03ab4ad2d49fd247c70
+  interview_seconds: null
+  inherited_from: null

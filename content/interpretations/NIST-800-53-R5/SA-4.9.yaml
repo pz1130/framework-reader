@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-4.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where every device, hypervisor, container
+      runtime, or agent installed in the environment quietly opens network channels
+      you never intended—leaving undocumented ports listening, undocumented protocols
+      traversing, and undocumented outbound connections that bypass firewalling, segmentation,
+      and monitoring. Without this discipline you cannot answer 'what is actually
+      reachable from where', which makes compromise detection, incident scoping, and
+      configuration baselining guesswork.
+    basis: inferred
+  plain_zh:
+    value: Require suppliers to tell you, and yourself to track, exactly which functions,
+      ports, protocols, and services each system component brings online by default,
+      and use that list to lock down and monitor the environment.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement checklist requires the vendor to list the default functions,
+        ports, protocols, and services each component ships with; the list is stored
+        alongside the asset record.
+      '2': For each in-scope system the documented list is compared against what is
+        actually observed (port scan, flow data) at install and at major change; deviations
+        are tracked and either justified or remediated.
+      '3': Allowed ports/protocols/services are the default-deny baseline at the network
+        layer; deviations require explicit exception; the vendor-supplied list feeds
+        continuous monitoring so a service appearing that was not declared is detected
+        and alerted on.
+    basis: inferred
+  evidence:
+    value: Vendor-supplied function/port/protocol/service declarations tied to assets,
+      comparison records showing declared-vs-observed (scan or flow output), network
+      ruleset reflecting default-deny with documented exceptions, and alerting evidence
+      for undeclared services detected after deployment.
+    basis: inferred
+  common_myth:
+    value: Assuming 'the firewall blocks what it blocks' is the same as knowing which
+      ports and services each component actually opens—vendors ship with admin interfaces,
+      debug ports, agent callbacks, and management tunnels enabled by default that
+      bypass intended policy, and 'we scanned it once at install' misses services
+      that turn on after a patch or feature flag.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one production system: show me the vendor''s list of default ports/services
+      for it and show me what was actually listening on the day it went live.'
+    - When a vendor component turns on a new outbound channel after a patch, how does
+      that get caught and by whom?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.207851Z'
+  signed_digest: 37033c1727c2eac7485055c0dfb712b984b8fd05c80cd01f4f0f64e28041c4d3
+  interview_seconds: null
+  inherited_from: null

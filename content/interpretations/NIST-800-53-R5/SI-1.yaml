@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Without an actively maintained, approved System and Information Integrity
+      (SII) policy and the procedures that operationalize it, every other SI control
+      degrades into ad-hoc practice: standards drift, exception creep goes undocumented,
+      and nobody can prove the program is actually current. Auditors treat SI-1 as
+      the canary — if the policy is missing, stale, or disconnected from the procedures
+      in use, they read it as the program is fictional.'
+    basis: inferred
+  plain_zh:
+    value: Maintain a current, leadership-approved System and Information Integrity
+      policy and the supporting procedures that say who does what, how often, and
+      on what evidence; review them on a defined cadence and after major changes.
+    basis: inferred
+  practice:
+    value:
+      '1': A single SII policy document exists, is dated and approved by leadership,
+        and references at least one procedure covering monitoring, flaw remediation,
+        and malicious-code handling.
+      '2': Procedures are written per control area (e.g. flaw remediation, continuous
+        monitoring, malware protection) with roles, frequencies, and records named;
+        policies are reviewed on a set cadence with version history retained.
+      '3': Policy review is triggered not only by calendar but also by significant
+        events (major incident, architecture change, new threat class); procedures
+        specify the evidence that proves compliance; gap analyses between written
+        procedures and observed practice are documented and closed.
+    basis: inferred
+  evidence:
+    value: Current approved SII policy with effective date and signature, version
+      history, the set of supporting procedures referenced by the policy, review/approval
+      records, and evidence the procedures are actually used (tickets, scans, patch
+      records) cross-referenced back to the procedure steps.
+    basis: inferred
+  common_myth:
+    value: Treating SI-1 as a paperwork checkbox satisfied by republishing last year's
+      policy on a shared drive every three years. Auditors read SI-1 against SI-2/3/4
+      etc.; when those controls reference procedures that don't match the policy,
+      or the policy cites a workflow nobody follows, the document itself becomes the
+      finding.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the SII policy last reviewed and who approved it? Show me the change
+      since then.
+    - Pick the SI control most material to us — walk me from the policy statement
+      to the procedure step to the last record of it actually being performed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.794186Z'
+  signed_digest: cacecf5b02453406489fbc5bde1972d63680af29fcf777e5861b57cfaeb8305b
+  interview_seconds: null
+  inherited_from: null

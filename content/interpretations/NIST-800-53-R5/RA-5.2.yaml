@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:RA-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the scan scope from going stale - if the vulnerability list never
+      changes, new asset classes, new ports, new services, and new exploit classes
+      silently fall outside the lens and the next report looks clean while the environment
+      has grown rot.
+    basis: inferred
+  plain_zh:
+    value: Keep the catalogue of what vulnerabilities you actually scan for current,
+      so scans still cover new tech, new services, and new classes of flaws instead
+      of last quarter's checklist.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a list of vulnerability checks the scanners run; when something
+        new is deployed (a new service, port, tech stack), someone updates the list
+        before the next scan cycle.
+      '2': Updates follow a defined frequency and trigger (e.g., new CVE waves, major
+        vendor advisories, new asset types onboarded); updates are logged with date,
+        author, and what changed.
+      '3': Update process is systematic - feeds from threat intel, vendor PSIRT, and
+        asset inventory changes flow into the scan profile; gaps between catalog and
+        environment are reviewed; stale checks are retired; coverage is measured against
+        the actual asset inventory.
+    basis: inferred
+  evidence:
+    value: Vulnerability catalog or scan profile, version history of updates, change
+      tickets showing what was added/removed and why, mapping from new asset types
+      or advisories to scan profile changes.
+    basis: inferred
+  common_myth:
+    value: Assuming the scanner vendor's default feed is enough - that a subscription
+      to a commercial feed means coverage is automatically current. The vendor feed
+      tracks new CVEs, but it does not track your new services, custom apps, cloud
+      workloads, or shadow IT. Someone has to translate 'we now run service X' into
+      'we now scan for flaws in X'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last three changes to the scan profile and what triggered each one.
+    - When you onboarded your most recent new asset type or service, how did the scan
+      coverage get updated to match?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.957812Z'
+  signed_digest: 6ca81e829ad7edbf64756678f699eb1dd95ededbcd4c25caeb79800e6f264a70
+  interview_seconds: null
+  inherited_from: null

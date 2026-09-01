@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:RA-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from being surprised by threats that already
+      show up in its own telemetry but never get translated into forward-looking risk
+      decisions—without predictive use of internal data, risk assessment stays a rear-view
+      mirror and the next incident looks 'unexpected'.
+    basis: inferred
+  plain_zh:
+    value: Use the data you already collect (incidents, vulnerabilities, threat intel,
+      asset changes) to forecast where attacks are most likely to land and how they'd
+      propagate, then feed that forecast back into how you prioritize and respond.
+    basis: inferred
+  practice:
+    value:
+      '1': Stand up a basic analytics pipeline that joins recent incidents, top exploited
+        vulnerabilities, and critical asset inventory to flag which assets/systems
+        are most likely to be hit next quarter.
+      '2': Document the predictive model inputs, refresh cadence, and how outputs
+        change risk-prioritization (patching, monitoring, red-team scope); keep version
+        history of predictions vs. what actually happened.
+      '3': Continuously recalibrate the model against observed incidents and near-misses;
+        tie predictions to concrete actions (spending, control tuning, playbooks);
+        have a feedback loop so the prediction's accuracy is reviewed and the model
+        is updated.
+    basis: inferred
+  evidence:
+    value: Predictive analytics documentation (inputs, method, refresh schedule),
+      prioritized risk output, sample predictions vs. actual incident outcomes, change
+      records showing how predictions influenced remediation or control decisions.
+    basis: inferred
+  common_myth:
+    value: Treating 'predictive cyber analytics' as a vendor product purchase—a dashboard
+      with a 'risk score' is not the control; the control is whether predictions are
+      actually computed from your own data, drive decisions, and get checked against
+      reality.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one prediction you made in the last year and whether it came true—what
+      changed because of it?
+    - Which internal data sources feed the predictive model and how often is it refreshed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.946488Z'
+  signed_digest: e0fdfa1c05b6176f0ef5582838f284fa7c80b0681111ad073b5eec0f3ce37480
+  interview_seconds: null
+  inherited_from: null

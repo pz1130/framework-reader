@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-7.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against resuming operations on an alternate site that is itself
+      not ready to actually run the workload - generators untested, staff not rehearsed,
+      vendor contacts stale. A recovery site that has never been proven to work turns
+      a planned failover into a longer, messier outage.
+    basis: inferred
+  plain_zh:
+    value: 'Before the alternate processing site has to be used, prepare it: get people,
+      equipment, connectivity, data and vendor support lined up and prove - through
+      testing or rehearsal - that the site can actually do the job it was set up to
+      do.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the alternate site, document what is needed to make it operational
+        (power, network, staff, data), and confirm vendor support agreements cover
+        activation.
+      '2': Run periodic readiness checks and tabletop or partial failover exercises;
+        record results, gaps and remediation actions; rotate staff so more than one
+        person knows the activation steps.
+      '3': Maintain the alternate site in a state of operational parity (current data,
+        current configs, current contacts); exercise it on a defined cadence with
+        measurable pass/fail criteria; track and close readiness gaps as part of a
+        formal program.
+    basis: inferred
+  evidence:
+    value: Alternate site readiness documentation, vendor activation agreements, exercise
+      plans and results, gap logs and remediation records, evidence of data/system
+      currency at the site.
+    basis: inferred
+  common_myth:
+    value: Treating the existence of a signed recovery-site contract as proof of readiness
+      - the contract is a paper commitment, not evidence the site will actually function
+      under failover conditions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the alternate site last exercised, and what was the outcome?
+    - How do you know the data and configurations at the alternate site match production
+      today?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.002226Z'
+  signed_digest: f95f3b87aa61069f86e33ec16816c6b549bb527684f9d5458362251b36366b33
+  interview_seconds: null
+  inherited_from: null

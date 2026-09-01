@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:IA-13.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker (or a careless insider) from replaying, forging, or
+      piggy-backing on someone else's authentication artifacts — a stolen session
+      token, a leaked MFA assertion, a cached SAML response reused hours later — to
+      walk into systems as a legitimate user without ever proving who they are.
+    basis: inferred
+  plain_zh:
+    value: When a user or system presents an identity assertion or access token, the
+      receiving system must cryptographically or otherwise independently verify that
+      it is authentic, current, unaltered, and tied to the right principal before
+      granting access — not just trust it because it 'looks valid' or came from a
+      known issuer.
+    basis: inferred
+  practice:
+    value:
+      '1': Every system that consumes identity assertions or access tokens (SAML,
+        OAuth/OIDC, JWT, Kerberos, API tokens, MFA push responses) has at least a
+        documented rule for what it checks before honoring them.
+      '2': 'Verification rules cover the specifics that matter: signature validation
+        against trusted keys, issuer and audience checks, expiry/not-before, revocation
+        status, nonce/uniqueness for one-time assertions, and binding to the original
+        authentication factor. Failures are logged.'
+      '3': Token and assertion validation is enforced at the application or gateway
+        layer with tested libraries — not by ad-hoc code — and exceptions (long-lived
+        tokens, skipped audience checks, disabled signature verification) are treated
+        as security exceptions that require review. Replay of an assertion or token
+        that should be single-use is detected and blocked.
+    basis: inferred
+  evidence:
+    value: Architecture or integration docs showing assertion/token validation flow,
+      library/configuration settings that enforce signature, issuer, audience, expiry,
+      and replay protection, exception records for any weakened validation, and logs/incidents
+      showing rejected forged or replayed tokens.
+    basis: inferred
+  common_myth:
+    value: 'Believing that because tokens come from a reputable IdP (Azure AD, Okta,
+      Ping, your SSO vendor) the receiving application does not need to validate them
+      itself — so signature checks are disabled, ''alg: none'' is allowed, audience
+      is not enforced, and old JWTs are accepted indefinitely. The IdP issues them
+      correctly; the relying party still has to verify them, and skipping verification
+      is how most token-forgery and replay attacks actually succeed.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one application that consumes SSO tokens: show me where in the code or
+      config the token signature, issuer, audience, and expiry are actually validated.'
+    - What happens if someone replays the same SAML assertion or JWT twice within
+      its validity window — is single-use or nonce enforced, or is it silently accepted
+      again?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.096617Z'
+  signed_digest: 2cecae4068c27ac9217b7eb51c6616cd9b1bc2747d507e6a769ac3534ad8533a
+  interview_seconds: null
+  inherited_from: null

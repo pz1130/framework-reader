@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:PM-27
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the organization collecting, using, sharing, or holding
+      personal information without anyone having to account for it on a recurring
+      basis — privacy risks drift with new products, vendors, and regulations, and
+      without periodic reporting they surface only when something goes wrong, a complaint
+      lands, or a regulator asks for the numbers you never kept.
+    basis: inferred
+  plain_zh:
+    value: Get senior leadership an accurate, recurring picture of how well privacy
+      risks are being managed across the organization, what changed since last report,
+      and where things are slipping — so they can intervene before a breach or regulator
+      does it for them.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a named owner who writes up privacy status on some schedule and
+        hands it to leadership; the report at least lists what personal data is held,
+        recent complaints/incidents, and any not-yet-resolved issues.
+      '2': Reporting follows a defined template covering the full privacy program
+        (processing activities, consent/PII handling gaps, vendor privacy issues,
+        incidents, training, complaints, compliance status); the report goes to a
+        governance body that records decisions and follow-ups.
+      '3': Reporting is risk-driven — KPIs and KRIs are tied to the privacy risk register
+        and prior commitments; leadership review drives corrective actions with owners
+        and deadlines; trends are tracked across periods so improvements and regressions
+        are visible; coverage gaps (business units, systems, geographies not yet inventoried)
+        are explicitly called out rather than silently omitted.
+    basis: inferred
+  evidence:
+    value: Privacy status reports submitted to senior leadership on a defined cadence,
+      meeting minutes showing review and decisions, the reporting template/charter,
+      trend data across reporting periods, and corrective-action tracking against
+      commitments made in prior reports.
+    basis: inferred
+  common_myth:
+    value: Assuming a one-time DPIA or annual privacy notice equals ongoing privacy
+      reporting — these are point-in-time artefacts, not a program status report;
+      without a recurring leadership-level read-out, privacy issues get resolved in
+      tickets nobody tallies.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three privacy reports that reached senior leadership and the
+      minutes where they were reviewed.
+    - Which privacy commitments from last quarter's report slipped, and what was done
+      about them?
+    basis: inferred
+  regional_note:
+    value: European regulators and auditors under GDPR expect privacy reporting to
+      feed the DPO's annual consolidated report and to align with Article 38–39 duties,
+      with explicit coverage of cross-border transfers and DSR backlogs; US auditors
+      in federal contexts lean on agency privacy officer reporting under OMB/agency
+      policy and are generally less prescriptive about format.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.760933Z'
+  signed_digest: d61ee5398540a2baed8b7b21cf0059f752625a426d335842c70f6a8cbd74d022
+  interview_seconds: null
+  inherited_from: null

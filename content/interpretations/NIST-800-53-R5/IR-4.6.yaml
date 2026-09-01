@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:IR-4.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insider-driven incidents being buried under the same playbook
+      as external attacks — a malicious or negligent employee, contractor, or vendor
+      with valid credentials will not look like a perimeter breach, and the response
+      playbook must be able to detect, escalate, and contain behavior from people
+      who are already inside the trust boundary.
+    basis: inferred
+  plain_zh:
+    value: Build incident-handling capability that specifically covers insiders (employees,
+      contractors, partners) — their behavior looks different from outside attackers
+      because they already have access, so detection signals, escalation paths, and
+      containment steps must be designed for that case, not bolted on after the fact.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a documented playbook section or annex that names insider-threat scenarios
+        (data theft by departing staff, privilege abuse by admins, contractor misuse)
+        and states who is paged, what data sources are checked first, and how coordination
+        with HR/Legal happens.
+      '2': Coordinate the insider playbook with HR offboarding, legal hold, and physical
+        access revocation; run at least one tabletop a year using an insider scenario;
+        keep after-action notes that show which steps actually fired.
+      '3': Tie insider detection to UEBA or equivalent behavioral analytics on top
+        of SIEM; track response metrics (time-to-contain for insider cases separately
+        from external cases); review the playbook after every real insider event and
+        after workforce policy changes (mass layoff, return-to-office, new monitoring
+        regs).
+    basis: inferred
+  evidence:
+    value: Insider-specific incident response plan or annex, coordination procedures
+      with HR/Legal, tabletop or exercise records using insider scenarios, detection
+      rules or analytics tuned to insider behavior, after-action reports from real
+      or simulated insider events.
+    basis: inferred
+  common_myth:
+    value: Treating 'insider threat' as a HR problem or a monitoring-tool purchase
+      rather than an incident-response capability. Buying a UEBA product without changing
+      the playbook means alerts still route to the SOC's external-attack runbook,
+      and the HR/Legal coordination that an insider case needs is missing on day one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through what happens from the moment HR flags a potentially malicious
+      departing employee — who in IR gets the call and within what timeframe?
+    - 'Show me the last insider-tabletop after-action: what detection signal fired,
+      what containment step was taken, and what changed in the playbook because of
+      it?'
+    basis: inferred
+  regional_note:
+    value: EU audits (especially under NIS2 and GDPR breach-notification clocks) tend
+      to push harder on the coordination between IR, HR, and the Data Protection Officer
+      because personal-data handling and the 72-hour clock are in scope from minute
+      one; US audits under CMMC or federal frameworks focus more on the technical
+      detection and audit-log retention side. Same control, different pressure points.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.322393Z'
+  signed_digest: 1ae0a9c9ab1e2d6b4ea8614288bf68c73fe24fee029c16a76467dc2064452d13
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CP-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against discovering backups are useless only when an outage hits
+      - media corruption, partial writes, encryption errors, or a quietly broken backup
+      chain mean the restore you count on will fail or return poisoned data, turning
+      a recoverable incident into data loss or a breach via restored malware.
+    basis: inferred
+  plain_zh:
+    value: Prove - on a schedule, not by assumption - that your backups can actually
+      be restored, that the data coming back is intact, and that the backup mechanism
+      itself is trustworthy end to end.
+    basis: inferred
+  practice:
+    value:
+      '1': Restore a sample of backups to an isolated environment at least annually
+        and confirm the files open and look right; keep a short log of who ran the
+        test, what was restored, and the outcome.
+      '2': Test restores cover each system tier (databases, file stores, application
+        configs) on a defined cadence; failures are logged as incidents, not silently
+        retried; backup job integrity checks (checksums, chain-of-custody markers)
+        are enabled and reviewed.
+      '3': Restores are automated, scheduled, and tested in a sandbox mirroring production;
+        coverage metrics show which systems were last tested and which were missed;
+        integrity verification (signatures, hashes, malware scans on restored data)
+        is built into the restore pipeline; failures trigger alerts and remediation
+        tickets, not just retries.
+    basis: inferred
+  evidence:
+    value: Restore test records showing systems tested, dates, results, and follow-up
+      actions; backup integrity verification logs (checksums, signatures); coverage
+      reports of backup testing scope; tickets and remediation evidence from failed
+      restores.
+    basis: inferred
+  common_myth:
+    value: Assuming a green backup job in the console means backups work - the backup
+      software happily reports success while the files it writes are silently corrupt,
+      encrypted with a lost key, or only partially captured, and the team never finds
+      out until the restore runs in production under pressure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last restore test for [critical system X] - what was restored, where,
+      and how did you confirm the data was good?
+    - What did you do the last time a restore test failed, and how would I see that
+      in your ticketing system?
+    - How do you verify that the bytes written to backup media are actually intact
+      and have not been tampered with or corrupted in transit or at rest?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.028450Z'
+  signed_digest: 237b67a03d9ab57e53ede3d3e2f966fdefc660fcdadc44917a3953f27591f4e6
+  interview_seconds: null
+  inherited_from: null

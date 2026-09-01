@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:IA-5.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Stop the ''biometric login shipped, so auth is strong'' failure mode:
+      biometric matching accuracy degrades over the life of a system due to sensor
+      wear, environmental factors, population drift, and adversarial spoofing, so
+      an attacker bypasses an account or a legitimate user is silently locked out
+      without anyone noticing.'
+    basis: inferred
+  plain_zh:
+    value: Treat biometric authentication as a component with measurable performance.
+      Define the false-acceptance and false-match rates you require, test the system
+      against those numbers before and after changes, and keep monitoring and re-enrollment
+      practices so that acceptance rates do not silently drift into unsafe territory.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Vendor sheets collected: stated FAR/FRR, certification status, and the
+        operating envelope (lighting, noise, skin/condition coverage) for each biometric
+        factor in use.'
+      '2': Documented acceptance thresholds for FAR and FRR, a schedule for re-testing,
+        and enrollment/renewal procedures tied to failed attempts and template aging;
+        basic liveness or spoof checks deployed where the threat model requires it.
+      '3': Periodic, repeatable performance testing on production traffic (or representative
+        samples) with results compared against thresholds; deviations trigger re-enrollment,
+        re-tuning, or replacement; spoof and presentation-attack testing repeated
+        when sensor, firmware, or attack literature changes; non-match and rejection
+        trends tracked as a control metric.
+    basis: inferred
+  evidence:
+    value: Vendor performance and certification documentation, internal acceptance
+      criteria for FAR/FRR, test plans and results (pre-deployment and recurring),
+      enrollment and re-enrollment procedures, spoof/liveness test reports, and trend
+      logs of match rates or rejection causes.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's published FAR as a permanent guarantee instead of
+      a starting point - real-world performance drifts as sensors age, populations
+      change, and attackers learn new spoof techniques, so a number that was valid
+      at procurement can become unsafe years later.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last measure the actual false-match or false-acceptance rate of
+      the biometric system, and how did the result compare with the threshold you
+      set?
+    - What happens when the matcher starts rejecting or accepting more often than
+      expected - who sees the alert, and what is the documented response?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.178650Z'
+  signed_digest: a7d30bb8ea47ebb3ab4b54b02b597382ad0cc59dbc722066d7c8f518e58deb42
+  interview_seconds: null
+  inherited_from: null

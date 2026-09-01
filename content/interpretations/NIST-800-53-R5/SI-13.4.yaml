@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-13.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the 'we have a backup part on the shelf, so we're covered' illusion
+      - a redundant component sitting in a box proves nothing if it cannot actually
+      be deployed into the running system, integrated without disruption, or activated
+      in time to recover the failed function. The risk is extended outage when a single
+      component fails and the spare cannot stand in for it.
+    basis: inferred
+  plain_zh:
+    value: When you keep spare or standby parts to keep the system running, make sure
+      they actually get installed and brought online when the primary fails, and that
+      the right people get notified in time to act.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components have spares or standby equivalents on site; write
+        a short list of who to call when a primary fails and how the spare is swapped
+        in.
+      '2': Document installation steps and notification contacts for each standby
+        component; have an approved change window or emergency process to bring the
+        spare into service.
+      '3': Test the standby path end-to-end on a schedule (failover drill or tabletop);
+        automatic failover where feasible; tracked notifications with escalation if
+        no one responds; post-test record showing mean time to bring the spare online.
+    basis: inferred
+  evidence:
+    value: Standby component inventory, installation and notification procedures,
+      test or drill records with timings, incident records showing actual standby
+      activations and notification timestamps.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying and warehousing a duplicate component satisfies the
+      control - the spare sitting in a sealed box, with no tested swap procedure and
+      no on-call contact, provides zero resilience when the real failure happens.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time a standby component was actually installed and brought
+      into service, and how long did it take?
+    - Who receives the notification when the primary fails, and what is the escalation
+      path if they do not respond?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.844864Z'
+  signed_digest: 28c3cf9f6a38253d59612c962b8e5c1823317a5451adb740671dcc24c2d3dc96
+  interview_seconds: null
+  inherited_from: null

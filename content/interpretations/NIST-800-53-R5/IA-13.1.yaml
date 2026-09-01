@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:IA-13.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It guards against cryptographic keys being exposed, copied, or stolen while
+      in use in memory or during processing — the moment when keys are most vulnerable
+      because they exist as plaintext inside a running system. If keys are unprotected
+      at this stage, encryption of data at rest or in transit provides no real confidentiality,
+      because the attacker can simply read the key where it is being used.
+    basis: inferred
+  plain_zh:
+    value: When a cryptographic key is loaded into memory or used by an application
+      to encrypt, decrypt, sign, or authenticate, that key must be protected from
+      being read or copied by anything that should not have it — other processes,
+      other tenants on shared hardware, or local attackers. The key is only ever plaintext
+      at these moments, and that is exactly when it must be defended.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify every place where keys are used in plaintext (HSM-protected applications,
+        application servers doing TLS, signing services, database TDE) and document
+        where each key is loaded. Avoid hard-coded keys in source or config.
+      '2': Use hardware-backed keystores (HSM, TPM, secure enclave, cloud KMS) so
+        keys are unwrapped only inside the protected boundary and never appear in
+        full in application memory or on disk. Standardise on key-handling APIs that
+        hold keys as opaque handles.
+      '3': Verify that keys cannot be dumped from process memory (e.g., test under
+        a debugger as an attacker would), that memory is zeroised after use, that
+        shared/tenant isolation is enforced at the hardware boundary, and that key-in-use
+        events are logged with anomaly detection. Coverage is re-checked when applications,
+        runtimes, or cloud platforms change.
+    basis: inferred
+  evidence:
+    value: Key inventory showing which keys are used where and how (HSM, TPM, cloud
+      KMS, in-process), architecture diagrams of the key-handling boundary, configuration
+      of keystores, code/configuration search results proving no hard-coded keys,
+      and test or review records demonstrating that keys are not extractable from
+      memory in the systems in scope.
+    basis: inferred
+  common_myth:
+    value: Assuming that because data is encrypted at rest and in transit, the keys
+      themselves are inherently protected. The keys are only ever plaintext during
+      use, and that is the most common extraction point — encrypted storage without
+      key-in-use protection is a strong lock on a paper door.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a specific system that performs decryption or signing and tell me where
+      the key lives while it is doing it.
+    - How do you prevent a process, a co-tenant, or a debugger running on that host
+      from reading the key out of memory while it is in use?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.092658Z'
+  signed_digest: f4eb07afe6417b70aa1c822063180d617cb3b771f58bf7460d02443ed0edd8d2
+  interview_seconds: null
+  inherited_from: null

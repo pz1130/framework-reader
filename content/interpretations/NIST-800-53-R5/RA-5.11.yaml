@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:RA-5.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against vulnerabilities that stay hidden because researchers or
+      outsiders who find them have no safe, sanctioned place to report them - so the
+      flaws get sold, leaked, or used instead of fixed, and the organization first
+      hears about them on a news site or in a regulator's inbox.
+    basis: inferred
+  plain_zh:
+    value: Stand up a public channel (web form, email, or third-party platform) that
+      lets external security researchers report vulnerabilities they find in your
+      products, systems, or public-facing assets, and have an internal process to
+      triage, acknowledge, and respond to those reports.
+    basis: inferred
+  practice:
+    value:
+      '1': A published reporting address (e.g., security@ domain or a clear web page)
+        is live; inbound reports land in a monitored mailbox or ticketing queue; someone
+        is named to acknowledge receipt.
+      '2': Disclosure policy page states scope, safe-harbor wording for good-faith
+        research, and expected response timing; submissions get a tracked ticket,
+        triage against affected assets, and a status reply to the reporter.
+      '3': Reports feed into the same vulnerability management workflow as internal
+        findings (scanning, pentests); SLA targets exist for acknowledgment and remediation;
+        metrics on time-to-triage and time-to-fix are tracked; the program is reviewed
+        after incidents or scope changes.
+    basis: inferred
+  evidence:
+    value: Published vulnerability disclosure policy URL, intake mailbox or platform
+      logs, triage tickets with reporter correspondence, internal hand-off records
+      into the vulnerability management pipeline, and program-level metrics or review
+      notes.
+    basis: inferred
+  common_myth:
+    value: Treating a 'Report a Vulnerability' link on the website as the whole program.
+      A static page with no monitored inbox, no triage owner, and no link to the actual
+      remediation process just gives researchers a black hole - and increasingly signals
+      non-compliance rather than good faith.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last three reports received through the public channel and how each
+      was triaged.
+    - Who owns inbound reports after hours, and what is the documented acknowledgment
+      window?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.954141Z'
+  signed_digest: 019a5e64d81821da2eb1dfb91a2c88022cc239e3dec7b0875193c7b2a15c6c59
+  interview_seconds: null
+  inherited_from: null

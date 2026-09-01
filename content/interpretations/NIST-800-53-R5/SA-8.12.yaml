@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-8.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a flat trust model where compromising one component gives
+      an attacker free movement across the system — without layered defenses (e.g.,
+      least-privilege modules, isolation, non-bypassable security boundaries), a single
+      vulnerability cascades into system-wide compromise.
+    basis: inferred
+  plain_zh:
+    value: 'Design systems so that protection is layered, not flat: components are
+      isolated, each enforces its own access decisions, and critical security boundaries
+      cannot be bypassed. Deeper, more critical parts sit behind stronger controls
+      than the outer surface.'
+    basis: inferred
+  practice:
+    value:
+      '1': Document the system's security-relevant components and the trust boundaries
+        between them; identify which parts hold the most sensitive data or enforce
+        security.
+      '2': Apply least privilege within the design (modules, services, processes only
+        get what they need), enforce isolation between components, and make sure key
+        security checks cannot be bypassed by going around the front end.
+      '3': Verify in testing and review that inner layers actually add protection
+        — penetration tests should show that compromising an outer component does
+        not give free access to inner ones, and architectural reviews check for untrusted
+        paths that skip security functions.
+    basis: inferred
+  evidence:
+    value: System architecture documents showing trust zones and boundaries, design
+      rationale for isolation and least-privilege choices, and test or review records
+      demonstrating that inner layers meaningfully contain breaches of outer ones.
+    basis: inferred
+  common_myth:
+    value: Assuming a firewall at the perimeter is enough — believing that because
+      there is 'defense in depth' on a slide, the internal architecture is actually
+      layered. The control is about *internal* design hierarchy, not perimeter appliances.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If an attacker compromises your web tier, what stops them from reading data
+      directly from the database tier?
+    - Show me a code or design review that caught a missing authorization check on
+      an internal-to-internal call.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.222269Z'
+  signed_digest: bcd47582b606b60b0da9a6fbee8ef30c5967ea1e0f90557fd6e7caf1b1118997
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-7.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents users and untrusted software from executing code in environments
+      intended to isolate or restrict activity, where unrestricted code execution
+      could bypass security boundaries, persist malware, or expose sensitive data.
+    basis: inferred
+  plain_zh:
+    value: Allow code execution in protected environments only when it is necessary
+      and authorized. Apply technical restrictions, monitor what runs, and remove
+      the exception when the need ends.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify protected environments and the applications or users permitted
+        to execute code in them; prohibit all other execution by default and document
+        necessary exceptions.
+      '2': Maintain a reviewed exception process that records the business need, permitted
+        code or users, restrictions, owner, approval, and expiration date; retain
+        execution and investigation records.
+      '3': Enforce restrictions through technical allowlisting, sandboxing, or equivalent
+        controls; alert on unauthorized execution, periodically test the restrictions,
+        and automatically expire or revoke exceptions that are no longer justified.
+    basis: inferred
+  evidence:
+    value: Protected-environment inventory, approved code-execution allowlist, exception
+      requests and approvals, technical enforcement configurations, execution logs,
+      alert records, exception review results, and revocation records.
+    basis: inferred
+  common_myth:
+    value: Assuming a sandbox or virtual machine is safe merely because it is isolated,
+      without restricting which code may run inside it or monitoring execution attempts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which users or applications are allowed to execute code in each protected environment,
+      and who approved those exceptions?
+    - What control prevents unapproved code from running, and can an auditor see the
+      resulting logs and alerts?
+    - How are expired or no-longer-necessary execution exceptions removed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.853086Z'
+  signed_digest: 48fe4ed62ded77e4bcf53fc6115d62262434e38e3c54a83a6925bf8f01e9a949
+  interview_seconds: null
+  inherited_from: null

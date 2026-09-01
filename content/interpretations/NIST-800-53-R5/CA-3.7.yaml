@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CA-3.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against risks that flow through your systems without your knowledge
+      - when a system connected to your network connects to others, the attack surface
+      and trust boundary effectively expand far beyond what you reviewed. If you only
+      vet direct connections, a compromise three hops away still walks into your environment.
+    basis: inferred
+  plain_zh:
+    value: When you connect a system to another system, figure out what that other
+      system connects to in turn, and assess the risks of those downstream (transitive)
+      exchanges before letting the connection happen - and revisit when the chain
+      changes.
+    basis: inferred
+  practice:
+    value:
+      '1': For each system interconnection, ask and document what that peer system
+        connects to downstream; flag obvious cases (shared services, partner networks,
+        cloud providers with sub-processors).
+      '2': Have a written method to identify and assess transitive paths during the
+        interconnection approval process; record what was found and what restrictions
+        were placed on the peer to bound downstream risk.
+      '3': Treat transitive exposure as part of interconnection risk tiering; require
+        the connecting party to notify you of material changes in their downstream
+        connections; re-review interconnections whose peers have changed their own
+        linkages.
+    basis: inferred
+  evidence:
+    value: Interconnection Security Agreements or equivalent records that document
+      downstream connection analysis, the controls imposed on the peer to limit transitive
+      risk, and re-review triggered by changes in the downstream chain.
+    basis: inferred
+  common_myth:
+    value: Assuming that vetting the direct counterparty covers the risk - the connection
+      is signed, the questionnaire is done, so the boundary is sealed. The control
+      breaks precisely when the trusted peer extends trust further without telling
+      you.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one active interconnection: walk me through what that counterparty system
+      connects to, and how you assessed the risk of that downstream reach.'
+    - When was the last time a downstream change on a connected system triggered a
+      re-review of your interconnection?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.678879Z'
+  signed_digest: a8b817771b765ad1a32a6d2bb5c5ac3a4a6345d28c4032e82cf2d84bc5530caa
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-28.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where the storage layer is a copy of the
+      data and any attacker who reads the disk, the backup tape, the laptop in a hotel
+      room, or the cloud snapshot walk away with plaintext. If key material is stored
+      alongside the cipher text it protects, encryption is a speed bump, not a control.
+    basis: inferred
+  plain_zh:
+    value: Make sure the keys that protect data at rest live somewhere an attacker
+      cannot also walk away with. Keys must be protected even when the storage medium
+      itself is taken out of the system.
+    basis: inferred
+  practice:
+    value:
+      '1': Encryption keys (and material that derives them) are kept separate from
+        the data they protect - for example, keys in a dedicated server or HSM while
+        encrypted volumes sit on different infrastructure or in removable media.
+      '2': A documented key-storage policy says where keys can and cannot live; backups
+        of keys exist and are themselves protected; the team can point to a non-trivial
+        separation between key and ciphertext on the systems you choose to sample.
+      '3': Key material is held in dedicated hardware (HSM, TPM, or equivalent), separation
+        is enforced by the platform rather than convention, all copies of keys including
+        those in backups and replicas are tracked, and any attempt to put a key on
+        the same media as its ciphertext is caught or blocked.
+    basis: inferred
+  evidence:
+    value: Architecture showing key store vs. encrypted data store, key-management
+      policy covering storage location and separation, key inventory including copies
+      in backups or replicas, HSM/TPM configuration records, and a sample walk-through
+      of how a key is recovered without ending up next to the data it protects.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the hard drive is encrypted, the control is met.
+      If the unlock key sits in the same volume, in the same backup, or in the same
+      cloud account as the encrypted blob, an attacker who captures the media also
+      captures the key; full-disk encryption on its own does not separate key from
+      data.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through where the encryption key for production customer data physically
+      lives, and where its backups live - are those separate from the encrypted database
+      disks and snapshots?
+    - 'Show me your key inventory: how many copies of each key exist, and what protects
+      each copy?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.489040Z'
+  signed_digest: e3d41994ce54eb914ea8c469ab0b59040bc73bde3db4354a3676827d13949527
+  interview_seconds: null
+  inherited_from: null

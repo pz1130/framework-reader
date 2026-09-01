@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CA-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents self-assessed control claims from passing as evidence — when the
+      team that builds and runs a control also grades its effectiveness, blind spots
+      and conflicts of interest go unchecked and unchallenged findings (including
+      material weaknesses) reach leadership without contest.
+    basis: inferred
+  plain_zh:
+    value: Security and privacy control assessments must be performed by assessors
+      who are not the people who developed or operate the controls, so the results
+      can be trusted as independent.
+    basis: inferred
+  practice:
+    value:
+      '1': Document who is allowed to assess each control family and require they
+        not be the same individuals who implemented or operate those controls; capture
+        the independence stance in the assessment plan.
+      '2': Use a clearly separate function (e.g., internal audit, a dedicated assessment
+        team, or an external firm) with a written charter, defined scope, and a process
+        for declaring and resolving conflicts of interest before each assessment cycle.
+      '3': Independently re-test a sample of controls each cycle, rotate assessors
+        across control areas to avoid familiarity bias, and require independent sign-off
+        on the assessment report before it goes to leadership or the authorizing official.
+    basis: inferred
+  evidence:
+    value: Assessment plan naming the independent assessor(s), conflict-of-interest
+      declarations, assessment report with independent sign-off, and records showing
+      the assessor is organizationally separate from the control owner.
+    basis: inferred
+  common_myth:
+    value: Treating independence as satisfied because the assessor 'sits in a different
+      group on the org chart' even though they routinely partner with the control
+      owner, share deliverables, or report into the same budget — chart position is
+      not the same as functional independence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who signed the most recent assessment report, and what is their reporting relationship
+      to the control owner?
+    - Show the conflict-of-interest declaration for the assessor of this control and
+      how a conflict would be handled.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.663561Z'
+  signed_digest: d92813d7bd333eeda8988cf2749df73a5d7b7c31fe2062336bd3844c6321dd3a
+  interview_seconds: null
+  inherited_from: null

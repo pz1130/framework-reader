@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-8.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Without automated tracking, device/asset inventories drift the moment someone
+      plugs in a laptop, a VM spins up, or a contractor returns a loaner - and security
+      then makes decisions against a phantom baseline, missing rogue endpoints, unpatched
+      gear, and ghost devices holding stale credentials.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools to detect and update where authorized devices physically
+      or logically sit, so the inventory stays tied to reality as systems move, not
+      just at the manual snapshot.
+    basis: inferred
+  practice:
+    value:
+      '1': Turn on the built-in location/asset-management features (MDM, switch port
+        tracking, DHCP fingerprinting) so newly seen devices get recorded without
+        someone typing it in.
+      '2': Define expected locations per asset class, flag movement outside that range,
+        and feed exceptions into a ticketed review so someone owns the discrepancy.
+      '3': Correlate automated location with the authoritative inventory, raise alerts
+        on unrecorded devices or unexpected moves, and audit rejected/ignored alerts
+        so tracking actually changes the inventory, not just logs it.
+    basis: inferred
+  evidence:
+    value: Configuration of the automated tracking tool, samples of location-change
+      events tied back to inventory updates, exception/alert logs showing how discrepancies
+      were resolved, evidence the inventory was edited in response to tracking output.
+    basis: inferred
+  common_myth:
+    value: Treating the discovery scan itself as the control - the scanner found it,
+      so it's covered. The point is whether the location data flows back into the
+      inventory and changes decisions; a scan report nobody reconciles is just a screenshot.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three assets that moved network segments and how the inventory
+      was updated as a result.
+    - Which assets are currently flagged as 'unknown location' and what is the SLA
+      to resolve that?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.888195Z'
+  signed_digest: 16a518ad36f71d1ea6d2a16cc26e8dc899f922df7cb339207a05eb981bf50901
+  interview_seconds: null
+  inherited_from: null

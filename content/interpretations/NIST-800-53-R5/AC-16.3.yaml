@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-16.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against security and privacy attributes drifting out of sync with
+      the objects they describe — so a 'Confidential-Restricted US' tag is still trusted
+      months later, and so that access decisions, retention rules, and data-sharing
+      decisions don't act on stale or orphaned labels.
+    basis: inferred
+  plain_zh:
+    value: Make sure the security and privacy attributes attached to data and system
+      objects (classification, handling caveats, provenance, owner, etc.) stay bound
+      to the right objects for as long as those objects exist, and that nobody can
+      quietly rewrite or strip them.
+    basis: inferred
+  practice:
+    value:
+      '1': Each labeled object has a documented owner and the attribute-to-object
+        binding is recorded somewhere a person can read (spreadsheet, CMDB entry,
+        tag in the schema).
+      '2': Bindings are persisted alongside the object (in the data store, header,
+        or metadata service) with change history; attribute edits require owner approval
+        and are logged.
+      '3': Binding is enforced by the system itself — attributes travel with the object
+        through copies, exports, and pipeline stages; breaking or orphaning a binding
+        is detectable and alerts; periodic reconciliation finds objects whose attributes
+        disagree with their source-of-truth.
+    basis: inferred
+  evidence:
+    value: Sample of objects with their attached attributes, change log for attribute
+      edits, owner list for attribute bindings, reconciliation reports comparing stored
+      attributes to authoritative sources, export/copy test showing attributes survived
+      transit.
+    basis: inferred
+  common_myth:
+    value: Treating attribute binding as a labeling UI problem ('we tag things on
+      upload, so we're done') — without persistence, immutability rules, and reconciliation,
+      attributes get rewritten, stripped on export, or left attached to data that
+      no longer exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three labeled records from different systems — are the attributes you see
+      now the same as the original tag, and can you show the change history?
+    - When data is exported or copied to another system, do attributes travel with
+      it, and how do you detect ones that got stripped?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.024005Z'
+  signed_digest: ee0d47c797f50b6cf582b375daf42ba634c424e24aea2ae1de0c08d49bdbf71e
+  interview_seconds: null
+  inherited_from: null

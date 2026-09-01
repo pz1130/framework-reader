@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure of knowing who owns or is accountable for each
+      piece of hardware, software, and firmware in the inventory. Without named accountability,
+      findings cannot be assigned, unpatched systems cannot be pushed back to a responsible
+      party, and ghost or orphan assets persist indefinitely because no one is required
+      to act on them.
+    basis: inferred
+  plain_zh:
+    value: For every item recorded in the system inventory, document who in the organization
+      is accountable for it, and make sure that accountability information is associated
+      with the asset record and updated when ownership changes.
+    basis: inferred
+  practice:
+    value:
+      '1': Each inventory record has a field for an accountable owner (person or role),
+        and the CMDB or inventory tool enforces that the field is populated.
+      '2': Accountability is tied to a named role with a defined individual, and there
+        is a documented process for reassigning ownership when staff rotate, leave,
+        or transfer assets.
+      '3': Ownership is verified periodically, stale or unassigned entries trigger
+        a remediation workflow, and accountability feeds into patch, vulnerability,
+        and incident response processes so that actions route to a real owner.
+    basis: inferred
+  evidence:
+    value: Inventory records showing the accountable individual or role for each asset,
+      the ownership-assignment and reassignment procedure, sample reassignment tickets
+      when owners changed, and evidence that vulnerability or patch workflows route
+      to the recorded owner.
+    basis: inferred
+  common_myth:
+    value: 'Assuming the inventory tool''s ''Owner'' column filled in by the help
+      desk at provisioning time is sufficient. It is not: ownership is rarely updated,
+      and if no workflow reads that field to drive remediation or patch routing, the
+      value is decorative.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three assets in the inventory: who is the named accountable owner for
+      each, and how was that confirmed within the last year?'
+    - When an engineer left the company, how was ownership of their assigned systems
+      reassigned, and where is that change recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.876716Z'
+  signed_digest: 14e2a44fbd19721bfc22d170c3ced673c90613e36ec96e4798f88815f636e5e3
+  interview_seconds: null
+  inherited_from: null

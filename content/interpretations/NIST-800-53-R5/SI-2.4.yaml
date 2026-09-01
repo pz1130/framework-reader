@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-2.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against unpatched systems drifting into vulnerable states because
+      manual patching is skipped, delayed, or inconsistently applied—especially when
+      the volume of patches or fleet size makes manual tracking error-prone.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools to manage the deployment of patches (including software
+      updates and firmware) to systems, so updates are applied in a timely, consistent,
+      and verifiable manner across the environment.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify and deploy an automated patch management tool that can at least
+        inventory installed software and push patches to a subset of critical systems.
+      '2': Centralize patch deployment through the tool; maintain a patching schedule
+        (e.g., regular cycles, emergency windows); track patch status for all managed
+        devices; have a rollback or break-fix process.
+      '3': Automate vulnerability scanning tied to patch deployment; enforce patching
+        policies via the tool (e.g., deadline-based enforcement, non-compliance alerts);
+        audit trail of all patch actions (including successes, failures, and exceptions)
+        feeding into a metric or dashboard for leadership.
+    basis: inferred
+  evidence:
+    value: List of approved automated patching tools; configuration documentation;
+      screenshots or exports of patch compliance status per asset group; patch deployment
+      schedule and execution reports; evidence of exception handling (e.g., change
+      tickets for deferred patches); logs of tool-generated alerts for non-compliant
+      systems.
+    basis: inferred
+  common_myth:
+    value: Assuming that just having a patch management tool installed is enough—without
+      configuring it to actually enforce deadlines or without a process to review
+      and act on its reports, unpatched systems can still slip through.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems are excluded from automated patch management, and why?
+    - How does the tool handle a patch that breaks a critical application?
+    - Can you show me a recent patch window and the compliance report before and after?
+    basis: inferred
+  regional_note:
+    value: Not a meaningful difference; both EU and US auditors look for evidence
+      that automated tools are actually used to enforce patching, not just present
+      in the environment.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.930287Z'
+  signed_digest: 1c0230ba1e6f94ed62d630b87fd954d699ae3a76f693fbd1845be816bffe8ed7
+  interview_seconds: null
+  inherited_from: null

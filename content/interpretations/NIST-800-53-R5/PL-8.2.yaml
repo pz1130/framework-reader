@@ -1,0 +1,77 @@
+control_id: NIST-800-53-R5:PL-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security function from being blind to the actual composition
+      of its own supply chain and from being held accountable for a policy that names
+      no suppliers, no procurement roles, and no consequences for non-compliance.
+    basis: inferred
+  plain_zh:
+    value: You must be able to show that your security program considers the diversity
+      of your suppliers, not just their aggregate risk. The control asks you to document
+      and maintain a view of who your suppliers are, including their geographical,
+      jurisdictional, and ownership characteristics, and to use that view to shape
+      how you manage supply chain risk.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a simple inventory of suppliers that includes basic attributes
+        such as country of incorporation, ownership type (public/private/state‑owned),
+        and whether they are subject to particular sanctions or export controls. Review
+        the list at least annually.
+      '2': Integrate supplier diversity attributes into a risk assessment process.
+        For each high‑risk or critical supplier, document the specific risks introduced
+        by their jurisdiction, ownership, or regulatory posture, and record how those
+        risks are mitigated. Maintain a formal procedure for adding and removing suppliers
+        from the list.
+      '3': Use supplier diversity data to automatically drive or influence procurement
+        decisions, contracting terms, and ongoing monitoring frequency. Maintain a
+        direct link between the diversity profile and the security requirements imposed
+        on the supplier. Conduct periodic audits that verify the data is complete
+        and current, and demonstrate that the information changes how you manage supplier
+        risk.
+    basis: inferred
+  evidence:
+    value: An inventory or register of suppliers with structured fields for jurisdiction,
+      ownership, and regulatory status; a documented procedure for how diversity attributes
+      are collected, updated, and used; risk assessment records that specifically
+      reference the diversity attributes of each critical supplier; evidence that
+      procurement or contracting decisions are informed by the diversity profile.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'supplier diversity' here means you must simply report how
+      many suppliers are small, minority‑owned, or woman‑owned businesses for public
+      relations purposes. That is commercial supplier diversity; this control is about
+      security understanding the geopolitical and legal diversity of your supply base
+      so you can anticipate and mitigate risks tied to where and how your suppliers
+      operate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where is the actual current list of suppliers and their countries of incorporation?
+      Show me how often it is updated.
+    - Show me a risk assessment for a supplier in a high‑risk jurisdiction – what
+      specific risk did you identify and what controls did you impose beyond your
+      generic vendor risk process?
+    - When a supplier changes ownership or moves its operations to a different country,
+      what triggers a re‑evaluation of that supplier's security risk?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.678363Z'
+  signed_digest: b0e0077a31f662d2661899b162d856cb7feb2c57c9ee8299252f06d6e5640593
+  interview_seconds: null
+  inherited_from: null

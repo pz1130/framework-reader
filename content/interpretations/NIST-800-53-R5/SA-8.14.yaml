@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-8.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a system being built so that any component, process, or
+      developer path can touch any other component, data, or privilege boundary -
+      so that a single bug, compromise, or insider action propagates straight to the
+      crown jewels instead of being contained by design.
+    basis: inferred
+  plain_zh:
+    value: Design and build the system so that every element runs with the narrowest
+      privileges it actually needs to do its job, and so that higher-privilege moves
+      are explicit, justified, and bounded.
+    basis: inferred
+  practice:
+    value:
+      '1': Engineering standards state that components and services run with least
+        privilege; new designs note what privileges each module actually needs before
+        review approval.
+      '2': Design reviews check privilege scope against need; common sinks (databases,
+        secrets, admin APIs, build agents) are documented with their granted privilege;
+        deviations need sign-off.
+      '3': Privilege boundaries are testable - lower-trust code paths are exercised
+        in tests to confirm they cannot reach higher-trust resources; regressions
+        in privilege scope fail the build; periodic architecture review re-checks
+        that least-privilege assumptions still hold after refactors.
+    basis: inferred
+  evidence:
+    value: Engineering / secure-design standards referencing least privilege, design-review
+      records showing privilege scope per component, documented privilege grants for
+      shared services, test or pen-test results showing that lower-privilege paths
+      cannot escalate, and deviation/exception logs with justifications.
+    basis: inferred
+  common_myth:
+    value: Confusing least privilege with least inconvenience - granting a service
+      'admin because it is easier' or 'root in the container because debugging is
+      faster', and assuming a later hardening pass will clean it up. By the time the
+      system is built, those grants are structural and the review will not catch them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one production service and walk me through what privileges it actually
+      runs with, and why each one is needed.
+    - How does a design review catch a component that is asking for more privilege
+      than its function requires?
+    - Show me a recent case where a proposed design was changed to reduce its privilege
+      scope.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.229428Z'
+  signed_digest: e65a1cc32d0f31c86cff3bfa63c23bf82cde6aef5bdbe5de4ef42eb6e04aadd9
+  interview_seconds: null
+  inherited_from: null

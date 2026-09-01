@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-49
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents software-only trust boundaries from being bypassed when an attacker
+      (or a malicious insider) gets kernel/admin footing on the host — the risk is
+      that 'application-level separation' collapses the day one process is compromised,
+      because all guests, containers, or workloads share the same silicon trust root.
+    basis: inferred
+  plain_zh:
+    value: Where software separation is not enough, require the hardware itself (CPU
+      virtualization extensions, IOMMU, TPM/HSM, secure boot, memory protection keys,
+      etc.) to enforce who can run what and where data can go — and verify that the
+      policy is actually loaded and active.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the workloads that need hardware-enforced isolation (multi-tenant
+        hosts, sensitive processing, security tooling); confirm the hosts expose the
+        required CPU/IOMMU/firmware features.
+      '2': Document the isolation policy per workload class; enforce it via the hardware
+        feature (e.g., VMX/SVM with policy registers locked, IOMMU mappings, memory
+        protection keys); configure measured boot so the policy state is attested.
+      '3': Lock configuration in firmware, monitor for policy-disabled or feature-off
+        states, attest boot and runtime integrity continuously, and fail-closed if
+        hardware enforcement is removed or tampered with.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing which workloads sit behind hardware-enforced
+      boundaries; firmware/BIOS configuration baselines; attestation logs (TPM quotes,
+      measured-boot records); test results proving that disabling the hardware feature
+      causes workloads to stop or fail attestation.
+    basis: inferred
+  common_myth:
+    value: Treating hardware-assisted virtualization ('we run in a VM/hypervisor')
+      as automatic compliance — the control is not about using virtual machines, it
+      is about whether silicon-enforced policy is configured, locked, and attested
+      so that a compromised OS or hypervisor cannot silently change the isolation
+      boundary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the attestation record from one of these hosts and how you would detect
+      if CPU virtualization or IOMMU was disabled in firmware.
+    - If an attacker gained kernel privileges on the host, what stops them from reading
+      memory or devices belonging to the protected workload?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.647633Z'
+  signed_digest: f5d995d298587f99e3cfbed3144ff537203f4ed44b101cfd938e9905a5f76522
+  interview_seconds: null
+  inherited_from: null

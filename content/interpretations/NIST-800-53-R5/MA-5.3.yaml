@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:MA-5.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents unauthorized or untrusted personnel from maintaining classified
+      systems, where a maintenance provider's citizenship or nationality could conflict
+      with national security requirements for access to sensitive or classified information.
+    basis: inferred
+  plain_zh:
+    value: For systems handling classified or national security information, ensure
+      that maintenance personnel meet citizenship requirements before granting them
+      access. This usually means verifying nationality and possibly requiring security
+      clearances.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems are classified and require maintenance personnel
+        to hold appropriate citizenship and security clearance before assignment.
+      '2': Document the citizenship and clearance verification process for each maintenance
+        provider, including background checks and approvals; keep records current
+        and linked to the specific systems.
+      '3': Integrate citizenship and clearance checks into the onboarding and periodic
+        re-verification cycle; automate alerts when a provider's clearance lapses
+        or their citizenship status changes; restrict physical and logical access
+        accordingly.
+    basis: inferred
+  evidence:
+    value: List of classified systems, maintenance personnel records showing citizenship
+      and clearance verification, approval documents from security office, periodic
+      re-check logs, and access revocation records when requirements no longer met.
+    basis: inferred
+  common_myth:
+    value: Assuming that a maintenance contract or a general NDA satisfies this control—citizenship
+      and clearance are separate, additional requirements that must be explicitly
+      verified and documented per person.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you verify that maintenance personnel assigned to classified systems
+      meet the citizenship requirement?
+    - When a maintenance provider's clearance lapses, what is the process for revoking
+      their access?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.435955Z'
+  signed_digest: c95a0467e7c283886dc25e3b48b4ba3a29edbc697d968a87dabad82773dd1e9d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AU-9.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects audit logs from being silently tampered with by an attacker who
+      already has administrative or root access. Without cryptographic integrity,
+      anyone with log-server or SIEM access can rewrite, delete, or fabricate entries,
+      and the entire incident-response and forensic trail becomes untrustworthy exactly
+      when it is needed most.
+    basis: inferred
+  plain_zh:
+    value: 'Make audit records tamper-evident: protect their integrity (and where
+      appropriate, confidentiality) using cryptography so that any modification or
+      deletion of stored or transmitted logs is detectable.'
+    basis: inferred
+  practice:
+    value:
+      '1': Audit logs are written to a destination that is separate from the systems
+        producing them; write-once media or append-only storage is used where available;
+        access to modify log files is restricted to a small, named group.
+      '2': 'Cryptographic mechanisms are applied to stored and transmitted audit data:
+        integrity hashes or digital signatures on log records, encrypted transport
+        to the central log server, and key management that defines who holds the signing/verification
+        keys; logs covering at-rest and in-transit are identified in a coverage matrix.'
+      '3': Integrity is verified continuously or on a defined cadence, signature/hash
+        failures generate alerts, the verification keys themselves are protected and
+        rotated, and the control is tested periodically by injecting tampered records
+        to confirm detection.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing log flows, the coverage matrix of which logs
+      are cryptographically protected (at rest and in transit), key management procedures,
+      integrity-verification job logs or alerts, and a recent test record showing
+      tampered records were caught.
+    basis: inferred
+  common_myth:
+    value: Assuming that storing logs on a separate server or in a SIEM already satisfies
+      this control. Centralizing logs only moves the problem; an attacker with admin
+      rights on the log host, or anyone who can rewrite the log pipeline, can still
+      alter records before or after they land. Cryptographic integrity (not just access
+      control on the log folder) is what makes tampering detectable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your audit log streams are protected with cryptographic integrity,
+      and which are only protected by file permissions on the log server?
+    - Show me a recent alert or incident where an integrity check on audit data actually
+      triggered and what happened next.
+    - Who holds the keys used to sign or verify log integrity, and how are those keys
+      themselves protected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.640350Z'
+  signed_digest: cf828b8ff2fb0976a4eaa8cbd1d49c2be0cbbc2dd89952db6c48b252d21a8429
+  interview_seconds: null
+  inherited_from: null

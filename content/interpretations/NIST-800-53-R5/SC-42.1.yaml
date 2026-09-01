@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-42.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops sensor/meta-data exfiltration from leaking through the side channel
+      of an unauthenticated disclosure path. If a device can broadcast its own location,
+      identity, or telemetry before the user proves who they are, anyone in range
+      harvests it without ever touching your perimeter.
+    basis: inferred
+  plain_zh:
+    value: Make sure the device or system cannot emit or expose collected sensor/meta-data
+      until it has verified the user/requester is allowed to receive it. Decide who
+      is authorized, design the disclosure path to gate on that check, and log each
+      release.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which sensors on the device emit data (GPS, BLE, RFID, camera,
+        mic, telemetry beacons) and confirm each one sits behind an authentication/authorization
+        check before any data leaves the device.
+      '2': Define the authorized individuals or roles who may pull each data class;
+        document the gating mechanism (per-user credential, pairing, signed request)
+        and keep a record of disclosures.
+      '3': Enforce the gate in firmware or middleware so it cannot be bypassed by
+        app-level calls; alert on attempts to read sensor data from unauthenticated
+        sessions; review the authorized-receiver list and disclosure logs on a fixed
+        cadence and after any device or app change.
+    basis: inferred
+  evidence:
+    value: Sensor/data inventory, list of authorized recipients per data class, design
+      docs showing the authentication gate in the disclosure path, disclosure logs,
+      and periodic review records.
+    basis: inferred
+  common_myth:
+    value: Treating the existence of a login screen or a pairing PIN as the gate,
+      when in practice apps or background services can still query the raw sensor
+      stream before any user check runs.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a sensor on this device and walk through the call path that proves a
+      user is authorized before data is returned.
+    - Which sensor data has been disclosed in the last reporting period, to whom,
+      and where is that logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.605456Z'
+  signed_digest: a7f2a79928b61daef84b3c1fe4b5cacca523f659641f7cecd42a9c6d03615a90
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CP-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that a working backup site is actually recoverable
+      in practice—geographic or domain separation on paper does nothing if the alternate
+      site shares the same floodplain, the same power grid, the same ISP, or the same
+      building complex as the primary, because the very event you are recovering from
+      takes both out at once.
+    basis: inferred
+  plain_zh:
+    value: Make sure the alternate processing/storage site is actually separated from
+      the primary one—not just labeled as separate—so that a single physical disaster,
+      regional outage, or domain-wide failure cannot knock out both locations simultaneously.
+    basis: inferred
+  practice:
+    value:
+      '1': Document the address and physical location of each alternate site used
+        for CP-2/CP-6; confirm on a map that it is outside the primary site's flood,
+        seismic, wildfire, and utility-corridor zones.
+      '2': Maintain a written separation rationale (distance, geographic barrier,
+        independent utilities/telecom) for each primary→alternate pair; review it
+        when the primary site changes or after regional incidents.
+      '3': Verify separation independently—walk-throughs or third-party assessments
+        of utilities, ISPs, upstream network providers, and building dependencies;
+        test that a realistic regional failure of the primary leaves the alternate
+        operational, not merely that the alternate powers on.
+    basis: inferred
+  evidence:
+    value: Site separation documentation with addresses, distance and rationale, map
+      or geographic-risk overlay, utility and telecom provider independence records,
+      and test/exercise evidence that a primary-site-class event leaves the alternate
+      functional.
+    basis: inferred
+  common_myth:
+    value: Treating any second data center or cloud region as automatically satisfying
+      separation—without checking whether both sites ride the same power substation,
+      the same long-haul fiber routes, the same third-party network providers, or
+      sit inside the same metro area exposed to the same hurricane or earthquake zone.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What geographic and infrastructure dependencies exist between the primary site
+      and the alternate site, and how were those dependencies identified rather than
+      assumed?
+    - Show the most recent test or exercise where the primary site was unavailable—did
+      the alternate site actually continue operations, and for how long, under conditions
+      resembling a realistic regional event?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.979426Z'
+  signed_digest: 3d3d35a640ebea5489fac18ea941772a6338d85ac6c418e3288b85c8a85d7e36
+  interview_seconds: null
+  inherited_from: null

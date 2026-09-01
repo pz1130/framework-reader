@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-18.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who remotely compromise wireless links by capturing
+      signals from a distance, injecting traffic via a rogue endpoint, or exploiting
+      a device whose radio is broadcasting far beyond its physical location. Without
+      antenna and power-level limits, the wireless boundary is effectively wherever
+      a sufficiently motivated attacker parks.
+    basis: inferred
+  plain_zh:
+    value: Decide what each wireless radio is allowed to reach and how loudly it is
+      allowed to shout, then keep it that way. Antennas and transmit power must be
+      selected and configured so wireless signals do not extend past the spaces the
+      organization actually intends to cover.
+    basis: inferred
+  practice:
+    value:
+      '1': Each wireless access point and radio has a defined coverage area in writing;
+        default transmit power has been turned down from factory maximums where feasible.
+      '2': Antenna type, orientation, and transmit power are documented per deployment;
+        site surveys or signal maps confirm coverage roughly matches the intended
+        footprint; changes go through a change record.
+      '3': Power levels and antennas are reviewed periodically and after any physical
+        or architectural change; deviations from the intended footprint trigger a
+        corrective action; out-of-band or unexpectedly strong signals are detected
+        during site surveys.
+    basis: inferred
+  evidence:
+    value: Documented antenna and transmit-power settings per wireless device, site
+      survey results or signal heatmaps, change records for radio configuration, and
+      review logs showing periodic re-validation.
+    basis: inferred
+  common_myth:
+    value: Treating 'wireless is encrypted and authenticated, so signal reach doesn't
+      matter' as sufficient. Encryption protects the payload, not the boundary; a
+      signal spilling into a parking lot is still discoverable and still invites association
+      or jamming attacks.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the documented transmit-power setting and antenna selection for the
+      AP covering the lobby area, and the site survey that confirms the signal does
+      not leave the building.
+    - When was the last time a wireless coverage map was refreshed after a renovation
+      or new wall was installed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.094047Z'
+  signed_digest: cddee585ea6d59b83fb591cd325cc2715cb194f61491c9c7975c4afd73dd1a9f
+  interview_seconds: null
+  inherited_from: null

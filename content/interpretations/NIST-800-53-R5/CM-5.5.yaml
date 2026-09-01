@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-5.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents developers and operators from using privileged accounts in production
+      to make unrecorded changes or to bypass the controls that guard production data
+      and stability; a single over-privileged account is enough to hide who did what
+      and to corrupt the system everyone relies on.
+    basis: inferred
+  plain_zh:
+    value: Limit privilege for production and operational systems to the minimum needed,
+      separate it from development accounts, and document deviations with a fixed
+      time limit and approver.
+    basis: inferred
+  practice:
+    value:
+      '1': Developers do not hold standing privileged access to production; operational
+        staff use named accounts with elevated rights only when a change or incident
+        demands it, and the activity is logged.
+      '2': A written policy separates dev/test from prod credentials; temporary privilege
+        grants are approved, time-boxed, and revoked automatically; emergency access
+        is recorded in a separate break-glass workflow with a named approver.
+      '3': Production privilege is enforced in the platform itself (just-in-time elevation,
+        separate identity domains for dev vs. ops), exceptions have a hard expiry,
+        and the change/incident record is reconciled with the access grant so unowned
+        actions cannot occur.
+    basis: inferred
+  evidence:
+    value: Policy separating production from non-production privilege, list of privileged
+      production roles and their justification, time-bound elevation or break-glass
+      logs with approver identity, automated revocation evidence, reconciliation between
+      elevated sessions and the resulting change tickets or incident records.
+    basis: inferred
+  common_myth:
+    value: Treating developer access to production logs (read-only, for debugging)
+      as harmless, so engineers keep standing read keys and the occasional emergency
+      write slips through the same path; once a credential can reach production at
+      all, there is no structural separation to fail-closed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last three times a developer obtained elevated production access:
+      who approved it, when did it expire, and what change ticket is linked to it?'
+    - How are developer credentials kept separate from the operational production
+      accounts they could otherwise share a host or identity store with?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.814266Z'
+  signed_digest: d3e22f1ec7c8dac1fba120296932f66d531d58940998aceecfffa252a5397972
+  interview_seconds: null
+  inherited_from: null

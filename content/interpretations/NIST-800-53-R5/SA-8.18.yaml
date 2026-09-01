@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-8.18
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries hijacking or spoofing the path between system
+      components - if a microservice, agent, or endpoint trusts a network call merely
+      because it arrived on a port, an attacker who reaches that channel can inject
+      commands, replay actions, or impersonate peers, and the breach looks like 'normal
+      traffic' to every monitor.
+    basis: inferred
+  plain_zh:
+    value: Engineer the system so that the communication channels between components
+      - APIs, service meshes, agent-to-server links, control planes - verify both
+      ends and protect the traffic, so that reaching the channel is not enough to
+      be trusted.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the channels between trust boundaries (user-to-app, app-to-app,
+        app-to-data, agent-to-controller); require TLS or equivalent for them; document
+        where mutual authentication is used versus one-way.
+      '2': Define channel-security standards per channel class (protocol version,
+        cipher floor, mTLS where the protocol permits, pinning or signed channels
+        for high-trust links); review new integrations against them before go-live.
+      '3': Enforce channel requirements in the platform (service mesh, API gateway,
+        certificate management); continuously detect plaintext or downgraded connections;
+        revoke and rotate credentials automatically; block non-compliant channels
+        from production.
+    basis: inferred
+  evidence:
+    value: Architecture showing trust boundaries and the channel controls applied
+      to each, channel-security standard, configuration evidence of TLS/mTLS in production,
+      certificate inventory with rotation logs, and detection or test results showing
+      plaintext or weak channels were caught and remediated.
+    basis: inferred
+  common_myth:
+    value: Assuming 'TLS is enabled' on the load balancer means the channel is trusted
+      end-to-end - in reality, the segment between the proxy and the internal service,
+      or between sidecar and sidecar, often runs cleartext, and that is exactly where
+      lateral movement happens.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the channel between service A and service B - which side authenticates
+      which, and is that traffic encrypted on the wire right now?
+    - Where do certificates live, who owns their rotation, and what happens when one
+      expires or is revoked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.244922Z'
+  signed_digest: 74e6c3269bc67720ac67616d2cb19d0a68d95c7db76ab8262255f3eafeff7d62
+  interview_seconds: null
+  inherited_from: null

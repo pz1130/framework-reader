@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IA-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents treating every authenticated identity the same way regardless
+      of who they actually are — contractors, foreign nationals, guests, or unauthenticated
+      visitors getting the same access handling as vetted employees, so the wrong
+      accountability chain, onboarding path, or screening depth gets applied and breaches
+      go unnoticed because no one tracked who was in the building or on the network.
+    basis: inferred
+  plain_zh:
+    value: Figure out what kind of user each account or person belongs to (employee,
+      contractor, visitor, guest, foreign national, etc.) before you hand them access,
+      and make that classification drive how they're vetted, logged, and revoked.
+    basis: inferred
+  practice:
+    value:
+      '1': A short list of user categories exists; someone decides the category before
+        access is granted; visitors and contractors are visibly distinguishable from
+        staff.
+      '2': Each category has documented handling rules for vetting, badge/network
+        treatment, logging, and revocation; the status is recorded on the account
+        or visitor record; sponsors are accountable for non-employees.
+      '3': Classification is enforced in provisioning workflows (not free-text); status
+        changes (e.g., contractor converts to employee, visitor account times out)
+        trigger automatic re-handling; reviews catch stale classifications; visitors
+        and guests are provably separated in audit trails.
+    basis: inferred
+  evidence:
+    value: User-category definitions, account/visitor records showing assigned status,
+      provisioning tickets linking status to vetting level, evidence that status drives
+      access scope and revocation, audit-log samples showing distinguishable treatment
+      per category.
+    basis: inferred
+  common_myth:
+    value: Assuming that issuing a badge or an account automatically constitutes identifying
+      the user status — the badge says 'contractor' only if the system was told the
+      person is a contractor at provisioning, and contractors often get the same default
+      group as employees because nobody tagged the status field.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three accounts marked as contractor or visitor — show me the record where
+      status was assigned and the vetting step that followed from it.
+    - When a contractor's engagement ends, what removes their access and on what date
+      does that happen versus their staff peers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.151953Z'
+  signed_digest: 62a85c2b370d564affe3197cd94004da621443e4992335a0755736985ae78dcc
+  interview_seconds: null
+  inherited_from: null

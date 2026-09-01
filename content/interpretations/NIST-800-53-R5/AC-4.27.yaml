@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.27
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single filtering component being the sole gatekeeper
+      between untrusted traffic and sensitive assets — a bug, bypass, or compromise
+      of that one mechanism would otherwise expose the protected boundary. Independence
+      reduces the chance both fail for the same reason; redundancy makes a single
+      point of failure survivable.
+    basis: inferred
+  plain_zh:
+    value: At the boundary where untrusted data meets sensitive systems, do not rely
+      on one filter alone. Deploy independent filtering mechanisms so that a failure,
+      evasion, or compromise of one is caught by another before traffic reaches what
+      it protects.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical enforcement points (e.g., perimeter ingress, DMZ-to-internal,
+        data egress) and confirm at least two filtering mechanisms are deployed in
+        series, implemented on different platforms or vendors where feasible.
+      '2': Document which mechanisms enforce which policy aspects, the independence
+        rationale (different vendors, different OS, different admin teams), and the
+        failure-mode test that shows the second filter actually blocks what the first
+        missed.
+      '3': Continuously validate independence through periodic adversarial testing,
+        change-control review that prevents collapsing the two onto the same underlying
+        platform, and monitoring that flags when one filter silently goes to fail-open
+        or bypass state.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing the layered filters and their independence
+      basis, policy split between mechanisms, test or pen-test results demonstrating
+      the second filter catches what the first allows, and change/incident records
+      showing the layered design has actually been exercised.
+    basis: inferred
+  common_myth:
+    value: Assuming two firewalls from the same vendor in active/passive HA counts
+      as independent filtering — they share the same software image, often the same
+      admin, and usually the same failure modes, so a vulnerability or misconfiguration
+      takes both out at once.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What specifically makes the two filtering mechanisms independent, and how was
+      that tested?
+    - Show me a case where the second filter actually blocked something the first
+      one let through.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.320470Z'
+  signed_digest: 1a5b4773bfd2d2839871952b9ce8c2f67cb1b2a252c24e248fbf609ce1b7055e
+  interview_seconds: null
+  inherited_from: null

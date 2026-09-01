@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MP-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Media goes missing or is salvaged with data still readable because nobody
+      verified the sanitization actually worked on that exact drive, in that exact
+      firmware, before it left the building. The control defends against 'we ran the
+      wipe, so it's safe' being assumed rather than demonstrated.
+    basis: inferred
+  plain_zh:
+    value: Before any piece of media leaves the organization — sold, returned, recycled,
+      or destroyed — you must test that the sanitization tool actually succeeded on
+      that specific item, and you must keep proof of that test. Trust the result,
+      not the tool's reputation.
+    basis: inferred
+  practice:
+    value:
+      '1': Run the sanitization tool and visually confirm it reported success; keep
+        a one-line entry per item with serial number, method, date, and technician.
+      '2': Use a tool that produces verifiable output (logs, hashes, or certification);
+        spot-check a percentage of sanitized media with independent verification (re-read,
+        hash compare, or forensic scan) before release.
+      '3': Verify every individual piece of media post-sanitization through automated
+        checks (full read-back, hash validation against pre-image, or HPA/DCO inspection);
+        failed items are blocked from release and re-processed; results feed back
+        into tool and process selection.
+    basis: inferred
+  evidence:
+    value: Per-media sanitization records linked to serial numbers, tool output logs
+      and verification artifacts, sampling/verification results showing pass and re-process
+      cases, release authorization tied to verified status.
+    basis: inferred
+  common_myth:
+    value: Treating a tool's 'success' message as proof of sanitization — without
+      any independent check on that specific device, that specific firmware revision,
+      with that specific tool version — is the most common failure. Tools silently
+      fail on frozen sectors, hidden areas, encrypted volumes with the key still present,
+      or firmware-protected regions, and the success banner still appears.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three drives sanitized in the past quarter and the independent verification
+      result for each one.
+    - When a verification check failed, what happened to that drive — was it re-processed,
+      released, or destroyed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.505719Z'
+  signed_digest: 9bde22910338ad53746ca6363e27ac1c8ea0d051bb846a8a9ca8bc030a638a34
+  interview_seconds: null
+  inherited_from: null

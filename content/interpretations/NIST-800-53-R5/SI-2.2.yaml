@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SI-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the situation where known software vulnerabilities remain unpatched
+      simply because no one has visibility into whether the remediation process was
+      completed — the team patches, but never verifies that the patch is actually
+      applied across all affected systems, leaving the environment exposed despite
+      a 'remediation' workflow.
+    basis: inferred
+  plain_zh:
+    value: Instead of relying on manual checks or hoping that remediation happened,
+      you need an automated mechanism to report, at any time, which systems are still
+      known to have unpatched flaws. The control is about keeping a live, automated
+      record of remediation status, so that when an auditor asks 'have you fixed this
+      CVE?', you can show current state, not just a history of past efforts.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain an inventory of systems and known vulnerabilities; at least manually
+        track remediation status for high-impact systems. For each vulnerability,
+        note when it was detected, when a fix was applied, and when it was verified.
+      '2': Integrate a vulnerability scanner or configuration management tool that
+        automatically records remediation status for all managed systems. Generate
+        periodic reports showing which systems are still affected by unresolved vulnerabilities,
+        and review them for gaps.
+      '3': Automatically correlate vulnerability findings with patch deployment records,
+        and trigger alerts when a system is expected to be patched but remains vulnerable.
+        Ensure that the status feed is updated continuously and that exceptions are
+        formally documented and approved.
+    basis: inferred
+  evidence:
+    value: A current, automated report (dashboard or export) that lists each known
+      vulnerability, affected systems, and current remediation status (e.g., pending,
+      patched, verified, not applicable). Include a method to show that the status
+      is automatically pulled from the vulnerability management/patching tool, not
+      manually typed — such as a timestamp of last scan and patch deployment logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a vulnerability scanner is enough — teams often set
+      up automated scanning but do not wire the results into a remediation workflow,
+      so the status report is never actually used to drive patch verification. The
+      control is not about having a tool, but about having an automated, current picture
+      of who is still exposed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current status for a specific CVE — which systems are still not
+      patched?
+    - How does the status get updated — is it automatic or do you have to manually
+      run a report?
+    - What happens when a patch is deployed but the system still shows as vulnerable
+      — does the system flag that discrepancy?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.922713Z'
+  signed_digest: 7d0b5d12f97121f9ba6ec3d5cbeb467f29e1f1a3b586ec76c9e1f2a27c67b408
+  interview_seconds: null
+  inherited_from: null

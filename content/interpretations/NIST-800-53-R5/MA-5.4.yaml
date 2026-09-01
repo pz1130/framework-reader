@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:MA-5.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents gaps in accountability for maintenance work done by foreign nationals—without
+      clear rules and sign-off, they may get physical or logical access that is neither
+      approved nor tracked, and the organization cannot show a chain of responsibility.
+    basis: inferred
+  plain_zh:
+    value: When you let foreign nationals perform maintenance, you must define in
+      policy how they are approved, what conditions they work under, and who remains
+      accountable; you also need to document the specific individuals involved and
+      the scope of their tasks.
+    basis: inferred
+  practice:
+    value:
+      '1': A policy or procedure exists that requires foreign nationals doing maintenance
+        to be individually approved before access; the maintenance request records
+        their names and the equipment or systems involved.
+      '2': Approvals are documented with conditions (e.g., supervision, escort, time-limited
+        access), and the maintenance records show the specific foreign national and
+        the task scope; there is a defined owner accountable for each maintenance
+        activity.
+      '3': The organization tracks foreign nationals doing maintenance in a central
+        log that links to the maintenance authorization; reviews confirm that only
+        approved individuals performed work, and any deviations are logged and handled;
+        accountability is clear from request to completion.
+    basis: inferred
+  evidence:
+    value: Written policy or procedure on foreign national maintenance; approved maintenance
+      records listing the foreign national, task, and conditions; logs of supervision
+      or escort where required; and evidence of sign-off by the accountable owner.
+    basis: inferred
+  common_myth:
+    value: Assuming that the general maintenance policy already covers foreign nationals,
+      so a separate prerequisite on ‚Äòforeign nationals‚Äô is unnecessary‚Äîbut without
+      explicit mention, the approval and accountability are often missing from records.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where in your policy do you specify how a foreign national is approved to perform
+      maintenance?
+    - Can you show me a completed maintenance record that identifies the foreign national
+      and the scope of work?
+    - Who is the accountable person for the last maintenance activity done by a foreign
+      national, and how is that documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.439949Z'
+  signed_digest: 21ac3c535f74fec1c826827cc5c67984b3e823af7a2ca9ce6100af5ae6d484b6
+  interview_seconds: null
+  inherited_from: null

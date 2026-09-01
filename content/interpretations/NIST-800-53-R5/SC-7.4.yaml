@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-7.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against external carriers being a single point of failure or a
+      hidden backdoor - if all internet, MPLS, or other external telecom links flow
+      through one provider, that provider's outage, subpoena, or compromise becomes
+      your outage or breach.
+    basis: inferred
+  plain_zh:
+    value: Use more than one external telecommunications provider so no single carrier
+      is a single point of failure, define what you expect from each provider in writing,
+      and have a way to keep working when one of them fails or is tampered with.
+    basis: inferred
+  practice:
+    value:
+      '1': List every external telecom service in use (internet, MPLS, SIP, cellular,
+        etc.) and identify whether any provider is a sole path for a critical function.
+      '2': Contractually require each provider to meet documented security and availability
+        expectations (incl. notification of incidents/subpoenas affecting your traffic);
+        define failover paths between providers.
+      '3': Maintain diverse physical ingress and proven provider diversity at the
+        protocol level; periodically test failover; review provider security posture
+        and threat intel on a schedule; have a runbook for provider compromise.
+    basis: inferred
+  evidence:
+    value: Inventory of external telecom services and providers, provider contracts/SLAs
+      with security and notification clauses, network diagrams showing provider diversity,
+      failover test results, incident records involving telecom providers.
+    basis: inferred
+  common_myth:
+    value: Assuming dual ISPs on two different contracts is the same as true provider
+      diversity - same underlying wholesale carrier, same fiber route into the building,
+      or same submarine cable turns two contracts into one point of failure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the diagram of how traffic leaves the building - which providers, which
+      physical paths, and where they physically meet.
+    - When was the last time you failed over from one external provider to another,
+      and what did you learn?
+    - What does your contract require a carrier to tell you about incidents or lawful
+      access requests affecting your traffic?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.755362Z'
+  signed_digest: 491e2d545fe3dfc828f733e0e74552aedce8ab5b2d8e571e98e8c454341848c7
+  interview_seconds: null
+  inherited_from: null

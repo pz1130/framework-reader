@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PT-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents awareness training from decaying into a once-a-year click-through
+      that nobody tracks, notices, or finishes — when delivery is automated, gaps
+      (who never started, who failed, who skipped) hide inside the system instead
+      of being chased down, and the training program quietly stops changing behavior.
+    basis: inferred
+  plain_zh:
+    value: Automate how awareness training is assigned, delivered, tracked, and reported
+      so that completions, failures, and gaps are visible and acted on, not just recorded
+      in a spreadsheet after the fact.
+    basis: inferred
+  practice:
+    value:
+      '1': Use a system (LMS, training platform, or ticketing workflow) to assign
+        required training automatically when someone joins or changes role; send reminders
+        for incomplete sessions; produce a completion report.
+      '2': Automation produces role-based curricula automatically (new joiner, privileged
+        user, incident responder); failed phishing or test attempts trigger automatic
+        re-enrollment; completion status feeds into HR/security gating.
+      '3': Pipelines generate gap reports by role and business unit, push exceptions
+        into remediation queues, and feed completion/prevalence metrics back into
+        training content updates — the automation is the control, not the LMS record.
+    basis: inferred
+  evidence:
+    value: 'Configuration of the automated training platform: assignment rules by
+      role, enrollment triggers, reminder cadence, completion/failure dashboards,
+      automated escalation tickets for non-completion, and sample reports showing
+      gaps were actually followed up.'
+    basis: inferred
+  common_myth:
+    value: Assuming that buying an LMS and uploading content means the control is
+      met — the audit failure mode is that the LMS shows 99% completion because nobody
+      checks the 1% who never enrolled, or because phishing-sim clicks still aren't
+      tied back into re-training.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how a new joiner in [role X] gets automatically enrolled — which system
+      triggers it, and what proves it fired?
+    - When someone fails a phishing test or misses a deadline, what happens automatically,
+      and where is that escalation visible?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.869482Z'
+  signed_digest: 1e463795d55ca6dd8210379e1a2f5a61f93eb07b358ba35cb59beb2faeb342ce
+  interview_seconds: null
+  inherited_from: null

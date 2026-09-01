@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-4.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent unrestricted east-west and north-south traffic from carrying data
+      flows that violate security or privacy policy — without explicit, audited filter
+      rules, segmentation collapses into 'flat network with a few ACLs' and sensitive
+      traffic (cross-domain, cross-tenant, cross-trust-zone) flows unchecked.
+    basis: inferred
+  plain_zh:
+    value: Configure the policy filters on information flow enforcement points (firewalls,
+      proxies, gateways, SDN controls, API gateways) so that only explicitly allowed
+      flows pass, with rules that reflect current security and privacy policy — and
+      so that changes to those rules are tracked and reviewed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the enforcement points that mediate information flows between
+        security domains (e.g., perimeter firewall, internal segmentation gateway,
+        cloud security group, database proxy). Each has a documented rule set owned
+        by a named role.
+      '2': Rules are written against policy intent (which subjects may talk to which
+        objects carrying which data classes) rather than ad-hoc IP/port allow-lists;
+        changes go through change management with a security reviewer; denied flows
+        are logged.
+      '3': Filters are version-controlled and treated as code; default-deny posture;
+        rules map back to data classification and privacy policy; stale or shadowed
+        rules are detected and removed on a schedule; policy violations from flow
+        logs feed back into rule updates and incident review.
+    basis: inferred
+  evidence:
+    value: Inventory of information-flow enforcement points, rule sets with owners
+      and last-review dates, change records for filter modifications, sample of denied-flow
+      logs, mapping from rules to data classes / privacy requirements, evidence of
+      stale-rule cleanup.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a firewall with rules' as the control. The default permit-any
+      posture, rules added ad-hoc to fix one ticket, and never-purged shadow rules
+      mean the firewall exists but no enforceable policy is actually configured on
+      it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the rule set for [specific enforcement point] and the change history
+      for the last three modifications.
+    - Which flows are explicitly denied today, and how do you know those deny rules
+      match current data classification and privacy policy rather than a 2019 allow-list
+      that grew over time?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.261506Z'
+  signed_digest: 325d021ccc5ee6ba28234efb108faa68ce1d63eca337e951be6c91c86eb0d2b1
+  interview_seconds: null
+  inherited_from: null

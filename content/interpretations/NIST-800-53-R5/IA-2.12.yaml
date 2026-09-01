@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:IA-2.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against accepting non-PIV credentials as if they were PIV, which
+      weakens trust in identity proofing and lets attackers use weaker tokens to impersonate
+      users or gain access they shouldn't have. Without enforcement, PIV stops being
+      a meaningful security boundary.
+    basis: inferred
+  plain_zh:
+    value: Requires that when a system supports PIV credentials, it actually accepts
+      and processes them according to the federal PIV standard—so a PIV card is treated
+      as a PIV card, not as just another badge or token.
+    basis: inferred
+  practice:
+    value:
+      '1': The system recognizes PIV credentials and can authenticate a user with
+        one; basic error handling exists if the card fails validation.
+      '2': The system consistently applies PIV validation rules (certificate chain,
+        expiration, revocation) and produces logs of successful and failed PIV logins.
+      '3': PIV acceptance is enforced enterprise-wide; non-PIV credentials are rejected
+        when PIV is required; integration with enterprise identity management is documented
+        and tested; continuous monitoring alerts on PIV anomalies.
+    basis: inferred
+  evidence:
+    value: Documentation of PIV acceptance requirements, configuration files or settings
+      showing PIV is enabled and enforced, test results showing PIV authentication
+      works end-to-end, and audit logs containing PIV authentication events.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a system can read a PIV card it fully accepts PIV—ignoring
+      that validation steps like certificate revocation checks may be disabled or
+      incomplete, which is the actual control requirement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Can you show me a successful authentication using a PIV credential, and what
+      validation steps were performed?
+    - What happens when a PIV certificate is revoked or expired—does the system reject
+      it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.112726Z'
+  signed_digest: 880492e248a4ccf93d82535f9d04bf30c461cb0a852b2d4b60e71f98f97278db
+  interview_seconds: null
+  inherited_from: null

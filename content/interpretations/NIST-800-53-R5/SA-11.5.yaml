@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-11.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that a one-off penetration test proves the
+      system is safe—attackers chain small flaws (logic bugs, business-workflow abuse,
+      identity misuse) that automated scanners and clean-box testers usually miss,
+      so testing must actively simulate realistic adversary behavior against the production
+      system as built.
+    basis: inferred
+  plain_zh:
+    value: Have trained, adversarial testers actually try to break into the running
+      system the way a real attacker would, and use what they find to fix things—not
+      just scan for known signatures or run a checklist.
+    basis: inferred
+  practice:
+    value:
+      '1': An external or internal team performs hands-on testing of the deployed
+        system at least once before go-live and after major changes; findings are
+        written down and tracked to closure.
+      '2': Testing is scoped to realistic adversary goals (data theft, privilege escalation,
+        lateral movement) using the actual production-like build and live identity
+        flows, not a sanitized demo environment; weaknesses in business logic, authentication,
+        and access control are explicitly probed.
+      '3': Testing is threat-informed and repeated on a defined cadence; results feed
+        back into design, code review, and detection engineering; assumptions made
+        by the team (e.g., "the WAF blocks this") are tested, not trusted; tests cover
+        chained exploits across components, not isolated CVEs.
+    basis: inferred
+  evidence:
+    value: Penetration test reports with scope, methodology, attack scenarios, findings,
+      and remediation status; rules of engagement and tester credentials; evidence
+      that findings drove code or configuration changes; logs showing when tests were
+      run against production-like builds.
+    basis: inferred
+  common_myth:
+    value: Treating an automated vulnerability scan plus a short network-box test
+      as a real penetration test—scanners flag known signatures, but chained logic
+      flaws, abuse of legitimate functionality, and identity-flow attacks only show
+      up when a human adversary is actively trying to break in.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which system was last tested by a human adversary against the production build,
+      and what real attacker goal were they trying to achieve?
+    - Show me a finding from the last test that scanners would not have caught and
+      how it was fixed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.040957Z'
+  signed_digest: de0f59f78c21f8c61474971a65ca135f3745630d29c8b5127d0d0cfb46e045cf
+  interview_seconds: null
+  inherited_from: null

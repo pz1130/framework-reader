@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-2.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where systems taken into high-risk locations
+      (mission, travel, hostile environments, contested borders) keep their normal
+      enterprise configuration and quietly leak data, get tampered with, or hand adversaries
+      a foothold that the SOC cannot see because the asset fell outside normal monitoring.
+    basis: inferred
+  plain_zh:
+    value: When a system or component is moved into or used in a high-risk area, apply
+      a tailored configuration baseline that reflects the elevated threat, then track
+      the device so you know where it is, how it is configured, and when it returns
+      to normal operations.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which destinations count as high-risk; have a documented alternate
+        configuration (e.g., stripped apps, encrypted storage, restricted network
+        use) ready to apply before the device ships or the person travels.
+      '2': Maintain a register of assets currently in or scheduled for high-risk areas;
+        require sign-off that the alternate configuration was applied; require a check
+        on return to verify no unauthorized changes before re-joining the normal fleet.
+      '3': The alternate configuration is centrally pushed, not left to the user;
+        assets in high-risk areas are inventoried in near real time; integrity of
+        software/hardware is verified on exit; deviations from the baseline auto-trigger
+        alerts.
+    basis: inferred
+  evidence:
+    value: High-risk-area definition, alternate configuration baselines, asset movement
+      register, pre-deployment and return-from-deployment checklist records, integrity
+      verification results.
+    basis: inferred
+  common_myth:
+    value: Assuming the standard hardened image is enough and no special configuration
+      is needed just because the laptop was issued by the company. The whole point
+      is that high-risk areas require a *different* baseline, not the same one with
+      extra warnings.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you decide which locations are 'high-risk areas' for this control?
+    - Show the last device that went into a high-risk area - what was its configuration
+      before, during, and after?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.766841Z'
+  signed_digest: 15782811b31dbbb45dc63e78952dd5982072bd9b07dd3fc49b778b635643b455
+  interview_seconds: null
+  inherited_from: null

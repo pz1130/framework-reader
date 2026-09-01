@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-7.19
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops rogue or misconfigured end-user devices from talking to internal
+      systems as if they were trusted - the risk is a laptop that's never been built
+      to baseline (no EDR, no cert, unknown posture) being treated like a managed
+      workstation and used as a pivot into sensitive segments.
+    basis: inferred
+  plain_zh:
+    value: Make sure devices that don't match the organization's configuration baseline
+      physically or logically cannot reach internal systems - configure the network
+      so only compliant, organizationally managed hosts can communicate inward.
+    basis: inferred
+  practice:
+    value:
+      '1': Some form of device identity check (802.1X, cert, MDM check) gates access
+        to internal VLANs; unmanaged or non-compliant devices get a guest/quarantine
+        segment with no path to production data.
+      '2': Network access control policy names what 'organizationally configured'
+        means for each class of device (workstation, server, IoT, contractor); non-compliant
+        hosts are isolated by design; exceptions are ticketed and time-bound.
+      '3': Posture re-evaluation runs continuously or on session change (not only
+        at login); non-compliant hosts are auto-quarantined; coverage gap analysis
+        exists for every internal segment and is reviewed against architecture changes.
+    basis: inferred
+  evidence:
+    value: Network access control policy, posture-check configuration showing compliant
+      vs non-compliant handling, segmentation diagrams with which segments are gated,
+      exception register with expiry dates, audit logs of quarantined/blocked non-compliant
+      hosts.
+    basis: inferred
+  common_myth:
+    value: Assuming a VPN plus a username/password means only managed laptops reach
+      internal systems - if the VPN only authenticates the user and never checks whether
+      the device has EDR, disk encryption, and an up-to-date certificate, any home
+      PC with valid credentials walks straight in.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the network segments that are reachable without a posture check, and
+      why each one is exempted.
+    - What happens when a managed laptop fails its posture check mid-session - does
+      it lose access automatically or wait for a human?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.708868Z'
+  signed_digest: bb768c7c65f7340ad94956e14096869425198b8ca16e6c85715bb0bae5d004cd
+  interview_seconds: null
+  inherited_from: null

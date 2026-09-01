@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged users pivoting from an already-logged-in admin
+      session into unrestricted network reach — once an attacker (or a careless admin)
+      is 'on the box,' an unrestricted network path turns one compromised host into
+      a domain- or network-wide compromise. The control forces explicit, granular
+      authorization for each privileged command and confines its blast radius to specific
+      systems and times.
+    basis: inferred
+  plain_zh:
+    value: Make administrators log in separately, with their own credentials, to run
+      privileged commands over the network — and restrict which privileged commands
+      are reachable from which accounts on which systems, rather than letting any
+      admin account reach any privileged function on any host.
+    basis: inferred
+  practice:
+    value:
+      '1': Privileged commands are not run from regular user accounts over the network;
+        a separate, distinct admin credential is required, and shared/root-equivalent
+        service accounts are not used for routine admin work.
+      '2': Documented policy names which privileged commands, which privileged accounts,
+        and which target systems are allowed; access is granted per command and per
+        system rather than blanket 'domain admin' style; approvals are recorded.
+      '3': Technical enforcement at the authentication layer (e.g., PAM modules, jump-server
+        command allow-lists, sudoers policy with command/user/host granularity, privileged
+        access workstation gating) prevents disallowed privileged commands from executing
+        over the network; violations are logged and alerted; the policy is reviewed
+        when systems or roles change.
+    basis: inferred
+  evidence:
+    value: Admin authentication policy, PAM/sudoers/jump-server configuration showing
+      per-command and per-host restrictions, list of privileged accounts and the systems/commands
+      each can reach, approval records for privileged command access, and sample logs
+      of denied privileged command attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that because privileged accounts are separate from user accounts,
+      the control is met — but if every privileged account can still run every privileged
+      command on every server over the network, the network-access dimension the control
+      targets is still wide open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where it is technically enforced that a given admin account can only
+      run specific privileged commands on specific systems over the network, not just
+      policy text.
+    - 'Pick one of your privileged accounts: list exactly which privileged commands
+      it can invoke and on which hosts — how was that list approved and when was it
+      last reviewed?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.387322Z'
+  signed_digest: 88fcf3226ee6c172b3fc9beaba20f80ddc9af61855dbc84f87dc2892768fca4b
+  interview_seconds: null
+  inherited_from: null

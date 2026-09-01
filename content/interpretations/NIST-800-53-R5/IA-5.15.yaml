@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:IA-5.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against use of authenticators or credential-management products
+      that have not cleared an agency-approved evaluation path, so a weak or backdoored
+      mechanism becomes the root of compromise.
+    basis: inferred
+  plain_zh:
+    value: Use only GSA-approved (or equivalent validated) products and services for
+      issuing, managing, and validating authenticators, and prove that what you deploy
+      came off that list.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the authenticator-issuance and credential-management tools in
+        use; confirm each has a GSA-approval (or comparable validated-products list)
+        record.
+      '2': Procurement and onboarding checks reference the approved list before purchase;
+        deviations require written exception with reason and approval.
+      '3': Periodic re-validation against the current approved list; changes in approval
+        status trigger remediation; integration with enterprise asset and configuration
+        management so non-approved products cannot be quietly deployed.
+    basis: inferred
+  evidence:
+    value: Approved-products list snapshot at time of purchase, procurement checklists
+      referencing it, exception records, current deployment inventory cross-checked
+      against the list, and remediation notes for any delisted product.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a product from a major vendor or one already deployed
+      elsewhere satisfies the control. Approval status is product- and version-specific
+      and changes; without checking the actual list at procurement and on a recurring
+      basis, you may be running a delisted or never-listed authenticator.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the approved-products list entry for the authenticator/credential tool
+      you currently use, including the version.
+    - What is your process when a product you rely on loses approval or is updated
+      to a non-approved version?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.189127Z'
+  signed_digest: 51fa553ae24bb0a54de9dd52f50bf827f49499c05f705741553842e237561edd
+  interview_seconds: null
+  inherited_from: null

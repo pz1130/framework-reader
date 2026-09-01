@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against gaps in physical protection when guards rotate, take breaks,
+      or step away — a momentary absence that bypasses badge readers, cameras, and
+      barriers is enough for tailgating, device tampering, or covert access to material
+      only humans would notice.
+    basis: inferred
+  plain_zh:
+    value: Require that physical security guard posts remain staffed continuously,
+      with no uncovered windows during shift changes, breaks, or incidents, so the
+      human layer of physical control never goes dark.
+    basis: inferred
+  practice:
+    value:
+      '1': Define minimum staffing levels per post and shift; have a written rule
+        that no post is left unattended; cover breaks by relief personnel or temporary
+        reassignment.
+      '2': Use a guard tour system (manual checkpoints or electronic wand) to verify
+        presence; record shift handovers and relief coverage in a daily log; require
+        a supervisor to sign off on any post vacancy.
+      '3': Integrate tour data with incident and access logs to detect patterns (frequent
+        late reliefs, skipped checkpoints, posts silently closed); tie staffing exceptions
+        to a formal deviation process reviewed by facility security; alert when a
+        post is unoccupied beyond a defined tolerance.
+    basis: inferred
+  evidence:
+    value: Guard post staffing plan, shift rosters and relief assignments, guard tour
+      logs or electronic checkpoint records, supervisor sign-off records for any post
+      vacancy, deviation/exception register, incident correlation showing gaps.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have guards' as sufficient without specifying that posts must
+      be continuously staffed. The control fails the moment a guard walks a visitor
+      to the door and leaves their post unwatched, or shift change leaves a gap —
+      guards present somewhere on-site is not the same as a post continuously covered.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me last Tuesday's overnight guard log — which posts were active at 02:00,
+      03:00, and 04:00, and who covered each relief break?
+    - When a guard post was temporarily vacant in the past quarter, how was that documented,
+      and who approved it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.600901Z'
+  signed_digest: 0513bf07e0f3e9376ffe72a026f508b6ff64e3057b548c5e0a7eb4d17246a900
+  interview_seconds: null
+  inherited_from: null

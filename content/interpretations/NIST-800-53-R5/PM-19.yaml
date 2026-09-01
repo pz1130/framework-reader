@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PM-19
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents privacy from being everyone's job and therefore no one's job —
+      without a named leader who owns the program, privacy decisions get diluted into
+      IT, legal, and compliance each assuming someone else handles them, and breaches
+      get handled ad hoc rather than against a defined program.
+    basis: inferred
+  plain_zh:
+    value: Appoint a single accountable leader for the privacy program, give them
+      the authority and resources to set direction, and make sure the rest of the
+      organization knows who that is and what they own.
+    basis: inferred
+  practice:
+    value:
+      '1': A person is named in writing as privacy program lead; their responsibility
+        for developing and maintaining the privacy program is documented.
+      '2': The lead has a charter or terms of reference covering authority, reporting
+        line, and resources; senior management has formally endorsed the role; other
+        functions know who owns privacy.
+      '3': The lead has budget, staff, and direct access to top management; the privacy
+        program operates under their direction with measurable objectives, and changes
+        to the program go through them.
+    basis: inferred
+  evidence:
+    value: Formal appointment memo or job description for the privacy program lead,
+      charter describing authority and scope, senior management endorsement, organizational
+      chart showing the reporting line, and program artifacts (policies, risk decisions,
+      incident handling) that trace back to the lead's ownership.
+    basis: inferred
+  common_myth:
+    value: Believing that assigning privacy duties to an existing CISO, legal counsel,
+      or compliance manager as a side responsibility satisfies this control — the
+      role must be established and resourced as its own accountable function, not
+      absorbed into another office's portfolio.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is named as the privacy program lead and where is that appointment documented?
+    - What authority and resources does this person have to direct the privacy program,
+      and what is their reporting line to senior management?
+    basis: inferred
+  regional_note:
+    value: EU regulators under GDPR expect the lead to interact formally with the
+      Data Protection Officer role and demonstrate the program operates under independent
+      direction; US practice often centers the lead inside a privacy office reporting
+      to general counsel or the CIO. Auditors in either jurisdiction press hardest
+      on whether the lead can actually compel action outside their own chain.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.725762Z'
+  signed_digest: 3d0bb43d3fc1946aeb330ddd3fcf40af1d4cdf19a31bf1aaadc680cf6f890eb4
+  interview_seconds: null
+  inherited_from: null

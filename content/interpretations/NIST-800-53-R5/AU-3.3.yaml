@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AU-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defense against audit records becoming a second data-protection incident:
+      when logs capture more PII than the system actually needs, the log store itself
+      becomes a high-value target and a GDPR-style breach waiting to happen, and the
+      team ends up accountable for PII they never needed to collect in the first place.'
+    basis: inferred
+  plain_zh:
+    value: Make sure that what gets written into audit records is no more PII than
+      is actually required for the monitoring and investigation purpose, and document
+      the rationale so the choice is defensible.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems whose logs routinely capture user-identifying fields
+        (usernames, emails, IDs, IPs tied to individuals) and write a one-page note
+        stating which fields are required for security monitoring and which are collected
+        only because the system logs them by default.
+      '2': For each log source, keep an explicit list of PII elements captured, the
+        lawful/operational reason each one is kept, and a rule (mask, truncate, hash,
+        or suppress) applied at the source or at ingest. Retention rules reflect the
+        reduced content.
+      '3': Review the PII-in-logs inventory on a scheduled cadence and after any new
+        log source is onboarded; sampling confirms the masking/suppression rules actually
+        fire; the legal basis for each retained field can be produced on demand.
+    basis: inferred
+  evidence:
+    value: PII-in-audit-records inventory per log source, documented justification
+      for each retained PII element, configuration showing masking/truncation/hashing
+      applied at source or ingest, retention schedule aligned with the reduced content,
+      sample audit trail of the most recent review.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the system already produces logs with full payloads,
+      AU-3 (3) is automatically satisfied - in reality the control fails the moment
+      a default-on field like email subject or full request body lands in the log
+      store without an explicit, documented decision to keep it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For your top three log sources, which PII fields are present in each record
+      and what is the stated reason for keeping each one?
+    - Show me where in the pipeline the masking or suppression of those fields actually
+      happens, and a recent sample proving it fired.
+    basis: inferred
+  regional_note:
+    value: European auditors under GDPR pressure treat unminimized PII in logs as
+      a data-protection finding in its own right, separate from the security value
+      of the log; U.S. auditors focus more on whether the retained content is operationally
+      justified. Same control, different failure modes.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.572124Z'
+  signed_digest: 205bb412463059081ce21830525c2e736c56ea13350ead712e32d1a6eab56d53
+  interview_seconds: null
+  inherited_from: null

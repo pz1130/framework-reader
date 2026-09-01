@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:IA-8.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the assumption that a personal identity used to access a federal
+      system can later be linked back to that individual or reused against other systems
+      - i.e., the failure is that identifiers, credentials, and the trail of who-did-what
+      get welded together across systems, so a leaked token, a subpoena, or a breach
+      in one place deanonymizes or re-targets a person elsewhere.
+    basis: inferred
+  plain_zh:
+    value: Make sure the credential, identifier, and access trail a person uses for
+      a federal system can't be tied back to them or reused across other systems -
+      the relationship between the user and their activity in that system has to be
+      breakable on demand, by policy and by technical means.
+    basis: inferred
+  practice:
+    value:
+      '1': Use pseudonymous or per-system identifiers for non-organizational users
+        (citizens, partners, anonymous respondents) so the local account reveals nothing
+        about who they really are; keep the linkage table elsewhere and access-controlled.
+      '2': Document in the SSP how disassociability is achieved for each user population
+        - which identifier is exposed, what the attribute-binding policy is, and under
+        what conditions (legal hold, investigation, user consent) the linkage can
+        be reversed; record the technical and procedural controls that enforce it.
+      '3': Design the system so the identifier used for authentication is segregated
+        from the identifier used for audit and from any application-level user attribute;
+        ensure re-identification requires a documented, approved, and auditable break-glass
+        process with a clear retention end-date; test that audit exports and logs
+        do not leak the re-identification path.
+    basis: inferred
+  evidence:
+    value: Architecture diagram or data-flow showing separation of auth identifiers,
+      account IDs, and PII; the SSP section naming disassociability as the design
+      choice for each user population; the linkage-table access policy and custodian
+      list; a worked example or test that proves re-identification cannot happen from
+      logs/audit exports alone.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the account is named 'guest123' or 'citizen-portal-uid',
+      disassociability is satisfied - if the audit log, the support ticket, or the
+      downstream export still joins that ID back to a real person's email or IP, the
+      control is not met. Disassociability is about the whole chain of records, not
+      just the username field.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a sample audit log entry and prove that the user identifier in it cannot
+      be joined back to a natural person without breaking a separate, controlled linkage.
+    - Who can re-identify a pseudonymous user, under what documented trigger, and
+      how is that action itself audited and time-boxed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.249467Z'
+  signed_digest: 99c92529a87270c6174f582c50ce921f9dd5bc1837796106fcfee4d60c43ffef
+  interview_seconds: null
+  inherited_from: null

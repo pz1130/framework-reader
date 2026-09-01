@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-7.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against integrity violations that sit undetected or unaddressed
+      long enough to cause damage — if the system discovers firmware, boot, or code
+      tampering but only logs it and waits for a human, the attacker has already won
+      the window. Automated response is what collapses that window.
+    basis: inferred
+  plain_zh:
+    value: When a check detects that software, firmware, boot components, or other
+      monitored code has been altered or corrupted, the system must do something on
+      its own — not just write a log entry and hope someone notices in time.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical integrity checks (boot, firmware, application code, config) are
+        defined and run; on failure, an alert is sent to operations and the affected
+        component is flagged.
+      '2': 'Documented response actions trigger automatically when a violation is
+        detected: quarantine the device, block the workload, revert to a known-good
+        image, disable the account, or shut down the service. Response choices are
+        recorded per system and reviewed.'
+      '3': Automated responses are tested in tabletop and live exercises; coverage
+        gaps (unsupported devices, boot paths outside the tooling) are tracked and
+        closed; response actions feed into a wider detection-and-response pipeline
+        with metrics on detection-to-containment time.
+    basis: inferred
+  evidence:
+    value: Integrity-check policy and scope, configured automated response actions
+      per system, test or exercise records showing the response fired, incident records
+      where a violation triggered containment, and metrics or post-incident notes
+      on time-to-contain.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we have file-integrity monitoring, so SI-7.5 is covered.'
+      File-integrity monitoring detects the change; SI-7.5 is about what the system
+      does next without waiting on a human ticket queue.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent integrity violation and what happened automatically — who did
+      what, and how fast.
+    - Which systems or device classes fall outside the automated response scope, and
+      why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.106353Z'
+  signed_digest: 623943197a798e1a78b0dd23d16a49c4618054b79d10b2d1bc2d2c874cfa6709
+  interview_seconds: null
+  inherited_from: null

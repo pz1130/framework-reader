@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IA-5.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents credentials that sit in plaintext files, device firmware, scripts,
+      or config backups from being lifted in a single read — the threat is one attacker,
+      one stolen laptop, one leaked repo, one copied VM disk, and every static authenticator
+      inside is reusable as-is.
+    basis: inferred
+  plain_zh:
+    value: Do not store static authenticators (passwords, API keys, tokens, pre-shared
+      keys) anywhere in cleartext, whether on paper, in scripts, in config files,
+      or hardcoded into systems and devices; protect them with a cryptographic mechanism
+      at rest.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory common static-authenticator locations (scripts, repos, CI configs,
+        device default accounts, golden images, backups) and remove or rotate anything
+        found cleartext; require a password manager or secret manager for human and
+        service credentials.
+      '2': Codify the rule in policy (no cleartext static authenticators, no vendor
+        defaults left in place); mandate a secrets manager / vault for service accounts
+        and machines; require devices and appliances to be re-provisioned rather than
+        shipped with default credentials.
+      '3': Continuously scan code repos, container images, IaC, and endpoints for
+        embedded secrets and block the build/release on a hit; rotate any authenticator
+        that may have been exposed; verify device firmware and appliance defaults
+        are randomized or changed at provisioning.
+    basis: inferred
+  evidence:
+    value: Policy clause forbidding embedded cleartext authenticators; secrets-manager
+      / vault deployment and scope; scan reports from code, image, and IaC scanners
+      showing secret-detection findings and remediation; change tickets rotating any
+      exposed credential; device/appliance provisioning checklist confirming default
+      credentials are replaced before deployment.
+    basis: inferred
+  common_myth:
+    value: Treating a vault or secrets manager as proof of compliance, while service
+      accounts, CI jobs, and embedded devices still carry hardcoded passwords or default
+      manufacturer credentials that were never rotated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a current scan of your main code repos and container registries for
+      embedded secrets — what was found in the last run and how was it cleared?
+    - 'Pick one network device or appliance provisioned in the last month: what was
+      its default credential and how was it changed before going live?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.214679Z'
+  signed_digest: 9af3888baa564f646cfc958bf38a3a4d72818abd7555c9308e41e8b9543c7d8f
+  interview_seconds: null
+  inherited_from: null

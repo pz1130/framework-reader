@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:CA-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we mapped controls once and assume the map is still true'
+      — deployed assets, networks and services drift out of the documented authorization
+      boundary, so security checks silently stop covering what actually runs in production.
+    basis: inferred
+  plain_zh:
+    value: Make the boundary of every system under assessment unambiguous, and run
+      compliance checks against that boundary so gaps between what's authorized and
+      what's live are visible on a schedule.
+    basis: inferred
+  practice:
+    value:
+      '1': Each system has a written authorization boundary describing what is in
+        scope; basic checks compare deployed assets against that boundary and any
+        unauthorized addition is flagged for review.
+      '2': Compliance checks run on a defined cadence with results logged; deviations
+        from the boundary produce records showing what was found, who decided, and
+        what action was taken.
+      '3': Checks are automated against an authoritative inventory and configuration
+        source, exceptions feed into the risk register and POA&M, and the boundary
+        itself is revisited whenever architecture changes.
+    basis: inferred
+  evidence:
+    value: Authorization boundary documentation for each system, scheduled compliance
+      check results, exception and remediation logs, and evidence that boundary scope
+      is refreshed when systems change.
+    basis: inferred
+  common_myth:
+    value: Treating the boundary as a one-time diagram drawn at authorization. In
+      reality, cloud, containers and ad-hoc services keep appearing outside the original
+      scope, and unless checks run continuously the 'authorized system' on paper no
+      longer matches the system actually running.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a system whose authorization boundary was redrawn in the last year —
+      what triggered the change and what new components were pulled in?
+    - When a compliance check finds an asset outside the boundary, where is that recorded
+      and how does it get resolved?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.726113Z'
+  signed_digest: 10b0f245c507401d39f7358d93afce2747a0999883405f19773b3850f435bab8
+  interview_seconds: null
+  inherited_from: null

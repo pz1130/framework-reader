@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AU-9.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single insider acting alone on the most consequential
+      audit events — disabling logs, deleting evidence, or falsifying records — by
+      requiring a second trusted person to authorize the action. Without it, one compromised
+      administrator can wipe the trail before anyone notices.
+    basis: inferred
+  plain_zh:
+    value: For high-impact audit actions (such as deleting, altering, or turning off
+      logs), require two authorized people to approve before the change happens, and
+      keep evidence that both approved.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of high-impact audit actions (log deletion, archive
+        purges, audit-config changes) and require a second person to approve before
+        execution; record who approved.
+      '2': Encode dual authorization in the SIEM/audit tool workflow so a single account
+        cannot complete the action alone; retain the dual-approval record as part
+        of the audit trail.
+      '3': Periodically test that dual-authorization enforcement is active and cannot
+        be bypassed via alternate interfaces, service accounts, or direct host access;
+        alert on attempts to do so.
+    basis: inferred
+  evidence:
+    value: List of audit actions requiring dual authorization, system-enforced dual-auth
+      configuration, sample dual-approval records, and test results showing bypass
+      attempts are blocked or alerted.
+    basis: inferred
+  common_myth:
+    value: Assuming a written policy saying 'two people must approve' is enough —
+      the second approver still uses the same system with the same admin, so a compromised
+      admin can self-approve via another path unless enforcement is in the tool itself.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three log-deletion or audit-config changes and who second-approved
+      them.
+    - Can the same admin account, used through a different interface or service principal,
+      perform these actions without a second approver?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.648214Z'
+  signed_digest: 2ba256f4d3f2d6ec3f8b2c6a6e9484de1ba8d6b91ed06d430f826a0ee371033e
+  interview_seconds: null
+  inherited_from: null

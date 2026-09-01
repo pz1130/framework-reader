@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SR-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against tampering being introduced late in the lifecycle and caught
+      too early to matter — if tamper detection only fires in production, you learn
+      about a compromise from a breach notice instead of from your own controls, and
+      forensics loses the chain of custody that proves how the bad component got in.
+    basis: inferred
+  plain_zh:
+    value: Require tamper-detection and integrity verification of hardware and software
+      components at multiple lifecycle stages — design, development, integration,
+      production, and fielded operation — not just when something ships.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which lifecycle stages require integrity checks; ship-gate has
+        a signed/hashed baseline of what should be there; deviations block release.
+      '2': Integrity checks run at design intake, dev hand-off, build output, integration,
+        production deploy, and fielded operation; results are logged with who ran
+        them and what changed; failed checks trigger an incident, not a warning.
+      '3': Integrity baselines are versioned and cryptographically verifiable; checks
+        are automated in CI/CD and operations; tamper events feed into monitoring
+        and supply-chain risk processes; recovery to a known-good baseline is rehearsed.
+    basis: inferred
+  evidence:
+    value: Stage-by-stage integrity policy, baseline manifests with hashes/signatures,
+      logs of integrity checks per stage with outcomes, records of tamper incidents
+      and their handling, and evidence of rehearsed recovery to known-good state.
+    basis: inferred
+  common_myth:
+    value: Treating a single pre-production scan or a vendor's published hash as the
+      whole control — the control exists because tampering can be injected at any
+      stage, and a check that only runs at one point leaves the rest of the lifecycle
+      blind.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which lifecycle stages currently run an integrity check, and which ones do not?
+    - Show the last tamper alert you received — which stage caught it and what did
+      you do next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.206372Z'
+  signed_digest: d7adc09bf49daa0dd5042dddc86e634501ea756887cad0588256dfb1b56f0dba
+  interview_seconds: null
+  inherited_from: null

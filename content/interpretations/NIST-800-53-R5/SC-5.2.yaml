@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where a system looks fine in steady state but collapses
+      or quietly drops traffic the moment load spikes, an attack floods it, or one
+      path/component fails — protection and continuity controls become useless if
+      the infrastructure itself cannot carry or reroute the workload.
+    basis: inferred
+  plain_zh:
+    value: Make sure the systems providing security-critical services have enough
+      capacity and bandwidth to handle normal plus unexpected load, and have redundancy
+      so a single failure does not take them down or degrade the security function.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the security-relevant systems (auth, logging, monitoring, VPN,
+        DNS, patch servers); know their current capacity and the single points of
+        failure that would break the security function.
+      '2': Capacity is sized against documented peak plus headroom; redundant components
+        or failover paths exist for critical links; alerts fire when utilization approaches
+        the threshold.
+      '3': Load is continuously monitored against capacity baselines, redundancy is
+        tested on a schedule (failover drills, link cutovers), and DDoS or burst protection
+        is integrated so the security stack stays available under attack.
+    basis: inferred
+  evidence:
+    value: Capacity and bandwidth baselines for in-scope systems, redundancy architecture
+      diagrams, failover or load-shedding test results, alerting thresholds and recent
+      alert history, DDoS/burst-protection configuration.
+    basis: inferred
+  common_myth:
+    value: Treating SC-5 as only a network-engineering concern and excluding the security
+      stack itself — assuming firewalls, SIEM collectors, identity services and patch
+      repositories do not need their own capacity, bandwidth, and redundancy planning
+      just because they 'are the security controls'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a security-critical system whose failure would silently bypass your
+      other controls, and tell me what its redundant path is.
+    - When was the last time you actually failed over or cut a link, and what did
+      monitoring show during the cutover?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.654928Z'
+  signed_digest: d2b1d5a968cfa29db664bb51366c9e9f3b50f42154c842df03f1bf018dde98e2
+  interview_seconds: null
+  inherited_from: null

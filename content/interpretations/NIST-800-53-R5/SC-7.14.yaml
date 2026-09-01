@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-7.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker who physically walks into a workspace and silently
+      splices into the LAN—taps a wall port, drops a rogue device behind the user's
+      monitor, plugs into an under-desk switch, or hooks a maintenance laptop into
+      an unused data outlet—to eavesdrop, pivot, or exfiltrate without ever needing
+      credentials or exploiting a software flaw.
+    basis: inferred
+  plain_zh:
+    value: Make sure that physically plugging anything into your network is hard to
+      do without being noticed. Lock down or monitor every physical access point to
+      the network—wall jacks, patch panels, exposed cables, wireless that's tied to
+      the physical segment—so an unauthorized device or connection cannot just sit
+      there quietly sending traffic.
+    basis: inferred
+  practice:
+    value:
+      '1': Disable unused wall jacks and switch ports at the closet; physically lock
+        or cage patch panels and floor/building telecom rooms; label and inventory
+        active endpoints so a strange cable stands out.
+      '2': Run a tool that walks the switch infrastructure and flags endpoints that
+        suddenly come up where no asset is expected (MAC/IP pairings vs. the CMDB);
+        require port-level authentication (802.1X or MAC auth) on access switches
+        for user segments.
+      '3': Continuously monitor for new physical connections and alert on anomalies;
+        tie port state changes to change tickets; isolate any unauthorized device
+        automatically (quarantine VLAN); audit the disable/enable status of every
+        port on a fixed cadence and review who can authorize a re-enable.
+    basis: inferred
+  evidence:
+    value: Switch and patch-panel configuration showing disabled unused ports, telecom-room
+      access logs, 802.1X or port-authentication policy and enforcement report, CMDB
+      alignment with live MAC/IP bindings, change-ticket history for port enable/disable,
+      and recent audit results of port states versus authorized endpoints.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have 802.1X on the corporate VLAN' as a complete answer—even
+      on authenticated ports, an attacker who reaches a live jack can still attach
+      a device that authenticates, and on any segment without 802.1X (printers, cameras,
+      guest, legacy) the jack is wide open. The control is about what happens at the
+      physical layer, not just the credential layer above it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time a previously disabled port was re-enabled—who approved
+      it and was a device validated on it?
+    - Which network segments still allow a device to plug in without any port-level
+      authentication, and what is the justification?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.690372Z'
+  signed_digest: bf9ce0151a844f1c2a9114f8e7ac9655f9b319d31c99149e25a612d305a48f12
+  interview_seconds: null
+  inherited_from: null

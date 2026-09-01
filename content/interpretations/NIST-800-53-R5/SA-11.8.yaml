@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-11.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against code that behaves safely in a lab but misbehaves, crashes,
+      leaks data, or gets hijacked when executed against real, adversarial, or malformed
+      inputs. Static review cannot see what only shows up at runtime, so flaws escape
+      into production where they become exploitable vulnerabilities.
+    basis: inferred
+  plain_zh:
+    value: Test the software while it is actually running, feeding it realistic and
+      hostile inputs to surface weaknesses that code reading alone would miss, before
+      it ships.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the in-house and third-party components that need dynamic testing;
+        run a basic fuzzing or runtime scan pass against critical interfaces before
+        release; record what was tested and what was found.
+      '2': Have a documented dynamic analysis procedure tied to the SDLC; cover web,
+        API, and binary surfaces with curated and adversarial test corpora; track
+        and triage findings with severity and ownership; cover acquired/outsourced
+        code with the same bar.
+      '3': Continuous dynamic testing in CI/CD with regression baselines; fuzz harnesses
+        for parsers and unsafe code paths; coverage metrics on code exercised at runtime;
+        findings block release or feed the vulnerability management workflow; periodic
+        red-team or chaos input scenarios; acquired software cannot ship without passing
+        the same bar.
+    basis: inferred
+  evidence:
+    value: Dynamic analysis policy and test plans, fuzzer/runner configurations and
+      test corpora, CI/CD integration showing tests run on each build, raw findings
+      reports, triage tickets with severity and disposition, release gate records
+      showing passes/fails, and vendor/COTS test equivalents or waivers.
+    basis: inferred
+  common_myth:
+    value: Assuming a vulnerability scanner on a running host counts as dynamic code
+      analysis of the application. Host scanning and production monitoring are not
+      the same as exercising the target code with adversarial inputs in a controlled
+      environment; the application itself must be the thing under test.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which in-house applications and which third-party components were subjected
+      to dynamic analysis in the last release, and which were exempted?
+    - Show the CI/CD pipeline step that runs dynamic tests and how a high-severity
+      finding blocks a build.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.052231Z'
+  signed_digest: be0ed55d5fb0f73a594752f99352546bc08a71f14ac16ec01bb680479f13dce1
+  interview_seconds: null
+  inherited_from: null

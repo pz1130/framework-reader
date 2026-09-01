@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-18.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the scenario where mobile code (scripts, embedded objects, browser
+      plug-ins, active content) executes automatically in the user's environment without
+      review, allowing malicious or unintended code to run with the privileges of
+      the user session and bypass security tools that only inspect files at rest.
+    basis: inferred
+  plain_zh:
+    value: This control requires that you stop software from running just because
+      it is present in a document, webpage, or email. Instead, execution must be a
+      deliberate act, often via user consent prompts, allowlists, or sandboxing, so
+      that untrusted code does not run silently.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where mobile code can run (browser, office apps, PDF reader, email
+        client) and configure an 'ask before running' or 'disable automatic execution'
+        policy by default.
+      '2': Consistently apply the policy across all endpoints to a standard baseline;
+        document the configuration used (e.g., registry keys, GPO, MDM profiles);
+        establish a way for users to request exceptions or allow trusted scripts.
+      '3': Centrally monitor and enforce the policy; analyze execution attempts (including
+        denied or prompted ones) to detect trends; periodically review the allowlist
+        or exception process to ensure you do not accidentally auto-run code that
+        should have been blocked.
+    basis: inferred
+  evidence:
+    value: A copy of the configuration baseline (e.g., Group Policy object, MDM profile,
+      specific browser and office application settings), the asset inventory showing
+      which systems have the policy applied, and a recent report of mobile code execution
+      attempts or policy violations.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a firewall or antivirus product means mobile code
+      cannot run automatically. The control is not about network filtering; it is
+      about how the endpoint application itself is configured to behave when it encounters
+      embedded scripts or active content.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the default setting for executing scripts in your office productivity
+      suite on user workstations?
+    - Can you show an example of a user's browser, PDF reader, or email client configuration
+      for handling active content?
+    - How would a user or an attacker get a script to run automatically if the policy
+      is set correctly?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.435044Z'
+  signed_digest: 8872be15914efe58e1efde6712a373215e0e642fc95951ba0881859289dc3fa9
+  interview_seconds: null
+  inherited_from: null

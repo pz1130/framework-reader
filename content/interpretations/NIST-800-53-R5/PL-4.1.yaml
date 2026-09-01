@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PL-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against employees using social media or external sites/apps in
+      ways that leak controlled data, hand attackers a foothold, or commit the organization
+      to public positions it cannot back—because once a post, page, or third-party
+      app crosses an organizational boundary, the security perimeter and legal exposure
+      change instantly.
+    basis: inferred
+  plain_zh:
+    value: Define and enforce what staff may and may not do when posting on social
+      media or using external sites/apps on behalf of the organization, then make
+      the rules visible and the violations detectable.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written policy exists that covers official social media use, personal
+        use on company devices, and which external sites/apps are off-limits; staff
+        are told it exists.
+      '2': The policy is mapped to specific roles (communications, support, engineers,
+        recruiters); approved platforms are listed; blocking/allow-listing is in place
+        for known-bad destinations; violations are logged.
+      '3': Usage is monitored across network, endpoint, and DLP layers with alerts
+        on data egress to personal cloud and social platforms; the policy is reviewed
+        when a new platform goes mainstream or after an incident; non-Compliance is
+        tied into HR and legal escalation, not just IT tickets.
+    basis: inferred
+  evidence:
+    value: Social media and external-app usage policy, approved-platform list, technical
+      blocking rules, incident records of policy violations, training completion records,
+      and review minutes showing policy updates after trigger events.
+    basis: inferred
+  common_myth:
+    value: Treating this as a marketing/HR policy only and assuming IT does not need
+      to enforce it technically—the control fails the moment an employee pastes customer
+      data into a personal chat or authorizes a third-party app that scrapes mailboxes;
+      a policy nobody can violate is not a control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of external sites/apps your staff are prohibited from using
+      for work and how that list is enforced on the network or endpoint.
+    - Walk me through the last time a social media or external-app usage policy was
+      violated—what triggered detection, who was looped in, and what changed afterward.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.667505Z'
+  signed_digest: 6eb8c235784da4b0426f6e74c4fee867378781172ef854bda98efb780af1e89c
+  interview_seconds: null
+  inherited_from: null

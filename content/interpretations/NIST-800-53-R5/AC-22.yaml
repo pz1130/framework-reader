@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the organization publishing information on publicly reachable
+      systems that should have stayed internal — design docs with internal IPs, debug
+      endpoints, misconfigured object storage, pre-release source — which then becomes
+      a foothold for reconnaissance, social engineering, or direct exploitation by
+      anyone on the internet.
+    basis: inferred
+  plain_zh:
+    value: Decide what content is allowed to be reachable from the public internet,
+      make sure systems that serve it actually enforce that rule, and review what
+      is exposed before it becomes an incident.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems and repositories are reachable from the public internet;
+        have someone designated to approve what gets posted there.
+      '2': Maintain an explicit allow-list or review process for content published
+        to public-facing systems; periodically check that what is exposed matches
+        what was approved.
+      '3': Technical controls (e.g., pre-publish scanning, bucket policies, repo protection,
+        DLP on outbound publication channels) block unapproved content from becoming
+        publicly accessible in the first place; deviations and incidents feed back
+        into the review process.
+    basis: inferred
+  evidence:
+    value: Inventory of publicly reachable systems and repositories, documented authorization
+      for each item exposed, records of periodic reviews comparing actual exposure
+      to authorization, and any incident or takedown records showing what slipped
+      through.
+    basis: inferred
+  common_myth:
+    value: Treating this as a one-time review of the public website. The actual attack
+      surface usually lives in cloud storage buckets, code repos, support portals,
+      marketing uploads, and partner-sharing links — anything an employee can publish
+      to without going through the web team.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of systems and storage locations your normal users can make
+      publicly accessible without going through IT.
+    - When did you last find content that was publicly accessible but should not have
+      been, and how did it get there?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.181590Z'
+  signed_digest: 6d005ca7ed6056bf8011fed455a2c7d7140ecb1171cee140eefaedb2e6116167
+  interview_seconds: null
+  inherited_from: null

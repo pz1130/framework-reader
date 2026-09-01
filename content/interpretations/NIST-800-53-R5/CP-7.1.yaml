@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CP-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that having a backup site is enough. If
+      the alternate site sits on the same power grid, same network carrier, same flood
+      plain, or shares staff and identity systems with the primary, a regional event
+      takes both down together and recovery is impossible regardless of how much DR
+      documentation exists.
+    basis: inferred
+  plain_zh:
+    value: Pick and operate the alternate processing site so that a single physical
+      or infrastructure event cannot knock out both primary and backup at the same
+      time. Distance, utilities, network, and the people who run it must be genuinely
+      independent from the primary.
+    basis: inferred
+  practice:
+    value:
+      '1': Alternate site is at a different geographic location, on a different power
+        substation and ISP, and staffed by a different team. Recovery procedures exist
+        and have been read.
+      '2': Site selection criteria are documented (distance, utility, network, workforce
+        independence); the contract or arrangement guarantees the site is available
+        when needed and not reassigned; an annual test exercises failover without
+        touching primary production.
+      '3': Independence is re-evaluated after infrastructure, telecom, or supplier
+        changes; test results show RTO/RPO met from cold or warm start; the same incident
+        (regional outage, cloud region failure, telecom cut) cannot disable both sites
+        simultaneously.
+    basis: inferred
+  evidence:
+    value: Site selection rationale and independence assessment, contract or service-level
+      terms for the alternate site, separation evidence (different power, network,
+      geographic, and staff), test plans and results showing failover execution, and
+      records of re-evaluation after infrastructure changes.
+    basis: inferred
+  common_myth:
+    value: Treating the alternate site as a contractual checkbox - the recovery plan
+      names a site, but that site is in the same metro area, same data center campus,
+      or same cloud region as primary, and the audit trail proves it has never actually
+      been used. Signing the agreement is not the same as having somewhere to fail
+      over to.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What geographic and infrastructure distance separates the alternate site from
+      the primary, and what document shows it?
+    - When was the last time the alternate site was actually activated or failover-tested,
+      and what happened?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.990969Z'
+  signed_digest: ff5389cc0c327fb52745468b0ecfdd3cffc478bc8d2f7f5798e83a87f1ccf0d1
+  interview_seconds: null
+  inherited_from: null

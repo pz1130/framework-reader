@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PE-3.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against someone who has reached the building envelope from walking
+      straight into a server room, operations floor, or wiring closet. A locked door
+      alone does not stop a tailgater, a propped door, or someone who slipped past
+      reception; physical barriers (mantraps, double doors, bollards, reinforced walls,
+      fencing) are what turn "they got in the lobby" into "they still cannot reach
+      the crown jewels."
+    basis: inferred
+  plain_zh:
+    value: Use physical structures — walls, fences, double-door mantraps, bollards,
+      reinforced enclosures — to control who can physically reach the facilities that
+      host sensitive systems, and make sure those barriers actually delay or deny
+      unauthorized entry rather than just decorate the floor plan.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive areas (data center, NOC, comms rooms, badge-printing stations)
+        have walls, locked doors, or cages that a casual intruder cannot walk through;
+        exterior has basic fencing or bollards where vehicles matter.
+      '2': Barriers are documented in the physical security plan with the threat each
+        one addresses (tailgating, ramming, line-of-sight, cable cuts); mantraps or
+        double-entry controls exist where multiple people routinely enter; inspections
+        are logged.
+      '3': Barriers are tested on a schedule — mantrap interlocks verified, fence
+        integrity walked, door-forced-open drills attempted — and the results feed
+        back into a risk-based redesign when the facility, threat, or asset class
+        changes.
+    basis: inferred
+  evidence:
+    value: Physical security plan with barrier inventory per facility, photos or as-built
+      drawings of sensitive-area enclosures, mantrap/interlock configuration, inspection
+      and penetration-test records of the physical layer, maintenance logs for doors,
+      fences, and bollards.
+    basis: inferred
+  common_myth:
+    value: Treating PE-3.7 as redundant because "the doors are badge-controlled."
+      Badge readers stop the honest and the careless, not someone forcing a door,
+      piggybacking through a propped door, or driving a vehicle into the building;
+      the control is specifically about physical resistance, not electronic access.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which physical barriers protect the data center and what threat each
+      one is meant to stop.
+    - When did you last test that a mantrap, fence, or door actually resists the bypass
+      you designed it for?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.611568Z'
+  signed_digest: 5d719744643a990a9a593c1e83b081902cd5e57f80aca4fdb551fd261707277b
+  interview_seconds: null
+  inherited_from: null

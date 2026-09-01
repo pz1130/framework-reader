@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-3.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against access decisions that drift from who a person actually
+      is in the organization to whoever happens to ask. Without role-based rules wired
+      into systems, provisioning becomes ad-hoc and entitlements accumulate beyond
+      what the job requires.
+    basis: inferred
+  plain_zh:
+    value: Grant and enforce access based on defined roles tied to job functions,
+      not on individual requests, so that what a person can do follows from the role
+      they hold.
+    basis: inferred
+  practice:
+    value:
+      '1': Document a set of roles mapped to job functions; assign new users by role
+        rather than picking permissions one by one.
+      '2': Roles drive provisioning and deprovisioning workflows; role definitions
+        are reviewed when job functions change; access requests reference a role.
+      '3': Systems enforce permissions from the role assignment itself, not from separately
+        maintained individual entitlements; role changes automatically propagate;
+        periodic reconciliation catches entitlements no longer tied to any current
+        role.
+    basis: inferred
+  evidence:
+    value: Documented role catalog tied to job functions, role-to-permission mappings,
+      provisioning/deprovisioning records showing role-based assignment, and reconciliation
+      reports showing entitlements traced back to an active role.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a role matrix spreadsheet means RBAC is implemented.
+      The control fails when the spreadsheet exists but systems still grant permissions
+      per individual account, so adding a role never actually changes what someone
+      can do.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a new hire from the last quarter and walk through how their access was
+      determined by role rather than requested individually.
+    - If we change the permissions of a role today, how does that change reach every
+      account holding that role without manual edits?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.241767Z'
+  signed_digest: 6a5d1268c08c25ceb63d1439a5cd6207ecad0830bfcdf3429ca5c851ffdda969
+  interview_seconds: null
+  inherited_from: null

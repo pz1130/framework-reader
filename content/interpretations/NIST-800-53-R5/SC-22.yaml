@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers hijacking or spoofing the systems that translate
+      names to addresses (DNS, etc.) — if your resolution path is unauthenticated,
+      single-vendor, or openly recursive, a single cache-poisoning or BGP/DNS hijack
+      lets traffic be silently redirected to attacker-controlled hosts without the
+      user or the application noticing.
+    basis: inferred
+  plain_zh:
+    value: Make sure the name/address resolution services you rely on are built and
+      deployed so they cannot be silently tampered with — segregated by role, hardened,
+      redundant, and where the protocol allows, cryptographically validated end to
+      end.
+    basis: inferred
+  practice:
+    value:
+      '1': Separate authoritative resolvers from recursive/caching resolvers; restrict
+        recursive service to intended user networks; document the architecture.
+      '2': Run redundant resolvers across distinct networks or providers; harden resolver
+        hosts (disable open recursion, restrict zone transfers, patch on a cadence);
+        log and alert on resolution failures and anomalous responses.
+      '3': Adopt DNSSEC validation on the recursive side and signing on zones you
+        author; deploy anycast or multi-provider resolution with health checks; have
+        a tested failover and a documented response for cache poisoning or resolver
+        compromise.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing separation of authoritative and recursive
+      roles, redundancy topology, resolver hardening baseline, change/patch records,
+      DNSSEC validation status, monitoring and alerting configuration, and incident
+      response runbook for resolution-service compromise.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have two DNS servers' as the control — two boxes in the same
+      rack on the same upstream are not redundancy, and an unauthenticated recursive
+      resolver still lets any on-path actor forge answers regardless of how many instances
+      you run.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how recursive resolution is segregated from authoritative, and how open
+      recursion to the internet is prevented.
+    - What happens when the primary resolver fails or is compromised — what is the
+      failover path and when was it last tested?
+    - Is DNSSEC validation enabled on the recursive side, and which zones do you author
+      and sign yourself?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.454455Z'
+  signed_digest: fda30d9a64fdfe50eaaca55200acc4eb9b8a6d43efaebbafcd779f9c1502e2a6
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SC-12.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Guards against the failure of symmetric key management: if keys are generated,
+      stored, or distributed without using an approved, standardized algorithm or
+      crypto module, the keys themselves become the weakest step of the encryption
+      chain. Even perfect cipher design is worthless if the keys are produced and
+      handled wrong, weakening confidentiality and integrity assurances an auditor
+      or a customer expects.'
+    basis: inferred
+  plain_zh:
+    value: 'Make sure symmetric keys (the actual bit strings used for encryption/decryption
+      where both sides share a secret) are created and handled according to prescribed,
+      approved cryptographic methods. In plain terms: you cannot just write keys down
+      in plaintext, use a homegrown generator, or store them wherever is convenient.
+      You need a disciplined, auditable path from key generation to storage to destruction.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify all symmetric key types in use; ensure each is generated with
+        an approved algorithm or hardware/software crypto module, not a random homemade
+        script; store keys in a protected container (e.g., a secrets manager, HSM,
+        or encrypted vault).
+      '2': Document which algorithm or module is approved for each key type; centrally
+        record the key lifecycle (creation, activation, rotation, destruction); restrict
+        access to key material to named roles; retain audit logs showing who accessed
+        or generated keys.
+      '3': Automate key lifecycle events (especially rotation and revocation) and
+        connect them to a defined schedule; run periodic checks that actual key generation
+        uses the approved module/algorithm; make key management changes part of change
+        control and test them before deployment.
+    basis: inferred
+  evidence:
+    value: Approved key generation policy or procedure, inventory of symmetric key
+      types with associated algorithm/device, access control list for the key store,
+      rotation/destruction runbooks, and (most important) logs or configuration snapshots
+      that tie each key to the generator or module that produced it.
+    basis: inferred
+  common_myth:
+    value: Assuming that because data is 'encrypted,' the key generation must be fine;
+      the classic failure is a team configuring an approved cipher (e.g., AES) but
+      letting the application or developer choose the key source (e.g., a PHP random_bytes
+      or a hardcoded string), which leaves the 'approved' layer decorative rather
+      than protective.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the system or module that actually produced the key for this service;
+      where is the evidence that it was Amazon KMS, a Thales HSM, or your institutional
+      library, rather than a plaintext variable in code?
+    - 'Walk me through one symmetric key lifecycle end-to-end: from generation to
+      rotation to deletion. Where does the log show each event and who triggered it?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.386556Z'
+  signed_digest: c13aadeab9d2547630901c6ec713533a465a87bb5c1eefb1e9d6cf6797e03131
+  interview_seconds: null
+  inherited_from: null

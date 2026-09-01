@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-23.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops a rogue or compromised CA from silently minting certificates your
+      systems, users, or services will trust — a hostile intermediate CA pushed into
+      a trust store, a mis-issued cert for your domain, or a shadow PKI operated inside
+      the org can all be used to impersonate internal services, intercept TLS, or
+      sign malicious code that passes validation.
+    basis: inferred
+  plain_zh:
+    value: Decide which Certificate Authorities your systems and products are allowed
+      to trust for which purposes, enforce that list, and keep it current — do not
+      let every CA in the global web trust store validate your internal traffic, your
+      code, or your devices by default.
+    basis: inferred
+  practice:
+    value:
+      '1': Document the CA trust requirements per use case (public TLS, internal/private
+        PKI, code signing, email/SMIME, device identity); identify which CAs and which
+        validation profiles are permitted; restrict trust stores on at least the most
+        sensitive endpoints and on build/sign infrastructure.
+      '2': Maintain a managed inventory of trusted roots and intermediates across
+        endpoints, servers, browsers, and signing/CI systems; review changes before
+        they are pushed; explicitly block or remove CAs that are not needed for the
+        business purpose; require proof of issuance for code-signing and authentication
+        certs.
+      '3': Enforce trust via policy/configuration management that compares deployed
+        trust stores against the approved list and alerts on drift; monitor CT logs
+        and revocation for certificates issued for your domains and internal namespaces;
+        require pinning or constrained trust for high-value services; audit trust-store
+        changes as security-sensitive events.
+    basis: inferred
+  evidence:
+    value: Approved CA list per use case, deployed trust-store inventories (endpoints,
+      servers, browsers, build/CI), policy that governs additions/removals, change
+      records for trust-store updates, and detection/response artifacts for unauthorized
+      certs or anomalous CA additions.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we use HTTPS so we have a CA policy' — trust isn't configured
+      by using TLS, it's configured by what's installed in the trust store; if devices
+      still ship with the full OS/browser trust bundle, any publicly trusted CA in
+      the world can issue a cert that validates against your internal services that
+      match by hostname, which is not a policy, it's no policy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of CAs a selected production endpoint currently trusts, and
+      the document that authorizes each one for its purpose.
+    - When a CA is added or removed from a trust store, who approves it, where is
+      the change recorded, and how is unauthorized addition detected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.465719Z'
+  signed_digest: 4dd1cbf016b4cce607a8f7c9454ac071c28db4d04c65d3e1a6c497e2f3ff6189
+  interview_seconds: null
+  inherited_from: null

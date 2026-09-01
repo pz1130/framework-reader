@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CP-11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: This control defends against the failure of primary communication channels
+      during an incident or disruption—if the main telephony, email, or messaging
+      systems are down, the organization must have alternative protocols so that critical
+      personnel can still coordinate response and recovery.
+    basis: inferred
+  plain_zh:
+    value: It asks you to identify critical communications needs (e.g., who needs
+      to talk to whom during recovery), define and maintain alternative methods (e.g.,
+      satellite phones, radio, external email, messaging apps), and ensure these are
+      tested so they are actually usable when the primary channels fail.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical personnel and communication paths; list at least one
+        alternative method for each (e.g., personal phones, external email); store
+        contact lists in a place not dependent on the primary system.
+      '2': Document alternative protocols and procedures; maintain and update contact
+        information; periodically test (at least annually) that alternative methods
+        work; keep test records.
+      '3': Integrate alternative communication testing into incident and recovery
+        exercises; validate that all critical roles can be reached via multiple independent
+        channels; include a process for updating contacts and channels when personnel
+        or systems change; track test failures and remediate in a timely manner.
+    basis: inferred
+  evidence:
+    value: A documented list of critical communication requirements, a procedures
+      document for using alternatives, updated contact lists, test logs or after-action
+      reports showing successful use of alternative channels, and evidence of corrective
+      actions after failed tests.
+    basis: inferred
+  common_myth:
+    value: Many teams assume that because they have mobile phones or a backup messaging
+      tool, the control is met—but they never verify that those alternatives are independent
+      of the primary system, that contact lists are stored and accessible outside
+      the enterprise network, or that personnel actually know how to use the alternative
+      when the primary is down.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which specific systems (email, phone, chat) are you protecting against failure,
+      and what alternative do you have for each?
+    - When did you last conduct a test of alternate communications, and what did the
+      test reveal?
+    - How do you ensure contact information for critical personnel is current and
+      accessible when your primary directory is unavailable?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.916054Z'
+  signed_digest: 0087403c75d7295d7cdd0b5bab0ac1e669ba1cda3c8e67e85c9a87e3b2801ec4
+  interview_seconds: null
+  inherited_from: null

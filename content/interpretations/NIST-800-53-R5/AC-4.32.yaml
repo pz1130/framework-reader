@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.32
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Protects against silent, ad-hoc data flows that bypass policy: when systems
+      or processes move information without enforced sender/receiver/handling rules,
+      sensitive data leaks, integrity is lost, and no one can reconstruct what was
+      actually transferred or why.'
+    basis: inferred
+  plain_zh:
+    value: Define and enforce the rules that govern how information is moved between
+      systems and parties — who can send what to whom, under what conditions, and
+      with what handling — and make sure those rules are applied to each transfer,
+      not just written down.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the main classes of information transfers (internal system-to-system,
+        system-to-third-party, user-to-external); document basic rules covering sender,
+        receiver, content scope, and handling for each.
+      '2': Codify transfer rules in policy and operational procedures; bind them to
+        system configurations, transfer tools, or workflow gates so transfers cannot
+        occur outside the approved path; record the sender, receiver, content type,
+        and time for each transfer.
+      '3': Automate enforcement at transfer points (DLP, allow-listed destinations,
+        signed pipelines, content inspection); continuously monitor for policy-violating
+        transfers; review transfer rules when systems, partners, or data classes change;
+        tie violations into incident handling.
+    basis: inferred
+  evidence:
+    value: Transfer policy and procedures, list of approved transfer paths and tools,
+      configuration or rule sets applied at transfer points, logs of representative
+      transfers showing sender/receiver/content handling, review records for rule
+      updates.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a DLP tool' or 'we use approved file sharing' as proof
+      the control is met. The tool is only one enforcement point; the control fails
+      if transfers still happen through shadow channels (personal email, unsanctioned
+      SaaS, unmanaged APIs) that the tool does not see, or if the rules do not actually
+      govern content, destination, and handling.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a transfer that left the organisation last week and trace it from the
+      original policy rule to the log entry that captured it.
+    - Which transfer paths are not covered by your enforcement mechanisms, and how
+      do you know?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.344655Z'
+  signed_digest: ccc5d63474c6e47601ad20fa682d1b9aff86c4e854a4197d76bc9c577faf4565
+  interview_seconds: null
+  inherited_from: null

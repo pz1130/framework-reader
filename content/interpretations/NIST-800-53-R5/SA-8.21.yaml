@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-8.21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems that fail in operation because nobody stress-tested
+      them against how the system itself misuses, fakes, or corrupts its own components.
+      Without self-analysis, you discover during an incident that the design assumed
+      trustworthy internal behavior it never had.
+    basis: inferred
+  plain_zh:
+    value: Require the development team to explicitly think through and document how
+      the system can be attacked or subverted through its own components, interfaces,
+      or data flows - not only through external threats - and then design controls
+      against those cases before delivery.
+    basis: inferred
+  practice:
+    value:
+      '1': Developers list plausible ways the system can be turned against itself
+        (insider misuse, spoofed internal components, tampered data in motion, malicious
+        updates) and the design includes at least one mitigation for each significant
+        case.
+      '2': Self-analysis is a documented step in the secure design lifecycle with
+        threat-libraries or checklists, review by someone other than the author, and
+        traceability from each identified self-threat to a specific design or code
+        control.
+      '3': Self-analysis runs on every significant change, feeds into abuse-case and
+        test planning, and the resulting self-threats are exercised in test or red-team
+        scenarios so an undiscovered self-attack path is surfaced before release.
+    basis: inferred
+  evidence:
+    value: Documented self-analysis records (threats identified, mitigations chosen,
+      reviewer sign-off), traceability matrix linking self-threats to design decisions
+      and tests, evidence the self-threats were actually exercised, and change records
+      showing re-analysis after design changes.
+    basis: inferred
+  common_myth:
+    value: Treating threat modeling done once at project kickoff as self-analysis
+      - generic threat models cover external attackers, not how the system's own components
+      can be coerced, impersonated, or corrupted by something already inside the trust
+      boundary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a self-analysis for a system you delivered in the last year and the
+      mitigations it produced in code or configuration.
+    - When the design changed after initial review, where is the record that self-analysis
+      was re-run?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.260869Z'
+  signed_digest: e4df1f6ef3dbc717989b8bf25b7b25a28becba9582e2054c66f50a601d9d7cc9
+  interview_seconds: null
+  inherited_from: null

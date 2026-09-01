@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:IR-4.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incidents being mishandled because no one was actually
+      trained, equipped, and rehearsed together as a unit—handovers drop, evidence
+      gets lost, and decisions stall when the team has only ever existed on paper.
+    basis: inferred
+  plain_zh:
+    value: Stand up and sustain an actual incident response team (in-house, contracted,
+      or hybrid) with the people, roles, tools, and authority needed to handle incidents
+      end-to-end, and keep them current.
+    basis: inferred
+  practice:
+    value:
+      '1': A named on-call roster and a primary contact for incidents; basic playbook
+        roles assigned; out-of-hours coverage defined.
+      '2': Documented team charter with roles, responsibilities, authority, and escalation
+        paths; members trained on playbooks; standard toolkit (forensics, comms, ticketing)
+        provisioned; team reaches documented readiness.
+      '3': Team is exercised through realistic incident simulations and tabletop drills
+        on a fixed cadence; readiness is measured and gaps remediated; coverage validated
+        across shifts, regions, and major incident types; roster reflects current
+        staff and contact paths.
+    basis: inferred
+  evidence:
+    value: Team charter, on-call roster and contact paths, role assignments, training
+      records, playbook and tooling inventory, drill/exercise plans and after-action
+      reports with corrective actions.
+    basis: inferred
+  common_myth:
+    value: Listing three names in a runbook counts as having an incident response
+      team—those people have other day jobs, never drilled together, and may have
+      left the company, so the roster is fiction the moment a real incident hits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time the on-call team was paged in a drill, and who answered
+      across all shifts?
+    - Show me the team charter and the role each named person actually plays during
+      an incident.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.286385Z'
+  signed_digest: b6fea66fac70eadaf44e5fde349189b172b062829efd1cb2c9f08ae09a665934
+  interview_seconds: null
+  inherited_from: null

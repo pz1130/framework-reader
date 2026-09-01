@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SI-10.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where web and application inputs are only
+      superficially scrubbed - HTML/JS allowed in name fields, headers trusted as
+      data, second-order injection waiting in the database - so a single crafted payload
+      reaches a parser that still trusts it and executes attacker code or alters downstream
+      behaviour. Generic input validation catches the easy cases and misses everything
+      where the data re-enters a different parser later.
+    basis: inferred
+  plain_zh:
+    value: Verify and reject malicious content at each layer that parses input (HTTP,
+      headers, XML, SQL, command shell, LDAP, template engine, file path), because
+      the same string is interpreted by different parsers at different times and a
+      check upstream does not protect downstream consumers.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the input parsers in each application (web framework, database
+        driver, shell, XML/SOAP, template, mail header); apply allow-list validation
+        at each boundary closest to that parser; reject and log malformed input.
+      '2': Maintain a written mapping of which inputs reach which parsers; require
+        parameterized queries and contextual output encoding for all SQL, LDAP, OS
+        command, and template paths; review new endpoints for parser exposure before
+        release.
+      '3': Test second-order injection paths (data stored then re-rendered), fuzz
+        each parser with malicious payloads, instrument parsers to alert on validation
+        failures, and require evidence of per-parser validation in code review or
+        release gates.
+    basis: inferred
+  evidence:
+    value: Architecture or code documentation showing per-parser input validation,
+      code review records confirming parameterized queries and contextual encoding,
+      test results from injection-focused fuzzing or DAST, and logs of rejected malformed
+      inputs from production.
+    basis: inferred
+  common_myth:
+    value: Believing that a single web-tier WAF or framework-level validation satisfies
+      the control because it sits 'in front of everything'. Different parsers (SQL
+      engine, shell, XML, template) interpret the same bytes differently, so upstream
+      checks do not protect downstream consumers and second-order payloads stored
+      today can detonate later.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in the code stack each parser (SQL, shell, XML, template, LDAP)
+      gets its own input validation, not a shared front-end check.
+    - How do you detect second-order injection where validated input becomes dangerous
+      after being read back from the database?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.816991Z'
+  signed_digest: 087de61ecbe9f6dcf77faae46b4fc1ce859787e47d06aa19f85a9fbd8ce8c490
+  interview_seconds: null
+  inherited_from: null

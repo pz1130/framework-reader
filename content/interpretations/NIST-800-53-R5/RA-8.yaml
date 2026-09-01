@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:RA-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against systems and processes being deployed or changed in ways
+      that quietly mishandle personal data—collecting more than needed, exposing it
+      to the wrong eyes, or failing to give data subjects their rights—because nobody
+      checked the privacy consequences before go-live. Without it, privacy failures
+      surface only after harm, complaints, or regulator inquiries.
+    basis: inferred
+  plain_zh:
+    value: Before you build, buy, or change anything that touches personal data, work
+      out what data flows, what could go wrong for the people in those records, and
+      what you will do about it—and keep that analysis current as the system evolves.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify systems, projects, and vendor offerings that process personal
+        data; have a short written checklist that asks what is collected, why, who
+        accesses it, and how long it is kept; sign-off before launch.
+      '2': Use a documented PIA template tied to the SDLC and change management; require
+        completion before design freeze for new builds and before procurement sign-off
+        for vendors; record the outcome and residual risk; review PIAs on a set schedule
+        and on any material change.
+      '3': PIAs are owned by a function with authority to block or require mitigations;
+        output feeds the system inventory, the data-processing record, retention rules,
+        and the incident playbook; reviewers include privacy, security, legal, and
+        the business owner; PIAs are re-run when scope, vendor, or law changes, and
+        prior PIAs are pulled forward into audits and DPIA-style reviews.
+    basis: inferred
+  evidence:
+    value: PIA policy and template, completed PIAs for in-scope systems and recent
+      changes, sign-off records, linkage between PIA outputs and the data inventory
+      / retention schedule / incident response plan, and evidence of PIAs being re-triggered
+      after scope or vendor changes.
+    basis: inferred
+  common_myth:
+    value: Treating the PIA as a one-time checkbox completed by legal right before
+      launch, with no link back to the actual data flows in production, no review
+      on change, and no authority to delay or refuse a project when findings are unresolved.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system that went live in the last year: show the PIA, who signed it,
+      and how the findings map to controls actually deployed.'
+    - When a vendor or scope changed after launch, when was the PIA re-done and who
+      decided it was still adequate?
+    - Has the privacy function ever blocked or delayed a release based on a PIA finding?
+      What was the case?
+    basis: inferred
+  regional_note:
+    value: EU regulators under GDPR treat the DPIA as a binding legal instrument with
+      statutory thresholds (e.g., high-risk processing) and expect consultation with
+      the DPO; US practice under NIST treats the PIA as a governance control without
+      the same legal teeth, so US auditors focus on whether PIAs exist and are refreshed,
+      while EU-style audits also probe whether the PIA was actually done before processing
+      began and whether the DPO's view is recorded.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.986963Z'
+  signed_digest: 727f83cb4012af4039747b18530d73e822782bdb16df37b633f4b748423e9213
+  interview_seconds: null
+  inherited_from: null

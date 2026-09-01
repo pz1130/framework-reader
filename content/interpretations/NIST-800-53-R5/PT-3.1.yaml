@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PT-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against sensitive data flowing through systems and third parties
+      without anyone knowing what level of protection it needs - so it gets the wrong
+      handling, the wrong retention, the wrong sharing decisions, and a breach becomes
+      catastrophic because nobody flagged it as sensitive in the first place.
+    basis: inferred
+  plain_zh:
+    value: Tag or mark sensitive data and CUI so that downstream systems, people,
+      and partners know what handling rules apply, and those tags survive copies,
+      exports, and sharing.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as sensitive/CUI and where it lives; require a manual
+        or header/footer marking on documents containing it before they leave the
+        author.
+      '2': Apply consistent tags or labels through templates, DLP rules, or metadata
+        so marking is not purely honorary; train staff on when and how to tag.
+      '3': Embed tags in the data itself (metadata, headers, classification fields)
+        and enforce handling controls automatically downstream - access, encryption,
+        retention, and sharing decisions read the tag rather than relying on human
+        memory.
+    basis: inferred
+  evidence:
+    value: Data classification scheme with tag definitions, samples of tagged documents/emails/records,
+      DLP or labeling tool configuration showing tags drive controls, and a walkthrough
+      of one piece of data from creation through sharing to confirm the tag survived.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a labeling tool or stamping 'Confidential' in a footer
+      template satisfies the control - tags that are not read by downstream systems,
+      not enforced by DLP, and not required on exports are decoration; the auditor
+      will ask what the tag actually changes in behavior.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a CUI document that was shared with an external party - what tag did
+      it carry and what handling rule did that tag trigger?
+    - If I extract content from a tagged document and paste it into an email, does
+      the classification follow the content or get lost?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.873258Z'
+  signed_digest: 41f4505ad9ada04a8629006e4c58aac5e96cc34d9a5d5d2767a74547198d401a
+  interview_seconds: null
+  inherited_from: null

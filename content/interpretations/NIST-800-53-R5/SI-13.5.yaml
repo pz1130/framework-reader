@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-13.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where a backup or secondary system exists on
+      paper but cannot actually take over when the primary goes down—because failover
+      was never exercised, capacity is mismatched, or the secondary depends on the
+      same failure domain as the primary.
+    basis: inferred
+  plain_zh:
+    value: Make sure the standby system, site, or component can actually carry the
+      load when the primary fails, and that someone verifies it—not just that a backup
+      exists in inventory.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems that need failover; name a secondary site, system,
+        or component and document it; basic network and data paths exist to switch
+        over.
+      '2': Failover procedure is written, with roles and a documented RTO/RPO; backups
+        and replicas are tested for integrity; secondary capacity is sized to the
+        real production load, not a fraction of it.
+      '3': Failover is exercised on a scheduled basis (full or partial) with measured
+        recovery time compared to the documented target; defects found during exercises
+        drive remediation; dependent services (DNS, identity, storage, network) are
+        confirmed part of the test, not assumed.
+    basis: inferred
+  evidence:
+    value: Failover plan with RTO/RPO, exercise/test records showing measured recovery
+      time, capacity sizing for the secondary, remediation tickets from failed exercises,
+      and evidence that dependent services are included in the test scope.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a hot site / DR site / redundant system' as proof the
+      control is met. A standby that has never been switched to, or that runs on undersized
+      hardware, shared power, or shared upstream links, fails the moment it is needed—and
+      auditors know it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last actually fail over this system end-to-end, and what was the
+      measured recovery time versus the documented target?
+    - Show me the secondary environment's capacity figures and how they were validated
+      against production load.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.848501Z'
+  signed_digest: 71b5143ead380a50ac2a65408ae3c79c11d400f60fefdbb9e899d07e1497ef36
+  interview_seconds: null
+  inherited_from: null

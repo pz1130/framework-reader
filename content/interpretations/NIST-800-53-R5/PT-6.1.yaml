@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PT-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the risk that privacy notices are hollow—saying one thing about
+      how data will be used while the organization actually handles it differently,
+      without a documented reason and without the data subject being able to hold
+      anyone accountable.
+    basis: inferred
+  plain_zh:
+    value: You must define the routine uses of personal data (beyond the original
+      collection purpose) in writing, be able to explain why those uses are allowed,
+      and keep that explanation current with how data is actually processed.
+    basis: inferred
+  practice:
+    value:
+      '1': A written document describes the routine uses of personal data (e.g., sharing
+        with processors, affiliates, for analytics) and references the original collection
+        purpose.
+      '2': The routine uses are linked to a legal basis or policy rationale; data
+        flows match the documented uses; reviews happen periodically; changes get
+        logged.
+      '3': The routine uses are encoded into data flow diagrams and system metadata;
+        deviations are flagged and require exception approvals; the notice is regenerated
+        automatically when routine uses change; audits verify the documented uses
+        still match practice.
+    basis: inferred
+  evidence:
+    value: The routine uses document (with legal basis or rationale), data flow diagrams,
+      a change log for updates, approval records for deviations, and a mapping between
+      the notice and the actual data processing.
+    basis: inferred
+  common_myth:
+    value: Teams often think that once the privacy notice says 'we may share data
+      with service providers,' the routine uses control is satisfied—but the control
+      requires you to name the specific routine uses and justify them, not just hide
+      behind a catch-all phrase.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which routine uses are documented, and what legal basis or policy rationale
+      supports each?
+    - What happens when a new vendor or processing activity emerges that isn't covered
+      by the routine uses doc—how is that handled?
+    - Show me the last time you reviewed—and updated—the routine uses, and what triggered
+      that change.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.901085Z'
+  signed_digest: 2a0cf7dda7c73e4bdf2bda31a9c9e092461e313803b3137539b21fba5134d881
+  interview_seconds: null
+  inherited_from: null

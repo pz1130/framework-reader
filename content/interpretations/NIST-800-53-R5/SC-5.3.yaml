@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-5.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'denial-of-service is purely an availability problem we
+      cannot see coming' — without active detection and monitoring of DoS-relevant
+      signals, an organization cannot distinguish a routine traffic spike from the
+      start of an attack, nor prove that its preventive controls are still working
+      as intended.
+    basis: inferred
+  plain_zh:
+    value: Define what counts as a denial-of-service event for your systems, put monitoring
+      in place to detect the precursors and the event itself, and keep records that
+      allow post-incident review and control effectiveness checks.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems and services must remain available and at what baseline;
+        enable basic network and host-level monitoring that can flag anomalies such
+        as sudden bandwidth exhaustion, connection floods, or resource saturation.
+      '2': Document detection thresholds and escalation paths tied to defined DoS
+        scenarios (volumetric, protocol, application-layer); keep monitoring logs
+        and alert records for a defined retention period; review alerts in a documented
+        cadence.
+      '3': Continuously tune detection rules against real traffic baselines; correlate
+        DoS indicators with upstream/downstream signals (CDN, firewall, application);
+        feed findings back into capacity planning, architecture changes, and control-effectiveness
+        testing.
+    basis: inferred
+  evidence:
+    value: Documented DoS scenarios and detection thresholds, monitoring configuration
+      and coverage map, alert and escalation records, post-event review notes, and
+      evidence of tuning or control-effectiveness feedback.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a DDoS scrubbing service or CDN satisfies SC-5 — the
+      control asks for detection and monitoring inside the organization, not just
+      outsourced mitigation; if you cannot see or record the precursors, you cannot
+      show the control is operating.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems are explicitly excluded from DoS monitoring, and why?
+    - Show the last alert your DoS detection raised and how it was handled.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.658733Z'
+  signed_digest: cddf276318e45049298ef1493b115e65a5bf766887a49ee2c85660010ff6fdb4
+  interview_seconds: null
+  inherited_from: null

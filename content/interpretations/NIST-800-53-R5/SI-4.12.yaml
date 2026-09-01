@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SI-4.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a SOC from being blind to attacks its own stack actually detected
+      but never escalated - tools fire, dashboards blink, nobody owns the alert, and
+      a real intrusion sits in the queue until it becomes an incident.
+    basis: inferred
+  plain_zh:
+    value: Make sure the alerts your security tools automatically produce reach a
+      human or a defined response workflow, get triaged within a known timeframe,
+      and are tracked to outcome - not just generated and forgotten.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the alerting tools in use and confirm each one forwards events
+        into a queue (SIEM, ticketing, on-call channel) that someone is named to watch.
+      '2': Define triage SLAs by alert severity, document the on-call or analyst ownership,
+        and record the disposition of every alert (true positive / false positive
+        / escalated) with timestamps.
+      '3': Measure queue depth, mean time to acknowledge, and stale-alert aging; alert
+        on alerts (e.g. queue backing up, repeated same-source hits) so that the monitoring
+        process itself fails visibly, not silently.
+    basis: inferred
+  evidence:
+    value: Alert source inventory, routing configuration into the triage queue, documented
+      triage SLAs and ownership, disposition records with timestamps, and metrics
+      on acknowledgement and aging.
+    basis: inferred
+  common_myth:
+    value: Treating SIEM ingestion or tool activation as the end of the control -
+      assuming that because events are being generated they are being handled, when
+      in reality un-triaged queues and 24-hour-old 'new' alerts are routine.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three alerts from last week in the queue and walk me through who acknowledged
+      them, when, and how they were closed.
+    - What happens to an alert at 2 a.m. when the on-call does not respond - where
+      does it go and how long until it pages someone else?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.988453Z'
+  signed_digest: d030ff01c5c6c2ea25c0bf044384cb8b80cf067a8cd6d7a0175c34f838e39dad
+  interview_seconds: null
+  inherited_from: null

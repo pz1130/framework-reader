@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-14.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents credentials, session tokens, and other high-value artifacts from
+      sitting in memory or on disk indefinitely, where a stolen-laptop, hypervisor
+      snapshot, or shared-debug session hands them to the next user. Without non-persistence,
+      any login or session becomes a long-lived key an attacker can replay long after
+      the legitimate user walks away.
+    basis: inferred
+  plain_zh:
+    value: Make system components and services boot, load, and run in a way that clears
+      sensitive state on shutdown or session end, so nothing useful is left behind
+      for the next person—or the next attacker—to pick up.
+    basis: inferred
+  practice:
+    value:
+      '1': Operating systems, containers, and VDI images are configured to reset memory
+        and disk state at logout/reboot; default credentials cannot survive a session
+        boundary.
+      '2': Documented baselines exist for which classes of systems run non-persistent
+        (e.g. kiosks, jump hosts, trading workstations, build agents), and the reset
+        path is tested after changes.
+      '3': Non-persistence is enforced and verified—golden images are rebuilt rather
+        than patched in place, session artifacts (tokens, keys, cache, clipboard)
+        cannot be retrieved from a freed slot, and exceptions are tracked as deviations
+        with an expiry date.
+    basis: inferred
+  evidence:
+    value: Image/rebuild pipeline records, configuration baselines showing reset-on-logout,
+      test results demonstrating no credential or token recovery from a returned-to-pool
+      system, and a list of which system classes are in scope for non-persistence.
+    basis: inferred
+  common_myth:
+    value: Believing that rebooting or wiping a workstation occasionally satisfies
+      the control. Non-persistence has to be the default state of the image and the
+      login session, not a manual cleanup that depends on the previous user remembering
+      to run it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a pooled workstation or jump host at random—after I log out and the next
+      person logs in, what state from my session is still recoverable, and how do
+      you know?
+    - Show me which system classes are rebuilt from a golden image versus patched
+      in place, and the last time that list was reviewed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.856037Z'
+  signed_digest: 92c2d34242f4f7b7c88437765f5030c2d237f64a0282ddb2f1a07a5cc680c1a2
+  interview_seconds: null
+  inherited_from: null

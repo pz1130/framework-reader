@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where a user later denies sending or authorizing
+      a transaction/command — without a trustworthy path, an attacker (or insider)
+      can repudiate actions or blame someone else, and the organization has no way
+      to prove who did what when the loss is discovered.
+    basis: inferred
+  plain_zh:
+    value: Ensure that the path a user uses to communicate with the system cannot
+      later be denied or spoofed — the user, the system, and any intermediary must
+      be bound together so a sent action is provably attributable to that user at
+      that moment, not reassigned after the fact.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the actions (financial transfers, privileged commands, high-impact
+        transactions) where repudiation would be damaging; bind them to a session
+        where the user's identity, the endpoint, and the system end-point are all
+        verifiably tied together end-to-end.
+      '2': 'Use a single, signed session: mutual authentication between user and system,
+        no untrusted hops in between, server-side record showing source, destination,
+        user identity, and timestamp that the user cannot disavow; preserve those
+        records immutably.'
+      '3': Cryptographically bind the session end-to-end (e.g., signed tokens or end-to-end
+        signed channels) so no proxy or middlebox can rewrite or replay the user's
+        action without detection; independent timestamping; periodic tests that prove
+        a user cannot successfully repudiate a captured transaction.
+    basis: inferred
+  evidence:
+    value: Architecture and protocol documentation showing mutual authentication and
+      end-to-end integrity, signed session/capture artifacts, and any independent
+      tests or exercises that demonstrate a user cannot repudiate a logged action.
+    basis: inferred
+  common_myth:
+    value: Assuming TLS or an HTTPS login page already provides an 'irrefutable path'
+      — TLS only protects the hop in front of you; once traffic passes through proxies,
+      load balancers, or shared middleware, the binding between user and final action
+      can be broken or rewritten, which is exactly what repudiation exploits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a record of a high-value transaction and prove the user cannot credibly
+      deny sending it — what makes it irrefutable?
+    - Are there any proxies, middleware, or shared services between the user's client
+      and the system of record that could alter the action without detection?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.378807Z'
+  signed_digest: e319add2977844b137446e4790ddc436f472f7cbc49178cac4276e70451893e1
+  interview_seconds: null
+  inherited_from: null

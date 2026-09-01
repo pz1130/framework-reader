@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AU-12.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where audit records can be silently filtered or suppressed
+      by manipulating the query parameters used to generate them, so an insider or
+      compromised tool can hide who accessed PII, when, and what they did. Without
+      this, the audit trail of PII access becomes unreliable evidence - exactly when
+      you need it most.
+    basis: inferred
+  plain_zh:
+    value: Make sure the audit records you keep about PII access cannot be quietly
+      reshaped, narrowed, or filtered out by the parameters someone put into the query
+      that produced them, and that the full, unfiltered record is preserved.
+    basis: inferred
+  practice:
+    value:
+      '1': Know which systems log PII access; check that those logs retain the actual
+        query parameters submitted and are not silently re-filtered before storage.
+      '2': Have a written rule that audit queries over PII logs run against the raw/unaltered
+        record set, and that any parameter or filter applied for analysis is logged
+        separately with who applied it and why.
+      '3': Cryptographically or write-once protect the underlying PII access records;
+        alert when audit queries are run with parameters that would exclude high-risk
+        events (e.g. by user, by record type, by time window); periodically reconcile
+        query parameters used against the records returned.
+    basis: inferred
+  evidence:
+    value: Configuration or code showing audit records are stored before any user-supplied
+      filter is applied, a change log of audit-query parameters with the analyst who
+      set them, and reconciliation samples comparing requested vs. returned record
+      counts.
+    basis: inferred
+  common_myth:
+    value: Assuming that because audit logging is turned on, the records are trustworthy
+      - in practice, many audit tools let the analyst pass in date ranges, user filters,
+      or record-type filters that quietly narrow the result, so the 'complete log'
+      is whatever the last query parameters allowed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where the PII access record is written to storage before any analyst-supplied
+      filter is applied.
+    - Who is allowed to change the parameters of an audit query, and is that change
+      itself logged?
+    - Pick a recent audit query over PII access and show the parameters used, who
+      set them, and the record count returned vs. the count in the raw store.
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR tend to press harder on whether the underlying PII
+      access log can be reconstructed unmodified for a data subject access or breach
+      investigation; US auditors more often accept the parameterized audit report
+      as the artifact of record, unless a specific incident or SOX-relevant system
+      is in scope.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.532886Z'
+  signed_digest: c2f9fbb048eb0a89e43a4dcda86aa02e28b1fa2e8998ff10e2be1ed6a33eda14
+  interview_seconds: null
+  inherited_from: null

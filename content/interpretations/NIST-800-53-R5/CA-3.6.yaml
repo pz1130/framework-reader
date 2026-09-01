@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CA-3.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems being moved into production or handed off across
+      security domains using unvetted code paths, configurations, or data — i.e.,
+      the failure mode where 'transferred' means 'I trust whatever came in'.
+    basis: inferred
+  plain_zh:
+    value: When systems, components, services, or data move into your environment
+      from another one (cross-domain or cross-system transfer), every such transfer
+      must be explicitly authorized, documented, and reviewed against security requirements
+      — not treated as routine plumbing.
+    basis: inferred
+  practice:
+    value:
+      '1': Transfers across security boundaries (e.g., dev to prod, contractor to
+        your enclave, lower-impact system to higher-impact) require a written authorization
+        before they occur; recipients know to flag them.
+      '2': Authorization includes review of the transferred item against documented
+        security requirements (configuration, data classification, origin), is recorded,
+        and is tied to a named approver and a date.
+      '3': Authorizations are tracked centrally, expired/conditional ones block repeat
+        transfers, deviations trigger re-review, and the log is auditable enough to
+        answer 'what moved from where to whom and on whose authority.'
+    basis: inferred
+  evidence:
+    value: 'Authorization records for transfers across security boundaries: request,
+      item description, source/destination, reviewer, approver, date, and the security
+      requirements the item was checked against.'
+    basis: inferred
+  common_myth:
+    value: Treating this control as redundant with CA-3 (interconnections) or just
+      another approval form — so teams issue a one-time interconnection memo and assume
+      every subsequent artifact pushed across it is covered. The memo authorizes the
+      *connection*; each transfer of a system, component, or data item across that
+      boundary is a separate act that needs its own authorization and record.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three transfers of components or data across a security boundary
+      and the authorizations on file for each.
+    - Who is authorized to approve a transfer, and what do they actually check against
+      the security requirements before signing?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.674890Z'
+  signed_digest: 6f7a097722614cda8314376a2b013b40894bfce6a438f2c460280b69e1b74449
+  interview_seconds: null
+  inherited_from: null

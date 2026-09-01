@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-10.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Without named security/privacy representatives on the developer side, configuration
+      changes, source commits, and component swaps land in production with no one
+      accountable for catching the security or privacy regressions that the developer's
+      own people are best positioned to see. The control forces a counterpart at the
+      developer who owns the security/privacy review of what they build and deliver,
+      so gaps surface before the acquirer's team has to find them post-build.
+    basis: inferred
+  plain_zh:
+    value: Require your developer to assign named security and privacy representatives
+      who have the authority and duty to review the system, its changes, and its components
+      for security and privacy impact, and who can be engaged when your team has questions
+      or findings.
+    basis: inferred
+  practice:
+    value:
+      '1': Contract requires the developer to name at least one security and one privacy
+        representative; names and contact info are recorded and shared with your team.
+      '2': Representatives' roles, authority, and review obligations are written into
+        the SOW or developer security plan; your change requests and findings are
+        logged with their responses.
+      '3': Representatives participate in design reviews, change-control boards, and
+        incident notifications on the developer side; their sign-off on security/privacy
+        deltas is traceable per release and tied back to your requirements.
+    basis: inferred
+  evidence:
+    value: Contractual clause naming the developer-side security and privacy representatives,
+      documented roles and authority, correspondence or ticket logs showing representatives
+      responding to acquirer findings, sign-off records on design and change reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the developer has 'a security team' or 'a privacy
+      officer' the requirement is met. The control asks for named individuals tied
+      to the specific system or component being delivered, with documented authority
+      to act on your findings - not a generic org-chart reference.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the named security representative and who is the named privacy representative
+      on the developer side for this system, and where is that documented?
+    - Show a recent change or finding from our side that went to the developer - who
+      on their side acknowledged it, and what came back?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.021799Z'
+  signed_digest: 58aece9dbcd5bb9f3c2924e20ce296fcb9ee44cd28f08d82a76b828921b71638
+  interview_seconds: null
+  inherited_from: null

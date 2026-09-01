@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SC-48.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who have mapped where you watch from — once
+      sensor locations and monitoring coverage are static and predictable, an attacker
+      can study them, route around them, or selectively blind specific segments before
+      acting.
+    basis: inferred
+  plain_zh:
+    value: Move or rotate where sensors and monitoring capabilities sit, on a planned
+      basis, so that coverage is not static and attackers cannot reliably predict
+      or evade what you see.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical monitoring points (network sensors, EDR agents, log collectors,
+        physical cameras) and define a rotation schedule; perform manual relocation
+        on a defined cadence and after any detected reconnaissance.
+      '2': Document the relocation plan with cadence, trigger conditions, and accountable
+        owners; track which assets were monitored from which vantage point and when;
+        review effectiveness after each rotation cycle.
+      '3': Automate relocation and vantage-point changes where feasible; tie rotation
+        to threat intelligence and detection signal gaps; measure blind-spot windows
+        and adversary dwell time to prove the practice reduces predictability.
+    basis: inferred
+  evidence:
+    value: Relocation plan with cadence and triggers, rotation logs showing sensor/agent
+      movements over time, post-rotation effectiveness reviews, and any threat-intel
+      inputs that drove a change.
+    basis: inferred
+  common_myth:
+    value: Treating SC-48.1 as exotic or 'only for classified environments' and skipping
+      the control because nothing is moving around — standard enterprise sensors,
+      EDR, and SIEM taps are exactly the static vantage points this control targets.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How often do you rotate sensor placement or monitoring vantage points, and what
+      triggers an out-of-cycle change?
+    - 'Show the last two rotations: what moved, who approved it, and what coverage
+      window it closed.'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.644106Z'
+  signed_digest: 9122479616f6325346d41bcd6bbfb29b75cde517a5f131e4d2563ae16b23059d
+  interview_seconds: null
+  inherited_from: null

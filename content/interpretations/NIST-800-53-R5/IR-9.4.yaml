@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IR-9.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops incident-response information from being read by people who have
+      no business need to know - cleanup crews, comms teams, junior staff on copy,
+      ex-employees with old mailboxes - because once sensitive IR details leak sideways,
+      attackers get a map of your detection gaps, legal exposure multiplies, and the
+      incident itself becomes the breach.
+    basis: inferred
+  plain_zh:
+    value: Make sure only people who actually need to see it can access information
+      about an ongoing or recent information security incident - restrict, track,
+      and clean up that access throughout the response and after.
+    basis: inferred
+  practice:
+    value:
+      '1': When an incident starts, mark the case/ticket/chat folder as restricted
+        and add only named responders; tell everyone else in the loop that the contents
+        are need-to-know.
+      '2': Apply the same access rules to all artefacts - tickets, evidence, screen
+        shares, call recordings, draft notifications - and log who read or downloaded
+        what; review the access list before any external share.
+      '3': Access is technically enforced by groups/ACLs (not just polite requests),
+        automatically revoked when responders rotate off the incident, and the post-incident
+        review explicitly checks what was exposed to whom and scrubs residual access
+        from shared drives, mailing lists, and recorded sessions.
+    basis: inferred
+  evidence:
+    value: Access control list or group membership for the incident folder/case, logs
+      of who viewed or downloaded incident artefacts, records of access revocations
+      as responders rotated, and a post-incident review note confirming residual access
+      was cleaned up.
+    basis: inferred
+  common_myth:
+    value: Treating the response channel as 'just a Slack channel' or shared mailbox
+      without locking it down - assuming the team 'knows to keep it quiet' while leaving
+      former employees, comms vendors, legal externals, and inherited distribution
+      lists still able to read tactical details, evidence, and root-cause notes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the access list for the most recent closed incident's evidence folder
+      - who was on it, and when were non-essential people removed?
+    - What happened to the recorded bridge, shared screen captures, and mailbox after
+      the last major incident - who can still reach them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.371637Z'
+  signed_digest: 0820b02e2196131a261a1dfd519673094c652ccd271490514b52f9324cbde540
+  interview_seconds: null
+  inherited_from: null

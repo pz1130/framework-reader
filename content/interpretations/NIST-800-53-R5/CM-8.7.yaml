@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CM-8.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'inventories scattered across spreadsheets, emails, and
+      tribal knowledge' — when nobody can answer where assets actually live, every
+      other control (patching, vulnerability management, incident scoping, EOL planning)
+      is operating on guesses and missing entire systems.
+    basis: inferred
+  plain_zh:
+    value: Maintain a single, authoritative, centralized repository of system component
+      information (hardware, software, devices, etc.) for the organization and its
+      systems, instead of letting each team keep its own list.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate one place that is acknowledged as the authoritative inventory;
+        define the minimum data fields every system entry must carry; have someone
+        responsible for keeping it current.
+      '2': Feed the repository from automated discovery (network scans, endpoint agents,
+        cloud asset APIs) so manual entry is not the only source; reconcile conflicting
+        sources periodically with documented owners.
+      '3': Repository is the single reference used by patching, vulnerability, configuration,
+        and incident-response processes; coverage gaps (known unknowns, unscannable
+        zones) are explicitly tracked and reviewed; changes to the environment trigger
+        inventory updates within a defined window.
+    basis: inferred
+  evidence:
+    value: A documented centralized inventory with its data model, authoritative-source
+      designation, ingestion and reconciliation processes, assigned owners per system
+      entry, and evidence that downstream security controls actually consume it.
+    basis: inferred
+  common_myth:
+    value: Believing that running a scanner occasionally or maintaining a CMDB 'in
+      theory' satisfies this control — if patching, vuln scans, and IR all still pull
+      from team-local lists, the repository is not centralized, it is decorative.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which system is the single authoritative source for asset data, and how is that
+      documented?
+    - Show me a recent change in your environment (new server, new cloud account,
+      decommissioned device) and when it appeared in the repository.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.884483Z'
+  signed_digest: 4fdf55743ab34985d77e0b46c186ce0c5a7e2054d9c7eec700d59fcfabd9a0a5
+  interview_seconds: null
+  inherited_from: null

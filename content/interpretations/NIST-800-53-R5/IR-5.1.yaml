@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents incident data from being hand-typed into spreadsheets after the
+      fact, where timestamps get rounded, evidence goes missing, and trends across
+      incidents stay invisible—so an analyst can't reconstruct the timeline, the team
+      can't see recurring patterns, and leadership can't judge whether response capability
+      is actually improving.
+    basis: inferred
+  plain_zh:
+    value: Make sure incidents are tracked, evidence is collected, and analysis is
+      done by tools that talk to each other and to a clock—not by people copy-pasting
+      screenshots into a Word doc—across the full life of each incident.
+    basis: inferred
+  practice:
+    value:
+      '1': Use a ticketing or IR platform that auto-captures timestamps, reporter,
+        affected assets, and basic IOCs; collect logs and alerts into a place that
+        survives past the incident.
+      '2': Tooling is configured to pull from detection, identity, network, and endpoint
+        sources on trigger; analysts tag and link indicators in the platform; after-action
+        findings are searchable against past cases.
+      '3': Central pipeline correlates events across sources into an incident record
+        with evidence chain-of-custody intact; metrics (MTTD, MTTR, recurrence) feed
+        back into detection engineering and risk decisions; coverage gaps in automated
+        collection are tracked and remediated.
+    basis: inferred
+  evidence:
+    value: Incident tracking system records with audit-grade timestamps, automated
+      evidence collection logs, correlation rules showing cross-source linkage, after-action
+      reports linked to source records, and dashboards or metrics derived from the
+      incident dataset.
+    basis: inferred
+  common_myth:
+    value: Equipping the team with a SIEM or SOAR platform is the same as having IR-5(1).
+      The control fails when the platform exists but detection alerts still drop into
+      email, analysts save evidence in personal folders, and incident closures go
+      into a separate tracker not joined back to the platform—meaning the 'automated'
+      part doesn't connect to the actual incident workflow.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent incident's full record as captured automatically by tooling—not
+      the analyst's manually written summary.
+    - When an alert fires in the SIEM, what pulls it into the incident record without
+      a person copy-pasting, and where is that wiring documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.338294Z'
+  signed_digest: cb62bde59afd98ce000b77f537211279fa9aae9dc1984bab9913f0433f452cbe
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-20.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents external systems from being used as a casual backdoor into organizational
+      data, where users casually access, store, or process sensitive information on
+      third-party platforms or unmanaged personal devices without any enforceable
+      boundary on what is allowed.
+    basis: inferred
+  plain_zh:
+    value: Define what counts as an acceptable external system and what users are
+      actually permitted to do on it, so personal devices, partner portals, and contractor
+      tools don't become uncontrolled extensions of your environment.
+    basis: inferred
+  practice:
+    value:
+      '1': Documented list of approved categories of external systems (e.g., sanctioned
+        cloud suites, contractor platforms); users know which ones are permitted and
+        for which data classes.
+      '2': 'Rules tied to data classification: e.g., confidential data not allowed
+        on unmanaged personal devices; reviewable conditions for limited use; included
+        in onboarding/offboarding guidance.'
+      '3': Technical or procedural enforcement (DLP on egress to personal cloud, blocking
+        of unsanctioned storage, named-only allowlist) plus monitoring that flags
+        use of external systems for restricted data, with exceptions logged and time-bound.
+    basis: inferred
+  evidence:
+    value: Documented limits on authorized use of external systems, the data-classification
+      mapping that drives those limits, exception records with expiry, and enforcement
+      evidence (block logs, DLP alerts, VPN/CASB reports).
+    basis: inferred
+  common_myth:
+    value: Assuming the control is met by publishing an 'acceptable use' page that
+      bans personal use in prose, without specifying which external systems or data
+      classes the rule actually applies to, and without anything that stops the behavior
+      in practice.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the document that defines which external systems users are permitted
+      to use, and for which categories of data.
+    - How do you detect or prevent restricted data from being put on an unsanctioned
+      external system, and where is that rule enforced?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.154421Z'
+  signed_digest: f27d5977b88bc793b4a6e0954ce49b3ddf4833c9d73a58bbe76d64b466a506ab
+  interview_seconds: null
+  inherited_from: null

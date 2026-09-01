@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-10.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the scenario where a disaster or major outage is recovered
+      'successfully' only on paper — systems come back, but too late, after SLAs,
+      regulatory clocks, or business survival thresholds have already been missed.
+      The control forces recovery objectives to be defined, achievable, and actually
+      tested.
+    basis: inferred
+  plain_zh:
+    value: Define, meet, and verify that critical systems can be restored within the
+      time period the business actually requires — and prove it through testing, not
+      just documentation.
+    basis: inferred
+  practice:
+    value:
+      '1': Recovery Time Objectives (RTOs) are written down for each critical system
+        and signed off by the business owner, not just guessed by IT.
+      '2': A documented recovery test exists for each tier-1 system showing actual
+        elapsed time versus the stated RTO; gaps trigger a remediation plan with an
+        owner and date.
+      '3': Restoration time is measured end-to-end (detection → decision → execution
+        → validation), tested on a recurring cadence that scales with system criticality,
+        and exceptions to RTOs are tracked, risk-accepted at the right level, and
+        reduced over time.
+    basis: inferred
+  evidence:
+    value: RTO register with business sign-off, recovery test plans and result reports
+      showing actual vs. target times, remediation tickets for missed targets, and
+      records of how restoration was timed in real incidents.
+    basis: inferred
+  common_myth:
+    value: Treating an untested recovery plan as evidence of meeting RTOs — a plan
+      that has never been executed cannot prove the system can be restored in time,
+      only that someone once wrote down a number.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time this system was actually restored from a real outage
+      or test, and how long did it take end-to-end?
+    - Which critical systems failed to meet their RTO in the last test or incident,
+      and what changed since?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.907776Z'
+  signed_digest: 3094fee480d0d65ff780f6ea56a1378ad71e4897f5205b8aa152373d3a38c7fd
+  interview_seconds: null
+  inherited_from: null

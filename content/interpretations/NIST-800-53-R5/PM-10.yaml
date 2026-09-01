@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PM-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems going live without a deliberate, accountable go/no-go
+      decision — when each system owner, authorizing official, and security boundary
+      is implicit, every new deployment ships with the residual risk no one has formally
+      accepted, and problems later have no one to escalate to.
+    basis: inferred
+  plain_zh:
+    value: Before any information system is put into operation, make sure there is
+      a written authorization to operate that names the system, the authorizing official,
+      and the accepted residual risk, and that this authorization is re-examined when
+      the system or its risk changes.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written authorization process exists; every system going live has
+        a named authorizing official who signs off; the boundaries and residual risk
+        are documented somewhere traceable.
+      '2': Authorization artifacts are stored per system with risk acceptance, POA&M
+        items, and review cadence; status is visible to management; significant changes
+        trigger a re-authorization review.
+      '3': Authorizations have explicit terms and expire on a schedule; denied or
+        conditional authorizations block operation in practice, not just on paper;
+        expired or stale authorizations surface as a tracked metric; the process is
+        integrated with SDLC and change management so no production cutover occurs
+        without a current ATO.
+    basis: inferred
+  evidence:
+    value: A documented authorization policy and process, per-system authorization
+      packages (security plan, risk assessment, signed authorization decision, POA&M),
+      records of re-authorization on significant change, and a current inventory showing
+      authorization status and expiration dates for each system.
+    basis: inferred
+  common_myth:
+    value: Treating the ATO as a one-time checkbox signed at go-live and never revisited
+      — assuming that because a system was once authorized, its current risk posture
+      is still accepted, even after major changes, new findings, or years of drift.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick any system in production — show me the current signed authorization, who
+      signed it, when it expires, and what residual risk was accepted.
+    - What was the last significant change to one of your systems, and where is the
+      evidence that authorization was re-examined before that change went live?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.689668Z'
+  signed_digest: 39bff7323891abdfc9e22787de5df2f8676e6d6726533122fc6b839d04b0817e
+  interview_seconds: null
+  inherited_from: null

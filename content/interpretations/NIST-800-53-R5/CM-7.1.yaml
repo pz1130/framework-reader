@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against least-functionality eroding silently over time: features,
+      services, ports, and components get re-enabled during patching, troubleshooting,
+      or ''quick fixes'', and nobody notices the attack surface has grown back to
+      default. A periodic review forces the organization to look at what is actually
+      running and confirm it still matches the policy baseline.'
+    basis: inferred
+  plain_zh:
+    value: Periodically check what is actually installed, enabled, and exposed on
+      each system, compare it to your least-functionality baseline, and disable or
+      remove what is not authorized.
+    basis: inferred
+  practice:
+    value:
+      '1': An approved list of allowed software, services, and ports exists; ad-hoc
+        reviews happen when something breaks; deviations are noted but not formally
+        tracked.
+      '2': Reviews run on a defined cadence (at least annually and after major changes);
+        results are recorded with the reviewer, system, findings, and remediation;
+        deviations have owners and due dates.
+      '3': Reviews are risk-based and tied to system criticality, automated where
+        possible to detect drift from the baseline, and feed into a remediation loop
+        with evidence of items actually disabled; exceptions expire and re-justification
+        is required.
+    basis: inferred
+  evidence:
+    value: Documented review schedule, completed review records per system showing
+      what was checked and what was found, baseline/configuration snapshots used for
+      comparison, remediation tickets with closure evidence, and a register of approved
+      exceptions with expiry dates.
+    basis: inferred
+  common_myth:
+    value: Treating the review as a one-time hardening exercise done at build time
+      and assuming the configuration stays clean. Patching, break-fix work, and new
+      software installs routinely re-enable services and open ports; without a recurring
+      look, the baseline drifts and CM-7 is no longer being met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me the last review for [system X]: what did you actually examine and what
+      did you find?'
+    - Which deviations from the baseline are still open, and what is the approved
+      expiry date for each?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.829315Z'
+  signed_digest: fd1d58dd967e4c142f34ae4d1e1ac110f30b1a8e793672e9bc97e5cb70e0d818
+  interview_seconds: null
+  inherited_from: null

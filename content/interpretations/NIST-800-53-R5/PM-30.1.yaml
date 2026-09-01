@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PM-30.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a supplier providing something you
+      cannot do without (the only source of a critical part, a sole integrator of
+      a mission-essential system, or a single point for sensitive data) goes down,
+      gets compromised, or walks away - and you have no documented plan to keep operating
+      or to recover. If this control is treated as a checkbox, you discover the dependency
+      exists only when it breaks, which is exactly when you cannot afford the surprise.
+    basis: inferred
+  plain_zh:
+    value: Identify which suppliers provide items that are critical or essential to
+      your mission, and put in place the specific protections, contingencies, and
+      assurances needed for those suppliers - recognizing that ordinary supplier management
+      is not enough when the dependency is severe.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of suppliers tagged as critical or mission-essential, separate
+        from the general supplier inventory, with a written reason for each tag.
+      '2': 'For each critical supplier, document the specific risk treatment: heightened
+        contractual security requirements, substitutes or stockpiles where feasible,
+        contingency procedures, and assurance activities (e.g., independent assessments,
+        inspection of their security posture).'
+      '3': Periodically re-validate the critical-supplier list against current operations,
+        exercise the contingency plans, and have evidence that assurance activities
+        actually influenced supplier decisions or replacements.
+    basis: inferred
+  evidence:
+    value: Annotated critical-supplier inventory, contracts or addenda imposing extra
+      requirements on those suppliers, contingency / continuity plans specific to
+      losing them, records of assurance activities and their outcomes, and records
+      of exercises or replacements triggered by dependency risk.
+    basis: inferred
+  common_myth:
+    value: Treating all suppliers under the same supplier-risk program as if they
+      were equivalent. The control exists precisely because critical/mission-essential
+      suppliers need stronger, explicit treatment - the same questionnaire and SOC-2
+      review used for acommodity vendor does not satisfy it for the supplier whose
+      loss stops your operation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which suppliers have you designated as critical or mission-essential, and on
+      what basis did you draw that line?
+    - Show me the specific protective measures or assurances applied to one of them
+      that go beyond your standard supplier controls.
+    - What is your contingency if [named critical supplier] is unavailable for an
+      extended period, and when did you last exercise it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.775909Z'
+  signed_digest: b8a62abd4efd6b982c9f5bee697750e1b2106ae53ae7e7434965e2cf47832f8c
+  interview_seconds: null
+  inherited_from: null

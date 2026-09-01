@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-4.25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents confidential data leaking out of the system's trust boundary through
+      improper information flow controls—without sanitization at egress, sensitive
+      objects (attachments, queries, file names, metadata) pass untouched and bypass
+      the policy reasons the rest of AC-04 was put in place for.
+    basis: inferred
+  plain_zh:
+    value: When information moves between security domains or out of the system, strip
+      or rewrite embedded data and metadata according to policy so sensitive content,
+      hidden fields, and identifiers do not ride along unnoticed.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as sensitive data crossing domains; apply basic header
+        and metadata stripping at known egress points.
+      '2': Sanitization rules are documented per data type and domain pair; exceptions
+        require approval and are logged; spot-checks compare sanitized output to policy.
+      '3': Sanitization is enforced by the flow-control mechanism itself (not a downstream
+        script), covers hidden fields, original names, and metadata across all approved
+        formats, with detection tied to policy violations so leaks surface instead
+        of silently passing.
+    basis: inferred
+  evidence:
+    value: Sanitization policy per domain pair, configuration of the flow-control
+      enforcement point showing sanitization actions, samples of sanitized versus
+      unsanitized objects across formats, exception approvals and logs.
+    basis: inferred
+  common_myth:
+    value: Assuming a DLP tool or a content filter already inspecting the channel
+      means sanitization is covered—inspection may flag or block but typically does
+      not rewrite; the policy-violating data still travels unless something actually
+      transforms it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent export across a domain boundary and what was removed or rewritten
+      from the object before it left.
+    - Which sanitization actions are enforced by the flow control itself versus done
+      by a downstream script that could be bypassed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.312212Z'
+  signed_digest: 6172616974fc2e2762d62fc1f55b93a034a315a605065f606c12f12c861edfcd
+  interview_seconds: null
+  inherited_from: null

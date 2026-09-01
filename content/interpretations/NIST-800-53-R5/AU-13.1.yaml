@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AU-13.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where monitoring only catches what a human
+      happens to look at — automated tools exist precisely because attackers move
+      faster than manual review, and audit data without machine-assisted correlation
+      becomes a forensic graveyard rather than a detection mechanism.
+    basis: inferred
+  plain_zh:
+    value: Make sure your audit logging and review actually use automated tools to
+      find anomalies, correlate events, and flag suspicious behavior — not just collect
+      logs and hope someone reads them.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one automated tool (SIEM, log correlation, anomaly detection)
+        ingests logs from critical systems and produces alerts on defined signatures.
+      '2': Tools cover correlation across sources (identity, network, endpoint); rules
+        and thresholds are documented and reviewed; analysts have playbooks for the
+        alerts generated.
+      '3': Detection content is tuned against real environment telemetry, false positives
+        are tracked and reduced, coverage gaps are known and accepted, and the automation
+        demonstrably shortened time-to-detect compared to manual review.
+    basis: inferred
+  evidence:
+    value: Tool inventory and coverage map (which log sources are ingested vs. missing),
+      rule/analytic library with ownership and last-tuned date, sample alerts with
+      investigation outcomes, metrics on time-to-detect and false-positive rates.
+    basis: inferred
+  common_myth:
+    value: Buying a SIEM license and pointing it at syslog counts as 'using automated
+      tools'. A SIEM with default vendor rules and no tuning, no ownership of alerts,
+      and no closed-loop on false positives is just a more expensive log archive —
+      the automation is not actually working.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your audit-log sources are not ingested by any automated tool, and
+      why?
+    - Show me a detection rule you wrote or tuned in the last year and what false-positive
+      rate you track for it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.536565Z'
+  signed_digest: e07bfee250218a004035695dea4512c629e56d81ff7b5b5f96e973a59ae9f82d
+  interview_seconds: null
+  inherited_from: null

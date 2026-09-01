@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-4.22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers reaching internal services that should never
+      have been exposed in the first place — rogue ports opened on firewalls, shadow
+      IT tunnels, or compromised hosts beaconing out — because detection alone cannot
+      tell you whether a listening service is legitimate if no one has enumerated
+      what is supposed to be listening.
+    basis: inferred
+  plain_zh:
+    value: Define which network services are authorized to run on each system and
+      segment, then actively look for, flag, and remove any service that is not on
+      that list, including those that appear unexpectedly.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a written list of authorized services per critical server or zone,
+        and a way to react when an unexpected service is spotted.
+      '2': Run periodic scans (active probing or host-side enumeration) that compare
+        what is actually listening against the authorized list, and produce records
+        of exceptions with owners and dates.
+      '3': Continuous or near-real-time detection of new listeners and outbound channels,
+        integrated with change control so any unauthorized service triggers a blocking
+        or rollback action rather than a passive ticket.
+    basis: inferred
+  evidence:
+    value: Authorized service baseline per system or zone, scan/enumeration reports
+      comparing actual versus baseline, exception register with justifications and
+      expiry, and incident or change records showing how unauthorized services were
+      handled.
+    basis: inferred
+  common_myth:
+    value: Assuming that because monitoring and firewalls are in place, no unauthorized
+      service can exist — without ever probing for unexpected listeners, shadow tunnels
+      (e.g., reverse shells, rogue VPNs, admin backdoors) sit quietly because nobody
+      checked what was actually open on each host.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last scan that compared listening services on a sampled server against
+      the authorized baseline, and what was done with the findings.
+    - Which systems or zones are not covered by this check, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.030429Z'
+  signed_digest: a69b914b89f2153e7417a8811c56c434200caef35bf9ab8a3153eb8497d0e6a4
+  interview_seconds: null
+  inherited_from: null

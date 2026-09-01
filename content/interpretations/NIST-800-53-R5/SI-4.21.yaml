@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-4.21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against giving newly hired or contract personnel immediate, unmonitored
+      access to live production monitoring and detection pipelines, where a single
+      misconfigured rule or malicious signature could blind detection across the environment
+      before tenure is established.
+    basis: inferred
+  plain_zh:
+    value: Restrict the influence that personnel in probationary periods can exert
+      over the system monitoring/detection tool itself until their trust is established.
+    basis: inferred
+  practice:
+    value:
+      '1': Probationary staff have read-only access to monitoring consoles; they cannot
+        author, edit, enable, or disable detection rules/signatures, and cannot quarantine
+        or release flagged traffic.
+      '2': The restriction is in writing as part of onboarding policy, mapped to specific
+        role definitions in the SIEM/IDS/IPS tool, and time-bound to a defined probation
+        window with an explicit exit step.
+      '3': Access is enforced by the platform itself (role-based access tied to employment
+        status flag), changes to detection rules require two-person review for anyone
+        still in probation, and the control is reviewed each time HR flags a probation
+        extension or termination.
+    basis: inferred
+  evidence:
+    value: Onboarding policy excerpt covering probationary access, RBAC role definitions
+      showing restricted privileges for probationary status, change-log of detection
+      rule modifications showing which accounts were blocked or required second approver,
+      HR-to-IAM sync records marking probation start/end dates.
+    basis: inferred
+  common_myth:
+    value: Treating the standard HR probation as covering technical access - employment
+      probation tracks performance and termination rights, it does not by itself limit
+      what someone can push into a detection pipeline on day one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the role a new SOC analyst sits in during their first 90 days and which
+      detection-rule actions it allows.
+    - When the last hire completed probation, who flipped the access flag and on what
+      date?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.026705Z'
+  signed_digest: 0986e23118726617c1b2f4f5ed75a80ad89e4f943970f4d0b4acdd43a5e603f7
+  interview_seconds: null
+  inherited_from: null

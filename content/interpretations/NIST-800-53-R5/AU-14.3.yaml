@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-14.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against sessions being hijacked by an attacker who logs in with
+      stolen credentials: even if the credentials check out, the live human-in-the-loop
+      must observe the session, be able to intervene, and be auditable - otherwise
+      a quiet takeover looks like a legitimate remote worker.'
+    basis: inferred
+  plain_zh:
+    value: When privileged sessions are watched live from an operations center, ensure
+      the monitoring is actually real (not just recorded after the fact), the watcher
+      can see and hear what is happening, can pause or kill the session, and every
+      action is logged.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one operations center shifts watches sessions live with screen
+        and audio capture; watchers have a documented kill-switch path to the privileged
+        account team.
+      '2': Watcher staffing, escalation matrix, and response time targets are written
+        down; sessions are tagged by risk; records of who watched which session are
+        retained alongside the session capture.
+      '3': Watcher coverage is measurable (queue depth, missed alerts, time-to-acknowledge);
+        analytics flag suspicious in-session behavior; kill-switch outcomes and post-incident
+        reviews feed back into monitoring playbooks.
+    basis: inferred
+  evidence:
+    value: Operations center procedures, staffing roster, watcher session logs correlated
+      to captured recordings, escalation records, and retention configuration for
+      both live and recorded streams.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a PAM tool offers a 'session recording' feature,
+      live monitoring is happening. Recording after the fact only documents an attack;
+      it does not stop one. Without a staffed monitoring queue and an intervention
+      path, the control is theater.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many sessions are watched live versus only recorded, and how is that ratio
+      measured?
+    - When a watcher saw something suspicious during a live session, what was the
+      most recent time they cut the session, and where is that recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.552208Z'
+  signed_digest: 6868981159c4b420a02c2f641a829816b44afaa38643debc5929e03cf9d0f4c3
+  interview_seconds: null
+  inherited_from: null

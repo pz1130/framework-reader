@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-15.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents organizations from treating each product or system's threat and
+      vulnerability analysis as a one-off invention exercise. If threat intel and
+      vulnerability findings are not systematically reused, the same flaws get rediscovered
+      (or re-accepted) in every new development, and known weaknesses propagate unchecked
+      into new systems.
+    basis: inferred
+  plain_zh:
+    value: Take the threat and vulnerability information you already produced for
+      existing systems and reuse it when building, integrating, or updating new systems,
+      so you do not keep re-discovering or re-accepting the same weaknesses.
+    basis: inferred
+  practice:
+    value:
+      '1': A shared location exists where threat assessments, vulnerability findings,
+        and security test results from completed systems are stored and findable by
+        new development teams.
+      '2': Engineering teams are required to consult prior threat and vulnerability
+        information at the start of new development, integration, or major change,
+        and reuse of that input is documented in design records.
+      '3': 'Reuse is built into the development lifecycle: requirements, design, and
+        test artifacts for new systems explicitly reference prior threat and vulnerability
+        inputs; recurring patterns trigger formal updates to standards and design
+        patterns rather than ad-hoc notes.'
+    basis: inferred
+  evidence:
+    value: Shared repository of prior threat and vulnerability artifacts, design and
+      test records showing references to prior findings, lifecycle procedures requiring
+      reuse of existing threat and vulnerability information, and evidence that recurring
+      issues drove updates to standards or design patterns.
+    basis: inferred
+  common_myth:
+    value: Treating each new system's threat model as a blank-slate creative exercise
+      and assuming prior work cannot apply because the system is 'different enough'
+      to make reuse pointless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent new development effort and which prior threat or vulnerability
+      inputs it referenced.
+    - When the same class of flaw appeared in two different systems, how did that
+      drive a change in your standards or design patterns?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.099377Z'
+  signed_digest: a36f274d52d45a2afa591e8179306535b8b547624888686cfe33f33a5b8fae96
+  interview_seconds: null
+  inherited_from: null

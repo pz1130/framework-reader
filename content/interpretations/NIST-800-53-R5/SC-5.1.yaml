@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent your own environment from being used as a launching pad for attacks
+      against other systems—whether from a compromised internal host, a misconfigured
+      service, or a malicious insider—so that your network doesn't become the source
+      of harm and you don't incur downstream liability or reputation damage.
+    basis: inferred
+  plain_zh:
+    value: You need to actively limit the ability of systems within your environment
+      to initiate traffic or actions that attack external systems—like limiting egress
+      traffic, blocking IP spoofing, and preventing your infrastructure from being
+      used in denial-of-service or scanning activities.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Block obvious abuse at network boundaries: enable egress filtering, disable
+        IP spoofing on routers, and restrict high-risk egress ports (e.g., DNS, NTP,
+        SMTP) to known legitimate services.'
+      '2': Document a policy and technical standards for egress traffic, implement
+        and filter at all network exits, and run periodic reviews of firewall rules
+        to validate that restrictions match the stated policy.
+      '3': Continuously monitor egress traffic for anomalies (e.g., scanning, amplification
+        patterns), automatically alert on suspicious outbound behavior, and feed findings
+        into incident response and security architecture reviews so that restrictions
+        adapt to new attack patterns.
+    basis: inferred
+  evidence:
+    value: Network diagrams with egress filtering points, firewall rule sets and change
+      logs, egress filtering policy document, monitoring/alerting configuration for
+      outbound anomalies, and incident reports showing detection and response to outbound
+      attack attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a firewall and default-deny on inbound traffic is
+      enough—this control is specifically about outbound, so teams often forget to
+      apply equivalent scrutiny to what leaves the network.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the egress filtering rules on your main internet gateway—how are they
+      consistent with your business justifications?
+    - When was the last time you reviewed outbound firewall rules and who signed off
+      on that review?
+    - How do you detect and respond if one of your internal hosts starts scanning
+      external IPs?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.651232Z'
+  signed_digest: 37600097f963da0878b0ece47819ebf89919fc21eb93281683b8d008f495b542
+  interview_seconds: null
+  inherited_from: null

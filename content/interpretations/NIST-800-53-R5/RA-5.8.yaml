@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:RA-5.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent attackers from hiding inside an environment for long periods by
+      ensuring audit logs are reviewed retrospectively—without this, dwell time stretches
+      and breaches discovered only after external notification (regulators, partners,
+      media) become reputationally and legally devastating.
+    basis: inferred
+  plain_zh:
+    value: Periodically look back through stored audit logs—not just live alerts—to
+      catch attacker activity that slipped past real-time detection and to establish
+      a baseline for what 'normal' looks like on each system.
+    basis: inferred
+  practice:
+    value:
+      '1': Logs are retained long enough to review; someone is assigned to periodically
+        scan recent history for anomalies, not only watch live dashboards.
+      '2': Historic reviews follow a documented cadence with a checklist (privileged
+        actions, new accounts, outbound connections, configuration changes); findings
+        are ticketed and resolved like any other incident.
+      '3': Reviews are risk-driven (focus on systems exposed to or previously targeted
+        by threat actors), tuned against a documented baseline of expected activity,
+        and produce metrics that feed detection engineering and threat hunting.
+    basis: inferred
+  evidence:
+    value: Log retention configuration, historic review schedule and procedures, completed
+      review records with findings and follow-up tickets, reviewer assignments, and
+      any retrospective analysis triggered by external indicators.
+    basis: inferred
+  common_myth:
+    value: Treating SIEM dashboards and live alert rules as the whole logging program—assuming
+      that because nothing is firing right now, nothing has happened. Historic review
+      is what catches the account compromise from three months ago that current detection
+      was never written to find.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last historic log review you performed: which systems, what was looked
+      for, what was found.'
+    - How far back can you actually query logs on your most sensitive systems, and
+      what happens when you hit that limit?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.975840Z'
+  signed_digest: a9220f3715daced291c6024164f43abbb0c4271f766d2c3e01d7435bce7ee25a
+  interview_seconds: null
+  inherited_from: null

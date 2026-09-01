@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:MP-3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against sensitive data leaving a controlled area because nobody
+      can tell, by looking at the media, what is on it or who is allowed to handle
+      it. If removable media is unlabeled, a clean-looking USB found on a desk, in
+      a shipping box, or in a lost laptop bag cannot be distinguished from a coffee-stained
+      one — and people treat it as harmless, while attackers treat unmarked media
+      as low-risk to steal.
+    basis: inferred
+  plain_zh:
+    value: Mark removable and information system media (and the output that goes on
+      them) so that the sensitivity, handling caveats, and distribution scope are
+      visible on the item itself, not only in a register somewhere else. Apply the
+      marking before the media is used, and keep it readable for the life of the media.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written marking scheme that says which classifications / categories
+        of data require which label format; removable media in scope are physically
+        labeled before first use; output reports carry the same marking on cover/footer.
+      '2': Marking is applied at creation, not retrofitted on disposal; labels are
+        durable (won't smear off a USB or a tape); the scheme is taught to anyone
+        who handles, ships, or destroys media; exceptions (sanitized media for reuse)
+        are recorded with the sanitization reference attached.
+      '3': Labels are machine-readable as well as human-readable; marking policy is
+        enforced by the build/disk-image process (default templates stamp classification,
+        owner, distribution); un-marked media is rejected at the door of controlled
+        spaces; periodic sampling confirms that live media still carries readable
+        labels.
+    basis: inferred
+  evidence:
+    value: Written marking policy with label formats by classification, sample photos
+      of labeled media and output, sanitization-to-relabel records for reused media,
+      training sign-off for handlers, and any gate/audit logs that catch unlabeled
+      items.
+    basis: inferred
+  common_myth:
+    value: Treating a printed sticker on the outside of the USB as sufficient while
+      the files inside, the disk label, and the file headers are all unclassified.
+      The control is read at the point of use — if the people handling the item cannot
+      tell what it is without booting it, the marking failed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a USB or tape in use right now — what label is on it and which policy
+      line did the wording come from?
+    - If I open a report on the file share, how do I tell from the file itself (not
+      the folder name) what handling rules apply?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.467827Z'
+  signed_digest: a05f21a09b7d349c29458633ada10d5bf1c8df6ef7cb6f2eeb117bbda0fd2612
+  interview_seconds: null
+  inherited_from: null

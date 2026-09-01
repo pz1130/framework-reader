@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CA-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the assumption that a passing external pentest or an internal
+      vulnerability scan proves the facility is hard to break into. Physical attackers
+      bypass your application-layer controls entirely: if they can tailgate through
+      a door, clone a badge, or sit down at an unguarded console, the network perimeter
+      never gets tested. This control forces you to act like a real adversary against
+      the building and its on-site systems, not just the software stack.'
+    basis: inferred
+  plain_zh:
+    value: Have qualified people attempt to physically penetrate your facilities —
+      doors, badges, server rooms, network drops, on-site consoles — using the same
+      techniques a real attacker would, and act on what they find.
+    basis: inferred
+  practice:
+    value:
+      '1': Penetration testers attempt to enter facilities, piggyback through secured
+        doors, and reach network jacks or unattended workstations; the test is documented
+        and issues get remediated.
+      '2': Tests are scoped to facilities that actually house sensitive systems, are
+        scheduled at irregular intervals, and the results feed a tracked remediation
+        plan with owners and dates.
+      '3': Tests cover a realistic attacker profile (insider threat, social engineering
+        at the door, after-hours attempts), cover all in-scope sites on a defined
+        cadence, exercise both covert and announced scenarios, and feed a trend analysis
+        that changes physical security design over time.
+    basis: inferred
+  evidence:
+    value: Penetration test scope and rules of engagement, test reports with physical
+      findings (e.g., tailgating success, badge cloning, unlocked server rooms, live
+      network drops), remediation tickets and closure evidence, and records showing
+      how findings influenced facility security design changes.
+    basis: inferred
+  common_myth:
+    value: Treating an external network pentest report as evidence of facility penetration
+      testing. Network pentests rarely, if ever, test whether someone can walk into
+      your data center, plug into a drops, or sit at an unlocked console — the failure
+      mode this control exists to surface.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last facility penetration test report and which sites it covered.
+    - How did the findings from the last test change locks, badge rules, guard coverage,
+      or console hardening — and can you show that remediation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.722324Z'
+  signed_digest: b47d855ac50d879fdc6c2be1ad0643f7730ad70fd246b62e28b05374597cc024
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-4.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a situation where information flows into or out of a controlled
+      domain carrying traffic that has been authenticated only by the wrong realm
+      - e.g. an internal system trusting a federated identity from a partner or a
+      lower-assurance domain without re-validating it. Once cross-domain traffic is
+      accepted on the basis of a foreign authentication, the receiving domain loses
+      its ability to enforce its own identity and access policy, and a compromised
+      account in the source domain walks straight in.
+    basis: inferred
+  plain_zh:
+    value: When information crosses a boundary between security domains, require that
+      the originating user, device, or service is authenticated in (or re-authenticated
+      by) the receiving domain before the traffic is acted on - do not just trust
+      the foreign assertion.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the cross-domain flows (partner, cloud, federation, B2B) where
+        traffic carries a remote identity; document for each whether domain-level
+        authentication is required at the receiver.
+      '2': 'Establish a written rule for each cross-domain flow: which domain must
+        authenticate, under what assurance level, and how it is enforced (gateway
+        re-auth, broker re-issuance, token validation against an allow-list of source
+        realms); include the rule in connection agreements.'
+      '3': Enforce the rule in the gateway/intermediary - reject or quarantine traffic
+        whose source domain does not meet the documented assurance; monitor for cross-domain
+        authentications that fail or are missing; periodically retest flows after
+        trust changes (new IdP, partner compromise, federation metadata refresh).
+    basis: inferred
+  evidence:
+    value: Inventory of cross-domain information flows, the documented authentication
+      rule per flow (source/destination domain and required assurance), configuration
+      or ruleset of the enforcing intermediary showing the check, and recent test
+      or incident records involving cross-domain authentication failures.
+    basis: inferred
+  common_myth:
+    value: Assuming that an existing federation trust or partner SSO agreement already
+      satisfies this control - in practice the receiving domain often just passes
+      the assertion through and uses the source realm's identity without re-validating
+      it against its own policy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the flows where traffic enters your domain carrying a remote authentication,
+      and tell me which of them the receiving system re-validates versus just trusts.
+    - What happens when a federated/partner identity provider is compromised or downgraded
+      in assurance - do you have a way to stop those sessions, and have you tested
+      it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.280665Z'
+  signed_digest: 9a0532964c000a94da2a0bd7f7da58d71eca5f0ee092bd093f4950a05b6d6316
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:AC-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Protects against a static rule set becoming a hole: when data, users,
+      and workloads change by the minute, fixed allow/deny lists let data flow to
+      places the policy never intended — exfiltration through a new service, privilege
+      escalation across trust zones, or a contractor''s account quietly pulling from
+      a production store the policy was never updated to cover. Dynamic flow control
+      forces policy decisions to be made at the moment data moves, with attributes
+      that are actually current.'
+    basis: inferred
+  plain_zh:
+    value: Make access and data-flow decisions in real time using current attributes
+      of the subject, object, and context — not just static ACLs written months ago.
+      Policy must be re-evaluated as conditions change, not assumed valid forever.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the highest-value data flows (cross-domain, cross-trust-zone,
+        admin paths) and define which attributes (identity, device posture, data sensitivity,
+        location, time) must influence each decision.
+      '2': Implement a control point — typically a policy engine, gateway, or broker
+        — that re-evaluates policy at flow time using those attributes. Decisions
+        and the attributes that drove them are logged.
+      '3': Attributes are continuously refreshed (identity, posture, classification),
+        policy is versioned and reviewed, stale flows are revoked when attributes
+        change, and the control point is tested against bypass attempts (spoofed attributes,
+        parallel paths, cached decisions).
+    basis: inferred
+  evidence:
+    value: Architecture showing where flow decisions are made, the attribute sources
+      feeding them, and the log of decisions with the attributes evaluated at the
+      time.
+    basis: inferred
+  common_myth:
+    value: Assuming a firewall ACL or RBAC assignment is dynamic flow control. Static
+      rules answered 'may subject X touch object Y' once; flow control asks 'under
+      which live conditions may this specific packet, API call, or query proceed right
+      now' and re-answers it every time conditions shift.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a flow decision made in the last 30 days that was denied or downgraded
+      because an attribute changed after the session started.
+    - If a device falls out of compliance mid-session, what actually happens to its
+      open connections to sensitive data?
+    - How does the control point prevent a subject from spoofing or replaying a stale
+      'good' attribute to bypass a current decision?
+    basis: inferred
+  regional_note:
+    value: EU auditors under NIS2 and sector-specific rules tend to push harder on
+      dynamic re-evaluation when incidents cross member-state or operator boundaries,
+      expecting attribute freshness to be demonstrable; US FedRAMP/DoD assessments
+      more often accept a strong static policy plus periodic re-evaluation as long
+      as the boundary control itself is sound. Both regions will still ask for evidence
+      that the decision was made on current attributes, not just that the policy exists.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.332572Z'
+  signed_digest: 7c6bee1ed458c24ebdd632bbaf7fba28dee51ef3a891c2de6fe4e80a4f3e9216
+  interview_seconds: null
+  inherited_from: null

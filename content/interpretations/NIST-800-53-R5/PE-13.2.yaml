@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PE-13.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against fires that grow undetected or uncontrolled because suppression
+      depended on a human pressing a button, or because the people on-site never learned
+      the system fired — by the time someone notices, the asset, evidence, or people
+      are already lost.
+    basis: inferred
+  plain_zh:
+    value: Fire suppression must trigger itself when smoke/heat is detected, and must
+      tell the right people automatically — no one should have to be in the room or
+      awake for it to work.
+    basis: inferred
+  practice:
+    value:
+      '1': Suppression system is automatic (sprinklers, clean agent, gas) tied to
+        detection; alarms sound locally so occupants can evacuate.
+      '2': Activation signals are routed to a monitoring console, on-call staff or
+        a service desk; suppression zones are mapped to the assets/rooms they protect;
+        periodic inspection records exist.
+      '3': Activation events trigger defined response playbooks (who responds, who
+        is notified, what is shut down), drills or recent events show the chain actually
+        fired end-to-end, and impairments are tracked with compensating measures.
+    basis: inferred
+  evidence:
+    value: Suppression system design and zone maps, automatic detection-to-activation
+      linkage, inspection and test records, alarm/event logs from real or simulated
+      activations, notification routing and response records.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have sprinklers' as enough. The control is about the *automatic*
+      chain — detection triggers suppression without human action, and the activation
+      itself pages someone. A sprinkler head with no tied alarm, or a system that
+      only dials a number nobody watches, does not meet it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time a suppression zone activated — who got notified and how
+      quickly, and what did they do?
+    - Which suppression zones, if any, are currently impaired or out of service, and
+      what is covering the gap?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.536112Z'
+  signed_digest: 2f4c99c8b6c81bb5b367224a0fa8343b79a0c6d31ef996112b3b14900c5f0b17
+  interview_seconds: null
+  inherited_from: null

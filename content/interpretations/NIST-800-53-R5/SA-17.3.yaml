@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SA-17.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a component being bought as ''secure'' on paper but hiding
+      insecure internals: without a verified internal-to-spec mapping, you inherit
+      unknown behavior, hidden backdoors, unvetted crypto, and exploitable flaws that
+      the vendor''s black-box testing cannot surface. The risk is that you trust a
+      black box in a high-assurance path.'
+    basis: inferred
+  plain_zh:
+    value: For developer-provided security components, require and verify a documented,
+      end-to-end correspondence between every internal part of the component and the
+      security requirements it is supposed to satisfy — not just a vendor's compliance
+      claim.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components (HSMs, crypto modules, secure enclaves, authentication
+        libraries, etc.) sit in high-assurance paths and require a vendor mapping
+        of internals to requirements before purchase.
+      '2': Obtain the formal correspondence document; have in-house or third-party
+        reviewers walk through each requirement and trace it to the specific internal
+        elements, interfaces, and implementation choices; record gaps and exceptions.
+      '3': 'Treat the correspondence as a living artifact: require updates on every
+        component release or patch, tie acceptance testing to the mapped internals
+        (not only functional tests), and refuse to deploy when correspondence drifts
+        from the deployed version.'
+    basis: inferred
+  evidence:
+    value: Vendor correspondence document with requirement-to-internal-element traceability,
+      reviewer notes showing each requirement was traced and verified, version control
+      proving the correspondence matches the deployed build, exception register for
+      any unmapped requirements, acceptance test results tied to mapped elements.
+    basis: inferred
+  common_myth:
+    value: Assuming the vendor's Common Criteria certification stamp or a passing
+      penetration test means the internals are verified against your requirements
+      — certification shows fitness against a protection profile, not against your
+      specific security requirements, and pentests probe behavior from outside, not
+      internals.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which deployed components in critical paths have a current formal correspondence
+      document, and which ones do not?
+    - Show me how a specific requirement in the correspondence was traced to a concrete
+      internal element and then verified after the last patch.
+    basis: inferred
+  regional_note:
+    value: EU auditors working under NIS2 and sector-specific regimes (finance, energy)
+      more often demand cryptographic-module-style traceability tied to certified
+      assurance levels; US auditors on federal systems ask for it whenever the component
+      sits inside a high-impact boundary, but in commercial contexts the question
+      is asked less consistently. Practice is similar in rigor where it is asked;
+      coverage is what differs.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.115221Z'
+  signed_digest: 5ff69d069c0620d4e5d65fd7f4fafb67042d40521b0e682471d239d63dc6375e
+  interview_seconds: null
+  inherited_from: null

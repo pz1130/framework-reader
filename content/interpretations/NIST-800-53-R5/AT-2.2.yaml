@@ -1,0 +1,79 @@
+control_id: NIST-800-53-R5:AT-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where general security awareness training
+      produces polite nods but no behavior change in the people best placed to notice
+      and cause insider harm — staff handling sensitive access, data, or systems never
+      receive a curriculum that names the insider threat patterns, the early warning
+      signs, and their specific reporting duty. Generic training treats everyone the
+      same; insider-threat training has to reach the people with motive, means, and
+      opportunity and give them something to do.
+    basis: inferred
+  plain_zh:
+    value: Provide focused insider-threat awareness training to the roles that hold
+      privileged access, sensitive data, or organizational trust — managers, HR, legal,
+      IT admins, and staff handling export-controlled or PII data — covering the threat
+      patterns (recruitment, disgruntlement, data hoarding), the behavioral indicators,
+      and how to report concerns through an approved channel.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the in-scope role populations (privileged users, managers of those
+        users, HR and legal partners). Confirm they receive at least an introductory
+        module that names insider-threat patterns and a reporting channel they can
+        actually reach.
+      '2': Run role-specific training on a defined cadence (typically annual with
+        updates when policies change). Track completion for each role group separately
+        from the general awareness population. Document reporting procedures and what
+        happens after a report is filed.
+      '3': 'Make the training measurable: track not just completion but referral quality
+        (reports that led to inquiry, false-positive rate), feed observed behavioral
+        indicators back into training content, and exercise the reporting chain so
+        the right people recognize a real indicator when it surfaces.'
+    basis: inferred
+  evidence:
+    value: A scoped list of role populations receiving insider-threat training, role-tailored
+      training content and completion records by role group, documented reporting
+      channel and triage process, records showing how past concerns were handled,
+      and evidence of periodic content refresh tied to observed incidents or threat
+      changes.
+    basis: inferred
+  common_myth:
+    value: Treating AT-2.2 as satisfied by a single slide inside the annual all-hands
+      awareness module. Insider-threat training must reach the specific populations
+      who own privileged access or sensitive data with content targeted at their context;
+      a generic module given to everyone is not the same control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which role groups are in scope for insider-threat training, and how was that
+      scope decided?
+    - Show the completion rate for the privileged-admin cohort versus the general
+      workforce — are they tracked separately?
+    - When someone reports a behavioral indicator, what happens next and where is
+      that recorded?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors operating under CNSS, NISPOM-style, or critical-infrastructure
+      programs tend to press harder on role-scoped content and on the reporting chain
+      (e.g., counter-insider-threat program integration). EU-led audits more often
+      fold this expectation into broader GDPR-style confidentiality and whistleblower-channel
+      obligations rather than asking about an explicit insider-threat curriculum.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.453134Z'
+  signed_digest: 213a0ea7f5e2ab7feae9f02b589b42728fd796dcedb2d0a9bf4c28ca67cfbe68
+  interview_seconds: null
+  inherited_from: null

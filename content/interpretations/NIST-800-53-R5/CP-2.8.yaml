@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CP-2.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: To prevent disaster recovery and contingency plans from being generic documents
+      that cannot actually restore the business. Without identifying which assets
+      are critical, the organization may spend resources protecting and recovering
+      non-essential systems while core operations remain down, or fail to prioritize
+      restoration in the right order during an incident.
+    basis: inferred
+  plain_zh:
+    value: You must figure out which assets (systems, data, facilities, personnel,
+      etc.) are truly essential for the organization's mission or business to continue
+      operating, and document and treat them as critical. This is the foundation for
+      everything else in contingency planning—because you cannot plan effectively
+      to recover what you have not identified as vital.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of critical assets based on input from business process
+        owners, and ensure the list is accessible to the people who need it for contingency
+        planning.
+      '2': Perform a formal business impact analysis or similar assessment to determine
+        criticality, update the list periodically, and associate each critical asset
+        with its recovery time objective and recovery point objective.
+      '3': Integrate critical asset identification into a systematic, risk-informed
+        process that cascades from business processes to underpinning systems and
+        data, validates dependencies, and is re-validated on a regular cycle or whenever
+        significant business changes occur.
+    basis: inferred
+  evidence:
+    value: A documented critical asset inventory or register that includes asset identifiers,
+      owners, business criticality or impact ratings, recovery priorities, and dependencies;
+      the assessment methodology (such as BIA) used; and records of periodic reviews
+      or updates to the inventory.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a generic server or network inventory means you have
+      identified critical assets. The critical asset list must reflect business impact,
+      not just technical presence—a thorough inventory alone does not tell you what
+      the business actually depends on.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How did you determine that this specific asset is critical? What is the business
+      impact if it is unavailable for a day?
+    - When was the critical asset list last updated, and what triggered that update?
+    - 'Walk me through the dependency chain for your most critical business process:
+      which assets does it rely on?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.950330Z'
+  signed_digest: 65c5418e4ecc4403c3cb38e9a9ef2ba614c70b58262d79405b44537ac5b25151
+  interview_seconds: null
+  inherited_from: null

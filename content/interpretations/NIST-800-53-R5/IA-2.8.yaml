@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:IA-2.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker from capturing and reusing a valid authentication
+      exchange to take over an account. Replay resistance removes the value of intercepted
+      credentials, challenge responses, or session tokens, particularly when access
+      crosses less-trusted or exposed paths.
+    basis: inferred
+  plain_zh:
+    value: Require an authentication exchange that cannot be copied and reused successfully.
+      A valid login must be bound to its intended session, transaction, destination,
+      or other one-time context, with challenged or invalid replay attempts detected.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify applicable accounts and authentication methods, and enable built-in
+        replay protection such as one-time challenges, short-lived tokens, and expiring
+        sessions.
+      '2': Document the replay-resistant mechanisms for each applicable access path,
+        test them, and monitor authentication failures and replay-related alerts with
+        retained records.
+      '3': Use cryptographically strong, context-bound or single-use authentication
+        artifacts; automatically invalidate compromised or repeated exchanges; regularly
+        test interception and replay scenarios; and verify end-to-end protection across
+        remote, federated, and system-to-system access.
+    basis: inferred
+  evidence:
+    value: Authentication architecture and configuration, one-time challenge or token
+      implementation, token lifetime and session-binding settings, replay-related
+      alert records, test results, and corrective-action records.
+    basis: inferred
+  common_myth:
+    value: Assuming TLS alone makes authentication replay-resistant because encrypted
+      traffic cannot be read; an attacker may not need to read the exchange if the
+      entire valid response can be submitted again.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which access paths and account types are covered by replay-resistant authentication,
+      and which are excluded?
+    - Can an intercepted authentication response be replayed against the same or a
+      different session, and what evidence from the last test confirms the result?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.132739Z'
+  signed_digest: 3d4dde64710cb3da9bc7c7f113849318d927eff90105905c6428ecb413aa3ba8
+  interview_seconds: null
+  inherited_from: null

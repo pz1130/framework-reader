@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-17.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against remote-access sessions going dark after the tunnel comes
+      up — encrypted access that no one watches turns the VPN / jump host into an
+      attacker's blind spot, so the control forces active monitoring and the ability
+      to terminate a bad session in flight.
+    basis: inferred
+  plain_zh:
+    value: Watch every remote-access session as it happens, and be able to cut it
+      off when it looks wrong. Logging is not enough — there has to be someone or
+      something looking and a kill switch.
+    basis: inferred
+  practice:
+    value:
+      '1': Remote sessions are logged (who, when, from where, to what). An on-call
+        person knows how to disable a user or kill a session.
+      '2': Sessions are correlated to identity and baseline behavior; alerts fire
+        on anomalies (impossible travel, after-hours admin, unusual commands); a documented
+        runbook lets the team terminate sessions and block source IPs.
+      '3': Monitoring feeds a SIEM with automated kill / quarantine playbooks; every
+        session termination has a post-incident review; coverage gaps (e.g. vendor
+        tunnels, cloud admin consoles) are tracked and closed.
+    basis: inferred
+  evidence:
+    value: Remote-access session logs correlated to authentication events, alerting
+      rules and sample alerts, runbook for session termination, incident records showing
+      session kill actions and follow-up reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a VPN with logging enabled satisfies the control.
+      Logs that are written to disk and never reviewed, or sessions that can only
+      be blocked by rebooting the concentrator, do not meet the 'monitoring and control'
+      requirement — the audit point is whether someone can see and stop a live bad
+      session.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an alert generated from a live remote session in the last quarter and
+      what was done about it.
+    - How long from detection to session termination for a compromised remote admin
+      — walk me through the steps.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.052711Z'
+  signed_digest: 80d303bf993185a9175b499e9dcbf13df1c362ddfaca077c0ae9308c7cefef02
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where audit logs technically exist but record
+      only the bare fact that 'something happened' — no who, what, when, where, or
+      how — so an investigator cannot reconstruct an incident, attribute it to a person
+      or process, or rule out tampering. The risk is paying for log collection while
+      remaining blind during an actual breach investigation.
+    basis: inferred
+  plain_zh:
+    value: 'Make sure every audit record carries enough information to actually be
+      useful after the fact: who did it, what they did, when, from where, and the
+      source of the event — so a later reader can tell what happened without guessing.'
+    basis: inferred
+  practice:
+    value:
+      '1': Logs are generated for security-relevant events and each entry includes
+        at least user/account, action type, timestamp, and source (system, IP, host).
+        A short written rule lists which fields must be present.
+      '2': Content requirements are documented per log source; gaps in required fields
+        are checked periodically and missing fields are corrected at the source; sample
+        records are reviewed against the rule.
+      '3': Field-level content is validated automatically on ingest; non-conforming
+        records are flagged or dropped; the rule is updated when new event sources
+        or new audit-relevant attributes appear.
+    basis: inferred
+  evidence:
+    value: Written log-content standard, sample audit records showing the required
+      fields, log-source coverage list, and records of validation checks or remediation
+      when fields were missing.
+    basis: inferred
+  common_myth:
+    value: Assuming that because logs are collected and a SIEM dashboard lights up,
+      the control is satisfied — when in reality the underlying records only carry
+      'Event occurred' with no actor, no object, no source, and no timestamp, so the
+      dashboard is decorative.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one alert from last month and show me the raw log entry it was built on
+      — which fields are populated and which are blank?
+    - Which log sources still fail to record the user, action, or source, and what
+      is the plan to fix them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.568257Z'
+  signed_digest: 3bf1d0fdff23f34c5e2d568e174161701360089f43947c15a692f452905c62c2
+  interview_seconds: null
+  inherited_from: null

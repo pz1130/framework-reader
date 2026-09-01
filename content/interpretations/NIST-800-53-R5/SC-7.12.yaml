@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-7.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops a single compromised host from becoming a launchpad that fans out
+      across the network — when one workstation or server is owned, it cannot reach
+      systems it should never talk to because the local firewall is absent, disabled,
+      or wide open. Endpoint layer enforcement is the last line after segmentation
+      mistakes.
+    basis: inferred
+  plain_zh:
+    value: Every endpoint runs a host-based firewall or equivalent filter, with rules
+      that actually restrict traffic between that host and the rest of the network
+      — not the OS default that allows everything, and not a tool that is installed
+      but not enforcing.
+    basis: inferred
+  practice:
+    value:
+      '1': Host firewall or host-based filtering enabled on every workstation and
+        server, with a default-deny posture for inbound connections; in scope of a
+        standard image or MDM baseline.
+      '2': Rules defined centrally per role (laptop, server, kiosk, dev box); deviations
+        require approval and are logged; endpoint team can show which hosts are non-compliant
+        and how they are remediated.
+      '3': Continuous compliance reporting against the baseline; non-conforming hosts
+        are isolated or flagged automatically; rule changes are versioned and tied
+        to change tickets; coverage gaps are surfaced to the security team, not just
+        IT ops.
+    basis: inferred
+  evidence:
+    value: Endpoint baseline configuration showing the host firewall is on and enforcing
+      default-deny, role-based rule sets, host compliance reports listing out-of-conformity
+      endpoints and their remediation, exception register with approvals, and change
+      records tied to rule updates.
+    basis: inferred
+  common_myth:
+    value: Treating this as a checkbox satisfied by shipping Windows Firewall or a
+      vendor agent with the default profile — the default Windows profile allows outbound
+      and many inbound exceptions, and most macOS/Linux hosts ship with no filtering
+      at all. Installation is not enforcement; without a default-deny rule set tied
+      to the role, the control does not exist.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the endpoint baseline document: what is the default inbound posture on
+      a workstation image, and who approved it?'
+    - Pull the last 30 days of host firewall compliance — how many endpoints are out
+      of conformance and what was done about them?
+    - If a developer laptop is compromised today, which network segments can it still
+      reach from the host side?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.682169Z'
+  signed_digest: 6b9458abc7814f04e8b2688ae2ba3e64d02d178d29a048d052faacbe25d87bf8
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PM-22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against decisions being made on dirty data — where the organization
+      stores, shares, or acts on PII that is wrong, outdated, duplicated, or unverified,
+      and then suffers harm (wrong person flagged, wrong subject notified, breached
+      records that never existed, regulatory reporting built on bad counts). Quality
+      has to be managed as a continuing property of the PII inventory, not asserted
+      once at collection.
+    basis: inferred
+  plain_zh:
+    value: Make sure the PII you hold is accurate, relevant, timely, and complete
+      enough for the purpose you use it for, and keep checking that as the data moves
+      through the lifecycle.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems and datasets that hold PII used for decisions or external
+        reporting; assign an owner per dataset; document basic accuracy and completeness
+        expectations.
+      '2': Define correction, update, and dispute-handling procedures with target
+        timeframes; record source of collection and last verification date; review
+        a sample of high-impact records periodically.
+      '3': Run ongoing quality controls (validation rules, duplicate detection, freshness
+        checks) integrated with collection and update workflows; feed privacy complaints
+        and corrections back into the dataset; tie quality metrics to the privacy
+        program review.
+    basis: inferred
+  evidence:
+    value: PII inventory with dataset owners and quality requirements, documented
+      correction and dispute-handling procedures, sample quality-review records showing
+      issues found and resolved, complaint-to-correction traceability, and any quality
+      metrics reported to leadership.
+    basis: inferred
+  common_myth:
+    value: Treating the privacy notice or consent record as proof of PII quality —
+      the notice only describes what is collected, not whether the record on file
+      is still correct, current, or unique.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one dataset used for a real decision in the last year — show me how you
+      verified its accuracy and when it was last checked.
+    - When a data subject disputes or corrects their information, walk me through
+      how that change flows back into every system that holds it.
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR tend to push harder on demonstrable accuracy for
+      data used in profiling, automated decisions, or cross-border transfers, and
+      on how Article 16 correction requests propagate; US audits typically focus on
+      quality of PII used in federal reporting or breach-notification scoping rather
+      than day-to-day records.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.741138Z'
+  signed_digest: 8d4f7e42a8993e1c9410b7b9c5d4d6fb4b7674caf8bd40ac40b1731bee16433d
+  interview_seconds: null
+  inherited_from: null

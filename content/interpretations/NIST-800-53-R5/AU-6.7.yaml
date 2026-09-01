@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-6.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit review being reduced to a paper exercise—analysts
+      skim SIEM dashboards, the overflow never gets read, and a real intrusion sits
+      in unflagged alerts for weeks. The control forces the organization to define,
+      in writing, what actions the reviewer is allowed to take on the spot, so that
+      review can actually change outcomes rather than just produce a log of clicks.
+    basis: inferred
+  plain_zh:
+    value: When staff review audit records, give them a written, approved list of
+      actions they may take during the review (escalate, contain, request more data,
+      page on-call) — and make sure they actually use it, not just sign off a queue.
+    basis: inferred
+  practice:
+    value:
+      '1': A short, approved list exists stating what a reviewer is allowed to do
+        when they spot something suspicious (e.g., notify, open a ticket, escalate
+        to IR). Reviewers know it exists.
+      '2': The list is tied to roles and trigger conditions; review tickets show which
+        permitted action was chosen and why; missed reviews and empty queues are visible
+        to a lead.
+      '3': Reviewer actions are auditable end-to-end (review → action → ticket → resolution);
+        permitted actions are reviewed and updated after incidents or tool changes;
+        analysts cannot silently dismiss alerts without a documented reason.
+    basis: inferred
+  evidence:
+    value: Approved 'permitted actions' procedure for audit reviewers, reviewer training
+      records, sample review tickets showing the chosen action and its linkage to
+      downstream handling, escalation or IR ticket references, and evidence that un-actioned
+      or dismissed alerts are tracked.
+    basis: inferred
+  common_myth:
+    value: Assuming the SIEM queue is being reviewed because someone is assigned to
+      it. Without a defined set of permitted actions, 'review' collapses to acknowledging
+      the alert—nothing else changes, and the control still passes a checkbox audit.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me three reviews from the last quarter: what action did the reviewer take,
+      and where is the downstream record of it?'
+    - What is your reviewer permitted to do when an alert looks suspicious but does
+      not yet meet an IR threshold?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.617123Z'
+  signed_digest: e6cfffbac2c413b75f5f6e8f02d9c5c942c49d6ddc830a1dc6eefbde24805108
+  interview_seconds: null
+  inherited_from: null

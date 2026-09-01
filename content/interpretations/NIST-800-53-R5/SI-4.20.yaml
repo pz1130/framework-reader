@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-4.20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged accounts being weaponized inside the monitored
+      boundary — admin, root, service, and other high-rights identities are exactly
+      the ones an attacker hijacks or an insider abuses, and ordinary network monitoring
+      is blind to them. If you do not explicitly track privileged user activity, an
+      attacker who escalates or an insider who misuses those rights gets logged as
+      'normal admin work' and slips past SI-04.
+    basis: inferred
+  plain_zh:
+    value: Make sure the system and information-integrity monitoring you run actually
+      covers what privileged users do, so their actions are visible, attributable,
+      and reviewable rather than buried in normal traffic.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which user and service accounts are privileged; make sure SIEM,
+        IDS/IPS, or equivalent monitoring sees their logins, command execution, and
+        outbound connections, not just the traffic they generate.
+      '2': Define what privileged actions must be alerted on (new admin creation,
+        lateral movement, config changes to security tooling, mass data access) and
+        route those alerts to a defined response queue with playbooks.
+      '3': Continuously baseline privileged user behavior, alert on deviations, correlate
+        privileged activity with change tickets and on-call rosters, and have a named
+        owner who reviews and tunes the rules — coverage gaps in privileged monitoring
+        are tracked and closed like any other finding.
+    basis: inferred
+  evidence:
+    value: List of privileged accounts and service identities, mapping showing which
+      are covered by which monitoring tools, sample alerts and investigation records
+      for privileged activity, tuning logs and gap-closure records.
+    basis: inferred
+  common_myth:
+    value: Assuming the SIEM already ingests privileged activity because the source
+      servers forward all logs — in practice, admin jump hosts, PAM vaults, cloud
+      control planes, and service accounts are often outside the default log pipeline,
+      and 'we log everything' usually means everything that was convenient to forward.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of privileged accounts and which monitoring tool actually sees
+      the actions of each one.
+    - What privileged action triggered the most recent alert you investigated, and
+      what was the outcome?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.023089Z'
+  signed_digest: 5d2d1d9a843129355111a57bfc1becdb37801b1ed570743942f456f1740b0183
+  interview_seconds: null
+  inherited_from: null

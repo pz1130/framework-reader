@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SI-2.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the situation where known, vendor-published flaws linger in production
+      because humans forget to patch, click 'remind me later,' or only patch interactively.
+      Without automation, a patch that fixes a publicly disclosed CVE sits unapplied
+      for weeks while attackers reuse the same exploit code, so the control turns
+      updates from a manual chore into a system-enforced, auditable operation.
+    basis: inferred
+  plain_zh:
+    value: Make the organization's update mechanism install vendor software and firmware
+      patches automatically on a defined schedule, with the ability to delay or exclude
+      only through an explicit, documented exception - so that patching is not dependent
+      on someone remembering to click a button.
+    basis: inferred
+  practice:
+    value:
+      '1': A patch management tool or platform agent is in use on endpoints and servers;
+        auto-update is enabled for OS and major third-party software; firmware updates
+        are tracked, even if applied manually.
+      '2': Update windows, scope, and retry/failure handling are documented; exceptions
+        (deferrals, exclusions) require a ticket with business justification and an
+        expiry date; missed or failed updates generate a visible alert.
+      '3': Auto-update coverage is measured (percentage of in-scope assets current
+        within SLA), exceptions are reviewed for staleness, and patch SLAs are tied
+        to vulnerability severity; deviations trigger escalation rather than silent
+        aging.
+    basis: inferred
+  evidence:
+    value: Inventory of in-scope assets, auto-update configuration baselines, patch
+      compliance reports with timestamps, exception register with justifications and
+      expiry dates, alerting/remediation tickets for failures.
+    basis: inferred
+  common_myth:
+    value: Treating 'Windows Update is set to auto-install' or 'we have a patch management
+      product' as sufficient. The control fails when auto-update is narrowly scoped
+      to one OS, when firmware is left out of scope entirely, when deferrals accumulate
+      without review, or when failure alerts are ignored - the question is whether
+      unpatched assets can persist, not whether the setting exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What percentage of in-scope endpoints and servers are within patch SLA right
+      now, broken down by severity tier?
+    - Show me the list of systems with auto-update disabled or deferred, the justification
+      for each, and when each exception expires.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.934191Z'
+  signed_digest: 8594db2f1b959e1451951af586e5b184230fa56e520cf92d657d5bb1b4179d78
+  interview_seconds: null
+  inherited_from: null

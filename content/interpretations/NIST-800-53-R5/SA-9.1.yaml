@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SA-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where the organization buys, plugs in,
+      or relies on system services that were never independently vetted, and later
+      discovers the provider's design, data handling, or supply chain introduces risk
+      the organization never signed off on. Without an explicit pre-use assessment
+      and documented approval gate, external system services silently become part
+      of the attack surface without anyone having weighed the trade-offs.
+    basis: inferred
+  plain_zh:
+    value: Before you acquire, outsource, or depend on any external system service,
+      you must actually evaluate the risk it brings into your environment and get
+      a real organizational sign-off, not just a procurement signature.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule exists that external system services cannot be used until
+        security has reviewed them; a basic questionnaire or checklist is filled in;
+        someone with authority signs off before go-live.
+      '2': Risk assessments for external services follow a defined method and are
+        recorded per service; approval is required from a named role (not just procurement);
+        results feed into the contract and the ongoing monitoring of that provider.
+      '3': Assessments are re-run when the service, its underlying platform, or its
+        supply chain materially changes; approval gates are enforced in the procurement
+        or onboarding workflow, not bypassed; the assessment itself is auditable and
+        traceable to a risk acceptance or rejection decision.
+    basis: inferred
+  evidence:
+    value: Documented risk assessment records per external system service, the approval
+      or rejection decisions and who signed them, evidence the assessment informed
+      contract clauses or onboarding conditions, and re-assessment records triggered
+      by service changes.
+    basis: inferred
+  common_myth:
+    value: Treating the procurement contract and a vendor security questionnaire as
+      the entire 'risk assessment' for an external service. The questionnaire is one
+      input; the control wants an explicit conclusion about what risk this service
+      introduces to your systems and data, and an organizational approval tied to
+      that conclusion, not a legal checkbox.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the risk assessment for [specific external service in use today] and
+      tell me who approved it.
+    - When was the last time you re-assessed an external service because its provider
+      changed something, and what triggered it?
+    basis: inferred
+  regional_note:
+    value: EU auditors, particularly under DORA and NIS2 expectations for ICT third-party
+      risk, more often demand evidence that the assessment specifically considered
+      concentration risk, substitutability, and data location, and that the approval
+      body was senior enough to bind the organization; US audits more commonly accept
+      service-level SOC reports plus a questionnaire as the core of the 'risk assessment'
+      narrative.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.341103Z'
+  signed_digest: c702c17052310b44163ad5d6657a61ca8d0c06cfd4f378ba9ffa0df3657cf108
+  interview_seconds: null
+  inherited_from: null

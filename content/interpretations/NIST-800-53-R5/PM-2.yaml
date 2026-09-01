@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PM-2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a program that drifts because no single leader is on the
+      hook—without a named, resourced owner, security priorities get routed around,
+      budgets disappear, and accountability scatters across functions so that failures
+      have nobody to point to.
+    basis: inferred
+  plain_zh:
+    value: Appoint a single senior leader who owns the information security program,
+      give them the authority and resources to actually run it, and make that assignment
+      visible across the organization.
+    basis: inferred
+  practice:
+    value:
+      '1': A specific person is named in writing as the security program lead; the
+        role exists in the org chart and someone can clearly answer who it is.
+      '2': The lead's authority, reporting line, and responsibilities are documented
+        (charter, role description); budget, staff, and decision rights are granted;
+        the assignment is communicated to the organization.
+      '3': The lead has a standing seat at the executive table for security decisions;
+        authority is tested in practice (can override, can escalate, can withhold
+        go-live); succession and deputies are defined so the program does not stall
+        when the lead is unavailable.
+    basis: inferred
+  evidence:
+    value: Appointment memo or charter naming the senior accountable official, the
+      role's authority and reporting line, evidence the assignment has been communicated
+      internally, and records showing the lead has exercised that authority in real
+      decisions.
+    basis: inferred
+  common_myth:
+    value: Assuming a title such as CISO or Head of Security on the org chart satisfies
+      the control—the org chart alone does nothing; what auditors look for is whether
+      the named lead actually has the authority, resources, and access to make and
+      enforce security decisions, or whether those decisions still get overridden
+      by business or IT.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the named senior accountable official for the information security program,
+      and where is that appointment documented?
+    - Show a recent decision where this lead overrode or escalated a business request
+      on security grounds—what was the outcome?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.729490Z'
+  signed_digest: bd3c2dd703bf7c1c77854cd08d0f998a979394d1cac9291621cd4f198c0f9896
+  interview_seconds: null
+  inherited_from: null

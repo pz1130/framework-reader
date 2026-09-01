@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where systems hoard PII fields they do
+      not actually need, so that any breach, insider lookup, or retention error exposes
+      far more personal data than the business purpose requires, turning a small incident
+      into a mass-data privacy event.
+    basis: inferred
+  plain_zh:
+    value: Identify and reduce the PII elements your systems collect, store, process,
+      and share to only what is needed for the stated purpose, document the justification,
+      and keep that scope under review.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the PII fields each system holds; flag fields that look unused,
+        sensitive beyond the purpose, or duplicative; remove or suppress what is not
+        justified.
+      '2': Maintain a documented PII element list per system with the purpose tied
+        to each field; require a written justification to add or retain a new element;
+        review at least annually and on any new data flow.
+      '3': Embed minimization in design (data minimization in intake forms, default-off
+        optional fields, tokenization or truncation of sensitive elements, no raw
+        PII in non-production); automated checks flag fields without a documented
+        purpose; retention rules enforce deletion; changes to processing trigger a
+        re-review.
+    basis: inferred
+  evidence:
+    value: PII element inventory per system with purpose statements, change records
+      for adding or removing fields, data flow diagrams showing what is collected
+      and shared, retention and deletion logs, sample intake forms showing optional
+      fields minimized.
+    basis: inferred
+  common_myth:
+    value: Treating minimization as a one-time data mapping exercise during a privacy
+      program launch and never revisiting it; the inventory goes stale the moment
+      a new feature, integration, or vendor is added, and the original map no longer
+      reflects what the system actually holds.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems have a documented PII element list with a purpose for each field,
+      and when was it last refreshed?
+    - Pick one field you marked as 'not needed' and show how it is prevented from
+      being collected or stored today.
+    basis: inferred
+  regional_note:
+    value: European auditors under GDPR treat minimization as a live Article 5 principle
+      and will press on whether retention matches the original purpose; US auditors
+      under NIST expect the same control logic but focus less on retention proportionality,
+      so the audit trail for retention decisions matters more in EU reviews.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.825004Z'
+  signed_digest: 64de53a315e1a3f52260f4d4bc3b9b1e31ece11184bbb210f7b31636ba7a0957
+  interview_seconds: null
+  inherited_from: null

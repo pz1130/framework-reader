@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IA-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops account identifiers (the strings used to log in or be referenced
+      in audit trails) from being reused as public-facing identifiers like email addresses,
+      employee numbers, or usernames in directory listings—because once an identifier
+      is public, it is phishable, enumerable, and guessable, which collapses the secrecy
+      that the credential is supposed to provide.
+    basis: inferred
+  plain_zh:
+    value: Don't let the ID you use to authenticate also be the ID you hand out to
+      the world. Internal account identifiers must be separate from public identifiers
+      such as email addresses, badge numbers, or display names shown to outsiders.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which identifiers (sAMAccountName, UPN, UID, employee IDs, email
+        addresses) are currently exposed externally (in signatures, public profiles,
+        vendor portals) and confirm they are not the same value used to log in.
+      '2': Document a policy that internal account identifiers must not equal public
+        identifiers; review onboarding and provisioning templates so new accounts
+        are created with distinct internal IDs by default.
+      '3': 'Enforce in identity systems and provisioning workflows: internal login
+        IDs are generated separately from public attributes; automated checks flag
+        collisions; periodic review samples external-facing systems to confirm separation
+        still holds after account renames or directory syncs.'
+    basis: inferred
+  evidence:
+    value: Policy text prohibiting reuse of account identifiers as public identifiers,
+      sample of accounts showing internal ID differs from public-facing email/employee
+      number, provisioning configuration screenshots or scripts, and review/audit
+      results from sampling external-facing systems.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the username is technically a separate field from
+      the password, the control is satisfied—without realizing the identifier itself
+      is half the credential and becomes trivially guessable the moment it appears
+      on a public webpage, conference badge, or email signature.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three accounts where the login ID is different from the public-facing
+      email or employee number visible to outsiders.
+    - How does your provisioning process prevent a new employee's login ID from being
+      set to their public email alias?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.148185Z'
+  signed_digest: b26663810d31e8923dcdfa8bce241a6224941b0b062586d07a74d1d7927d238c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-7.29
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents lateral movement and cross-function exposure where attackers who
+      land on one function's network (e.g., user workstations) can directly pivot
+      to another function's traffic (e.g., cardholder data, medical devices, industrial
+      controllers, management interfaces) because they share a routing/forwarding
+      domain.
+    basis: inferred
+  plain_zh:
+    value: Physically or logically separate network subnets so that distinct functions
+      — especially sensitive ones — cannot freely reach each other, and so that filtering
+      can be enforced between them.
+    basis: inferred
+  practice:
+    value:
+      '1': Functions are placed on distinct subnets/VLANs; a router, firewall, or
+        layer-3 gateway sits between them; default deny between subnets with explicit
+        allow rules.
+      '2': Subnet allocation is documented by function and sensitivity tier; ACLs/firewall
+        rules are written down and change-controlled; addresses are pulled from a
+        managed allocation scheme (DHCP scopes or IPAM), not free-form.
+      '3': Routing paths between subnets are verified periodically (traceroute, flow
+        review) to confirm no hidden bridges exist; sensitive subnets have no east-west
+        path to lower-trust ones; rule sets are reviewed for least-privilege and stale
+        rules are purged.
+    basis: inferred
+  evidence:
+    value: Network topology diagram with subnets by function, IP allocation records,
+      inter-subnet firewall/ACL rule sets with change history, segmentation test results
+      (e.g., ping/port scans across the boundary), and the policy that defines which
+      functions must be isolated.
+    basis: inferred
+  common_myth:
+    value: Believing a VLAN tag alone provides isolation. VLANs share a default routing
+      domain unless a layer-3 device is enforcing policy between them — and even with
+      a firewall, overly broad 'any/any' rules between subnets silently re-bridge
+      what the topology was supposed to separate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two functions that should be isolated — show me the routing path and the
+      rule currently controlling traffic between them.
+    - When was the last time you scanned or probed across the boundary to prove isolation
+      actually works, not just that a VLAN exists?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.747936Z'
+  signed_digest: ea445f8739e99d05a7fb51adffe204f1b7ce50af56897aadef30d6e26c7cfe73
+  interview_seconds: null
+  inherited_from: null

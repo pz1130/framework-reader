@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-10.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Preventing hardware-level implants, tampered components, or counterfeit
+      parts from silently becoming part of trusted systems - the firmware inside drives,
+      network gear, and servers is the new supply-chain foothold, and a one-time vendor
+      trust stamp never proves the device that arrived is the device you expected.
+    basis: inferred
+  plain_zh:
+    value: Verify that the hardware you put into production actually is the hardware
+      the vendor shipped - check its integrity (firmware signatures, configuration,
+      provenance) before use and keep checking it over its life, so tampered or counterfeit
+      gear doesn't quietly join your trusted estate.
+    basis: inferred
+  practice:
+    value:
+      '1': Buy from authorized channels; require vendor attestation of firmware signatures
+        and tamper-evident seals; do a basic boot-up integrity check on critical hardware
+        before putting it in production.
+      '2': Define which hardware classes must be verified and how (signed firmware,
+        hash comparisons, vendor cert checks); record verification at acceptance;
+        document what to do on a mismatch.
+      '3': Continuously or periodically re-verify firmware integrity on deployed hardware;
+        alerts on unexpected firmware changes; verification tied into asset and configuration
+        management so a hardware integrity failure triggers containment.
+    basis: inferred
+  evidence:
+    value: Vendor attestation records, integrity verification procedures, acceptance
+      test results with hash/signature evidence, tamper-evident seal records, alerts
+      and incident handling for failed integrity checks, asset-to-verification linkage.
+    basis: inferred
+  common_myth:
+    value: Believing the vendor's brochure or a one-time 'trusted supplier' checkbox
+      at procurement is enough - hardware integrity has to be verified on the actual
+      device that arrives, and re-verified after firmware updates or field service,
+      otherwise a swapped chip or signed-but-unverified firmware slips in quietly.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the integrity check performed on the last batch of critical hardware
+      before it went into production.
+    - What happens when a device's firmware hash doesn't match - who is paged and
+      what's the containment step?
+    basis: inferred
+  regional_note:
+    value: US federal buyers (and contractors handling federal data) tend to face
+      stricter expectations tied to supply-chain integrity programs; European auditors
+      more often engage this through NIS2 supply-chain obligations. The control content
+      is similar, but the audit trail expected differs - US leans toward documented
+      verification per device, EU leans toward supplier assurance evidence.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.005928Z'
+  signed_digest: 4df7ebf09c062563e7d10a8b3bae1a0def905c483b772d454fb7d15c566918c2
+  interview_seconds: null
+  inherited_from: null

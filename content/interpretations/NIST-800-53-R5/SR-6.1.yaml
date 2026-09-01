@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SR-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against supplier components and services being trusted on paper
+      but behaving differently in reality — hidden backdoors, latent defects, weakened
+      crypto, or counterfeit parts only surface under active probing, so without systematic
+      technical testing the assurance story is just narrative.
+    basis: inferred
+  plain_zh:
+    value: Actually exercise supplier-provided software, hardware, and services with
+      technical tests and analyses (fuzzing, scanning, code review, integration checks)
+      before and during use, instead of trusting vendor attestations alone.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify high-risk supplier components and run basic technical checks (version
+        pinning, known-CVE scans, integrity/signature verification) before deployment.
+      '2': Define test plans per supplier tier — depth scaled to criticality — covering
+        functional, security, and integration checks; record results and exceptions
+        in writing.
+      '3': Periodic regression and adversarial testing on critical supplier components
+        (fuzzing, dynamic analysis, red-team-style integration attacks); findings
+        feed back into procurement and re-evaluation; testing covers updates and patches,
+        not just first release.
+    basis: inferred
+  evidence:
+    value: Supplier test plans by tier, test results and defect logs, integrity/signature
+      verification records, re-test records after vendor updates, trace from findings
+      back to procurement/acceptance decisions.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor SOC report or SBOM as a substitute for hands-on testing
+      — a clean attestation does not prove the component behaves as claimed in your
+      specific environment and configuration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which supplier components in scope today were last subjected to technical testing
+      beyond a vulnerability scan, and what did that testing actually exercise?
+    - Show me a case where supplier testing changed an acceptance or deployment decision
+      — what was found and what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.194488Z'
+  signed_digest: 3c15bce0793345af6fd49adfc9e6046dcb6da4fa7876722c80993bf4f99e5a31
+  interview_seconds: null
+  inherited_from: null

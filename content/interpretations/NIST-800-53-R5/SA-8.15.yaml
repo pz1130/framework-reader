@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-8.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a class of exploitable flaws that survive normal review
+      because every code path technically checks out — the developer failed to state
+      what the module actually requires before doing anything, so untrusted inputs
+      flow into operations that should never have accepted them.
+    basis: inferred
+  plain_zh:
+    value: Every security-relevant module, component, or service must explicitly document
+      and enforce the conditions that must already be true (predicates) before it
+      acts — it must refuse to proceed when those conditions are not met, rather than
+      assuming callers have already validated the input.
+    basis: inferred
+  practice:
+    value:
+      '1': Developers are told in the secure-coding standard that modules must declare
+        and check preconditions (origin, authenticity, integrity, authorization, freshness)
+        before processing; quick code reviews flag missing checks.
+      '2': Design docs and interface contracts include a 'predicates' section for
+        security-relevant modules; peer review and static analysis check that those
+        predicates are actually enforced at runtime, not just documented.
+      '3': A unit/integration test discipline exists where modules are tested with
+        inputs that violate each declared predicate and must fail closed; predicates
+        are tracked as part of the interface contract through the SDLC and revisited
+        on dependency or interface changes.
+    basis: inferred
+  evidence:
+    value: Secure-coding standard referencing predicate permission, design documents
+      with declared predicates per module, code-review records showing predicate checks,
+      static-analysis or unit-test results proving modules reject precondition violations.
+    basis: inferred
+  common_myth:
+    value: Believing that because every public function already validates its inputs
+      (or trusts the framework/layer above to do so), the control is met. Predicate
+      permission is about the called module explicitly stating and enforcing what
+      *it* requires — assuming validation has already happened elsewhere is exactly
+      the assumption this control rejects.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two security-relevant modules and show where the precondition list is documented
+      and where in the code it is enforced.
+    - What happens if a caller passes data that violates a stated predicate — is the
+      call rejected, or does it proceed with a fallback?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.233187Z'
+  signed_digest: f08bad34ee2cf92310389903a036898a0162d21d9dbd44076848194e10a36fd4
+  interview_seconds: null
+  inherited_from: null

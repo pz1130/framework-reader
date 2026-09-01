@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MP-6.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops an adversary who walks off with your phone, laptop, or tablet from
+      walking into all the data on it — and stops a stolen device from becoming an
+      account-able loss, a regulated breach, or a headline. If remote purge is not
+      actually wired up to the device, every other mobile control on the list is decorative
+      during the window the device is missing.
+    basis: inferred
+  plain_zh:
+    value: Make sure mobile devices that leave the building can be remotely wiped
+      of company data when they are lost, stolen, or compromised, and that this works
+      whether the device is online, offline, or never comes back.
+    basis: inferred
+  practice:
+    value:
+      '1': MDM is deployed on every company phone, laptop, and tablet; an admin can
+        force a wipe from a console; the process for triggering it is written down
+        with a named owner.
+      '2': Wipe capability is tested on each OS family (iOS, Android, Windows, macOS)
+        on a known cadence; lost/stolen reports are logged and tied to the ticket
+        that issued the wipe; non-recoverable wipe results are followed up with device
+        replacement and account actions.
+      '3': The trigger is automated on risk signals (multiple failed unlock, jailbreak/root,
+        stale check-in past policy, geofence exit); offline wipe is validated; certificate,
+        app, and email data are explicitly covered, not just user files; post-wipe
+        verification confirms the device no longer holds company data.
+    basis: inferred
+  evidence:
+    value: MDM configuration showing remote wipe is enabled and scoped to corporate
+      data, test records of wipe execution on each platform, lost/stolen ticket-to-wipe
+      trace, policy stating who can trigger a wipe and under what conditions, post-wipe
+      verification samples.
+    basis: inferred
+  common_myth:
+    value: Treating a passcode policy and a 'wipe on next check-in' setting on the
+      MDM as equivalent to remote purge. If the device never comes online, the setting
+      never fires; if only container data is covered but mail profiles or certificates
+      are not, exfil still happens through those channels.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a device your admin wiped in the last quarter — ticket to wipe command
+      to confirmation, end to end.
+    - Which data classes on the device are actually included in the wipe, and which
+      (certificates, mail, app data) might survive it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.494086Z'
+  signed_digest: db0075684b8976234a82c9d7b7483943c181f45f4de082195acf5d798e2516ec
+  interview_seconds: null
+  inherited_from: null

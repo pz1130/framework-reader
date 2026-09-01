@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Flaws that sit in the queue past their remediation window become the long-lived
+      foothold an attacker actually exploits. Without time-bound remediation tied
+      to severity, low-rated bugs effectively become 'acceptable' and stay exploitable
+      for months while the organization believes it is compliant.
+    basis: inferred
+  plain_zh:
+    value: Define how quickly flaws of different severity must be remediated, measure
+      it, and enforce it - so that 'we know about it' cannot quietly turn into 'we
+      have lived with it for a year'.
+    basis: inferred
+  practice:
+    value:
+      '1': A written list of remediation timeframes by flaw severity (e.g. critical,
+        high, medium, low), owned and acknowledged by engineering and security; tickets
+        are opened with a deadline.
+      '2': Timeframes are tracked per ticket; missed deadlines surface to management
+        with an explicit exception/extension decision, not silent rollover; routine
+        reports show age vs. target.
+      '3': Benchmark corrective actions (mean/median time to remediate, percent closed
+        on time) by severity and by asset class, reviewed in governance; persistent
+        slippage triggers scope re-prioritization, not just a reminder email.
+    basis: inferred
+  evidence:
+    value: Documented remediation timeframes by severity, the flaw ticket backlog
+      with age and target dates, exception/extension decisions for missed deadlines,
+      and periodic MTTR / on-time closure reports reviewed at a governance forum.
+    basis: inferred
+  common_myth:
+    value: Treating a vulnerability scan and a prioritized ticket list as evidence
+      that 'flaws are being managed' - when there is no defined or enforced window,
+      the priority list is just a wish list and aging items stay open indefinitely.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is your defined remediation window for a critical-severity flaw, and where
+      is it written?
+    - Show me flaws from 12 months ago that were past their target date - how were
+      they handled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.926435Z'
+  signed_digest: 5227e8f03a017fc5a5bf456c2e67ede0d21a525d33acb6966cbdef06e35d4376
+  interview_seconds: null
+  inherited_from: null

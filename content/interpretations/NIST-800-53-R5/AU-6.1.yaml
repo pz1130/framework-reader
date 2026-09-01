@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AU-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit review being a manual, sample-based, after-the-fact
+      scramble — when logs pile up faster than humans can read, real incidents hide
+      inside the noise and detection only works if automated correlation is actually
+      wired into the IR and ticketing pipeline, not bolted on as a dashboard no one
+      watches.
+    basis: inferred
+  plain_zh:
+    value: Make audit-log review an automated process that is integrated into the
+      organization's incident-response and ticketing workflow, so flagged events become
+      real tickets and real actions — not a report that sits unread.
+    basis: inferred
+  practice:
+    value:
+      '1': Automated correlation rules exist for the loud, obvious signals (failed
+        logins, malware hits, privileged actions); alerts go to a mailbox or queue
+        someone is responsible for.
+      '2': Correlation covers correlated multi-step attack patterns (e.g. phishing
+        → auth anomaly → lateral movement); integration with the ticketing/IR platform
+        creates cases automatically and tracks them to closure.
+      '3': Detection rules are version-controlled and tuned against false-positive
+        rates; coverage gaps are tracked; near-real-time for high-fidelity signals;
+        integration is tested end-to-end (alert → ticket → response → closure evidence).
+    basis: inferred
+  evidence:
+    value: Correlation rule repository with change history, sample tickets automatically
+      generated from log events, IR case records showing closure of correlated incidents,
+      tuning/false-positive metrics, and integration test or drill records.
+    basis: inferred
+  common_myth:
+    value: Buying a SIEM and turning on its out-of-the-box rules is treated as meeting
+      the control — without proving the rules are integrated into ticketing, assigned
+      to owners, and actually closed, the SIEM is just an expensive log collector.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one alert from last week and show the ticket, the assignee, and how it
+      was closed.
+    - How do you measure and reduce false positives so that correlation stays trusted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.597695Z'
+  signed_digest: 4744eacbdb4bc6392b4e4dd8aa83259c0cdba0f11afec3c76084fb9d5428cffd
+  interview_seconds: null
+  inherited_from: null

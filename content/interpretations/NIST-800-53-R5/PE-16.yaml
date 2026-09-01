@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PE-16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against untracked physical movement of assets in and out of the
+      facility - the failure mode where sensitive items (drives, laptops, backup tapes,
+      paperwork, prototype hardware) leave or enter without a record, so theft, unauthorized
+      exfiltration, or substitution cannot be detected and accountability is lost.
+    basis: inferred
+  plain_zh:
+    value: Authorize, log, and control every piece of organization-owned or organization-handled
+      property that crosses the physical boundary, in both directions, and keep the
+      records reviewable.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate entry/exit points for assets; require a paper or spreadsheet
+        sign-out sheet for equipment and media moved in or out; supervisors approve
+        non-routine moves.
+      '2': Maintain an authoritative asset register keyed to a location or custodian,
+        so every item that leaves must map to a registered record and a sign-out entry;
+        periodic reconciliation between register and physical inventory; visitor-supplied
+        devices also logged.
+      '3': Automated logging (badge-coupled or barcode/RFID checkpoints at doors)
+        tied to the asset register; alerts on items leaving without checkout; regular
+        reconciliation with discrepancies investigated and closed; controls extend
+        to shipping/receiving docks and to off-site transport, not only the front
+        door.
+    basis: inferred
+  evidence:
+    value: Asset register, signed delivery and removal logs with authorizer, reconciliation
+      reports between register and physical inventory, investigation records for discrepancies,
+      and visitor/device movement logs.
+    basis: inferred
+  common_myth:
+    value: Treating the visitor sign-in book as the control - it only covers people,
+      not the laptops, tapes, drives, and prototype boards that actually leave with
+      them, and it tells you nothing about which specific asset crossed the door.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three items from the asset register that are no longer on site: show me
+      the removal authorization and the sign-out entry for each.'
+    - When equipment comes back from repair or arrives from a vendor, where is that
+      recorded and who reconciles it against the register?
+    - What happened the last time the reconciliation flagged a missing item - who
+      investigated and what was the outcome?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.555253Z'
+  signed_digest: 1886a0603c263a3cee3d1366c8fa7211cde0bbbaf52063e2101b3471156512fa
+  interview_seconds: null
+  inherited_from: null

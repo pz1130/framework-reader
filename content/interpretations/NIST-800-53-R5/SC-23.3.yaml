@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-23.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops session hijacking and replay by making every authenticated session
+      a one-time, server-controlled token that cannot be guessed, forged, or reused
+      after logout. Without this, an attacker who sniffs, guesses, or steals a session
+      handle can impersonate a legitimate user for the lifetime of that handle.
+    basis: inferred
+  plain_zh:
+    value: Every user session must get a unique identifier that is freshly generated
+      by the system itself, not derived from something an attacker could predict (like
+      username, time, or a counter), and that identifier must be invalidated the moment
+      the session ends so it cannot be reused.
+    basis: inferred
+  practice:
+    value:
+      '1': Sessions are issued by the application using a non-predictable identifier;
+        logout and timeout immediately invalidate the identifier on the server side;
+        cookies carrying the identifier are marked HttpOnly and Secure.
+      '2': Session IDs are generated from a CSPRNG with sufficient entropy, rotated
+        on authentication, tied to the client fingerprint where practical, and bound
+        to an absolute idle/absolute timeout enforced server-side; regeneration on
+        privilege change is documented.
+      '3': Session identifiers are protected end-to-end (TLS, secure cookie attributes,
+        no exposure in URLs, logs, or error pages), regeneration on login is enforced
+        across all apps, and the invalidation behavior is verifiable by automated
+        test rather than only by code review.
+    basis: inferred
+  evidence:
+    value: Design notes or code references showing where the session identifier is
+      created, the entropy source used, the cookie flags and transport protections
+      applied, the server-side invalidation logic on logout and timeout, and any automated
+      tests that confirm an old identifier is rejected after session end.
+    basis: inferred
+  common_myth:
+    value: Treating `session_start()` or the framework default as sufficient because
+      'the framework handles it.' The framework default is the starting point - the
+      auditor will check entropy, regeneration on login, server-side invalidation,
+      and absence of the ID in URLs and logs, which a stock configuration often fails.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where the session identifier is generated and what entropy source it
+      uses.
+    - After I log out, what happens server-side to my session identifier, and how
+      do you prove it can no longer be used?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.461661Z'
+  signed_digest: 8bf2a28d228b1aa2270e40a91863ac22478de48e1817c9368bf7d763fc3c599e
+  interview_seconds: null
+  inherited_from: null

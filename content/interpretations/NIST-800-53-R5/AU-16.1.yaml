@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AU-16.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where audit records are tampered with,
+      swapped, or fabricated so that an investigator cannot tell what really happened,
+      who acted, or when. The point is to keep the link between the actor's real identity
+      and the action in the log from being broken or spoofed.
+    basis: inferred
+  plain_zh:
+    value: 'Make sure the identity of whoever triggered or acted on an event is preserved
+      end-to-end in the audit trail: the credential, the subject, and the action must
+      stay bound together in a way that resists repudiation and forgery.'
+    basis: inferred
+  practice:
+    value:
+      '1': 'Use system-native identity binding for all in-scope audit events: the
+        authenticated subject identity (account, service principal, device id) is
+        captured in every log record alongside the action and timestamp, sourced directly
+        from the authenticator.'
+      '2': Use signed or cryptographically bound logging where available (e.g., signed
+        log records, trusted forwarding, secure log transport) and document which
+        systems provide this binding and which do not; cross-check that no log path
+        lets the subject identity be rewritten between source and store.
+      '3': 'Enforce identity preservation at every hop: source-to-collector with strong
+        auth, collector-to-store with integrity protection, and store-side controls
+        that prevent operators from editing subject fields without leaving a tamper-evident
+        trace; periodically replay and validate that subject-to-action bindings still
+        hold.'
+    basis: inferred
+  evidence:
+    value: Architecture or design document showing how subject identity is captured
+      at source and protected across collection and storage, sample log records demonstrating
+      the binding, integrity protection configuration (signatures, secure transport,
+      append-only stores), and results of periodic validation that subject identities
+      were not altered.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the log shows a username, identity is preserved.
+      The username is just a label; if the authenticator can be tricked into stamping
+      a different subject, or if logs travel through a relay that rewrites fields,
+      the binding is lost even though the column still looks populated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one in-scope system and show me a log record end-to-end: who authenticated,
+      who was logged, and how you know they are the same person.'
+    - If your log pipeline or SIEM operator edits a field, what stops them from changing
+      the subject identity, and how would I detect it after the fact?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.556036Z'
+  signed_digest: afd5146d7b6782d3c540d75bca70bb4cc130f670e591f1e6e3919db052b8879e
+  interview_seconds: null
+  inherited_from: null

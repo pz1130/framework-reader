@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shipping systems into production with vendor-default, undocumented,
+      or inconsistent configurations that quietly expand the attack surface—defaults
+      get exploited, undocumented builds cannot be reproduced or assessed, and inconsistent
+      baselines make incident response and patching unreliable.
+    basis: inferred
+  plain_zh:
+    value: Require, capture, and verify the configuration of every system, component,
+      and service you acquire (hardware, software, firmware, cloud services) so you
+      know what is being deployed, can reproduce it, and can keep it within an approved
+      baseline.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement contracts or order records capture the specific make/model/version/configuration
+        of each acquired item; security-relevant defaults (open ports, default accounts,
+        pre-installed services) are flagged before acceptance.
+      '2': Configuration baselines (golden images, hardening profiles, approved service
+        tiers) exist and are referenced when items are acquired; configuration of
+        received items is checked against the baseline before deployment; deviations
+        require documented approval.
+      '3': Acquired configurations are tracked in a CMDB or equivalent, compared continuously
+        against approved baselines, drift is detected and remediated automatically,
+        and configuration data feeds vulnerability management, incident response,
+        and decommissioning processes.
+    basis: inferred
+  evidence:
+    value: Procurement records showing specified configurations, hardening baselines
+      referenced at acquisition, acceptance testing results comparing delivered configuration
+      to baseline, deviation/exception approvals, and CMDB entries linking assets
+      to their approved configuration profile.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's stock configuration as automatically acceptable because
+      'it came from a reputable supplier'—vendor defaults are a primary initial-access
+      vector, and an undocumented or unreviewed baseline means you cannot tell a hardened
+      build from a vulnerable one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recently acquired system or service: show me the documented configuration
+      you specified at purchase and the acceptance check confirming that is what was
+      actually delivered.'
+    - How do you detect when a deployed system drifts from the configuration you originally
+      approved?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.192726Z'
+  signed_digest: b90b79ca8415999b5236b08afe0c0ad1c891028e6666def54d7e9527cde98ee5
+  interview_seconds: null
+  inherited_from: null

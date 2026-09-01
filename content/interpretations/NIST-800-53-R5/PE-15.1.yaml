@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-15.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where physical-protection devices rely on humans
+      to notice and respond, leaving windows of exposure between alarm, investigation,
+      and action; automation ensures the window between detection and containment
+      is short enough to matter.
+    basis: inferred
+  plain_zh:
+    value: Make the detection, alerting, and activation of physical-protection controls
+      (cameras, sensors, locks, alarms) automatic and integrated, so that a triggered
+      event immediately drives a recorded response without waiting on a person to
+      notice.
+    basis: inferred
+  practice:
+    value:
+      '1': Physical alarms and sensors are wired or networked so a triggered event
+        pages or notifies on-call staff automatically; logs are recorded in a system,
+        not just on a panel in the lobby.
+      '2': Detection events are correlated across systems (access control + video
+        + intrusion) and routed to a defined response queue with timestamps from trigger
+        to acknowledgement.
+      '3': Response actions such as locking down zones, revoking badges, or escalating
+        to law enforcement are triggered automatically by policy when defined conditions
+        are met, with tested playbooks and measurable time-to-respond metrics.
+    basis: inferred
+  evidence:
+    value: Architecture diagram or inventory showing automated integration of physical
+      sensors, access control, and video; event logs with timestamps from trigger
+      to response; tested automation playbooks and after-action records showing time-to-respond.
+    basis: inferred
+  common_myth:
+    value: Assuming that having cameras and badge readers installed counts as automation
+      support, even when alerts only show up on a guard's local panel and require
+      a human to walk over and act on them; the control is about closing the gap between
+      detection and response, not about having the sensors.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three triggered physical alarm events and the timestamp from
+      trigger to first automated action.
+    - Which physical events trigger an automatic lockout or escalation, and where
+      is that policy defined?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.551554Z'
+  signed_digest: 876a5ee4c4522358181a8172247354269db5b3f639d184abd2c494b855e72b7a
+  interview_seconds: null
+  inherited_from: null

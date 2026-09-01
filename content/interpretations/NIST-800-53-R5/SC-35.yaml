@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-35
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers weaponizing external systems or sources to deliver
+      malicious code into the environment - the failure mode is assuming inbound traffic
+      is 'just data' or that vendor-supplied content is trustworthy because it came
+      from a known sender, letting malware ride in through email, web, file transfers,
+      or removable media without being flagged before execution.
+    basis: inferred
+  plain_zh:
+    value: Detect and flag malicious code coming from outside your boundary (inbound
+      email, web downloads, vendor feeds, removable media, partner file transfers)
+      before it runs inside your environment, not after an endpoint has already executed
+      it.
+    basis: inferred
+  practice:
+    value:
+      '1': Run anti-malware scanning on inbound email, web downloads, and removable
+        media before files reach users; block known-bad signatures and quarantine
+        suspicious attachments.
+      '2': Layer detection beyond signatures - heuristics, sandbox detonation, and
+        reputation lookups for external files and URLs; record detection results and
+        quarantine actions with enough context to investigate.
+      '3': Continuously correlate external-code detections with threat intel, feed
+        outcomes back into detection rules, and measure dwell time from arrival to
+        detection; cover non-obvious ingress paths (partner APIs, vendor updates,
+        supply-chain artifacts).
+    basis: inferred
+  evidence:
+    value: Inbound scanning policies, detection logs showing files flagged before
+      execution, quarantine and disposition records, sandbox/reputation integration
+      configs, and metrics on time-to-detect for externally sourced code.
+    basis: inferred
+  common_myth:
+    value: Believing endpoint antivirus covers this control because it 'catches malware.'
+      External malicious code identification is about catching code at the boundary
+      before it reaches endpoints - relying on endpoint detection means the code has
+      already crossed the perimeter and executed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent example of malicious code caught at the email or web gateway
+      before reaching a user mailbox or endpoint.
+    - Which inbound paths - removable media, vendor file transfers, partner feeds
+      - are not covered by pre-execution scanning, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.553850Z'
+  signed_digest: 866dc30a3b6c8184ff1e7313b2ac2bd4782919d089dac7a05fb51b93ecd5b34b
+  interview_seconds: null
+  inherited_from: null

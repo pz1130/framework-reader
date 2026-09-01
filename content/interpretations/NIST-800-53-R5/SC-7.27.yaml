@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-7.27
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure of 'we have a firewall, so the perimeter is done' — without
+      an explicit, documented boundary around unclassified non-national-security systems,
+      connections sprawl into the enterprise via partners, test beds, and unmanaged
+      subnets, and an incident in one side silently pivots into the other.
+    basis: inferred
+  plain_zh:
+    value: Define and publish the boundary between your unclassified non-national-security
+      systems and everything else, control what crosses it, and keep that picture
+      current as networks change.
+    basis: inferred
+  practice:
+    value:
+      '1': A current diagram or inventory exists that distinguishes unclassified non-national-security
+        systems from the rest of the network; ingress/egress points are listed.
+      '2': Boundary devices (firewalls, gateways, proxies) are configured to enforce
+        documented rules for traffic between the unclassified non-national-security
+        enclave and external/other networks; changes are logged and reviewed.
+      '3': Boundary rules are tied to a documented architecture and reviewed against
+        actual flows; deviations are detected and corrected; the boundary is re-validated
+        whenever the network topology, partners, or data flows change.
+    basis: inferred
+  evidence:
+    value: Boundary architecture document and network diagrams, device configurations
+      and rule sets, change records for boundary devices, review/attestation that
+      the boundary matches reality, and exception handling for any cross-boundary
+      connections.
+    basis: inferred
+  common_myth:
+    value: Treating SC-7.27 as redundant with SC-7 (general boundary protection) and
+      skipping dedicated documentation — when the system is unclassified non-national-security,
+      auditors expect to see the boundary explicitly named, separated from any classified
+      or national-security perimeter, and justified as part of the system description.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the boundary of the unclassified non-national-security system — where is
+      it, and what devices enforce it?
+    - How do you detect when a new connection has been added across that boundary
+      without going through change control?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.740234Z'
+  signed_digest: 14ca0f69e8653537d84fcd87636782c190d6eb0bff673e09e7c4b4e154d23561
+  interview_seconds: null
+  inherited_from: null

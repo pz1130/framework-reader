@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-7.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the 'shadow IT with a deny-list' failure mode where an
+      organization blacklists a handful of known-bad packages but allows everything
+      else by default — so any unapproved tool, agent, or developer utility still
+      runs, expands the attack surface, and bypasses change control and asset inventory.
+    basis: inferred
+  plain_zh:
+    value: By default, block software that has not been explicitly approved. Only
+      allow an exception when someone has reviewed the software, recorded the justification,
+      and approved it; otherwise it must not run on your systems.
+    basis: inferred
+  practice:
+    value:
+      '1': Block all software that is not on an approved list, with a small, named
+        allowlist that someone owns; users have no way to install or run unapproved
+        binaries without being stopped.
+      '2': Each allowlist addition has a ticket showing reviewer, business justification,
+        security check, and approval date; the list is reviewed on a schedule; denials
+        are logged.
+      '3': Allowlisting is enforced by a technical control (application control /
+        allowlisting agent) on endpoints and servers, not just policy; unapproved
+        software is blocked from executing, from writing to autorun locations, and
+        from installing; exceptions are tracked and expire.
+    basis: inferred
+  evidence:
+    value: Application control policy, approved software allowlist with approvals
+      and justifications, enforcement configuration on endpoints/servers, logs of
+      blocked executions, exception records with review and expiry.
+    basis: inferred
+  common_myth:
+    value: Assuming a blocklist of 'known bad' software satisfies this control — deny-by-exception
+      means the default action on unknown or unapproved software is deny, so a blocklist
+      plus an open-everything-else policy fails the control outright.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the default action when a user tries to run software that is not on
+      the allowlist — deny or allow?
+    - Who can approve a new addition to the allowlist, and where is the justification
+      recorded?
+    - Pull the last 30 days of blocked-execution events — what was blocked, where,
+      and by which rule?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.840679Z'
+  signed_digest: 4f944c7cc4090a23d24b49b454d31c37d00be28b2e8b8573152885a50a47767b
+  interview_seconds: null
+  inherited_from: null

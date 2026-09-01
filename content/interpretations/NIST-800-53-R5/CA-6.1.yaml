@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CA-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where one part of the organization authorizes
+      a system as low-risk while another part of the same organization operates it
+      under a completely different threat, data, or compliance profile — the authorization
+      only holds for the component that signed, but the same infrastructure carries
+      traffic, identities, or data from a sibling component that never agreed.
+    basis: inferred
+  plain_zh:
+    value: When a system is authorized, every organizational unit that touches that
+      system, its data, or its users must be a real party to the authorization — not
+      a silent inheritor of someone else's risk decision. Identify which components
+      share the system, bring them into the same authorization, and record their acknowledgement.
+    basis: inferred
+  practice:
+    value:
+      '1': List the organizational components that connect to, host data on, or depend
+        on each system going through authorization; confirm at least the major ones
+        are named on the authorization package.
+      '2': Document a joint authorization process that names the participating components,
+        captures each one's risk acknowledgement, and is triggered whenever a new
+        component starts using the system.
+      '3': Maintain a live mapping of system-to-component relationships; require explicit
+        sign-off from every component owning data or traffic on the system before
+        authorization is granted or renewed; flag and resolve discrepancies where
+        one component's posture would invalidate another's.
+    basis: inferred
+  evidence:
+    value: Authorization package(s) listing all participating organizational components,
+      signed acknowledgement or concurrence from each component's authorizing official,
+      mapping of systems to the components that share them, change records showing
+      new components were pulled into existing authorizations.
+    basis: inferred
+  common_myth:
+    value: Assuming a single ATO for one component covers any sibling component that
+      later starts using the same infrastructure — in reality, a component that was
+      never named in the authorization never accepted the residual risk, so the system
+      is effectively unauthorized for that use even though it is authorized for the
+      original one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system in your authorization inventory: which organizational components
+      share it, and can you show each component''s sign-off?'
+    - When a new component started using an already-authorized system last year, how
+      was it added to the existing authorization?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.686900Z'
+  signed_digest: 7206d56b55d54d876e36d76b3c114886dcefe89d0c9b53fa48c500cc4e651cd2
+  interview_seconds: null
+  inherited_from: null

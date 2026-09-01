@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SA-11.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against shipping software whose security behavior was never actually
+      exercised against real attacker input - meaning flaws that only surface under
+      live, adversarial interaction (auth bypasses, injection in unexpected parameter
+      combos, logic flaws in chained requests) slip past because reviews and static
+      checks only reason about code, not running behavior.
+    basis: inferred
+  plain_zh:
+    value: Make the application test itself while it runs, against attacker-shaped
+      inputs, and use what it finds to drive fixes before release.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one IAST tool is wired into a non-production build or QA environment;
+        findings land in a backlog that someone owns.
+      '2': IAST coverage is defined for in-house and third-party components in scope;
+        findings are triaged by severity and linked to remediation tickets with closure
+        dates.
+      '3': IAST runs continuously in CI/CD or staging with known coverage gaps documented;
+        high-severity findings block release; IAST output is correlated with SAST
+        and DAST to reduce blind spots; results feed secure coding feedback to developers.
+    basis: inferred
+  evidence:
+    value: IAST tool configuration and version, list of applications/systems covered
+      and any documented exclusions, sample findings with their remediation tickets
+      and closure evidence, release-gate records showing IAST results were reviewed.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have an IAST tool licensed' as the same as 'we test with IAST'
+      - the tool sitting unused or only enabled once in a demo environment does not
+      produce findings, does not block bad releases, and leaves the exact blind spot
+      the control is meant to close still wide open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which applications are instrumented with the IAST agent today, and which are
+      deliberately excluded and why?
+    - Show me a recent release that was held or changed because of an IAST finding.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.056185Z'
+  signed_digest: 43cad2ee723097a7c896752ffcc911bcc6f29168baefbcf2355bd32390c44dba
+  interview_seconds: null
+  inherited_from: null

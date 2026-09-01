@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:PE-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against physical access that bypasses the people layer - attackers
+      tailgating past a guard, contractors wandering into a locked room, or a single
+      unlocked cage door letting a stranger touch a server. The control exists so
+      the physical boundary cannot be crossed just because a human happens not to
+      be watching that minute, and so that only people whose access is justified and
+      recorded can get inside sensitive facility areas.
+    basis: inferred
+  plain_zh:
+    value: Make sure that entry to every facility area housing information systems
+      is controlled by something other than a human guard's eyes alone, that access
+      is granted only to people with a verified need, and that every entry leaves
+      a trail.
+    basis: inferred
+  practice:
+    value:
+      '1': Each sensitive area (server room, comms room, cage) has at minimum an electronic
+        lock, cipher lock, or badge reader on the door, plus signage saying access
+        is restricted. Visitors are escorted or signed in. A visitor log exists.
+      '2': Access is enforced by badge readers or biometrics tied to an authorization
+        list that names who may enter and why; entry/exit events are logged and time-stamped.
+        Access lists are reviewed when people join, change role, or leave. Lost or
+        unreturned badges are deactivated the same day.
+      '3': Multi-factor physical access (badge plus PIN, or badge plus biometric)
+        is used for the most sensitive zones; logs feed a monitoring system that flags
+        tailgating, propped doors, and after-hours access. Authorization lists are
+        re-attested on a fixed cadence (typically quarterly to semi-annually) by the
+        data or system owner, not by the facility team alone. Failed-entry thresholds
+        and door-forced-open alerts route to security operations.
+    basis: inferred
+  evidence:
+    value: A list of facility areas housing information systems, the physical access
+      control device protecting each (badge reader, cipher lock, biometric), the authorization
+      list per area, badge issuance/deactivation records, visitor logs, and physical
+      access event logs reviewed against the authorization list.
+    basis: inferred
+  common_myth:
+    value: Treating a staffed reception desk as the access control for the server
+      room three floors away. A guard checking IDs at the lobby does not control who
+      walks into a restricted area - the door to that area has its own mechanism,
+      its own list, and its own log, and that is what auditors test.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me to the server room door. Show me the device on it, the list of people
+      allowed in, and the log of who actually entered last week.
+    - Pick a person who left the company in the last 30 days. Show me their badge
+      was deactivated on or before their last day, and confirm they have no successful
+      entry events after that date.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.597172Z'
+  signed_digest: e7bd7fd0636c383462ba6ab76e31ebf05ff88c36c3f98ddce45c21057cdedfd7
+  interview_seconds: null
+  inherited_from: null

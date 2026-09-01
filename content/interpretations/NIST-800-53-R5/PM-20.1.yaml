@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-20.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the organization quietly collecting, sharing, or exposing
+      personal data through public-facing digital surfaces without a stated, enforceable
+      privacy commitment — the failure mode where the privacy notice is missing, outdated,
+      or contradicts what the product actually does, leaving users uninformed and
+      the organization exposed to regulatory action and loss of trust.
+    basis: inferred
+  plain_zh:
+    value: Publish and maintain a clear privacy policy on every website, application,
+      and digital service the organization operates, so users can see what data is
+      collected, how it is used, who it is shared with, and how to exercise their
+      rights.
+    basis: inferred
+  practice:
+    value:
+      '1': A privacy policy exists on the main website and each in-scope application;
+        it states what data is collected, the purposes, retention, and contact information;
+        it is reachable from the homepage or app store listing.
+      '2': The policy is mapped to actual data flows in each digital service; a review
+        cadence and an owner are assigned; material changes (new features, new processors,
+        new jurisdictions) trigger a documented update before going live.
+      '3': Each digital service is enumerated in a registry with its policy version,
+        effective date, and the data it processes; user-facing language is reviewed
+        for clarity; coverage gaps between policy and implementation are tested periodically
+        and remediated before release.
+    basis: inferred
+  evidence:
+    value: Current privacy policy for each in-scope digital surface, a registry linking
+      services to policy versions and effective dates, change records showing updates
+      aligned to feature or processor changes, and proof that the policy is accessible
+      from the public entry points.
+    basis: inferred
+  common_myth:
+    value: Treating the privacy policy as a legal boilerplate that gets copy-pasted
+      across sites and forgotten. The control fails when the policy is generic, never
+      tied to what a specific app or site actually collects, and never refreshed —
+      auditors spot-check whether the policy matches the real behavior on at least
+      one service.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the registry of digital services and the policy version currently published
+      on each.
+    - 'Pick one recent product launch or feature change: when did the privacy policy
+      get updated, and who approved it?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.733097Z'
+  signed_digest: b67b6b71f8b790aeb6bd51fc96714174c249406721d4951ee5fe3bc9801efcf7
+  interview_seconds: null
+  inherited_from: null

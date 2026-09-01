@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SI-19.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents information leakage through the release of data, logs, or artifacts—where
+      the 'release' step is treated as a one-time handoff rather than a controlled
+      process, leading to sensitive data (e.g., credentials, personal data, proprietary
+      code) leaving the environment without review, tracking, or approval.
+    basis: inferred
+  plain_zh:
+    value: It requires that any release of information—whether data exports, logs,
+      reports, or code—be formally reviewed, approved, and tracked to ensure only
+      authorized and necessary content leaves the organization.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what constitutes a 'release' and require manual approval for each
+        instance; maintain a basic log of releases.
+      '2': Implement a formal release process with review by a designated role, automated
+        or manual scanning for sensitive content, and retention of release records.
+      '3': Integrate release controls with data classification and DLP; automatically
+        block unauthorized releases; conduct periodic audits of release logs and adjust
+        policies based on findings.
+    basis: inferred
+  evidence:
+    value: Release policy and procedure document, approval workflow records, release
+      logs with timestamps and requestor/approver, sensitive data scan reports, exception
+      records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because you have a data loss prevention (DLP) tool deployed,
+      all releases are automatically controlled—overlooking that manual releases (e.g.,
+      emailing a report to a partner) are often out of scope and unrecorded.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three releases that were approved—what approval evidence exists
+      for each?
+    - How do you detect and handle a release that bypasses the review process?
+    - What types of information are considered sensitive and trigger mandatory review
+      before release?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.900169Z'
+  signed_digest: 5b208a8e3effcdd269726c09551e2c2a97af0bc79e3643f0baae19e71eaac19c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the failure mode where system and communications protection
+      rules exist only as tribal knowledge, scattered configurations, or one engineer's
+      laptop — so when that person leaves, or when a new system is stood up, nothing
+      consistent is actually enforced and the control family collapses into ad-hoc
+      decisions.
+    basis: inferred
+  plain_zh:
+    value: Write down, approve, publish, and maintain the SC family policy and the
+      procedures that operationalize it, so anyone touching the systems knows the
+      rules and exceptions are tracked.
+    basis: inferred
+  practice:
+    value:
+      '1': A short SC policy exists, references the SC control family's purpose, and
+        is signed by leadership. Procedures for the most common SC tasks (boundary
+        protection, encryption in transit, key handling) are documented even if rough.
+      '2': Procedures cover the full SC catalog the org claims to use, with roles
+        and review cycle. Exceptions to the policy go through a documented approval
+        path, and changes follow a version-controlled lifecycle with a designated
+        owner.
+      '3': Policy and procedures are reviewed on a fixed cadence and on triggering
+        events (new architecture, major incident, regulatory change). Compliance with
+        the procedures is checked, not assumed. Deviations are visible to the owner
+        and feed back into the next revision.
+    basis: inferred
+  evidence:
+    value: Approved SC policy and procedure documents, version history, owner designation,
+      exception register, review records, and evidence that procedures are actually
+      consulted in change and incident work.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by pointing to a general 'Information
+      Security Policy' that mentions SC in one paragraph — without an SC-specific
+      procedure set, an owner, and a review cadence, there is nothing for the rest
+      of the family to anchor to.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who owns the SC policy and procedures, and when were they last reviewed or revised?
+    - Show me an SC-related exception or deviation and walk me through how it was
+      approved and tracked.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.371460Z'
+  signed_digest: 5217b20620b936805b7b20e3ebd180cd604c8ed3a3b2171d6ee5091cb3676235
+  interview_seconds: null
+  inherited_from: null

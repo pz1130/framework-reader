@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-19.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against re-identification and attribute disclosure when aggregated
+      statistics or de-identified datasets are released: aggregate outputs and analytics
+      results can leak individual records, so the privacy guarantee has to be engineered
+      into the math, not assumed from removing names.'
+    basis: inferred
+  plain_zh:
+    value: When you publish or share aggregate statistics, model outputs, or de-identified
+      datasets, add calibrated noise or use mechanisms that mathematically bound what
+      can be learned about any individual record, and document the privacy budget
+      and parameters used.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the datasets and analytics outputs that get shared externally
+        or with broad internal audiences; pick at least one query/output pathway and
+        apply a basic differential privacy mechanism (e.g., Laplace or Gaussian noise)
+        with a documented epsilon.
+      '2': Maintain a privacy budget per dataset or release; track cumulative epsilon
+        across queries; require a short rationale for the chosen privacy/utility trade-off
+        before release.
+      '3': Use composition theorems or auto DP libraries so the bound holds under
+        repeated queries; validate outputs against reconstruction attacks; alert when
+        budget is exhausted; cover model training and inference outputs, not only
+        count queries.
+    basis: inferred
+  evidence:
+    value: Documented list of release pathways that need DP, the mechanism and epsilon
+      chosen per release, cumulative privacy budget tracking, sample outputs with
+      noise parameters, and validation results against reconstruction attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that hashing IDs, dropping names, or aggregating to k>=some threshold
+      already gives differential privacy — those steps change identifiability but
+      do not bound what an adversary can infer from the aggregate, and 'k-anonymity
+      on a column' is frequently mistaken for a DP guarantee.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the epsilon value for the most recent published aggregate and how it
+      was chosen.
+    - How do you stop a downstream analyst from issuing hundreds of small queries
+      that drain the privacy budget and reconstruct records?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR tend to probe whether DP is part of the lawful basis
+      or safeguard for processing personal data, while US practice focuses more on
+      statistical disclosure control for federal datasets; both will ask whether the
+      mechanism is actually implemented rather than just named in a policy.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.911361Z'
+  signed_digest: bf3a2897797063eb9f72790ffe4f9b2d54e38b51af0cd03318d5dcf827b22e6c
+  interview_seconds: null
+  inherited_from: null

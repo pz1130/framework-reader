@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PE-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Stops unauthorized people from wandering into the facility behind a tailgated
+      badge: physical entry points must be actively controlled and observed, because
+      a server room door propped open for five minutes is enough to swap a drive,
+      plug in a drop box, or photograph screens, and the audit trail afterwards tells
+      you nothing.'
+    basis: inferred
+  plain_zh:
+    value: 'Control who physically enters the facility and the sensitive areas inside
+      it: check identity, enforce the access rules you wrote down, and watch the access
+      points so one person cannot sneak in behind another.'
+    basis: inferred
+  practice:
+    value:
+      '1': All entry points have a physical barrier (door, turnstile, mantrap) and
+        at least one working control such as a badge reader, guard, or reception check;
+        visitors are signed in and escorted.
+      '2': Access rules are written down by area (who can enter which zone, when,
+        and with what); badges are individually issued and not shared; entry/exit
+        is logged; failed entries and tailgating are recorded as incidents.
+      '3': Logs are reviewed on a schedule; anomalies trigger response; access lists
+        are re-validated against current need (joiners, movers, leavers); high-security
+        zones use multi-factor physical entry (badge plus PIN/biometric) and anti-tailgating
+        sensors or guards; the control is tested periodically.
+    basis: inferred
+  evidence:
+    value: Physical access policy by zone, visitor sign-in and escort logs, badge
+      issuance and revocation records, entry/exit logs and incident reports from access
+      points, periodic access review records, and any test or audit reports of the
+      physical access control system.
+    basis: inferred
+  common_myth:
+    value: Assuming that having badge readers on the doors satisfies the control.
+      Readers without per-person badge assignment, anti-tailgating enforcement, and
+      active review of the logs do not stop piggybacking and do not detect the contractor
+      whose badge was never revoked after offboarding.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of people who can enter the server room or data center and
+      the date each one was last re-authorised.
+    - How do you detect and respond to tailgating or piggybacking at your main entrances?
+    - Walk me through what happens when an employee or contractor leaves — who removes
+      their badge and on what day?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.593173Z'
+  signed_digest: 73b7edc3c1633603ad92320626907f0226acf63ee996536d7a023163c353a71c
+  interview_seconds: null
+  inherited_from: null

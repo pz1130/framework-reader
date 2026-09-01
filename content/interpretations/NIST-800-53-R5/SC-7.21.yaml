@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-7.21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against lateral movement and blast radius: when one system component
+      is compromised, the attacker should not be able to freely reach every other
+      component. Without explicit isolation, flat networks and shared services turn
+      a single foothold into an organization-wide breach.'
+    basis: inferred
+  plain_zh:
+    value: Separate system components from each other so that a failure or compromise
+      in one does not automatically cascade into the others. Define what must be isolated
+      from what, and make sure the separation is actually enforced in the architecture,
+      not just drawn on a diagram.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical components (e.g., identity stores, payment systems,
+        sensitive data stores, publicly exposed services) and document which other
+        components they must be isolated from. At minimum, publicly accessible systems
+        sit on a different network segment from internal critical systems.
+      '2': 'Isolation is reflected in the actual architecture: separate network segments,
+        distinct trust zones, dedicated service accounts, separate authentication
+        realms where appropriate. Firewalls, security groups, or routing enforce the
+        boundaries, and exceptions are documented and time-bound.'
+      '3': Isolation is tested, not assumed. Periodic validation (e.g., attempting
+        lateral movement, reviewing flow logs, penetration tests) confirms that a
+        compromise of one component cannot reach others it should not reach. Architecture
+        changes trigger re-evaluation of isolation boundaries.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing trust zones and component placement, firewall/routing/security
+      group rules enforcing boundaries, documented exceptions with justification and
+      expiry, and results from tests that confirm isolation actually holds (e.g.,
+      pentest reports, lateral movement tests, flow log reviews).
+    basis: inferred
+  common_myth:
+    value: Assuming a firewall exists between zones, so isolation is done. A firewall
+      with broad any/any rules, or with dozens of untracked pinholes for 'temporary'
+      integrations, provides no isolation - the control is the rule set and its enforcement,
+      not the presence of a device.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one critical system on your architecture diagram. Walk me through what
+      would actually stop a foothold in that system from reaching your identity store
+      or sensitive data tier today.
+    - Show me the exception list for your inter-zone rules. Which ones have been open
+      longer than 90 days, and what is the justification for each?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.716650Z'
+  signed_digest: e81985d2507342a5861737d24d5ecfe81ab87c14252e150e0d1757f27ad08e2d
+  interview_seconds: null
+  inherited_from: null

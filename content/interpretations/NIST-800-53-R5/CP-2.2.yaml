@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CP-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems silently degrading or crashing because growth,
+      peak load, or contingency demand was never modelled — the failure mode is not
+      a missing server, it is an outage that hits when load spikes or a site is lost
+      and there is no documented headroom or fallback path to ride it out.
+    basis: inferred
+  plain_zh:
+    value: Plan processing, storage, network and other capacity needs for normal operations,
+      peak demand, and continuity scenarios; track usage, forecast growth, and decide
+      in advance what you will do when capacity runs short or a site goes down.
+    basis: inferred
+  practice:
+    value:
+      '1': A written capacity plan exists for the main production systems; current
+        utilisation is measured against defined thresholds; somebody knows who to
+        call when a threshold is crossed.
+      '2': Capacity is forecasted against business growth and peak events; thresholds
+        trigger a documented response (scale up, shed load, failover); contingency
+        scenarios (loss of site, surge in transactions) have a documented capacity
+        outcome.
+      '3': Capacity planning runs on a fixed cadence tied to business and architecture
+        change; forecasts vs. actuals are reviewed; load and failover testing prove
+        the plan works; shortfalls trigger architecture change, not just emergency
+        procurement.
+    basis: inferred
+  evidence:
+    value: Capacity plan document, utilisation and trend reports, threshold definitions
+      and recent threshold-breach records, capacity-related decisions in change records,
+      results of load tests or failover tests used to validate headroom.
+    basis: inferred
+  common_myth:
+    value: Treating capacity planning as 'we monitor disk and CPU and buy more when
+      alerts fire' — reactive monitoring without a forecast, without contingency assumptions,
+      and without a tested failover means the first real surprise (Black Friday load,
+      a ransomware-driven site loss, a vendor outage you depend on) is the first time
+      anyone sees the gap.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the forecast for your busiest system twelve months out and the assumption
+      it is built on.
+    - When was the last time a capacity threshold was breached and what did the runbook
+      tell you to do — and did you do it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.931674Z'
+  signed_digest: 1375bd204fa259ed7de4f2ab3304edf7562b079bfcc895843707d7d03d0d43d7
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-8.22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insiders or attackers acting without attribution—where
+      a malicious or careless action in a system component cannot be tied back to
+      a specific actor, time, and decision. Without built-in accountability and traceability,
+      post-incident forensics hits a dead end and deterrence collapses because 'no
+      one can be held accountable for what cannot be traced.'
+    basis: inferred
+  plain_zh:
+    value: When you design or buy system components, build them so that every security-relevant
+      action can be attributed to an identified actor (human or service) with an unambiguous
+      trail. Designers, integrators, and suppliers must not ship components where
+      actions are anonymous, shared, or unlogged by default.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Contractual requirement in procurement: every component must identify
+        actors and record who did what, when, from where. Anonymous, shared, or default-admin
+        accounts are prohibited in delivered components.'
+      '2': Design review checklist requires accountability primitives—unique identities
+        per actor, tamper-resistant logs, timestamping from a trusted source, and
+        logs shipped to a separate collector. Suppliers must document how their components
+        meet this.
+      '3': 'Architecture-level enforcement: components are refused or remediated if
+        they lack per-actor attribution or if logs are writable by the actor being
+        audited. Periodic validation confirms traceability survives upgrades and configuration
+        drift; procurement language is tested, not just signed.'
+    basis: inferred
+  evidence:
+    value: Design and procurement requirements for accountability and traceability,
+      supplier attestations of how their components identify actors and protect logs,
+      sample component configurations showing unique identities and trusted timestamps,
+      and evidence that audit logs are segregated from the actors they record.
+    basis: inferred
+  common_myth:
+    value: Assuming that if logs exist at all, accountability is satisfied. A component
+      where many users share a single service account, where timestamps come from
+      an unsynchronized local clock, or where the same admin can wipe the log they
+      are recorded in, technically 'has logging' but fails the control—because no
+      individual action can actually be tied to an individual actor.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one component you depend on; show me two administrative actions from last
+      quarter and how each is attributed to one named actor.
+    - Can the administrator who performs an action also edit or delete the log entry
+      that records it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.264804Z'
+  signed_digest: 4c32d73ff06f7365cf8b5e49b5773927fbdb0d4c92c26b2250dc2bd049dffced
+  interview_seconds: null
+  inherited_from: null

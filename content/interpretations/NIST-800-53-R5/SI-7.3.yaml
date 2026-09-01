@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against integrity-checking tools being scattered across systems
+      with their own policies, exemptions, and drift — so an attacker who tampers
+      with one host can disable or whitelist its own integrity controls and go unnoticed
+      while the rest of the estate silently disagrees on what 'good' looks like.
+    basis: inferred
+  plain_zh:
+    value: Put the tools that check file and software integrity under a single authority
+      that decides what is monitored, what the baseline is, and how violations are
+      handled — don't let each server, endpoint, or container decide for itself.
+    basis: inferred
+  practice:
+    value:
+      '1': A named tool or platform performs integrity checks across the environment;
+        you can show a list of covered assets and a single place where the baseline
+        and rules are edited.
+      '2': Coverage, baseline, exclusions, and alerting are managed from that central
+        place; changes leave an audit trail; deviations from the baseline trigger
+        a defined response.
+      '3': Integrity coverage is enforced as a standing policy for new assets (no
+        host goes live without the agent or equivalent); tampering with or disabling
+        the integrity tool raises an alert; results feed into the SIEM and incident
+        process with measurable response.
+    basis: inferred
+  evidence:
+    value: Inventory of assets covered by the integrity tool, screenshots or exports
+      showing the central console owns baseline/exclusion/alert configuration, change
+      log for that console, alerting test results when an agent is stopped or its
+      baseline altered.
+    basis: inferred
+  common_myth:
+    value: Assuming deploying an integrity-checking agent on each host satisfies the
+      control — when baseline files, exclusion lists, and alerting thresholds are
+      still edited per-host or per-team, an attacker who lands on one box can quietly
+      whitelist their tampering and the 'central' tool only sees what its own config
+      says to see.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where an exclusion was added or a baseline was changed last month —
+      who did it, and how was it reviewed?
+    - If I stop the integrity agent on a server right now, who gets alerted and how
+      quickly?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.102680Z'
+  signed_digest: 2667374dd20d4fa94edad5a1fa4b7546cf242d8acf6d83d598ce38f36226346d
+  interview_seconds: null
+  inherited_from: null

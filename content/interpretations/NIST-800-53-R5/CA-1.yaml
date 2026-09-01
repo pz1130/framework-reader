@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CA-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents security assessment, authorization, and monitoring activities
+      from happening ad hoc, inconsistently, or not at all – without a formally adopted
+      policy and procedures, there is no authoritative basis for who does what, how
+      often, and with what authority, leaving gaps in coverage and no accountability.
+    basis: inferred
+  plain_zh:
+    value: You need to write down and actually enforce a policy that says how assessment,
+      authorization, and monitoring are done in your organization, plus procedures
+      that describe step by step who does what. It’s not enough to have a vague idea
+      or a one-off process; the policy must be formally approved, communicated, and
+      reviewed on a regular cycle.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written policy document that names the purpose, scope, and roles
+        for assessment, authorization, and monitoring, and it has been approved by
+        someone with authority. Someone is assigned to manage and maintain it.
+      '2': 'The policy is actually used: there are defined procedures (e.g., how to
+        initiate an assessment, how to grant an authorization, how to conduct continuous
+        monitoring) and they are followed in practice. The policy is reviewed and
+        updated on a set schedule (e.g., annually) and changes are communicated to
+        affected teams.'
+      '3': 'The policy and procedures are integrated into the broader security program:
+        they are referenced in other operational documents, compliance checks verify
+        adherence, and there is evidence that the policy has been revised in response
+        to major changes or lessons learned. The review cycle is demonstrable and
+        the policy is easily accessible to all relevant staff.'
+    basis: inferred
+  evidence:
+    value: A formally approved policy and procedures document (or set of documents)
+      that includes roles and responsibilities, plus evidence of dissemination and
+      review—such as distribution emails, training attendance lists, meeting minutes
+      of the review, and version history showing periodic updates.
+    basis: inferred
+  common_myth:
+    value: Teams often think having any kind of security policy document on a shared
+      drive satisfies this control, but the requirement is specifically about assessment,
+      authorization, and monitoring processes—if that content is missing or generic,
+      the control is not met even if other policies exist.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was this policy last reviewed and approved, and by whom?
+    - Show me how a new system gets an authorization to operate – which procedure
+      document covers that step-by-step?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.659679Z'
+  signed_digest: 2002912ea0ac906b24d8eb8c4fc3b8cd0f03c0b1c22f8d46b837df4c1bd77fe8
+  interview_seconds: null
+  inherited_from: null

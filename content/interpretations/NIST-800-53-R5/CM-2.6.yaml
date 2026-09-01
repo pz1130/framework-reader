@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops production code, data, and credentials from leaking into dev/test
+      (and vice versa) by enforcing a hard line between environments where the same
+      application gets built, exercised, and broken on a daily basis.
+    basis: inferred
+  plain_zh:
+    value: Keep development and test environments clearly separated from production
+      — different systems, different data, different access — so that code under construction
+      or hostile probing cannot reach real assets and real data cannot leak into lower-trust
+      labs.
+    basis: inferred
+  practice:
+    value:
+      '1': Production and non-production are on different hostnames/IPs/networks with
+        separate credentials; production data is not copied into dev/test without
+        an explicit, named reason.
+      '2': A written rule forbids production data in dev/test, with a documented exception
+        path (anonymisation, masking, or written approval); the rule is referenced
+        in onboarding and change tickets.
+      '3': Network and IAM controls enforce the boundary technically (no shared service
+        accounts, segmented VLANs, production-only secrets); automated checks detect
+        production-shaped data or credentials landing in dev/test, and exceptions
+        are time-boxed and reviewed.
+    basis: inferred
+  evidence:
+    value: Architecture/network diagrams showing the production-to-non-production
+      boundary, the separation rule and its exception process, copies of anonymisation/masking
+      routines applied to any production-derived data, recent automated or sampled
+      detection results, and exception tickets with approvals and expiry.
+    basis: inferred
+  common_myth:
+    value: Treating a separate AWS account or VLAN tag as proof of separation while
+      developers still reuse the same IAM role, VPN profile, or secrets store across
+      both sides — the network is split but identity is not, so a compromised dev
+      box reaches production. Separation that does not include credentials and service
+      identities is not separation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time production data was needed in a dev or test environment
+      — what was the approval, and how was the data masked?
+    - 'Pick one developer account and one service identity: confirm whether it can
+      reach both production and non-production, and what stops it from doing so.'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.762906Z'
+  signed_digest: 71237a3329943b636ed1440387ff52aed3d4c3ec2c81d4e4a651893766419c09
+  interview_seconds: null
+  inherited_from: null

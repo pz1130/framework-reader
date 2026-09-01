@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Without explicit user-initiated logout, sessions that should have ended
+      keep running under an idle or unattended browser, leaving the next person at
+      the keyboard (visitors, family in remote work, contractors in shared spaces)
+      able to read or act on whatever the previous user had open. The control also
+      forces systems to expose a real logout affordance rather than relying on session
+      timeout alone, which can be hours away.
+    basis: inferred
+  plain_zh:
+    value: Provide a visible, working logout control on every session-bearing application
+      so users can end their session on demand, and make sure logging out actually
+      invalidates server-side access rather than only clearing the screen.
+    basis: inferred
+  practice:
+    value:
+      '1': Every web and remote application has a logout button or command reachable
+        from every authenticated page; clicking it ends the session server-side.
+      '2': Logout behaviour is defined in the session-management standard; developers
+        reuse a tested logout component; access tokens and refresh tokens are revoked
+        on logout; the requirement is checked in design review.
+      '3': Automated tests verify that logout invalidates the server session and tokens,
+        that the back button after logout does not restore authenticated state, and
+        that the logout control is present and accessible on every screen; failures
+        block release.
+    basis: inferred
+  evidence:
+    value: Session-management standard or design document showing the logout requirement,
+      screenshots or UI inventory of the logout control in each in-scope app, automated
+      test results proving server-side invalidation, and a sample of code reviews
+      or design-review notes where logout behaviour was checked.
+    basis: inferred
+  common_myth:
+    value: Treating 'session timeout after N minutes of idle' as a substitute for
+      a user logout button. Timeout is a safety net for users who walk away without
+      logging out; it is not the same control, and the absence of a real logout means
+      sessions routinely outlive the user's intent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three in-scope applications: show me where the logout control is and prove
+      that clicking it invalidates the session on the server.'
+    - After I log out and press the browser back button, what data can I still see?
+      Walk me through the test that proves that.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.000239Z'
+  signed_digest: 16120337096ebfc4bd986062f918a351da01f02b4bc1f08a2ee3b4aa3d0eb867
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SA-15.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against surfacing PII in system internals where it does not need
+      to live — debug logs, exception traces, crash dumps, support bundles, test fixtures
+      — which turns ordinary operational events into privacy incidents, regulatory
+      exposure, and breach-notification obligations that the organization cannot undo
+      after the fact.
+    basis: inferred
+  plain_zh:
+    value: Design and run the system so that PII is collected, stored, processed,
+      and exposed only as much as the business purpose actually requires, and stripped,
+      masked, or replaced where it is not needed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where PII lives in the system (logs, traces, error messages, backups,
+        test data); apply obvious masking or tokenization to the worst leaks; document
+        a baseline data-minimization intent.
+      '2': Coding and logging standards require minimization (no raw PII in logs,
+        masked values in non-production); review checklists include a PII check; production-vs-non-production
+        data handling is governed, not improvised.
+      '3': Automated checks scan commits, logs, and dumps for PII patterns; non-production
+        environments use synthetic or masked data; minimization decisions are documented
+        per data element with rationale; deviations require approval; incidents of
+        accidental PII capture trigger remediation.
+    basis: inferred
+  evidence:
+    value: Data minimization standard or design notes, logging/coding rules, sample
+      logs and traces showing masking, non-production data handling records, scanning/tooling
+      output that catches PII, documented approvals for exceptions, and records of
+      remediation when PII was found where it shouldn't be.
+    basis: inferred
+  common_myth:
+    value: Treating this as a privacy/legal policy item instead of a system-engineering
+      item — assuming a policy statement in the privacy notice satisfies the control,
+      while developers continue to log full request payloads, dump session contents
+      on error, and seed tests with production rows.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a representative error log or stack trace from a production system —
+      what personal data fields appear, and under what rule were they allowed?
+    - How is test and staging data prepared, and how do you confirm it does not contain
+      real PII?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR routinely treat unminimized PII in logs and test
+      data as a compliance gap in its own right, regardless of whether a breach occurred;
+      US-sector practice tends to engage this control most during incidents or breach-notification
+      reviews. The minimization expectation is similar; the moment an auditor challenges
+      it differs.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.071810Z'
+  signed_digest: 9005dd1ec47e043703cfe2153772e2776e470ad3015f3c68bd54b2240696f0ea
+  interview_seconds: null
+  inherited_from: null

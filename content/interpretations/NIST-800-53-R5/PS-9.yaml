@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PS-9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents people from receiving responsibilities and access they are not
+      qualified or authorized to perform. Clear position descriptions establish accountability
+      and support consistent decisions about role assignments, training, access, separation
+      of duties, and performance review.
+    basis: inferred
+  plain_zh:
+    value: Define and document the duties, authority, responsibilities, and required
+      qualifications for each security-relevant position, keep those descriptions
+      current, and use them to manage staffing, training, and access decisions.
+    basis: inferred
+  practice:
+    value:
+      '1': Document current responsibilities, authority, and qualification requirements
+        for each position that has security or operational duties; identify an owner
+        responsible for keeping them current.
+      '2': Review position descriptions on a defined schedule and after material role,
+        process, technology, or regulatory changes; maintain revision history and
+        link role assignments, training, and access decisions to the applicable description.
+      '3': Integrate position descriptions into workforce lifecycle controls so that
+        hiring, promotion, separation of duties, access provisioning, training assignment,
+        succession planning, and performance assessment are checked against documented
+        responsibilities; flag and correct descriptions that no longer match actual
+        work.
+    basis: inferred
+  evidence:
+    value: Approved position descriptions, qualification and authority statements,
+      assignment and access records tied to those descriptions, review and revision
+      history, and records showing that role or access changes triggered updates.
+    basis: inferred
+  common_myth:
+    value: Assuming an organizational chart, job title, or access request is a sufficient
+      position description; without documented duties and authority, reviewers cannot
+      determine whether the person is assigned responsibilities they are qualified
+      or authorized to perform.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which current position description defines the responsibilities and authority
+      for each sampled security role?
+    - Show the last role or organizational change that required a position description
+      to be revised.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.859206Z'
+  signed_digest: 3bba58797037e2c6afd74e6f6304fdccfc2c07c8ba757ed96df6eab398033adf
+  interview_seconds: null
+  inherited_from: null

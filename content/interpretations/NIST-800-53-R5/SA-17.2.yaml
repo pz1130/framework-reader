@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-17.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'secure by checkbox' components — where a vendor stamp,
+      a marketing claim, or a one-time review is treated as proof a building block
+      is actually trustworthy. The real failure is using a component whose internal
+      security mechanics are opaque, tampered, or unfit for the threat, so a flaw
+      inside it becomes a flaw inside your system with no way to detect or argue against
+      it.
+    basis: inferred
+  plain_zh:
+    value: Define, document, and enforce the security requirements that every security-relevant
+      component (hardware, firmware, software, or service) must meet before and during
+      use, so the team can defend why this piece is fit for the role it plays.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a written list of which components are 'security-relevant' and a baseline
+        set of security requirements (integrity, origin, hardening, known-vuln handling)
+        they must meet; reject or compensate when they don't.
+      '2': Requirements are tied to component type and threat model; assessments (vendor
+        evidence, test results, configuration review) are recorded per component,
+        with exceptions approved by risk owners and time-bound.
+      '3': Requirements are enforced through procurement gates, technical verification
+        (hash/signature checks, SBOM review, configuration attestations), continuous
+        monitoring for newly disclosed flaws, and a feedback loop that revises requirements
+        when the threat or architecture changes.
+    basis: inferred
+  evidence:
+    value: Component security requirements document, list of in-scope security-relevant
+      components, assessment records per component (vendor evidence, test/configuration
+      results, exceptions), SBOM or equivalent provenance records, monitoring outputs
+      for newly disclosed flaws, change records when requirements are revised.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor's security certification or 'we follow secure SDLC' marketing
+      as the answer. A certification is one input at one moment; the control asks
+      whether the component actually meets YOUR security-relevant requirements for
+      the role it plays, and whether you can show that today.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one component you tagged as security-relevant and walk me through how you
+      verified it meets your defined requirements — what evidence did you accept,
+      and from whom?
+    - When a new CVE or supply-chain incident hits one of these components, who catches
+      it, how fast, and what is the documented response path?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.111066Z'
+  signed_digest: 4450131a365167245f3f0b2a082ad3d628b39b31e230347dbf6ae1b7f22e294a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-5.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the 'we trust whatever the vendor shipped' failure - default
+      authenticators (passwords, shared secrets, pre-provisioned certificates, recovery
+      keys, bootstrap tokens) arrive in the system unchanged, are widely known or
+      guessable, and become the unguarded front door an attacker walks through first.
+    basis: inferred
+  plain_zh:
+    value: Before any system or device goes live, force a change of all authenticators
+      that came from the vendor or installer - default admin passwords, pre-shared
+      keys, baked-in service accounts, initial certificates - so that what an attacker
+      could read on the internet or in a manual no longer works in your environment.
+    basis: inferred
+  practice:
+    value:
+      '1': Keep a list of every authenticator that could ship with a default value
+        (admin passwords, service accounts, device certs, VPN PSKs, SNMP community
+        strings); ensure each is reset or replaced before the asset enters production.
+      '2': Build a checklist or ticket step into the go-live / commissioning process;
+        the asset cannot move from 'received' to 'in service' until each default authenticator
+        has been changed, with the change recorded and signed off.
+      '3': Automate detection of default-credential use (configuration scans, baseline
+        checks, canary creds) so a default authenticator still in place trips an alert;
+        periodically re-scan the estate because forgotten devices and rebuilds re-introduce
+        defaults.
+    basis: inferred
+  evidence:
+    value: The pre-deployment authenticator-change checklist or runbook, commissioning
+      records showing each default was replaced before production cutover, configuration-scan
+      reports flagging any remaining default credentials, and exception entries for
+      cases where a vendor authenticator cannot be changed (with compensating controls).
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's first-login 'change password' prompt as sufficient
+      - that prompt only covers the interactive human account, not the service accounts,
+      API tokens, device certs, or shared secrets the appliance also shipped with,
+      and many of those are never surfaced in the setup wizard.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one device or application that went live in the last quarter: walk me
+      through how each authenticator it shipped with was changed before it was connected
+      to the network.'
+    - Show me a recent scan that would have caught a default credential still in production
+      - when did it last run and what did it find?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.207200Z'
+  signed_digest: 5df08bf828c3c520ce653fc76096f7d5c074e889e50946af546329a3a22e9d93
+  interview_seconds: null
+  inherited_from: null

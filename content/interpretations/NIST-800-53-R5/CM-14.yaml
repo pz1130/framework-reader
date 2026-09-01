@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the silent insertion of tampered, counterfeit, or backdoored
+      software and firmware into the environment—when a component cannot prove who
+      built it and that it has not been altered since, attackers substitute trusted-looking
+      binaries and gain a foothold that bypasses every perimeter and identity control.
+    basis: inferred
+  plain_zh:
+    value: Make sure that the software and firmware you install—on servers, endpoints,
+      network gear, and anything else—comes from a verified source and has not been
+      changed after the author signed it; reject anything that fails that check, and
+      keep doing so throughout the life of the system.
+    basis: inferred
+  practice:
+    value:
+      '1': Buy from vendors who sign their components and publish hash/signature details;
+        reject media and downloads with no verifiable signature; keep the verification
+        step explicit during staging.
+      '2': Document which component types (OS images, hypervisor, firmware, container
+        base images, third-party libs) must be signed and how signatures are checked
+        before deployment; keep records of failed validations and how they were handled.
+      '3': Build signature and integrity checks into the deployment pipeline and boot
+        process so unsigned or modified components cannot run; track signing keys,
+        rotate them on a schedule, and require re-verification after patches and updates.
+    basis: inferred
+  evidence:
+    value: Signed-component policy or build standard, deployment and boot-time verification
+      configurations, key inventory and rotation records, logs of rejected/unsigned
+      components, and change records showing re-verification after updates.
+    basis: inferred
+  common_myth:
+    value: Assuming that running an antivirus scan or downloading from a vendor portal
+      counts as 'signing'—it does not. Without an explicit cryptographic check against
+      a known key at install or boot time, there is no proof the bytes match the author's,
+      and a counterfeit passes as legitimate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which categories of software and firmware are required to be cryptographically
+      verified before they run, and where is that requirement written?
+    - Show me a recent example of a component that failed signature verification and
+      what happened to it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.751419Z'
+  signed_digest: aa13e419bba03447fd828bdd7d6c23ef675d38538dcb84120fea72ec56d482c0
+  interview_seconds: null
+  inherited_from: null

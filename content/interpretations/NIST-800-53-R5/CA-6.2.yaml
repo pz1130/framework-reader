@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CA-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a partner organization that quietly operates outside the
+      agreed security boundary because no one re-confirmed, in writing, that they
+      still meet the same baseline your own systems do. Without a joint authorization,
+      each side makes its own assumptions, gaps go undetected, and accountability
+      for shared risk becomes a finger-pointing exercise.
+    basis: inferred
+  plain_zh:
+    value: When your system shares data, services, or infrastructure with another
+      organization, get that organization (or a joint review body) to formally accept
+      the same authorization boundary and findings, so neither side can drift into
+      'I thought they were handling that.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify systems that cross organizational boundaries; name a single point
+        of contact on each side; document a shared acknowledgment of who authorized
+        what and against which baseline.
+      '2': Produce a written joint authorization memo or appendix signed by both Authorizing
+        Officials; include each side's residual-risk acceptance, the shared boundary
+        description, and a cadence for refreshing it.
+      '3': Joint authorization is reviewed on a fixed schedule and on trigger events
+        (significant change, incident, re-accreditation); cross-org findings are tracked
+        to closure across both organizations; the agreement is enforceable and rescission
+        is defined.
+    basis: inferred
+  evidence:
+    value: Signed joint authorization document or memorandum referencing the shared
+      system boundary, both Authorizing Officials' signatures, the common baseline
+      used, residual-risk statements, review cadence, and any cross-organization finding
+      closure logs.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor's SOC 2 report or a partner's ATO as a substitute for
+      joint authorization. A third-party report covers the partner's own systems;
+      it does not authorize the boundary *between* your systems and theirs, which
+      is exactly what this control asks you to co-sign.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the document in which both Authorizing Officials formally accepted the
+      shared boundary and each other's residual risk.
+    - Which systems on your boundary have a joint authorization in place, and which
+      ones only rely on the partner's standalone authorization?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.690958Z'
+  signed_digest: de0e096728875e31d750e636f4e4f02afa3087935ef7fd913d1323164b8d92ad
+  interview_seconds: null
+  inherited_from: null

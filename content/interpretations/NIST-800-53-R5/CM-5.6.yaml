@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:CM-5.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against developers being able to push arbitrary code or unreviewed
+      changes directly into production libraries/components via library system privileges,
+      bypassing the change control that CM-5 is supposed to enforce. Without a hard
+      restriction, a compromised developer account or a well-meaning shortcut can
+      land malicious or broken code in a shared library that every downstream product
+      silently inherits.
+    basis: inferred
+  plain_zh:
+    value: Restrict who can make changes to shared/reusable software libraries so
+      that only explicitly authorized roles can, and everyone else cannot push changes
+      that go straight into the library regardless of normal change control.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems count as shared/reusable libraries (internal component
+        repos, shared package feeds, base images, common services). Document the small
+        list of roles allowed to publish to them; everyone else has read-only or developer-branch
+        access.
+      '2': Enforce the restriction in the tool itself — repository/feed permissions
+        block non-authorized users from pushing to the protected branch or publishing
+        a new version. Changes from others must go through a merge/publish step performed
+        by an authorized role, with a ticket reference.
+      '3': Continuous enforcement with alerts on failed publish attempts, periodic
+        access review of the authorized-publishers list, and verified mapping that
+        the technical permissions match the documented policy. Library integrity (signing,
+        checksums, signed commits) is in place so an unauthorized change cannot slip
+        in even via a legitimate account.
+    basis: inferred
+  evidence:
+    value: List of systems treated as shared libraries, documented list of authorized
+      publishers, repository/feed ACLs or equivalent technical restrictions showing
+      non-authorized roles cannot publish, sample change records for library updates
+      showing authorized publisher and approval, and access review records for the
+      publishers list.
+    basis: inferred
+  common_myth:
+    value: Assuming that because CM-5 already requires change approval for the codebase,
+      library systems do not need an extra restriction — in reality, shared libraries
+      are the place where a single unchecked push affects every downstream consumer,
+      so the privilege to push must be narrower than the privilege to commit ordinary
+      code.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the technical control that stops a regular developer from publishing
+      directly to the shared library without going through the authorized publisher.
+    - Who is currently on the authorized-publishers list, when was it last reviewed,
+      and how do you remove someone who changes role?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.818151Z'
+  signed_digest: 809a1d59fb7ca2dd567dcc472f34a9b2b5fd9b8f846f0d0fc21c3b65a03b2204
+  interview_seconds: null
+  inherited_from: null

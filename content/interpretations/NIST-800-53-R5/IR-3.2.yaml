@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IR-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It defends against the incident response plan drifting away from the rest
+      of the organization's continuity, disaster recovery, and emergency operations,
+      so that during a real incident responders follow one playbook while business
+      recovery, communications, and crisis management follow another, leaving critical
+      gaps unfilled when seconds matter.
+    basis: inferred
+  plain_zh:
+    value: Make sure the incident response procedures are aligned with the related
+      plans (business continuity, disaster recovery, emergency management, crisis
+      communications, and similar) so roles, hand-offs, escalation paths, and priorities
+      do not contradict each other during an incident.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which related plans exist (BCP, DR, emergency ops, crisis comms)
+        and have a documented mapping of overlapping roles, triggers, and hand-offs
+        in the IR plan.
+      '2': Joint reviews of the IR plan and related plans happen at defined intervals;
+        shared roles, escalation thresholds, and hand-off points are reconciled and
+        the changes recorded.
+      '3': IR plan and related plans are tested together (tabletop or exercise) with
+        cross-team participation, lessons learned feed back into all plans, and conflicts
+        are resolved and version-tracked before sign-off.
+    basis: inferred
+  evidence:
+    value: Cross-reference matrix between the IR plan and related plans, joint review
+      minutes or change logs, integrated exercise or test reports covering multiple
+      plans, and reconciliation records showing how conflicts were resolved.
+    basis: inferred
+  common_myth:
+    value: Treating the IR plan as the only incident playbook while the BCP/DR plan
+      says something different about who declares a disaster, who talks to the press,
+      or when to switch from containment to recovery, so on the day of a major incident
+      two contradictory playbooks run in parallel.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where your IR plan and BCP/DR plan agree on who declares a major event
+      and when hand-off happens.
+    - When was the last time the IR plan and a related plan were exercised or reviewed
+      together, and what changed in either plan as a result?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.271712Z'
+  signed_digest: d9e88be4d5aaf5f66acb8908c81ef903d6f36dfb0566cb5834d41fa05d1d3ebf
+  interview_seconds: null
+  inherited_from: null

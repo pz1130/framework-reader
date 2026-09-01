@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AU-6.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker moving between cyber and physical domains without
+      detection, where one channel raises a quiet signal that only becomes obvious
+      when joined with the other. If physical access logs and digital audit logs are
+      kept in separate silos, a tailgating badge, a propped door, or an after-hours
+      server-room entry next to an unexpected configuration change reads as two unrelated
+      events instead of one intrusion.
+    basis: inferred
+  plain_zh:
+    value: Make sure the system that reviews audit logs also correlates them with
+      physical security monitoring (badges, cameras, door sensors, guard logs) so
+      that a digital anomaly and a physical anomaly near the same asset, person, and
+      time are investigated together rather than separately.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the assets that sit in both worlds (data centers, comms rooms,
+        badge-controlled offices with critical systems). For those, define which physical-monitoring
+        events must be reviewed alongside which digital audit events when something
+        looks off.
+      '2': 'Have a written correlation procedure: triggers (e.g., server-room door
+        opened outside shift, badge used by terminated employee, motion after hours)
+        feed into the same review queue as the corresponding host, network, or application
+        log events; reviewers are assigned and responses are recorded.'
+      '3': The correlation runs automatically or near-real-time across the SIEM and
+        the physical PSIM/ACS platform, with shared identity (badge-to-account) and
+        shared asset/time fields; alerts are triaged by a single team, post-incident
+        reviews reconstruct the full cyber+physical timeline, and gaps found in correlation
+        drive changes to either logging source.
+    basis: inferred
+  evidence:
+    value: Asset list shared between IT and physical security, written correlation
+      procedure, sample incident tickets that show cyber and physical events joined,
+      SIEM/PSIM integration or correlation rule inventory, and joint post-incident
+      review notes.
+    basis: inferred
+  common_myth:
+    value: Treating AU-6 (audit review) and physical access control as two separate
+      compliance checkboxes run by different teams, each closing their own tickets,
+      so a badge anomaly and a log anomaly on the same rack never meet in the same
+      investigation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one incident where a physical event and a digital event were reviewed
+      together rather than in separate silos.
+    - How are badge-to-account and asset-to-location identities linked so the SIEM
+      and the access-control system can join events on the same person and place?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.613228Z'
+  signed_digest: 0cc01d7c144d0fd9ae21806804d1d54ff45c9e92243bd60e738dcec69111b602
+  interview_seconds: null
+  inherited_from: null

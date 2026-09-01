@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-38
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an adversary who has compromised one operational island
+      (segment, enclave, container) from there reaching the rest of the mission or
+      enterprise by simply walking or pivoting through internal connections. Without
+      operationally separating how components fail and how duties are split, a single
+      foothold becomes total exposure.
+    basis: inferred
+  plain_zh:
+    value: 'Design, build, and run the system so that distinct parts (by mission,
+      organization, or criticality) are kept apart in operations: separate failure
+      domains, separate decision paths, separate storage paths, and physical/logical
+      separation where needed. An issue in one part must not silently cascade into
+      another.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which parts of the system must stay operationally separate (mission-critical
+        vs. supporting, user vs. management, customer data vs. internal). Sketch this
+        separation on a diagram and reflect it in network zones and access rules.
+      '2': Document the separation rationale, the boundaries between enclaves/segments,
+        and the rules governing cross-boundary data and control flows. Apply physical
+        separation where logical separation alone is not justified by the risk of
+        the component.
+      '3': 'Treat separation as a property of the architecture, verified by review
+        and tests: failure of one module does not impair others; management paths
+        and data paths are isolated; critical components have their own crypto, storage,
+        and power boundary; changes are reviewed against the separation model before
+        deployment.'
+    basis: inferred
+  evidence:
+    value: Architecture and segmentation diagrams, separation policy, cross-boundary
+      interface inventory, test or failure-simulation results showing blast-radius
+      limits, design-review records that reference the separation model.
+    basis: inferred
+  common_myth:
+    value: Assuming firewalls and VLANs alone satisfy 'separation.' Firewall rules
+      without separate failure domains, management planes, and storage paths still
+      let one compromised host affect others through shared infrastructure (DNS, backup,
+      hypervisor, identity) when those are not deliberately isolated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one concrete failure scenario in the last year and how the architecture
+      limited its blast radius to a defined part.
+    - Where does management traffic for a critical component live, and is it on a
+      path an enterprise user can ever reach?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.569480Z'
+  signed_digest: 0b9c1f6431d0961388a342e6311528d75c5e47e9fd02e74ef30109edd2aa5fdb
+  interview_seconds: null
+  inherited_from: null

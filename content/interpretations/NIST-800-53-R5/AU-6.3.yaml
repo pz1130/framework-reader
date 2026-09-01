@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AU-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against blind spots that appear when each log source is reviewed
+      in isolation — an attack chain that spans identity, endpoint, and network logs
+      looks routine in any single repository but is only visible once the sources
+      are stitched together. Without correlation, attackers move laterally for weeks
+      inside the noise of individual tools.
+    basis: inferred
+  plain_zh:
+    value: Don't review audit logs one source at a time. Analyze them as a combined,
+      correlated set across repositories so that events from different systems (e.g.,
+      a failed login, a new process, an outbound connection) can be tied together
+      into a single picture of what actually happened, and reviewed by people who
+      can act on it.
+    basis: inferred
+  practice:
+    value:
+      '1': Logs from critical sources (authentication, endpoint, network boundary,
+        critical applications) are collected centrally; an analyst can pull a timeline
+        that spans more than one source for a given user, host, or ticket.
+      '2': Correlation rules or queries exist for the scenarios that matter (e.g.,
+        impossible travel, privilege escalation followed by data access, malware detection
+        followed by outbound traffic); alerts from correlation are routed to a defined
+        owner with a documented response step.
+      '3': Correlation coverage is mapped against known attack patterns and reviewed
+        after incidents; gaps surfaced by real cases feed back into new rules; the
+        team can demonstrate a multi-source investigation end-to-end with timestamps
+        preserved across repositories.
+    basis: inferred
+  evidence:
+    value: Central log architecture diagram showing repository boundaries, documented
+      correlation rules or detection use cases with owners, alert-to-response records
+      for at least one cross-source event, and after-action notes from incidents showing
+      what the correlated view surfaced that a single-source view would have missed.
+    basis: inferred
+  common_myth:
+    value: Treating 'SIEM is deployed' as proof of correlation. A SIEM that ingests
+      logs but only runs per-source detections, or whose correlation content has never
+      been tuned since go-live, gives the same blind spots as separate tools — you
+      have a single pane of glass with no joined-up analysis behind it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one of the correlation rules that fires most often — walk me through the
+      sources it joins and what triggers it across them.
+    - Show me the last incident where correlation across repositories changed the
+      response compared to what any single log source would have shown.
+    - Which log repositories are not currently covered by correlation, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.601971Z'
+  signed_digest: 233abea87b03739149067836272d3bfe2a2265428fe1ae73950f11ef1625387b
+  interview_seconds: null
+  inherited_from: null

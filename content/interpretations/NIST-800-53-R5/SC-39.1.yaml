@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-39.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers pivoting laterally or escalating privilege by
+      exploiting a single hardware boundary - if sensitive workloads share processors,
+      memory controllers, or firmware roots with untrusted or lower-classification
+      systems, a compromise on one side crosses the boundary you thought existed.
+    basis: inferred
+  plain_zh:
+    value: Keep different sensitivity or trust levels physically on different hardware
+      (separate systems, not just separate VMs on the same box), so a compromise of
+      one cannot ride the underlying hardware into the other.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify workloads that must not share hardware (e.g., classified processing,
+        payment handling, sensitive crypto, OT/IT boundary); put them on dedicated
+        physical machines or hardware-isolated appliances.
+      '2': Document the separation in architecture diagrams and asset inventory; high-risk
+        systems live on hardware not shared with lower-trust tenants; review the list
+        when systems move or new ones onboard.
+      '3': Enforce separation at provisioning (no co-tenancy for designated systems),
+        verify with hardware attestation or asset tagging, and test by attempting
+        to detect cross-boundary signals or shared firmware paths.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing physical separation, asset inventory tying
+      sensitive systems to dedicated hardware, procurement/provisioning records demonstrating
+      non-shared hardware for designated workloads, and periodic verification that
+      boundary systems have not been migrated onto shared platforms.
+    basis: inferred
+  common_myth:
+    value: Assuming virtual machines or containers on the same physical host count
+      as separation - the hypervisor, firmware, and hardware bus are still a shared
+      trust root, so a VM escape or firmware implant crosses the boundary you thought
+      you had.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which workloads are required to be physically separated, and where in the architecture
+      is that enforced?
+    - Show the asset record for a designated sensitive system - what physical host
+      does it run on, and what else shares that host?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.573216Z'
+  signed_digest: f6e63faec1a7caf55da23bc6f1ab180ebaf43cb26f96f3cba1be38a40215f45f
+  interview_seconds: null
+  inherited_from: null

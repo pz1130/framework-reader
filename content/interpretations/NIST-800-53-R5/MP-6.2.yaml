@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:MP-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents sanitized equipment being released back into production or to
+      a new user still carrying residual data because nobody validated that the wipe,
+      purge, or destruction actually worked on that specific device. Without this
+      check, the 'we sanitized it' answer is taken on faith, and a single failed disk
+      exposes whatever was on it.
+    basis: inferred
+  plain_zh:
+    value: After sanitizing media (wipe, degauss, shred, etc.), verify on that actual
+      device or a representative sample that the action succeeded before the media
+      leaves controlled handling. Test, record the result, and act on failures.
+    basis: inferred
+  practice:
+    value:
+      '1': After each sanitization action, run a basic verification on the device
+        (e.g., read-back, manufacturer tool confirmation) and record pass/fail before
+        the asset is released.
+      '2': Define which verification method applies to each sanitization technique
+        and media type; track verification records alongside sanitization records;
+        reject and re-process any media that fails.
+      '3': Sample-verify a percentage of sanitized media with an independent tool,
+        trend verification failures by tool/technician/media type, and trigger process
+        changes when failure rates move; tie verification to release approval so unverified
+        media cannot physically exit.
+    basis: inferred
+  evidence:
+    value: Sanitization records paired with verification results (tool used, method,
+      pass/fail, technician, date, media identifier), sampling logs for independent
+      re-checks, and disposal/release records showing verification preceded release.
+    basis: inferred
+  common_myth:
+    value: Assuming the sanitization tool's built-in 'success' log is the same as
+      independent verification - the tool that wiped the drive should not be the only
+      thing confirming the wipe worked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a sanitized drive from the last batch and the record proving it was
+      verified after sanitization.
+    - What did you do the last time a verification failed, and where is that documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.482475Z'
+  signed_digest: 9618761b7b4fa321c114c9e9ffd02ceefd0974f6c7854f4c8884ffb75c0fc6dc
+  interview_seconds: null
+  inherited_from: null

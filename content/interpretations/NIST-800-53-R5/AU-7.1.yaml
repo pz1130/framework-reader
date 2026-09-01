@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AU-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where audit logs are produced, stored,
+      and never examined, or examined only after an incident is already in progress.
+      Without automatic processing of audit records, organisations drown in volume,
+      miss correlated attack patterns, and react hours or days after the attacker
+      has already moved laterally or exfiltrated data.
+    basis: inferred
+  plain_zh:
+    value: Make sure audit records are not just collected but automatically parsed,
+      correlated, and flagged so that real signals surface without a human having
+      to read every line.
+    basis: inferred
+  practice:
+    value:
+      '1': A tool or script runs across log sources to filter, normalise, and raise
+        basic alerts on known-bad signatures (failed logins, privileged use, configuration
+        changes).
+      '2': Logs are correlated across sources; alert thresholds and correlation rules
+        are documented; on-call staff receive notifications and have a written runbook
+        for triage.
+      '3': Detection content is tuned against environment baselines, false positives
+        are tracked and reduced over time, missed detections feed back into new rules,
+        and response metrics (mean time to detect, mean time to acknowledge) are measured
+        and reviewed.
+    basis: inferred
+  evidence:
+    value: Architecture or process diagram showing log flow from collection to automated
+      analysis, list of correlation/alert rules with owners, alert handling runbooks,
+      and metrics or review notes demonstrating that alerts are acted on and tuned.
+    basis: inferred
+  common_myth:
+    value: Assuming that because logs are shipped to a SIEM the control is met. A
+      SIEM sitting idle with default correlation packs that nobody tunes, reviews,
+      or triages produces no audit value - the control is whether the information
+      in the logs is actually turned into timely signal.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent alert that fired from automated analysis - how was it detected,
+      who acknowledged it, and what was the outcome?
+    - Which log sources are not yet covered by automated processing, and what is the
+      plan to bring them in?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.628642Z'
+  signed_digest: 1ae50b24a6d74d311e3bdf38060b36dd97f59a66edb03637ede3fa4b45146110
+  interview_seconds: null
+  inherited_from: null

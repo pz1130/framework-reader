@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MP-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against media that silently carries classified or otherwise restricted
+      material through decommissioning, reuse, or disposal paths - if you don't explicitly
+      account for classified-bearing media, it gets treated like ordinary IT gear
+      and leaves the organization in a sanitized-looking but actually exposed state.
+    basis: inferred
+  plain_zh:
+    value: Identify and track any media that holds, or has held, classified information,
+      and make sure its sanitization, reuse, or destruction follows the rules that
+      apply to classified material - not the normal media-handling process.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a separate inventory or flag for media known to contain classified
+        data, distinct from the general media inventory; marking follows classification
+        conventions.
+      '2': Sanitization, reuse, or destruction of classified-bearing media follows
+        the specific classified-information rules (e.g., NSA/CSS-approved methods,
+        oversight by cleared personnel); the chain of custody to disposition is logged.
+      '3': The classified-media inventory is reconciled against the general media
+        inventory on a schedule; deviations trigger investigation; the entire path
+        from receipt or creation through destruction is auditable, with cleared personnel
+        and oversight throughout.
+    basis: inferred
+  evidence:
+    value: Classified-media inventory or flagging mechanism, records showing the classified-specific
+      sanitization or destruction method applied to each item, chain-of-custody logs
+      from receipt to disposal, and any oversight or witness sign-offs.
+    basis: inferred
+  common_myth:
+    value: Assuming that if media is wiped through the normal sanitization process,
+      no separate classification handling is needed. The misconception is treating
+      classified data as just 'sensitive data' - the rules, methods, and oversight
+      are different and traceable proof that classified-specific handling occurred
+      is what the control asks for.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the list of media items that were or are classified, and the disposition
+      record for each.
+    - Which sanitization or destruction method was used for classified-bearing media,
+      and who witnessed or certified it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.513523Z'
+  signed_digest: 3f18e9c1edba691533f8e9a4971d5c307fe020dc92f2ff9e832aaee5f8c57941
+  interview_seconds: null
+  inherited_from: null

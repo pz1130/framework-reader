@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:AU-6.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the risk that audit logs are collected but never analyzed in combination,
+      so that a series of low-severity events that individually look normal, but together
+      form a multi-stage attack, go unnoticed until it is too late.
+    basis: inferred
+  plain_zh:
+    value: It asks you to not just look at each audit record in isolation, but to
+      combine them from multiple sources (system logs, network logs, application logs,
+      physical access) to detect attack patterns that cross systems or span time.
+    basis: inferred
+  practice:
+    value:
+      '1': You periodically review audit logs for known indicators and manually correlate
+        at least a few key sources when investigating an incident.
+      '2': You have a documented process and tooling to integrate audit records from
+        all major sources into a central repository, and you perform scheduled analysis
+        that looks for cross-system patterns (e.g., same user, same timeframe).
+      '3': Analysis is automated where possible, you maintain a catalog of attack
+        patterns and kill chains, you have defined triggers for deeper investigation,
+        and you regularly test your ability to detect a multi-stage attack via integrated
+        analysis (e.g., tabletop or red team).
+    basis: inferred
+  evidence:
+    value: A description of your log aggregation and analysis approach, the list of
+      all log sources feeding the central analysis system, sample reports from integrated
+      analyses (e.g., a correlation rule that fired on a cross-system pattern), and
+      records of investigations that used integrated data.
+    basis: inferred
+  common_myth:
+    value: Assuming that simply having a SIEM tool means you are doing integrated
+      analysis — but if you never tune correlation rules or manually pivot across
+      sources, the tool is just a storage box.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an example where you discovered an incident by correlating logs from
+      two or more different sources.
+    - Which log sources are not yet integrated into your central analysis, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.609415Z'
+  signed_digest: 3c718f0137107a5a51f58937bcf0817008ad038163592812aa4ed1e59f0f8248
+  interview_seconds: null
+  inherited_from: null

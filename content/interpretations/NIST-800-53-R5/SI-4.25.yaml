@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-4.25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we watch every packet and never miss anything' becoming
+      the design goal - which produces alert floods, blind spots on encrypted/internal
+      flows, and a SOC that drowns instead of detects. The real risk is missing the
+      signals that matter because the monitoring architecture itself is unfit.
+    basis: inferred
+  plain_zh:
+    value: 'Tune the network monitoring setup so it actually catches what matters:
+      filter known-good traffic, focus sensors on the segments that carry real risk,
+      and feed analysts something they can act on rather than raw noise.'
+    basis: inferred
+  practice:
+    value:
+      '1': Sensors placed on known-critical boundaries (perimeter, key internal segments,
+        cloud egress); baseline of normal volume/protocol mix written down; obvious
+        noise filtered at the collector.
+      '2': Tuning rules documented and owned; periodic review of what is being filtered
+        versus what triggered alerts; coverage gaps (encrypted flows, OT, remote users)
+        explicitly listed with a decision per gap.
+      '3': Tuning driven by threat-informed content (e.g., ATT&CK-aligned detections)
+        and by feedback from incidents; metrics on alert fidelity and detection latency
+        tracked; architecture reviewed against network changes before they go live.
+    basis: inferred
+  evidence:
+    value: Sensor placement diagram, documented tuning rules with owners and review
+      dates, coverage-gap register with rationale, alert-fidelity/detection-latency
+      metrics, records showing tuning changes after incidents or network changes.
+    basis: inferred
+  common_myth:
+    value: Assuming more sensors and more data automatically means better detection.
+      Without deliberate filtering, placement choices, and tuning reviews, you mostly
+      get high-volume, low-signal output and a SOC that cannot find the real event
+      in the noise.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which network segments are not covered by your sensors, and what is the documented
+      rationale for each gap?
+    - Show me the last time tuning rules were changed - what triggered the change
+      and who approved it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.041420Z'
+  signed_digest: babe93a81a78ffb4ad9e9ea55ced6bba15ff10173fcf59618e4ab4f22a909341
+  interview_seconds: null
+  inherited_from: null

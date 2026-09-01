@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-5.16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: This control guards against the issuance of authentication credentials
+      (tokens, smart cards, biometrics, etc.) being hijacked, intercepted, or given
+      to the wrong person, which would let an attacker impersonate a legitimate user
+      or a legitimate user impersonate another without detection.
+    basis: inferred
+  plain_zh:
+    value: Credentials must be handed over in a way that verifies the recipient is
+      who they claim to be and that the credential isn't lost or stolen during delivery.
+      This means using in-person identity proofing or an approved trusted external
+      party, rather than just mailing tokens to a work email or leaving them on a
+      desk.
+    basis: inferred
+  practice:
+    value:
+      '1': Credentials are only issued after the user proves identity in person (e.g.,
+        with a government ID) or through a pre-approved trusted external party. There
+        is a record of who received what and when.
+      '2': The issuance process is documented, staff are trained on identity verification,
+        and there is a chain-of-custody log for credentials from creation to hand-off.
+        Lost or returned credentials are tracked and revoked.
+      '3': Issuance processes are regularly audited, spot-checks match issued credentials
+        to actual recipients, and there are tamper-evident packaging or sealed delivery
+        mechanisms. Issuance is integrated with the identity lifecycle (revocation
+        on separation).
+    basis: inferred
+  evidence:
+    value: A written issuance policy, proof of identity checklists, signed chain-of-custody
+      records, logs of who received which credential and when, training records for
+      issuing staff, and evidence of periodic audits (e.g., random verification of
+      recipients).
+    basis: inferred
+  common_myth:
+    value: The common misconception is that mailing a token via tracked courier to
+      a work address counts as trusted issuance. Tracked delivery proves it arrived
+      at a location, not that the person receiving it is the authorized user — a work
+      mailroom can hand it to the wrong office mate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you verify that the person picking up a token in person is the account
+      holder? Show me the ID-check procedure.
+    - What happens if a credential is returned or never picked up? How is it revoked
+      or destroyed? Show me a recent case.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.192852Z'
+  signed_digest: d49bf2d394eebe561eefb1456854dfb9819b3059796af00827e946bb7df19112
+  interview_seconds: null
+  inherited_from: null

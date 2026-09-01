@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against shared low-level components silently coupling systems
+      that should be independent: when many subsystems ride on the same mechanism,
+      a flaw, compromise, or failure in that one mechanism cascades into all of them
+      at once, and a single covert channel lets one tenant reach another''s data.'
+    basis: inferred
+  plain_zh:
+    value: In designs that rely on shared mechanisms (a common OS kernel, a shared
+      auth token, a shared container runtime, a shared hypervisor, a shared cache,
+      a shared key), make sure the mechanism itself does not become the path that
+      lets one component affect another, and where isolation matters, do not reuse
+      it across trust boundaries.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the shared mechanisms on which multiple security-relevant components
+        depend (kernel, runtime, credential store, crypto library, virtualization
+        layer, shared service bus) and document where they sit across trust boundaries.
+      '2': Architect critical subsystems so that their security-enforcing mechanisms
+        are not the only thing separating them from others; define what isolation
+        properties each shared mechanism must provide and record them in the design.
+      '3': Enforce isolation in code and configuration (separate processes, separate
+        identities, separate keys, separate hardware roots where warranted), test
+        that a fault or compromise in one consumer cannot reach another through the
+        shared mechanism, and require reuse decisions to be re-justified on every
+        design change.
+    basis: inferred
+  evidence:
+    value: Design documents and architecture diagrams that list shared mechanisms
+      per component, isolation requirements and the rationale for accepting any reuse,
+      code or configuration evidence that the mechanisms are actually separated (distinct
+      identities, distinct keys, distinct privilege domains), and test or review records
+      showing the isolation was verified.
+    basis: inferred
+  common_myth:
+    value: Assuming that because every microservice runs in its own container, the
+      underlying kernel, orchestrator, and shared credentials are no longer a common
+      mechanism. They are - and that is exactly the layer a multi-tenant breach pivots
+      through.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which mechanisms in this design are shared across more than one security-relevant
+      component, and why is that reuse acceptable?
+    - Show me the test or review that proves a compromise of one component cannot
+      reach another through a shared mechanism.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.252691Z'
+  signed_digest: d48bfd9367fca0182cfc540fb8d4d911cd39c8f81d9ca8c3ce5f505d2fc920d9
+  interview_seconds: null
+  inherited_from: null

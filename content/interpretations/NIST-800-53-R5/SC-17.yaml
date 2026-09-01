@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against forged or untrusted certificates being accepted as legitimate
+      — when certificates (especially those used for authentication, signing, or transport)
+      are issued, accepted, or trusted without enforceable policy and verification,
+      attackers can impersonate systems, intercept traffic, or sign malicious payloads
+      that the organisation's own infrastructure will trust.
+    basis: inferred
+  plain_zh:
+    value: Issue and accept digital certificates only according to a written policy,
+      through approved authorities, with verifiable identity and constraints, and
+      reject anything that does not meet the rules.
+    basis: inferred
+  practice:
+    value:
+      '1': A written certificate policy exists naming which CA(s) are trusted, what
+        certificate types may be issued for what purposes, and who approves issuance;
+        the org rejects self-signed or unknown-CA certificates by default in critical
+        systems.
+      '2': Certificate requests go through a documented enrollment process tied to
+        verified identity (system owner, hostname, purpose); issued certs carry the
+        right key usage, EKU, and SAN constraints; private keys are generated and
+        stored under defined controls; a register of issued certs is kept.
+      '3': Issuance is automated through an approved CA with policy enforcement at
+        issuance time; certificate lifecycle (renewal, revocation, expiry) is monitored;
+        revocation is enforced (OCSP/CRL) by relying parties; mis-issuance and rogue
+        certificates are detected and revoked quickly; cross-signed and externally
+        issued certs are reviewed against the same policy.
+    basis: inferred
+  evidence:
+    value: Certificate policy document, approved CA inventory and trust store configurations,
+      certificate issuance and enrollment records, sample certificates with their
+      constraint fields, revocation handling records, and configuration showing enforcement
+      of trust anchors and rejection of unapproved issuers.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying certificates from a public CA is the same as having
+      a PKI policy — public CA issuance for public-facing services does not cover
+      internal systems, machine identities, code signing, or device auth, and does
+      not by itself stop an attacker who obtains a cert for a misspelled name or a
+      compromised internal CA from being trusted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which internal CAs are trusted on your systems, and who approved adding each
+      trust anchor?
+    - Show me a certificate issued in the last quarter for a critical system — how
+      was the identity verified and what constraints does it carry?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.420871Z'
+  signed_digest: 2506cc8fbcac07c6ba9ff935851788a9ae2fade57cb0cb20ec042c052bac8d1c
+  interview_seconds: null
+  inherited_from: null

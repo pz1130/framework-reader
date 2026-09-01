@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:MA-3.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents unpatched or improperly updated software from becoming a silent
+      attack vector, especially when maintenance staff or vendors introduce changes
+      that bypass normal change management.
+    basis: inferred
+  plain_zh:
+    value: You must apply software updates and security patches to maintenance tools
+      and equipment in a controlled, documented way — not just when you remember,
+      but as a routine part of maintenance.
+    basis: inferred
+  practice:
+    value:
+      '1': You have a list of all maintenance tools and equipment that run software;
+        you apply critical patches within a defined timeframe.
+      '2': You have a written procedure for patch management of maintenance tools,
+        including testing patches in a non-production environment and recording all
+        updates.
+      '3': You integrate maintenance tool patching with your organization-wide vulnerability
+        management; automated scanning confirms patch levels; exceptions require formal
+        risk acceptance and are reviewed periodically.
+    basis: inferred
+  evidence:
+    value: A current inventory of maintenance tools/equipment, a patch management
+      procedure, records of patch application (date, version, approver), test results,
+      exception approvals, and periodic vulnerability scan reports covering these
+      systems.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'maintenance tools' only means laptops or diagnostic gear
+      — in practice, this control also covers embedded software on test equipment,
+      programmable logic controllers, and even the management interfaces on network
+      gear used during maintenance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how you track which maintenance tools have known unpatched vulnerabilities.
+    - What is your process for patching a diagnostic tool that is only used occasionally?
+    - How do you verify that a patch did not break the tool's functionality before
+      deploying it into production maintenance?
+    - Who approves exceptions when a maintenance tool cannot be patched immediately?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.400382Z'
+  signed_digest: 358f4f15dabd856ea78cdfe563a92298365825ddb2deba8de895d0352a2a01a7
+  interview_seconds: null
+  inherited_from: null

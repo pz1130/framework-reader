@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-9.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against outsourced systems silently re-encrypting or re-keying
+      your data under keys you cannot reach, escrow, or revoke — leaving you unable
+      to recover data, meet legal hold, or break the relationship on your own terms.
+    basis: inferred
+  plain_zh:
+    value: When you use external systems or services that handle cryptographic keys,
+      those keys must remain under your organization's control — including escrow
+      and recovery — not just the provider's, and not buried in their default tooling.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify every external system or service that manages keys on your behalf;
+        document which keys are provider-controlled and require that any keys protecting
+        your data be escrowed, recoverable, and revocable by you on contract exit.
+      '2': Codify in contracts the right to obtain key copies, escrow materials, and
+        recovery procedures; verify on a schedule that you can actually retrieve the
+        escrow and decrypt representative data without provider assistance.
+      '3': Maintain an independent key-escrow or HSM-backed recovery path that does
+        not depend on the same provider being cooperative; test a real recovery and
+        a real exit before the contract pressure is real; track key lifecycle events
+        across the provider boundary.
+    basis: inferred
+  evidence:
+    value: Inventory of external systems handling keys, contract clauses on key ownership/escrow/recovery,
+      escrow materials and proof of independent recovery testing, documented key lifecycle
+      and revocation procedures for the outsourced boundary.
+    basis: inferred
+  common_myth:
+    value: Assuming the provider's default key management (e.g. their KMS, their HSM,
+      their bring-your-own-key checkbox) satisfies 'organization-controlled' just
+      because the encryption is on. Without escrow you can recover from and a tested
+      exit procedure, the provider — not you — controls the key at the moment that
+      matters.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If this provider disappeared tomorrow, show me how you would decrypt your production
+      data within the recovery window your business requires.
+    - Where is the escrow copy stored, who holds the release credentials, and when
+      was the last time you actually retrieved and decrypted a sample?
+    basis: inferred
+  regional_note:
+    value: European auditors, working under GDPR accountability and sectoral supervisory
+      expectations, tend to push harder on demonstrable ability to hand data over
+      to authorities or to a successor processor on demand, which forces the key-control
+      question into the open. US practice often accepts provider SOC reports and contractual
+      reps without an independent recovery proof. The control text is the same; the
+      depth of proof is not.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.360308Z'
+  signed_digest: 2c042dcb9d2621a8df4da467b16902159c2801ce11d0cdb4477085515c888077
+  interview_seconds: null
+  inherited_from: null

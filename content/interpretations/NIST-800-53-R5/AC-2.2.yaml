@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents temporary and emergency accounts from becoming unmanaged pathways
+      into systems. Without automated provisioning, expiration, disablement, and monitoring,
+      credentials may remain active beyond their authorized use, escape periodic access
+      reviews, or be used without attribution.
+    basis: inferred
+  plain_zh:
+    value: Automatically create time-limited or emergency access according to approved
+      rules, tightly monitor its use, and automatically disable or remove it when
+      the authorized period ends or a trigger occurs. Emergency access must be traceable
+      to an individual and require follow-up review.
+    basis: inferred
+  practice:
+    value:
+      '1': Define approved purposes, approval requirements, permitted privileges,
+        and maximum duration for temporary and emergency accounts; require a named
+        user, business justification, and expiration time before activation.
+      '2': Configure the identity system to apply expiration, notification, disablement,
+        and deletion rules automatically; retain request, approval, activation, usage,
+        and closure records and review emergency-account activity after each use.
+      '3': Integrate temporary and emergency account lifecycles with the standard
+        identity workflow and security monitoring; automatically detect overdue, orphaned,
+        anomalous, or shared accounts, alert when exceptions occur, and verify that
+        expired credentials cannot be reactivated without a new authorization.
+    basis: inferred
+  evidence:
+    value: Approved temporary and emergency account procedures; automated identity-system
+      rules for approval, activation, monitoring, notification, expiration, disablement,
+      and removal; sample request and approval records; account usage logs; post-use
+      review records; and evidence that expired accounts were disabled or removed
+      on time.
+    basis: inferred
+  common_myth:
+    value: Assuming a shared emergency account with a long-lived password is acceptable
+      because it is needed only during outages; this loses individual accountability
+      and defeats automatic expiration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems automatically disable or remove temporary and emergency accounts
+      at the end of their approved period?
+    - Show the most recent emergency-account activation and the records linking that
+      access to a named person, approval, usage, and post-use review.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.123150Z'
+  signed_digest: 26ec8f08a0082d9b62e92a9e6551dac1dedc75804edf8678b0e1cf99e4222c6d
+  interview_seconds: null
+  inherited_from: null

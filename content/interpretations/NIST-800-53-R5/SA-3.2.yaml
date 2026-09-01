@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops production data from being reused in development, testing, or training
+      environments where a breach, misuse, or accidental exposure reveals customer
+      or mission data to people who do not need it - and where those environments
+      usually have weaker access control, logging, and patching than production.
+    basis: inferred
+  plain_zh:
+    value: Do not let developers, testers, or models train on real customer or operational
+      data unless the data is deliberately sanitized, masked, or replaced; if a real-data
+      exception is justified, control and account for it.
+    basis: inferred
+  practice:
+    value:
+      '1': Policy forbids using live production data in lower environments; a documented
+        exception path exists; new data requests default to synthetic or masked data.
+      '2': Masking or generation is a defined step in the environment provisioning
+        workflow; exceptions require written approval with a named business reason,
+        expiry, and access list; production data lifted into non-production is tracked.
+      '3': Masking/generation is automated and verified by checks (e.g., schema-aware
+        masking, PII detectors on samples); exceptions are time-bound and revoked
+        automatically; lower environments are isolated and logged separately; periodic
+        audits confirm no live records slipped through.
+    basis: inferred
+  evidence:
+    value: Data-handling policy covering non-production use, masking/generation procedures,
+      approved exceptions with scope and expiry, sample verification that masked datasets
+      no longer contain live identifiers, and access logs for any environment granted
+      an exception.
+    basis: inferred
+  common_myth:
+    value: Assuming that scrubbing PII fields once, or running a one-off script, is
+      the same as a control - the real failure is when partial masking, copy-paste
+      from a production dump, or restored backups sneak live records back into a test
+      or training set without anyone noticing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last approved exception that used real production data - what was
+      the scope and when did it expire?
+    - How do you verify that a masked test dataset no longer contains live customer
+      identifiers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.161926Z'
+  signed_digest: 31ad1e58c6209218816281b3e8f7ed4d76624a7d7b1280c6f6d20a98b107d3f0
+  interview_seconds: null
+  inherited_from: null

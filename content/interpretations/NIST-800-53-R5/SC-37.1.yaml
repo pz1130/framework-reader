@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-37.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Ensures that sensitive data cannot be read or tampered with by an adversary
+      positioned between sender and receiver, and that it cannot be silently redirected
+      to an unintended destination after leaving a trusted system.
+    basis: inferred
+  plain_zh:
+    value: Whenever sensitive information leaves a trusted boundary, it must be protected
+      by cryptographic mechanisms that provide confidentiality, integrity, and verified
+      destination, not just by network controls inside the system.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive data leaving the trusted boundary (SFTP, signed APIs, encrypted
+        email) is transmitted via channels with confidentiality and integrity; basic
+        certificate validation is enforced.
+      '2': Defined crypto standards specify approved algorithms, key lengths, and
+        certificate validation; transfers carry binding identifiers (DN, SNI, endpoint)
+        the receiver can verify; deviations require exception approval.
+      '3': Cryptographic protection is verified end-to-end, destination binding is
+        enforced, key/cert lifecycle is monitored, exceptions are time-bound, and
+        weak or unverified channels are automatically blocked at egress.
+    basis: inferred
+  evidence:
+    value: Crypto standards for data in transit, inventory of egress channels, certificate
+      validation configuration, exception register with expiry, evidence of weak-protocol
+      blocking at egress, sample header/payload inspection confirming destination
+      binding.
+    basis: inferred
+  common_myth:
+    value: Assuming that terminating TLS at a load balancer, WAF, or API gateway means
+      the transmission is protected end-to-end. The segment between the inspection
+      appliance and the backend, or between two internal services over a flat network,
+      can still be cleartext and still be the attacker's interception point. The control
+      applies to every hop that crosses a boundary, not just to the one the user sees.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick an egress channel carrying sensitive data from the list and show where
+      confidentiality and integrity are enforced on each hop, not only on the edge
+      connection.
+    - Show the most recent exception where a sensitive transfer went out without the
+      standard crypto, and when it expires.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.565677Z'
+  signed_digest: 992f345f9f3f6e1629c7645eafae660e0e174e1a54367c398f857dfaf6d16d7b
+  interview_seconds: null
+  inherited_from: null

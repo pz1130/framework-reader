@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-10.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents audit records from being re-labeled after the fact—without binding
+      the producer's identity into the record, an insider or attacker can rewrite
+      who did what and the audit trail becomes untrustworthy for incident reconstruction
+      and accountability.
+    basis: inferred
+  plain_zh:
+    value: Make sure the audit record cannot be repackaged as if a different system
+      or user produced it, so the trail's authorship survives tampering attempts.
+    basis: inferred
+  practice:
+    value:
+      '1': Audit logs include the source identifier (host, service, user) and at least
+        one integrity check such as a signed log batch, append-only destination, or
+        one-way hash chain.
+      '2': Identity binding is enforced at the log collector or forwarder, not at
+        the source, and source-to-log mapping is documented per system; collectors
+        reject records lacking a valid producer identity.
+      '3': Cryptographic binding (e.g., digital signatures or HMACs over each record
+        with a key held separately from the producer) is verified end-to-end, and
+        tamper attempts trigger alerts; the binding key is rotated under change control
+        and the verification is periodically tested.
+    basis: inferred
+  evidence:
+    value: Architecture showing how producer-to-record identity binding is enforced,
+      signed/append-only log configuration, collector rejection rules, alert definitions
+      for binding failures, and recent test results of the binding itself.
+    basis: inferred
+  common_myth:
+    value: Assuming a forwarder stamp or the hostname inside the log line is enough—those
+      fields are written by the same host producing the record and can be edited by
+      anyone with write access to that host. Real binding requires a value the producer
+      cannot unilaterally rewrite, applied outside its trust boundary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show how a record from system A cannot be re-sent by an attacker as if it came
+      from system B.
+    - Who holds the key used to bind producer identity, and can the producing host
+      change it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.504296Z'
+  signed_digest: c871461561f6a75ab51f5f251b1f48b57869a10947465b2260d6b6155161128c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-4.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against information being exfiltrated, repackaged, or downgraded
+      by stripping or rewriting its metadata after the policy decision has already
+      been made - attackers hide origin, recipient, sensitivity, or content type in
+      headers/tags, and legitimate users accidentally leak data because the system
+      never inspects what rides along with the payload.
+    basis: inferred
+  plain_zh:
+    value: At every enforcement point, look at the metadata attached to the information
+      (not just the file body), and make sure it still reflects the original labels,
+      origin, and intended recipients before allowing the flow to continue.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the enforcement points that handle information in motion and at
+        rest; confirm whether metadata is part of the inspection or only the payload
+        is checked.
+      '2': Document which metadata fields (classification, originator, recipients,
+        handling caveats, content type) must survive each transfer and how mismatches
+        are handled; keep examples of acceptable and blocked flows.
+      '3': Enforce metadata integrity and consistency in the toolchain (DLP, gateways,
+        mail, API brokers) - block or quarantine flows where metadata is missing,
+        altered, or inconsistent with the body, and alert when rewriting is needed
+        for legitimate reasons.
+    basis: inferred
+  evidence:
+    value: Policy or procedure stating which metadata fields are checked at which
+      enforcement points, configuration of inspection tools showing metadata is in
+      scope, sample logs of blocked or rewritten flows, and any exception records.
+    basis: inferred
+  common_myth:
+    value: Assuming DLP or a firewall inspecting the payload covers this control -
+      the file content may be fine while headers, classification tags, or routing
+      fields still expose sensitive context that the policy decision was supposed
+      to consider.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one recent flow that was blocked: which metadata field triggered the block,
+      and where in the logs is that recorded?'
+    - When you transcribe or re-tag a document, how do you prevent the new metadata
+      from downgrading the original classification?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.357309Z'
+  signed_digest: 70f116fcf31d024c1dc4f766cce164157c2dd952613be00a535d3d2fb2c2d8aa
+  interview_seconds: null
+  inherited_from: null

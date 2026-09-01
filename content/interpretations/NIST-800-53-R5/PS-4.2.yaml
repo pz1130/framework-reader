@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PS-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents personnel actions (terminations, transfers, access revocations)
+      from being silently dropped, forgotten, or blocked when the person who should
+      action them is unavailable or attempts to bypass — which leaves ex-employees
+      with live access or stalls mandatory security steps.
+    basis: inferred
+  plain_zh:
+    value: When someone in the termination/transfer chain is absent, leaves suddenly,
+      or tries to suppress a personnel-security action, the system must still trigger
+      and complete the required action automatically — not rely on a person remembering.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the personnel-security actions (e.g., disable access, recover
+        equipment, revoke badges) that depend on a human initiating them; document
+        which ones can fail when the trigger person is unavailable.
+      '2': Define automated triggers tied to authoritative HR events (termination
+        date, role change) and route them to responsible systems (IAM, MDM, physical
+        access) with audit logs showing what fired and when.
+      '3': Integrate HR as the system of record feeding identity, asset, and facility
+        systems; verify that auto-actions actually executed (not just queued); test
+        the path on departures that happen while the manager or HR contact is unreachable;
+        alert on auto-action failures.
+    basis: inferred
+  evidence:
+    value: Mapping of personnel-security actions to their triggering systems, automated
+      workflow definitions or playbooks, integration logs showing HR-event-driven
+      execution, sample termination cases with timestamps proving the auto-action
+      ran without manual nudge, and failure/alert handling records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because HR 'sends a termination email' the control is met
+      — the email is still a human handoff that gets missed when the manager is on
+      leave, the HR rep quits the same day, or the IT ticket is closed by the wrong
+      team without doing the work.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a termination in the last 90 days where the manager was on PTO or left
+      the company — did the access-disable and asset-recovery actions still execute
+      on time and by what automated trigger?
+    - Which HR event drives the IAM disable, and what happens if the HRIS feed is
+      down for a day — how do you know no ex-employee retained access?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors under FedRAMP/DoD-style assessments probe deeply into whether
+      HR-system-of-record integration is real (not a manual ticket); EU auditors under
+      GDPR tend to ask the same questions framed around Article 32 accountability
+      and demonstrable access removal on the termination date.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.836158Z'
+  signed_digest: 8c6d7d7a2a8d80d432ffa7351fc618cf43e9b013f1a561df914c196144983d98
+  interview_seconds: null
+  inherited_from: null

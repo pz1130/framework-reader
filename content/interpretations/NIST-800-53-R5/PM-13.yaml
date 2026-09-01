@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PM-13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a workforce that drifts away from being able to actually
+      run the security and privacy program — people leave, skills go stale, hiring
+      lags, and the org discovers during an incident or audit that nobody is qualified
+      for the roles on the org chart.
+    basis: inferred
+  plain_zh:
+    value: Make sure you can name the security and privacy roles you need, staff them
+      with people who have (or can get) the right competence, and keep that workforce
+      planned and funded over time — not improvised after a vacancy or an audit finding.
+    basis: inferred
+  practice:
+    value:
+      '1': List the security and privacy roles you claim to have (CISO, analysts,
+        DPO, engineers, auditors, ops), assign responsibilities, and ensure the people
+        in those seats exist and have a baseline qualification.
+      '2': 'Maintain a workforce plan tied to the program: required competencies per
+        role, current vs. needed coverage, hiring/contracting pipeline, and training
+        for new responsibilities after tool or regulation changes.'
+      '3': Plan is reviewed on a cadence; gaps have funded remediation actions (recruit,
+        contract, train, restructure); departures trigger succession actions; competency
+        is verified, not assumed, before someone is placed in a role.
+    basis: inferred
+  evidence:
+    value: Role definitions with assigned responsibilities, workforce plan showing
+      current vs. required competencies, staffing/backfill records, training and qualification
+      records per role, succession or contingency assignments for key roles.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by publishing an org chart with security
+      titles on it. An org chart shows who reports to whom; it does not show whether
+      anyone in those seats can actually perform the control work, and it does nothing
+      when the only person with a specialty quits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the security and privacy roles on your org chart, where do you record the
+      required competencies and the evidence each person meets them?
+    - What is your process when a person in a key security or privacy role leaves
+      — how is the work covered until the seat is filled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.701558Z'
+  signed_digest: 89b74cb4458dc4d53bcf11845ee4103df12556acae671b030124eacc893f8fe0
+  interview_seconds: null
+  inherited_from: null

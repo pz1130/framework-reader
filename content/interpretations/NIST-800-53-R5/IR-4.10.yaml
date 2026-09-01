@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IR-4.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident-response playbooks that stop at your own perimeter
+      while an attacker pivots through a supplier or managed-service provider — your
+      team isolates hosts, blocks IPs, revokes creds, but cannot reach the upstream
+      system that is actually hosting the malicious code or forwarding the traffic,
+      so containment stalls and evidence gets logged on someone else's clock.
+    basis: inferred
+  plain_zh:
+    value: When you respond to an incident, you must coordinate the technical actions
+      with the suppliers, service providers, and partners who actually run the affected
+      systems or carry the traffic, so containment, eradication, and evidence collection
+      do not get blocked by a hand-off you never set up.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the suppliers and providers in the incident path (hosting, MSSP,
+        CDN, identity, code vendors); have a current on-call contact and a shared
+        ticket channel for each.
+      '2': 'Document per-supplier coordination steps inside the IR plan: who isolates,
+        who rotates keys, who preserves logs, what SLA applies; rehearse at least
+        once a year with a tabletop that crosses an organizational boundary.'
+      '3': Embed joint run-books and pre-authorized actions in contracts; instrument
+        shared detection so a signal crossing the boundary triggers the partner's
+        playbook automatically; review coordination after every real incident that
+        touched a third party and update the playbook.
+    basis: inferred
+  evidence:
+    value: IR plan sections naming each in-scope supplier with coordination roles
+      and SLAs, signed joint run-books or contractual clauses allowing pre-approved
+      actions, tabletop and post-incident reports that exercise a third-party touchpoint,
+      shared channel or ticketing access logs with the provider.
+    basis: inferred
+  common_myth:
+    value: Treating the MSSP contract and a shared Slack channel as proof of coordination
+      — the contract usually only says they will help, not what your people are authorized
+      to ask them to do under time pressure, and a chat channel is not a runbook when
+      the clock is running.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick the supplier most likely to appear in your next incident and walk me through
+      the first hour of coordination: who calls whom, who isolates, who preserves
+      logs.'
+    - Show me a real or exercised incident where the response crossed a supplier boundary
+      — what was pre-approved versus improvised?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.282965Z'
+  signed_digest: 776e2353309b4fb3880ca7e095e178225c1d19cbc8eea947fbff0c9c0d06eb81
+  interview_seconds: null
+  inherited_from: null

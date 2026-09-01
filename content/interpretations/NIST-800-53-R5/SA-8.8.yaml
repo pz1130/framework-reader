@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-8.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems being shipped with hard-coded assumptions that
+      rot the moment the threat changes - the failure where a control, protocol, or
+      mitigation becomes a permanent fixture because removing or replacing it was
+      never designed for, so it ages into a vulnerability nobody can safely decommission.
+    basis: inferred
+  plain_zh:
+    value: Engineer the system so that security mechanisms themselves can be swapped,
+      tightened, or replaced over time without ripping the system down or breaking
+      it. Do not bake one-off fixes into the design and call it done.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the security mechanisms most likely to need replacement (crypto,
+        auth, patching model, hardening) and document where in the architecture they
+        sit so they are not entangled with business logic.
+      '2': Design reviews explicitly check that mitigations are modular - a finding,
+        vendor deprecation, or algorithm sunset triggers a known replacement path
+        with documented owners.
+      '3': Crypto and key material follow current standards and have a planned migration
+        path; security-relevant modules are versioned and updatable in production
+        without architectural rework; past design decisions are revisited against
+        current threat models.
+    basis: inferred
+  evidence:
+    value: Architecture artifacts showing modular boundaries for security mechanisms,
+      design-review records that flag non-evolvable mitigations, crypto/algorithm
+      inventory with sunset dates, records of past security-component replacements
+      or planned migrations.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we use crypto-agility libraries so we are fine' - crypto
+      agility is one piece, but evolvability also covers auth schemes, isolation boundaries,
+      hardening baselines, and any mitigation bolted on during incident response that
+      nobody marked as replaceable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one deprecated algorithm or control you removed in the last two years -
+      show the design that made removal possible without a major rewrite.
+    - Where in the architecture is a security mechanism entangled with business logic
+      in a way that would block replacement?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.332000Z'
+  signed_digest: 20a78928622caad1d9a6f06787b9f56a47013f5008e181cd760242d7594eef5d
+  interview_seconds: null
+  inherited_from: null

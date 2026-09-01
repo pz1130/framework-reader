@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PE-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against physical access to wired network outlets by anyone who
+      walks into an unmanned or briefly-unattended area (visitors, contractors, cleaning
+      staff, tailgaters who slip past the lobby). A live Ethernet jack in an empty
+      conference room or vacant cubicle is an unprotected entry point into the internal
+      network, and locking it is the cheapest, most targeted control against that
+      specific exposure.
+    basis: inferred
+  plain_zh:
+    value: Physically secure every network wall plate, floor box, and exposed data
+      jack so a person cannot plug into your internal network from a public, visitor-accessible,
+      or unattended space without authorization.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify all reachable network outlets in non-secure areas (lobbies, meeting
+        rooms, vacant desks, public corridors) and either disable the switch port
+        or install a locking cover that requires a key/tool to open.
+      '2': Maintain a register of outlet locations and their status (active/locked/disabled);
+        have a documented process for issuing keys and for revoking them; include
+        outlets in the physical walk-through.
+      '3': Bind outlet activation to the same access-control lifecycle as badges (auto-disable
+        on contractor offboarding, periodic sweep of unused ports, alarm or alert
+        on previously-locked covers being removed or on unexpected link-up at a known-locked
+        location).
+    basis: inferred
+  evidence:
+    value: Outlet register or floor-plan annotation showing protected locations, sample
+      of locking devices or deactivated switch ports, key-management records, and
+      physical walk-through or audit log showing the controls are in place and being
+      maintained.
+    basis: inferred
+  common_myth:
+    value: Treating this as obsolete because the office is 'wireless now' - copper
+      outlets in empty rooms, training rooms, and former-employee cubes stay live
+      for years and are still a direct LAN foothold for an attacker who can sit down
+      for ten minutes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how many network outlets sit in areas a visitor can reach without an
+      escort, and which ones are protected.
+    - When a contractor leaves or a floor is re-seated, what happens to the outlets
+      that used to serve them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.604559Z'
+  signed_digest: 4ef1dc1e2590fc0867bb593a1b21eb9bcdf682c9655b191e1a3e353a8639cecc
+  interview_seconds: null
+  inherited_from: null

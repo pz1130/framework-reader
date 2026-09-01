@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-17.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents developers from building security behavior into a component that
+      nobody can verify, prove, or even describe — when policy is implicit in code,
+      reviewers cannot demonstrate the component enforces what the system security
+      plan claims it enforces, and a single code change silently weakens the boundary.
+    basis: inferred
+  plain_zh:
+    value: When your security policy is too complex to be expressed as a formal, machine-checkable
+      set of rules, the component implementing it cannot be objectively shown to enforce
+      that policy; the control says stop, simplify the policy until it can be written
+      down precisely and then prove the component matches.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components are supposed to enforce a security policy that
+        is too tangled to state clearly; for each, write down in plain English what
+        policy it claims to enforce and where the implementation lives.
+      '2': For the high-value components, express the policy as a formal model — a
+        precise set of rules a reviewer can read and check — and walk through one
+        or two scenarios by hand to show the component does what the model says.
+      '3': Use automated tools (model checkers, theorem provers, or formal verification
+        tooling) to mechanically prove the implementation satisfies the model against
+        all inputs, and re-run the proof whenever the component or model changes.
+    basis: inferred
+  evidence:
+    value: The formal policy model document itself, the mapping between model rules
+      and the code or configuration that implements them, verification or model-checking
+      results, and change records showing the proof was rerun after modifications.
+    basis: inferred
+  common_myth:
+    value: Believing that complex security mechanisms with overlapping rules and exceptions
+      can be audited by reading the code and trusting the developer's walkthrough;
+      auditors cannot accept 'trust us, it works' when the policy itself is not expressible
+      in unambiguous terms, and informal review of tangled logic always misses the
+      case the attacker will find.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which components in scope rely on a policy too complex to be stated as a formal
+      model, and what is the plan or deadline to simplify them?
+    - Show me the formal model for one such component and the latest proof or check
+      that the implementation satisfies it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.106946Z'
+  signed_digest: b01c835bcc1da4b0e204ca81f5a42bc661b831ec9011ba312621d957bb8eb8cd
+  interview_seconds: null
+  inherited_from: null

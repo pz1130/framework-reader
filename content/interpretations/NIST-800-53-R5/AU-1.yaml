@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AU-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Guard against audit and accountability being treated as an ad-hoc or undocumented
+      practice - if AU policies and procedures are missing, outdated, or never communicated,
+      then logging, monitoring, and accountability controls decay silently and evidence
+      becomes unreliable precisely when it is needed most (incident response, legal
+      discovery, regulatory examination).
+    basis: inferred
+  plain_zh:
+    value: Develop, document, approve, publish, and maintain an audit and accountability
+      policy along with the procedures that put it into practice; review and update
+      them on a defined cadence and whenever significant changes occur; make sure
+      people who must follow them actually know they exist.
+    basis: inferred
+  practice:
+    value:
+      '1': A written AU policy exists, is signed by an accountable owner, and is reachable
+        by the people who run or rely on logging. Procedures cover at least log generation,
+        protection, retention, and review for the most critical systems.
+      '2': Policy and procedures are mapped to a current control baseline; reviews
+        happen on a defined schedule with version history; training or attestation
+        records show the relevant teams have read them; exceptions are logged and
+        time-bound.
+      '3': Policy and procedures are integrated into the system lifecycle (new systems
+        inherit the AU baseline before go-live), changes to AU tooling or regulation
+        trigger a documented revision, and effectiveness is periodically tested -
+        e.g., by tracing a sample event from generation through review to closure.
+    basis: inferred
+  evidence:
+    value: Approved AU policy and supporting procedures with version dates and owner
+      signature; review/approval history; dissemination or training records; change
+      log showing updates triggered by events or schedule; sample of a current system's
+      AU configuration that traces back to the policy requirements.
+    basis: inferred
+  common_myth:
+    value: Treating an inherited or copy-pasted 'audit policy' template as sufficient
+      because the document exists - even when it has no owner, no review date, no
+      procedures beneath it, and no one on the engineering side can name what it requires
+      of them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the named owner of the AU policy, and when was it last reviewed or revised?
+    - 'Pick a system in scope: show me where its current logging and review settings
+      come from - which line of the policy or procedure drives each one?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.496790Z'
+  signed_digest: 5d9d2700d6137ca256b98620a45863501c425a706c83c2a6c77f3f86a7ac2d46
+  interview_seconds: null
+  inherited_from: null

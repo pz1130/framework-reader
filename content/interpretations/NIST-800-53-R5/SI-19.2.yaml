@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SI-19.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protect the integrity and retrievability of data after it leaves operational
+      systems—without a deliberate archive process, retired data is either lost, silently
+      corrupted, or quietly kept on forgotten shares where no one knows who can still
+      read it.
+    basis: inferred
+  plain_zh:
+    value: Decide how long retired data is kept, store it so it stays intact and unchanged,
+      index it so you can actually find it again, and make sure only the people who
+      still need it can read it.
+    basis: inferred
+  practice:
+    value:
+      '1': A written policy names what gets archived, for how long, and where; retired
+        records are moved off production systems to a separate location.
+      '2': Archives use a format and process that block silent modification (e.g.,
+        write-once storage, integrity checksums, signed manifests) and are indexed
+        for retrieval; access is restricted to named roles.
+      '3': Archive integrity is verified on a schedule, restores from archive are
+        tested against retention and hold requirements, and legal/regulatory retention
+        rules drive both retention length and defensible deletion.
+    basis: inferred
+  evidence:
+    value: Archive policy and retention schedule, integrity-verification logs, sample
+      restore tests, access lists for archive stores, records of legal holds and disposition
+      decisions.
+    basis: inferred
+  common_myth:
+    value: Assuming that turning off a production system or moving files to a cheaper
+      disk 'is' archiving—without write protection, checksums, indexing, and tested
+      retrieval, the data is just stranded and may already be altered.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a record type from your retention schedule and show me the last time it
+      was actually retrieved from archive, including who approved the restore.
+    - How do you prove an archived file has not been modified since it was written
+      there?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.896736Z'
+  signed_digest: 35b8ad8329e81034c5e634043340e025545812d80a01ad376c91e89d4ebd5345
+  interview_seconds: null
+  inherited_from: null

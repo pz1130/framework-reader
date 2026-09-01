@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PS-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Safeguards against the failure mode where personnel granted access to specially
+      protected classified information are not held to binding, documented non-disclosure
+      obligations—turning each cleared insider into an untraceable leak path the moment
+      they walk out the door with the data in their head.
+    basis: inferred
+  plain_zh:
+    value: Identify which categories of classified information need special handling,
+      then make every person who gets access sign a binding access agreement that
+      covers the protection rules, the consequences of breaking them, and survives
+      the end of the employment relationship.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which classified information categories in scope need special
+        protection beyond standard classification rules. Have a signed access agreement
+        on file before anyone is granted access.
+      '2': The agreement spells out the specific safeguards, the duration of the obligation
+        after separation, and the legal or administrative consequences of violation.
+        Annual or event-driven re-acknowledgement is tracked.
+      '3': Agreements are reviewed when protection requirements change; access is
+        revoked or downgraded when an agreement lapses; termination, transfer, or
+        re-classification events trigger a check that the obligation still binds the
+        individual; refusals to sign block access automatically.
+    basis: inferred
+  evidence:
+    value: List of information categories requiring special protection, signed access
+      agreements on file, evidence of re-acknowledgement on change of classification
+      or role, and records showing access was denied or revoked when an agreement
+      was missing or refused.
+    basis: inferred
+  common_myth:
+    value: Treating the SF-312 or equivalent national classified-information non-disclosure
+      agreement as sufficient blanket coverage for every specially protected category.
+      A generic NDA does not encode category-specific handling rules (e.g., compartmented,
+      SCI, NATO, restricted-but-sensitive sub-categories) and does not survive scope
+      changes—teams discover this only when an auditor asks for the agreement that
+      covers the specific category the insider actually saw.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For which specific classified information categories do you require a signed
+      access agreement beyond the baseline non-disclosure, and where is that list
+      maintained?
+    - Show me a person who holds access to one of those categories today and the signed
+      agreement on file—what does it obligate them to after they leave?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.843674Z'
+  signed_digest: b63bdc6c7f36a9c8ab623e1de2996a17026f84d8cdbdf7535ed6e286197887a7
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:RA-5.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the blind spot where vulnerability scan results pile up
+      but no one spots the signal underneath — a new wave of flaws appearing across
+      many assets, one product becoming a chronic offender, or attackers actively
+      exploiting a class of bug. Manual review of raw scanner output misses all of
+      this until something breaks.
+    basis: inferred
+  plain_zh:
+    value: Use tools and processes to crunch vulnerability scan results over time,
+      so you can see trends, recurring patterns, and outliers across systems — not
+      just today's snapshot — and act on them.
+    basis: inferred
+  practice:
+    value:
+      '1': Scans run on a schedule; results land in one place someone actually looks
+        at weekly; obvious repeats (same CVE on many hosts) are flagged by hand.
+      '2': Trend reports are produced automatically — counts by severity, by asset,
+        by CVE family — and reviewed at a standing meeting; deviations from baseline
+        trigger a documented response.
+      '3': Trend analytics feed risk prioritization and remediation SLAs; correlated
+        with threat intel and exploit activity; exceptions and aging vulnerabilities
+        are tracked against thresholds with escalation when breached.
+    basis: inferred
+  evidence:
+    value: Scan tool configuration showing scheduled automated scans, the trend/dashboard
+      output or report, documented review cadence with meeting minutes, examples of
+      trend-driven prioritization or escalation decisions.
+    basis: inferred
+  common_myth:
+    value: Assuming running the scanner on a schedule satisfies this control — the
+      scanner alone produces a list, not a trend. Without aggregation, baselining,
+      and someone actually reviewing the deltas, recurring systemic exposures go unnoticed
+      until exploited.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last trend report from your vulnerability data and walk through
+      what action it drove.
+    - If the same CVE class keeps reappearing across scans on different assets, how
+      does that pattern surface to whoever owns remediation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.972320Z'
+  signed_digest: 5f10bbd4b955a57440cc2a476062dd5abbe289fc2c9541a545c74ccf9fa46fd2
+  interview_seconds: null
+  inherited_from: null

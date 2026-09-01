@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-7.25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defend against attackers reaching an unclassified national security system
+      through connections that have bypassed required protection, authorization, or
+      boundary enforcement. Without a deliberate connection policy and enforced boundary
+      controls, seemingly legitimate connectivity can expose internal services and
+      sensitive information to unauthorized access or lateral movement.
+    basis: inferred
+  plain_zh:
+    value: Allow only explicitly approved connections to the unclassified national
+      security system, enforce those boundaries, and continuously verify that unapproved
+      paths are detected and removed.
+    basis: inferred
+  practice:
+    value:
+      '1': Document approved connection points and permitted communications for the
+        system; restrict all other ingress and egress; designate responsible personnel
+        and establish a process for authorizing exceptions.
+      '2': Maintain connection approval records, boundary diagrams, firewall and routing
+        rules, and periodic reviews; test that unauthorized connection attempts are
+        blocked and promptly investigated.
+      '3': Integrate connection policy with system architecture and change management;
+        use centrally managed boundary enforcement, continuous monitoring, automated
+        alerts for unexpected paths, and documented removal of obsolete or unauthorized
+        connections.
+    basis: inferred
+  evidence:
+    value: Approved connection policy, system boundary diagrams, connection authorization
+      records, firewall and router configurations, change tickets, monitoring alerts,
+      review results, and remediation records for unauthorized paths.
+    basis: inferred
+  common_myth:
+    value: Assuming a firewall rule that permits only required ports is sufficient,
+      while overlooking backup paths, remote access, vendor links, temporary connections,
+      or undocumented routes into the system.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which inbound and outbound connections to the system are approved, and where
+      are the corresponding authorization records?
+    - How do you identify and remove undocumented or obsolete connection paths?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.732427Z'
+  signed_digest: cf7b4a76ba842e6347f40ec01f75002bbf13508ad22eda1595364e1a225729e1
+  interview_seconds: null
+  inherited_from: null

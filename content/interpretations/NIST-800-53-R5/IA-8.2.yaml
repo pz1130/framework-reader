@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:IA-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where external authenticators (PIV cards, CACs,
+      third-party federation tokens) are accepted from sources whose identity-proofing
+      you never validated—turning a strong credential into an open door for impersonation,
+      especially for federal partners and cross-organization users.
+    basis: inferred
+  plain_zh:
+    value: When you let users log in with credentials issued by another organization
+      (federal PIV/CAC, partner federated IDs, etc.), define and enforce which external
+      authenticators you trust and under what conditions—don't just accept anything
+      that shows up.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which external credential types you accept (e.g., PIV, CAC, partner-issued
+        X.509) and where; require they meet a stated assurance level before being
+        honored.
+      '2': Validate the issuer, certificate chain, and assurance level at acceptance
+        time; record the basis for trusting each external IdP; handle failures with
+        a defined fallback path.
+      '3': Periodically re-validate that accepted external authenticators still meet
+        current assurance requirements; revoke trust when an issuer's posture degrades;
+        verify the binding between the credential holder and the asserted identity.
+    basis: inferred
+  evidence:
+    value: Written list of accepted external authenticators and their assurance levels,
+      validation procedures, records of issuer trust decisions, fallback handling
+      procedures, and periodic re-validation evidence.
+    basis: inferred
+  common_myth:
+    value: Assuming that accepting PIV/CAC by default means the control is satisfied—without
+      checking that the card meets current assurance standards, that the issuer chain
+      is valid, or that the credential-to-person binding is still trustworthy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which external credential issuers do you accept, and what assurance level did
+      you require for each?
+    - Show me the last time you re-validated an accepted external authenticator's
+      continued trustworthiness.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.237630Z'
+  signed_digest: 1feb4a4372b5b709d759d7e57ac7956908f951698cef3c335cf79c1c35eca304
+  interview_seconds: null
+  inherited_from: null

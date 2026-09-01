@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SR-11.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against counterfeit or tampered components being trusted as legitimate
+      because nobody looked. Hardware and firmware in the supply chain can be swapped,
+      reflashed, or relabeled; without a scanning mechanism, malicious or substandard
+      parts enter production systems and the organization never knows.
+    basis: inferred
+  plain_zh:
+    value: Detect counterfeit, tampered, or unauthorized components before they are
+      put into use. Scanning has to happen at the points where components enter your
+      environment, not just at procurement.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what 'counterfeit' means for your environment (parts, firmware,
+        software media) and have a basic check at intake - visual inspection, supplier
+        verification, hash or serial check where applicable.
+      '2': Apply scanning to components from sources with higher risk or for higher-criticality
+        systems; record the scan result alongside the asset record; have a clear rejection
+        and quarantine path when something fails.
+      '3': Integrate anti-counterfeit checks into the acquisition and commissioning
+        workflow so every in-scope component is scanned before acceptance; track failure
+        trends; update scanning criteria when new threat intelligence arrives.
+    basis: inferred
+  evidence:
+    value: Anti-counterfeit procedure, scanning tool or method used, intake/commissioning
+      records showing scans performed and their results, quarantine and disposition
+      records for failed items.
+    basis: inferred
+  common_myth:
+    value: Treating anti-counterfeit as a procurement-only concern - the buying team
+      fills in a form and security moves on. The control fails when components arrive
+      through field replacement, returned-from-RMA stock, or unofficial channels and
+      nobody scans them at commissioning.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three components that were rejected as counterfeit or suspect
+      and what happened to them.
+    - Where in the intake or commissioning process does the scan actually occur, and
+      who owns it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.148404Z'
+  signed_digest: f345538d26ac6cf4dc6aaba340155cba2a05a31582820185ad9f0ddf7bb2e169
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:SC-36.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops accidental or adversarial divergence between redundant/distributed
+      components (databases, caches, replicated stores, distributed ledgers, multi-site
+      control planes) where each node thinks it is current — preventing split-brain
+      writes, stale rule application, and conflicting security decisions that downstream
+      monitoring cannot tell apart from legitimate activity.
+    basis: inferred
+  plain_zh:
+    value: Where the system runs more than one copy or partition of a component that
+      must agree, define and enforce how those copies stay consistent — what gets
+      synchronized, when, in what order, and what happens when sync fails or one side
+      goes rogue. The goal is no silent disagreement between instances that could
+      let a transaction be honored in one place and rejected, missed, or reversed
+      in another.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the components that exist in more than one instance and that participate
+        in security-relevant decisions (auth, authorization, policy, logging, configuration,
+        data-of-record). State in writing whether synchronization is required, and
+        at minimum make sure a failure to sync is visible rather than silent.
+      '2': 'Document the synchronization model per component: what is replicated,
+        the ordering/atomicity guarantees, the conflict-handling rule, and the failure
+        mode when links break. Apply it in deployment; record sync failures and the
+        action taken; test the failure path before it happens in production.'
+      '3': 'Enforce the model in the system itself (not just in runbooks): integrity-protected
+        sync channels, deterministic conflict resolution that cannot be bypassed by
+        a single node, automated detection of divergence, and tested failover/quorum
+        behavior that proves no instance can keep serving with a known-inconsistent
+        view.'
+    basis: inferred
+  evidence:
+    value: List of replicated/distributed security-relevant components, their documented
+      synchronization model (scope, ordering, conflict rule, failure behavior), deployment
+      evidence that the model is actually configured, logs/records of sync failures
+      and resolutions, and test results demonstrating what happens when synchronization
+      breaks or a node becomes rogue.
+    basis: inferred
+  common_myth:
+    value: Treating synchronization as a pure availability/perf concern owned by the
+      platform team, so security never specifies it. The security failure is not 'the
+      cluster was slow' — it is that two nodes answered differently about who is allowed
+      in, or both accepted writes that should have been mutually exclusive, and nobody
+      can prove which answer was correct after the fact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one replicated component that participates in auth or policy: what does
+      it do when it cannot reach its peers, and is that behavior codified or left
+      to operator judgment?'
+    - Show a recent sync failure or divergence event — how was it detected, who decided
+      the resolution, and what record exists that the conflicting nodes did not silently
+      keep serving in the meantime?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.561825Z'
+  signed_digest: 4dd21dd0be3fc62b02014ead2dceffc49c99a3014a011fec41415e5a571fe88b
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CP-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where disaster recovery and continuity
+      plans assume public telecom carriers will prioritize your traffic during a regional
+      crisis—when every customer is dialing in, you compete with everyone else, including
+      hospitals and government, for the same circuits. Without pre-arranged priority
+      treatment, declared recovery times slip precisely when they matter most, and
+      the team discovers the contract fine print only after the incident.
+    basis: inferred
+  plain_zh:
+    value: Make sure the telecommunications services you depend on for failover, DR,
+      and emergency response come with priority handling—signed in advance, tested,
+      and scoped to the sites and circuits that actually carry recovery traffic—so
+      you are not queued behind ordinary customers during a real event.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the carrier services that carry DR/COOP traffic and check the
+        contract for any priority or restoration language; if absent, flag the gap.
+      '2': Sign priority-service agreements (e.g., TSP-equivalent or carrier-specific
+        priority tiers) for the sites on the critical recovery path, document which
+        circuits and facilities are covered, and keep the authorization identifiers
+        with the team that activates them.
+      '3': Exercise the priority provisioning at least annually (request, validate,
+        fail back), track whether the carrier actually delivered the promised class
+        of service, and revoke/refresh authorizations when personnel or sites change.
+    basis: inferred
+  evidence:
+    value: Carrier contracts or service orders naming priority class and scope, list
+      of covered sites and circuits, activation authorization identifiers held by
+      the response team, test/exercise records showing priority provisioning actually
+      requested and delivered.
+    basis: inferred
+  common_myth:
+    value: Treating a standard business-grade SLA or 'restoration in 24 hours' clause
+      as equivalent to priority service—those guarantees apply across the entire customer
+      base and offer no queue-jumping when regional demand spikes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your DR sites have documented priority treatment with the carrier,
+      and can you show the contract language?
+    - When did you last exercise the priority provisioning and confirm the carrier
+      delivered the requested class of service end-to-end?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.009944Z'
+  signed_digest: 34cdca38da827380486d7b33efe3029bd8af0f18b7691e3eb74c11ca67126c43
+  interview_seconds: null
+  inherited_from: null

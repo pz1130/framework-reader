@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-30.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker who has reached a system (or insider who is
+      curious) being able to reconstruct what the environment actually looks like,
+      where sensitive components live, and what to target next. If components are
+      openly named and exposed, every read-only reconnaissance step hands the adversary
+      a map of the crown jewels.
+    basis: inferred
+  plain_zh:
+    value: 'Make the system''s parts hard to identify from the outside: hide, disguise,
+      or physically separate the components that matter so a compromise cannot easily
+      cascade into a known-sensitive target.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components warrant concealment (key management nodes, control-plane
+        hosts, sensitive data stores); give them non-revealing names in banners, error
+        pages, and DNS; place them behind a separate network segment from general
+        workloads.
+      '2': Document the concealment rationale per component class; standardize non-descriptive
+        hostnames, service banners, and version strings; restrict topology and asset-detail
+        documents to a need-to-know group with logging on access.
+      '3': Periodically test what an external or unauthenticated insider can discover
+        (banner grabs, DNS lookups, exposed documentation); track changes when new
+        sensitive components are introduced so concealment follows the asset, not
+        just the original design.
+    basis: inferred
+  evidence:
+    value: Concealment design notes mapping components to chosen techniques (naming,
+      segmentation, physical separation), the configuration showing non-revealing
+      banners and hostnames, access logs to internal topology documents, and results
+      of periodic reconnaissance checks against the production environment.
+    basis: inferred
+  common_myth:
+    value: Treating concealment as 'just rename the servers' and assuming non-descriptive
+      hostnames solve the problem. Hostnames are only one channel — banners, error
+      messages, DNS records, physical labels, internal wikis, and exposed documentation
+      often leak far more about component identity than hostnames do.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Walk me through one sensitive component end-to-end: what does an outsider actually
+      see about it, and what techniques are applied at each layer?'
+    - Who can read the internal asset register or network diagrams, and how do you
+      know it is not being shared or printed widely?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.527345Z'
+  signed_digest: d56ad11aa3c7ee9477dbf8a79ec815e1093f5263e140d330b8accb6c5df27183
+  interview_seconds: null
+  inherited_from: null

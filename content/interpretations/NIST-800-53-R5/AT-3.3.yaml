@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AT-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against training that produces confident but unmuscle-trained
+      staff: people who can answer multiple-choice questions but freeze, fumble, or
+      make worse decisions when an actual phishing email, social-engineering call,
+      or suspicious incident lands on their desk. Without hands-on rehearsal, awareness
+      content stays theoretical and the human layer keeps failing in the same predictable
+      ways.'
+    basis: inferred
+  plain_zh:
+    value: Make sure security training includes exercises where staff actually do
+      something — click, decide, respond, escalate — so the behavior is practiced,
+      not just explained.
+    basis: inferred
+  practice:
+    value:
+      '1': Run occasional phishing simulations or tabletop walk-throughs tied to current
+        threats; track who participated and what they did.
+      '2': Exercises are mapped to specific roles and scenarios (finance wire fraud,
+        IT helpdesk vishing, data-handling spillage, suspicious attachment); results
+        feed back into targeted re-training and policy tweaks; records exist of scenarios,
+        participants, and outcomes.
+      '3': Exercises are continuous and varied, not annual fire drills; metrics from
+        exercises trend over time and visibly change behavior and control design;
+        lessons learned translate into updated training, updated detections, or new
+        technical safeguards.
+    basis: inferred
+  evidence:
+    value: Exercise plans and scenarios, participation rosters, simulation results,
+      follow-up coaching records, and evidence of how exercise findings changed training
+      content or controls.
+    basis: inferred
+  common_myth:
+    value: Treating the annual e-learning quiz as proof that 'practical exercises'
+      are covered. A multiple-choice test at the end of a slideshow is not a practical
+      exercise — it measures recall, not behavior under realistic pressure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me the last two phishing simulations: who was targeted, who reported,
+      who clicked, and what changed afterward.'
+    - 'Pick one tabletop exercise: what scenario did each role play, and what concrete
+      change to a process or control came out of it?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.480364Z'
+  signed_digest: 47e28cad6c8c1ccc22c1b7512fe4f8e9da0b3d2aa3f10c344176de92bd498f11
+  interview_seconds: null
+  inherited_from: null

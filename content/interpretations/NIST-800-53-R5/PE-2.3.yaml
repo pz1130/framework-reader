@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PE-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against people physically roaming data halls, wiring closets, and
+      operations rooms without anyone knowing they belong there. The failure mode
+      is not "someone tailgated once" but "we cannot tell who is inside a sensitive
+      area right now, and contractors, former staff, or piggybacking visitors can
+      touch ports, patch panels, or consoles unchallenged."
+    basis: inferred
+  plain_zh:
+    value: Limit physical access to sensitive facilities to people who have been verified
+      and authorized to be there without an escort, and make that status something
+      the organization actively manages.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which facilities require unescorted authorization; issue badges
+        that visually distinguish escorts from authorized staff; verify identity before
+        granting a badge; require visitors to be escorted at all times.
+      '2': Run a documented authorization process (background, need-to-know, sponsor);
+        tie badge issuance and revocation to HR joiners/leavers; keep a current list
+        of people with unescorted access per facility; audit the list periodically
+        and investigate anomalies.
+      '3': Enforce access via a system that checks authorization in real time at the
+        door (not a static sticker); revoke or downgrade automatically on role change
+        or separation; log who entered, when, and link logs to incident investigation;
+        test piggybacking with periodic walk-throughs and feed findings back into
+        the list.
+    basis: inferred
+  evidence:
+    value: Facility access policy, authorized-access list per site, badge issuance
+      and revocation records linked to HR events, physical access logs with timestamps,
+      escort procedure, periodic review and exception records.
+    basis: inferred
+  common_myth:
+    value: Treating a badge photo or a paper visitor sign-in as the control. A photo
+      does not stop someone walking past the camera-blind corner of a closet, and
+      a sign-in sheet that anyone can bypass tells the auditor nothing about who is
+      actually unescorted right now.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current list of people with unescorted access to facility X and
+      how it was reconciled against HR records in the last quarter.
+    - When an employee or contractor is terminated or changes role, how and within
+      what timeframe is their unescorted access removed?
+    - How do you detect and handle piggybacking or badge sharing at controlled doors?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.574242Z'
+  signed_digest: b77d675c3a7cf4870a3b9c1f877b94dfda59266c8ccb71159bbe5f0bd4493fb7
+  interview_seconds: null
+  inherited_from: null

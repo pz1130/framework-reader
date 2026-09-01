@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-4.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the loss of usable forensic evidence when malware is cleaned
+      up before anyone can answer 'how did it get in, what did it touch, who else
+      is affected.' If you wipe the host to remediate, you lose the artifacts that
+      tell you whether the incident is one machine or a campaign.
+    basis: inferred
+  plain_zh:
+    value: When handling a confirmed or suspected malicious-code incident, preserve
+      enough forensic state (memory, disk images, logs, malware samples) to support
+      analysis before or alongside containment. Do not let 'clean it up fast' destroy
+      the evidence you need to scope the incident.
+    basis: inferred
+  practice:
+    value:
+      '1': IR plan and malware-handling checklist tell responders to capture volatile
+        data and isolate (not reimage) before eradication; an on-call hand knows who
+        can preserve evidence.
+      '2': Defined forensic-preservation steps per platform (memory dump, disk image,
+        hashes, sample custody chain); coordination procedure with legal/HR recorded;
+        samples stored in a controlled repository.
+      '3': Preservation is a gating control in the runbook (containment cannot proceed
+        without documented capture or a recorded waiver); reverse-engineering or deep
+        analysis capability exists in-house or via a vetted partner; lessons from
+        analysis feed detection rules.
+    basis: inferred
+  evidence:
+    value: Incident tickets showing preservation steps executed before eradication
+      (memory images, disk images, malware samples with hashes and chain of custody),
+      coordination records with legal/HR, malware repository access logs, and post-incident
+      analysis outputs that drove new detections.
+    basis: inferred
+  common_myth:
+    value: Treating malware eradication as the priority and assuming 'we have backups'
+      or 'the EDR already collected what we need' replaces forensic capture. Backups
+      restore files; they do not preserve the attacker's artifacts, timing, or lateral
+      spread, and EDR telemetry rarely covers memory-only payloads, dropped tools,
+      or adversary-modified binaries.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three malware incidents and the forensic artifacts captured
+      before the host was cleaned.
+    - Who decides it is acceptable to skip preservation and proceed straight to reimaging,
+      and where is that authority recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.289995Z'
+  signed_digest: 7465b26bebe737ec33b168b28e6b05bc9c28c185e7daa7298f3d5c3c61151e5b
+  interview_seconds: null
+  inherited_from: null

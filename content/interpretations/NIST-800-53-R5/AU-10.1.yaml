@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AU-10.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops an attacker from hiding which human account generated audit records.
+      Without a binding between the record and a verified person, accountability collapses
+      — investigators cannot trace a malicious action back to an individual, insider
+      abuse becomes deniable, and non-repudiation (the ability to prove it was that
+      person and not someone else) is lost even though logging itself looks fine.
+    basis: inferred
+  plain_zh:
+    value: Make sure every action recorded in the audit trail can be traced back to
+      a specific, verified human (or to an organizationally known service actor) —
+      not just to a shared, anonymous, or pooled account. The audit system itself
+      must enforce this binding so logs cannot be produced under an identity that
+      the system did not authenticate.
+    basis: inferred
+  practice:
+    value:
+      '1': Shared and generic accounts (e.g., "admin", "root", "service") are identified
+        and replaced where feasible with named accounts; remaining shared use is documented
+        and tied to an individual through a check-in/check-out or sign-on log.
+      '2': The audit pipeline accepts records only from authenticated principals and
+        tags each event with an identity that the system has verified at log creation
+        time; group or role aliases are resolved to a specific person in the audit
+        record.
+      '3': 'Non-repudiation is enforced at the audit subsystem: shared/generic identifiers
+        cannot emit audit records, the identity field is tamper-evident, and the binding
+        between account and human is re-verified on role changes, transfers, and terminations.'
+    basis: inferred
+  evidence:
+    value: Account inventory showing named vs. shared identities, audit-record samples
+      demonstrating each entry resolves to an authenticated individual, sign-on logs
+      for any remaining shared accounts, and configuration showing the audit subsystem
+      rejects or flags events from non-individualized identities.
+    basis: inferred
+  common_myth:
+    value: Teams treat this as a logging problem and assume that as long as audit
+      records are being written, the association requirement is met. The actual failure
+      is that records carry an account name without any proof the system authenticated
+      a real person behind it — so a compromise of a shared or service account still
+      produces plausible-looking, attributable-looking logs that point nowhere.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show an audit record from a critical system and walk me from the log entry back
+      to the verified individual who was authenticated when it was produced.
+    - Which accounts in your environment are not bound to a specific person, and how
+      are they handled by the audit subsystem?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.500557Z'
+  signed_digest: e048758d07cc7999ace797c9ad56233d0ed32d406e460a6f74de411d4bfd5b9e
+  interview_seconds: null
+  inherited_from: null

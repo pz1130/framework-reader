@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Service and system accounts tend to accumulate silently: shared service
+      passwords never rotated, orphaned Daemon accounts still running after the owning
+      app is decommissioned, default vendor accounts still enabled, and nobody accountable
+      when they fire. The risk is an unmanaged, unowned, unrotated identity layer
+      that survives employee turnover and application churn - which is exactly where
+      attackers and insiders land.'
+    basis: inferred
+  plain_zh:
+    value: 'Manage every system and service account automatically: track who owns
+      each one, link it to a real accountable person, provision and disable it through
+      the same identity lifecycle as humans, and audit it on a schedule - not by spreadsheet.'
+    basis: inferred
+  practice:
+    value:
+      '1': An inventory of system/service accounts exists, each tied to a named human
+        owner; dormant accounts beyond a defined threshold are flagged or disabled.
+      '2': Account creation, modification, and disablement are driven by automated
+        workflows tied to joiner/mover/leaver events for the owning human; passwords
+        or keys rotate on a defined cadence.
+      '3': Service-account privilege is scoped via group or managed identity rather
+        than shared secrets where the platform supports it; dormant and unused accounts
+        are auto-disabled by policy; anomalies (sudden use of a long-dormant account,
+        privilege escalation of a service identity) generate alerts reviewed by accountable
+        owners.
+    basis: inferred
+  evidence:
+    value: System/service account inventory with named owners, automated provisioning/deprovisioning
+      logs, password or key rotation records, dormant-account reports and the action
+      taken on them, and the review cadence with sign-off.
+    basis: inferred
+  common_myth:
+    value: Treating service accounts as a separate, untouchable zoo with shared passwords
+      in a vault - never reviewed because 'machines need them.' The result is accounts
+      outliving the applications they supported, with no human owner left to answer
+      for them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a system account on a critical server - who is the human owner, and how
+      would you reach them if that account fired at 3 a.m.?
+    - Show me the last automated rotation of a service-account credential and the
+      most recent dormant-account cleanup run.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.106276Z'
+  signed_digest: 580569fbb83ed7ad18b646ff54bd46f6433d14f27f4eb4b2ec80bff7ad111ba2
+  interview_seconds: null
+  inherited_from: null

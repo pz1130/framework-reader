@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-8.23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop shipping components whose only safe state requires every operator
+      to remember to flip a switch, key, flag, or role on every install. Default-unsafe
+      systems fail open the moment one node is provisioned by mistake, mis-deployed
+      by a junior engineer, or compromised at build time, and the failure is silent
+      until an incident proves it.
+    basis: inferred
+  plain_zh:
+    value: Build and configure every system element so that the out-of-the-box, freshly
+      installed, lowest-privilege state is the secure one, and turning safety off
+      requires an explicit, reviewed decision rather than the absence of one.
+    basis: inferred
+  practice:
+    value:
+      '1': Every new service, image, template, and appliance ships with auth on, admin
+        defaults forced to change, debug endpoints off, sample data removed, and least-privilege
+        service accounts; a checklist blocks deploy if any default is weak.
+      '2': Hardening baselines are written down per component class, baked into build
+        pipelines, and version-controlled; deviations need a documented exception
+        with an owner and an expiry date.
+      '3': Build/CI gates fail on any default that violates policy (anonymous access,
+        default passwords, open management ports, permissive ACLs); periodic scans
+        re-check production against the baseline and flag drift, with a measurable
+        trend over time.
+    basis: inferred
+  evidence:
+    value: Hardening baseline documents, build pipeline configurations, exception
+      register with owners and expiries, scan reports comparing live systems against
+      baselines, and a small sample of recent deploy-time gate failures or exceptions
+      showing how they were caught and resolved.
+    basis: inferred
+  common_myth:
+    value: Treating secure defaults as a one-time vendor hardening exercise completed
+      during initial rollout, so that years later a new microservice or a rebuilt
+      container image is still allowed to ship with default credentials, open admin
+      ports, or permissive defaults because 'that policy only covered the original
+      system'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three components provisioned in the last six months: show the build or
+      deploy record that proves they were rejected or blocked when a default would
+      have been insecure.'
+    - Where is the exception that allows a component to ship with a non-secure default,
+      who owns it, and when does it expire?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.268783Z'
+  signed_digest: a19b194c043a3772e3fcc164152ae2ef76783125108613db7ad2ad4310a81ee4
+  interview_seconds: null
+  inherited_from: null

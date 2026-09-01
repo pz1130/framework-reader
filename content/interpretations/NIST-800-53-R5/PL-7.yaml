@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PL-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'the security program is designed but nobody knows how
+      it actually runs day-to-day' — controls are documented as requirements, but
+      the operational context, data flows, and interaction points between systems
+      and people are never described, so integration gaps go unnoticed.
+    basis: inferred
+  plain_zh:
+    value: Write a 'how it actually works' document — not a list of requirements,
+      but a description of the operational environment, data flows, interfaces, and
+      dependencies that the systems-of-interest and stakeholders rely on, so that
+      security controls are understood in context.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Create a document that describes the operational environment: mission,
+        key assets, data flows, external interfaces, and primary actors.'
+      '2': Maintain the Concept of Operations (CONOPS) as a living document — update
+        it as the system evolves, and link it to the security architecture and risk
+        assessment so it informs decision-making, not just exists.
+      '3': 'Embed the CONOPS in systems engineering and security planning: derive
+        operational scenarios, use them for tabletop exercises, and validate the document
+        against actual operations through periodic review with operators and stakeholders.'
+    basis: inferred
+  evidence:
+    value: A current Concept of Operations document for the system(s), including mission
+      description, data flow diagrams, interface inventories, and operational scenarios;
+      evidence of updates after major changes; records from stakeholder reviews or
+      exercises that used the CONOPS.
+    basis: inferred
+  common_myth:
+    value: Assuming the CONOPS is only needed at the start of a project — a static
+      document written during design and never revisited. Left untouched, it becomes
+      a source of untruths that misleads security decisions as the system changes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What are the operational data flows that your security architecture assumes,
+      and where in the CONOPS are they described?
+    - When was the last time the CONOPS was updated, and what triggered that update?
+    - How do operators and security engineers use the CONOPS in their day-to-day work?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.671076Z'
+  signed_digest: 744b51ba83682cd5cd7a7e07e095f4c8285f0a97752e307a1affb6ad3b9f30e7
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-13.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against tokens (session, bearer, refresh, API keys, OAuth access
+      tokens) outliving the trust that issued them. Without active lifecycle control,
+      a leaked or stale token keeps authenticating an attacker or a former employee
+      long after the relationship ended or the device drifted out of compliance.
+    basis: inferred
+  plain_zh:
+    value: 'Identify every type of token your systems issue or accept, and run each
+      one through a documented lifecycle: define it, set who/what can hold it, bound
+      it tightly to the device or session, expire it, revoke it, and audit it. Tokens
+      are not just keys; they are identity assertions that must be governed like accounts.'
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the token types in use (session cookies, JWTs, API keys, OAuth
+        access/refresh tokens, SAML assertions, service-to-service tokens) and have
+        a written rule for maximum lifetime and basic revocation on logout, password
+        change, and termination.
+      '2': Tokens are bound to specific clients, devices, or sessions (sender-constrained
+        or device-bound where supported); refresh chains are short-lived and tied
+        to authentication strength; revocation is automated on disable/delete and
+        propagates within a defined window.
+      '3': Token issuance, rotation, expiry, and use are logged centrally; anomalies
+        (reuse, replay, use from a new device fingerprint) trigger step-up auth or
+        revocation; high-value tokens require cryptographic binding (DPoP, mTLS, device
+        posture check) and are continuously re-evaluated against risk.
+    basis: inferred
+  evidence:
+    value: Token type inventory with lifetimes and revocation rules, binding configuration
+      samples, revocation propagation test results, and logs/alerts showing token
+      issuance, refresh, expiry, and automated revocation on account state changes.
+    basis: inferred
+  common_myth:
+    value: Treating tokens as plumbing owned by developers and assuming short expiry
+      alone is enough. Short-lived JWTs that are not bound to a device, can be replayed
+      from anywhere, and are not revoked on logout or account disable are still a
+      direct path to impersonation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When a privileged account is disabled, within how many seconds do its outstanding
+      tokens stop being accepted, and how did you verify that?
+    - Show a token type in your inventory that is bound to a device or sender — what
+      enforces that binding?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.100425Z'
+  signed_digest: 6026301e6ffb36187ef735b7a09b06fcfd0d26b76cd5c6c9b9a4982381b659be
+  interview_seconds: null
+  inherited_from: null

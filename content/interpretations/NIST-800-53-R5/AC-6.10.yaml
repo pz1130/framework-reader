@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-6.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an ordinary user account being used—intentionally or through
+      phishing/malware—to run privileged operations (install software, change system
+      configs, touch logs, create accounts) that an attacker can then ride straight
+      into a domain takeover. The control exists so that even when a standard account
+      is compromised, the blast radius stops at 'logged-in user', not 'administrator'.
+    basis: inferred
+  plain_zh:
+    value: Block normal user accounts from running privileged actions. Force privilege
+      elevation through a separate, audited channel (sudo, jump host, PAM step-up,
+      UAC) so unprivileged identities cannot silently perform admin work.
+    basis: inferred
+  practice:
+    value:
+      '1': Standard accounts have no admin rights on workstations and servers; users
+        who need to do admin work get a second, privileged account they explicitly
+        elevate to. Elevation is logged.
+      '2': Elevation is enforced through a central mechanism (sudo policy, PAM, jump
+        host, tiering model) with rules per host; non-privileged users cannot bypass
+        it to run privileged binaries or scripts directly.
+      '3': Default-deny on privilege elevation is in force across the estate; deviations
+        require an exception ticket; reports regularly compare who can elevate vs.
+        who actually does, and unused privilege is revoked.
+    basis: inferred
+  evidence:
+    value: Workstation and server hardening baselines showing non-admin default, sudo/PAM/jump-host
+      policies, samples of elevation logs, role-to-account mapping showing separate
+      privileged identities, exception tickets for any deviation, periodic recertification
+      of who holds elevation rights.
+    basis: inferred
+  common_myth:
+    value: Believing that giving every user Local Admin on their laptop (so 'IT doesn't
+      get tickets') satisfies the control because the user themselves is the privileged
+      one. The user's everyday account must remain non-privileged; elevation has to
+      go through a distinct, logged identity and mechanism. 'Everyone is admin on
+      their own box' is the exact posture this control prohibits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three standard user accounts and show me whether they can install drivers,
+      stop services, or modify system files without going through sudo or a separate
+      admin login.
+    - Show me the last 30 days of privilege elevation events—who elevated, from where,
+      for what command—and the policy that decided which commands are allowed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.379555Z'
+  signed_digest: da4b66415f72e131993ece01c982250c4eee724044440f6e70fbfa089b1b520a
+  interview_seconds: null
+  inherited_from: null

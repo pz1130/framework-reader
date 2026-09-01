@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a stranger walking up to an unattended or compromised screen
+      and using the session to pivot, exfiltrate, or impersonate the prior user. Without
+      an explicit use notice, anyone at the keyboard inherits the last user's privileges
+      and trust context, and the organization has no evidence the user agreed to monitoring
+      or terms of use.
+    basis: inferred
+  plain_zh:
+    value: Before you log in, the system must show a notice that says (a) the user
+      is accessing a private system, (b) usage is monitored/recorded, and (c) by continuing
+      the user agrees. The notice must stay visible until the user explicitly acknowledges
+      it.
+    basis: inferred
+  practice:
+    value:
+      '1': Logon screen displays a banner with the three required statements; user
+        must press a key or click to proceed; local console, VPN, and remote access
+        points all covered.
+      '2': Standard banner text approved by legal and CISO; applied via GPO/mobile
+        device profile/remote access template so it cannot be silently changed per
+        host; documented in the system security plan.
+      '3': Banner text centrally controlled and versioned; automated check verifies
+        every in-scope endpoint actually presents the approved banner (not a stale
+        or edited one); exceptions require formal approval with a date.
+    basis: inferred
+  evidence:
+    value: Approved banner text with version and approval date, screenshots or config
+      exports showing the banner rendered on logon screens, GPO/MDM/remote-access
+      configuration enforcing the banner, automated compliance scan results across
+      endpoints, and any documented banner exceptions with justification.
+    basis: inferred
+  common_myth:
+    value: Assuming that putting the banner text in the wallpaper, screensaver, or
+      a one-time sign-on screen counts. Auditors look for a notice that appears at
+      every logon, before authentication, that the user must actively acknowledge
+      - not a splash screen shown once at boot or a footer nobody reads.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the exact banner wording a user sees at the console and through the
+      VPN - where is it enforced so an admin cannot edit it locally?
+    - How do you verify that every in-scope endpoint is still presenting the current
+      approved banner, and what is the last scan's coverage?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.424663Z'
+  signed_digest: 3dc0d89152950544ae7da083fac676a218c985d1e351fd97687555f95c8f4ef4
+  interview_seconds: null
+  inherited_from: null

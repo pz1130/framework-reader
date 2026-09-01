@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against security and privacy policies that drift, go stale, or
+      exist only on paper - without a living policy framework, every downstream control
+      becomes optional, inconsistent, and indefensible in an audit.
+    basis: inferred
+  plain_zh:
+    value: Write down the security and privacy rules your organization actually follows,
+      get them approved by leadership, tell the people who must follow them, keep
+      them current, and enforce them.
+    basis: inferred
+  practice:
+    value:
+      '1': Have at least one written security policy signed by leadership; designate
+        someone responsible for it; cover the minimum topics an auditor expects.
+      '2': Policies address the specific control families in scope; assigned owners
+        per policy; review cycle defined (typically annual or on material change);
+        staff acknowledge and can locate the policy.
+      '3': Policies are version-controlled, mapped to controls and risks, reviewed
+        against actual practice; deviations trigger updates; leadership attestations
+        are current; policy exceptions are tracked and time-bounded.
+    basis: inferred
+  evidence:
+    value: Current, leadership-approved policy and procedure documents with version
+      history, owner designation, review and approval dates, dissemination or acknowledgment
+      records, and evidence that the policy is referenced by operational procedures
+      and updated after material changes.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a security policy' as satisfied by an old boilerplate
+      template signed years ago with no owner, no review date, and no link to what
+      people actually do day to day. A policy that no one reads, no one updates, and
+      that does not reflect current practice is the textbook finding.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the current owner of this policy, and when was it last reviewed and re-approved?
+    - Show me the change log - what was changed in the last review cycle and what
+      triggered it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.729667Z'
+  signed_digest: 0c7a51edb91b36cc3ce90537a40d48ef92703af0df74ad7da6f03137d7a1f7ee
+  interview_seconds: null
+  inherited_from: null

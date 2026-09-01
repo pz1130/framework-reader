@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-7.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops malformed, unexpected, or hostile traffic from being accepted as
+      'valid' because edge devices silently fall back to permissive parsing. If parsers
+      accept anything that is not strictly shaped per the protocol spec, attackers
+      ride in on inputs that should have been rejected, and the boundary control degrades
+      into a best-effort filter.
+    basis: inferred
+  plain_zh:
+    value: At network boundaries, enforce protocol fields strictly to their published
+      format — packets, segments, headers and payloads must match the standard; anything
+      that does not conform is dropped, not quietly accepted. Track the enforcement
+      in a way you can prove it is happening.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the boundary devices (firewalls, proxies, IDS/IPS, WAF, mail/DNS
+        gateways) that touch each protocol in scope; confirm they are configured to
+        validate protocol format, not just port and IP. Drop or quarantine non-conforming
+        traffic and log it.
+      '2': Codify the permitted protocol set and the validation rules in a configuration
+        baseline tied to the relevant RFCs/standards; change-control the baseline;
+        cover IPv4/IPv6, TCP/UDP, HTTP, DNS, TLS, SMTP at minimum; keep logs of drops
+        with enough detail to reconstruct the offending packet header.
+      '3': Push enforcement to a single source of truth (e.g., generated configs,
+        infrastructure-as-code) so the same format rules apply everywhere; alert on
+        devices whose parsers fall back to permissive mode or whose enforcement drifts
+        from baseline; include schema-conformance in the test suite run before any
+        boundary change ships.
+    basis: inferred
+  evidence:
+    value: Baseline document mapping each protocol to its enforced RFC/format rules,
+      change records for those baselines, configuration excerpts showing strict parsing/rejection
+      settings on boundary devices, and logs of malformed traffic that was actually
+      dropped (not just counted).
+    basis: inferred
+  common_myth:
+    value: Treating this as 'the firewall is on, so the boundary is enforced'. Stateful
+      filtering by port and IP is not format enforcement; a permissive parser that
+      accepts almost-any-payload still passes an 'is the firewall up' check.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one boundary device and show me the rule that rejects a syntactically valid
+      but semantically unexpected packet for HTTP/DNS/TLS — where is that configured?
+    - Show me the last three drop events triggered by format non-conformance and what
+      protocol field was wrong.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.701922Z'
+  signed_digest: 9a2d98fca37759cb5a24af1715a13eb2ee41665711a54840b10ca0f7a4e854e7
+  interview_seconds: null
+  inherited_from: null

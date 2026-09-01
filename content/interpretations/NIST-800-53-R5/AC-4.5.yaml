@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops data flows from smuggling disallowed or sensitive content past policy
+      enforcement by hiding it inside permitted wrapper types - e.g., an executable
+      embedded in a Word doc, a credit card hidden in a JPEG, or a sensitive payload
+      carried inside a field a DLP rule does not parse.
+    basis: inferred
+  plain_zh:
+    value: Inspect what actually lives inside the data structures crossing boundaries,
+      not just the type label on the envelope; restrict the information types that
+      can ride on flows and enforce it on the wire and at endpoints.
+    basis: inferred
+  practice:
+    value:
+      '1': Document the legitimate data types expected on each enforced flow; reject
+        well-known abuse vectors at the boundary (e.g., executables by MIME, archives
+        with nested compression).
+      '2': Define an allow-list of permitted embedded types per data flow; configure
+        DLP/filtering to unpack common containers and apply content rules to nested
+        payloads; keep type definitions versioned.
+      '3': Continuously update the embedded-type catalogue against new exfiltration
+        tricks (steganography, polyglot files, alternate data streams); automate unpacking
+        and content checks; verify enforcement with red-team payloads that hide restricted
+        content inside permitted wrappers.
+    basis: inferred
+  evidence:
+    value: Data-flow specifications listing permitted embedded information types,
+      policy/configuration showing unpacking and nested-content inspection, sample
+      blocked or quarantined records of forbidden embedded content, change history
+      of type rules, and red-team or test artifacts proving enforcement reaches nested
+      content rather than just header fields.
+    basis: inferred
+  common_myth:
+    value: Assuming a DLP/filtering product that 'inspects attachments' already does
+      this - most inspect attachment *type* and outer MIME, not the contents inside
+      nested archives, Office objects, image metadata, or file-in-file polyglots,
+      so an .exe inside a .zip inside a .doc walks straight through.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where your policy defines which embedded data types are allowed on which
+      flows and how they are enforced inside containers.
+    - Pick a recent policy-violation alert - what was the outer file type and what
+      did your tool actually inspect inside it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.353292Z'
+  signed_digest: d004e9a01d8e8d78d10d15699671f412d726036ed3fb24c8bd3803782d53c0c4
+  interview_seconds: null
+  inherited_from: null

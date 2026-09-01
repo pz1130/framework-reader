@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MA-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a maintenance vendor (or a contractor's sub-vendor) showing
+      up at a site with a laptop full of the previous client's data, or with malware
+      picked up while servicing another organization, and quietly cross-contaminating
+      your environment. The control exists because the moment an outsider's device
+      touches your systems, your security posture becomes a function of theirs.
+    basis: inferred
+  plain_zh:
+    value: Require that any outside technician or contractor bringing equipment into
+      your environment has cleaned it of prior customer data and is running it at
+      a security level at least as strong as your own, before you let it connect.
+    basis: inferred
+  practice:
+    value:
+      '1': Field technicians and contractors must declare what devices they will bring
+        on site; before connecting, those devices are checked for obvious malware
+        and any data from prior engagements is removed or proven absent.
+      '2': Written procedure defines the minimum security baseline (patch level, AV,
+        disk encryption, no residual data) the contractor device must meet; a checklist
+        or attestation is captured per visit; noncompliant devices are not allowed
+        to connect.
+      '3': Contractor devices are validated by an automated or scripted check against
+        the baseline, results are logged with the maintenance ticket; persistent noncompliance
+        is tracked back to the vendor and reflected in vendor risk reviews; the baseline
+        is reviewed when your own endpoint standard changes.
+    basis: inferred
+  evidence:
+    value: Maintenance procedures that require sanitization and equivalent security
+      for non-organization equipment, per-visit checklists or attestations of device
+      state, malware scan logs prior to connection, and records showing noncompliant
+      devices were refused or remediated before access.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's signed maintenance contract as proof that their laptop
+      is clean. The control is about the device, not the paperwork - a SOC report
+      on the vendor's environment tells you nothing about whether last week's data
+      from another client is still on the technician's hard drive.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time a contractor device was rejected or sent away to be cleaned
+      before being allowed to connect.
+    - What does a technician's laptop look like when it arrives on site, and who verifies
+      it before it touches your systems?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.408138Z'
+  signed_digest: 6f0f6d8e67761d724cc3027845a24089d610d7bc0ac303001209f48aa8736c35
+  interview_seconds: null
+  inherited_from: null

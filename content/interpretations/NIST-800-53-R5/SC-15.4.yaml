@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-15.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents metadata leaks from covert channel tracking—when the system silently
+      tracks which users are logged into shared collaborative sessions, residual data
+      can be observed by other participants or by anyone with later file access, disclosing
+      who was in a room at what time.
+    basis: inferred
+  plain_zh:
+    value: When users share collaborative objects (joint documents, calendars, meeting
+      apps), make who is present, online, or last-edited visible to all participants—do
+      not let the system secretly track or expose this state to outsiders.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the collaborative apps in scope (shared docs, calendars, whiteboards);
+        check vendor defaults to see whether participant/presence data is shared with
+        all members or hidden.
+      '2': Document what presence/participant indicators are produced; turn on explicit
+        'who is here / who viewed' signals in those tools; add this to the system
+        security plan for shared services.
+      '3': Treat participant-state data like other user data—pin down where it is
+        stored, who can read it, and ensure no covert channel leaks it to non-participants;
+        periodically test with a non-member account that no presence information is
+        observable.
+    basis: inferred
+  evidence:
+    value: 'For each in-scope collaborative service: a record of the current presence/participant
+      indicator behavior, the configuration setting exposing it to all members, and
+      a test result showing a non-participant cannot read it.'
+    basis: inferred
+  common_myth:
+    value: Assuming the vendor's default 'presence dot' is the whole story—many systems
+      store the full participant history (join/leave timestamps, who viewed last)
+      in a place non-members can later query via export, dashboards, or activity logs,
+      which is the leak the control is really about.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one shared workspace: as a user I never joined, show me what participant
+      or presence data I can see about it.'
+    - Where is the history of who joined or viewed this object stored, and who has
+      read access to that history?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.405268Z'
+  signed_digest: 2aaf5e7e17ffeb91aa5c911a64d713e3c9939998b15be4e1edfb761b3f7f0c9e
+  interview_seconds: null
+  inherited_from: null

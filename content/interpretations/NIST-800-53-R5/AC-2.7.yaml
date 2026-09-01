@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-2.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense is against privileged accounts slipping into ordinary lifecycle
+      management — a domain admin or service account getting created without a privileged
+      flag, shared by teams, or quietly inheriting entitlements nobody reviews. The
+      failure mode is that the highest-blast-radius identities look and behave like
+      normal users, so offboarding, leaver reviews, and segregation-of-duties checks
+      never see them.
+    basis: inferred
+  plain_zh:
+    value: Identify which user accounts are privileged, hold them in a separate inventory,
+      and govern them with rules stricter than normal accounts — different creation,
+      approval, monitoring, and removal paths.
+    basis: inferred
+  practice:
+    value:
+      '1': A maintained list exists of who holds privileged accounts (admins, service
+        accounts with elevated rights); privileged accounts are not reused for daily
+        work such as email or browsing.
+      '2': Privileged accounts are tagged in the directory/IDP and routed through
+        a separate approval workflow for creation, change, and removal; access reviews
+        cover privileged accounts at a shorter cadence than normal users.
+      '3': Privileged identities are tied to a PAM/bastion or just-in-time elevation;
+        standing privileged grants are minimized, every elevation produces an attributable
+        record, and segregation-of-duties and dormant-account checks run specifically
+        against the privileged inventory.
+    basis: inferred
+  evidence:
+    value: Privileged account inventory with owners and privilege scope, separate
+      approval records for privileged grants/changes/removals, privileged-only access
+      review reports, PAM or bastion logs showing attributable use, segregation-of-duties
+      and dormant-account reports scoped to the privileged set.
+    basis: inferred
+  common_myth:
+    value: Treating any account with a hyphen or a dollar sign in its name as automatically
+      'privileged' and assuming the technical control alone (e.g., a sudoers file
+      or a tier in Active Directory) constitutes governance — without a separate approval
+      path, a dedicated review cadence, and attributable use, the special handling
+      required by this control does not actually exist.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the inventory of privileged accounts for [system] and tell me which ones
+      are service accounts — who approved the last privilege change on a named account
+      and on what date?
+    - How does the privileged review cadence differ from the standard user-access
+      review, and what changed in the last privileged-only review?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.143135Z'
+  signed_digest: 2936670045b45761bb41d1282e239e268a0c4b8bc8b5300b4bc9c45cc5daa8e6
+  interview_seconds: null
+  inherited_from: null

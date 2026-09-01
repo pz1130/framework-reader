@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-10.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop untrusted or malformed inputs from reaching parsers, interpreters,
+      or downstream systems where they trigger memory corruption, injection, logic
+      bypass, or unexpected execution paths. Without a binding allow-list at the boundary,
+      an attacker only needs one creative payload to reach the vulnerable code.
+    basis: inferred
+  plain_zh:
+    value: Define which sources and which input formats are trustworthy, enforce that
+      at the boundary, and reject everything else rather than trying to sanitize it
+      after the fact.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the inputs that reach critical parsers or interpreters (deserialization,
+        command, SQL, shell, XML, file upload); document which sources and formats
+        are trusted for each.
+      '2': Configure parsers to reject anything not on the trusted-source/approved-format
+        list; log rejections; require signed or authenticated uploads from known senders
+        where supported.
+      '3': Enforce source/format checks in shared middleware so individual apps cannot
+        opt out; detect and alert on parser failures and malformed-input bursts; verify
+        the allow-list covers new integrations before they go live.
+    basis: inferred
+  evidence:
+    value: List of trusted sources and approved input formats per system, parser/library
+      configuration showing enforcement (not just documentation), sample rejection
+      logs, and change records showing the allow-list is updated when new integrations
+      are added.
+    basis: inferred
+  common_myth:
+    value: Treating input validation as something each application handles on its
+      own with regex sanitization - the real failure is that deserialization, eval,
+      and shell sinks keep being reached by inputs the app layer never inspects.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems receive inputs from sources outside the trusted list, and how
+      is that enforced?
+    - Show the parser or library configuration that rejects unapproved formats - not
+      just the application code.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.812993Z'
+  signed_digest: e4c556abe6589105bea5db570951e91c2639771e4c5cdea14765d14298ff53cd
+  interview_seconds: null
+  inherited_from: null

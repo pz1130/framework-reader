@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-10.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers quietly backdooring or tampering with the software
+      that gets built and shipped - if the mapping between source code versions, components,
+      and what actually goes into the deliverable is not integrity-checked, malicious
+      changes can be inserted and nobody can prove what was really built.
+    basis: inferred
+  plain_zh:
+    value: 'Make sure that the mapping between the developer''s source code and the
+      final software is verifiably intact: source code is version-controlled, every
+      component/contractor delivers under version control, an integrity tool checks
+      that what was built matches what was committed, and discrepancies are investigated
+      before the software is accepted.'
+    basis: inferred
+  practice:
+    value:
+      '1': Internal developers use a version control system with change history; contractors
+        and vendors delivering software are required to do the same and hand over
+        that history.
+      '2': An integrity-checking tool (e.g., a software composition / build attestation
+        tool) is run on delivered software to verify components match the declared
+        sources; mismatches trigger a documented review before acceptance.
+      '3': Version-control and integrity verification are part of every acquisition
+        and build pipeline; results are signed/attested and stored as part of the
+        acceptance record; deviations automatically block promotion until investigated,
+        and the process is audited periodically.
+    basis: inferred
+  evidence:
+    value: Version-control repositories (internal and for contractor deliverables),
+      integrity-verification tool configurations and run logs, acceptance records
+      showing source-to-binary mapping, change histories with author/committer attribution,
+      investigation records for any mismatches.
+    basis: inferred
+  common_myth:
+    value: Believing that version control alone on the internal side is enough - the
+      common mistake is checking only first-party code while accepting vendor- and
+      contractor-delivered binaries as 'trusted as-received', so a tampered dependency
+      or third-party component enters the build with no mapping to verify it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When a vendor delivers a software component, what evidence shows it maps back
+      to a specific version of their source and that nothing was altered in transit?
+    - Show me the last time the integrity check between source and built artifact
+      flagged a mismatch and how that was resolved before release.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.014092Z'
+  signed_digest: 00e49943800025a69500d0c4649f47d30eab6e86a5cb7f81fd7cd33dc9bb567a
+  interview_seconds: null
+  inherited_from: null

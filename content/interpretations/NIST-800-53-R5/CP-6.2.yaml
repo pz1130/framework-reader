@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CP-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against recovery plans that promise resilience on paper but cannot
+      actually meet business needs during a real outage—RTOs/RPOs left unstated or
+      unreviewed cause teams to either overspend on low-criticality systems or, far
+      worse, find out during an incident that a 'recoverable' system will take days
+      to restore while customers see stale data.
+    basis: inferred
+  plain_zh:
+    value: For every in-scope system, define how fast it must be back online (RTO)
+      and how much data loss is tolerable (RPO), and make sure the recovery plan is
+      actually built and tested to hit those numbers—not just documented.
+    basis: inferred
+  practice:
+    value:
+      '1': Each critical system has a written RTO and RPO agreed with the system owner;
+        the recovery procedure references them; backup frequency is set high enough
+        to plausibly meet RPO.
+      '2': RTOs/RPOs are tiered by system criticality, reviewed annually or after
+        major changes, and recovery procedures are exercised at least once a year
+        with measured results compared to the targets.
+      '3': Tiering drives investment in alternate sites, replication, and runbooks;
+        exercises simulate realistic failure and validate against RTO/RPO; deviations
+        trigger a documented remediation and re-test, not a paper waiver.
+    basis: inferred
+  evidence:
+    value: RTO/RPO register mapped to systems and tiers, signed by system owners;
+      recovery procedures citing the targets; backup configuration; exercise plans
+      and after-action reports showing actual recovery time and data loss measured
+      against the targets; remediation tickets for missed objectives.
+    basis: inferred
+  common_myth:
+    value: Treating RTO and RPO as a checkbox populated once and never revisited—usually
+      with aspirational numbers copied from a template—so the recovery plan is 'designed'
+      for targets the operation was never sized or tested to achieve.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system marked as mission-critical: show the last exercise and how the
+      measured recovery time compared to its stated RTO.'
+    - Which system has the most generous RPO, and what is the actual backup frequency
+      and replication lag for that system today?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.983520Z'
+  signed_digest: 6bf7f0a0c31e7ca28f38b10d5624feb154bcf3067eb9003ed8080317040fdec0
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent a single physical cable run from cutting off power to safety-critical
+      equipment when the line is damaged, accidentally severed, or fails - because
+      outage of life-safety or mission-critical systems during a fire, construction
+      mistake, or hardware fault is exactly what this control exists to stop.
+    basis: inferred
+  plain_zh:
+    value: For systems whose loss of power would endanger life or halt the mission
+      (fire panels, emergency lighting, core network/cooling, medical/industrial safety
+      gear), run a second, physically separate power cable from a different source
+      so one cut or fault cannot knock them out.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which equipment is in scope (life-safety and mission-critical);
+        ensure each has at least two power feeds from separate sources; label both
+        paths.
+      '2': Document the in-scope equipment list, route diagrams for primary and redundant
+        cabling, and the test method used; verify feeds come from physically separate
+        sources (different panels, risers, or substations).
+      '3': Periodic end-to-end test simulating loss of one feed; change-management
+        so any move/add/change cannot collapse both paths back into one raceway; verified
+        at commissioning and after any electrical or building work.
+    basis: inferred
+  evidence:
+    value: In-scope equipment list, single-line diagrams showing both feeds and their
+      distinct sources, commissioning and periodic failover test records, change-management
+      records for any cabling work.
+    basis: inferred
+  common_myth:
+    value: Assuming that plugging a server into two PDUs in the same rack, or running
+      two circuits out of the same panel and the same conduit, counts as redundant
+      cabling - the duplicate path still shares a single point of failure upstream
+      and is not what PE-9.1 is asking for.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For [chosen life-safety system], show me the single-line diagram and tell me
+      which breaker panel and which conduit each feed runs through.
+    - When did you last simulate failure of one feed end-to-end, and what did the
+      logs show?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.649090Z'
+  signed_digest: 9680c3134a1ef777b9f0ed86d4b6cd422cff4ef4a914aad35745421ff85dd809
+  interview_seconds: null
+  inherited_from: null

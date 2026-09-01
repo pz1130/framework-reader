@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PE-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insider and physical-tailgating attacks where an unauthorized
+      person enters a controlled area using a legitimate employee's badge — the failure
+      mode is 'we know who swiped, but cannot prove it was them and not a follower.'
+      Without individual, non-transferable identity binding at the point of access,
+      accountability collapses and investigations stall.
+    basis: inferred
+  plain_zh:
+    value: Make sure every physical access event is tied to one named person, not
+      a shared credential or piggybacked entry — so that when something happens, you
+      can actually say who was at that door.
+    basis: inferred
+  practice:
+    value:
+      '1': Every controlled door requires a personal badge or biometric; shared doors,
+        group codes, and turnstiles that allow piggybacking are removed or flagged.
+        Visitors are escorted and logged individually.
+      '2': The access control system records the unique user ID with each entry/exit
+        event, and reports can be pulled per person. Tailgating is addressed through
+        physical design (mantraps, speed gates) or staffed checkpoints for high-security
+        zones.
+      '3': Anti-passback is enabled so a credential cannot be reused to admit a second
+        person; tailgating and piggybacking are detected or prevented at the door,
+        not just discouraged by signage; identity binding is tested (e.g., attempts
+        to enter on another person's badge are caught and alerted).
+    basis: inferred
+  evidence:
+    value: Access control system configuration and event logs showing per-individual
+      identifiers (not shared or generic IDs), tailgating prevention mechanism descriptions,
+      visitor logs, and any test or incident records demonstrating that entry events
+      can be traced to a single named individual.
+    basis: inferred
+  common_myth:
+    value: Believing that issuing personal badges means the control is met — when
+      in fact the door still allows tailgating, or the system stores 'Door 7 opened'
+      without tying it to a specific credential holder, so the badge is personal but
+      the entry is not accountable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an access log entry and walk me through how it proves one specific person
+      entered, not two.
+    - What stops someone from holding the door open for the next person after they
+      badge in?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.623476Z'
+  signed_digest: 8a2a772f12fb4adc38221c1dea9f0d145ff9b3b6aee2cd25460be537396dd288
+  interview_seconds: null
+  inherited_from: null

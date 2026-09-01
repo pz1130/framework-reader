@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SI-4.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the gap between detection and action - without pre-approved automated
+      responses, suspicious events queue up waiting for a human to triage while the
+      attacker moves laterally, exfiltrates data, or destroys evidence.
+    basis: inferred
+  plain_zh:
+    value: Configure your monitoring and detection tools to react on their own to
+      suspicious events - block the source, kill the session, quarantine the host,
+      disable the account, capture the artifacts - so that damage is stopped before
+      an analyst even opens a ticket.
+    basis: inferred
+  practice:
+    value:
+      '1': Detection rules include an automated action, not just an alert (e.g. block
+        the source IP at the firewall, suspend the account in the directory).
+      '2': Each automated response has a written trigger condition, a defined action,
+        and an approval sign-off from the owning team; responses are logged and auditable.
+      '3': Automated response playbooks are tested against simulated attacks; effectiveness
+        is measured by mean-time-to-contain; high-risk actions stay in a human-on-the-loop
+        mode with clear rollback and override paths.
+    basis: inferred
+  evidence:
+    value: Detection-to-response rule configurations, sign-off records for automated
+      actions, response logs showing actions executed (not just alerts raised), test
+      or tabletop results for response playbooks, containment time metrics.
+    basis: inferred
+  common_myth:
+    value: Believing that firing an alert to the SOC is an 'automated response'. An
+      alert that still waits for a human to decide is a notification, not a response
+      - the attacker keeps moving until the analyst clicks.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one detection rule from your SIEM and walk me through what happens automatically
+      the moment it fires.
+    - How do you prevent an automated response from cutting off a production-critical
+      system, and what is the override path?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.056693Z'
+  signed_digest: 70ea14c65195e5a86c7dd80ee8b79b87da36e1f8bf9e862a525a66acd59dfab6
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-13.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Fire detection that depends on someone being present, awake, and noticing
+      is not detection — it is hoping. The control defends against a fire starting
+      or spreading during unoccupied hours, weekends, or holidays when no human response
+      is possible, by ensuring alarms fire themselves and reach people who can act.
+    basis: inferred
+  plain_zh:
+    value: Install fire detection that turns on by itself the moment smoke or heat
+      appears, and that automatically notifies the people or services who must respond
+      — without waiting for a guard to see a panel light up.
+    basis: inferred
+  practice:
+    value:
+      '1': Smoke and heat detectors cover all required spaces; the fire alarm panel
+        powers and supervises them 24/7; a basic procedure exists for who to call
+        when the panel activates.
+      '2': Activation automatically triggers notifications to on-call staff, a monitoring
+        service, or local fire response; signal paths and call lists are documented
+        and tested on a defined cadence.
+      '3': Notification paths are redundant (e.g., panel plus independent monitoring
+        service), tested end-to-end with timestamped records, and exceptions (failed
+        calls, unreachable responders) are alerted and resolved — so a fire alarm
+        cannot silently fail to reach a human.
+    basis: inferred
+  evidence:
+    value: Detector coverage map, fire alarm panel inspection and test records, automatic
+      notification test logs showing successful delivery to responders, monitoring-service
+      agreements, and incident records of past activations and their response.
+    basis: inferred
+  common_myth:
+    value: Believing a fire alarm panel alone satisfies the control because it 'detects'
+      smoke. A panel that beeps in an empty building at 3 a.m. and pages nobody is
+      detection without notification — the part that actually limits damage is the
+      automatic path to a responder, and that path is what auditors want to see tested.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last quarterly test where the panel automatically notified a responder,
+      and how long that took.
+    - If the primary monitoring service is unreachable, what backup path fires, and
+      when was it last exercised?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.532231Z'
+  signed_digest: 33b41613825b88bd7f98714c1c460f5f2f7701784d8554e90d62e451fa006680
+  interview_seconds: null
+  inherited_from: null

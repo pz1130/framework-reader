@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:IA-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against accounts and credentials accumulating silently because
+      they were created for one-time, temporary, or system-internal use and never
+      cleaned up — each one is a backdoor an attacker can find months later, and at
+      scale no one can say who owns it.
+    basis: inferred
+  plain_zh:
+    value: Track accounts whose life cycle is not driven by a human identity (service,
+      ephemeral, dynamic, system-generated), give them owners, define when they expire,
+      and disable the ones that are no longer needed.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain an inventory of non-human accounts (service, system, application,
+        shared); each has a documented owner and a stated expiration or review date.
+      '2': Accounts are created with a defined life cycle (auto-disable date or scheduled
+        re-approval); new dynamic/ephemeral accounts cannot be created outside the
+        process.
+      '3': Provisioning is integrated with the workload or pipeline so ephemeral identities
+        actually disappear; ownership is reviewed on a cadence; stale accounts are
+        auto-disabled and evidence of removal is kept.
+    basis: inferred
+  evidence:
+    value: Inventory of accounts managed dynamically with owner, type, and expiration
+      fields; creation/deletion logs tied to the workload lifecycle; periodic attestation
+      of accounts in use; samples showing disabled or deleted accounts and the trigger.
+    basis: inferred
+  common_myth:
+    value: Equating an account inventory with this control — listing accounts is necessary
+      but not the point; if dynamic accounts can still be spun up outside the inventory
+      or live past their need, the control has not been met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a workload that scaled up last week — show the accounts it created and
+      where they were deactivated after use.
+    - Who owns the service account on the production database, and what is its stated
+      expiration?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.155533Z'
+  signed_digest: aab664f9b98d8546ad4717e138f881f60eccc22cd5b2c642757a0f09af64a2cc
+  interview_seconds: null
+  inherited_from: null
