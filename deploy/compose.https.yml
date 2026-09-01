@@ -1,0 +1,28 @@
+# Overlay: HTTPS in front of the same app container.
+#   docker compose -f docker-compose.yml -f deploy/compose.https.yml up --build
+#
+# FR_SITE_ADDRESS  hostname in the Caddy site block (default localhost)
+# FR_CADDYFILE     deploy/Caddyfile (Let's Encrypt / internal) or
+#                  deploy/Caddyfile.certs (mount cert.pem + key.pem into deploy/certs/)
+# FR_HTTP_BIND     keep at 127.0.0.1 so cleartext 8765 is not on the LAN
+
+services:
+  proxy:
+    image: caddy:2-alpine
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      FR_SITE_ADDRESS: ${FR_SITE_ADDRESS:-localhost}
+    volumes:
+      - ${FR_CADDYFILE:-./deploy/Caddyfile}:/etc/caddy/Caddyfile:ro
+      - ./deploy/certs:/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:

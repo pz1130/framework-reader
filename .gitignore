@@ -45,3 +45,7 @@ content/interpretations/*/
 # 顺手截的整页图。都是当时看一眼就完事的产物，留在仓里只会长。
 .playwright-mcp/
 /home-full.png
+
+# Optional Docker TLS material
+deploy/certs/*
+!deploy/certs/.gitkeep

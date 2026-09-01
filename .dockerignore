@@ -1,0 +1,33 @@
+.git
+.github
+.worktrees
+.venv
+venv
+.pytest_cache
+.ruff_cache
+.playwright-mcp
+.claude
+.superpowers
+.DS_Store
+
+# Secrets and local env — never bake into the image
+.env
+.env.*
+
+# Build artifacts and copyrighted vendor sources (NIST is fetched in the image)
+build
+vendor
+dist
+*.sqlite
+*.db
+*.pack
+__pycache__
+*.py[cod]
+*.egg-info
+
+# Not needed to run the workbench
+docs
+tests
+*.md
+!README.md
+!vendor/README.md

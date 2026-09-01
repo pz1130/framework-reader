@@ -1,0 +1,7 @@
+# Use when you already have a certificate. Mount the files at /certs
+# (see deploy/compose.https.yml) and point FR_CADDYFILE at this file.
+
+{$FR_SITE_ADDRESS:localhost} {
+	reverse_proxy app:8765
+	tls /certs/cert.pem /certs/key.pem
+}

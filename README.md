@@ -17,6 +17,9 @@ make build                   # build/content.sqlite
 fr serve                     # http://127.0.0.1:8765
 ```
 
+Docker (HTTP or HTTPS in front of the same process) is optional; see
+**Optional Docker** below.
+
 Copy `.env.example` to `.env` and fill in the vendor keys you actually use.
 The content pack does not leave this machine; model calls use your key.
 
@@ -360,6 +363,31 @@ Interpretations of imported frameworks land in
 `$FRAMEWORK_READER_HOME/user.sqlite`, **not in `content/`** - that is what we
 publish, it goes into git, and `make build` bakes it into the content pack.
 Your company's policy interpretations do not belong there.
+
+## Optional Docker
+
+The default path is still `fr serve` on the host. Docker is extra: same
+process, HTTP inside the container. TLS is terminated by Caddy in front,
+not by uvicorn.
+
+```bash
+# HTTP on http://127.0.0.1:8765  (set FR_HTTP_BIND=0.0.0.0 to listen on the LAN)
+docker compose up --build
+
+# HTTPS on https://localhost/  (Caddy; browser warning on the internal CA)
+# For a public hostname: FR_SITE_ADDRESS=framework.example.com and open 80/443
+docker compose -f docker-compose.yml -f deploy/compose.https.yml up --build
+```
+
+User data lives in the `fr-data` volume (`FRAMEWORK_READER_HOME` and a copy of
+the content pack). `FR_SECRET_KEY` comes from the environment; if you omit it,
+the entrypoint generates one onto the volume so restarts keep decrypting
+stored API keys. In production inject the key from a secrets manager.
+
+Existing certificates: put `cert.pem` and `key.pem` in `deploy/certs/` (not
+committed) and set `FR_CADDYFILE=./deploy/Caddyfile.certs`. Entra's redirect
+URI must be `https://<host>/auth/entra/callback` so session cookies get
+`Secure`.
 
 ## Importing your own framework
 

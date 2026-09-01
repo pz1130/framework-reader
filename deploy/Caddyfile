@@ -1,0 +1,7 @@
+# TLS is terminated here. The app speaks HTTP on app:8765.
+# localhost → Caddy's internal CA (browser warning unless you trust it).
+# A public hostname on :443 → Let's Encrypt (needs ports 80 and 443 reachable).
+
+{$FR_SITE_ADDRESS:localhost} {
+	reverse_proxy app:8765
+}
