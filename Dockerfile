@@ -4,12 +4,16 @@
 
 FROM python:3.12-slim AS builder
 WORKDIR /src
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 COPY pyproject.toml README.md ./
 COPY src ./src
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir --root-user-action=ignore . \
+    && python -c "from pathlib import Path; import framework_reader.identity as i, framework_reader.prompts as p; \
+assert (Path(i.__file__).parent/'schema.sql').is_file(); \
+assert (Path(p.__file__).parent/'drafter.md').is_file()"
 COPY content ./content
 COPY scripts ./scripts
 # NIST public-domain sources; vendor/ is gitignored on the host.
@@ -18,10 +22,11 @@ RUN chmod +x scripts/fetch_sources.sh \
     && python -m framework_reader.pack.build
 
 FROM python:3.12-slim
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gosu \
     && rm -rf /var/lib/apt/lists/* \
-    && useradd --system --uid 10001 --home-dir /data --no-create-home app \
+    && useradd --uid 10001 --home-dir /data --no-create-home app \
     && mkdir -p /data /app /opt/framework-reader \
     && chown app:app /data
 WORKDIR /app

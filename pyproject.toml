@@ -38,6 +38,11 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Wheel install (Docker `pip install .`) drops these unless declared.
+# Editable `pip install -e .` hides the hole because files sit next to the .py.
+[tool.setuptools.package-data]
+framework_reader = ["identity/*.sql", "pack/*.sql", "prompts/*.md"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 # tests/query/test_sample.py and tests/blindtest/test_sample.py share a basename.

@@ -615,16 +615,19 @@ def _startup_report(host: str, port: int) -> None:
     elif _identity().configured():
         typer.echo("Account sign-in is enabled. Entra is not configured - `fr entra check` says what to set.")
     else:
-        typer.echo("No accounts yet, so the workbench does not require login (single-user local use)."
+        typer.echo("No accounts yet, so the workbench does not require login (single-user local use). "
                    f"To invite others, first create the first admin at http://{host}:{port}/members "
                    "(or `fr account invite you@company.cn --role admin`) - "
                    "once it exists, the door locks.")
-        if host not in ("127.0.0.1", "localhost", "::1"):
+        in_docker = Path("/.dockerenv").exists()
+        if host not in ("127.0.0.1", "localhost", "::1") and not in_docker:
             # 门开着 + 绑到别的地址 = 同网段的人能**抢先**建第一个管理员，
             # 而他建完门就锁上，锁在外面的是你。
+            # Docker 里必须绑 0.0.0.0 才能被 compose 的 published port 转到；
+            # 真正的暴露面是宿主机的 FR_HTTP_BIND（默认 127.0.0.1）。
             typer.secho(
                 f"⚠ Bound to {host} with no accounts yet: anyone who can reach this port "
-                "can race you to the first admin and lock you out."
+                "can race you to the first admin and lock you out. "
                 "Create the admin before exposing the port, or bind only 127.0.0.1.",
                 fg=typer.colors.RED)
 
