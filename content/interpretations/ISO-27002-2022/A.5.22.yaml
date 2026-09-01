@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.22
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「把系统或服务外包出去之后，内部没人持续盯」——供方改动、升级、下线、换人都会悄悄改变你的攻击面，而合同签完就没人再管，等于把安全盲区交给外部。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.279165Z'
+  signed_digest: 1dcd32b56ef2336a40031019b5802c986aaabae728183619809c248e3809c8bd
   interview_seconds: null
+  inherited_from: null

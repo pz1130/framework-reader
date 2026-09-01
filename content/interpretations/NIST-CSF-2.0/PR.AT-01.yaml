@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AT-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「全员培训走形式、安全知识停留在PPT」——员工在日常工作中没有把风险当回事，钓鱼邮件、敏感数据乱发、设备乱接这类人为事故反复发生，而培训却不敢为此负责。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.573776Z'
+  signed_digest: 962a714ea147487c61f256f24305308d7a85a9b6bca560daf6b8a252129badd9
   interview_seconds: null
+  inherited_from: null

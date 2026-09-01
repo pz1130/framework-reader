@@ -379,6 +379,12 @@ docker compose up --build
 docker compose -f docker-compose.yml -f deploy/compose.https.yml up --build
 ```
 
+Sign in at `/login` with **`admin@localhost` / `changeme`**. Change that
+password before exposing the port. Override with `FR_BOOTSTRAP_ADMIN_EMAIL`
+and `FR_BOOTSTRAP_ADMIN_PASSWORD`. The first account holds admin + author +
+approver so a solo deploy can actually use the workbench; after it exists,
+the door locks.
+
 User data lives in the `fr-data` volume (`FRAMEWORK_READER_HOME` and a copy of
 the content pack). `FR_SECRET_KEY` comes from the environment; if you omit it,
 the entrypoint generates one onto the volume so restarts keep decrypting

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.CO-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是恢复进展没人知道、各干各的——系统恢复了但业务方还在干等，或者外部监管、合作伙伴反复来问你们到底行不行了，内部却在互相猜进度，导致恢复期出现二次混乱。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.606763Z'
+  signed_digest: a38747e920d4cb5f6ae0fe5f8b7516e4a53a9933f2c8bc1d2974c4998a7c5523
   interview_seconds: null
+  inherited_from: null

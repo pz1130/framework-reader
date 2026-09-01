@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.14
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「信息进出无台账、无约束、无技术拦截」——员工想传就传、想收就收，接口谁开谁说了算，数据流出去以后既没记录也没追责依据。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.261567Z'
+  signed_digest: df5b64330758cd1cde1db29d8f42011a0cc8eef22a8d8c3a6e5b05e50136e67f
   interview_seconds: null
+  inherited_from: null

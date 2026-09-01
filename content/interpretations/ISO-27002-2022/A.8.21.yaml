@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.21
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「网络通路只管打通、不管约定」——系统和外部网络一接，边界就模糊了；没有书面约定，接口特性、安全要求、双方责任全是口头默契，出事互相甩锅，审计也查不到底。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.392677Z'
+  signed_digest: b7b8e8066378fc9f95b524be609c57572ccb92d701342a402e2bbcb6eb9d5b05
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.36
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「写在纸上的方针和真实世界是两张皮」——安全方针若没人核对它有没有被遵守，那它只是文件柜里的装饰；没有核对机制，偏差永远不会浮上来，所有后续审计都会在文件层面翻车。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.307782Z'
+  signed_digest: b6c5adb5907d31ad35de0b85c39f2665d52d03079b8d7383940078a98cddcd25
   interview_seconds: null
+  inherited_from: null

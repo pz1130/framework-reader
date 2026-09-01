@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.CM-09
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「监控只盯着网络流量，看不到服务器上跑的东西」——硬件、软件、运行时环境和数据本身出了问题，往往比网络攻击更隐蔽，不盯这些就发现不了挖矿程序、未授权软件、配置漂移和数据异常。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.452952Z'
+  signed_digest: bec0532e7b6fd9ae3e91da704402f7856e478d8c2495bcda5192ab2d2e9b5f97
   interview_seconds: null
+  inherited_from: null

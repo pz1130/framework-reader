@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MA-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件在手里捂不住也传不上去」——一线人员判断不了严重性，或者判断了但没人接、没记录、没升级路径，小事件拖成大事故，事后复盘连升级链条都说不清。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.640430Z'
+  signed_digest: 4674ce2c0f01f0d5267bd1bc338d5c2de9a97391b4c532d9654f98f4b85537d2
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.29
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「平时一切正常，一出事系统起不来或带着错误状态上线」——中断、被攻破或故障后，必须能把系统恢复到可信的已知状态，而不是随便重启就算完事。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.292060Z'
+  signed_digest: 8b98a6e1ea6d85c623139908560826ed0df8de90322c0f78cf1a123e49d648a5
   interview_seconds: null
+  inherited_from: null

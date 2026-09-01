@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.33
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「测试环境随便拷生产数据」——开发、测试、预发环境不带生产同等级的安全控制，却放着真实客户数据，一旦泄漏或误用，责任却推给数据敏感度。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.418152Z'
+  signed_digest: 748f5cd4eaa5a39e074de9363270240e4eb15fd169f30d13650ba7cf75e6c4e6
   interview_seconds: null
+  inherited_from: null

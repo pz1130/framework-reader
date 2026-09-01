@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MA-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「所有事件一视同仁、按谁先喊谁先处理」——没有分类定级，高影响事件和小故障抢同一张工单队列，真正要命的没被优先处置。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.638473Z'
+  signed_digest: 5590f9c0959b62ae6e6077d166aebd26d8555021be34e710747f264b133885f2
   interview_seconds: null
+  inherited_from: null

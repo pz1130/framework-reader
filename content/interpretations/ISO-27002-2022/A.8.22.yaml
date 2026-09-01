@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.22
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「网络内部一台机器被打穿，整个环境裸奔」——没有边界和分段，攻击者横向移动如入无人之境，内网任何一台失陷设备都能变成跳板，批量感染或窃取核心数据。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.394560Z'
+  signed_digest: 77a2630262bdef7fc8266caa4d8cc6caf85c8951d55502d7c722ead41e25b2bc
   interview_seconds: null
+  inherited_from: null

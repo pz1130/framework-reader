@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.34
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「个人数据当普通资产管」——数据被收集、使用、共享、删除的每个环节缺少法律依据和边界限制，处理目的没有书面记录，个人无法获知自己的数据被拿去做什么，出事后既说不清为何收集、也说不清凭何处理。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.303918Z'
+  signed_digest: 169390cf074336a3385a12c504c7856e7fc153e6827a409cd72d5dcc6862f763
   interview_seconds: null
+  inherited_from: null

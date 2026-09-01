@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.CO-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全事件刚平稳，对外一句话把舆情引爆」——事故应对得再好，面向客户、监管和公众的通报口径不统一或未经批准，会二次伤害信任并招致合规追责。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.608693Z'
+  signed_digest: 5fab077d67fe16492dc3838d1558d98be60925d38d23cf1c0b25cb181f035921
   interview_seconds: null
+  inherited_from: null

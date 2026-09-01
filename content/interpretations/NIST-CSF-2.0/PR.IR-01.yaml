@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.IR-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「网络通了就什么都不设防」——内部人员横向乱窜、外部流量直接摸到核心系统。这条管的是逻辑层的门禁和隔离，不是防火墙设备买没买，而是流量和访问到底有没有按规则被拦下来。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.586201Z'
+  signed_digest: ad5acc61fd39be8a64380af3e9d689210598e0d19dc76978d7dec343fe9b6d9f
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.DS-10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「数据只在磁盘和传输中受保护」的盲区——数据在内存、CPU 缓存、寄存器里被处理时，既不能被人读走，也不能被篡改，更不能因为进程崩溃或系统残留导致下个进程读到上一手的数据。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.582437Z'
+  signed_digest: 98f48efefbd606ae2371347085d711cff78be753c8c7d6272d51452e6c737656
   interview_seconds: null
+  inherited_from: null

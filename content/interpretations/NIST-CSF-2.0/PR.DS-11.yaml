@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.DS-11
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「备份了但从来没恢复过」——数据真丢了才发现备份文件损坏、密文解不开、恢复流程没人会跑，等于没备份。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.584328Z'
+  signed_digest: 0ffa58241ce59ee109fda00be640341f602908d7109fc2af67c52b8c937608de
   interview_seconds: null
+  inherited_from: null

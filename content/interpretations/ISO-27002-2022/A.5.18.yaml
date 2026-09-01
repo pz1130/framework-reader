@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.18
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是账号生命周期没人管——员工入职开通、调岗加权限、离职却没人收号，导致一年后离职员工账号仍在系统里活着，形成内部威胁与审计失败。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.269523Z'
+  signed_digest: 79cfbcb792f04318ed72984d1df972337bbb43a3f0157caae30315d01545d323
   interview_seconds: null
+  inherited_from: null

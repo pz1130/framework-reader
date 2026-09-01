@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防止「软件装上就不管了」——不上补丁、版本老化、无人维护的软件会把已知漏洞长期暴露在攻击面里，直到被利用才想起处置。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.596522Z'
+  signed_digest: eb30639376e5ae8c69c17470052c2893cbb8fbc44e4d9e50298a4799c9bae7fe
   interview_seconds: null
+  inherited_from: null

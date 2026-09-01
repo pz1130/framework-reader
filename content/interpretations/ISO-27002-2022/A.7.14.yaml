@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.14
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「旧设备里藏着没清干净的数据」——报废、转赠、返修、换新时，硬盘、手机、打印机、复印机里的残留数据被捡走拿走，造成数据泄露。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.349114Z'
+  signed_digest: 50effe497077f4f18815a68ad97caf39e112e06900d2d0745f9696cfc8e99650
   interview_seconds: null
+  inherited_from: null

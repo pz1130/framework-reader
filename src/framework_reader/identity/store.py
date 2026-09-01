@@ -104,6 +104,24 @@ class IdentityStore:
 
     # ---------- 账号 ----------
 
+    BOOTSTRAP_ROLES = ("admin", "author", "approver")
+
+    def bootstrap(
+        self, *, email: str, password: str,
+        roles: tuple[str, ...] = BOOTSTRAP_ROLES,
+    ) -> Account | None:
+        """Create the first operator if nobody is in the store yet.
+
+        Returns None when accounts already exist (idempotent). The first
+        person on a deployed box needs admin *and* author/approver —
+        admin alone cannot draft or sign, and self-grant is refused.
+        """
+        if self.list_accounts():
+            return None
+        return self.create_account(
+            email=email, password=password, roles=roles, granted_by="bootstrap",
+        )
+
     def create_account(
         self, *, email: str, password: str = "", display_name: str = "",
         roles: tuple[str, ...] = (DEFAULT_ROLE,), granted_by: str | None = None,

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OC-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是法务、合规、安全三个部门各说各话——数据隐私、行业监管、合同里的安全条款，如果不能落到一份统一的清单并有人持续跟踪变化，出事时才发现没跟上新法规或没履行合同承诺，罚单和违约金都会变成事故的一部分。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.459441Z'
+  signed_digest: e364ce893d28e65e1f0d38ddafb59b5b36a16447be7a92a2d4de6ec97f49e958
   interview_seconds: null
+  inherited_from: null

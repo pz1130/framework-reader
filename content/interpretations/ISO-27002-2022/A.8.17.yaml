@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.17
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是日志时间不可信——审计记录里的时间戳如果来自未同步的系统时钟，出事时无法把不同系统、不同时区、不同设备上的日志拼成准确的事件还原，法律取证、责任界定和异常分析都会失去可靠的时间基准。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.382826Z'
+  signed_digest: ec26253aa510b81bae67a3c4a53859239e4550044d87c88677e70fb70fd174e3
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「介质到处放、随便借、坏了就当垃圾扔」——硬盘、U盘、磁带、打印纸里存的机密，在存储、运输、维修、报废任何一个环节漏出去，数据就走了。这条管的是介质从生到死的物理与流程管控。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.340983Z'
+  signed_digest: 7f806791b5028ad8160ae8487dccfb30f268063bb53b92944c17eb02af19643a
   interview_seconds: null
+  inherited_from: null

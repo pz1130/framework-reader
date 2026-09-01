@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.33
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「记录在、但不可信」——日志和备份没有防篡改、没有访问控制、也没有异地保护，出事后审计员查不到完整链条，或者攻击者直接删日志抹掉痕迹。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.302065Z'
+  signed_digest: c3b095bef925b90c565f92622956f7c9ae566bc24ccce36b20d177e8bc159d18
   interview_seconds: null
+  inherited_from: null

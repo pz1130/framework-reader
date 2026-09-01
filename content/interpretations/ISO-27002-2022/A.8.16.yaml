@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.16
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「日志在记、没人看」——活动监控如果只停留在技术层面的采集，而不去关联用户行为、物理访问与远程运维场景，攻击者潜伏期内的异常动作就不会被及时发现，审计时也拿不出「我们确实在盯」的证据。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.380599Z'
+  signed_digest: 44513ee70d3207600abbf53fd1536af3d882ee58b4bc7fef6574bc382d675901
   interview_seconds: null
+  inherited_from: null

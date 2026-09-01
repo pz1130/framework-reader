@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.6
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全团队闭门造车——威胁情报、漏洞披露、监管新规都在外部圈子先流动，不主动接入，等自家被通报或被打了才知道，反应永远慢半拍。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.315288Z'
+  signed_digest: b28f90c58469d261bcb3e63224343b816d7ddfbfc22cb633788ea1fc30f0c82e
   interview_seconds: null
+  inherited_from: null

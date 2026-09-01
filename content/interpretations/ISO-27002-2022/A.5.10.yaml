@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「信息附在介质上就跟人不走了」——U 盘、移动硬盘、纸质文件、磁带这类东西一旦离手，上面的数据就脱离了所有访问控制；如果没有使用规矩、存放地点、进出记录和销毁流程，泄露了都不知道从哪个环节出的。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.253401Z'
+  signed_digest: fc8c2c58610d7f4e60729f4eb65e4eec6d38034cff3c93e91d0ecf2dc8cd3131
   interview_seconds: null
+  inherited_from: null

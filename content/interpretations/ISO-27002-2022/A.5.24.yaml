@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.24
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「出事才现抓人」——没有提前写好的预案，事件发生时靠临时拼凑，决策链混乱、响应延迟、该上报的不上报，事后也说不清谁该做什么。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.282823Z'
+  signed_digest: f94567b260bd1103e30b174f67c89efaa577fdd60a175bc8e299f2ae236e9338
   interview_seconds: null
+  inherited_from: null

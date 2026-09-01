@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全责任只有自己人有，供方和客户不认账」——出事时互相推、信息不通、接口部门不知道找谁，供应商安全条款签了等于没签。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.499960Z'
+  signed_digest: c45fb4e6a59a4a3098578e7cb5bdc1f224849ca3832f729f4e8d96e101495c93
   interview_seconds: null
+  inherited_from: null

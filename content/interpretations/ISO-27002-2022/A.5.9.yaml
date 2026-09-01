@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.9
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「出了事说不清资产在哪儿」——没有一份谁在用、谁在维护、何时该更新的信息资产清单，安全事故调查、备份恢复、漏洞修复就会找不到对象，影子资产会一直游离在管理之外。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.321331Z'
+  signed_digest: f871bd2b3d12953c66ddbfe55857072e762dd0aea68c394064b4e57df13315be
   interview_seconds: null
+  inherited_from: null

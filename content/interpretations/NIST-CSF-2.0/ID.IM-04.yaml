@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.IM-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「应急响应计划躺在文档库里发霉」——计划写完没传达、没更新、没和其他运营计划对齐，真出事时大家各干各的，响应动作和日常运营脱节。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.538196Z'
+  signed_digest: 3e52515ca229c898348ad0b64f320a88d6a7c827938774fbe04ae6d8276fe168
   interview_seconds: null
+  inherited_from: null

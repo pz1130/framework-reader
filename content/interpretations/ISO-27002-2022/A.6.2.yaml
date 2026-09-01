@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.2
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「人进了门、责任没落地」——员工或外包人员入职时口头答应遵守安全规定，出了事却推说没人告诉过他边界在哪；没有书面签认，纪律处分和追责都没有依据。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.325099Z'
+  signed_digest: c43472802339c106d8e00b6a76a356f34dd83966e33852095f31c78e7192cf82
   interview_seconds: null
+  inherited_from: null

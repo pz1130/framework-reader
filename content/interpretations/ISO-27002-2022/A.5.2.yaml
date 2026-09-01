@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.2
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全人人有责等于人人无责」——事故发生后找不到该拍板的人、该审批的人、该背指标的人，权限不清导致安全任务悬空，审计时无法向任何人问责。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.273611Z'
+  signed_digest: d77ea918c78c4dead10c59e4a94d9d8920b217b56302520e51188e9eb5ad5d02
   interview_seconds: null
+  inherited_from: null

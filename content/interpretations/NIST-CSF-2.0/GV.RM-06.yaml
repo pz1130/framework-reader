@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「风险评估各做各的」——一个团队用打分表、一个团队凭感觉、一个团队只看漏洞扫描，结果同样等级的风险在不同部门得到完全不同的处置优先级，管理层拿到的数字根本没法横向比较。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.486093Z'
+  signed_digest: 486ff79338606c145b6fc656204196bc00eea4cf4b381f055b95751351e11663
   interview_seconds: null
+  inherited_from: null

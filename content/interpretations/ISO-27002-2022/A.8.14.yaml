@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.14
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「主站点一瘫，整个业务跟着停摆」——机房、电力、网络、算力任何一环挂了，没有备用路径或可切换的落点，恢复时间就只能靠运气，审计时拿不出任何可验证的承诺。
@@ -42,7 +42,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.376384Z'
+  signed_digest: 3118bb414a8439482b38fc0c5f078c625537b397d44bdbb4c54dbc824c6f382f
   interview_seconds: null
+  inherited_from: null

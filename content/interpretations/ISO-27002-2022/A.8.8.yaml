@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.8
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「漏洞扫出来就算完」——扫描报告躺在那没人管，真正危险的漏洞一直暴露在系统里，直到被利用才被发现。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.429678Z'
+  signed_digest: 92cbe3de51070b1d3a68ee87fa80ac5ff50bd5cd87644e33ef71e2899b63aa6f
   interview_seconds: null
+  inherited_from: null

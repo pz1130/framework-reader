@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.AM-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「只盘了供应商名单，没盘供应商到底给我们提供了哪些服务」——供应商换服务范围、子服务转包、服务下线时，安全评估和应急响应都跟着失效，出事才发现连服务的边界都没画清。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.524402Z'
+  signed_digest: f4bc3eff3b109b19ee49550cb650fb1d29ba0bfa57a94dd9d62406210acb18a4
   interview_seconds: null
+  inherited_from: null

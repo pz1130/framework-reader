@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.4
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是源码、构建产物和版本库凭据被当成普通文件随便给——公司最值钱的代码资产一旦落到无业务必要的人手里，泄漏路径就不可控，而且改代码的人要是没受控，相当于给后门留了门。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.422085Z'
+  signed_digest: 7897863783859ebb7d47b7aef4a7c0becb023271c8d81c30fe727835b96bf61b
   interview_seconds: null
+  inherited_from: null

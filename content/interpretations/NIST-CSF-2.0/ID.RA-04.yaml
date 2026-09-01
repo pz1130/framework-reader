@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 这条控制防的是风险登记册里只记「有漏洞」这种单点事实，却没有把漏洞与具体威胁、被利用后的业务影响和发生概率串起来——这样漏洞扫描结果就是一份没人敢拍板的废纸，决策者只能凭感觉分优先级。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.546574Z'
+  signed_digest: 1aca5218cb6f22dc22feb59f03b57313bc484c0b5b417c167d859805ca6827d5
   interview_seconds: null
+  inherited_from: null

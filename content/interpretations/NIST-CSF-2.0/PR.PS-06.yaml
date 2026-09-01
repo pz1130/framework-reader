@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全开发只是一次性培训或上线前的检查清单」——如果开发实践没有从需求到发布持续被监控，漏洞与不合规会随迭代悄悄积累，等审计或出事时才暴露。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.604768Z'
+  signed_digest: 77e559fdca2addef886790d20e1746c4b379799b661da62011e271bcacddf77b
   interview_seconds: null
+  inherited_from: null

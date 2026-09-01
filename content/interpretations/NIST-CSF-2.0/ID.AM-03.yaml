@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.AM-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是网络架构和安全边界失控——没人知道内部哪些网段能互访、对外开了哪些口子、数据往哪流，防火墙规则和微隔离策略形同虚设，出了事排查和定责都没依据。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.522555Z'
+  signed_digest: e7093cd363560561f035d258a1a23552d0db267bfb3e34e4bfc900e2a0e80648
   interview_seconds: null
+  inherited_from: null

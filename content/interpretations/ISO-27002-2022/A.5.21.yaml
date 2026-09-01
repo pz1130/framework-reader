@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.21
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「买的设备、软件、云服务在链路里被人动过手脚」——从厂商研发、生产、运输到上线，哪个环节被植入后门、替换固件、掺入伪造组件，单靠到货验收根本看不出来；这条逼你从采购源头就设计管控，而不是等系统出事了才溯源。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.277364Z'
+  signed_digest: 7a30183652e3338c9f75db83ce4df6091099d8e2ed572ad025c8e89e61657934
   interview_seconds: null
+  inherited_from: null

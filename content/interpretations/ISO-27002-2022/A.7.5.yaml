@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.5
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是设备机房真出了火、水、断电、高温时业务直接停摆——但很多团队把这条理解成「机房有灭火器、空调在转就行」，结果灾备机房跟主机房在同一个园区、同一条地下电缆，一场施工挖断全灭，备份数据也一起没了。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.356660Z'
+  signed_digest: 09034eb4a622012030291f42654d656da2ea4104295f6b90987993554e5282df
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.18
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是高权限账号被当普通账号用、被共享、被长期挂机——拥有管理员或特权身份的人一旦被冒用或误操作，影响面是全局的，而且这类账号往往是攻击者拿下域控或核心系统的最后一跳。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.384926Z'
+  signed_digest: e3fbb5925f5718369daf6173bf1e01cbe62010debd2f15b735bdb3a7351f0665
   interview_seconds: null
+  inherited_from: null

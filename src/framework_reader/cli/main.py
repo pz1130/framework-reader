@@ -356,6 +356,32 @@ def _identity():
     return IdentityStore()
 
 
+@account_app.command("bootstrap")
+def account_bootstrap(
+    email: str = typer.Option(..., "--email"),
+    password: str = typer.Option(..., "--password"),
+) -> None:
+    """Create the first operator if the identity store is empty. Idempotent.
+
+    Used by the Docker entrypoint. Does not print the password.
+    """
+    from framework_reader.identity.store import IdentityError, IdentityStore
+
+    try:
+        account = IdentityStore().bootstrap(email=email, password=password)
+    except IdentityError as exc:
+        typer.echo(str(exc))
+        raise typer.Exit(1) from exc
+    if account is None:
+        typer.echo("Accounts already exist; bootstrap skipped.")
+        return
+    typer.echo(
+        f"Bootstrapped {account.email} with roles: "
+        + ", ".join(sorted(account.roles))
+        + ". The workbench now requires login."
+    )
+
+
 @account_app.command("invite")
 def account_invite(
     email: str,

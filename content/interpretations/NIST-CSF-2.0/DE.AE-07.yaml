@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.AE-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全分析室活在自己的日志里——只看自有数据，看不懂外面正在发生的攻击手法、漏洞利用和行业预警，等于闭着眼值夜班，威胁来了不认识。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.441260Z'
+  signed_digest: 7d27011293bc9d5a3f3442b0ea100f738b99791d5b9713c1b2d675959da29714
   interview_seconds: null
+  inherited_from: null

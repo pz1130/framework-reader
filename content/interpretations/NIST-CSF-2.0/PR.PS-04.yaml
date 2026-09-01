@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「日志在但没人看」——记录若只躺在存储里、无法持续消费与关联，攻击发生几天甚至几周后才被发现，取证与止损都来不及。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.600544Z'
+  signed_digest: 6d2bb4e0fb86c09778be826233536eb54075a59f8269624d5d2525a0baa774f4
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.AM-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「数据在哪、是什么、谁负责、留多久」没人说得清——一旦被问到某个数据集的存放位置、保密级别或保留期限，整个团队答不上来，审计和数据泄露都没法追。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.528404Z'
+  signed_digest: c84efd20ff1d10818436477c27cc0bca4b420eafb63642e097efd19e90bdbec2
   interview_seconds: null
+  inherited_from: null

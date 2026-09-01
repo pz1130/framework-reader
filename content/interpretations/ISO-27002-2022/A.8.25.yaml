@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.25
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全在开发流程末尾才入场」——需求阶段没人提安全要求，设计阶段没人看架构，测试阶段才发现漏洞，上线前只能靠加班补丁硬塞，最后安全成了上线阻碍而不是工程质量的一部分。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.400642Z'
+  signed_digest: e123940ed9f9004002d8567201bb842e324cb38009d7b66c29a45423378cb17b
   interview_seconds: null
+  inherited_from: null

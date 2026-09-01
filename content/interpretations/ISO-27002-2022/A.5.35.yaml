@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.35
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「自己查自己、自己给自己盖章」的失效闭环——安全团队同时是系统开发者和效果评判者时，审计结论天然失真。这条逼你引入无利害关系的外部视角，否则控制有效性永远是自我感觉良好。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.305828Z'
+  signed_digest: 2e50a565af71a51d5bb1508b67d496851bba6180e5cdbedf5f00e4ebf8e69d84
   interview_seconds: null
+  inherited_from: null

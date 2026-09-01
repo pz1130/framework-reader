@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.30
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「外包方把代码交上来、我们付钱验收就完事」——开发过程、测试、缺陷修复合不合格没人盯，拿到手的软件可能带着后门或一堆没修的漏洞，后续出问题还得自己背锅。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.412348Z'
+  signed_digest: bfe2f98e507876b0c44e937c1a3ef033044e89a35c28b726994f9028530aaae7
   interview_seconds: null
+  inherited_from: null

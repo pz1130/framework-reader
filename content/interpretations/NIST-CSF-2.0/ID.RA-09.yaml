@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-09
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「买来就用」——硬件固件、软件安装包或云镜像在进环境前没验过签名和哈希，供应链里被人换过包、植入过后门，等上线后才发现就晚了。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.557254Z'
+  signed_digest: 1a1f733cbacfec07812a36d0ce50b5f8a7ca97242575e4791106ee8fc4e4460e
   interview_seconds: null
+  inherited_from: null

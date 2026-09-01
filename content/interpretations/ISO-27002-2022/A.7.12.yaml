@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.12
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是物理上剪一根线或拔一个插头就让系统中断、数据泄露或被篡改——线缆和电力设施是物理世界的入口，没有保护，网络层做得再好也拦不住物理接触。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.345137Z'
+  signed_digest: 524a3ed307a4864f4c3697d55db616752781ed272aa2ca95ac191025a89f8023
   interview_seconds: null
+  inherited_from: null

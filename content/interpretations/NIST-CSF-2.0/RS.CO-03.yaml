@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.CO-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事故情报只在小圈子流传」——检测响应和恢复链条上的人如果各自为政、信息断层，最坏情况是响应动作互相冲突、该升级的没人升级，外部该同步的关键信息（如受影响的第三方）也没有渠道传递。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.632582Z'
+  signed_digest: ce967e9e21defa891f19417c27992b3ee5c008e9904af4ace912e25e5ab18b16
   interview_seconds: null
+  inherited_from: null

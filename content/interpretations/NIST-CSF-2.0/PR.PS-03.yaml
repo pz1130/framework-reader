@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是硬件在生命周期各环节脱离管控——在用设备带病运行无人管，退役设备里的数据没清就扔，供应链里混进假货或改装件。不做这条，漏洞靠补丁和软件修不好，硬件层面的篡改和泄露直接绕过所有上层防护。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.598546Z'
+  signed_digest: d70acb4974adb7f5c8d059f6971f4eefb8d26afbdd0a6dd1bb41859f7a613789
   interview_seconds: null
+  inherited_from: null

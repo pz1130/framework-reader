@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.3
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「授权了就能随便读」——审批过了就没人再管这个人到底有没有读的权力，以及读的边界在哪；信息一旦被不该读的人读走，损失已发生，事后很难收回。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.410228Z'
+  signed_digest: 19d392f3ed498fa8396cd08aecd292f33086124e72cba921a7417a748face6b6
   interview_seconds: null
+  inherited_from: null

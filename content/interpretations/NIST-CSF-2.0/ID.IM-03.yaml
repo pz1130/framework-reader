@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.IM-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「演习、事故复盘、监控告警跑完就散场」——每轮实际操作产生的教训如果没人收口，下一轮同样的漏洞会原样再犯，安全投入变成重复劳动。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.536233Z'
+  signed_digest: 1f7e8c330984c7a685ad4cdbfbaa61f5b08ec95844c7e49bcec2d192b8b36a06
   interview_seconds: null
+  inherited_from: null

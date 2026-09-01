@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.1
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「用人不察」——把一个有重大风险前科或资质造假的人放进能碰关键资产或数据的岗位，等出事才发现背景里有雷。同时也防核验走过场：查了等于没查，或查完没有记录，事后说不清。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.323269Z'
+  signed_digest: e171630c809f6ea5d17bd5ec90cfc1f4997858411b49c910985f72e1b98285da
   interview_seconds: null
+  inherited_from: null

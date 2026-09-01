@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.15
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「账号在发、权限在改，但没有人能说清who can access what」——权限发错是慢性的，收不回是急性的；规则一旦靠口头与微信群而不是书面与系统，审计时任何一次抽查都能推翻你整套说法。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.263527Z'
+  signed_digest: 6d5950b42a5d783e6a5dc262c528af313451dc26a3afbcdad652b3cf725a9e58
   interview_seconds: null
+  inherited_from: null

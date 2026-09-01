@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.3
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「一个人从头到尾把一个关键流程做完」——从授权、执行到复核都在同一人手里，既有权限凌驾于监督之上，出问题时没有任何人发现或拦住，内部作案或单点失误无人能纠。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.294057Z'
+  signed_digest: c86c5c542acb0e45de20fc46214e30a0000726279826cfce6705a9f7f2408451
   interview_seconds: null
+  inherited_from: null

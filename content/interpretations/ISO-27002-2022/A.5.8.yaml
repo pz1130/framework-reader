@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.8
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全控制只在设计文档里存在，系统里没落地」——项目从立项、采购、开发到上线，安全安排如果不写进项目计划、不配资源、不指定责任，后期补课的成本和风险都会失控。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.319309Z'
+  signed_digest: f393c35277bb48f7d4ce5ca239945172589ca8c69fd9eb0101b1e565c27eaf8c
   interview_seconds: null
+  inherited_from: null

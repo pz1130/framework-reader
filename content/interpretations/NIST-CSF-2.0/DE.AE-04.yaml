@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.AE-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是事件发生时只知道'出事了'却不知道'多严重、波及多广'——没有影响和范围的快速估算，响应就会按嗓门大小排序，该隔离的没隔离，该上报的没上报。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.437628Z'
+  signed_digest: e8bf760c790541171156760d9061302bc70a0ac624c9c914f8f2f00a77ff4082
   interview_seconds: null
+  inherited_from: null

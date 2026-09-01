@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「风险处置方式没有统一口径」——业务部门出事按自己的方便来，有的人一上来就花钱买保险、有的人压住不上报、有的人直接砍业务，没有管理层定过的应对策略，处置决定全凭感觉和职位。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.482059Z'
+  signed_digest: fff327ae12e01e6a8e93000090f59d51322d3cd8e314d8954766074a8b15f2ea
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是风险处置停留在会议纪要和口头承诺——选了措施没人排期、排了期没人执行、执行了没人跟踪、跟丢了没人汇报，最后风险清单越来越长，安全部门背锅却拿不出处置轨迹。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.550949Z'
+  signed_digest: 987524af64dd5936ad6afb592b0b91b0878e5624fbb705eda4f9ba620fa2e759
   interview_seconds: null
+  inherited_from: null

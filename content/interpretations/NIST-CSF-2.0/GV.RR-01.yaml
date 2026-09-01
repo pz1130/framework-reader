@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RR-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「一把手觉得安全是技术部门的事」——出了大事最高层说不知情、安全部门背着锅。责任悬空时，资源、拍板权、问责链全部没有抓手。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.490323Z'
+  signed_digest: 4f998b95f1f20eb13147a2955d3d7e14c40789e4312bf6b8385376438bb8de8a
   interview_seconds: null
+  inherited_from: null

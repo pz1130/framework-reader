@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「风险信息卡在安全部内部」——供方出问题、业务上线新系统、高管问风险态势时，消息传不到该拍板的人那里，决策层在真出事前根本不知道存在的风险。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.484120Z'
+  signed_digest: e5fab87b46f85282ff3a6141c996232b97a67f37847a1e13cdbccf671a87d9a0
   interview_seconds: null
+  inherited_from: null

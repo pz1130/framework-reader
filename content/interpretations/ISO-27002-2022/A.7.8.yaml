@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.8
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是设备被放在一个既没想清楚物理威胁、也没算过环境极限的地方——火灾、漏水、断电、震动、温度湿度超标、电磁泄漏，任何一个先到，设备先死或数据先漏，而机房和安全办公室在决策时根本没人把这些当约束条件。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.362813Z'
+  signed_digest: 99ecda2e6f06c2a34f39252d57c8d6a114634a1bf96203867c636de45b1c0343
   interview_seconds: null
+  inherited_from: null

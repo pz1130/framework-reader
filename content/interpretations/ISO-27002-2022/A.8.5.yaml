@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.5
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是账号密码被撞库、暴力破解、肩膀偷看之后还能继续用——登录这扇门要能拦住持续尝试、按策略锁住账号、屏幕上别泄露敏感信息、用户登录时能看到上次登录记录，自己账号被冒用能第一时间察觉。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.424007Z'
+  signed_digest: dc1b5a3e3d02d79879e6af099a046f06a74dea79faacb7a13bde7142f6ac2367
   interview_seconds: null
+  inherited_from: null

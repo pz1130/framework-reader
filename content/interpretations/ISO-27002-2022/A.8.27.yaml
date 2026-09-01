@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.27
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全要求只写在需求和验收文档里，架构上没落地」——系统拆分、组件边界、信任等级在图纸阶段一旦含糊，后面所有控制都靠打补丁，漏洞和越权是架构性问题，不是补丁能补的。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.404481Z'
+  signed_digest: dc9a9990ba32f7d5c4805a22d410ddd7e0b326c79d39526677d1c81883f3f73b
   interview_seconds: null
+  inherited_from: null

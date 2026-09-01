@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.16
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是账号从创建到注销之间没人管到底——人走了、岗位变了、外包合同到期了，账号还在系统里活着，变成潜伏的准入通道；同时身份标识如果不唯一，出事时连是谁做的都查不出来。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.265532Z'
+  signed_digest: dddb2192b23cf011cb3a2439301946129b58f61606f35121a3e4606e22ddb92d
   interview_seconds: null
+  inherited_from: null

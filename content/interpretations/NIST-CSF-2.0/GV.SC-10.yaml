@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「合同结束、合作终止，安全责任就跟着清零」——供应商离场时留下的数据、账号、物理接入通道和连带责任，如果没人管，就会变成长期敞口；一次终止流程做不干净，后续出事的责任却还在你头上。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.516695Z'
+  signed_digest: 5a7cf84f5bcc33551014ff8dc96cb3db779308a0aa1167592923a41454b8c57c
   interview_seconds: null
+  inherited_from: null

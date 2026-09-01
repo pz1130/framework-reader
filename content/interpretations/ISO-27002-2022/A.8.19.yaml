@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.19
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「生产环境的软件没人管，装什么都能跑」——没人知道生产上有哪些软件、哪些能装、哪些不允许，攻击者或误操作就能装个马进来跑；同时缺一条审批链，可能有人绕过变更流程直接在生产机上装东西破坏稳定性或引入后门。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.386939Z'
+  signed_digest: 1c060fac032e6107e641e57d64447fd762decad81a1492e091e09460367505f3
   interview_seconds: null
+  inherited_from: null

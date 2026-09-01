@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OV-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全策略定完就封神」——外部威胁、业务方向、技术栈一直在变，风险管理策略的产出如果从不回头检验，两年后照旧执行，等于拿去年的地图开今年的船。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.465286Z'
+  signed_digest: f0e04fa81bcae93ffcb6df3a34b7508259638e2d49794cb9c645928bf30128e8
   interview_seconds: null
+  inherited_from: null

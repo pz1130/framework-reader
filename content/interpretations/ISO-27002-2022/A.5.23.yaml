@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.23
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「签了采购合同就等于把安全责任转给厂商了」——采购进来的云服务、软件、硬件如果没把安全要求写进合同，出事时既没追究依据，也没办法证明自己已尽责。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.280959Z'
+  signed_digest: aa3b7f3f9e75b003c181ec53685def466a3e10d5551322a6b3d3de0572702064
   interview_seconds: null
+  inherited_from: null

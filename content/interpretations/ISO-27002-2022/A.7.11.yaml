@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.11
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「服务器泡在水里、机房热到宕机、着火时电闸找不到、断电后机器硬关机」这类物理环境事故——保障设施平时没人管，出事才想起，损失已经造成。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.343193Z'
+  signed_digest: 5204f4d311d5378dcbc75db09f4d0108fda2c5f4bb2eb84c36383627a500c06c
   interview_seconds: null
+  inherited_from: null

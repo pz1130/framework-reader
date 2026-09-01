@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「变更没人管、例外没人认」——安全配置和系统环境一变，风险就跟着变；要是连变更和例外都说不清，出了事你连改了什么、谁批的都查不出来。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.553109Z'
+  signed_digest: d9c71f11c5813dcfccfa062ed96d587dc53dfe21c6bc60b4c835d00f1a345105
   interview_seconds: null
+  inherited_from: null

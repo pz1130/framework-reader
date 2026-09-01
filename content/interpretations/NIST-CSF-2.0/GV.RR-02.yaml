@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RR-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「责任分工写在组织图上，但出事时没人认账」——安全风险管理职责如果没有正式授权和跨部门明确边界，事件响应、风险处置、合规整改就会出现推诿或空转，审计时拿不出一份谁能拍板、谁必须执行的文件。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.492236Z'
+  signed_digest: adc61e50326f1147c3acc6646a0cddfb3ddb366dafae870a72ee67d6d615cfbf
   interview_seconds: null
+  inherited_from: null

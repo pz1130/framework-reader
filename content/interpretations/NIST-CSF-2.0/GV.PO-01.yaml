@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.PO-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全政策和公司实际业务两张皮——有了业务战略和优先级，但没有成文政策把两者焊在一起，结果安全决策靠人拍脑袋，政策修订没有章法，管理层签字只签了个空壳。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.471364Z'
+  signed_digest: 9d72bd923e0cdbd9473a07ad793fbb6000ede3f6db916c8ea329caad44f3614d
   interview_seconds: null
+  inherited_from: null

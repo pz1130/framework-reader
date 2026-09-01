@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RR-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全预算和人力按「去年惯例」或「今年能砍多少」分配，而不是按风险优先级排——结果高风险的业务没人守，低风险的地方堆满人，出事时说不清当初为什么没给资源。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.494041Z'
+  signed_digest: 399e99c2966365d95963575a51792b8554010440a382ef9235bd0e5546205f3e
   interview_seconds: null
+  inherited_from: null

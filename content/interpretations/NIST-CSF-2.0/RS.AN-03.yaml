@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.AN-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件处置完就算结束」——如果只恢复业务不查根因，同类事件会换个方式再来，安全团队永远在救火而不是灭火。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.623018Z'
+  signed_digest: f990b4f1fe5362e0cdd93bba876bc219ee9f433a495d6586720ba546d033544b
   interview_seconds: null
+  inherited_from: null

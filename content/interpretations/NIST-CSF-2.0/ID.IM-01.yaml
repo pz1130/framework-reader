@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.IM-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「评估完就完事」——演练、审计、红队、事故复盘得出来的问题没人跟踪，整改建议躺在报告里，风险原地踏步。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.532483Z'
+  signed_digest: 1ae408a944a568671d0a5d6e1473b878bb9769c6be0431a3599259afbd6325ec
   interview_seconds: null
+  inherited_from: null

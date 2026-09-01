@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.2
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「高权限账号一旦被滥用，可以直接绕过所有下层控制」——备份、日志、EDR 这些保护在拥有管理员权限的攻击者面前全可被关闭，一个被钓鱼或内鬼拿下的域管账号，效果等同于一次全盘失守。没有对高权限使用的单点盯防，就等于把大楼钥匙放在前台抽屉里还告诉所有人。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.388907Z'
+  signed_digest: dc2d887dd91c5698a04974897240177d70630118d8b5e18c56f889a9c636bd7f
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「风险只谈坏事、不谈机会」——安全部门只做减法（防漏洞、降损失），把「正向风险」即安全投入能带来的业务价值或收益挡在决策桌外，导致安全项目永远被当成成本中心，而非战略资源。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.488156Z'
+  signed_digest: 137fe4cc6e0b1a6f291f22160304dde84459d23c18f2a759eb567b331ab76634
   interview_seconds: null
+  inherited_from: null

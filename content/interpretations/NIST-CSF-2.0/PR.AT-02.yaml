@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AT-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「全员安全培训做了，但真正碰核心系统的人反而不会干」——开发、运维、云管理员这类特殊岗位如果只上过通用安全意识课，遇到真实攻击面照样裸奔。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.576053Z'
+  signed_digest: ace58eb5dea37392c05a7c38ee56e841f85ed80dffc844df001e46a1f090ee14
   interview_seconds: null
+  inherited_from: null

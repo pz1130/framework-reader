@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.4
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「违规了没人担责」——员工明知故犯或多次疏忽，却没有正式的追责路径，制度变成纸老虎，安全要求靠自觉而非约束。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.328810Z'
+  signed_digest: 96c4a2eae0d1ac71a4ae2f3e153e557f598c56048a0366145c7e7eb434cef671
   interview_seconds: null
+  inherited_from: null

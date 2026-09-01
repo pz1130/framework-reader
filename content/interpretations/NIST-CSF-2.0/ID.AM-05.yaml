@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.AM-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「所有资产一视同仁」——没有优先级，钱和人力就摊在低价值资产上；真出事时，最关键的系统和数据反而没有最快恢复、最优保障。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.526335Z'
+  signed_digest: 76726ec0566e3c356947311a0499002cd83898127b830af571a2e463c214de38
   interview_seconds: null
+  inherited_from: null

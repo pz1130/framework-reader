@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.23
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「内部用户带着内网信任直接出网」——不受控的网页访问是钓鱼入口、恶意软件落地点和数据外带通道；没有过滤，边界防火墙等于形同虚设。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.396480Z'
+  signed_digest: 3c7aac03122c5d0bfcac18abfe7a2df2394d6274f21ed6d2efaeaeea2b1fd7a2
   interview_seconds: null
+  inherited_from: null

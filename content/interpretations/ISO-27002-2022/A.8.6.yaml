@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.6
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「高峰一到系统就瘫、日志先爆」——业务增长或突发流量时，计算、存储、带宽、日志容量不够导致服务中断、安全事件丢失审计线索，且没人提前算过要多少。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.425839Z'
+  signed_digest: 4ce848cdebd273037cf2f911eefe3d17978b48b6c518ce19c1d5c4e296eafaba
   interview_seconds: null
+  inherited_from: null

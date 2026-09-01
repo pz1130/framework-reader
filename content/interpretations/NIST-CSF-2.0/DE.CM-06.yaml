@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.CM-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「第三方出了事，你是最后一个知道的」——供应商系统被入侵、服务降级、数据泄露，如果不在合同里和监控中约定好告警通道，你就只能从新闻里得知自己正在被牵连。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.451114Z'
+  signed_digest: 8c4b5703a92c4bc8f56631d88825dd73716894d8eb29f5332e0345a6c3d93329
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.6
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是把安全防护区当成普通办公区——供应商、运维、保洁这些外部人员在防护区里自由走动，没人管他们能看什么、碰什么、什么时候走，物理边界失守后，网络和逻辑控制做得再好也白搭。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.358721Z'
+  signed_digest: 805432da0f261beec76fec09593d8c5760ac7df7ec9aed9cfb3af1b8acbf48ed
   interview_seconds: null
+  inherited_from: null

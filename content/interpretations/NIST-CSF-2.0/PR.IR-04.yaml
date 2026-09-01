@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.IR-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「业务增长或灾难来袭时，资源和容量没人补位」——备份场地、备用系统和通信线路只在纸上存在，真出事了发现带宽不够、机房没备、人员被调走。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.592305Z'
+  signed_digest: d390a06b6a58cb55ec5743e2cef260ff0c0c8df9ce15236cc31f108b75cb1ff6
   interview_seconds: null
+  inherited_from: null

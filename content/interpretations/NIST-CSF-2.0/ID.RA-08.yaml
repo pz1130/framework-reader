@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-08
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「漏洞被打到脸上才反应」——安全团队必须有一条对外公布的收件通道，外部研究员、客户、监管或供应商发现漏洞后能按明示流程递进来，内部有人接、有人评、有人处理、有人回复；否则漏洞信息要么烂在外部邮箱，要么被当作垃圾邮件无视。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.555195Z'
+  signed_digest: 79b4e28cf0482bed93c7fa773146b4791eceb7289c36da0e04c0cd1b1b448c22
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.19
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「窗口部门谈商务、技术部门谈交付、安全部门事后介入」——采购全程没人从源头对供方安全能力提要求，合同签完才发现对方连基本的安全管理都没有，补救只能靠后续补丁式整改或硬着头皮合作。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.271557Z'
+  signed_digest: f2e4b3e839492e38e375728a11e3689cf105c41f032d32550a120496623fafb4
   interview_seconds: null
+  inherited_from: null

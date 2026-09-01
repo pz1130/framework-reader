@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.3
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「人到了就能进」——没有门禁授权校验、访客没人管、钥匙和门卡随便复制，或者打印机复印机上堆着敏感文件被路过的人随手拿走。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.352811Z'
+  signed_digest: 4f170fdaba31be8ece8230cf50be6372a06694d2a4a37815b65209848130b7a1
   interview_seconds: null
+  inherited_from: null

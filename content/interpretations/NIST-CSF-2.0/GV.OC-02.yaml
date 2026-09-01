@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OC-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全部门自说自话定优先级」——业务、监管、客户、供应商的真实诉求没被接进风险管理，安全做了一堆事却没人认账；也防关键利益方在重大变更或事件中才知道被牵连。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.457213Z'
+  signed_digest: e73c6ee727815249c3c58e6653889e772baaa59cab44ba50df641e8db3a13b11
   interview_seconds: null
+  inherited_from: null

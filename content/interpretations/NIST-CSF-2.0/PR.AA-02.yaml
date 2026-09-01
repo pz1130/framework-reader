@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AA-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「有账号就能进」——身份没有经过可信核验就发放凭证，攻击者可以靠伪造身份、撞库或内部人员虚报身份获得合法入口，后续所有访问控制都建立在一个不可信的地基上。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.563104Z'
+  signed_digest: 2a880fac9519fd3384e74745b775d155f58682cec6a0691ddb064a749954ad25
   interview_seconds: null
+  inherited_from: null

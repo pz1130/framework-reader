@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是供应商和第三方在产品与服务的生命周期里持续成为后门或断点——签合同时轰轰烈烈，平时无人看管，出事时才想起来供应商也是攻击面的一部分，导致数据泄露或供应链中断。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.510580Z'
+  signed_digest: c176c63fcd6b611feedafdaea94a5a15ffcdae38201f7a54d636fd3d8b32e69b
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.31
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「法律怎么说、合同怎么签」和实际安全控制完全脱节——法务说合规、安全说技术，两边各干各的；真出事时才发现隐私承诺没做到、客户合同要求没落地、行业法规条款没人认领。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.298424Z'
+  signed_digest: 4aa3797add050aa84ce8366cfd07e4bbbf6996f91adc7db524076e3e957d505e
   interview_seconds: null
+  inherited_from: null

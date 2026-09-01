@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OC-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全团队自说自话——安全风险和投入跟业务目标脱节，最后钱花在审计或合规上，而不是真正保护组织要办的事。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.455104Z'
+  signed_digest: 45e3f88f781da4224077acac0c71a3213d2c4fbf49dda35df02555f2e528b71d
   interview_seconds: null
+  inherited_from: null

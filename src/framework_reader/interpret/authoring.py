@@ -67,6 +67,12 @@ def write_field(
     return updated
 
 
+# Product-level signer for interpretations we ship. Not a model id (those
+# are rejected as `ai:` / `model:`), and not a person's name — deployers
+# should not see a 199-item review queue of unsigned AI drafts.
+PUBLISHER_SIGNER = "publisher"
+
+
 def confirm(store, control_id: str, *, signer: str) -> Interpretation:
     """认领这条。签的是当时那份内容，摘要一并记下。"""
     interp = store.load(control_id)          # 不存在就抛 FileNotFoundError

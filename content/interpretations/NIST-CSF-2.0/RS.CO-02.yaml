@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.CO-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件已经发生了，但该知道的人不知道」——业务方、法务、公关、监管和外部伙伴在事件发酵后才从新闻里听到消息，导致响应延误、责任扩大、合同违约或监管处罚。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.630640Z'
+  signed_digest: 72c8d5bcecd99996890020dea9723acf85028514e352d309b19c404c1f7a3ed4
   interview_seconds: null
+  inherited_from: null

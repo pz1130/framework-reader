@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.1
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是人从物理入口进来却没被核实身份——门禁卡、钥匙、访客牌一旦失控，任何逻辑层安全（杀毒、补丁、防火墙）都白搭；这条拦的是「有人能直接摸到机房、配电间、档案室」这个最根本的信任崩塌。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.338972Z'
+  signed_digest: b464287179062d9288f57716ccf5e4b01e113719b2d9b8a67d6c4e2d67784f20
   interview_seconds: null
+  inherited_from: null

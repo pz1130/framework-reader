@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AA-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「人、服务、硬件三套身份各管各，账号开了没人关、密码规则形同虚设」——身份管理不是装个 AD 或 IAM 工具就算数，而是组织有没有一套从头到尾管住身份和凭据生存周期的机制。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.561146Z'
+  signed_digest: 5972e900567fc7bc6f93d5011a3ae40c93e0b7bda6213026f7768c48a5e5aa21
   interview_seconds: null
+  inherited_from: null

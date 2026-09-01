@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「风险登记册一填了之」——威胁、漏洞、可能性、影响四个要素如果不真正参与排序，风险分析就退化成填表游戏，响应资源永远砸在嗓门最大的部门，而不是最该处置的风险上。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.548760Z'
+  signed_digest: 5b55917414601b606e14adbcb03fed839da28576557627e7a65c33d65c0a8e5e
   interview_seconds: null
+  inherited_from: null

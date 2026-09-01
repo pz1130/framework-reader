@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.AN-08
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是应急响应一开始就把事件量级估错——估小了，投入的资源不够，影响蔓延；估大了，关键系统被过度隔离，业务损失被二次放大。事件响应的所有优先级与资源调度都建立在对量级的判断上，这个判断错了，后面都是错的。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.628690Z'
+  signed_digest: 0cc1e4dd801d70181cadfb15cb73618b9dc0db16005066f95ade4093641cbd2f
   interview_seconds: null
+  inherited_from: null

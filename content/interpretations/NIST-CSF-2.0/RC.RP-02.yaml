@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「灾备演练做过了、预案也写了，但真出事儿时不知按什么顺序恢复、恢复谁、恢复多少」——恢复动作没有取舍标准，资源有限时只能拍脑袋，核心业务反而等最久。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.612498Z'
+  signed_digest: 6d54a0ff423220f2e0b5c3e2d7d62a862714f92e84226caa90dc9e266fded095
   interview_seconds: null
+  inherited_from: null

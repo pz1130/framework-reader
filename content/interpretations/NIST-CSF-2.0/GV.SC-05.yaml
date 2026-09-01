@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「供方安全要求只停留在采购问卷和口头承诺」——合同里没有硬性条款，出事时没有追责和整改的契约依据，审计时拿不出一份能约束对方的书面安全义务。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.506132Z'
+  signed_digest: db3f09ce5866974d5d673303246ac86e6a693405082f656883d6c5de1da25b53
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.7
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「被动等告警才动」——攻击者已经进来或潜伏在里面，传统防护设备没响，靠人肉看日志也看不出来；如果不主动去找，入侵可能持续数月才被发现，损失早已扩大。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.317234Z'
+  signed_digest: ddc256e96ec6963efa33dddc94792fa5fd6f500f0a07b1ef52343cd6c907d0e5
   interview_seconds: null
+  inherited_from: null

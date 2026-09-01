@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是备份坏了还拿来恢复——恢复动作本身成了新的灾难。备份数据在恢复前没验过完整性，坏备份、被篡改的备份、或者恢复到错误版本，系统不但没救回来，还把坏数据扩散到生产环境。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.614476Z'
+  signed_digest: a80653d150bb9cfeb1f323857336bb4df28a1f91da3159ddedc4b75728865364
   interview_seconds: null
+  inherited_from: null

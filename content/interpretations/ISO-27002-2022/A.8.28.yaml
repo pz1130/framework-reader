@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.28
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是把安全留在测试阶段才想——代码一写出来就带着漏洞进仓库，等上线前才扫已经晚了。这条要的是在写代码这个动作发生时就把常见弱点挡住，并且能证明每个改动都过了安全检查。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.406379Z'
+  signed_digest: 740974881097f0a67d1f008f949cb7cb8437623603f070ac2a31ce1f81bd21c9
   interview_seconds: null
+  inherited_from: null

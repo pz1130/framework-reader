@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「供应链风险管理是安全部门或采购部门单干的事、跟企业整体风险和各环节改善流程脱节」——供方一出事，业务、法务、财务和运维事前毫无感知，风险清单和安全整改是两条平行线，最后审计和监管问到头上才发现没打通。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.502309Z'
+  signed_digest: 242542e8fed4371972291e8526a628e58fd54684e3b613830df2a4a6ce29f6f8
   interview_seconds: null
+  inherited_from: null

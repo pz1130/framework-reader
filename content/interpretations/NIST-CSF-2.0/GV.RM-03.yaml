@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「网络安全风险」和「企业风险」两条线各管各的——安全说某个漏洞很严重，业务说能扛；业务说某个系统不能停，安全不知道。两边都按自己的标准定优先级，最终董事会拿不到一张统一的风险表。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.480142Z'
+  signed_digest: ad74a5c480ae619b50fe2a0e0933ec08185822c55d482ff4e9abf57525abf678
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RR-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全部门辛辛苦苦定的规矩，被 HR 招聘、入职、调岗、离职一整套流程变成一纸空文」——人进进出出，账号权限、保密义务、安全责任无人交接，最终让内部威胁和误操作变成常态。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.496036Z'
+  signed_digest: 0833dd29e3183c9d3bddae8c4df5fe9c13285bdcfe81ed6b279475ed85858e87
   interview_seconds: null
+  inherited_from: null

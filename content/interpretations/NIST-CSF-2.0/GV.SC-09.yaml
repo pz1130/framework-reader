@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-09
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「供应链安全挂在采购部门或安全部门各自为政，和公司整体风险治理脱节」——供方出事影响业务连续性或合规时，没人能把它纳入企业级风险决策，也没人持续盯着供方表现直到产品退市。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.514688Z'
+  signed_digest: 54d8b2af37bff51bb09215c051fb0c7d9782b79bf4d916154289762cd71fca37
   interview_seconds: null
+  inherited_from: null

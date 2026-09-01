@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.11
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防止数据在内部不同安全域之间流动时，把不该带出去的敏感信息原样带了过去——比如生产库里的真实手机号进了测试环境、客户姓名进了分析报表。给数据做脱敏是为了即使数据被不该看的人看到，也无法直接关联到具体个人。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.370466Z'
+  signed_digest: d6d3ce9d85ed010d8a84aae944559e7c2e7278925d2bd76e936711e4a5f09e6f
   interview_seconds: null
+  inherited_from: null

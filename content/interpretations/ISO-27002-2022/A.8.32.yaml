@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.32
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「改了就出事」——没人审、没人测、没人记录，代码或配置一改，业务中断或系统被攻破后连谁改的、改了什么、为什么改都查不到，也退不回去。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.416332Z'
+  signed_digest: b8dda1e8d02e9803e93684baf4f52fa62326cf976eaabde77f89a3a91925c49d
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MA-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件处置只在自家围墙内转」——供应链、云服务商、外包运维这些第三方手里掐着你的关键资产，出事时不联动，他们那边火烧起来你这边还不知道，等发现时账已经算不清了。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.634638Z'
+  signed_digest: b3f052f2906cadf9d1081ad153abf120862754b358c30e9913a224dbdb8d47b5
   interview_seconds: null
+  inherited_from: null

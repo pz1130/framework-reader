@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.9
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是设备一离开办公室就脱离你视线——丢失、被换、被插了不该插的东西、数据被拷走，你既看不见也拦不住；同时防员工把公司设备带到家里或差旅地，用没有管控的网络和设备接入公司系统，等于让边界失控。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.364616Z'
+  signed_digest: 43cb15335fcc2f015411c173cdb9977a2119731fedc8a053f6d291e4c9910969
   interview_seconds: null
+  inherited_from: null

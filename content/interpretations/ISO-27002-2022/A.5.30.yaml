@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.30
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「应急预案写得很全，但一断电、一断网、一被勒索，发现根本跑不起来」——预案不经过演练和实测，就是一张纸；关键资产没识别出来，恢复时连优先恢复谁都不知道。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.296372Z'
+  signed_digest: 66db30f18dd333bd234529a4b648fd32796b63e4d65d2720cfb1638a3c85542c
   interview_seconds: null
+  inherited_from: null

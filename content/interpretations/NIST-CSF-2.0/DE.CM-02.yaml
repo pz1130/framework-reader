@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.CM-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是物理环境一旦出事，安全团队在事情扩大前一无所知——漏水泡了机柜、空调停摆导致过热、门禁被撬、尾随进楼，这些在监控摄像头和传感器数据里都有痕迹，不盯着就是等灾后复盘。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.447435Z'
+  signed_digest: db944bf0c6ea3905f038b1876c0197920851124d1cc91fa3fe4d32ab4a6eb83c
   interview_seconds: null
+  inherited_from: null

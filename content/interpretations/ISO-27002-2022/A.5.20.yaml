@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.20
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「合同里没写安全要求」——采购回来的系统、组件或服务在安全上无据可依。出事后你既无法追责供应商，也没有合同条款要求对方整改；更致命的是，供应商可能在分包链条里把数据或代码转给资质不明的下层，而你根本无权过问。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.275492Z'
+  signed_digest: e50c39271f6d2b88f0bf9f12815938366125e0b2e6fead059d68075bac3ba519
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OV-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全投入与风险处置做完就完了，不回头问效果」——队伍在忙、预算在花、报告在写，但想没想过处置后风险是否真的降了、降了多少、该不该调整策略与投入；没有评估与回顾，风险管理工作会逐渐变成流程摆设。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.469230Z'
+  signed_digest: 1be390f1469a5122298870de672920dd4fc145c9076819fbf2913d48c853114d
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.CM-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「内部出事先知道不了」——员工行为和技术使用一旦无人盯着，恶意或无意的不当操作就只能等事后暴露，没人能在危害扩散前拉停、溯源或追责。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.449335Z'
+  signed_digest: 0b2ff50276628a52a2fc870068a0821164d9a54ff909a8f7bf4d409306d4721b
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.8
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全事件的信号卡在个别员工或单点工具里——没人知道、没人上报，等到影响扩散或监管问责时才发现根本没留下上报轨迹。这条管的是「发现到响应」之间的那条上报管道，而不是事件响应本身。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.337013Z'
+  signed_digest: 5347b8ddf126079a34ff2f059bcf5dff6fddd119ee019078bf7b62c79b87deec
   interview_seconds: null
+  inherited_from: null

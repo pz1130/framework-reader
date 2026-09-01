@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「供应商名单靠记忆或散落邮件，谁断了供应链、谁出了事故，安全团队到最后一刻才知道」——必须先有一张被认可的全量清单，并按关键性排好优先级，后续的评估、监控、处置才有对象。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.504204Z'
+  signed_digest: 86a6d9b7c18ed97dc2f881fce700f28bb4de4ef5f6fc8f9ccfe24f1d1888f59e
   interview_seconds: null
+  inherited_from: null

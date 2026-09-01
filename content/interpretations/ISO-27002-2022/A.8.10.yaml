@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「数据删了但没真正删干净」——硬盘报废、设备返修、云存储释放后，旧数据还能被恢复出来，造成客户数据、源代码或财务信息在物理或虚拟层面泄露。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.368378Z'
+  signed_digest: 67f4e02a9ba41b05e59d57e906553df34c7d4efed7b5b15f7477e46cfc923399
   interview_seconds: null
+  inherited_from: null

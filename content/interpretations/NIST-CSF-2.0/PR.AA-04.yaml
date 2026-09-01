@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AA-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「身份凭据只在登录那一瞬间被验证」——后续每一次操作、每一次服务间调用都默认信任已建立的会话或令牌，导致会话劫持、令牌重放、伪造身份一路畅通。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.567163Z'
+  signed_digest: 55ced469bbab1e287480b196d3196402433ab912645885a7fbb5b09515131cce
   interview_seconds: null
+  inherited_from: null

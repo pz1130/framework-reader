@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「闭门造车」——威胁情报只靠自家日志和公开新闻，不知道暗网上有组织盯上了你、不知道行业里正在爆发的攻击手法，等自己被打才知道疼。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.542461Z'
+  signed_digest: 716f6599d34e945a1787c6dc66d2826ab3820f5ecefb55d4a4aaa4a1417df90a
   interview_seconds: null
+  inherited_from: null

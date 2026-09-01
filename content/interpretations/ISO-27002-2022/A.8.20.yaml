@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.20
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「网络通就能互相访问、链路裸奔没有边界」——内外部网络、无线和有线、办公网和业务网混在一起，攻击者横向移动一路畅通，敏感数据在传输中被截获或篡改而无人察觉。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.390860Z'
+  signed_digest: 802e58bc9d02012dc1747a2fa4c2519e5f7fbc1a1791f50f12834607e7875608
   interview_seconds: null
+  inherited_from: null

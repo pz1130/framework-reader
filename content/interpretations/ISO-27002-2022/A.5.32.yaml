@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.32
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「软件随便装、代码随便抄、文档随便传」带来的法律与合规风险——未经授权使用、复制、分发受版权保护的成果，轻则吃诉讼罚款，重则让整个供应链的授权资质被吊销。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.300258Z'
+  signed_digest: 5436c32b183f06827c1c1e0ed4238aecb3d4a370d974822f2039550989295ffb
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AA-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「物理边界形同虚设」——机房、配电间、档案室谁都能进，服务器被拔盘、插U盘、拍照、剪线都没人知道；门禁卡借用、访客不登记、监控死角长期存在，等于把网络安全的最后一道物理防线交给运气。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.571436Z'
+  signed_digest: e51e1c69a67719caed450d80ae007a79196aa7acb2f7b04648ff23293bbdda65
   interview_seconds: null
+  inherited_from: null

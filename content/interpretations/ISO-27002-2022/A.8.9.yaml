@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.9
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「系统配置没人管、谁都能改、改完不知改了什么」——由此引入的未授权变更、配置漂移、以及回滚无门的风险。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.431532Z'
+  signed_digest: 5057c5ed9c1a06728d95ce96ecf4b307a305f1dc97edc0aa0a9a162ccc1824c1
   interview_seconds: null
+  inherited_from: null

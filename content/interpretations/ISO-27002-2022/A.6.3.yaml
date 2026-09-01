@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.3
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「培训做给人看、上完就忘」——人员安全意识没有转化成行为改变和技能沉淀，钓鱼、误操作、内外勾结、应急时不知所措等跟人相关的风险，靠定期培训记录掩盖不了。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.326956Z'
+  signed_digest: e2513cd4efcc4a0f418575e72fbba80865110904f17abdaa6c56ea8e19f29a26
   interview_seconds: null
+  inherited_from: null

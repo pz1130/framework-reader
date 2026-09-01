@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.12
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「所有数据一视同仁」——不区分敏感级别，就用同一套防护，结果要么对普通数据过度投入，要么对核心数据防护不足，出事时说不清哪份文件值多少钱、该优先救谁。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.257378Z'
+  signed_digest: 99f8768997ea774f44935fccbf04a2dc407fc9585b0d139969cd8cf719e3bd2f
   interview_seconds: null
+  inherited_from: null

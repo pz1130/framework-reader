@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OC-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是企业只从内部视角定义「什么是关键业务」——外部利益相关方（客户、监管、合作伙伴）真正依赖你交付的到底是什么。如果没人说清，一旦中断，恢复优先级可能完全做反，投入的资源也没对准别人真正要的东西。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.461287Z'
+  signed_digest: 73ae1a2e3be4b3b35a69b34b58ba62c8d4aa31f1982ddcdb23640542dd3a3f02
   interview_seconds: null
+  inherited_from: null

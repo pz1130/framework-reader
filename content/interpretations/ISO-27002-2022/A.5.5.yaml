@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.5
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是安全事件被捂在本地或业务线内部——监管机构、行业主管和司法辖区对事件通报有法定义务和时限，漏报或不报会带来处罚、牌照风险和在监管面前失去信任。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.313420Z'
+  signed_digest: 77cc37719002456db2a1e9b33ddfd2604ec7ccef0a44d71d3979330c9a16ae3a
   interview_seconds: null
+  inherited_from: null

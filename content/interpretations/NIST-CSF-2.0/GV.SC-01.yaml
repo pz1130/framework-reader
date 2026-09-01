@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「供应链风险管理」只剩采购合同里的安全条款，而没有组织级的程序、策略和治理节奏——一旦供方出事或业务战略变化，安全部门只能临时救火，董事会和高管既没有决策依据也没有背书。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.497895Z'
+  signed_digest: b19351021a498b12df33180fb97a946ab008df483063cd30e1df67f67348efad
   interview_seconds: null
+  inherited_from: null

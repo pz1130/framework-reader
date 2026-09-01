@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.PO-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「制度上墙、流程吃灰」——政策文件发布那天最正确，三年后环境、威胁、技术全变了，文件还在用旧逻辑管新问题，安全团队按过期条款做事，出了事才发现政策早就脱离现实。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.473322Z'
+  signed_digest: 56712eb82b623637209e6d04ab28466fe13024818e1c245b2ff95f8bdae16f9c
   interview_seconds: null
+  inherited_from: null

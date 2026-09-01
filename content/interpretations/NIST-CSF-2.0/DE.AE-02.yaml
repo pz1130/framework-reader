@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.AE-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「告警响了、事件记录了，但没人真正去拆解发生了什么、波及多大、为什么发生」——日志变成流水账，监控屏闪烁但响应团队只能靠猜，小事拖成大事。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.433456Z'
+  signed_digest: dcd54dd091ef1f73cf64f9295e23b57b1d73d72e44f2386e21038edfc5b00da5
   interview_seconds: null
+  inherited_from: null

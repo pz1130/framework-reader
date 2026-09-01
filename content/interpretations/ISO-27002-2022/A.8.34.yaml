@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.34
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「审计当成一次性找茬」——平时系统裸奔、审计时临时加固，审完又松回去。这条要的是系统在审计测试期间受到的防护水平与平时一致，不能因为要过检就做样子，更不能让审计过程本身成为新的攻击面。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.420054Z'
+  signed_digest: 56f870a8e5dd45986f92800c4678919815d78dea9c28b93c73b328dbb10975a0
   interview_seconds: null
+  inherited_from: null

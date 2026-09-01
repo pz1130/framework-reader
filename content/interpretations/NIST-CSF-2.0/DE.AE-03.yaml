@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.AE-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「只盯单点告警、各看各的屏」——攻击者很少只触发一个信号，真正的入侵往往藏在多源数据的交集里；没有关联分析，安全事故要等到业务已受损才会被当成一回事。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.435524Z'
+  signed_digest: 75b9035bbf175304f9ea8b648bb68c063ed3fcd1a700e557b7256eb2602a61b7
   interview_seconds: null
+  inherited_from: null

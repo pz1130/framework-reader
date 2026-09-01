@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.7
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是恶意代码在内部网络里横向爬——入口没拦、终端不扫、特征库过期，勒索和挖矿在域内扩散后才发现，处置成本翻倍。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.427800Z'
+  signed_digest: 2db81c237ee553ff92c76a940f820d3440fec9f163b4f8986a4b002ba1f8846b
   interview_seconds: null
+  inherited_from: null

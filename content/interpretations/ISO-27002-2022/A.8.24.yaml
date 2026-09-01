@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.24
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「有加密算法、证书、密钥就以为安全」——密钥存哪、怎么轮换、谁管根证书、证书有没有过期吊销没做对，加密就是个摆设，而审计看你有没有一处一处说得清，不是看你口号多响。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.398421Z'
+  signed_digest: 3dce16594f90ac51f2b69811ac97f0231b5c7c532c5cfcbf9d8bbfcd5cb98283
   interview_seconds: null
+  inherited_from: null

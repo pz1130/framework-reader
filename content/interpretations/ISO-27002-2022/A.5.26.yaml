@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.26
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「出了事没人接、接不住、或各团队各打各的」——安全事件如果处置混乱，影响面扩大、恢复变慢，损失和合规风险都会被放大。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.286601Z'
+  signed_digest: 98f9294ac8b6352bfc2f7d7d7709117f28fc56f8eb1001f9985fd38a4ca49902
   interview_seconds: null
+  inherited_from: null

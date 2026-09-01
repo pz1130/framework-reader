@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.AN-07
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件复盘靠脑补和聊天记录」——如果事件数据没被结构化采集、完整性不可信、来源不可追溯，调查结论就站不住脚，甚至会把误判当定论、把恶意行为当误操作。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.626785Z'
+  signed_digest: 3a861a27132a824cff6430d28254d467a773b78e749eef1141a56ef3aca58ad8
   interview_seconds: null
+  inherited_from: null

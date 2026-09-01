@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.1
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「设备在手里，人不在现场」——屏幕不锁、移动设备随手放，别人拿到就能继续以你的身份看系统、改数据、发消息。同时防的还有未经管理的个人手机平板接入公司网络，把恶意软件和未授权访问带进来。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.366473Z'
+  signed_digest: 2f0bda515199b9cd9d0b37377b68e842bc9cd2cb13fb616b74093a39546f94c0
   interview_seconds: null
+  inherited_from: null

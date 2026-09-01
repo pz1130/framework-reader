@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.2
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「进出没人管」——外部人员、离职人员、临时访客能混进门禁区，或设备材料被悄悄带出带入，造成失窃、篡改和数据泄露。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.351011Z'
+  signed_digest: 8fde75be71762757630e7aa70cf8abd2b9f0b45477d9599a727c44b4605627d8
   interview_seconds: null
+  inherited_from: null

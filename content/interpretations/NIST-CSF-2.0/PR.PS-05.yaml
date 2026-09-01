@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「员工自己装软件、装完没人知道」导致的攻击面失控——未经批准的软件可能带漏洞、带捆绑后门、跟现有系统抢权限，出了事还找不到责任人。这条要求从安装动作本身就把路堵死，而不是事后靠扫毒去捞。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.602568Z'
+  signed_digest: 9496ae98be4a129e1310c8a4676b8813cdd17178e2eeecba949dfa1388a18dfd
   interview_seconds: null
+  inherited_from: null

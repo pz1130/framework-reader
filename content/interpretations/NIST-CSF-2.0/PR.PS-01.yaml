@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.PS-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「服务器上跑的软件和配置没人说得清」——不知道系统里装了什么东西、跑着什么版本、改过什么没记录，出事时既无法复现也无法快速还原，坏人改了文件也发现不了。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.594310Z'
+  signed_digest: b09435edee903b445caa87ad42e5bf937d58b96ae89c62dadf9da612ed1c65f7
   interview_seconds: null
+  inherited_from: null

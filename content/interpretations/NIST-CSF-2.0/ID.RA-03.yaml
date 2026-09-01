@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全团队只看漏洞扫描和 SIEM 告警」——威胁情报、业务侧风险、供应链外部威胁没人收集记录，决策层看不到全貌，等事件发生才知道漏了。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.544476Z'
+  signed_digest: fafa07cbc3606aa3afb6ffa75e1e082b5283f2cedec34b4009203a695b2ce231
   interview_seconds: null
+  inherited_from: null

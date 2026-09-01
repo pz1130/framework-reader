@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.7
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「屏幕亮着就走人」「文件打出来没人收」——路过的人、保洁、面试者在物理空间里顺手看到敏感信息，机密不靠网络攻破，靠眼睛扫走。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.360924Z'
+  signed_digest: 7343166bdd7a8304614ab68b856161456a6225c502c44fb47ee7dab14599d9d8
   interview_seconds: null
+  inherited_from: null

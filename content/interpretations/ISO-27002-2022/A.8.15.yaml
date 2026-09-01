@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.15
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「出了事什么都查不到」——日志要么没开、要么记不全、要么留不久。这条要确保系统把关键事件按统一标准记下来，并且留到足够长的时间，让事后调查、取证和合规回应能有据可查。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.378471Z'
+  signed_digest: f7fa0dda9f4c787bee544bd3e7613959828aaf17f81bf1b778b17ac6cf143f96
   interview_seconds: null
+  inherited_from: null

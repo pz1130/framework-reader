@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MI-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件响应停在隔离与遏制就完事」——恶意组件、后门、入侵痕迹不清除干净，业务一恢复又立刻复发，甚至把攻击者重新带进门。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.646278Z'
+  signed_digest: 3f39056fa11755402a8c95066962fd9fe80bebe2f8f1f6048fb56685ca4bce65
   interview_seconds: null
+  inherited_from: null

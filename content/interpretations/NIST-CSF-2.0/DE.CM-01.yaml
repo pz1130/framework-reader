@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.CM-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「边界防火墙开着、盯着流量，但内网东西向流量和终端行为没有监控——横向移动和钓鱼成功落地后没人察觉」。网络监控必须覆盖关键网段与网络服务，发现潜在恶意事件并告警，而不是只看互联网入口的流量。
@@ -52,7 +52,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.445433Z'
+  signed_digest: f94588fdb142c8ab8baeae1bb124a20630b052629d71746fe4f566550f12866c
   interview_seconds: null
+  inherited_from: null

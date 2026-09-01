@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.4
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全政策签字人不在、责任真空」——管理层的义务没落到具体人头上，出事时没人拍板、没人担责，政策与流程无人维护，安全体系随人员流动而失修。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.311560Z'
+  signed_digest: ce51b6e07c23125fa82cc5d0d331aa93f26f993c00f3db10831a6b25afbce47c
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.AM-08
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「采购即终结」——系统和资产买回来之后就没人管到它退役，导致老旧系统带病运行、供应方停止支持还继续裸奔，数据在生命周期末端无人处置或随意删除。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.530547Z'
+  signed_digest: a55fe4e3d128350467a2ea08ded2e87c45346183755b06b46cc1998808c634f0
   interview_seconds: null
+  inherited_from: null

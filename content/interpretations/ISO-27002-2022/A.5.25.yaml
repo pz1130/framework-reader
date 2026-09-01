@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.25
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「日志在采、告警在响，但没人真正坐下来把事态看明白」——安全团队沦为告警转发器：看到异常不知道影响面、不判断真假、不升级、不留研判痕迹，等真出事时既说不出过程也复盘不了。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.284782Z'
+  signed_digest: aa6824dd0d65e1b5abf325983afff1af70020dd08ebe8be3f73b6d6fef4f830a
   interview_seconds: null
+  inherited_from: null

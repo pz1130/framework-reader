@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.AN-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防止调查过程中做了什么无从追溯——应急响应时是谁、在何时、做了什么操作、依据什么决定，如果这些不留痕，事后复盘、追责、法律举证和监管问询都站不住脚，甚至调查本身会被质疑为删改证据。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.624938Z'
+  signed_digest: 9af164fc7a01181f0091d069a9bf7b3a5bf26d19fe2c964b5b311af9af219613
   interview_seconds: null
+  inherited_from: null

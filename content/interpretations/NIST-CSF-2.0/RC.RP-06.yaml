@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-06
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事故处理完了但没人宣布结束」——响应人员各自散场、系统悄悄回到生产、复盘文件没人写，真正的根因和改进项跟着烂尾。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.620877Z'
+  signed_digest: 5e4e3059376c38cbcf057e314e79d24e6aded96dfd4e3b2a2513516bef845e0a
   interview_seconds: null
+  inherited_from: null

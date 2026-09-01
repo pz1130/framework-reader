@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-10
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「先合作、后补审」——在采购合同模板里放进安全条款、承诺供应商已完成审查，但实际从未在掏钱之前验证供方的安全状况，最终让高风险供应商直接接入生产网络或数据链路。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.559184Z'
+  signed_digest: f38378ce527edaf134f4ab4295ee8934b8357d78efe42baf5a44871cf2ce30b4
   interview_seconds: null
+  inherited_from: null

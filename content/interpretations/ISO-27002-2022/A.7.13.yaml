@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.13
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「设备坏了才找人修、修完不留痕」——维修保养如果不受控，等于把系统完整性、数据保密性和供应链可信度交给第三方维修人员临时决定，而且事后无从追溯谁动过什么、装了什么、带走了什么。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.346990Z'
+  signed_digest: 78a8281925b3c99ae34bf2e2b54f9795ebdfa06ee4179f13a5590e3f0849507e
   interview_seconds: null
+  inherited_from: null

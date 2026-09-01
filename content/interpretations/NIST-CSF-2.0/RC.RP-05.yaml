@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「恢复完能开机就宣布业务正常」——备份能拉起来不等于数据完整、配置正确、上下游依赖就位；事后上线再出问题，比不恢复更难追责。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.618735Z'
+  signed_digest: 9386bc353d01eaf3cd2aa1655cab4733a30a1c57ed5394d6700ec1510bfec288
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MA-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事故响应变成睁眼说瞎话」——低级的误报和烟雾弹没人甄别，高优先级的真事件反而被埋在一堆工单里没人救火，最后统计出来的事故数字都是垃圾。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.636508Z'
+  signed_digest: 57f0253e048d46e3be3eadb53666645e2ce542cae5eb86d7e3c79275c81cf9d1
   interview_seconds: null
+  inherited_from: null

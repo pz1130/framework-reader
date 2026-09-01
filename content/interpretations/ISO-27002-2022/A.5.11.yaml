@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.11
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「人走了、东西没交、权限没关」——离职或转岗后账号照用、公司资产被带走、机密知识随人流失，出了事追不到责任，也拦不住前员工对系统的后续访问。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.255392Z'
+  signed_digest: d0dff99f840dd188c2358140d39cccf56299649b9f937afd919bb0979580ede4
   interview_seconds: null
+  inherited_from: null

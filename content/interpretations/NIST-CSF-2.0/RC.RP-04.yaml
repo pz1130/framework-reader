@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-04
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事件发生后恢复现场一切如旧」——如果恢复流程不区分哪些业务是保命的、哪些可以缓一缓，就会把精力和资源平均摊给所有系统，导致真正关键的业务反而恢复得最慢，或者在恢复过程中因为安全管控没跟上，让同一漏洞二次引爆。
@@ -40,7 +40,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.616592Z'
+  signed_digest: 3f7e8e6c6e933b9e362831eb7f6a3775822a254a0958dd4398c7bab817f4b1e6
   interview_seconds: null
+  inherited_from: null

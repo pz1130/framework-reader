@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.SC-08
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「出事才想起供方」——供应商不是故障备份，不提前纳入事件计划，攻击发生时他们不知道流程、不知道该找谁、甚至不知道自己该在场，响应就会断在第三方这条链上。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.512713Z'
+  signed_digest: c3baaac5dd736c69336f2c7e923df49da6a0f45cf157b876b151b207b5bf806c
   interview_seconds: null
+  inherited_from: null

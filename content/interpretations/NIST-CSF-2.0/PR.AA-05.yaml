@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.AA-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「账号权限发出去就没人管」——员工转岗、离职、外包到期后权限不清算，以及一个账号从头用到尾的超级权限，导致数据泄露或内部违规操作时既拦不住也追不到人。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.569163Z'
+  signed_digest: 497696f0e30af9b80699a0c24678bebc4148a1de03b2eaf3a6d6d35ca9e1e916
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MI-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「发现入侵后没人收口或不敢断」——攻进去的路径不切断，恶意活动会在系统里横向爬、越挖越深，把一次单点事件滚成范围不可控的大事故。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.644295Z'
+  signed_digest: 287188515be2a76081f3856213e076aa40a6d6c74e07f649c997652362d6f697
   interview_seconds: null
+  inherited_from: null

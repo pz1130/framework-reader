@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.31
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防止开发测试环境与生产环境混用时，调试数据、临时代码、未完成功能或恶意构造的输入直接污染线上数据；也防止测试活动（如压测、故障演练）打断生产服务，或测试环境留存了真实生产数据而未做同等保护，成为数据泄露的口子。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.414487Z'
+  signed_digest: 17ae9aa57b20db73f9d2b1cdf33a9e5a971960d4bb478c8486e2872ea76c9c42
   interview_seconds: null
+  inherited_from: null

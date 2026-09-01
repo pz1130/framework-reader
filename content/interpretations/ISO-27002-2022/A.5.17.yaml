@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.17
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「口令、密钥、令牌这类认证材料在发放、重置、回收环节失控」——初始密码没人知道是谁领的、默认口令不换、遗失后随口补发，外部人员或离职者拿着合法凭证混进来，审计只看登录日志根本看不出来。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.267483Z'
+  signed_digest: 40fa53e884b071e6c532743c2546346fad29aa0704a4dc4f1f0bc59ee0f76513
   interview_seconds: null
+  inherited_from: null

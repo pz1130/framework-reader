@@ -16,15 +16,6 @@ fi
 
 mkdir -p "$HOME_DIR"
 
-if [ ! -f "$CONTENT_DB" ]; then
-    if [ ! -f "$PACK" ]; then
-        echo "No content pack at $PACK and nothing at $CONTENT_DB." >&2
-        echo "Rebuild the image, or mount a content.sqlite at $CONTENT_DB." >&2
-        exit 1
-    fi
-    cp "$PACK" "$CONTENT_DB"
-fi
-
 if [ -z "${FR_SECRET_KEY:-}" ]; then
     if [ -f "$SECRET_FILE" ]; then
         FR_SECRET_KEY=$(cat "$SECRET_FILE")
@@ -41,6 +32,22 @@ fi
 
 export FR_CONTENT_DB="$CONTENT_DB"
 export FRAMEWORK_READER_HOME="$HOME_DIR"
+
+# Image carries the content pack. User data is under $HOME_DIR, so replacing
+# the pack on each start is how pack updates reach an old volume.
+if [ ! -f "$PACK" ]; then
+    echo "No content pack at $PACK." >&2
+    exit 1
+fi
+cp "$PACK" "$CONTENT_DB"
+
+if [ -n "${FR_BOOTSTRAP_ADMIN_EMAIL:-}" ]; then
+    if [ -z "${FR_BOOTSTRAP_ADMIN_PASSWORD:-}" ]; then
+        echo "FR_BOOTSTRAP_ADMIN_EMAIL is set but FR_BOOTSTRAP_ADMIN_PASSWORD is empty." >&2
+        exit 1
+    fi
+    fr account bootstrap --email "$FR_BOOTSTRAP_ADMIN_EMAIL" --password "$FR_BOOTSTRAP_ADMIN_PASSWORD"
+fi
 
 cd /app
 if [ "$#" -eq 0 ]; then

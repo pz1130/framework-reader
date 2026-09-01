@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.RM-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是企业上下对「多大风险算大」没有共识——董事会拍板方向、管理层做执行、安全团队拿预算、业务部门推项目，各自心里那把尺不一样。结果就是安全该花多少钱、哪些业务红线绝不能碰、哪个风险先处置，全部各说各话，责任最后落到安全团队头上。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.478137Z'
+  signed_digest: 5c8fe36ca26818115fb24e0431db091a7c6a8bd38ac9df6cf77b4dbaa3e290ad
   interview_seconds: null
+  inherited_from: null

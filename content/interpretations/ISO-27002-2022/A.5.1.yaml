@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.1
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「安全要求散落在各部门的邮件、口头约定和个人习惯里」——没有一份被管理层正式认可、统一发布的信息安全方针，安全决策就失去依据，出了事也没法追责，审计更无从谈起。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.240625Z'
+  signed_digest: c97f28694a80d77cd7898be8fc7f6fdfa86d9250d0b7edc94c56ccc5def07aab
   interview_seconds: null
+  inherited_from: null

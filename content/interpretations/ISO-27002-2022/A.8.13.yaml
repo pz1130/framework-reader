@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.8.13
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「数据只有一份，硬盘坏了、勒索加密了、误删了，全没了」——备份不是存档，是恢复的最后一道物理底线。没有可验证的恢复能力，备份只是占存储空间的死数据。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.374433Z'
+  signed_digest: b11477a1d81fb131df6a41bdc7c458087c7b862a4b959e864c1cbaeacef165b0
   interview_seconds: null
+  inherited_from: null

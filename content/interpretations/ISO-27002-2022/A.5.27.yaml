@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.27
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是事件处置完就翻篇——复盘只写进会议纪要和总结PPT，没人把经验教训改回预案、训练和工具里，下一次同类事件照样手忙脚乱，响应节奏和口径各处不一致。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.288480Z'
+  signed_digest: 62032b08e19b9f91f294fc9e86d46acd0941f6c4827f6001bd1ae1af3065effa
   interview_seconds: null
+  inherited_from: null

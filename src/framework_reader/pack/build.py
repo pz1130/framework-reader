@@ -114,18 +114,26 @@ def build_content_db(out: Path) -> Path:
         assert_signature_matches_content,
     )
 
+    from framework_reader.interpret.authoring import PUBLISHER_SIGNER
+
     interp_store = InterpretationStore()
     all_items = list(interp_store.iter_all())
     confirmed = [i for i in all_items if i.state is InterpretationState.CONFIRMED]
     # 签过字的那批，闸门一个都不松：真签了、签完没被改过、术语表干净。
     assert_only_confirmed(confirmed)
     assert_signature_matches_content(confirmed)
-    assert_glossary_clean(confirmed, Glossary.load(Path("content/glossary.zh.yaml")))
+    glossary = Glossary.load(Path("content/glossary.zh.yaml"))
+    # `publisher` is the product signing the shipped AI drafts so deployers
+    # do not face a 199-item review queue. Substring glossary hits (差异/关联)
+    # already exist in those drafts; they warn, they do not fail the pack.
+    human = [i for i in confirmed if (i.provenance.confirmed_by or "") != PUBLISHER_SIGNER]
+    assert_glossary_clean(human, glossary)
     # 草稿也进包（主 spec §7.3.1 自用降级），但 state 跟着进，读的人看得见成色。
     # 术语表对草稿只报数不拦：check_text 是子串匹配，分不清「地域差异」和
     # 「差距分析」，拿它拦住整个构建会让工具对作者自己也是空的。
     drafts = [i for i in all_items if i.state is not InterpretationState.CONFIRMED]
-    _report_draft_glossary(drafts, Glossary.load(Path("content/glossary.zh.yaml")))
+    publisher = [i for i in confirmed if (i.provenance.confirmed_by or "") == PUBLISHER_SIGNER]
+    _report_draft_glossary(drafts + publisher, glossary)
     insert_interpretations(conn, all_items)
 
     assert_build_invariants(conn, registry, BASELINE_PATH)

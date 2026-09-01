@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.IR-03
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「系统只在正常情况设计好了、一到故障或攻击就崩」——冗余、降级、故障转移这些韧性要求必须设计进机制里，而不是出事后再临时救火。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.590238Z'
+  signed_digest: 9dcc3f87b18a82da60e84953c4e012e3b6a9f8e468dd3e45c8374b4fe4ce8c10
   interview_seconds: null
+  inherited_from: null

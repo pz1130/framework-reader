@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.7
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是员工不在固定办公场所时，工作环境、网络和终端完全脱离安全视线——家里或咖啡馆的 Wi-Fi、个人电脑、共享设备都成了黑客进入企业内网的侧门；同时也要防远程办公只是“人在外面”而安全要求和设备配置完全没跟上。
@@ -42,7 +42,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.334854Z'
+  signed_digest: a30ce58fb4c0e5238b5c5a1057f26e558dc153c4a0ee3e112e97d768e4d861a7
   interview_seconds: null
+  inherited_from: null

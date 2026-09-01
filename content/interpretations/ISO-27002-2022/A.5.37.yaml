@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.37
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「有政策没动作」——政策定了没人执行、没人维护、没人知道，审计时只能指着墙上的文件说我们有制度。这条强制要求把「怎么写、谁来写、多久看一次、怎么传达」都变成可验证的动作。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.309739Z'
+  signed_digest: 1dd6043838dd56feb322c614b3109a52e621490a6f8be743a85c66b62e373b69
   interview_seconds: null
+  inherited_from: null

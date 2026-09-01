@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:DE.AE-08
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「所有告警都当成事件来处置」或反过来「所有异常都当噪音放过」——没有明确的事件判定标准，一线人员就会凭个人感觉决定要不要启动应急，导致该升级的没升级、不该惊动的全员出动。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.443127Z'
+  signed_digest: 50ba38a59c1b1240369fbd360624fd7028dc4d0e094527de4fcc844c58bc8987
   interview_seconds: null
+  inherited_from: null

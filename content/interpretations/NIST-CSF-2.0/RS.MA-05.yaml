@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RS.MA-05
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「事后才决定要不要恢复」——事件发生时无人能当场拍板进入恢复，或恢复动作的触发全凭个人感觉，导致该恢复的拖成灾难、不该恢复的草率重启，破坏取证并造成二次损失。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.642287Z'
+  signed_digest: cc0ab49a3fca3b1c46ecb0d094ce034e5877ed00bd9df3d0486b98386d27e730
   interview_seconds: null
+  inherited_from: null

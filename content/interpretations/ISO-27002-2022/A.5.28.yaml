@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.28
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「日志有留，但事后追溯时链断了」——事件发生后要把证据串起来，能说清谁在什么时间、出于什么目的经手过哪些数据；否则审计和司法取证时，证据链断裂导致结论不被采信，也查不清内部泄露或外部入侵的完整路径。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.290260Z'
+  signed_digest: 9e4232cf280641c2e7c14d0e75803e4a79e5531f0328f2835900b5b240c8b645
   interview_seconds: null
+  inherited_from: null

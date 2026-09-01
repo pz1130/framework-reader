@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.5
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「人走了权限还在」和「人还在但岗位变了权限没跟着变」——离职不回收凭据、调岗不裁撤原职责访问，等于给外部攻击者留后门，也给内部职责分离埋雷。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.330997Z'
+  signed_digest: 9681aa3c81c54d7aba2c56bf8b4a73b06e6e3f81d93245a1a6515e829b28174c
   interview_seconds: null
+  inherited_from: null

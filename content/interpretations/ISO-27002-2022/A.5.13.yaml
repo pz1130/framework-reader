@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.5.13
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「信息资产放出去之后没人知道它到底有多敏感」——没有标识，U盘、纸质文档、服务器、甚至会议室白板上的内容就会按错误的方式流转，该保密的被随手转发，该限制分发的被当公开材料使用。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.259529Z'
+  signed_digest: 232c93a1941d4962fb96687d1724cd67f76fc8448189a3aa2cf8b75f1ab9abae
   interview_seconds: null
+  inherited_from: null

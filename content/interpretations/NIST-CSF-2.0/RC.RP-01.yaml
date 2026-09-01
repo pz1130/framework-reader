@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:RC.RP-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「应急预案演到恢复环节就断片」——业务连续性和灾难恢复计划写了一大堆，但事件响应流程触发后，恢复计划从来没真正启动过，恢复动作靠现场临时拍脑袋。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.610616Z'
+  signed_digest: 7734bbffc5f24ec5cfdb2b9be3f8b726a648f334df5351214bb3df31787fbee0
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.6.6
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是员工签完保密协议就当作永久授权——人员转岗、离开、合作结束或协议条款更新后，原有的保密义务没有重新确认或解除，导致数据访问权与保密承诺脱节，出事后无法追责。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.332943Z'
+  signed_digest: b1ba82d534179691037c48b6f772cadca2856ed8ac0b988683b205773e3e4b8d
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.DS-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「链路加密了就当全链路安全了」——传输中的数据不光要加密，还要保证数据在途中没被篡改、没被重放、到达的是该到的地方；很多事故恰恰出在「以为加密了就没人动过」这个盲区。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.580428Z'
+  signed_digest: 60e2889867b2017d38dd321eda3c803a444b259fab6e824b1fe96aad9090b43b
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:GV.OV-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是风险策略一经批准就锁死在文件夹里——业务、威胁、组织架构都在变，策略若不定期回炉，安全投入和优先级就会与真实风险脱节，审计时只剩一纸空文。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.467238Z'
+  signed_digest: df3be0df872a4a26310cdf0d27a7978c2dea8aecc734ea06207121073512a3af
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: ISO-27002-2022:A.7.4
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「物理访问记录和系统审计日志各记各的」——人进了机房、同时系统里有人用账号操作，两本账对不上，出了事无法确认「当时谁在现场」这种关键证据链。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.354722Z'
+  signed_digest: 70411d44d6f7bb91b640be0abf51f883745c33cc5d4ea55d0b4f8e0ccb4ab127
   interview_seconds: null
+  inherited_from: null

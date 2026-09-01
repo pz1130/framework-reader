@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.RA-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「漏扫报告出来了没人管」——资产里的漏洞从被发现到确认到记录必须形成闭环，否则扫描只是花架子，漏洞堆在报告里没人处置，后续风险没法排序也没法追踪。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.540283Z'
+  signed_digest: fa6fcdfd69709cbfd01666d1fafbb271646252d36d9bbdbf3646fa42e7b6e80d
   interview_seconds: null
+  inherited_from: null

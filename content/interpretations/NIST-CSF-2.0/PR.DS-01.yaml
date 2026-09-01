@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:PR.DS-01
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防的是「数据在硬盘上裸奔」——数据库、文件服务器、备份磁带、云硬盘被盗或运维人员越权直读时，明文数据直接泄露；同时防止内部人员绕过应用层直接改库或删归档，事后无痕。
@@ -39,7 +39,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.578251Z'
+  signed_digest: 81558e4192be7758e6e0e3328cf8ed3f21c47548f9ce93c2e7d67b28872d3c7b
   interview_seconds: null
+  inherited_from: null

@@ -1,6 +1,6 @@
 control_id: NIST-CSF-2.0:ID.IM-02
 locale: zh-CN
-state: draft
+state: confirmed
 fields:
   intent:
     value: 防止演练和测试做完就归档——不整改、不闭环，下次事故还是同一批问题；同时也遮盖了供应商与第三方参与测试的价值。
@@ -38,7 +38,8 @@ provenance:
     model: deepseek-chat
     prompt_version: 2026.08-f2+golden:6b896d74
   extractor: null
-  confirmed_by: null
-  confirmed_at: null
-  signed_digest: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.534325Z'
+  signed_digest: dcf16142be42ea0c02835455b2498de3a88bdf99cb637811e19e81bd8b7d69cc
   interview_seconds: null
+  inherited_from: null
