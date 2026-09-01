@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.SC-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「供应链风险管理是安全部门或采购部门单干的事、跟企业整体风险和各环节改善流程脱节」——供方一出事，业务、法务、财务和运维事前毫无感知，风险清单和安全整改是两条平行线，最后审计和监管问到头上才发现没打通。
+    basis: inferred
+  plain_zh:
+    value: 把供应链风险正式编入企业的整体风险管理、风险评估和改进循环里，跟其他安全和业务风险同一套治理、同一套节奏，而不是另起炉灶。
+    basis: inferred
+  practice:
+    value:
+      '1': 在文件上写明供应链风险并入企业风险管理；安全与采购等部门有定期碰头机制；风险评估会覆盖关键供方。
+      '2': 供应链风险进年度风险评估计划；改进计划里明确供应链事项；有书面记录证明跨部门参与及结果被企业级风险议题吸纳。
+      '3': 供应链风险已编入统一的治理台账与风险偏好；重大供方事件自动触发企业级升级；改进循环中相关发现会反向修订采购与供应商策略。
+    basis: inferred
+  evidence:
+    value: 企业风险管理章程或政策中明确含供应链风险的段落；年度风险评估的范围、方法与输出（含供方）；跨部门风险管理会议纪要；供应链风险处置项出现在企业内部改进与跟踪清单。
+    basis: inferred
+  common_myth:
+    value: 以为出了《供应商安全管理办法》或写了采购安全条款就算这条达标，但方法完全游离在企业风险管理之外——没有统一风险登记册、没有风险偏好衔接、改进结果也不回流采购流程，等于安全部和业务部各记各的账。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份供应链风险登记放在企业哪个系统或台账里，跟其他业务风险怎么并列？
+    - 上次企业级风险评审里，供应链相关的项是谁提出、谁处置、结论落到哪个改进项？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

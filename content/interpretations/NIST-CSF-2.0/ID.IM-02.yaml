@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.IM-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防止演练和测试做完就归档——不整改、不闭环，下次事故还是同一批问题；同时也遮盖了供应商与第三方参与测试的价值。
+    basis: inferred
+  plain_zh:
+    value: 把内外部安全测试和演练（含灾备、红蓝对抗、供应商联合演练）暴露出的问题正式提出来，并且真正做到改进，不只是记在报告里。
+    basis: inferred
+  practice:
+    value:
+      '1': 安全测试/演练报告中有问题清单；每季度归一次，识别出大问题；改进项有负责人和截止日期。
+      '2': 问题整改有跟踪台账，状态定期刷新；整改完成有验证记录；有分层分级（谁必须改、谁可以缓）；供应商/第三方演练问题也进同一流程。
+      '3': 整改闭环进入变更或风险流程，与预算和资源挂钩；测试结果反哺安全策略与预算计划；问题逾期率有趋势指标，能证明在下降。
+    basis: inferred
+  evidence:
+    value: 测试/演练问题清单与整改台账、含责任人与日期的跟踪记录、完成验证证据（复测截图或确认单）、供应商演练问题进台账的样例、定期向管理层提交的测试结论文档。
+    basis: inferred
+  common_myth:
+    value: 以为「做完一次渗透测试、出了报告、高管签了字」就满足这条。没有整改跟踪和验证闭环时，报告和风险登记册只会越积越厚，安全水平原地踏步——审计员要的是「问题从发现到关闭的生命周期可查」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去一年测试/演练里最重要的问题，什么时候关掉的？验证证据是什么？
+    - 供应商和第三方参与的演练，问题清单进了哪份台账？谁在跟踪？
+    basis: inferred
+  regional_note:
+    value: 欧洲在 DORA 框架下对供应商联合测试与数字化韧性测试更强调整改闭环与报告期限；美国则更看重测试覆盖范围与整改计划是否有治理层批准——两边对「改完怎么证明」的追问重点不同。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

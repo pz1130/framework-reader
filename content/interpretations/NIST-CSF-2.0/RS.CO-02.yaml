@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:RS.CO-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「事件已经发生了，但该知道的人不知道」——业务方、法务、公关、监管和外部伙伴在事件发酵后才从新闻里听到消息，导致响应延误、责任扩大、合同违约或监管处罚。
+    basis: inferred
+  plain_zh:
+    value: 事件发生时要按事先定好的名单和时限，把该通知的内部部门和外部机构都通知到，并且每次通知都留有记录。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份通讯录/通知清单（至少包含内部管理层、法务、PR 和外部监管联系人）；事件响应流程里写了「谁负责通知、通知谁、大概什么时候通知」。
+      '2': 通知清单定期更新（至少每季度核对一次）；事件响应记录单里有专门的通知栏，记录实际通知时间、方式、接收人；有上报升级的预设时限。
+      '3': 通知流程与事件严重等级绑定（如重大事件 1 小时内报高管、4 小时内报监管）；通知渠道有备选（邮件挂了有电话树或短信群）；通知动作在系统/工单里自动留痕，事后能审计每个环节的延迟。
+    basis: inferred
+  evidence:
+    value: 事件通知清单（含内外部联系人及更新日期）、事件响应记录（含实际通知动作的时间戳与接收人签名）、针对不同严重级别的事件演练记录（证明通知链路走得通）、升级上报的邮件或工单时间线。
+    basis: inferred
+  common_myth:
+    value: 以为「有事件响应流程文档」就算达标。文档里写「及时通知相关方」但不写明名单、时限和责任人，等于没写——审计时会问「你凭什么认定 3 小时内通知到了？」，答不上来。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次演练时，从发现事件到报给法务/公关/监管各用了多久？和预案时限差多少？
+    - 通知清单最近一次更新是哪天？由哪个角色负责维护？
+    - 如果 7×24 值班人凌晨 2 点发现重大事件，他能联系到哪位高管？有备选路径吗？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 框架下会追问个人数据泄露通知的时限（72 小时内报监管）和理由记录；美国审计员更关注合同义务（SLA 里约定的通知时限）和证券监管相关披露。如果你经营的是银行或医疗业务，两边监管都会要求更严格的通知时限，单独靠「内部管理层的通知流程」不够用。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

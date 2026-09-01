@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.SC-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「供方安全要求只停留在采购问卷和口头承诺」——合同里没有硬性条款，出事时没有追责和整改的契约依据，审计时拿不出一份能约束对方的书面安全义务。
+    basis: inferred
+  plain_zh:
+    value: 把网络安全风险要求写进对供方和第三方的合同或协议里，而且不是写一句「应保障安全」就完事——要按风险排序，明确写清安全责任、标准和违约后果。
+    basis: inferred
+  practice:
+    value:
+      '1': 有供应商准入流程，合同范本中有安全条款的通用表述；高风险供方合同签前有安全评审。
+      '2': 按供方风险分级，不同档位合同模板内含对应安全要求（如数据保护、事件通报、审计权）；新签与续签合同均经过法务与安全确认。
+      '3': 合同安全条款随风险偏好和威胁态势定期更新；关键供方合同明确安全审计权、整改时限与违约终止条件；合同履行有安全验收环节。
+    basis: inferred
+  evidence:
+    value: 供应商合同或框架协议中的安全条款截图、按风险分级的合同模板、合同签订前的安全评审流程记录、法务与安全会签记录。
+    basis: inferred
+  common_myth:
+    value: 以为「采购合同里有一段『供应商应遵守相关法律法规』」就算有安全条款了。这句话对出事时的强制整改、审计权和违约赔偿没有任何约束力，真正的安全条款要写清：能审什么、发现问题后限时改、不改善可以断合同。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份合同模板里，安全条款与保密条款、数据保护条款是怎么区分的？还是全揉在一段里？
+    - 高风险供方的合同里有没有写明甲方有权做安全审计或索要 SOC 2 报告？这权力在合同哪一条？
+    - 供方在合同期内被发现有重大安全问题，触发整改的约定时限是几周？
+    basis: inferred
+  regional_note:
+    value: 欧洲在 NIS2 与 DORA 的推进下，审计员比美国同行更常翻合同原文，看数字韧性（digital resilience）条款是否真正落进与第三方的协议里；美国审计通常停在「有没有安全条款」的是非判断上。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

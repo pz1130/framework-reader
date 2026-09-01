@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:RS.AN-07
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「事件复盘靠脑补和聊天记录」——如果事件数据没被结构化采集、完整性不可信、来源不可追溯，调查结论就站不住脚，甚至会把误判当定论、把恶意行为当误操作。
+    basis: inferred
+  plain_zh:
+    value: 把事件相关的日志、样本、时间线、操作记录按时收集、集中存放，并保证这些数据没被改过、知道是哪来的、能证明是原始数据。
+    basis: inferred
+  practice:
+    value:
+      '1': 事件发生时能抓到日志和快照；采集到的数据有时间戳和来源标识；存放位置有基本访问控制。
+      '2': 定义事件数据采集清单与流程；采集数据有哈希或签名校验完整性；有集中存储与归档，采集过程有记录。
+      '3': 事件数据采集自动化接入监控与终端工具；完整性校验纳入常规验证；数据来源链可完整回溯；调查时可直接引用不存疑。
+    basis: inferred
+  evidence:
+    value: 事件数据采集清单与脚本、日志存储与归档配置、哈希或数字签名校验记录、数据来源标记规范、事件调查中引用原始数据的截图或导出件。
+    basis: inferred
+  common_myth:
+    value: 以为「日志都入了 SIEM 就算数据完整」——SIEM 只收了一部分字段，且时间戳被前置接入设备重写已是家常便饭；没做完整性校验时，谁说「这是原始日志」都没凭据。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 从事件报告中挑一条关键证据，原始数据存在哪、哈希值是多少、谁验证过？
+    - 采集链路里哪些环节可能改时间戳或截断字段？你们怎么证明没有？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员更在意数据收集本身是否符合隐私与最小化（GDPR 背景下「收集了什么、留了多久」要能说清），美国审计员更偏重证据链完整性与取证可用性。两边着眼点不同，但都要求「收了就要能证明没被动过」。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

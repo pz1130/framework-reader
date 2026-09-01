@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:PR.IR-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「业务增长或灾难来袭时，资源和容量没人补位」——备份场地、备用系统和通信线路只在纸上存在，真出事了发现带宽不够、机房没备、人员被调走。
+    basis: inferred
+  plain_zh:
+    value: 确保在正常运营和紧急恢复两种状态下，人、设备、机房、带宽和外包服务都有足够余量，并且这个余量是经过计划和验证的，不是临时拍脑袋。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键系统有容量规划文档；列出所需资源（机房、带宽、人员）并留有基本余量；故障时算得出替代路径。
+      '2': 容量与业务增长计划关联，定期统计使用率并补充资源；恢复站点有资源清单，并做过一次资源级演练。
+      '3': 资源容量纳入业务连续性管理，按场景模拟过资源切换（如带宽链路故障切备用）；资本与人力预算明确支持容量需求，异常高负载有自动扩展能力。
+    basis: inferred
+  evidence:
+    value: 容量规划与监控报告、恢复站点资源清单（含机房、带宽、备用设备）、资源级切换演练记录、业务增长预测与容量对应分析、采购/扩容审批记录。
+    basis: inferred
+  common_myth:
+    value: 以为「机房有备用的」就等于容量达标——常见错法是备份站点在纸上挂名，但实际只租了机柜没租带宽，或者备用链路的带宽只有生产链路的四分之一，演练时没测流量峰值，真切换必然降级或假死。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 备用链路带宽是多少？和生产链路比，是几比几？上次满载切换演练是什么时候？
+    - 业务量过去一年增长了多少，你们的容量余量扩张了几倍？依据哪份决策记录？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

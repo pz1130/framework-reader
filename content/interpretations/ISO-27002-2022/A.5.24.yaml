@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.24
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「出事才现抓人」——没有提前写好的预案，事件发生时靠临时拼凑，决策链混乱、响应延迟、该上报的不上报，事后也说不清谁该做什么。
+    basis: inferred
+  plain_zh:
+    value: 提前写一份安全事件的书面预案，说清楚组织怎么组织应急响应、各角色干什么、哪些事件必须上报、用什么指标衡量响应水平，并且持续维护。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份应急预案文档，定义了事件分级和上报路径，关键角色（指挥、技术处置、对外沟通）有名单。
+      '2': 预案描述完整事件响应生命周期，包含上报指标、决策流程和业务连续性衔接；至少每年做一次桌面推演并有记录。
+      '3': 预案随业务、系统架构和团队变化定期修订；演练覆盖真实场景且形成改进项闭环；响应流程与外部监管上报时限对齐。
+    basis: inferred
+  evidence:
+    value: 应急预案文档及版本历史、事件分级定义、上报流程图或清单、演练策划与总结记录、演练改进项跟踪表。
+    basis: inferred
+  common_myth:
+    value: 以为「有份应急预案文档」就行——但预案里只有流程没有具体联系人、没有升级时限、没有对外沟通口径，出事照样乱。预案必须能回答「事发后第一个电话打给谁、几分钟内必须上报到哪一级」这类具体问题。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次应急演练是什么时候？演练出的改进项有哪些已经闭环？
+    - 凌晨三点发现核心业务宕机，第一响应人按哪份文档联系谁、多少时间内上报？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

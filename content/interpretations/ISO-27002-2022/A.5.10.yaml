@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.10
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「信息附在介质上就跟人不走了」——U 盘、移动硬盘、纸质文件、磁带这类东西一旦离手，上面的数据就脱离了所有访问控制；如果没有使用规矩、存放地点、进出记录和销毁流程，泄露了都不知道从哪个环节出的。
+    basis: inferred
+  plain_zh:
+    value: 凡是能携带信息的载体（U盘、硬盘、光盘、纸质文件、微缩胶片等）都要有规矩：谁能用、放哪里、怎么带着走、不要了怎么处理，每一步都要有规则且有据可查。
+    basis: inferred
+  practice:
+    value:
+      '1': 有介质使用与处置的书面规定；U盘等便携介质统一登记、明确责任人；废弃介质有基本擦除或粉碎要求。
+      '2': 介质有分级标签和归属登记；借出归还走申请流程有记录；存放区域有物理管控；介质外带需审批并登记；报废走统一的清除/销毁流程。
+      '3': 可移动介质在终端上受控或禁用；介质存放区有出入权限管控与盘点；介质生命周期从领取到销毁全程可追溯；销毁执行人有复核且有第三方见证记录。
+    basis: inferred
+  evidence:
+    value: 介质管理制度与分级清单、U盘/硬盘等领用登记的台账、介质借出外带审批记录、介质存放区的出入登记或门禁记录、销毁与擦除的实施记录、终端管控策略截图。
+    basis: inferred
+  common_myth:
+    value: 以为「禁了U盘就完事」，没管住纸质文件和维修外带；或者以为「擦除就是删掉文件」，没意识到格式化后数据可恢复——销毁必须按介质密级选对应的擦除、消磁、物理粉碎手段。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这批报废硬盘是怎么销毁的？销毁记录里有没有现场照片或第三方签字？
+    - 谁领走那块移送外部的移动硬盘？审批单在哪？
+    - 打印出来的涉密文件存放区有没有门禁管控？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

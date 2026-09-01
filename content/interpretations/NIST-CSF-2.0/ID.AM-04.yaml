@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.AM-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「只盘了供应商名单，没盘供应商到底给我们提供了哪些服务」——供应商换服务范围、子服务转包、服务下线时，安全评估和应急响应都跟着失效，出事才发现连服务的边界都没画清。
+    basis: inferred
+  plain_zh:
+    value: 把每个供应商实际提供的服务（不是供应商本身）列成清单，包括服务名、依赖关系、用什么数据、对接哪个系统，并且随合同变更持续维护。
+    basis: inferred
+  practice:
+    value:
+      '1': 有供应商名单，名单里注明每家提供什么服务；服务增减时有更新动作。
+      '2': 服务清单按风险等级维护，标注每项服务依赖的数据和系统；合同变更或服务变更时，清单同步更新并有版本记录。
+      '3': 服务清单与资产台账、业务影响分析联动；供应商服务变更能触发重新评估；清单对关键服务有冗余或替代标注。
+    basis: inferred
+  evidence:
+    value: 供应商服务清单（含服务范围、依赖、数据流）、清单更新记录与版本历史、服务变更与合同变更的对账记录、关键服务的依赖关系图。
+    basis: inferred
+  common_myth:
+    value: 以为「有供应商花名册就够了」——花名册只回答「跟谁签了约」，回答不了「他们到底在跑什么服务、接了我们什么系统」。审计员要的是服务颗粒度的清单，不是供应商颗粒度的名单。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这个供应商名下到底有哪些服务在跑？每一项服务对接了我们哪个系统？
+    - 上次供应商服务范围变更是什么时候？清单哪一版反映了那次变更？
+    - 清单里哪些服务是单一来源、供应商一停我们就瘫痪？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

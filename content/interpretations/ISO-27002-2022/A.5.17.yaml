@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.17
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「口令、密钥、令牌这类认证材料在发放、重置、回收环节失控」——初始密码没人知道是谁领的、默认口令不换、遗失后随口补发，外部人员或离职者拿着合法凭证混进来，审计只看登录日志根本看不出来。
+    basis: inferred
+  plain_zh:
+    value: 认证材料从出生到销毁的全生命周期都要有章法：发的时候核实身份、初始内容有规矩、强度和用途匹配、丢了或泄露了有处理流程、默认值首用前必须改、变更和注销有触发条件、存取过程防偷看。
+    basis: inferred
+  practice:
+    value:
+      '1': 初始口令发放有登记并能取证；系统默认口令首用前已改；离职账号凭证随账号一并停用。
+      '2': 初始口令用一次性/随机值且要求首登改密；遗失与泄露有核验身份后重置的书面流程；口令存储加密（如哈希加盐），凭证发放与重置有审计日志。
+      '3': 凭证发放和重置在多因子或双人核验后才执行；无条件重发的例外无路径可走；对高强度凭证（如特权账号口令、证书私钥）有集中保险库保管，高风险操作后自动轮换。
+    basis: inferred
+  evidence:
+    value: 认证材料发放/重置/注销的流程文件与记录、初始口令生成的配置或截图（显示随机性、首登强制改密）、排除临时默认口令的系统抽查记录、口令存储方式的自查记录（是否哈希加盐）、凭证保险库的访问及操作日志。
+    basis: inferred
+  common_myth:
+    value: 以为「口令复杂度开满、改密周期卡死」就把这条做足了。这条管的重点是**谁拿到凭证**和**丢失后怎么再给**，不是口令长不长。很多团队从没检查过初始密码是否真的是随机单次生成，还是IT全组共用一个默认值——那等于门禁卡人人可复制。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 初始口令怎么生成？新员工第一次登录前，这些口令在哪些人手里经过？有日志吗？
+    - 有人报「口令丢了」要重置，你靠什么核实他就是本尊？重置过程被记录在哪里？
+    - 服务器、交换机还有没有在用出厂默认口令？上次全量排查是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

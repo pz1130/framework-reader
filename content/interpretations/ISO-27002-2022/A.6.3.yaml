@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.6.3
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「培训做给人看、上完就忘」——人员安全意识没有转化成行为改变和技能沉淀，钓鱼、误操作、内外勾结、应急时不知所措等跟人相关的风险，靠定期培训记录掩盖不了。
+    basis: inferred
+  plain_zh:
+    value: 不光是每年上一次课、考一次试。要按岗位角色区分培训内容，让每个人知道自己该会什么、出事该找谁，并且用真实事件、案例反复强化，让知识和技能真正长在员工身上，而不只是培训记录里。
+    basis: inferred
+  practice:
+    value:
+      '1': 新员工入职有安全意识培训；关键岗位（运维、开发、客服）有基础的角色技能培训；培训留存签到和考试成绩单。
+      '2': 按岗位风险设计差异化培训计划；培训内容随真实事故、钓鱼演练结果定期更新；有明确再培训触发条件（如岗位变动、系统大改）；记录可追溯到人。
+      '3': 培训依赖度量（如模拟钓鱼点击率）而非签到率来驱动改进；应急、演练与培训联动形成闭环，真实事件复盘结论能反哺课程内容；覆盖外包与第三方人员的同等要求。
+    basis: inferred
+  evidence:
+    value: 年度培训计划、分岗位课程大纲与签到表、培训考核记录、钓鱼演练结果与分析报告、再培训触发与执行记录、培训满意度与知识测验数据。
+    basis: inferred
+  common_myth:
+    value: 以为「全员每年统一看一支视频、考一次试」就算培训达标。按角色差异化、按威胁演进更新内容、按证据证明培训有效，才是这条真正的验收点——统一考试覆盖不了应急指挥、开发安全和供应商人员这些关键角色。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 去年钓鱼演练点击率是多少？这个数字比前年好了还是差了？原因是什么？
+    - 新来的外包运维人员上岗前，培训了哪些内容？怎么证明他学会了？
+    - 哪个岗位的培训是每年只做一次、内容没变过的？
+    basis: inferred
+  regional_note:
+    value: 欧洲因与 GDPR 等法规联动，更侧重隐私保护在内的综合意识培训；美国在合规导向下更关注按岗位落实和可审计记录。差异主要在内容覆盖范围，做法框架类似。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

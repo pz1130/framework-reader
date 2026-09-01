@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.RA-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「闭门造车」——威胁情报只靠自家日志和公开新闻，不知道暗网上有组织盯上了你、不知道行业里正在爆发的攻击手法，等自己被打才知道疼。
+    basis: inferred
+  plain_zh:
+    value: 你不能只看自家设备和已知漏洞，要从外部渠道——比如行业共享组织、政府通报、商业情报源、社区——持续获取威胁情报，并且真拿来用，不是订了邮件就完事。
+    basis: inferred
+  practice:
+    value:
+      '1': 建立并维护至少一个外部威胁情报来源清单，有专人订阅和接收，并确保这些信息不会直接进垃圾箱；公司名称本身也能被识别为情报源。
+      '2': 有正式的情报接收→筛选→分级→分发的流程，能区分哪些情报与自己行业、技术栈、地域相关，并将相关情报转给对应负责人（如应急、SOC、开发）。
+      '3': 情报不只是转发，而是与自家资产和风险数据联动，能触发告警或生成新的检测规则；定期复盘情报有效性，淘汰低价值来源。
+    basis: inferred
+  evidence:
+    value: 情报源清单及订阅凭证、情报接收和分发的记录（邮件、工单、群组通知）、情报来源评估报告、情报触发的检测规则变更或告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「订了几个威胁情报服务，比如买了某厂商的订阅，就算有了威胁情报」——但订阅本身没有价值，价值在于你是否有人去读、去过滤、去把相关的变成自己的检测或处置动作；审计员会看情报有没有转化为行动。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去三个月，哪一条外部威胁情报让你们改变了检测规则或处置了实际问题？请指出来。
+    - 这套情报分发给哪些角色？如果情报说你们用的漏洞正在被利用，你们多久能启动排查？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

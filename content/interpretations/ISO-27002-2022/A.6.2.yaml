@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.6.2
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「人进了门、责任没落地」——员工或外包人员入职时口头答应遵守安全规定，出了事却推说没人告诉过他边界在哪；没有书面签认，纪律处分和追责都没有依据。
+    basis: inferred
+  plain_zh:
+    value: 在聘用关系开始前或开始时，把安全职责、可接受使用、保密和利益冲突等约束写成书面条款，让当事人读过、理解并签字确认，之后才开放系统访问权限。
+    basis: inferred
+  practice:
+    value:
+      '1': 劳动合同或入职文件里有安全条款段落；入职时让员工签字；条款含保密与可接受使用基本要求。
+      '2': 安全条款独立成章，覆盖保密、数据分级、可接受使用、利益冲突；离职时有义务重申；签字件归档可查。
+      '3': 条款与入职流程绑定——不签不开账号；条款更新时全员重新签认；系统记录签认状态，过期未签自动提醒甚至停权。
+    basis: inferred
+  evidence:
+    value: 签字扫描件或电子签认记录、条款版本与更新日志、入职流程中签认与账号开通的先后顺序证明、抽查离职员工签认记录是否齐全。
+    basis: inferred
+  common_myth:
+    value: 以为把安全条款塞进劳动合同最后几页就算签认了。审计员会追问员工是否单独对安全条款签过字，而不是泛泛的合同签字——两者效力不同，举证力也不同。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 新员工的安全条款签认与账号开通，哪个在前？拿出流程证据。
+    - 条款更新后，哪些员工需要重新签认？系统怎么知道谁没签？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

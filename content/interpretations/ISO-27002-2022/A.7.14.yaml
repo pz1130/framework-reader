@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.7.14
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「旧设备里藏着没清干净的数据」——报废、转赠、返修、换新时，硬盘、手机、打印机、复印机里的残留数据被捡走拿走，造成数据泄露。
+    basis: inferred
+  plain_zh:
+    value: 任何要退出你管控范围的设备或介质，先按要求把数据清干净，让它没法被恢复；清理强度要和里面装的数据敏感程度匹配。
+    basis: inferred
+  practice:
+    value:
+      '1': 有设备报废/转交登记表；报废前有人负责把存储介质做清除或物理销毁，并记录签字。
+      '2': 按数据敏感度分类处置：普通数据可清空重写，敏感数据用专业工具多次擦除或物理销毁；处置有台账、有复核人。
+      '3': 处置流程与资产台账打通：每台设备报废前自动触发清理工单，处置结果回写记录，定期抽查物理销毁是否真到位；云上虚拟化和存储资源也有类似的清理流程。
+    basis: inferred
+  evidence:
+    value: 报废/转交处置登记表（设备编号、处置方式、操作人、复核人、日期）、擦除或销毁工具的记录或报告、资产台账状态更新、抽查照片或销毁服务商的回收证明。
+    basis: inferred
+  common_myth:
+    value: 以为「把硬盘格式化、删掉文件」就算清理了。普通格式化后专业工具仍能恢复数据；敏感设备必须用专业擦除工具做多次覆写或物理粉碎，而且要有记录可查，不能口头说清过。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这台打印机报废时，里面缓存的数据你们怎么处理？记录在哪？
+    - 员工离职后他的工作电脑转给下一个人之前，谁负责清理、用什么工具、怎么证明清了？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

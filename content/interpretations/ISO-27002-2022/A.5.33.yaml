@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.33
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「记录在、但不可信」——日志和备份没有防篡改、没有访问控制、也没有异地保护，出事后审计员查不到完整链条，或者攻击者直接删日志抹掉痕迹。
+    basis: inferred
+  plain_zh:
+    value: 把安全记录（日志、备份、配置快照等）当作需要保护的资产，确保它们只能被授权的人读写，不能被删改，并且在传输和存储时都有保密与完整性保护。
+    basis: inferred
+  practice:
+    value:
+      '1': 日志和备份集中存放；只有运维和审计人员能访问；定期做备份恢复测试。
+      '2': 日志和备份有访问控制列表（ACL）和审计日志；传输走加密通道；备份多副本且至少一份异地或离线存放。
+      '3': 日志写入使用防篡改存储（如 WORM 或追加写入）；备份启用加密存储并定期校验校验和；对日志删除和备份篡改有自动告警。
+    basis: inferred
+  evidence:
+    value: 日志存储与备份配置截图、访问控制策略文件、备份恢复测试报告、加密传输与静态加密的配置证据、审计日志或告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「日志保存着」就算过关——但日志如果只是存在同一个服务器上、攻击者拿到权限就能清空，那等于没记。保存不等于保护，必须有单独的访问控制，最好防篡改。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 日志存储的服务器如果被攻破，攻击者能不能直接删掉日志？
+    - 最近一次备份恢复演练是什么时候？恢复出来的数据完整可用吗？
+    - 日志和备份在传输时用的什么加密协议？静态存储有没有加密？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

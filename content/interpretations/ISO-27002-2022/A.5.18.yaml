@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.18
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是账号生命周期没人管——员工入职开通、调岗加权限、离职却没人收号，导致一年后离职员工账号仍在系统里活着，形成内部威胁与审计失败。
+    basis: inferred
+  plain_zh:
+    value: 给系统里的每一类账号定清楚谁能开、谁能批、什么条件开；账号从创建、变更到禁用、删除全程有流程可循，并且定期把账号清单和实际用人对一遍，确保没有多余的活账号。
+    basis: inferred
+  practice:
+    value:
+      '1': 有账号管理流程文档；入职开号、离职收号有人执行；系统管理员知道账号审批要走流程。
+      '2': 账号类型有分类并有负责人；开通、变更、回收都有审批记录；每季度做一次账号与实际人员对账并留痕。
+      '3': 账号生命周期状态与 HR 或人员系统自动同步；可疑或长期不用的账号被自动标记或禁用；特殊权限账号有更强的审查频率和例外审批。
+    basis: inferred
+  evidence:
+    value: 账号管理政策与流程图、开通/变更/回收的审批工单记录、定期账号对账报告及差异处理记录、系统账号列表与在职人员名单的比对结果。
+    basis: inferred
+  common_myth:
+    value: 以为「离职时 HR 喊一声、IT 就删号」就是账号管理。真正的问题是没人记录『谁在哪个系统被通知删除』——口头通知一断，账号就成了孤儿号。审计员要的是可追溯的流程记录，不是谁记得谁。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上季度离职的 5 个人，哪些系统账号还没回收？名单哪里能查到？
+    - 调岗员工在哪些系统里还保留旧角色权限？多久覆盖一次？
+    - 管理员自己开的账号，谁来审批？怎么防管理员给自己开后门？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

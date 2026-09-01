@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:RS.CO-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「事故情报只在小圈子流传」——检测响应和恢复链条上的人如果各自为政、信息断层，最坏情况是响应动作互相冲突、该升级的没人升级，外部该同步的关键信息（如受影响的第三方）也没有渠道传递。
+    basis: inferred
+  plain_zh:
+    value: 发生安全事件时，按既定名单和渠道，把相关信息发给该知道的内外部人员或组织，包括管理层、法务、公关、外部监管或受影响的业务伙伴。重点在「按计划发」而不是「事后想起来再发」。
+    basis: inferred
+  practice:
+    value:
+      '1': 有内部通知的通讯录（至少包括安全、IT、管理层、法务）；事件发生时通过邮件或即时通讯实际通知到人。
+      '2': 有书面的事件沟通矩阵，写明什么级别事件通知谁、用什么渠道、多长时间内；对外部特定联系人有接口；有实际沟通记录。
+      '3': 沟通矩阵有版本管理并在事件后复盘验证有效性；内外部沟通流程联动事件响应剧本，系统或工具能留下可审计的通讯痕迹；关键外部联系人有定期更新的验证机制。
+    basis: inferred
+  evidence:
+    value: 事件沟通矩阵或名单、实际事件中的邮件或通讯工具转发记录、事件记录或报告中的「通知清单」部分、对外联系接口（如监管机构、业务伙伴）的确认清单或回执。
+    basis: inferred
+  common_myth:
+    value: 以为「在内部群吼一嗓子」就算完成沟通。没有按预先定好的矩阵通知，紧急时容易漏掉该通知却又不该看到信息的人——尤其是法务、公关或外部监管。审计要的是「事先写好怎么发、事后能证明发了」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 事件沟通矩阵里，一级事件要通知哪些角色？上一次一级事件是从哪儿看到这条规定的？
+    - 外部联系人有名单吗？名单多久维护一次？上次实际对外沟通走了哪个渠道、留在哪条记录里？
+    basis: inferred
+  regional_note:
+    value: 欧洲受 GDPR 数据泄露通知义务影响，审计员更常追问对外（监管机构、数据主体）沟通在事件流程里是否已内置时限与口径审批；美国在关键基础设施与上市企业相关场景，更看重内部分级升级与外部监管（如证券监管）的窗口期。两边对「对外沟通要快且有序」都是硬性要求，但欧洲审计更爱追具体时间线证据。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

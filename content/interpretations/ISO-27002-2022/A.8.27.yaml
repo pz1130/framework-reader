@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.27
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全要求只写在需求和验收文档里，架构上没落地」——系统拆分、组件边界、信任等级在图纸阶段一旦含糊，后面所有控制都靠打补丁，漏洞和越权是架构性问题，不是补丁能补的。
+    basis: inferred
+  plain_zh:
+    value: 在系统设计、开发和改造时，按既定安全工程原则来做，让安全功能与各组件如何协作在架构图里说得清，并且这套设计要和公司的整体安全架构一致。
+    basis: inferred
+  practice:
+    value:
+      '1': 新系统设计有安全架构图；明确关键组件边界和信任等级；高风险设计有安全评审。
+      '2': 设计阶段有安全工程原则检查清单；安全架构评审有记录；变更走设计再评估流程。
+      '3': 安全架构模板化、原则驱动验证进 CI/CD；威胁建模与架构评审绑定；偏离原则必须有书面豁免和高层批准。
+    basis: inferred
+  evidence:
+    value: 系统设计说明书与安全架构图、威胁建模报告、安全设计评审会议纪要、设计原则检查清单及偏离豁免记录、架构变更的重新评估记录。
+    basis: inferred
+  common_myth:
+    value: 以为「过了等保测评、安全测试都通过」就代表架构符合工程原则。测试验证的是成品行为，架构原则管的是设计是否让控制能有效安置——评审图纸和测试代码是两件事。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这个系统的安全架构图和实际部署架构差多远？上次核对是什么时候？
+    - 开发时你用了哪些安全工程原则？原则和最终实现不一致时，谁决定怎么办？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

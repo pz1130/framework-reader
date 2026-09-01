@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.7
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「屏幕亮着就走人」「文件打出来没人收」——路过的人、保洁、面试者在物理空间里顺手看到敏感信息，机密不靠网络攻破，靠眼睛扫走。
+    basis: inferred
+  plain_zh:
+    value: 人离开工位时把屏幕锁上或清空；打印、传真、复印出来的敏感材料不能放在没人看着的地方；电脑、纸张等存敏感信息的载体要收好、锁好，坏掉或扔的时候要抹干净。
+    basis: inferred
+  practice:
+    value:
+      '1': 电脑有自动锁屏策略（如无操作几分钟后锁定）；离开工位时手动锁屏是明文要求；打印敏感文件后立即取走。
+      '2': 不同区域的锁屏时长分级（如研发区更短）；敏感打印走指定打印机，且有清场检查或碎纸流程；访客区域看不到敏感屏幕。
+      '3': 无感锁屏（如离开自动锁定）是标配；敏感文件打印走门禁或刷卡领取；物理载体从领用、存放、销毁都有台账，销毁用有认证的记录。
+    basis: inferred
+  evidence:
+    value: 锁屏策略配置与下发记录、员工信息安全承诺或培训签到、打印登记与碎纸记录、物理载体台账、销毁记录或服务商资质。
+    basis: inferred
+  common_myth:
+    value: 以为「设置了锁屏时长」就等于这条做完了，但打印机旁边、公区桌面上的纸质敏感文件没人管，隐私屏幕贴也没贴——审计员看的是全物理环境，不是只看电脑设置。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 屏幕自动锁屏的时长是多久？研发、客服、领导层是不是同一档？
+    - 敏感文件打印后不及时取走，有没有制度约束或技术拦截？
+    - 废纸、废弃硬盘、旧打印硒鼓走什么销毁流程？最近一次销毁记录在哪？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员更关注纸质载体和可移动介质——GDPR 语境下，有人看到别人屏幕上的个人数据就算泄露；美国审计员则更看重锁屏策略配置和物理访问控制，对纸面材料的追问相对少。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

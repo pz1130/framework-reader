@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.7
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「被动等告警才动」——攻击者已经进来或潜伏在里面，传统防护设备没响，靠人肉看日志也看不出来；如果不主动去找，入侵可能持续数月才被发现，损失早已扩大。
+    basis: inferred
+  plain_zh:
+    value: 别只等防火墙、EDR 报警。要主动、定期地假设系统里已经有入侵者，派人或工具去搜那些藏得深、绕过了现有防护的痕迹，把威胁揪出来。
+    basis: inferred
+  practice:
+    value:
+      '1': 有人负责威胁情报收集；安全团队会订阅公开或商业情报源；有告警时知道去哪里查 IoC。
+      '2': 有书面威胁狩猎流程与计划；按计划定期开展狩猎（如季度或针对性事件后）；狩猎结果有记录并能反哺检测规则。
+      '3': 狩猎与检测/响应联动成闭环；情报源自动进入检测工具；狩猎中发现的新手法能自动生成新检测规则；狩猎覆盖关键资产全目录。
+    basis: inferred
+  evidence:
+    value: 威胁狩猎计划与执行记录、狩猎报告（含假设、方法、发现、结论）、威胁情报源订阅与消费记录、情报驱动的检测规则更新记录、狩猎结果反馈到响应的闭环证据。
+    basis: inferred
+  common_myth:
+    value: 以为「装了威胁情报平台或买了几家情报源订阅」就算威胁感知。情报买回来没人看、没人用，告警还是靠老规则；审计要看情报有没有真正触达检测规则、狩猎计划和响应流程，而不只是采购清单。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次威胁狩猎的假设是什么？覆盖了哪些资产？
+    - 你们怎么知道当前检测规则覆盖不了哪些攻击手法？缺口谁在跟进？
+    - 新拿到的威胁情报走什么流程进到检测工具或狩猎计划里？
+    basis: inferred
+  regional_note:
+    value: 欧美审计员都认可主动狩猎的必要性，但美国受 CISA 与联邦要求影响更强调跨组织情报共享与自动化手段；欧洲在 NIS2 语境下更关注事件前兆的系统化感知与内部/受管辖实体间的通报义务衔接。实务抽查重心类似，但欧洲审计员会追问情报处置是否满足法定报告时限的前置条件。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

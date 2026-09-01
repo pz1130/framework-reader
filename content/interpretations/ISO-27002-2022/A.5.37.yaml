@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.37
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「有政策没动作」——政策定了没人执行、没人维护、没人知道，审计时只能指着墙上的文件说我们有制度。这条强制要求把「怎么写、谁来写、多久看一次、怎么传达」都变成可验证的动作。
+    basis: inferred
+  plain_zh:
+    value: 给所有信息安全相关的政策与规程建立一套生命周期管理机制：有人负责起草和修订，定期审阅更新，正式传达给该知道的人，并保留整个过程的可追溯记录。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一套信息安全政策和规程文档，指定了负责人，员工入职时能看到或签收。
+      '2': 政策和规程有版本号和生效日期，按固定周期（如每年）评审更新，评审过程有会议纪要或审批记录；内容变化时向受影响人员重新传达。
+      '3': 政策规程纳入统一管理体系（如文档管理系统），变更走审批流并自动通知相关角色；管理层在例会上对高风险政策的有效性做周期性审查，修订有明确的触发条件（如重大安全事件、法规变化）。
+    basis: inferred
+  evidence:
+    value: 信息安全政策体系目录（含版本、责任人、评审日期）、政策评审的会议纪要或审批记录、员工签收/培训记录、政策变更的历史版本与修订说明、传达的通知记录。
+    basis: inferred
+  common_myth:
+    value: 以为「把 ISO 模板拿来改个抬头挂在共享盘里」就算建立了操作规程。没有人为修订负责、没有评审周期、没有签收或培训记录，审计员翻出最近一次更新日期是五年前，这条就当场归零。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把最近三次政策修订的记录拿出来，每次改了什么、谁批的、什么时候通知的全员？
+    - 这份访问控制政策的上次评审日期是哪天？评审结论写在哪份文档里？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

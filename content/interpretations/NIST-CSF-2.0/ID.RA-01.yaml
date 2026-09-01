@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.RA-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「漏扫报告出来了没人管」——资产里的漏洞从被发现到确认到记录必须形成闭环，否则扫描只是花架子，漏洞堆在报告里没人处置，后续风险没法排序也没法追踪。
+    basis: inferred
+  plain_zh:
+    value: 把企业内部资产（服务器、终端、网络设备、应用等）的漏洞找出来，确认它是真漏洞还是误报，并把它记到一个能追踪的地方，形成一份可持续更新的漏洞清单。
+    basis: inferred
+  practice:
+    value:
+      '1': 有漏洞扫描工具或服务，定期扫核心资产；发现结果有人整理成一个清单（表格或文档）。
+      '2': 有明确的漏洞发现-验证-记录流程；扫描结果经过人工或自动确认，误报有标记；漏洞清单有负责人和更新频率。
+      '3': 漏洞识别自动化接入资产清单，新资产上线即纳入扫描范围；验证过程有工具辅助或复测；记录系统能按资产、严重度、状态查询，并支持与处置流程联动追踪。
+    basis: inferred
+  evidence:
+    value: 漏洞扫描报告、漏洞清单（含状态字段：待验证/已验证/误报）、扫描配置文件（扫描范围、频率）、漏洞记录条目与处理状态、复测或验证记录。
+    basis: inferred
+  common_myth:
+    value: 以为「买了个商业漏扫工具，定时跑一跑，报告发出去」就等于满足。工具跑完不等于漏洞被识别、验证、记录——审计员要看到清单里有确认状态的字段，误报被标注，且验证这一步有依据（比如复测、人工判断或参考公开库比对）。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 漏洞清单里标记为已确认的条目，验证依据是什么？
+    - 新采购的设备或新上线的应用，多久能进扫描范围？流程在哪？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

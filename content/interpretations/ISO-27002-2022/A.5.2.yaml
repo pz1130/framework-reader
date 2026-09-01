@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.2
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全人人有责等于人人无责」——事故发生后找不到该拍板的人、该审批的人、该背指标的人，权限不清导致安全任务悬空，审计时无法向任何人问责。
+    basis: inferred
+  plain_zh:
+    value: 把每个信息安全工作到底谁负责、谁执行、谁批准、谁最终扛责任写清楚，并让所有人都能看到自己那部分职责，不能只有安全团队自己清楚。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份信息安全角色与职责文件，至少写明CISO（或同等岗位）、安全团队、IT运维、业务线各自的头衔级职责，文件已发布且全员可访问。
+      '2': 职责文件与组织架构、岗位说明书对齐；每个关键安全流程（如风险评估、事件响应、权限审批）都有明确的RACI矩阵；新员工入职时被告知自己的安全职责。
+      '3': 职责定义通过绩效考核挂钩来落地；安全职责变更走正式审批并同步更新文件；定期复核职责与实情是否一致，且记录复核结果。
+    basis: inferred
+  evidence:
+    value: 经批准的角色职责文件、组织架构图与岗位说明书对照、RACI矩阵、入职签字确认记录、职责变更审批单、绩效考核中安全指标项。
+    basis: inferred
+  common_myth:
+    value: 以为「安全团队有岗位说明书」就满足这条。真正让审计员通过的是关键安全流程里每一个环节都有明确负责人，且业务部门而不是只有安全团队对自身风险承担第一责任——岗位说明书只是起点，RACI矩阵才是证据。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 事件响应里谁有权宣布进入应急状态？写在哪个文件的哪一行？
+    - 业务部门申请例外时，谁有批准权？如果CISO不在，谁来替代决策？
+    - 安全职责文件上一次修订是什么时候？为什么修订？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在职责定义上更强调对监管角色的显式指派（如DPO/数据保护职责），美国审计员更看重信息安全角色是否嵌入组织治理与业务线问责链条；两者都要求职责落到人头而非笼统的「团队」。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

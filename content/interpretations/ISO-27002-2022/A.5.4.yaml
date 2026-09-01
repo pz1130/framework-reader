@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.4
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全政策签字人不在、责任真空」——管理层的义务没落到具体人头上，出事时没人拍板、没人担责，政策与流程无人维护，安全体系随人员流动而失修。
+    basis: inferred
+  plain_zh:
+    value: 必须有一个高层管理者（或层级）对信息安全政策负总责：签发政策、分配职责、定期评审更新、确保资源到位，并且让全组织知道该找谁。
+    basis: inferred
+  practice:
+    value:
+      '1': 指定一位高管（如 CISO 或分管副总）为安全政策负责人；政策文件上有其签字与生效日期；员工知道政策在哪里看。
+      '2': 该负责人按既定周期（如每年）组织政策评审与修订，评审有纪要；政策变更需其审批；职责分工明确写在政策内。
+      '3': 管理层的义务与组织治理流程挂钩（如董事会汇报）；政策更新由风险与业务变化触发而非固定周期；负责人缺位时有备位安排。
+    basis: inferred
+  evidence:
+    value: 经高管签字的安全政策或章程文件、政策评审与修订记录（含审批人）、管理层关于安全职责的会议纪要或任命书、向全员传达政策的记录。
+    basis: inferred
+  common_myth:
+    value: 以为「写了安全管理制度、盖了章」就算落实。制度上没有指定「谁负责维护、谁审批修订、谁对政策执行负责」，审计员追问三个为什么就会露馅——找不到担责人，文件就是一张纸。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份政策如果今年要修订，流程是什么？谁有权批准？
+    - 上一任安全负责人离职到新负责人上任之间，政策的评审和更新由谁在做？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

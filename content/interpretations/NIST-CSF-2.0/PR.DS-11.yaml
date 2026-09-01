@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.DS-11
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「备份了但从来没恢复过」——数据真丢了才发现备份文件损坏、密文解不开、恢复流程没人会跑，等于没备份。
+    basis: inferred
+  plain_zh:
+    value: 不仅要定期做备份，备份本身要防篡改防丢失、要按保留周期维护，还要定期做恢复演练证明它真能用。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键系统和数据有备份任务；备份媒体有基本访问控制；配置文件能说明备份内容与频率。
+      '2': 备份内容、频率、保留期有成文策略；采用异地或不可变存储防篡改；定期做恢复测试并有记录可查。
+      '3': 恢复测试常态化且覆盖完整 RTO/RPO 目标；备份与恢复演练纳入年度业务连续性计划；发现恢复失败能触发问题闭环与策略修订。
+    basis: inferred
+  evidence:
+    value: 备份策略与配置（内容/频率/保留期）、备份成功与失败日志、存储访问控制清单、定期恢复测试报告（含时间戳与通过/失败）、恢复失败后的整改记录。
+    basis: inferred
+  common_myth:
+    value: 以为「做了快照或复制了数据库文件」就等于备份。没测试过的备份不能算数——真正要看的是恢复演练有没有按策略频率做、失败有没有被看到并补救，而不是备份任务本身跑没跑成。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次完整恢复演练是什么时候？覆盖哪些系统？从备份到恢复上线花了多久？
+    - 恢复测试失败过吗？那次失败是怎么被发现、处理、并防止再发生的？
+    - 备份数据本身的访问权限名单和敏感数据备份的加密策略在哪里？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

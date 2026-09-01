@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:GV.SC-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全责任只有自己人有，供方和客户不认账」——出事时互相推、信息不通、接口部门不知道找谁，供应商安全条款签了等于没签。
+    basis: inferred
+  plain_zh:
+    value: 把供应商、客户、合作伙伴各自在网络安全里负责什么写清楚，内部告诉干活的部门，外部告诉对方接口人，并且两边协调好、不脱节。
+    basis: inferred
+  practice:
+    value:
+      '1': 合同或附件里有安全责任条款；内部有对口岗位（如安全负责人、采购对接人）；跟供方有指定联络人。
+      '2': 责任分工有书面文件并纳入供应商准入与合同管理；内部相关岗位（采购、法务、IT）认可并知晓；有定期沟通机制；进出接口有书面记录。
+      '3': 责任与边界进入供应商风险分级和绩效评估；合同变更或转包时同步更新责任矩阵；内外部协调以工具或流程固化，能追溯到人；定期验证对方确实履行责任。
+    basis: inferred
+  evidence:
+    value: 含安全责任条款的合同模板、与供应商签订的责任矩阵或 SLA、内部分工说明（如 RACI）、双方联络人名单、接口会议纪要、供应商安全责任履行情况的评价记录。
+    basis: inferred
+  common_myth:
+    value: 以为「合同里写了供应商负责安全」就够了。实际大量事故发生在双方交接的边缘地带——合同写了但采购不传达给后端、供方不知道找谁报、内部两个部门都以为对方在盯。责任白纸黑字只是第一步，传达到具体的人、有人确认理解、出问题有唯一接口，才算落地。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 合同里写供应商负责的那部分，具体由你们内部哪个岗位跟踪验证？依据哪份文档？
+    - 供应商渗透测试或漏洞修复的责任在哪一方？上次争议或模糊地带是怎么解决的？
+    - 新供应商入场时，安全责任条款由谁宣读、谁签字确认？
+    - 客户要求的安全义务传到你们内部哪个部门？客户对你们的审计请求由谁响应？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

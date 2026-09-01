@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.12
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是物理上剪一根线或拔一个插头就让系统中断、数据泄露或被篡改——线缆和电力设施是物理世界的入口，没有保护，网络层做得再好也拦不住物理接触。
+    basis: inferred
+  plain_zh:
+    value: 给网络和电力线缆上物理防护：锁好配线间、别让闲人碰到接头、线缆走管道或线槽、备用电力和关键线路有冗余。
+    basis: inferred
+  practice:
+    value:
+      '1': 配线间和机房上锁；线缆走线槽或管道；闲杂人员不能物理接触到网络插口和电力线路。
+      '2': 有配线间访问登记和钥匙/门禁管理记录；关键线路有标识；备用插口封堵或锁定；定期巡查线缆和电力设备状态。
+      '3': 关键线路有冗余路径和自动切换；电力设备有监控和告警；配线间访问权限定期评审并与人员离职流程联动。
+    basis: inferred
+  evidence:
+    value: 配线间和机房的门禁记录、钥匙管理台账、线缆走向图和标识、巡查记录、冗余线路和电源切换测试报告。
+    basis: inferred
+  common_myth:
+    value: 以为「机房门口装了门禁」就算线缆防护到位——配线间、弱电井、甚至开放办公区的网络面板和备用插口没人管，物理接触照样能绕过去。门禁只证明有人进出，不证明线缆本身被保护。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 配线间和弱电井的门禁记录抽三个月，有没有非授权时段进出？
+    - 备用网络插口和未用线缆怎么封堵的？
+    - 关键业务线路有没有冗余路径？上次切换测试是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

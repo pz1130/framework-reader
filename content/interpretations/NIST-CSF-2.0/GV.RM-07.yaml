@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.RM-07
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「风险只谈坏事、不谈机会」——安全部门只做减法（防漏洞、降损失），把「正向风险」即安全投入能带来的业务价值或收益挡在决策桌外，导致安全项目永远被当成成本中心，而非战略资源。
+    basis: inferred
+  plain_zh:
+    value: 把「做安全带来的积极收益和战略好处（比如因为安全做得好而能拿下的客户、上线的业务、省的保费）」也当成一种风险来识别、评估和讨论，放进企业级风险沟通里，而不是只汇报坏消息。
+    basis: inferred
+  practice:
+    value:
+      '1': 在风险管理会议里留出固定议题或环节，专门讨论安全相关的正向机会；至少有一次记录显示讨论过「安全投入带来的潜在收益」。
+      '2': 有明确的案例或清单，把「哪里能看到机会、由谁提出、怎么衡量收益」写清楚；每次安全项目立项时都要求写一栏「正向风险/商业收益」。
+      '3': 将正向机会评估嵌入现有风险管理流程（与负面影响评估同样正式），有量化或半量化的方法（如预期价值分析）；重大安全战略决策文档里明确包含机会侧描述，并能举出企业高层据此做出过战略决策的实例。
+    basis: inferred
+  evidence:
+    value: 董事会或风险管理委员会会议纪要中出现「安全机会」「收益」等关键词的章节、立项报告里的机会/收益字段、或正负面风险并存的评估报告。
+    basis: inferred
+  common_myth:
+    value: 以为「把漏洞修得比友商快、少被通报」就算谈机会——那还是负向风险的缓解。真正的正向机会是「我们敢承诺什么、能争取什么」，比如因隐私保护过硬而拿下欧洲客户、因容灾演练达标而获得保险折扣或合同加分，这些不写进风险讨论就永远没人看见。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一次风险评审里，除负面影响外，讨论过哪些具体的新市场、新客户或效率提升机会？记在哪一次会议纪要哪一段？
+    - 如果安全团队说某项投入能带来正向商业价值，用什么指标来支撑这个说法？谁来验证这个价值最后有没有兑现？
+    - 一份安全项目立项报告里，从哪一栏能看出除了降低风险之外，它对业务增长的贡献是什么？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

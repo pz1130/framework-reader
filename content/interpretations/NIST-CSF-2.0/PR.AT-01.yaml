@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.AT-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「全员培训走形式、安全知识停留在PPT」——员工在日常工作中没有把风险当回事，钓鱼邮件、敏感数据乱发、设备乱接这类人为事故反复发生，而培训却不敢为此负责。
+    basis: inferred
+  plain_zh:
+    value: 给所有人做安全意识培训和技能训练，保证他们干日常活的时候脑子里有根弦：知道哪些操作有风险、出了事找谁、怎么处理。重点是让培训真的改变行为，不是发个链接让人点完就算完。
+    basis: inferred
+  practice:
+    value:
+      '1': 新员工入职有安全培训；全员每年至少做一次安全宣贯；有签到记录或学习平台后台记录可查。
+      '2': 培训内容按岗位区分（普通员工、管理员、开发等各有侧重）；定期做钓鱼邮件模拟或在线测验；培训效果有统计和复盘。
+      '3': 培训与安全意识考核挂钩，不合格有补训或限制权限；针对高风险岗位（如财务、运维）有专项训练；培训内容随威胁变化更新，并有质量评估机制证明行为改善。
+    basis: inferred
+  evidence:
+    value: 培训计划与课程大纲、学习平台记录（含完成率与成绩）、新员工培训签到表、钓鱼邮件模拟报告、培训效果评估与改进记录。
+    basis: inferred
+  common_myth:
+    value: 以为「买了个在线培训平台、全员点击完课程」就等于完成了这条控制。平台记录只能证明点过，证明不了行为改变——审计员真正看的是培训后员工会不会上钓鱼邮件的当、培训不合规的人有没有被限制访问，而不是完成率有多高。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 请提供最近一次钓鱼模拟的点击率；对点击的人采取了什么措施？
+    - 培训内容是全员一套还是按岗位区分？开发人员和财务人员的课程有什么不同？
+    - 未能完成年度培训的员工，系统层面有什么后果？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

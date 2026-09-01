@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.19
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「窗口部门谈商务、技术部门谈交付、安全部门事后介入」——采购全程没人从源头对供方安全能力提要求，合同签完才发现对方连基本的安全管理都没有，补救只能靠后续补丁式整改或硬着头皮合作。
+    basis: inferred
+  plain_zh:
+    value: 在选型与采购阶段就要把安全要求写进对供方的要求里，不让「安全」成为合同签完后的补救项——供方能做什么、必须怎么做，要尽早约定清楚，而不是等到要数据或出问题时才摊牌。
+    basis: inferred
+  practice:
+    value:
+      '1': 采购流程里有安全要求模板；重要供方合同里写了数据保护和基本安全义务；安全部门能提前参与重要采购评审。
+      '2': 按供方风险分级差异化规定安全要求；安全要求纳入供应商准入问卷和合同条款；采购流程在关键节点有安全签字。
+      '3': 安全要求从询价/招标阶段就随技术规格下发，供方应标时须自证；条款覆盖转包、审计权、合规连带、退出机制；采购系统与安全流程打通，安全部门对供方评估有一票否决权。
+    basis: inferred
+  evidence:
+    value: 采购制度与流程文件（含安全要求模板）、招标/询价文件中含安全条款的示例、供方响应记录、合同安全条款清单、安全参与采购评审的会议纪要或会签记录。
+    basis: inferred
+  common_myth:
+    value: 以为「合同里有一句供方须遵守适用法律法规」就算写了安全要求——这句话既没有可操作性，也没有验收标准。实质性的要求要写「供方须提供渗透测试报告」「供方须在其分包合同中落入同等安全义务」这类可检查、可追责的约定。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次重要采购里，安全要求是在发标前就提出来的，还是中标后补的？证据在哪？
+    - 供应商能力不足以满足你们合同要求时，流程上做不做得到取消资格？还是安全部门只是提个意见？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

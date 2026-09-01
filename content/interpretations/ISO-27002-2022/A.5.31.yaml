@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.31
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「法律怎么说、合同怎么签」和实际安全控制完全脱节——法务说合规、安全说技术，两边各干各的；真出事时才发现隐私承诺没做到、客户合同要求没落地、行业法规条款没人认领。
+    basis: inferred
+  plain_zh:
+    value: 把所有法律、法规、监管要求和合同承诺里跟信息安全有关的部分找出来、列成清单、写明谁负责、定期核对，确保安全控制确实对得上这些义务，而不是嘴上合规。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份法规与合同义务清单；知道哪些法律和合同条款管着本企业的信息安全；有人负责盯这件事。
+      '2': 义务清单映射到具体安全控制或责任人；有定期核对与更新机制；关键合规状态有记录可查；新法规或客户条款有正式接入流程。
+      '3': 义务清单接入合同评审和业务变更流程；合规状态持续监控并有自动化提醒；义务与控制的映射可追溯，审计能按条款查到位。
+    basis: inferred
+  evidence:
+    value: 法律与合同义务登记表、义务到安全控制的映射矩阵、合规状态核查记录、合同评审中安全条款的流转记录、新法规追踪与影响评估文件。
+    basis: inferred
+  common_myth:
+    value: 以为「法务审过合同、条款写进去了」就算完成。合同里写了数据保护条款，但没人告诉安全团队哪条系统要加密、哪条日志要留多久——法律承诺停留在纸面，没有落到技术配置和运维动作上，审计一追就断链。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把合同里要求加密存储的条款指给我，对应的系统清单在哪？怎么验证真的加密了？
+    - 去年生效新法规或新签的大型客户条款，从识别义务到落地控制用了多久？谁负责推动？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

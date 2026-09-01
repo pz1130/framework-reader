@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:DE.CM-06
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「第三方出了事，你是最后一个知道的」——供应商系统被入侵、服务降级、数据泄露，如果不在合同里和监控中约定好告警通道，你就只能从新闻里得知自己正在被牵连。
+    basis: inferred
+  plain_zh:
+    value: 对提供关键服务的外部供应商，要有持续监控其活动与服务状态的机制，能及时抓到异常或恶意事件，并明确出问题时谁能通知你、怎么通知你。
+    basis: inferred
+  practice:
+    value:
+      '1': 在合同里要求供应商通报安全事件；对关键供应商留存联系方式与升级路径；供应商发生重大事件时能有人接电话。
+      '2': 对关键供应商的服务可用性与告警日志做定期人工核对；有书面的事件通报协议（时限、内容、渠道）；监控结果有记录。
+      '3': 对高风险的供应商接入自动化监控（如红队情报、服务健康探针、异常流量检测）；供应商通报协议经过演练并验证过真实有效性；监控覆盖服务下线、异常登录、数据外发等可观测信号。
+    basis: inferred
+  evidence:
+    value: 供应商名册与风险分级、合同中含事件通报义务的条款、通讯录与升级表、事件通报与响应记录、服务监控告警截图或日志、针对第三方事件通报协议的演练纪要。
+    basis: inferred
+  common_myth:
+    value: 以为「合同里写了供应商有责任通报」就算做到了监控。合同条款只是让你有资格知道，不代表你会及时知道——没有约定通报时限、没有主动探测手段、没有演练过，供应商出事时往往先想着自己补救，你两三天后才发现服务已经异常。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一次收到供应商主动提交的事件通报是什么时候？内容是什么？
+    - 供应商应对你要求的通报时限明确写进了哪份合同？超出时限怎么办？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

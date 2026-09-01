@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.IM-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「演习、事故复盘、监控告警跑完就散场」——每轮实际操作产生的教训如果没人收口，下一轮同样的漏洞会原样再犯，安全投入变成重复劳动。
+    basis: inferred
+  plain_zh:
+    value: 每次跑完流程、做完演练、处理完事故，都要把暴露出来的问题捡出来，变成对方案、制度、工具的具体改进项，并跟踪落实。
+    basis: inferred
+  practice:
+    value:
+      '1': 事故和演练有复盘记录；复盘里明确列出改进项；有人负责分配到具体团队。
+      '2': 改进项进追踪清单，带负责人和截止时间；定期回顾完成情况；复盘中发现的制度或流程缺口会回写更新文档。
+      '3': 改进项纳入安全改进计划并与风险登记关联；有数据证明改进闭环率；重大改进会触发相关制度、流程或工具的系统性修订。
+    basis: inferred
+  evidence:
+    value: 事故复盘报告、演练总结报告、改进项追踪台账（含负责人、状态、完成日期）、制度与流程文档的修订历史记录、安全改进例会的会议纪要。
+    basis: inferred
+  common_myth:
+    value: 以为事故写了个复盘报告、演练拍了张合影就算「识别了改进」。复盘只有结论没有带责任人和时限的改进项，或者改进项在共享盘里躺一个季度没人动，这条就等于没做。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上个季度的事故复盘里提了几条改进项？现在完成了几条？哪几条没完成、为什么？
+    - 演练发现的问题，多久会回写进应急预案或操作手册？最近一次回写是哪份文档的哪个章节？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

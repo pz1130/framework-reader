@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.RA-10
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「先合作、后补审」——在采购合同模板里放进安全条款、承诺供应商已完成审查，但实际从未在掏钱之前验证供方的安全状况，最终让高风险供应商直接接入生产网络或数据链路。
+    basis: inferred
+  plain_zh:
+    value: 在签合同、付款、允许供方进场之前，就要完成对其安全能力的评估；不能把评估当作上线后的补办事项。
+    basis: inferred
+  practice:
+    value:
+      '1': 采购流程里有书面关卡，要求关键供应商在合同签署前完成安全问卷或基础尽调；没有通过不得进入签约环节。
+      '2': 采购系统或流程强制绑定评估步骤——未提交评估结果无法发起合同审批；评估结果按风险档位影响合同条款与准入决定，记录可查。
+      '3': 供应商评估结果与采购系统数据打通，按供应商风险等级自动决定审查深度；评估结论会直接影响合同是否签订、是否需要附加安全条款或延长观察期。
+    basis: inferred
+  evidence:
+    value: 采购流程文件、合同审批链路截图（显示评估为前置条件）、已签合同对应的供应商安全评估表及结论、被拒绝或附加条件采购的案例记录。
+    basis: inferred
+  common_myth:
+    value: 以为「合同里写了安全条款」就等于完成了前置评估。条款只是约束，评估才是动作——审计员要看到在实际签约之前就产出了评估结论的痕迹，而不是事后补一份问卷塞进合同夹。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 挑一家近一年新签的关键供应商，评估报告落款日期是否早于合同签署日期？
+    - 如果评估没做，采购系统能不能把合同审批流程卡住？卡不住时怎么处理？
+    basis: inferred
+  regional_note:
+    value: 欧洲在 DORA 下对关键 ICT 供应商的合同前评估要求更刚性，审计员可能直接核对采购时间线与评估报告的先后关系；美国常见依赖决策树与已填问卷的分级，但同样会抽查合同包的完整时间线。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.OV-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是风险策略一经批准就锁死在文件夹里——业务、威胁、组织架构都在变，策略若不定期回炉，安全投入和优先级就会与真实风险脱节，审计时只剩一纸空文。
+    basis: inferred
+  plain_zh:
+    value: 定期回头检查网络安全风险策略，看它还能不能覆盖当下组织目标、业务要求和真实风险，跟不上就改，改了要重新传达。
+    basis: inferred
+  practice:
+    value:
+      '1': 风险策略文件有审批版本号和批准日期；当重大业务变化或严重事件发生时，会临时加开一次策略评审。
+      '2': 有固定的回顾周期（如年度或半年度）；评审有纪要，写明谁参加、看了哪些风险输入、结论是什么；策略更新后保留新旧版本对照。
+      '3': 风险策略的回顾节奏与业务战略规划、年度预算挂钩；每次评审都对照当前威胁情报和重大风险清单，修订意见能追溯到具体风险源；策略变更后自动触发相关人员重新确认与培训。
+    basis: inferred
+  evidence:
+    value: 策略版本及其修订历史、按周期召开的评审会议纪要与出席名单、每次评审输入的风险评估报告或威胁情报摘要、新旧版本差异对照说明、策略变更后的传达或培训留痕。
+    basis: inferred
+  common_myth:
+    value: 以为策略文件写清楚、领导签了字、挂上了内网就算闭环。审计员翻的开会纪要和版本记录不会说谎——没有评审触发条件和改版历史，签过字的策略和一张海报没有区别。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次对风险策略做系统性回顾是哪一天？当时输入了哪些风险信息？
+    - 策略从 v1.0 到当前版本，改过哪几处？每次改动是哪起事件或哪条新风险触发的？
+    - 业务上马新板块时，走什么流程确认现有风险策略仍然适用？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.14
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「信息进出无台账、无约束、无技术拦截」——员工想传就传、想收就收，接口谁开谁说了算，数据流出去以后既没记录也没追责依据。
+    basis: inferred
+  plain_zh:
+    value: 把所有对内对外传数据的通道（跟外部系统的连接、接口、邮件、文件交换等方式）都列出来，逐个定安全要求、签协议、做审批，并在技术上施加限制。
+    basis: inferred
+  practice:
+    value:
+      '1': 有对外数据传递的清单（跟哪些外部系统连、通过什么方式、传什么）；新开或变更传递方式有人审批。
+      '2': 每种传递方式有书面协议或规范，写明接口参数、安全要求、双方责任；传递行为有日志记录。
+      '3': 对外数据传递在网关卡口按策略强制执行（如过滤、审批、加密、阻断）；信息流转可追踪审计；传递内容与审批依据一致可验证。
+    basis: inferred
+  evidence:
+    value: 对外数据传递清单与审批单、接口协议或连接协议文件、防火墙/API网关/邮件网关上的信息流转策略配置与拦截日志、传递方式定期复核记录。
+    basis: inferred
+  common_myth:
+    value: 以为「开了专线或VPN就是合规信息交换」——专线只是通路，不包含传输内容、接口方式、双方责任的书面定义与审批记录，审计追到具体传了什么资料、谁批的、传输层有没有限制时，只有一条裸链路。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 请指出当前系统与外部系统之间的每一种数据传递方式，对应的批准文件在哪？
+    - 某个外部接口传输的数据类型和实际传输内容是否一致，你们如何验证？
+    - 禁止使用的信息传递方式（如个人网盘、私人邮箱）在技术层是怎么拦的？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员更关注信息跨境流转是否在传输层有合法性依据（如数据出境合规），美国审计员更关注信息流在实际控制点时是否真的被强制拦截并记录。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

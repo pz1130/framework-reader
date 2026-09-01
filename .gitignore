@@ -1,0 +1,47 @@
+# 受版权保护的标准原文 —— 永不提交（见 spec §4.1 / §9 / §10.B2）
+vendor/*
+!vendor/README.md
+
+# 本地 git worktree（superpowers:using-git-worktrees）
+.worktrees/
+
+# 构建产物（内容包由 content/*.yaml 构建生成，可随时重建）
+build/
+dist/
+*.pack
+*.sqlite
+*.db
+
+# 签名私钥 —— 永不提交
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# 环境与凭据
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# 用户导入框架的解读 —— 那是用户自己公司的制度，不是我们要发布的内容。
+# 正规去处是 user.sqlite（见 interpret/user_store.py）；这条只是兜底，
+# 防止老版本或手工操作又把它写回内容仓。
+content/interpretations/*/
+!content/interpretations/NIST-CSF-2.0/
+!content/interpretations/ISO-27002-2022/
+!content/interpretations/NIST-800-53-R5/
+
+# 手工验收留下的东西，不进仓库：Playwright 的页面快照与控制台日志、
+# 顺手截的整页图。都是当时看一眼就完事的产物，留在仓里只会长。
+.playwright-mcp/
+/home-full.png

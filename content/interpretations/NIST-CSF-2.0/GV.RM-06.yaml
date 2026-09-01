@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.RM-06
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「风险评估各做各的」——一个团队用打分表、一个团队凭感觉、一个团队只看漏洞扫描，结果同样等级的风险在不同部门得到完全不同的处置优先级，管理层拿到的数字根本没法横向比较。
+    basis: inferred
+  plain_zh:
+    value: 全公司用同一套办法算风险、记风险、给风险分级和排优先级，并且这套办法要正式发布、让该知道的人都知道，不能各部门自己发明轮子。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份书面风险评估方法文档，写明用什么维度打分（如影响和可能性），关键系统做评估时用这套方法。
+      '2': 方法文档走正式审批发布；评估结果按统一模板记录可追溯；风险登记册有专人维护，分级标准让相关团队知晓。
+      '3': 方法支持不同层级（组织级/业务级/系统级）一致套用；分类和优先级标准与风险偏好联动；方法本身有定期评审和版本管理。
+    basis: inferred
+  evidence:
+    value: 经批准的风险评估方法文档、统一的评估模板、风险登记册（含分级结果）、方法知晓度培训或传达记录、评估样本与登记册记录可对照核查。
+    basis: inferred
+  common_myth:
+    value: 以为「有风险评估模板就算有方法」。模板只规定了填什么，没规定怎么算——没有明确的打分尺度和判定标准时，两个团队对同一个风险可以给出不同分数，登记册里的数字完全是摆设。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 两个不同团队评估同一个风险，结果会不会一样？打在评估方法的第几页？
+    - 风险登记册里优先级为「高」的判定标准是什么？谁能改这个标准？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

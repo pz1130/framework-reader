@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:RC.CO-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是恢复进展没人知道、各干各的——系统恢复了但业务方还在干等，或者外部监管、合作伙伴反复来问你们到底行不行了，内部却在互相猜进度，导致恢复期出现二次混乱。
+    basis: inferred
+  plain_zh:
+    value: 恢复期间和恢复之后，要把「恢复到哪一步了、还剩什么没恢复、预计什么时候好」主动讲给该听的人听，包括内部管理层、业务部门和外部该通知的机构。
+    basis: inferred
+  practice:
+    value:
+      '1': 有恢复沟通的对接人名单；恢复响应期间按预设计划向管理层和受影响部门通报进展；恢复完成后有结果汇报。
+      '2': 有书面恢复沟通计划，写明沟通对象、频率、渠道与内容模板；每次通报有记录，含时间、对象、要点；对外通报有口径审批。
+      '3': 恢复进展通报与恢复执行同步自动化，干系人可在看板上实时查看关键系统状态；通报格式与执法或监管要求对接；恢复结束后有复盘，确认所有应告知方均已收到最终结论。
+    basis: inferred
+  evidence:
+    value: 恢复沟通计划、按时间排序的通报邮件或会议纪要与签收记录、对外通报的审批痕迹与送达凭证、恢复状态看板截图、恢复完成报告及分发名单。
+    basis: inferred
+  common_myth:
+    value: 以为这条就是「恢复的时候发几封邮件报平安」。漏掉的是「对内对外分别讲什么」——内部业务方关心的不是技术细节，而是「我什么时候能开工」；外部机构要的是正式口径，而非微信群消息。没有区分受众、没有审批流、没有签收确认，通报发了等于没发。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 恢复期间你们向业务部门的第一次通报是在事件发生后多久发出的？
+    - 对外通报（如监管或合作方）谁有权定口径？最近一次恢复演练中，对外通报走了什么审批流程？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

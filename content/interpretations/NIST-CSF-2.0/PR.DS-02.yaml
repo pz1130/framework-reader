@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.DS-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「链路加密了就当全链路安全了」——传输中的数据不光要加密，还要保证数据在途中没被篡改、没被重放、到达的是该到的地方；很多事故恰恰出在「以为加密了就没人动过」这个盲区。
+    basis: inferred
+  plain_zh:
+    value: 对所有在网络里流动的数据，要保证它没被偷看、没被换掉、没被截下来重发，并且只发给该收的人；用的加密和完整性手段要符合公认标准，覆盖范围要按网络边界和敏感等级划清楚。
+    basis: inferred
+  practice:
+    value:
+      '1': 知道哪些数据走哪些网络路径；敏感数据在关键链路上启用了加密（如 TLS、VPN）；使用强算法。
+      '2': 全网络边界强制加密与完整性校验；证书与密钥有受控生命周期；链路上能检测到异常通信；边界间有明文与密文规则并可查。
+      '3': 传输安全策略覆盖所有网络区域与设备类型（含云、物联网、备份链路）；自动检测与阻断明文敏感数据；密钥轮换自动化；对数据包完整性、重放防护做系统级验证。
+    basis: inferred
+  evidence:
+    value: 网络拓扑图与数据流图、TLS/VPN 部署配置与策略、证书与密钥管理记录（轮换、存储、吊销）、边界设备配置（如防火墙、代理）、定期抓包或端点检测的异常告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「网站挂了 HTTPS 证书」就等于所有传输路径都受保护——内部系统间、数据库复制链路、备份通道、API 网关到后端之间往往还是明文，审计上来就是打在没管的缝上。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 内部服务器之间走的是什么协议？有没有明文？谁来保证这一段？
+    - 密钥多久轮换一次？谁有权导出？导出记录存在哪？
+    - 哪些链路明确允许明文传输？依据什么理由？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 语境下更爱追数据出境的传输路径合规（什么时候走什么链路、数据到了哪个国家）；美国审计员则偏重技术细节：强加密标准版本、中间人防护、证书随意导出的可能性。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

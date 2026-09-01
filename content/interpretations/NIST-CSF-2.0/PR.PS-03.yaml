@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.PS-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是硬件在生命周期各环节脱离管控——在用设备带病运行无人管，退役设备里的数据没清就扔，供应链里混进假货或改装件。不做这条，漏洞靠补丁和软件修不好，硬件层面的篡改和泄露直接绕过所有上层防护。
+    basis: inferred
+  plain_zh:
+    value: 硬件的维护、更换和退役不能顺手做，要按风险来定节奏和方式：知道每台设备里跑什么、风险多高，该修就修、该换就换、该毁就毁，全过程有记录。
+    basis: inferred
+  practice:
+    value:
+      '1': 有硬件资产清单；设备坏了有维修流程；退役设备有基本的数据擦除动作（至少格式化）。
+      '2': 按资产重要性定维护周期与退役标准；维修和退役有审批与记录；数据擦除有验证（如擦除后抽查）；供应链采购走正规渠道。
+      '3': 硬件健康与漏洞信息自动采集并关联风险评分；退役流程覆盖存储介质物理销毁；关键设备有更换预案；供应链可信度有验证机制（如固件校验、拆机检查）。
+    basis: inferred
+  evidence:
+    value: 硬件资产台账与风险分级、维护保养记录（含故障单）、退役审批单及数据擦除/销毁证明、采购渠道与固件校验记录、硬件变更日志。
+    basis: inferred
+  common_myth:
+    value: 以为「资产清单上列了设备就算台账，退役时把硬盘格式化了就算擦除」。实际上审计员会抽查退役设备的擦除验证记录，格式化的盘能恢复数据，而且没有审批链的退役设备往往最后不知去向。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 抽三台去年退役的设备，数据擦除是哪天做的？用的什么方法？有验证结果吗？
+    - 关键生产设备的硬件故障，更换备件的型号和渠道是怎么审核的？
+    - 硬件资产清单和实际机房盘点，上次对账是什么时候、差了几台？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

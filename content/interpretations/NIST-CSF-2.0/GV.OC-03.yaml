@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:GV.OC-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是法务、合规、安全三个部门各说各话——数据隐私、行业监管、合同里的安全条款，如果不能落到一份统一的清单并有人持续跟踪变化，出事时才发现没跟上新法规或没履行合同承诺，罚单和违约金都会变成事故的一部分。
+    basis: inferred
+  plain_zh:
+    value: 把公司所有跟网络安全有关的法律责任、监管要求和客户合同条款整理成一份清单，明确哪些要求适用、谁来负责跟进、变化了怎么办，别让这些义务散落在各个部门的抽屉里。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份清单列出主要适用的法律、监管要求和重要合同中的安全条款；指定了至少一个人或部门负责关注法规变化并更新清单。
+      '2': 清单有明确的适用性判断和责任人；新项目或新合同签约时会对照清单检查新增义务；法规变化时有正式的通知和更新流程，并有记录。
+      '3': 清单作为企业风险管理的正式输入，与供应商合同条款、内部策略联动；有系统或工具跟踪法规变化并自动评估影响；对未完成的法律义务有闭环整改跟踪。
+    basis: inferred
+  evidence:
+    value: 法律与监管要求清单及责任人、法规更新跟踪记录、新合同或新项目的合规性核查记录、年度合规评估报告、义务履行状态追踪表。
+    basis: inferred
+  common_myth:
+    value: 以为「法务部门有合同台账、合规部门有法规清单」就算达标。台账只回答「有什么」，不回答「哪些适用我们、谁来执行、何时复查」。审计员要看的是把散落的法律义务跟具体系统和流程对齐的证据——比如某条法规要求的数据保留期限，有没有落到对应的备份策略和删除流程里。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份法规清单上一次更新是什么时候？谁负责的？依据什么触发条件？
+    - 选一个你清单里的数据保护义务，告诉我对应落实到哪个系统或流程？
+    - 去年新签的合同里，有没有给安全团队新增了没在清单里的义务？
+    - 你们怎么发现新的适用法规？有没有见过漏掉法律义务导致的问题？
+    basis: inferred
+  regional_note:
+    value: 欧盟审计员会拿 GDPR 和 NIS2 的具体条款逐条对照你的义务清单和落实证据，追问数据跨境和通知义务的执行细节；美国审计员更常以合同条款承诺和行业监管要求（如金融、医疗）为核查标的。两边都认「契约义务没落实」是严重发现，只是欧盟更爱把隐私和公民权利作为主线来查。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

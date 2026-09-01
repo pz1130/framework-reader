@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.16
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「日志在记、没人看」——活动监控如果只停留在技术层面的采集，而不去关联用户行为、物理访问与远程运维场景，攻击者潜伏期内的异常动作就不会被及时发现，审计时也拿不出「我们确实在盯」的证据。
+    basis: inferred
+  plain_zh:
+    value: 要把人员、设备、网络和物理环境里的关键活动都记下来，并且有人定期去翻这些记录，从中找出异常——不是把日志存起来就完事，而是要去看、去分析、去响应。
+    basis: inferred
+  practice:
+    value:
+      '1': 核心系统和网络设备开了日志；日志保留期满足基本要求；重大事件发生后能回溯。
+      '2': 定义了关键审计事件清单；日志集中收集；有专人按固定周期做异常行为分析并留下记录；发现异常能触发告警或工单。
+      '3': 监控覆盖用户、运维、物理访问、远程会话全场景；异常行为能关联分析出攻击链；监控规则随威胁情报与业务变更定期更新并有负责人。
+    basis: inferred
+  evidence:
+    value: 关键系统的审计日志配置、日志集中平台截图或访问记录、异常行为分析报告或工单记录、监控规则变更历史、人员值班与审阅签到记录。
+    basis: inferred
+  common_myth:
+    value: 以为「日志都进 SIEM 了」就算活动监控——SIEM 只负责收集和告警，规则写得粗、没人每天去看高优先级告警、调优不跟进，告警永远躺在队列里，真出了问题照样发现不了。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去一个月，有没有非工作时间或非工作地点的成功登录？你们是怎么发现的？
+    - 远程运维会话都记了哪些内容？主机侧日志和堡垒机日志能不能对上？
+    - 监控规则的更新周期是多久？上一次因为新威胁或业务变化调整规则是什么时候？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 背景下特别关注活动监控是否经过隐私影响评估，以及数据留存是否限定在必要范围内；美国审计员更关注监控是否覆盖到特权账号与远程访问点，以及是否与应急响应流程打通。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.1
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「设备在手里，人不在现场」——屏幕不锁、移动设备随手放，别人拿到就能继续以你的身份看系统、改数据、发消息。同时防的还有未经管理的个人手机平板接入公司网络，把恶意软件和未授权访问带进来。
+    basis: inferred
+  plain_zh:
+    value: 管好手机、平板、笔记本这些能带走的设备：人离开要锁屏；移入移出办公区要有安全要求；个人设备想连公司系统得先说清楚、按规矩来。
+    basis: inferred
+  practice:
+    value:
+      '1': 有书面规定：离开工位必须锁屏或设自动锁屏；移动设备有基本口令保护。
+      '2': 锁屏策略在系统层强制（自动锁屏超时、密码或生物识别解锁）；移动设备有登记、有配置要求，个人设备接入有明确的获批流程。
+      '3': 锁定策略与设备管理联动，丢失或疑似泄露可远程擦除或锁死；设备接入公司网络有准入校验，个人设备与公司数据隔离，移动设备离境或带出有额外管控记录。
+    basis: inferred
+  evidence:
+    value: 锁屏策略的组策略或MDM配置截图、设备登记清单、移动设备接入批准的工单或流程文件、设备丢失或泄露的处置记录（远程锁定/擦除的日志）。
+    basis: inferred
+  common_myth:
+    value: 以为「员工人手一台笔记本，按手册设了个锁屏密码」就够了——审计员要看的是策略在系统里生效没生效、有没有人绕过、设备丢了能不能远控。锁屏超时5分钟和30分钟，审计员眼里的控制强度差一整个档次；个人手机连Wi-Fi就访问内网，登记表上却没有这台设备，这比没设密码更致命。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 屏幕自动锁定的超时时间在哪里配置的？配置文件或MDM策略的修改记录给我看。
+    - 员工自己的手机丢了，上面有公司邮件缓存，你们怎么处理？流程写在哪？
+    - 出差带公司笔记本去高风险国家，回来后有没有做设备检查或基线重检？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

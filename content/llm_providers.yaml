@@ -1,0 +1,197 @@
+# 模型厂商预设。W2 spec §3.2
+#
+# 端点会漂：配好 key 后跑 `fr llm check` 逐个验活，验不通的标灰保留、不删除。
+# kind 只有两种：anthropic（原生，唯一支持显式 prompt caching）与 openai_compat。
+providers:
+  - id: anthropic
+    kind: anthropic
+    base_url: ""
+    api_key_env: ANTHROPIC_API_KEY
+    default_model: claude-opus-5
+    explicit_cache: true
+    note: 唯一支持显式 prompt caching
+
+  - id: deepseek
+    kind: openai_compat
+    base_url: https://api.deepseek.com
+    api_key_env: DEEPSEEK_API_KEY
+    default_model: deepseek-chat
+    explicit_cache: false
+    note: 自动上下文缓存
+
+  - id: qwen
+    kind: openai_compat
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    api_key_env: DASHSCOPE_API_KEY
+    default_model: qwen-max
+    explicit_cache: false
+    note: 阿里百炼；隐式缓存
+
+  - id: glm
+    kind: openai_compat
+    base_url: https://open.bigmodel.cn/api/paas/v4
+    api_key_env: ZHIPU_API_KEY
+    default_model: glm-4-plus
+    explicit_cache: false
+    note: 智谱
+
+  - id: kimi
+    kind: openai_compat
+    base_url: https://api.moonshot.cn/v1
+    api_key_env: MOONSHOT_API_KEY
+    default_model: kimi-latest
+    explicit_cache: false
+    note: 月之暗面；长上下文
+
+  - id: doubao
+    kind: openai_compat
+    base_url: https://ark.cn-beijing.volces.com/api/v3
+    api_key_env: ARK_API_KEY
+    default_model: doubao-pro-32k
+    explicit_cache: false
+    note: 火山方舟
+
+  - id: hunyuan
+    kind: openai_compat
+    base_url: https://api.hunyuan.cloud.tencent.com/v1
+    api_key_env: HUNYUAN_API_KEY
+    default_model: hunyuan-turbo
+    explicit_cache: false
+    note: 腾讯
+
+  - id: minimax
+    kind: openai_compat
+    base_url: https://api.minimax.chat/v1
+    api_key_env: MINIMAX_API_KEY
+    default_model: abab6.5s-chat
+    explicit_cache: false
+    # 2026-08-20 实测：提示词明令禁止的情况下仍写「是否有定期流程」式是非题追问，
+    # intent 常写成原文直译。drafter 当初就是因此换成 DeepSeek 的。
+    # 这句话原来只在下面 roles 的注释里，而注释不进页面——挑厂商的人看不到。
+    # 保留这一家不删（本文件开头那句规矩），但把事实写在被选择的地方。
+    note: 默认模型 abab6.5s-chat 起草质量实测不合格，不建议用作 drafter
+
+  - id: baichuan
+    kind: openai_compat
+    base_url: https://api.baichuan-ai.com/v1
+    api_key_env: BAICHUAN_API_KEY
+    default_model: Baichuan4
+    explicit_cache: false
+    note: ""
+
+  - id: siliconflow
+    kind: openai_compat
+    base_url: https://api.siliconflow.cn/v1
+    api_key_env: SILICONFLOW_API_KEY
+    default_model: deepseek-ai/DeepSeek-V3
+    explicit_cache: false
+    note: 聚合口，一个 key 试多个开源模型
+
+  - id: openai
+    kind: openai_compat
+    base_url: https://api.openai.com/v1
+    api_key_env: OPENAI_API_KEY
+    default_model: gpt-4o
+    explicit_cache: false
+    note: ""
+
+  # ── 以下 9 家 2026-08-24 新增，全部**未验活** ──────────────────────
+  # 我们手上没有这些家的 key，`fr llm check` 发不出请求，验不了就不许假装验过。
+  # 配了 key 之后自己跑一遍；通不过的按本文件开头那句规矩：标灰保留，不删除。
+  #
+  # Azure OpenAI 故意不做预设：它的 base_url 带资源名与 deployment，
+  # 每个部署都不一样，预置一个填不进任何人的环境。走「自定义端点」。
+
+  # 国内
+  - id: ernie
+    kind: openai_compat
+    base_url: https://qianfan.baidubce.com/v2
+    api_key_env: QIANFAN_API_KEY
+    default_model: ernie-4.5-turbo-128k
+    explicit_cache: false
+    verified: false
+    note: 百度千帆
+
+  - id: spark
+    kind: openai_compat
+    base_url: https://spark-api-open.xf-yun.com/v1
+    api_key_env: SPARK_API_KEY
+    default_model: generalv3.5
+    explicit_cache: false
+    verified: false
+    note: 讯飞星火
+
+  - id: stepfun
+    kind: openai_compat
+    base_url: https://api.stepfun.com/v1
+    api_key_env: STEP_API_KEY
+    default_model: step-2-16k
+    explicit_cache: false
+    verified: false
+    note: 阶跃星辰
+
+  - id: yi
+    kind: openai_compat
+    base_url: https://api.lingyiwanwu.com/v1
+    api_key_env: YI_API_KEY
+    default_model: yi-large
+    explicit_cache: false
+    verified: false
+    note: 零一万物
+
+  # 国外
+  - id: gemini
+    kind: openai_compat
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key_env: GEMINI_API_KEY
+    default_model: gemini-2.5-pro
+    explicit_cache: false
+    verified: false
+    note: Google；走它的 OpenAI 兼容口
+
+  - id: grok
+    kind: openai_compat
+    base_url: https://api.x.ai/v1
+    api_key_env: XAI_API_KEY
+    default_model: grok-4
+    explicit_cache: false
+    verified: false
+    note: xAI
+
+  - id: mistral
+    kind: openai_compat
+    base_url: https://api.mistral.ai/v1
+    api_key_env: MISTRAL_API_KEY
+    default_model: mistral-large-latest
+    explicit_cache: false
+    verified: false
+    note: ""
+
+  - id: openrouter
+    kind: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    default_model: deepseek/deepseek-chat
+    explicit_cache: false
+    verified: false
+    note: 聚合口，一个 key 试各家；模型名要带厂商前缀
+
+  - id: groq
+    kind: openai_compat
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    default_model: llama-3.3-70b-versatile
+    explicit_cache: false
+    verified: false
+    note: 只跑开源模型，快
+
+# 四个调用点各自指定厂商——它们的需求不同。W2 spec §3.3
+# extractor 收到的是作者原话（本产品最核心的资产），发给哪家是商业判断。
+roles:
+  # 2026-08-20：起草器改用 DeepSeek。MiniMax abab6.5s-chat 在提示词明令禁止的
+  # 情况下仍写「是否有定期流程」式是非题追问，且 intent 常写成原文直译。
+  # B 路线下起草器就是产品本体，本体质量不合格就没有产品（主 spec §7.4）。
+  drafter:    {provider: deepseek, model: deepseek-chat}
+  # 下面两个属访谈管线，B 路线下闲置，一并指向 DeepSeek 以备启用。
+  questioner: {provider: deepseek, model: deepseek-chat}
+  extractor:  {provider: deepseek, model: deepseek-chat}

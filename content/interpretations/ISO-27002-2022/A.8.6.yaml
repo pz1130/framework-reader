@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.6
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「高峰一到系统就瘫、日志先爆」——业务增长或突发流量时，计算、存储、带宽、日志容量不够导致服务中断、安全事件丢失审计线索，且没人提前算过要多少。
+    basis: inferred
+  plain_zh:
+    value: 别等系统扛不住了才扩容。要按业务增长、峰值流量和日志保留要求，提前规划并保证足够的计算、存储、带宽和审计日志容量，并在关键时刻能优先保住核心业务。
+    basis: inferred
+  practice:
+    value:
+      '1': 对核心系统做了容量估算（如日均请求量、峰值、日志增长速度）；资源快用尽时有告警；知道谁负责扩容。
+      '2': 容量规划有正式流程和记录（如定期评审、年度预测）；日志存储容量按保留期限和审计需求分配，有监控和超限告警。
+      '3': 容量规划与业务增长数据联动，能预测未来需求；关键业务有抢占/降级策略；规模化压测验证过；日志存储有独立分配和溢出防护，不因主存储满而丢日志。
+    basis: inferred
+  evidence:
+    value: 容量规划文档（含假设与计算）、监控告警阈值和告警记录、资源使用率趋势报告、扩容工单、日志存储分配与保留策略配置、压测报告。
+    basis: inferred
+  common_myth:
+    value: 以为「服务器配置够高，买大点就行」——容量规划不是买机器，是持续跟踪业务增速和日志增速，并验证过峰值场景；很多团队直到磁盘写满才发现日志系统先于业务挂了。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 未来六个月的容量预测是怎么算出来的？依据哪些业务指标？
+    - 日志存储按什么保留期分配的？满了以后是先覆盖最旧日志还是停止写入？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

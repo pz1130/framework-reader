@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.SC-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「供应商名单靠记忆或散落邮件，谁断了供应链、谁出了事故，安全团队到最后一刻才知道」——必须先有一张被认可的全量清单，并按关键性排好优先级，后续的评估、监控、处置才有对象。
+    basis: inferred
+  plain_zh:
+    value: 把所有供应商（含硬件、软件、云服务、外包运维等）理清楚，登记在册，并按它们对业务的关键程度分出三六九等——出了事才知道先保谁、先查谁。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份全量供应商名册，至少含名称、联系人、提供的服务或产品；按关键性做个简单分级（如高、中、低），并有人维护。
+      '2': 名册与关键性分级经采购、法务、安全会签认可；分级有明确规则（如影响核心业务、涉敏感数据、不可替代性）；新供应商入场、重大变更时触发更新。
+      '3': 供应商清单与采购流程、资产台账联动，变更自动触发重新评估；关键性分级有量化依据，并被用于资源分配与应急预案的优先级设定。
+    basis: inferred
+  evidence:
+    value: 经维护的供应商名册（含分级字段）、分级规则文档、会签与更新记录、采购或变更工单与名册的关联记录、从名册导出定期报告的样例。
+    basis: inferred
+  common_myth:
+    value: 以为「跟着合同台账走就行」——财务合同清单漏了免费试用、开发直采、临时外包这类没走合同的供应商；也不区分供应商供货的是核心交易链路还是行政小工具。名册必须有安全可用的关键性分级字段，而不是合同台账的直接复制。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把最近半年安全事件里涉及的外部供应商挑出来，它们当时在名册里的关键性等级是什么？
+    - 采购流程里哪一步要求登记供应商并定级？如果采购直接绕过，安全怎么发现漏登记的供应商？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

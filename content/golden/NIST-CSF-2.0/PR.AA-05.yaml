@@ -1,0 +1,38 @@
+control_id: NIST-CSF-2.0:PR.AA-05
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: "防的是权限堆出来以后没人收——谁能碰什么必须有政策依据、系统能拦住、定期回头清；最小权限和职责分离不能只写在墙上。"
+    basis: practitioner
+  plain_zh:
+    value: "访问权限、权益与授权要写进政策，落到系统里管、拦、审，并按最小权限和职责分离原则执行。"
+    basis: practitioner
+  practice:
+    value:
+      "1": "有书面权限政策；入职/调岗/离职有基本开通与回收流程；高权限有人审批。"
+      "2": "权限按角色发放；定期访问评审有记录；关键系统强制最小权限与职责分离。"
+      "3": "权限变更可追溯；异常授权有告警；职责分离冲突在系统层拦截，而不只靠人工口头判断。"
+    basis: practitioner
+  evidence:
+    value: "权限政策与角色定义、开通/变更/回收工单、定期访问评审记录、职责分离冲突检查结果、抽查账号与实际岗位是否一致。"
+    basis: practitioner
+  common_myth:
+    value: "中文团队常把这条理解成「有个权限矩阵表就行」——表贴墙上或丢共享盘，系统里账号仍按人临时开、离职不清、半年不评审。矩阵只是输入；真正要看政策是否驱动开通与回收、系统是否按最小权限和职责分离在拦，以及评审有没有改过真实权限。"
+    basis: practitioner
+  auditor_asks:
+    value:
+      - "抽三个离职或调岗账号，权限是哪天收回的？依据哪份流程？"
+      - "职责分离冲突是系统拦还是靠审批人口头判断？最近一次冲突怎么处理的？"
+    basis: practitioner
+  regional_note:
+    value: "欧美审计员都认最小权限与职责分离，但欧洲受 GDPR 与行业监管牵连时更爱追「谁因何目的持有何种访问」的可解释性；美国常见以 SOX 相关应用与特权账号抽查为主。两边口径不同，抽样重心也不同。"
+    basis: practitioner
+interview:
+  questions: []
+  raw: []
+provenance:
+  drafter: null
+  extractor: null
+  confirmed_by: jc
+  confirmed_at: 2026-08-21T10:00:00+08:00

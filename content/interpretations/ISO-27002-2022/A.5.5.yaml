@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.5
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是安全事件被捂在本地或业务线内部——监管机构、行业主管和司法辖区对事件通报有法定义务和时限，漏报或不报会带来处罚、牌照风险和在监管面前失去信任。
+    basis: inferred
+  plain_zh:
+    value: 让你把安全事件按法律和监管要求，在规定的时限和格式内，报给该报的主管机关，并且要有明确的责任人来干这件事，还得留下证据。
+    basis: inferred
+  practice:
+    value:
+      '1': 法务或安全负责人手里有一份清单，写明哪些事件类型和规模需要报哪个主管机关，以及大概的时限；至少有一个明确的联系人负责对外报告。
+      '2': 制定了书面的事件报告流程，明确事件分级和对应的上报时限；运行过至少一次上报演练或真实上报，有记录可查。
+      '3': 事件上报流程与事件响应流程联动，系统能自动触发待上报事件提醒；定期跟主管机关预沟通确认最新要求和联系方式；上报有专人复核并留存完整证据链。
+    basis: inferred
+  evidence:
+    value: 事件报告清单及责任人名单、对外报告模板、真实或演练的上报记录（含时间戳和提交回执）、与主管机关的沟通函件或会议纪要。
+    basis: inferred
+  common_myth:
+    value: 以为「跟网安大队或监管吃了顿饭，真出事打个电话就行」。没有成文的事件分级表和上报时限，口头沟通在审计和法律上都不算数；事件上报要有书面记录和回执才算闭环。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次向主管机关报告安全事件是什么时候？报告内容的存档和回执在哪？
+    - 你们判断某种事件类型需要上报的依据是什么？写在哪份文件里？
+    - 如果今天凌晨发现一起涉及个人数据泄露的事件，明早几点之前必须有动作？责任人是谁？
+    basis: inferred
+  regional_note:
+    value: 欧洲更强调事件类型按 GDPR 等法规细分类别上报，时限紧且有追溯审查；美国则以行业监管和州法为主，审计员更看重你是否能证明「知道该报哪里、报得及」。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

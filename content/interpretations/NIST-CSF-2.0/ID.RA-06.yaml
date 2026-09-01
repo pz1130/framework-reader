@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.RA-06
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是风险处置停留在会议纪要和口头承诺——选了措施没人排期、排了期没人执行、执行了没人跟踪、跟丢了没人汇报，最后风险清单越来越长，安全部门背锅却拿不出处置轨迹。
+    basis: inferred
+  plain_zh:
+    value: 确定了风险要采取什么应对措施之后，要像管项目一样管起来：谁来做、什么时候做、做到什么程度、做到哪一步了、结果跟谁同步。不是选完措施就完事了。
+    basis: inferred
+  practice:
+    value:
+      '1': 针对已识别的风险有处置决定记录，至少写明风险、处置方式（接受/缓解/转移/规避）、责任人和大致完成时间，能指给审计员看。
+      '2': 风险处置进正规流程：有优先级排序依据、有负责人和截止日期，定期（如月度或季度）开会过进度，逾期有升级机制，处置完成有关闭确认。
+      '3': 风险处置跟踪与风险管理平台/工单系统联动，状态自动更新；处置措施的实际有效性会被回评，未按计划完成的风险会重新评估并调整优先级；管理层能看到定期汇总报告。
+    basis: inferred
+  evidence:
+    value: 风险处置计划或登记册（含责任人、截止日期、优先级）、定期评审会议纪要、逾期与升级记录、处置进度跟踪表、处置完成后的验证或关闭记录、向管理层汇报的周期性报告。
+    basis: inferred
+  common_myth:
+    value: 以为「风险登记册里写了处置建议」就等于完成了处置跟踪。登记册里那行字只是决策，后面没有排期、没有责任人、没有进度更新，审计员一眼就能看出登记册是静态的——保存日期和最后更新日期是同一个。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这个已关闭的风险处置项，关闭前有没有验证措施实际生效？验证记录在哪？
+    - 风险处置进度靠什么机制保证不被遗忘？是定期的会还是系统提醒？上次逾期而未升级的情况是什么？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

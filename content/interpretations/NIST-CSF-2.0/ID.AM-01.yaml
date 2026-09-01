@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.AM-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「资产说不清、家底摸不着」——不知道组织里有哪些硬件在跑，就谈不上监控漏洞、处置事件、划分责任边界；审计一看系统记录与实物对不上就露馅。
+    basis: inferred
+  plain_zh:
+    value: 把组织管着的所有硬件设备（服务器、终端、网络设备、物联网设备等）记成一份清单，而且要持续维护、保持更新，不能是开业时做一次就再也不碰。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份硬件资产清单，至少覆盖主要数据中心与办公终端；有新设备或报废设备会人工登记。
+      '2': 资产清单有明确责任人与更新机制，覆盖范围含网络设备与运维终端；定期盘点并与实际设备核对差异。
+      '3': 资产清单由自动发现工具驱动，与配置管理库联动，新上线或下线设备在数小时内反映到清单；盘点差异自动告警并走处置流程。
+    basis: inferred
+  evidence:
+    value: 硬件资产清单文件或系统导出、资产责任人任命记录、定期盘点纪要、自动发现工具的采集范围与日志、新增/下线设备的变更记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有 CMDB 就算有资产清单」。很多团队的 CMDB 只录了服务器，网络设备和办公终端不在里面；或者录了从不更新，上线的没加、下线的没删，审计抽查时实物与系统对不上。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 清单上一共有多少台硬件？覆盖了哪些类型，哪些类型不在清单里？
+    - 上一次全面盘点是什么时候？发现差异后谁负责整改、记录在哪？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

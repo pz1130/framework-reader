@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.31
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防止开发测试环境与生产环境混用时，调试数据、临时代码、未完成功能或恶意构造的输入直接污染线上数据；也防止测试活动（如压测、故障演练）打断生产服务，或测试环境留存了真实生产数据而未做同等保护，成为数据泄露的口子。
+    basis: inferred
+  plain_zh:
+    value: 开发和测试用的环境要和真实线上环境隔开，不管物理还是逻辑隔离，必须保证在测试里搞破坏、装错东西、跑脏数据，都影响不到线上，线上数据也不流进测试环境。改成生产环境前，先在隔离的测试环境里验证过再上。
+    basis: inferred
+  practice:
+    value:
+      '1': 生产环境有独立账号体系，开发测试人员没有生产环境权限或需单独审批才可临时获取；有测试环境，且与生产网络或资源划分开。
+      '2': 有书面环境隔离与变更上线流程，明确测试环境与生产环境边界；生产变更必须走测试验证；测试环境用生产真实数据时有脱敏或同等保护措施并有记录。
+      '3': 环境隔离在基础设施层强约束（网络策略、私有云项目边界、账号权限矩阵联动），无人工放行则物理不可能跨界访问；变更流水线自动保证测试通过才允许发布到生产；测试数据生产化与生产数据测试化均有自动化检查或人工审批留痕。
+    basis: inferred
+  evidence:
+    value: 网络拓扑图或云账号结构显示生产与测试分属不同网络/订阅/VPC；生产环境访问权限审批记录；发布流水线里设了测试环境验证阶段且为硬门禁；测试环境使用真实数据时的脱敏或授权记录；环境配置漂移检查结果。
+    basis: inferred
+  common_myth:
+    value: 以为把开发测试服务器和生产服务器放在不同网段就算隔离了，但开发人员仍然可以一台机器从测试环境跳板到生产环境、或者测试环境直接复用生产数据库，所谓隔离变成只是在图上画了两条线。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 开发人员用什么账号登录生产环境？谁批准的？审批单最近一张是什么时候？
+    - 测试环境里出现真姓名或真实客户记录的数据库，有没有脱敏记录或同等保护声明？
+    - 生产变更在发布流水线上，哪个阶段是唯一的、绕不过去的测试验证环节？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.PS-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防止「软件装上就不管了」——不上补丁、版本老化、无人维护的软件会把已知漏洞长期暴露在攻击面里，直到被利用才想起处置。
+    basis: inferred
+  plain_zh:
+    value: 对软件做生命周期管理：按风险决定装什么、留什么、删什么——该维护的持续打补丁，该换代的替换，该退役的彻底移除，并且全程留下记录。
+    basis: inferred
+  practice:
+    value:
+      '1': 有软件资产清单；操作系统和应用能定期收到安全补丁；知道哪些软件已停止维护。
+      '2': 按资产风险等级定补丁优先级和时限；高危补丁有快速流程；无用软件有计划性退役和移除流程。
+      '3': 补丁状态能自动核查；补丁部署有自动化验证；自动化采集软件版本并按风险决定保留或替换，淘汰动作可追踪。
+    basis: inferred
+  evidence:
+    value: 软件资产台账与版本记录、补丁管理记录或自动化报告、软件退役/替换审批单、补丁验证结果或无漏洞证明（如扫描报告）。
+    basis: inferred
+  common_myth:
+    value: 以为「装了补丁管理工具」就达标，但工具开了自动更新不等于覆盖所有环境。没纳入清单的软件、没授权的自装软件和停止维护的老系统仍会漏在外头，审计一抽查就露馅。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 哪些软件不在自动补丁覆盖范围？清单里有没有标出来？
+    - 最后一个已知停止维护的软件，你们是继续用还是做了退役计划？依据是什么？
+    - 补丁部署失败或验证失败时，谁跟进、多久没跟上会升级？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.OC-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「业务命脉系统只有运维知道，管理层和协作方都不清楚」——关键业务依赖的到底是哪套系统、谁在提供、垮了会怎样，如果说不清楚，风险处置和资源投入就全凭感觉。
+    basis: inferred
+  plain_zh:
+    value: 把公司经营离不开的那些业务产出、支撑能力和背后依赖的服务（包括内部系统和外部供应商）梳理出来，让该知道的人都知道，并且能说清楚。
+    basis: inferred
+  practice:
+    value:
+      '1': 梳理出支撑关键业务的核心系统和服务清单，明确每个服务的负责人。
+      '2': 关键依赖清单有定期更新机制；每次重要系统变更或供应商变化后触发重新梳理；有向管理层和相关团队通报的记录。
+      '3': 业务影响分析与依赖清单联动；新系统立项或采购时强制评估对关键依赖的影响；关键依赖的变化能自动通知到相关决策层。
+    basis: inferred
+  evidence:
+    value: 关键业务依赖清单、业务影响分析报告、系统架构图、依赖关系变更记录、向管理层汇报的会议纪要或通报邮件。
+    basis: inferred
+  common_myth:
+    value: 以为「画了张系统拓扑图」就算数。拓扑图只画网络和设备，说不清「这个系统垮了，哪条业务线停摆、每天损失多少」——真正的依赖清单要连到业务产出，不是只画IT视图。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你们最赚钱的那条业务，端到端依赖哪些系统和供应商？清单在哪？
+    - 上次关键供应商出问题时，管理层是多快知道影响范围的？依据什么信息判断的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

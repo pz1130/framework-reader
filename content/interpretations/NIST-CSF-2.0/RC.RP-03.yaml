@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:RC.RP-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是备份坏了还拿来恢复——恢复动作本身成了新的灾难。备份数据在恢复前没验过完整性，坏备份、被篡改的备份、或者恢复到错误版本，系统不但没救回来，还把坏数据扩散到生产环境。
+    basis: inferred
+  plain_zh:
+    value: 别等到要恢复时才第一次碰备份。所有备份和恢复资产（包括镜像、快照、归档、恢复服务器）在正式用于恢复之前，必须先做完整性验证，确认它确实是能用的、没坏的。
+    basis: inferred
+  practice:
+    value:
+      '1': 恢复流程里写死一步：恢复前必须校验备份完整性，至少用哈希比对或校验和验证一次；校验有记录。
+      '2': 对不同类型备份（全量、增量、数据库、虚拟机）有各自的完整性校验方案；定期做恢复演练或校验并留记录；校验失败有告警和处置流程。
+      '3': 完整性校验自动化接入备份平台或恢复编排系统，未通过校验的备份无法触发恢复；校验结果进监控告警；有数据证明每次真实恢复前都完成了校验。
+    basis: inferred
+  evidence:
+    value: 书面恢复流程文档中写明「校验前置步骤」；校验记录或日志（哈希比对、校验和、完整性检查工具输出）；恢复演练报告带校验环节；校验失败的处理记录与根因分析。
+    basis: inferred
+  common_myth:
+    value: 以为「备份系统自带的校验功能开了就等于做到了」。备份软件说「备份完成」不等于「备份可恢复」——很多备份成功日志只写了写入完成，并没有验证数据在介质上的完整性。真正要做的是在恢复前单独跑一次校验，并把这步当成恢复流程的硬门槛。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把上个月的一次真实恢复记录拿出来？恢复前你用什么命令、什么工具验的完整性？
+    - 有没有备份文件损坏但备份任务显示成功的记录？那次后来怎么处理的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

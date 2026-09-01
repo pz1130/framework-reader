@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:DE.CM-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「内部出事先知道不了」——员工行为和技术使用一旦无人盯着，恶意或无意的不当操作就只能等事后暴露，没人能在危害扩散前拉停、溯源或追责。
+    basis: inferred
+  plain_zh:
+    value: 对人员操作活动和技术使用行为做持续监控，能及时发现可能导致安全事件的苗头，并留痕备查。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键系统有基础日志记录；有人看告警；对高风险操作（如批量导出、深夜特权登录）有最初步的探测规则。
+      '2': 人员活动与技术使用纳入常态化监控；告警有分级与响应流程；监控记录定期审阅，能回溯到具体账号；新上线系统会考虑是否纳入监控。
+      '3': 监控规则从已知告警走向行为基线——异常不限于固定规则，能联动响应流程自动拉停；监控覆盖范围有清单化维护，未纳入监控的系统有明确风险审批与缓解措施。
+    basis: inferred
+  evidence:
+    value: 监控系统覆盖清单与日志留存策略、告警规则及更新记录、告警处置工单与闭环记录、定期审阅报告的签批，以及抽查某个已处置事件时能回溯到日志记录。
+    basis: inferred
+  common_myth:
+    value: 以为上了 SIEM 或日志平台、有告警就算做到了监控。实际多数团队只盯着安全设备的告警不盯人——员工下载敏感数据、私自安装软件、用未经批准的工具反而没人去看，真出事时平台里堆着几十万条没人碰的日志，照样说不清发生了什么。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 一个员工在凌晨三点从生产库导出全量客户数据，你们靠什么手段能发现？
+    - 哪些网络区段或内部系统没有日志留存或告警覆盖？为什么不纳入？
+    - 最近一次审阅人员活动监控日志是什么时候？谁签字？发现过什么值得注意的行为？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

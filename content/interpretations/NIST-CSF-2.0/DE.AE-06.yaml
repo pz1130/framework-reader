@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:DE.AE-06
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「监控告警只存在于 SIEM 里，没人真正读到或用上」——事件信号若不能及时送达处置人员，检测能力形同虚设，威胁在等待人工查询的空窗期内持续造成影响。
+    basis: inferred
+  plain_zh:
+    value: 出了安全事故，要把事件信息按规则发给该知道的人和对应系统，确保有人响应、有工具承接，而不是只看仪表盘或等人的好奇心。
+    basis: inferred
+  practice:
+    value:
+      '1': 有安全事件的通知流向，知道事件报给谁；告警能发到值班群或工单系统，至少有人登记。
+      '2': 明确按事件等级和受影响系统的通知矩阵；关键事件有人介入，响应动作留痕；工具与人员名单定期核对。
+      '3': 告警分诊自动化，按规则直达对应角色与工具链；通知路径与人员变更联动；对「未送达/未处置即升级」有兜底机制。
+    basis: inferred
+  evidence:
+    value: 事件通知矩阵或升级流程文档、告警/工单系统里的分发记录、值班交接记录、对未读或未确认告警的催办或升级日志、相关人员权限核对记录。
+    basis: inferred
+  common_myth:
+    value: 以为「加了告警、有人拉群就算上报」——群里消息刷过去没人确认，却没有升级链路和触发规则，等于把命运交给值班员当天的心情。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 一条 P1 告警从产生到第一个有效处置动作，标准时限是多少？超时找谁？
+    - 通知矩阵里的人员名单最后一次核对是几号？换人后谁来改？
+    - 哪些工具能接收事件数据？有没有一类工具常年收不到告警？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

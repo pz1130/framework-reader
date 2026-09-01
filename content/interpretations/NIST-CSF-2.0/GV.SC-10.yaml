@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.SC-10
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「合同结束、合作终止，安全责任就跟着清零」——供应商离场时留下的数据、账号、物理接入通道和连带责任，如果没人管，就会变成长期敞口；一次终止流程做不干净，后续出事的责任却还在你头上。
+    basis: inferred
+  plain_zh:
+    value: 供应链风险管理计划里必须写清楚合作或服务合同终止之后要做什么，不能把「结束」当作安全责任的终点。
+    basis: inferred
+  practice:
+    value:
+      '1': 合同终止时有人走一个收尾流程：收回账号、回收物理凭证、确认数据归还或删除。
+      '2': 终止流程有书面清单、有责任人和检查记录；有对终止后残留风险（如数据留在对方系统、对方仍是你的子处理方）的评估和处置。
+      '3': 终止流程纳入采购、法务、安全职责联动；终止后的数据处置、审计权和连带义务在合同里成条款；对高价值供方有离场后复核与残留风险跟踪。
+    basis: inferred
+  evidence:
+    value: 终止与离场流程文档、检查表、交接与账号回收记录、数据处置或转交确认、终止后的残留风险评审记录、合同中的终止条款。
+    basis: inferred
+  common_myth:
+    value: 以为「把账号删掉、门禁收回」就算善终——更致命的遗留是对方还在你的生产链路里留有转发规则、托管密钥、子处理关系，以及在终止后你依然为其行为向监管负责。离场不只是物理退场。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上个季度终止的供方，有没有书面确认其托管的数据已被删除或归还？凭证在哪？
+    - 合同里关于终止后的审计权和数据处置写了几条？谁负责在终止时触发检查？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

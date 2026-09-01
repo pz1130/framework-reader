@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.26
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「出了事没人接、接不住、或各团队各打各的」——安全事件如果处置混乱，影响面扩大、恢复变慢，损失和合规风险都会被放大。
+    basis: inferred
+  plain_zh:
+    value: 建立一套事件响应能力，从准备、检测、分析、遏制、根除到恢复都有既定流程，并且事件处置要与业务连续性计划协同，事后还要把教训固化回流程、培训和测试里。
+    basis: inferred
+  practice:
+    value:
+      '1': 有事件响应计划和基本处置流程；指定了事件响应负责人；重大事件知道找谁、按什么步骤走。
+      '2': 事件处置有记录与分类分级；与业务连续性团队有对接机制；每次事件后有复盘并把改进项落实到流程或培训中。
+      '3': 事件响应的严谨度、强度、范围与结果在全组织内可比、可预测；定期开展演练验证流程有效性；复盘改进项有跟踪闭环并纳入测试。
+    basis: inferred
+  evidence:
+    value: 事件响应计划与流程文档、事件记录（含时间线、处置动作、影响）、事件分级标准、复盘报告及改进项跟踪清单、演练计划与总结。
+    basis: inferred
+  common_myth:
+    value: 以为「建了个事件响应群、有值班手机」就算有处置能力——群里没人按流程走、没有分级、没有记录、没有复盘，出了事全凭个人经验救火，审计员一眼看穿。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次真实安全事件是几月几号？从检测到遏制花了多久？流程文件里写的目标时间是多少？
+    - 事件响应计划最近一次测试是什么时候？测试发现了哪三个改进项？
+    - 事件处理记录里有没有分类分级？最高级别事件谁有权拍板遏制措施？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

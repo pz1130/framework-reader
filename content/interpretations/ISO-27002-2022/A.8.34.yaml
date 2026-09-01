@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.34
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「审计当成一次性找茬」——平时系统裸奔、审计时临时加固，审完又松回去。这条要的是系统在审计测试期间受到的防护水平与平时一致，不能因为要过检就做样子，更不能让审计过程本身成为新的攻击面。
+    basis: inferred
+  plain_zh:
+    value: 要求你在审计测试期间，对系统施加的保护措施不降级、不变形；审计用的工具、账号、数据接入也要被管住，不能因为审计就打开口子。
+    basis: inferred
+  practice:
+    value:
+      '1': 审计期间不关现有防护；审计用账号单独申请、限期使用；知道谁在审什么。
+      '2': 审计测试有书面计划与授权；对生产系统的操作按变更流程走；审计结束后回收权限并检查系统状态。
+      '3': 审计环境与生产隔离或具备等效防护；审计活动有日志留痕并与常规监控集成；对审计工具的文件与传输做防篡改校验。
+    basis: inferred
+  evidence:
+    value: 审计测试计划与授权书、审计专用账号的开通与回收记录、变更工单或批准记录、审计期间的安全设备日志（尤其与审计时间窗口对齐的告警与处置记录）。
+    basis: inferred
+  common_myth:
+    value: 以为审计期间为了配合测试可以临时关掉 WAF、停掉告警、给审计员开高权限账号——把「配合审计」理解成「审计说了算」。实际上审计员最反感的就是你为了让他过检而改变系统真实状态，这既毁证据有效性，也扩大了暴露面。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这次审计测试用到的账号开给谁了？什么时候收回的？回收凭证在哪？
+    - 审计期间有没有关闭或绕过任何安全控制？谁批准的？理由是什么？
+    - 审计工具的数据落盘在哪里？传回你方时怎么加密的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

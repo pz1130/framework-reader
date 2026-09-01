@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.23
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「内部用户带着内网信任直接出网」——不受控的网页访问是钓鱼入口、恶意软件落地点和数据外带通道；没有过滤，边界防火墙等于形同虚设。
+    basis: inferred
+  plain_zh:
+    value: 所有对外网的网页访问都要经过一个受管入口（代理/网关/防火墙），按企业策略做拦截与放行，不能让人绕过它直连外网。
+    basis: inferred
+  practice:
+    value:
+      '1': 有对外访问的代理或网关设备，配置基础拦截规则（如恶意域名、已知钓鱼站点）；能指给审计员看设备在哪。
+      '2': 所有用户和系统的出网流量强制走代理，访问日志可追溯；拦截规则按威胁情报和业务需求定期更新；有绕过监控。
+      '3': 代理按用户/设备身份做差异化策略（如研发与行政不同）；对高风险类别（如未知文件下载、匿名代理）做精细管控；代理日志与威胁检测联动，异常访问能触发告警与阻断。
+    basis: inferred
+  evidence:
+    value: 代理/网关部署架构图、访问控制策略配置、拦截与放行规则清单、访问日志（含源IP、目标URL、动作）、规则更新记录、绕过检测报告。
+    basis: inferred
+  common_myth:
+    value: 以为「装了上网行为管理设备」就等于做了网页过滤——设备本身不解决任何问题，真相是设备没有强制走代理、没有分类策略、日志没留存，审计一来全露馅；常见错法是用「旁路部署」的盒子，只看得见流量却拦不住。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 列出三类绕过代理直连外网的网络路径（如VPN隧道、双网卡、拨号）？
+    - 代理日志留存多久？上次从日志里揪出恶意下载是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

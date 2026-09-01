@@ -1,0 +1,51 @@
+[
+  {
+    "ref": "1",
+    "label": "",
+    "parent": null,
+    "from": 11,
+    "to": 11
+  },
+  {
+    "ref": "2",
+    "label": "",
+    "parent": null,
+    "from": 12,
+    "to": 12
+  },
+  {
+    "ref": "3",
+    "label": "账号管理",
+    "parent": null,
+    "from": 15,
+    "to": 17
+  },
+  {
+    "ref": "4",
+    "label": "权限分配",
+    "parent": null,
+    "from": 19,
+    "to": 20
+  },
+  {
+    "ref": "5",
+    "label": "权限复核",
+    "parent": null,
+    "from": 22,
+    "to": 23
+  },
+  {
+    "ref": "6",
+    "label": "日志留存",
+    "parent": null,
+    "from": 26,
+    "to": 27
+  },
+  {
+    "ref": "7",
+    "label": "监控与告警",
+    "parent": null,
+    "from": 29,
+    "to": 29
+  }
+]

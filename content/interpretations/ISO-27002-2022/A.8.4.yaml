@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.4
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是源码、构建产物和版本库凭据被当成普通文件随便给——公司最值钱的代码资产一旦落到无业务必要的人手里，泄漏路径就不可控，而且改代码的人要是没受控，相当于给后门留了门。
+    basis: inferred
+  plain_zh:
+    value: 只有经过批准、确有工作需要的角色才能碰源码和构建系统；访问要按策略执行，变更要受限，能碰仓库、能触发构建、能合并分支的人必须能对上号。
+    basis: inferred
+  practice:
+    value:
+      '1': 源码仓库按角色开访问权限，新人入职只给最小权限；离开或调岗时权限回收有流程；有权限名单可查。
+      '2': 对源码及构建系统按角色划分权限并定期评审；代码变更走审批合并流程，管理员账号独立；高权限操作有日志可追溯。
+      '3': 源码与构建系统权限与身份管理联动，变更自动审批并留痕；构建产物和机密库（密钥、令牌等）访问被单独管控；异常访问（如非工作时间拉取全量代码）有告警和阻断。
+    basis: inferred
+  evidence:
+    value: 权限矩阵或角色定义文档、源码仓库与构建系统的访问控制列表、权限评审记录、代码合并审批记录、高权限操作审计日志、密钥与令牌的单独访问授权记录。
+    basis: inferred
+  common_myth:
+    value: 以为「代码仓库有私有权限、不公开访问」就算限制到位——实际常见问题是团队内所有人对全仓库可读或可写，管理员账号多人共用，离职后权限回收依赖口头提醒，审计时拿不出权限清单和对应关系。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你们源码仓库的访问权限名单上次全量评审是什么时候？谁批准的变更？
+    - 能触发生产构建或合并到主干的账号有哪些？这些人对应什么岗位？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

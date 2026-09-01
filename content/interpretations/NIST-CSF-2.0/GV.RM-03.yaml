@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.RM-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「网络安全风险」和「企业风险」两条线各管各的——安全说某个漏洞很严重，业务说能扛；业务说某个系统不能停，安全不知道。两边都按自己的标准定优先级，最终董事会拿不到一张统一的风险表。
+    basis: inferred
+  plain_zh:
+    value: 让网络安全风险进入企业级风险管理流程——安全风险的评估、定级、处置和汇报，要和财务、运营、合规风险用同一套语言、同一个节奏、同一条汇报线。
+    basis: inferred
+  practice:
+    value:
+      '1': 公司有企业风险管理流程，安全风险在流程里有名字、有人管；安全负责人能列席向董事会汇报风险的会议。
+      '2': 安全风险评估结果以企业统一的格式和口径进入风险登记册；安全风险与企业级风险用同一套定级标准；定期向管理层汇报合并后的风险视图。
+      '3': 安全风险和企业风险共享一个风险登记系统或同等机制，改动可追溯；安全风险的处置决策与业务优先级联动，能看到「哪些安全风险被接受、被谁接受、依据什么」；企业级风险评审会定期复核安全风险条目。
+    basis: inferred
+  evidence:
+    value: 企业风险登记册中包含安全风险条目，且格式与其他风险一致；董事会或高管层风险报告中有安全章节；安全风险评估文档明确引用了企业风险定级标准；安全风险被接受的书面决策记录。
+    basis: inferred
+  common_myth:
+    value: 以为「安全风险矩阵贴在墙上，安全团队自己打分」就算进了企业风险管理。真正的门槛是：安全风险和企业风险在同一个登记册或同一套评审会议里流转，而不是安全团队自认为重要、业务领导口头认可。审计员会要看统一的风险登记工具或会议纪要，不是安全团队自己的Excel。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这个安全风险在企业风险登记册里的条目编号是多少？风险等级是谁定的、跟哪个业务负责人确认过？
+    - 风险接受的决定是安全负责人单独拍板，还是有业务负责人签字认可？书面记录在哪？
+    - 董事会或高管层上一次完整看到网络安全风险清单是什么时候？跟财务风险是同一份报告吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

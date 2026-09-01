@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:DE.CM-09
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「监控只盯着网络流量，看不到服务器上跑的东西」——硬件、软件、运行时环境和数据本身出了问题，往往比网络攻击更隐蔽，不盯这些就发现不了挖矿程序、未授权软件、配置漂移和数据异常。
+    basis: inferred
+  plain_zh:
+    value: 要把计算硬件、操作系统、应用软件、运行环境以及它们存的数据都纳入监控，发现其中的异常事件，而不只是看网络流量。
+    basis: inferred
+  practice:
+    value:
+      '1': 有基础的主机监控和日志收集，能发现服务器宕机、CPU/内存异常升高；关键服务器启用了系统日志。
+      '2': 监控覆盖硬件健康、软件资产清单、运行时配置和关键数据完整性；有集中日志平台，能关联网络与主机事件；异常有告警和响应流程。
+      '3': 监控系统化地覆盖全资产并自动盘点；配置漂移和文件完整性自动检测且与变更管理联动；主机事件与网络情报关联分析，能发现隐蔽威胁；监控策略随资产变化自动更新。
+    basis: inferred
+  evidence:
+    value: 硬件监控看板与阈值告警记录、软件资产清单及变更记录、集中日志平台的接入清单与查询样例、文件完整性监控的告警与处置记录、配置基线核查报告。
+    basis: inferred
+  common_myth:
+    value: 以为部署了 EDR 就算监控了硬件和运行时环境——EDR 只覆盖服务器终端的进程行为，路由交换设备、存储阵列、数据库运行时状态和配置文件往往没人盯，这些恰好是审计员喜欢挑的盲区。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你们对网络设备（交换机、路由器）的配置文件做完整性监控吗？
+    - 数据库实例的运行时配置变更有没有告警？上次告警是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

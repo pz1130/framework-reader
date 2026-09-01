@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:RC.RP-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「应急预案演到恢复环节就断片」——业务连续性和灾难恢复计划写了一大堆，但事件响应流程触发后，恢复计划从来没真正启动过，恢复动作靠现场临时拍脑袋。
+    basis: inferred
+  plain_zh:
+    value: 事件响应流程一旦触发，恢复计划必须能真正接得上、跑得起来——不是停留在文档里，而是要有人负责启动、按步骤执行，并能验证恢复效果。
+    basis: inferred
+  practice:
+    value:
+      '1': 恢复计划文档存在；事件响应流程里有明确的恢复启动节点；出事时有人知道要去翻这份文档。
+      '2': 恢复计划里的角色、步骤、依赖与事件响应流程衔接明确；至少每年做一次恢复桌面推演或部分恢复演练，并有记录。
+      '3': 恢复计划与事件响应流程在工具层面联动——事件工单能直接触发恢复流程；恢复演练覆盖关键系统并验证业务功能恢复；演练结果反哺计划修订。
+    basis: inferred
+  evidence:
+    value: 恢复计划文档、事件响应流程中恢复触发条件与负责人定义、恢复桌面推演或技术演练的签到与记录、演练后行动项追踪、恢复计划的修订版本历史。
+    basis: inferred
+  common_myth:
+    value: 以为「写了一份灾难恢复计划、每年演练一次」就达标。这段控制的重心不是计划本身，而是「从事件响应到恢复的交接」——很多团队计划写得周全，但事件管理流程里根本没有定义由谁、在什么条件下、用哪个动作去启动恢复计划，结果真出事时恢复文档没人翻。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 事件响应流程中哪个步骤负责启动恢复计划？触发人是谁？
+    - 最近一次恢复演练是桌面推演还是真实恢复？恢复的是哪套系统？验证了什么？
+    - 演练发现的问题有没有进入行动项清单？上次复盘是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.9
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「出了事说不清资产在哪儿」——没有一份谁在用、谁在维护、何时该更新的信息资产清单，安全事故调查、备份恢复、漏洞修复就会找不到对象，影子资产会一直游离在管理之外。
+    basis: inferred
+  plain_zh:
+    value: 把所有与信息系统相关的资产（硬件、软件、数据、服务）列成台账，记录责任人、位置、配置和生命周期，并定期核对更新。
+    basis: inferred
+  practice:
+    value:
+      '1': 有资产台账，包含主要硬件与软件；新资产入库有基本登记流程；台账至少覆盖关键系统。
+      '2': 台账覆盖全部环境（含云资源、虚拟化、移动设备）；有明确的资产责任人；定期（如季度）盘点并把更新记录留档。
+      '3': 台账与配置管理库联动，变更自动更新；盘点与真实环境比对能发现未登记资产；资产退役与销毁有流程可追溯。
+    basis: inferred
+  evidence:
+    value: 资产清单文档或工具快照、资产责任人列表、盘点与比对记录、资产变更与退役审核记录、新项目资产入库登记流程截图。
+    basis: inferred
+  common_myth:
+    value: 以为「运维手里有张 Excel 表就达标」——很多团队的表只记了服务器，忘了云实例、开发环境、测试机、文档与数据资产，且从不在审计前主动核对真实性；台账的价值在于盘点对比能发现未知资产与过期资产，而记录本身不能证明你在管理。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次盘点是什么时候？拿盘点结果和生产环境比对过吗？
+    - 这台云上的测试数据库资产责任人是谁？它出现在台账哪一行？
+    - 年中采购的新设备从入库到上架之间，是否有空窗期不受台账管理？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

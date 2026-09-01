@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:RS.MI-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「发现入侵后没人收口或不敢断」——攻进去的路径不切断，恶意活动会在系统里横向爬、越挖越深，把一次单点事件滚成范围不可控的大事故。
+    basis: inferred
+  plain_zh:
+    value: 一旦确认出事，要有明确动作和权限把影响圈住：切断网络路径、隔离主机、停用账号、封堵入口，并且动作有据可查、有人负责。
+    basis: inferred
+  practice:
+    value:
+      '1': 有事件响应预案，写明什么情况可以断网或隔离；一线有权在紧急时先斩后奏，事后补审批。
+      '2': 有预先定义的隔离策略（网络、主机、云账号三种至少有其二）并做过桌面推演；每次隔离动作都有时间线记录。
+      '3': 遏制动作结合自动化或半自动化编排（如 SOAR 剧本）；对生产可用性的影响与遏制效率做过平衡演练；隔离失效能触发升级路径。
+    basis: inferred
+  evidence:
+    value: 事件响应预案中含遏制与隔离章节、至少一次的桌面推演或实战演练记录、近期事件的遏制时间线截图（从发现到断开的分钟级别记录）、被隔离资产的清单与解除隔离审批单。
+    basis: inferred
+  common_myth:
+    value: 以为「隔离就是拔网线」或者「把服务器从域里踢出来」。真实场景里，攻击者往往已经通过合法账号或云 API 在横向移动——拔网线拦不住云租户内的横向；要有云环境下按安全组/访问策略/账号吊销的组合式收口，不能只有物理断网这一招。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次真实事件里，从确认入侵到完成网络隔离用了多长时间？哪份记录能证明？
+    - 云环境里的超管账号被攻破时，你们用什么手段隔离？还是只会给那台 ECS 拔掉公网 IP？
+    - 隔离动作是否要求先走审批流程？紧急情况下谁有权绕过流程直接切？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

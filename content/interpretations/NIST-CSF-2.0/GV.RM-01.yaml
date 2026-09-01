@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.RM-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「风险管理目标」停在安全部门给高管签个字就封存——业务部门不知道什么安全风险归自己扛、做到什么程度算过关，最终使安全预算和业务决策对不上，风险敞口没人认领。
+    basis: inferred
+  plain_zh:
+    value: 让公司里跟风险相关的各方（高管、业务、安全、法务等）共同商定并书面认可一套风险管理目标，并且这套目标要能对准实际业务，不能说一套做一套。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份书面风险管理目标，经管理层或治理层签字批准，表述清楚要防什么级别的风险。
+      '2': 目标按业务线或风险域拆解；有周期性复评流程；目标与实际风险登记或处置记录能对上；关键相关方有签字确认。
+      '3': 目标与战略规划、预算分配联动；重大业务变化时主动触发目标回顾修订；目标达成情况按周期向治理层汇报并留痕。
+    basis: inferred
+  evidence:
+    value: 经批准的风险管理目标文件、目标制定或修订的会议纪要与签字页、目标在实际风险登记或例外审批中的引用记录、向治理层汇报的周期报告。
+    basis: inferred
+  common_myth:
+    value: 以为「写一份安全风险目标、找高管签个字」就算达成——目标如果不能回答「哪些业务风险我们接受、哪些不接受、各部门各自负什么责」，签字文件只满足审计员一眼扫过的形式，达不到这条的实质。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份目标里哪一条对应你们今年最大的安全风险？负责的业务部门是哪家？
+    - 目标制定时业务部门谁在场？他们签字确认的会议纪要能看一下吗？
+    - 上一次业务战略调整是什么时候？目标是否同步更新过？更新到什么版本？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

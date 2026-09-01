@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:DE.AE-07
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是安全分析室活在自己的日志里——只看自有数据，看不懂外面正在发生的攻击手法、漏洞利用和行业预警，等于闭着眼值夜班，威胁来了不认识。
+    basis: inferred
+  plain_zh:
+    value: 把你的安全运营和分析工作接上外脑：把威胁情报（比如漏洞预警、恶意IP、攻击手法、行业通报）喂进日常告警分析和事件研判流程，让分析不只看系统日志，也看外部世界正在发生什么。
+    basis: inferred
+  practice:
+    value:
+      '1': 至少有一个外部威胁情报源（免费或商业）；关键漏洞或高危IOC出现时，有人手查手动比对自家环境。
+      '2': 威胁情报接入SIEM或分析平台；形成定期情报订阅、筛选与分发的流程；情报触发的事件有响应记录。
+      '3': 情报源多方交叉验证并自动关联告警；情报与风险评估、应急响应流程联动；定期复盘情报的命中率与误报率并据此调整情报策略。
+    basis: inferred
+  evidence:
+    value: 威胁情报订阅合同或平台截图；情报源清单及覆盖范围；告警与IOC匹配的记录；情报驱动的分析报告或事件响应记录；情报质量评估或误报调优记录。
+    basis: inferred
+  common_myth:
+    value: 以为买了威胁情报平台或订阅了商业情报源就等于达标。订阅只是拿到了信息，真正要证明的是情报有没有被真正用于分析和决策——比如告警关联、事件定性是否引用了外部情报，否则那只是一笔云服务开支。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 挑一条最近的高危漏洞预警，说说你们是怎么验证自己环境是否受影响、结论记录在哪里？
+    - 威胁情报除了出周报，上一次直接触发或改变了一个事件处置决策是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

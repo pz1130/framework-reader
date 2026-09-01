@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.AM-07
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「数据在哪、是什么、谁负责、留多久」没人说得清——一旦被问到某个数据集的存放位置、保密级别或保留期限，整个团队答不上来，审计和数据泄露都没法追。
+    basis: inferred
+  plain_zh:
+    value: 把具有指定类型的数据及其元数据（比如分类分级、负责人、位置、保留期）整理成清单，并持续维护更新，让数据资产状态可查询、可追溯。
+    basis: inferred
+  practice:
+    value:
+      '1': 有数据清单文件，记录主要数据集的名称、位置、负责人、分类级别；知道哪份文件是清单。
+      '2': 清单按季度或事件驱动更新，记录数据流转和变更历史；有明确的数据类型定义与负责人；清单与实际数据存放对应。
+      '3': 用自动化工具扫描网络存储与云端位置，定期与清单比对，自动发现未登记数据；对清单的每一项有系统级元数据支撑，可查询、可追溯。
+    basis: inferred
+  evidence:
+    value: 数据清单或数据资产注册表、元数据字段定义文档、更新记录与责任人签到表、自动化扫描报告或比对结果、数据分类与保留期标注样例。
+    basis: inferred
+  common_myth:
+    value: 以为「画一张网络拓扑图和数据目录存到 wiki 就算有清单」。没有责任人与更新机制时，拓扑图半年不换、目录与实际存储脱节，审计一抽查就会发现信息是编的。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 列出所有包含客户个人数据的存储位置，清单里哪一页对应？
+    - 上次更新数据清单是什么时候？谁负责更新、触发条件是什么？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

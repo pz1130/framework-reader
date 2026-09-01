@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.5
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是设备机房真出了火、水、断电、高温时业务直接停摆——但很多团队把这条理解成「机房有灭火器、空调在转就行」，结果灾备机房跟主机房在同一个园区、同一条地下电缆，一场施工挖断全灭，备份数据也一起没了。
+    basis: inferred
+  plain_zh:
+    value: 让存放系统的地方（机房、服务器间、灾备中心）具备防火、防水、控温控湿的能力，设备放的位置要能避开物理威胁，并且灾备存放点要和主站点拉开地理距离，保证主站出事后备份还能用、业务还能在别处跑起来。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房有基本的消防探测与灭火装置；空调能维持温度；离水源近的区域有可用的关断阀门；灾备站点与主站点不共用一栋楼。
+      '2': 消防、温湿度、漏水监测有定期巡检与维护记录；灾备站点与主站点存在地理隔离且有书面说明；设备摆放考虑了已知周边风险（如水管、窗户、电磁干扰源）。
+      '3': 消防与环境监测接入集中监控平台，异常自动告警；灾备站点能按既定时间恢复关键业务并定期演练；新机房或设备选型有正式的选址评估流程，评估结果存档可查。
+    basis: inferred
+  evidence:
+    value: 机房的消防系统、温湿度监控、漏水检测的维护与测试记录；灾备站点的选址文档与恢复能力验证报告（如切换演练简报）；设备平面布局图标注了风险源位置；水阀位置与操作人清单。
+    basis: inferred
+  common_myth:
+    value: 以为「买了气体灭火系统和精密空调」就达标，却从没测试过灭火系统是否真的能联动触发、也没确认过站点的独立进线和灾备中心的物理隔离——设备和信任状之外，缺失的是验证记录与选址逻辑。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一回消防探测系统联动测试是什么时候？告警信号实际到达了谁的手机或屏幕？
+    - 灾备机房和主机房在物理上隔了多远？共用同一路市政供电或同一条网络主干吗？
+    - 机房进水第一时间谁能关水阀？他人在不在现场、电话能不能打通？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

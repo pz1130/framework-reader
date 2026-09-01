@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.DS-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「数据在硬盘上裸奔」——数据库、文件服务器、备份磁带、云硬盘被盗或运维人员越权直读时，明文数据直接泄露；同时防止内部人员绕过应用层直接改库或删归档，事后无痕。
+    basis: inferred
+  plain_zh:
+    value: 落到存储介质上的数据（硬盘、数据库文件、备份、云存储卷、日志归档）必须做加密、访问控制和完整性保护，确保即使介质被偷走或系统被攻破，数据也读不出、改不动、删不掉。
+    basis: inferred
+  practice:
+    value:
+      '1': 生产数据库、备份文件、敏感文件共享目录已开启加密（如透明数据加密、磁盘加密）；存储系统有访问控制。
+      '2': 加密密钥由独立机制管理（如 KMS 或 HSM），有轮换周期；对敏感存储路径有完整性校验（如校验和或基线比对）；备份介质加密并定期验证可恢复。
+      '3': 加密覆盖全部数据类型和全部副本（含日志、临时文件、开发者本地拷贝）；密钥有全生命周期管理（创建、分发、轮换、吊销、销毁）且审计可追踪；完整性监控联动告警，发现非授权修改自动触发事件响应。
+    basis: inferred
+  evidence:
+    value: 加密配置截图（数据库 TDE 配置、磁盘加密策略）、密钥管理系统的轮换与访问日志、存储权限矩阵与变更记录、备份加密与恢复演练报告、对关键文件/数据库的完整性校验日志（可展示某段时间无异常或异常已处置）。
+    basis: inferred
+  common_myth:
+    value: 以为「云主机选了加密盘」就一劳永逸——应用层写出来的明文临时文件、未加密的数据库备份导出到对象存储、测试环境拷贝的生产数据副本，往往躺在同一个账号下没加密没监控，审计员翻存储清单时一找一个准。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把最近一次导出的数据库备份拿给我看，这份文件在存储上是加密的吗？密钥在哪管？
+    - 哪些存储桶或路径没有被加密覆盖？为什么？
+    - 密钥最近一次轮换是什么时候？轮换时旧密钥是立即销毁还是有宽限期？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员（尤其 GDPR 语境下）更关注加密是否覆盖个人数据的每一份副本以及密钥的可解释性；美国则更多落在具体合规项（如加密算法、密钥长度）和行业惯例上。两边对「哪些数据算敏感所以必须加密」的判定会有分歧，但都看加密配置与密钥管理落实度。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.PS-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「员工自己装软件、装完没人知道」导致的攻击面失控——未经批准的软件可能带漏洞、带捆绑后门、跟现有系统抢权限，出了事还找不到责任人。这条要求从安装动作本身就把路堵死，而不是事后靠扫毒去捞。
+    basis: inferred
+  plain_zh:
+    value: 把「能不能装软件、装什么软件、由谁来装」这件事管起来——技术上限制非授权安装，流程上明确定义什么是授权软件，并且记录谁装了什么、什么时候装的。
+    basis: inferred
+  practice:
+    value:
+      '1': 有软件安装政策；服务器和终端默认禁止用户自行安装；生产环境有变更流程管安装；技术上能做基础拦截（如普通用户无管理员权限）。
+      '2': 有软件白名单或黑名单策略；安装有审批流程、工单留痕；定期核对已装软件与白名单差异；对例外安装有时效性许可。
+      '3': 关键系统按默认拒绝策略运行，只有白名单内可执行；安装与变更联动，从请求到落地全程可追溯；对绕过尝试有告警；软件来源有签名校验且不可被普通用户关闭。
+    basis: inferred
+  evidence:
+    value: 软件安装政策文件、终端/服务器防篡改配置截图（如 AppLocker / SELinux / 白名单工具策略）、安装审批工单、软件资产清单与白名单比对结果、绕过尝试的安全告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「把管理员权限收走」就等于禁止安装。实际上不少团队没有可执行文件白名单，普通用户仍然能在用户目录下解压一个绿色版软件直接跑；权限只是降低门槛，真正拦得住的是「不是白名单里的东西根本启动不了」，这两者差了十万八千里。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你们的白名单是黑名单还是默认拒绝？新软件上线走什么流程，谁批准？
+    - 抽查一台最近有新软件安装记录的机器，对应安装工单能找出来吗？
+    - 绕过白名单的告警有没有？最近一次绕过尝试是什么时候、怎么处理的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

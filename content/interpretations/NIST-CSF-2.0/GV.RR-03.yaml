@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.RR-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是安全预算和人力按「去年惯例」或「今年能砍多少」分配，而不是按风险优先级排——结果高风险的业务没人守，低风险的地方堆满人，出事时说不清当初为什么没给资源。
+    basis: inferred
+  plain_zh:
+    value: 让安全资源的分配跟着风险走：高危领域拿够预算和人，风险低的不用浪费；而且要有机制保证资源确实花在了该花的地方。
+    basis: inferred
+  practice:
+    value:
+      '1': 年度安全预算和人员编制表上，能看出与风险分级挂过钩；重大风险项至少有人认领。
+      '2': 预算和人员配置有基于风险排序的分配逻辑；年度内因风险变化有调整记录；资源缺口有升级通道。
+      '3': 资源分配与风险量化模型联动；关键岗位有继任或冗余；每季度/年度对「资源-风险覆盖度」做正式复盘。
+    basis: inferred
+  evidence:
+    value: 预算分配备忘录或审批件（能看出与风险登记的对应关系）、岗位编制与风险职责对应表、资源缺口及升级记录、年度资源复盘会议纪要。
+    basis: inferred
+  common_myth:
+    value: 以为「安全预算每年涨了10%」就等于按风险配了资源。涨预算但全花在低风险合规项上，高危业务照样裸奔——审计要看的是分配逻辑和理由，不是总额。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 那份预算和人员编制表，对应的风险清单是哪个版本？谁确认过优先级？
+    - 如果明年威胁环境大变，你多久能重新分配资源和预算？流程在哪？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

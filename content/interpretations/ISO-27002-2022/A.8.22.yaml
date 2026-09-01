@@ -1,0 +1,46 @@
+control_id: ISO-27002-2022:A.8.22
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「网络内部一台机器被打穿，整个环境裸奔」——没有边界和分段，攻击者横向移动如入无人之境，内网任何一台失陷设备都能变成跳板，批量感染或窃取核心数据。
+    basis: inferred
+  plain_zh:
+    value: 把你的网络按信任等级切成几个区域，区域之间用防火墙、路由策略等受控接口把守，只放行业务必需的流量，外部进来的访问必须先落到隔离区，不能直接摸到内网。
+    basis: inferred
+  practice:
+    value:
+      '1': 有网络拓扑图；办公区、生产区、DMZ 等基本区域之间有防火墙或 VLAN 隔离；默认拒绝跨区流量，只放行明确批准的端口。
+      '2': 分区边界有书面策略说明每个区域信任等级、放行规则与责任人；跨区访问走变更流程，防火墙规则有评审更新；DMZ 与内网之间不放行高风险协议。
+      '3': 分区策略与资产清单、业务依赖关系联动；规则变更定期对账消减；在关键边界上启用入侵检测或流量日志并主动监控异常横向移动；高敏感系统单独加密或物理隔离。
+    basis: inferred
+  evidence:
+    value: 网络拓扑与分区设计图、边界设备（防火墙/路由/VLAN）配置片段、默认拒绝策略的证据、跨区访问申请与审批工单、规则评审记录、关键边界流量日志与告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「内外网之间摆个防火墙就算隔离」——办公区、生产区、DMZ、合作伙伴接入区之间的横向隔离往往被人忽略，攻击者骗过员工电脑后就能在内网随便横跳；另外，分区不能只靠一台防火墙一句话，得证明规则是默认拒绝、有变更管理、定期清过，否则审计一看你防火墙规则满屏
+      ACCEPT 直接判定不合格。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 生产区到办公区到底放行了哪些端口？规则是谁批准、上次评审是哪天？
+    - DMZ 里的服务器被攻破后，它到内网核心数据库的网络路径有几跳？
+    - 你们怎么证明边界规则里没有隐藏的 ANY-ANY 或已被废弃的老规则？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

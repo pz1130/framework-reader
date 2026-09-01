@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.RR-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「责任分工写在组织图上，但出事时没人认账」——安全风险管理职责如果没有正式授权和跨部门明确边界，事件响应、风险处置、合规整改就会出现推诿或空转，审计时拿不出一份谁能拍板、谁必须执行的文件。
+    basis: inferred
+  plain_zh:
+    value: 把谁负责识别风险、谁有权处置风险、谁对结果承担责任写清楚，让岗位上的每个人都知道自己的安全职责边界，并且在实际运行中真的有权限和资源去执行，而不是只挂个名。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份书面文件列出主要安全风险岗位（如CISO、部门接口人）的职责与权限；新任命时明确告知。
+      '2': 职责分工细化到具体角色（如云平台负责人、数据owner），有岗位说明与授权书；跨部门职责有书面交接与协同机制。
+      '3': 职责与权限嵌入到招聘、转岗、绩效和晋升流程；职责变更自动触发权限和汇报关系调整；定期有职责履行情况的回顾与证据。
+    basis: inferred
+  evidence:
+    value: 安全风险管理职责说明、岗位授权书、组织架构图（含安全职责标注）、职责传达记录、跨部门安全协作会议纪要或合同务条款。
+    basis: inferred
+  common_myth:
+    value: 以为「信息部门墙上挂了安全责任牌」就算职责明确。真正要验证的是责任人的权限是否匹配——比如责信息部负责修复漏洞，但没有服务器变更权限，那这个职责就是空的，审计一追就被打穿。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 数据泄露时，最终拍板处置方案的人是谁？这个权限写在哪份文件里？
+    - 安全职责挂在岗位还是挂在人头？调岗后新来的负责人有书面授权吗？
+    - 业务部门的安全接口人知道自己有权叫停高风险变更吗？有实际行使过吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

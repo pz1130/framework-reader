@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.RA-07
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「变更没人管、例外没人认」——安全配置和系统环境一变，风险就跟着变；要是连变更和例外都说不清，出了事你连改了什么、谁批的都查不出来。
+    basis: inferred
+  plain_zh:
+    value: 所有要动系统、动配置、动安全策略的变更，以及那些不按标准走的例外，都得走流程：先评估会不会带来风险，批准了才改，改完要留记录，实施后还要持续跟踪。
+    basis: inferred
+  practice:
+    value:
+      '1': 有变更与例外登记表（哪怕是个共享表格）；重大变更有人口头审批；记录能追溯到「谁改了什么、什么时候改的」。
+      '2': 变更有书面申请与审批流程；安全影响评估是必填项；例外有有效期和复核机制；变更与例外台账完整可查。
+      '3': 变更触发自动化的风险评估与测试闸门（如预发布扫描、配置漂移检测）；例外到期自动提醒，超期未复核自动升级；变更结果与预期有验证记录，并与问题管理联动。
+    basis: inferred
+  evidence:
+    value: 变更申请与审批工单、安全影响评估表（含风险等级判定）、例外批准文件、例外定期复核记录、变更实施后的验证或测试报告、变更台账或 CMDB 审计历史。
+    basis: inferred
+  common_myth:
+    value: 以为「变更单里有『勾选安全评估』这个字段」就算完成风险评估——审计员会看评估到底写了什么、有没有独立的第二个人看过，而不是只要一个复选框。另一个常见误区是例外批准后**一劳永逸**：没有过期时间、没有复核机制，例外变成永久豁免。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去一个季度有多少项变更真实标注了「安全影响评估」？其中有多少由安全团队独立复核过？
+    - 你目前的例外清单里最近的过期项是哪一条？有没有自动提醒？
+    - 紧急变更（hotfix）走简化流程时，事后有没有补做风险评估与记录？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

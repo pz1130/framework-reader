@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:GV.RR-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全部门辛辛苦苦定的规矩，被 HR 招聘、入职、调岗、离职一整套流程变成一纸空文」——人进进出出，账号权限、保密义务、安全责任无人交接，最终让内部威胁和误操作变成常态。
+    basis: inferred
+  plain_zh:
+    value: 把网络安全要求写进人力资源全流程：招聘时要筛、入职时要签、在岗时要训、调岗时要改、离职时要收，每一步都有据可查、有人负责。
+    basis: inferred
+  practice:
+    value:
+      '1': 入职签保密与安全承诺书；离职当天收回账号权限；至少有一次全员安全培训。
+      '2': 招聘 JD 和面试有安全责任描述；调岗按新角色重新授权并回收旧权限；培训分岗位分层级且有考核；离职有 checklist 且 HR 与安全部门有书面交接。
+      '3': 安全要求嵌入 HR 系统流程，权限变更与人事变动自动联动；培训效果有量化跟踪；未完成安全培训或缺考的人有升级机制，直到停权；离职复核覆盖外包与临时人员。
+    basis: inferred
+  evidence:
+    value: 岗位说明书中的安全职责条目、入职/调岗/离职的 HR 流程单据、保密协议与安全承诺书签名扫描件、培训签到表与在线考核记录、账号权限随人事变更的回收与开通工单、离职
+      checklist 完成记录。
+    basis: inferred
+  common_myth:
+    value: 以为「只要入职签了保密协议、离职时让员工把电脑交回来」就算这条做完了。真正要防的是调岗和外包离职时没人管——账号没回收、权限没变更、保密义务没延续，等出事再补流程就晚了。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 抽三个去年调岗的员工，他们的旧岗位权限是哪个时间点被回收的？依据哪份表单？
+    - 外包或临时人员离职时，账号回收走的是同一套流程还是有另一套？有记录吗？
+    - 安全培训考核不合格的员工，后续怎么处理？有没有人因此被限制或暂停访问权限？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

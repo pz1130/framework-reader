@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.RA-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「风险登记册一填了之」——威胁、漏洞、可能性、影响四个要素如果不真正参与排序，风险分析就退化成填表游戏，响应资源永远砸在嗓门最大的部门，而不是最该处置的风险上。
+    basis: inferred
+  plain_zh:
+    value: 做风险分析时，必须把威胁、漏洞、发生可能性和影响四件事都摆到台面上，用它们算出固有风险，再按这个结果决定先处理谁、后处理谁。
+    basis: inferred
+  practice:
+    value:
+      '1': 有风险清单；风险评估模板里包含威胁、漏洞、可能性、影响四个字段；填写人知道四者都要写。
+      '2': 评估有统一评分标准；每个风险都按四要素打分，并算出固有风险值；处置优先级明确引用风险评估结果，而非仅凭主观判断。
+      '3': 四要素数据有来源支撑（如威胁情报、漏洞扫描、历史事件）；风险评估结果与处置决策系统联动；定期依据新威胁和漏洞复评，优先级随数据变化自动调整。
+    basis: inferred
+  evidence:
+    value: 风险评估方法文件、评分标准、风险登记册（含四要素得分与固有风险值）、处置优先级排序记录、由评估结果触发的处置行动证据。
+    basis: inferred
+  common_myth:
+    value: 以为把四要素做成下拉菜单选一选就是达标。没有统一定义时，不同人填的「高可能性」指的是不同的事——有人按历史事件频率，有人按业内传闻。评分标准不统一，登记册就是数字垃圾。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 「可能性=高」和「影响=高」分别对应什么客观标准？写在哪份文件？
+    - 处置优先级是直接引用了风险评分排序，还是管理层按经验调整过？调整依据是什么？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员更倾向追「固有风险与残余风险的对比分析」是否清晰——NIS2 与 DORA 语境下经常要求两者同时呈现；美国审计员更爱看四要素算法是否可复现、评分是否有人复核。两侧都认「有来源、可追溯」，但欧洲对叙事完整性要求更严。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

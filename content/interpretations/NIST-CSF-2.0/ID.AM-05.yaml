@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:ID.AM-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「所有资产一视同仁」——没有优先级，钱和人力就摊在低价值资产上；真出事时，最关键的系统和数据反而没有最快恢复、最优保障。
+    basis: inferred
+  plain_zh:
+    value: 把资产按重要性排个队：关键不关键、丢了影响多大，决定了安全投入、监控密度和恢复顺序该往哪放。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份资产清单，能指认哪个系统最重要，口头能说清理由。
+      '2': 资产按类型、重要性和对业务的影响打了分、分了档；分档结果驱动了备份频率和监控范围，有记录可查。
+      '3': 资产优先级与业务连续性、灾难恢复计划联动，能证明不同档位资产的恢复顺序和时间目标是按优先级定的，且随资产变化定期修订。
+    basis: inferred
+  evidence:
+    value: 资产清单和分档表、影响分析或评分记录、恢复优先级清单、分档结果与实际安全投入（如监控、备份、访问控制）的对应记录。
+    basis: inferred
+  common_myth:
+    value: 以为「资产清点过一遍、分过类」就完事。常见错法是信息系统负责人拍脑袋给资产打了几档，但业务部门没参与、恢复顺序也没按优先级做——分档停在台账里，关键系统恢复顺序跟分档结果对不上。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你分成最高优先级的三个资产是哪个？判定依据是评分表还是口头汇报？
+    - 资产优先级有没有对应到备份频率和重大事故时的恢复顺序上？请指给我看。
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

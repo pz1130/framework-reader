@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.IR-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「业务连续性预案只覆盖网络攻击」——机房进水、空调失效、消防喷淋误触发、供电跳闸这类环境事件没人管，基础设施一瘫，恢复能力再强也白搭。
+    basis: inferred
+  plain_zh:
+    value: 技术资产（机房、服务器、网络设备、存储）要有应对环境威胁的物理防护措施，涵盖供电、温湿度、消防、漏水等，并且这些措施本身要纳入维护和应急备份考虑。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房有UPS和灭火装置；关键设备在温湿度受控环境；有漏水报警；这些设备在维护合同里。
+      '2': 环境监控有告警和值班响应流程；UPS切换有定期测试记录；消防/温控设备纳入年度检测；应急供冷或排水有预案。
+      '3': 供电双路冗余且切换自动化；环境监控与运维平台联动，事件自动创建工单；消防系统与数据备份策略联动，防水/防火分区有设计文档并定期演练验证。
+    basis: inferred
+  evidence:
+    value: 机房物理环境设计图、UPS测试记录、温湿度/漏水监控告警记录、消防年检报告、环境事件处理复盘、发电机或双路供电切换演练纪要。
+    basis: inferred
+  common_myth:
+    value: 以为买了UPS和精密空调就算达标，但UPS蓄电池没人管、切换了才发现撑不过十分钟，空调制冷量按满载算实际有单点，消防系统年检过期——设备存在不等于环境威胁被挡住。
+    basis: inferred
+  auditor_asks:
+    value:
+    - UPS电池上次更换是什么时候？测试负载是多少？
+    - 机房温度告警阈值是多少？报警后多少分钟内有响应？
+    - 消防气体灭火系统释放时，服务器有没有备用供电维持关键服务？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

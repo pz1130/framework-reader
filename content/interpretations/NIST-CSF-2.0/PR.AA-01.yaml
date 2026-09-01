@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.AA-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「人、服务、硬件三套身份各管各，账号开了没人关、密码规则形同虚设」——身份管理不是装个 AD 或 IAM 工具就算数，而是组织有没有一套从头到尾管住身份和凭据生存周期的机制。
+    basis: inferred
+  plain_zh:
+    value: 公司要为三类实体管好身份和凭证：人（员工、外包、临时）、服务（API 账号、微服务身份）、硬件（服务器、网络设备、IoT）。每类都要有明确的申请、签发、使用、回收规矩，凭证要有强度和有效期控制，不能有永远不过期的口令。
+    basis: inferred
+  practice:
+    value:
+      '1': 有统一的身份名册（哪怕是 Excel 加流程），新开账号有申请和审批；系统有统一口令复杂度要求；离职或外包撤场时有账号回收机制。
+      '2': 身份生命周期有正式流程：入职开通、转岗调整、离开回收都有工单或记录；口令策略（长度、轮换、失败锁定）统一配置并有抽查；服务账号不共用人账号，有责任人。
+      '3': 身份管理已系统化：人、服务、硬件三类身份都有权威源且自动同步；凭据有集中管理（如密罐、凭据保险库），特权凭证自动轮换；审计日志对每个身份的全生命周期可追溯。
+    basis: inferred
+  evidence:
+    value: 身份管理制度或流程文件；账号申请、变更、回收的工单记录；口令策略配置截图；服务账号清单及其责任人列表；硬件设备身份库或证书管理记录；定期账号对账报告。
+    basis: inferred
+  common_myth:
+    value: 以为「上了 Active Directory 或 IAM 平台就算身份管理达标」。审计员真正看的是 AD 以外的系统（数据库、云平台、网络设备、外包业务系统）有没有纳入统一身份规矩，以及多年的孤岛账号有没有被清理——工具只是容器，里头的存量乱账才是失分的点。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 有哪些系统或设备不在你身份管理平台纳管范围内？
+    - 抽一个离职超过三个月的人，他的账号确认是哪一天、通过什么流程关的？
+    - 服务账号有没有共用人的账号登录？管理人换了之后口令改没改？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

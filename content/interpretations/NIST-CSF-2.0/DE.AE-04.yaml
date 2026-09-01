@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:DE.AE-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是事件发生时只知道'出事了'却不知道'多严重、波及多广'——没有影响和范围的快速估算，响应就会按嗓门大小排序，该隔离的没隔离，该上报的没上报。
+    basis: inferred
+  plain_zh:
+    value: 搞清楚安全事件到底砸到多大范围、会造成多大损失，并且把这个估算写出来、让响应的人能照着做决定。
+    basis: inferred
+  practice:
+    value:
+      '1': 有事件分级定义；响应流程里要求评估影响与范围；值班人员知道找谁问。
+      '2': 事件响应单里有影响与范围字段且必填；按资产清单和业务影响做估算；有书面记录可查。
+      '3': 预置资产与业务依赖关系，影响估算可对照系统自动生成；不同级别影响对应明确响应动作；事件后回看估算准确度。
+    basis: inferred
+  evidence:
+    value: 事件响应记录中影响/范围字段的实际填写、资产与业务影响映射表、分级响应预案、事件复盘中对初始估算的回顾记录。
+    basis: inferred
+  common_myth:
+    value: 以为有个事件分级表（P1/P2/P3）就等于做到了。分级表只是定性标签，没有资产清单和业务依赖做底，'生产库被删'和'访客Wi-Fi慢'都可能被标成P1或P2，影响估算仍然靠拍脑袋。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 抽最近一个P2事件，当时怎么算出影响范围的？依据的是哪份资产清单？
+    - 有业务关键系统宕机时，影响估算要多久能出来？谁签字确认？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

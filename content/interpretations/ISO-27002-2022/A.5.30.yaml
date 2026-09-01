@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.30
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「应急预案写得很全，但一断电、一断网、一被勒索，发现根本跑不起来」——预案不经过演练和实测，就是一张纸；关键资产没识别出来，恢复时连优先恢复谁都不知道。
+    basis: inferred
+  plain_zh:
+    value: 为支撑业务连续运转所需的 ICT 系统，制定预案、识别关键资产、定期测试演练，并根据测试结果持续修正，确保关键时刻真能用。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份针对关键系统的应急预案；知道哪些系统最重要；做过一次桌面推演或模拟演练。
+      '2': 预案与业务影响分析挂钩，明确恢复优先级和恢复目标；定期（如每年）进行演练并有书面记录；演练发现的问题有跟踪整改。
+      '3': 演练覆盖真实中断场景（如断网、断电、勒索）；演练结果量化评估恢复时间与恢复点目标达成情况；关键资产清单与依赖关系（含上游供应商）持续维护并纳入监控。
+    basis: inferred
+  evidence:
+    value: 应急预案及版本历史、业务影响分析报告、关键资产清单、演练计划与脚本、演练结果报告、问题整改跟踪表、演练现场记录或截图。
+    basis: inferred
+  common_myth:
+    value: 以为「做过一次灾备切换就达标」。一次成功不代表预案有效——很多团队只测了技术恢复，没测业务侧流程、人员联络、第三方依赖；而且测完发现的问题不整改，下次照样失败。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次演练是什么时候？演练范围覆盖了哪些系统和场景？
+    - 演练中发现的未达标项有哪些？整改状态如何？
+    - 关键资产清单是多久更新一次？由谁负责维护？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

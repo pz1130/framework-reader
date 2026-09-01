@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.27
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是事件处置完就翻篇——复盘只写进会议纪要和总结PPT，没人把经验教训改回预案、训练和工具里，下一次同类事件照样手忙脚乱，响应节奏和口径各处不一致。
+    basis: inferred
+  plain_zh:
+    value: 每个重要安全事件结束后，要把从准备到恢复全过程的教训挖出来，变成对预案、脚本、培训和演练的实质修改，并且确保整个组织按同一套口径和能力水平去响应，而不是各团队各打各的。
+    basis: inferred
+  practice:
+    value:
+      '1': 重大事件结案时有复盘会，有纪要，能指出哪些环节有效、哪些失效。
+      '2': 复盘产出的改进项有责任人、有期限、有跟踪验证；预案和培训材料跟着修订，修订版有发布记录。
+      '3': 复盘输入覆盖检测、分析、遏制、根除、恢复各阶段；跨团队、跨区域事件采用统一复盘模板和评分口径；改进项的效果通过后续演练实测验证闭环；复盘结论回灌到全员培训和新人入职训练。
+    basis: inferred
+  evidence:
+    value: 事件复盘报告（含时间线、根因、改进项清单）、改进项跟踪台账或工单、更新后的预案与培训材料版本历史、后续演练方案与结果对比、复盘会签到与纪要。
+    basis: inferred
+  common_myth:
+    value: 以为复盘就是出事之后开个会、写一份「原因分析和整改措施」交差。真正的价值在流程闭环——没有责任期限、没有验证、没有倒灌回预案和训练，复盘报告就是一张废纸；如果没有全组织统一模板和口径，各团队复盘结果互相不可比，同样的事故在A组叫「已改进」，在B组叫「无异常」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一次重大事件复盘提出的三项改进，各自落实完成时间和证据是什么？
+    - 你们怎么判断复盘结论真正改了日常操作流程，而不只是写进报告？
+    - 跨区域或跨BU同时发生同类事件时，响应步骤和升级口径是否一致，谁保证？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

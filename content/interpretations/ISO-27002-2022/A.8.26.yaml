@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.26
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「业务系统裸奔上线」——该系统没按安全基线加固、默认账密未改、补丁不齐、加密与传输保护缺失，攻击者直接用已知手法就能打穿。
+    basis: inferred
+  plain_zh:
+    value: 业务系统在上线前必须按安全基线（配置加固、账号口令、补丁、加密要求）打好底子，上线后要持续验证配置没被改回去、加密和传输保护仍然有效。
+    basis: inferred
+  practice:
+    value:
+      '1': 有系统上线检查清单，含默认密码修改、最低加密强度、生产环境隔离；上线前有人签核。
+      '2': 有安全配置基线文档并应用到各类系统；配置变更走工单且有复核；定期做配置核查。
+      '3': 配置核查自动化并接入告警；密钥与证书集中管理且有轮换流程；补丁与漏洞管理覆盖全生命周期；基线随威胁态势定期修订。
+    basis: inferred
+  evidence:
+    value: 系统上线审批单与安全检查清单、安全配置基线文档、配置核查报告（人工或自动）、密钥/证书管理台账及轮换记录、补丁与漏洞修复记录。
+    basis: inferred
+  common_myth:
+    value: 以为「云平台/厂商提供的默认镜像和默认配置就够安全」——默认镜像里常有公开的默认凭据、未加固的服务和过期组件，正是入侵的最常见入口，必须做一次真正的加固配置而非直接启用。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 新系统上线前，这份安全检查清单由谁执行、谁来复核？
+    - 上次对生产系统做配置基线核查是什么时候？有没有发现偏离基线又没修的实例？
+    - 应用的密钥或证书到期前，由什么机制触发轮换，最近一次轮换是什么时候？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.9
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「系统配置没人管、谁都能改、改完不知改了什么」——由此引入的未授权变更、配置漂移、以及回滚无门的风险。
+    basis: inferred
+  plain_zh:
+    value: 给系统定一套正式的「出厂设置」（基线），对生产环境的任何改动都要走申请、审批、记录、实施的流程，并且要能回退到之前的版本。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键服务器有配置基线文档，改动前至少口头审批，能说出改了什么。
+      '2': 基线与变更流程形成书面制度，变更单记录申请、评估、审批、实施人，有独立的变更评审会。
+      '3': 配置管理工具自动比对实际配置与基线，未经批准的变更触发告警；变更审批与工单系统联动，配置漂移能自动发现并拦截，保留历史版本可一键回滚。
+    basis: inferred
+  evidence:
+    value: 配置基线文档（含硬件、软件、配置项清单）、配置变更审批单或工单记录、变更评审会议纪要、配置漂移检查/告警记录、回滚演练记录。
+    basis: inferred
+  common_myth:
+    value: 以为运维平时手动改服务器是常态，审计时补一份变更记录就好——审计员会查变更记录与系统实际配置的对应关系，按你说的变更记录抽查系统配置会当场对不上；且日常零散变更根本没有走评审流程，记录后补也补不齐。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 挑一台核心服务器，当前配置与基线一致吗？最后一次配置漂移是什么时候、怎么发现的？
+    - 能演示一下从提交变更到审批到回滚的完整链路吗？
+    - 上一季度有多少次变更？其中多少次在变更单里能找到对应的审批人？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

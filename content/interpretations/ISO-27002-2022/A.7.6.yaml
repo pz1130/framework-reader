@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.6
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是把安全防护区当成普通办公区——供应商、运维、保洁这些外部人员在防护区里自由走动，没人管他们能看什么、碰什么、什么时候走，物理边界失守后，网络和逻辑控制做得再好也白搭。
+    basis: inferred
+  plain_zh:
+    value: 凡是进入安全防护区干活的人，都要有明确授权、有人盯着，干完就清场；不管是自家人还是外包，规矩一样。
+    basis: inferred
+  practice:
+    value:
+      '1': 防护区有门禁或登记制度；外来人员进入有陪同；知道谁是区域负责人。
+      '2': 进区有审批：访客有登记表、戴访客牌、陪同全程在；临时人员（保洁、维修）有书面授权；离开有销核。
+      '3': 进区记录与门禁日志留存可查；敏感区域按角色分区分权；异常时段或未授权进入有告警；定期抽查陪同与清场是否真执行。
+    basis: inferred
+  evidence:
+    value: 门禁系统日志或纸质出入登记表、访客与临时人员授权单据、陪同人确认签字、区域负责人名单、清理检查记录或抽查照片。
+    basis: inferred
+  common_myth:
+    value: 以为装个门禁、刷卡能进就算管控了。门禁只证明「能进」；审计真正要看的是「进来以后有没有人全程跟着、有没有人盯着收尾」，以及离职或项目结束后门禁卡和登记权是否及时注销。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一次保洁或维修人员进入防护区是哪天？授权单和陪同人是谁？
+    - 前一个项目的供应商人员撤离后，他们的门禁权限是什么时候收回的？
+    - 一个人同时有防护区门禁和机房权限的账号，定期复核是多久一次？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

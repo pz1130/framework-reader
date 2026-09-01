@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:PR.AA-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「匿名访问」或「弱认证」——用户、服务、硬件如果没有可靠的认证机制，攻击者可以冒充合法主体进入系统，数据泄露、横向移动都从这里开始。
+    basis: inferred
+  plain_zh:
+    value: 所有访问系统的东西——人、软件服务、硬件设备——都必须先验证身份，而且验证方式要够强，不能靠用户名密码走天下。
+    basis: inferred
+  practice:
+    value:
+      '1': 所有用户登录需要密码；所有服务账号有独立口令；所有接入网络的设备有注册和识别机制。
+      '2': 关键系统启用多因素认证；服务账号凭证定期轮换；硬件设备有证书或 MAC 白名单并记录变更。
+      '3': 高风险系统强制 MFA；服务账号实现自动化凭证轮换且不可交互登录；硬件认证采用证书或 TPM 等强身份，设备接入即校验、异常即隔离。
+    basis: inferred
+  evidence:
+    value: 认证策略文档、MFA 启用范围与覆盖率报告、服务账号凭证轮换记录、设备注册清单与接入审计日志、认证失败告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有用户名密码就算认证了」——对服务账号和硬件设备，密码要么共享、要么硬编码在脚本里，等于没有认证。真正的认证要求是「每个实体有独立且可靠的身份凭证」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 多少个服务账号启用了 MFA？多少个不能启用的，理由是什么？
+    - 服务器、打印机、IoT 设备接入网络时用什么识别它们？
+    - 上次服务账号密码轮换是什么时候？流程写在哪？
+    basis: inferred
+  regional_note:
+    value: 欧洲在 NIS2 落地后对 MFA 和强认证要求更硬性，尤其是关键基础设施的管理员访问；美国审计员更关注与 NIST 800-53 映射的 IA
+      系列控制证据，对设备认证的抽查更细。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

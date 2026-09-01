@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:RC.RP-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「恢复完能开机就宣布业务正常」——备份能拉起来不等于数据完整、配置正确、上下游依赖就位；事后上线再出问题，比不恢复更难追责。
+    basis: inferred
+  plain_zh:
+    value: 灾难或事故恢复之后，不能只确认系统跑起来了，要逐项验证恢复出来的数据完整、服务功能正常、业务状态被确认可用，整套流程才算完。
+    basis: inferred
+  practice:
+    value:
+      '1': 恢复演练或真实恢复后，至少确认关键系统能启动、主要数据能读取；有问题有记录。
+      '2': 恢复流程里写入验证步骤；对数据做抽样核对或完整性校验，对系统做功能冒烟测试；验证结果有记录。
+      '3': 验证脚本和校验位自动化，恢复过程按 Playbook 执行，验证结果留痕可追溯；每次演练对验证步骤本身有复盘和改进。
+    basis: inferred
+  evidence:
+    value: 恢复验证清单或脚本、数据校验和、抽查记录、系统功能测试结果、恢复演练报告，以及问题修复记录。
+    basis: inferred
+  common_myth:
+    value: 以为「备份能成功恢复、系统能启动」就等于恢复完整性验证——数据可能静默损坏，配置可能过期，日志可能错位，系统起得来不代表业务对；验证要落到数据级和功能级，不是进程级的「活着」就行。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一次恢复演练里，验证数据完整性用的什么方法？抽查了多少比例的数据？
+    - 系统恢复后由谁在哪个环节确认业务可正常使用？凭证是什么？
+    - 如果恢复验证发现数据有问题，你们会怎么处理？有没有按这个流程走过？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

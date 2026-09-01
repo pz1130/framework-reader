@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.20
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「合同里没写安全要求」——采购回来的系统、组件或服务在安全上无据可依。出事后你既无法追责供应商，也没有合同条款要求对方整改；更致命的是，供应商可能在分包链条里把数据或代码转给资质不明的下层，而你根本无权过问。
+    basis: inferred
+  plain_zh:
+    value: 跟供应商签的合同里，要把安全要求、数据保护责任、验收标准、事故通报义务写成白纸黑字的条款，而不是口头约定或默认对方懂行。
+    basis: inferred
+  practice:
+    value:
+      '1': 重要采购有合同模板，模板里含安全与隐私要求章节；供应商签署时没有异议。
+      '2': 按风险高低区分合同条款；安全要求能对应到具体交付物与验收条件；供应商有书面确认接受。
+      '3': 合同安全条款与采购流程强绑定；供应商分包或转包时须经你书面同意，并在合同中写明安全义务沿分包链条传导。
+    basis: inferred
+  evidence:
+    value: 含安全条款的合同或采购订单、供应商签署确认单、合同模板版本记录、分包/转包审批记录、安全验收报告。
+    basis: inferred
+  common_myth:
+    value: 以为「供应商承诺书」或「安全合规承诺函」就算合同条款。承诺函通常没有违约责任、没有验收触发条件、没有分包约束，法律效力远低于合同正文——审计员要看的是主合同里有没有安全条款，而不是附件里的一份声明。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去一年新签的关键系统采购合同里，哪几份包含安全验收条款？验收不通过的后果是什么？
+    - 供应商在合同期内把部分服务转包给第三方，你们的合同里有没有要求事先通知并获得书面同意？
+    basis: inferred
+  regional_note:
+    value: 欧洲在 GDPR 与行业监管影响下，审计员会追合同中是否明确数据处理者与委托处理条款、数据跨境是否合法；美国审计员更关注联邦采购条例类要求（如
+      CMMC、FedRAMP 在合同中的引用）。实际差异在合同引用标准不同，但「安全条款必须写进合同正文」两边同样要求。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

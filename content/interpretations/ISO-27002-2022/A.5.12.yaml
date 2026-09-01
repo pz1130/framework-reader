@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.12
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「所有数据一视同仁」——不区分敏感级别，就用同一套防护，结果要么对普通数据过度投入，要么对核心数据防护不足，出事时说不清哪份文件值多少钱、该优先救谁。
+    basis: inferred
+  plain_zh:
+    value: 把信息按敏感度和影响分档（如公开、内部、机密、绝密），每档定好能碰谁、能存哪、能怎么传，并且把分档结果和理由写下来让人审。
+    basis: inferred
+  practice:
+    value:
+      '1': 有文件说明信息分几档、每档什么标准；新系统上线时做一次定级。
+      '2': 定级结果记入系统文档并有人审批；数据流转、存储和销毁按定级执行；定期复核定级是否还成立。
+      '3': 定级与资产清单、访问控制、加密策略联动；敏感数据自动识别并打标；定级变更可追溯，有系统强制校验。
+    basis: inferred
+  evidence:
+    value: 信息分类分级政策、系统定级表（含理由）、定级审批记录、按定级执行的访问与存储配置证据、异常数据流拦截日志。
+    basis: inferred
+  common_myth:
+    value: 以为「写个分类分级表贴墙上」就达标。真正要看的是定级有没有驱动实际控制——比如机密文件是不是真的只有机密权限的人能访问、传输通道是不是真的禁了明文。表只是输入，执行才是分数。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这个系统里存的数据，最高是哪个级别？你的结论依据什么？
+    - 一份定级为机密的数据，从哪来、存哪、谁能访问？给我看实际配置。
+    - 定级多久复核一次？业务变化或数据性质变了，谁来改、怎么改？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

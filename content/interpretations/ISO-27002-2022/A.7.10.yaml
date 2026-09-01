@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.10
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「介质到处放、随便借、坏了就当垃圾扔」——硬盘、U盘、磁带、打印纸里存的机密，在存储、运输、维修、报废任何一个环节漏出去，数据就走了。这条管的是介质从生到死的物理与流程管控。
+    basis: inferred
+  plain_zh:
+    value: 对存数据的硬盘、U盘、磁带、光盘、纸质文件等东西，从入库、借出、在库、送修、外带、抹除到报废，每一步都要有台账、有授权、有记录。谁碰了、带去哪、最后怎么处理的，都要能说清。
+    basis: inferred
+  practice:
+    value:
+      '1': 有介质台账；介质放在上锁柜子或机房；借出归还有人登记；报废前有基本抹除动作（如格式化或粉碎）。
+      '2': 介质按密级分柜存放；借出有审批单；送修必须登记并明确数据责任；报废走抹除-核实-见证流程并有记录。
+      '3': 介质全生命周期纳入资产管理系统；送修或外带全程可追踪；抹除用符合数据等级的认证工具；报废记录含抹除方式、执行人、见证人、日期；违规使用有告警或阻断。
+    basis: inferred
+  evidence:
+    value: 介质台账、借出/归还登记表、送修审批与记录、抹除/报废记录（含方法、执行人、见证人）、介质盘库记录、对违规携带或使用的处理记录。
+    basis: inferred
+  common_myth:
+    value: 以为「碎了硬盘、格式化了U盘」就算安全报废。普通格式化能恢复，物理销毁若无见证记录，审计不认；另外最常见的盲区是送修——硬盘坏了直接丢给售后，不登记、不确认里面数据是否抹除，等于把数据裸送出去。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这批报废硬盘是什么时候、用什么方式抹除的？记录在哪？
+    - 硬盘送修前由谁确认数据已清除？送修登记表给我看一下。
+    - 非关键介质（如打印机硒鼓、复印机硬盘）你们怎么管控？
+    basis: inferred
+  regional_note:
+    value: 欧洲因 GDPR 对含个人数据的介质销毁要求更严，审计常追问介质上是否可能存有人数据、销毁是否可证明不可恢复；美国审计更偏重资产清点流程与介质访问授权记录，两边对「销毁可验证性」的追查深度不同。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

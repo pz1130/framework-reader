@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.7
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是恶意代码在内部网络里横向爬——入口没拦、终端不扫、特征库过期，勒索和挖矿在域内扩散后才发现，处置成本翻倍。
+    basis: inferred
+  plain_zh:
+    value: 在系统和网络的出入口布防恶意代码检测，特征库要自动更新，文件从外部进来要实时扫、全盘要有定期扫，发现恶意代码要告警并清理，还要处理误报。
+    basis: inferred
+  practice:
+    value:
+      '1': 服务器和关键终端装了杀毒或EDR；特征库能自动更新；有告警通道能通知到人。
+      '2': 网络边界有恶意代码检测（流量侧或网关）；定期全盘扫描和外部文件实时扫描有配置记录；发现恶意代码有告警、隔离、清除流程；误报有登记和处理。
+      '3': 恶意代码防护纳入配置基线管理，版本和策略变更可追溯；检测告警与安全运营联动，能溯源到具体资产和攻击链路；误报处理有闭环，特征和规则持续调优。
+    basis: inferred
+  evidence:
+    value: 杀毒/EDR 部署清单与覆盖范围、特征库版本及自动更新配置截图、扫描策略和计划、恶意代码检测告警与处置记录、误报处理登记表。
+    basis: inferred
+  common_myth:
+    value: 以为「每台电脑都装了360或者Windows Defender就算防住了」。终端装了不代表策略统一、特征库没关掉更新、服务器和网络流量没人管——审计抽查时拿后台查版本和扫描记录，跟「装了」是两回事。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 特征库最后一次自动更新是什么时候？有没有机器关掉了更新策略？
+    - 从外部下载的文件在打开前会被扫描吗？怎么证明？
+    - 最近一次发现恶意代码是什么时候？从告警到处置花了多长时间？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 语境下更关注恶意代码防护中个人数据的处理是否合规，以及隔离和清除过程中的数据保护影响；美国审计员通常聚焦于覆盖范围、版本更新及时性和与运营体系的联动。两边对误报处理流程的期望深度也有差异。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

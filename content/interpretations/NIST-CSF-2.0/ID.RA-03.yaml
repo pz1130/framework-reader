@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.RA-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全团队只看漏洞扫描和 SIEM 告警」——威胁情报、业务侧风险、供应链外部威胁没人收集记录，决策层看不到全貌，等事件发生才知道漏了。
+    basis: inferred
+  plain_zh:
+    value: 把来自组织内部和外部、可能影响业务的威胁都收集起来、记下来。别只看技术漏洞，还要看业务风险、供应商风险、地缘政治风险等。
+    basis: inferred
+  practice:
+    value:
+      '1': 有威胁情报订阅，或至少有人关注公开漏洞信息；内部威胁有事件上报渠道；威胁信息有地方记录。
+      '2': 内外威胁按要求定期收集；重要威胁有风险评估记录，能追溯到业务影响；威胁库或台账有更新。
+      '3': 威胁情报源覆盖内外且自动汇总；威胁记录与资产或业务关联，能驱动风险优先级调整；威胁分析有定期评审和与外部共享机制。
+    basis: inferred
+  evidence:
+    value: 威胁情报订阅记录、内部威胁上报工单或台账、威胁分析与风险评估报告、威胁信息与业务关联的映射文档。
+    basis: inferred
+  common_myth:
+    value: 以为「装了 SIEM、买了威胁情报订阅」就算做到了——但威胁没被识别、没被记录、没跟业务风险挂钩，情报源只是摆设。审计要看的是有没有形成可追溯的威胁台账和风险判断，而不是订阅了哪家服务。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一个被记录的内部威胁是什么？处理流程走到哪一步、记录在哪？
+    - 威胁情报源有哪些？多久看一次？谁负责判定它对业务有没有影响？
+    - 外部威胁报告有没有跟具体资产或业务线关联上？怎么关联的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

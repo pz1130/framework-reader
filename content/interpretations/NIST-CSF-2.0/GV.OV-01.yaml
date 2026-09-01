@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:GV.OV-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全策略定完就封神」——外部威胁、业务方向、技术栈一直在变，风险管理策略的产出如果从不回头检验，两年后照旧执行，等于拿去年的地图开今年的船。
+    basis: inferred
+  plain_zh:
+    value: 定期检查网络安全风险管理的策略和目标定得对不对、有没有实际效果，根据检查结果调整策略方向和优先级，形成闭环，而不是年初定完年底归档。
+    basis: inferred
+  practice:
+    value:
+      '1': 至少每年一次，管理层开会过一遍风险策略与目标，有会议纪要和结论，「评估结论」有人签字。
+      '2': 有书面化的评审流程与触发条件（如重大安全事件、业务重大调整时临时加评），评审会对照上一周期的实际风险处置数据，有结论和改进项跟踪表。
+      '3': 评审结论回灌到具体控制项、预算与人员编制决策；有量化的成效指标（如目标达成率、残余风险趋势）支撑策略调整；每次调整都有版本记录和传达证据，持续改进。
+    basis: inferred
+  evidence:
+    value: 经批准的风险管理策略评审计划、历次评审会议纪要（含出席人、结论、改进项）、策略文档修订历史与版本记录、由评审结论触发的后续工作项及跟踪清单、向相关方传达新策略的邮件或培训记录。
+    basis: inferred
+  common_myth:
+    value: 以为「年底开个会、把策略文件盖上『已评审』的章」就算闭环。没有沉淀出「哪些策略目标实际没达成、为什么、下一步改什么」，会议纪要只是存档道具，闭环是假的。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次评审发现了哪些策略目标没达成？对应改了什么控制或预算？
+    - 评审是只按日历触发，还是也由重大安全事件或业务变化触发？上次触发是什么时候？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员受 GDPR 问责制原则牵动，更爱追问「评审结论如何证明有效保护了个人数据」，关注点偏向治理可解释性；美国审计员通常按照 NIST
+      框架核对有没有正式评审程序及输出文件，较少深究策略与实际保护成效的因果链。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

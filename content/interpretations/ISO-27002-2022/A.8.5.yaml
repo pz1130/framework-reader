@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.5
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是账号密码被撞库、暴力破解、肩膀偷看之后还能继续用——登录这扇门要能拦住持续尝试、按策略锁住账号、屏幕上别泄露敏感信息、用户登录时能看到上次登录记录，自己账号被冒用能第一时间察觉。
+    basis: inferred
+  plain_zh:
+    value: 把登录入口管严：连续输错要锁或延迟，锁要自动解；登录前屏幕要弹告警声明；登录后要告诉用户上次登录时间；输密码时不准明文回显，要打码。
+    basis: inferred
+  practice:
+    value:
+      '1': 登录失败有次数上限，超限触发短时锁定或延迟；密码输入框遮罩；登录页有告警声明；登录后有上次登录时间和日期。
+      '2': 锁定策略分场景配置（如内网、VPN、堡垒机、运维后台各不同），自动解锁和人工解锁流程都有；告警横幅需用户明确点击后才继续；失败次数、锁定时间、解锁记录有日志可查。
+      '3': 异常登录行为（如定向爆破、撞库）有检测与告警，能联动阻断；用户名枚举风险已评估并规避；密码输入回显策略在移动端与桌面端分别权衡；上次登录信息在用户侧强制显示且不可关闭。
+    basis: inferred
+  evidence:
+    value: 登录策略配置截图或导出配置、账号锁定与自动解锁日志、系统通告横幅页面截图、密码输入打码的界面截图或配置，以及最近的暴力破解检测与处置记录。
+    basis: inferred
+  common_myth:
+    value: 以为「密码复杂度够强就行」——复杂度只管口令本身，管不住持续试探；没有失败锁定和上次登录提示，撞库成功你也不知道，审计会直接追问这层有没有。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 连续失败多少次锁定、锁多久？这个参数在哪个系统上生效，哪个系统没设？
+    - 用户登录后能看到上次登录时间吗？哪个界面展示的，截个图？
+    - 密码框回显是什么样？用手挡还是纯文本？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

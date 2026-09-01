@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.20
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「网络通就能互相访问、链路裸奔没有边界」——内外部网络、无线和有线、办公网和业务网混在一起，攻击者横向移动一路畅通，敏感数据在传输中被截获或篡改而无人察觉。
+    basis: inferred
+  plain_zh:
+    value: 把网络按照安全边界切成段，每段之间用受控的设备（防火墙、网关、路由器等）把守，明确谁能和谁通信；无线接入要单独定规则、先授权再连；数据在网络上传输时要加密防篡改；空闲连接要超时断开。
+    basis: inferred
+  practice:
+    value:
+      '1': 有网络拓扑图和分段清单；外部到内部、办公网到生产网有防火墙隔离；无线网络与有线网络分开；传输敏感数据用加密协议。
+      '2': 边界设备有访问控制策略并定期评审；无线接入需认证并登记设备；关键网段间通信有白名单或默认拒绝规则；空闲会话有超时断开机制；传输加密覆盖主要业务系统。
+      '3': 网络分区与安全架构一体规划，边界策略变更走审批且可追溯；无线接入有持续监控和异常告警；所有网段间通信默认拒绝、逐条放行；传输加密成强制基线并有校验机制拦截明文回退；边界设备状态与策略有自动化核查。
+    basis: inferred
+  evidence:
+    value: 网络拓扑图与分区说明、边界防火墙及路由器的策略配置与评审记录、无线接入点清单与认证配置、加密协议配置截图或基线文档、空闲会话超时配置、边界设备的告警与审计日志。
+    basis: inferred
+  common_myth:
+    value: 以为「装了防火墙就算有边界防护」——防火墙策略常年只加不减、允许任意到任意，或边界内网段彼此不设防，攻击者一旦突破外围就在内网横着走。策略配置是什么、谁在维护、有没有评审，比有没有设备重要得多。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 内网里办公区到研发区的访问控制规则是什么时候评审的？谁批准的？
+    - 无线网和有线网之间有没有隔离？访客网能不能访问内网任何一段？
+    - 生产和测试环境之间开了哪些端口和服务？有白名单吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

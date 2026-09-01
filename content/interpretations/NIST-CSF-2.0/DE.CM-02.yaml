@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:DE.CM-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是物理环境一旦出事，安全团队在事情扩大前一无所知——漏水泡了机柜、空调停摆导致过热、门禁被撬、尾随进楼，这些在监控摄像头和传感器数据里都有痕迹，不盯着就是等灾后复盘。
+    basis: inferred
+  plain_zh:
+    value: 用摄像头、门禁报警、温湿度传感器、漏水检测这类手段盯着机房、办公区、设备间等物理空间，发现异常能及时响应，而不是等设备宕了才去看。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房和关键出入口装了监控与门禁；有门禁报警和视频录像；出事了能回放录像找人找时间点。
+      '2': 有专人定期查看监控与传感器数据（视频抽查/告警日志审阅）；异常事件有记录和响应闭环；传感器（温湿度、漏水、烟感）有维护和自检记录。
+      '3': 监控与告警接入统一平台实时分析；物理异常与安全事件联动响应（如门禁报警联动视频追踪）；周期性物理安全评估（如尾随测试、门禁权限审计）并形成报告。
+    basis: inferred
+  evidence:
+    value: 监控系统清单与覆盖范围图、门禁与传感器告警日志及响应记录、视频回放抽查记录、物理安全事件清单与处置纪要、设备维护与自检记录。
+    basis: inferred
+  common_myth:
+    value: 以为「装了摄像头和门禁」就等于这条达标。事实是很多团队一年到头不打开告警日志、监控录像只留不查、传感器坏了没人发现——设备在装，人在睡，物理异常仍然要等业务报障才知道。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上个月门禁报警了几次？每次从告警到处置闭环的记录在哪？
+    - 机房温湿度传感器如果连续告警，多久会有人到现场？这个时间写在哪个流程里？
+    - 监控录像保存多久？你多久抽查一次实际画面，还是只看设备在线状态？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

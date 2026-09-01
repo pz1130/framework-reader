@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:RC.RP-04
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「事件发生后恢复现场一切如旧」——如果恢复流程不区分哪些业务是保命的、哪些可以缓一缓，就会把精力和资源平均摊给所有系统，导致真正关键的业务反而恢复得最慢，或者在恢复过程中因为安全管控没跟上，让同一漏洞二次引爆。
+    basis: inferred
+  plain_zh:
+    value: 制定事后恢复的规矩时，必须先想清楚哪些业务功能是让公司活下去的核心、这些功能的安全风险是什么，然后围绕它们定恢复优先级和操作准则，而不是让恢复变成「按
+      IT 的系统列表顺序重启」。
+    basis: inferred
+  practice:
+    value:
+      '1': 有事后恢复流程，且流程中写明了按业务关键性排序，至少能把核心业务和普通业务分开处理。
+      '2': 关键使命功能有明确清单并关联到具体系统和责任人；恢复流程中为关键功能单独设了安全检查和恢复顺序；恢复操作记录在案。
+      '3': 恢复流程定期与业务方一起演练验证；关键功能的安全要求作为恢复前置条件被强制检查；恢复优先级与网络安全风险实时联动，重大变更时主动修订。
+    basis: inferred
+  evidence:
+    value: 经批准的事后恢复与业务连续性计划、关键使命功能清单及其系统映射、恢复流程中的安全检查单、演练记录与改进项、恢复操作日志。
+    basis: inferred
+  common_myth:
+    value: 以为「有灾难恢复计划+定期备份」就算满足这条。灾难恢复计划常见的问题是只写系统恢复顺序和方法，没有回答「为什么这个系统先恢复」——恢复顺序的制定依据、关键业务功能的定义以及对应的安全风险考量，恰恰是审计员真正要看的。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 你们怎么界定哪些业务功能是「关键使命功能」？这个界定结果最后一次更新是什么时候？
+    - 恢复一个关键业务系统的流程里，安全措施（如补丁验证、漏洞扫描、访问控制复查）在哪个步骤强制生效？
+    - 如果恢复时发现核心数据库备份损坏，流程里写明了怎么办吗？由谁拍板降级恢复？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.AM-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是网络架构和安全边界失控——没人知道内部哪些网段能互访、对外开了哪些口子、数据往哪流，防火墙规则和微隔离策略形同虚设，出了事排查和定责都没依据。
+    basis: inferred
+  plain_zh:
+    value: 把公司网络的合法通信路径画成图或写成文档，包括内部各区域之间、以及内部到外部的所有数据流向，并且要持续维护更新，让图和实际网络一致。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一张网络拓扑图，画出主要网段和边界设备；知道对外开了哪些端口和服务。
+      '2': 网络数据流图覆盖到应用层和关键数据流向；拓扑图有版本和责任人；变更网络时同步更新图。
+      '3': 网络流图与配置管理数据库联动，能自动发现新设备和未授权连接；定期比对实际流量与授权标识，差异有告警和处置流程。
+    basis: inferred
+  evidence:
+    value: 有版本号的网络拓扑图、数据流图或矩阵、更新记录与变更联动证明、责任人署名、定期与实际流量比对的报告。
+    basis: inferred
+  common_myth:
+    value: 以为「有一张画好的网络拓扑图就算达标」——图的更新靠某个人记得改，或者放在共享盘里没人知道版本对不对。审计员抽查一个实际网段的防火墙规则，再对比图上标明的通信路径，对不上就整个防线穿帮。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这张图的上次修订日期是什么时候？当时是什么变更触发的？
+    - 图上标的这个网段到那个网段的通信，对应防火墙哪条规则？
+    - 新增一个对外服务时，流程图更新流程的第一步是谁来做？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

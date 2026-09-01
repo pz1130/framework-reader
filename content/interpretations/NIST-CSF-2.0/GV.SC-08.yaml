@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.SC-08
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「出事才想起供方」——供应商不是故障备份，不提前纳入事件计划，攻击发生时他们不知道流程、不知道该找谁、甚至不知道自己该在场，响应就会断在第三方这条链上。
+    basis: inferred
+  plain_zh:
+    value: 把关键供应商和第三方写进事件应急、响应和恢复计划里，让他们在平时就知道出事时自己要干什么、联系谁，而不是事发后临时拉群沟通。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键供应商名单进了事件响应通讯录；合同有基本的事件报告义务条款；出事能联系到人。
+      '2': 供应商按风险分级纳入事件计划；明确各自的响应角色与上报路径；重大供应商至少做过一次桌面推演或响应演练。
+      '3': 供应商参与事件计划全生命周期——从制定到修订到演练；演练结果复盘后反过来更新计划与供应商合同义务；恢复阶段明确供应商的RTO/RPO责任并有验证。
+    basis: inferred
+  evidence:
+    value: 事件响应计划中供应商角色与联系清单、与供方签订的应急响应协议或SLA条款、联合演练或桌面推演的记录与复盘纪要、计划修订记录中供应商相关改动。
+    basis: inferred
+  common_myth:
+    value: 以为「供应商合同里写了事件通知义务」就算纳入事件计划。通知义务只是第一步——供方知不知道出了事该找谁、该触发什么流程、恢复优先级是什么？这些没写进双方都演练过的计划和联络表，合同条文只是一纸空文。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上一年度演练中，哪几个关键供应商实际参与了？没参加的怎么补？
+    - 供应商在生产环境出安全事件时，第一联系人的具体姓名和备用渠道是什么？这个信息多久更新一次？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

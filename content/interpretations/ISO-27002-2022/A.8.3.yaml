@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.3
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「授权了就能随便读」——审批过了就没人再管这个人到底有没有读的权力，以及读的边界在哪；信息一旦被不该读的人读走，损失已发生，事后很难收回。
+    basis: inferred
+  plain_zh:
+    value: 按信息敏感度和岗位职责，把谁能读什么、读到什么程度管起来；不该读的人系统要拦，该读的人也要先判断有没有授权再放行，不能笼统一刀切。
+    basis: inferred
+  practice:
+    value:
+      '1': 有信息分级；按岗位设了读取角色的基础权限；离职或调岗时能基本查封账号。
+      '2': 读取权限按角色和敏感级细分；申请、审批、开通有记录；定期做读取权限评审并修正。
+      '3': 权限控制与数据分级联动，系统级和业务应用级都拦；读取行为有监控和异常告警；高敏感信息可追溯谁在何时读过。
+    basis: inferred
+  evidence:
+    value: 信息分级清单、角色与权限矩阵、读取权限申请审批记录、系统或应用访问控制配置、读取行为日志、定期权限评审纪要。
+    basis: inferred
+  common_myth:
+    value: 以为「有登录账号、有文件夹权限」就等于读了权限受控——很多系统里业务应用层没有按岗位细分的读取控制，任何登录用户能翻全部数据；直到泄露了才意识到系统层和业务层权限是两层，得都管住。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 同一份高敏感报告，市场部和财务部的人读权限是怎么区分开的？
+    - 调岗员工在新岗位还能读旧部门文件吗？上次核查是什么时候？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员更爱追「个人数据谁能读、读了做什么用途」，常要求读取日志能对应到 GDPR 的合法性与目的限制；美国审计员多以 NIST 的 AC-3
+      为基准，更关注权限是否按最小权限落地和是否有职责分离。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

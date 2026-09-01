@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:PR.IR-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「网络通了就什么都不设防」——内部人员横向乱窜、外部流量直接摸到核心系统。这条管的是逻辑层的门禁和隔离，不是防火墙设备买没买，而是流量和访问到底有没有按规则被拦下来。
+    basis: inferred
+  plain_zh:
+    value: 给网络和运行环境装好逻辑门禁：进出的流量、人、系统之间的访问，都得按规则放行或拒绝；异常流量要有能力扛住，不能随便什么请求都能打到内部。
+    basis: inferred
+  practice:
+    value:
+      '1': 有基本边界防火墙或网络ACL，内外部网段有区分；核心系统不在公网裸奔；访问规则有变更记录。
+      '2': 按业务需要启用最小开放策略（默认拒绝、按需放行）；内部按安全域或VLAN分段，段间访问有受控路径；关键流量有准入与访问控制策略并定期评审。
+      '3': 网络与环境访问控制策略系统化管理，规则变更走审批流且可回滚；对异常流量或横向移动有主动检测与拦截能力；架构上做到默认隔离，开放是例外且可追溯。
+    basis: inferred
+  evidence:
+    value: 网络拓扑图、防火墙/ACL规则表及变更审批单、策略评审记录、内部网段划分文档、针对异常访问或横移的告警与拦截日志样例。
+    basis: inferred
+  common_myth:
+    value: 以为「装了防火墙/买了下一代防火墙」就等于这条做到了。设备只是载体——规则是不是默认拒绝、有没有人定期清理无效规则、内部网段之间是不是裸通，这些才是审计员真正盯的；很多人设备花钱上了，规则却永远只加不减，等于没设防。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把外网到内网、内网到内网核心段的放行规则拉出来，哪些是长期闲置没验证过的？
+    - 员工从办公网段直连数据库或生产服务器的路径，有没有被ACL或防火墙拦过？还是全通？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

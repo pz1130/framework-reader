@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.33
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「测试环境随便拷生产数据」——开发、测试、预发环境不带生产同等级的安全控制，却放着真实客户数据，一旦泄漏或误用，责任却推给数据敏感度。
+    basis: inferred
+  plain_zh:
+    value: 生产环境里的真实数据（尤其是个人身份信息）要用到测试、开发、联调、预发环境，必须先批准、有记录、受管控；这些预生产环境的安全防护等级必须和里面装着的真实数据一样高。
+    basis: inferred
+  practice:
+    value:
+      '1': 内部有口头或邮件约定：测试环境不准用生产数据；确实要用的，至少要有人点头并留个记录。
+      '2': 有书面审批流程：申请、业务负责人批准、注明用途与有效期；测试环境数据库和安全配置按生产数据等级加固；使用记录可查。
+      '3': 用数据脱敏、合成数据或按需取子集作为默认方案；确需使用真实数据时走工作流审批，测试环境具备与生产一致或对等的访问控制、审计和加密；定期复查哪些环境还在使用真实数据并推动替换。
+    basis: inferred
+  evidence:
+    value: 预生产环境数据使用审批单、脱敏或合成数据的工具和策略配置、预生产环境与生产同等的安全基线对比表、真实数据使用登记台账、定期清理或替换记录。
+    basis: inferred
+  common_myth:
+    value: 以为「测试环境是内网，不会出事」，所以拷数据不用走流程。真实数据在等级更低的测试库出现，等于绕过了生产环境的全部控制——审计发现测试库里有明文身份证号或真实手机号，比生产环境的疏漏更难看。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 测试环境里有没有生产库的明文拷贝？上一次全量清理是什么时候？
+    - 借用生产数据做联调，审批单上谁签的字？数据用完后删不删、谁确认？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

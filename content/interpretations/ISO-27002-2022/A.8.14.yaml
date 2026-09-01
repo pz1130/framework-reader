@@ -1,0 +1,48 @@
+control_id: ISO-27002-2022:A.8.14
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「主站点一瘫，整个业务跟着停摆」——机房、电力、网络、算力任何一环挂了，没有备用路径或可切换的落点，恢复时间就只能靠运气，审计时拿不出任何可验证的承诺。
+    basis: inferred
+  plain_zh:
+    value: 得让关键业务在主要设施不可用时，还能在别处运行或快速恢复。要有异地或可切换的存储和计算资源，并且这些备用设施的安全控制水平不能比主站低。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键系统做过备份，也把备份介质放在另一个物理位置；知道主要机房断电断网时大概多久能恢复。
+      '2': 签有书面备用站点协议或云上故障切换配置；有明确的恢复时间目标和恢复点目标；对备用环境做过测试并有记录。
+      '3': 备用站点或架构与主站地理上分散且可独立承载关键业务；备用站点的安全控制与主站等价并纳入常态监控与演练；故障切换能自动或按预案快速完成，并有证据。
+    basis: inferred
+  evidence:
+    value: 备用站点或云可用区协议、恢复目标（RTO/RPO）的书面定义、故障切换或恢复演练报告及日期、备用站点安全配置核查记录。
+    basis: inferred
+  common_myth:
+    value: 以为「数据有异地备份」就等于「业务能恢复」。备份能拉回来，不代表主机房没了之后还能有算力、网络和足够的安全控制把业务跑起来——备份是冗余的必要条件，不是充分条件。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 备用站点或云可用区和主站点的物理距离是多少？这个距离依据什么定的？
+    - 最近一次完整故障切换演练是哪天？演练结果里哪些目标没达成？
+    - 备用站点的访问控制、加密和监控是不是和主站完全一致？
+    - 主站完全不可用的情况下，RTO 具体是几小时？
+    - 备份数据在备用站点做恢复测试了吗？上次测是哪天？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员受 DORA 影响，对关键业务韧性要求更苛刻，常追问恢复目标的具体数值、备用站点被监管机构审查的可信度；美国审计员更多依赖 SaaS/云负载的可用性
+      SLA 与架构图来判定，有时接受「多云多可用区」作为同等冗余证明。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

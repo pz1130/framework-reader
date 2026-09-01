@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.6.6
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是员工签完保密协议就当作永久授权——人员转岗、离开、合作结束或协议条款更新后，原有的保密义务没有重新确认或解除，导致数据访问权与保密承诺脱节，出事后无法追责。
+    basis: inferred
+  plain_zh:
+    value: 让每个能接触公司系统和数据的人都签一份书面承诺，明确什么能碰、什么不能碰、什么必须保密；而且这份承诺要跟随人员的角色变化和协议更新不断重新签，不是入职签一次就完了。
+    basis: inferred
+  practice:
+    value:
+      '1': 入职或授予系统访问权限前要求签署保密/行为约定；有签收记录；离职时提醒保密义务继续有效。
+      '2': 定期（如年度）重签或确认；转岗、项目变更时同步更新约定内容；未签或拒签者无法获得或继续持有访问权限。
+      '3': 系统在账号开通前强制校验签署状态；协议条款变更自动触发重签流程；未及时重签账号自动降权或冻结；签收与版本历史可完整追溯。
+    basis: inferred
+  evidence:
+    value: 签收记录（含电子签收日志）、保密协议模板与版本历史、重签周期与触发记录、访问权限与签署状态的关联审计截图或报表、未签署人员清单及处置记录。
+    basis: inferred
+  common_myth:
+    value: 以为入职时签的保密协议是「永久有效」的，转岗、合作方续约或协议升级后从不重签。审计一查，发现目前持有数据库访问权限的第三方人员在协议列表里根本找不到对应签署记录。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 目前拥有系统访问权限的人员里，有多少人签署状态已过期或缺失？请给出清单和对应处置。
+    - 协议条款更新后，你们用什么机制确保现有人员重新签署？拿三个最近转岗的人员看看重签记录。
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

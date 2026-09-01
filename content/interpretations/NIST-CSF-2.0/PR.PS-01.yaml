@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:PR.PS-01
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「服务器上跑的软件和配置没人说得清」——不知道系统里装了什么东西、跑着什么版本、改过什么没记录，出事时既无法复现也无法快速还原，坏人改了文件也发现不了。
+    basis: inferred
+  plain_zh:
+    value: 把 IT 系统的配置管起来：要有一套办法来定义、记录、批准、部署配置和软件变更，并且能随时回答「系统现在是什么状态、谁允许了它变成这样、哪里和基线不一样」。
+    basis: inferred
+  practice:
+    value:
+      '1': 有配置管理政策文件；生产环境变更要有人审批；知道重要系统装了什么软件和版本。
+      '2': 有配置管理流程和工具；关键变更走审批并有记录；资产清单或配置清单定期盘点并核对差异；对重要变更做测试再上生产。
+      '3': 配置基线文档化且通过自动化工具扫描比对，不符合基线的系统能拦住或告警；变更全程审计可追溯；软件安装有管控，未经批准的软件难以部署。
+    basis: inferred
+  evidence:
+    value: 配置管理政策与流程文档、变更审批记录（变更单或工单）、软件与硬件资产清单及最近盘点记录、配置基线文档、针对基线的配置扫描或核查报告、软件安装管控或白名单策略执行记录。
+    basis: inferred
+  common_myth:
+    value: 以为「上了 CMDB 或安了配置扫描工具就等于做了配置管理」。工具只是手段，真正要被审计的不是工具页面上有多少数据——而是这些数据是否在真实驱动人做事：变更是否真的在发布前经过审批？配置漂移被发现之后有没有人去改回基线？没有闭环流程，CMDB
+      里存的不过是一张过期的静态清单。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最新一次生产环境中发现配置漂移，是哪台机器、什么配置、怎么处理的？记录在哪？
+    - 开发改了一个配置文件直接推到生产，流程上拦得住吗？上一次这种事是什么时候发生的？
+    - 软件安装白名单或管控是怎么落的？临时要装一个生产外的工具软件走什么流程？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

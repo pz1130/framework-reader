@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.AM-08
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「采购即终结」——系统和资产买回来之后就没人管到它退役，导致老旧系统带病运行、供应方停止支持还继续裸奔，数据在生命周期末端无人处置或随意删除。
+    basis: inferred
+  plain_zh:
+    value: 从规划采购、投入使用、变更升级、维护保养，到退役处置，全程都要有人管，不能买回来就当甩手掌柜。
+    basis: inferred
+  practice:
+    value:
+      '1': 有资产清单；采购流程有人参与安全评估；合同里写了运维和退役责任。
+      '2': 有贯穿全生命周期的管理流程和负责人；重大变更走变更审批；系统和软件有明确的退役计划。
+      '3': 生命周期流程与配置管理、风险管理联动；系统退役前有数据处置和迁移审批；淘汰清单与资产台账能自动对上。
+    basis: inferred
+  evidence:
+    value: 资产清单与生命周期状态标记、采购/变更/退役审批记录、运维与补丁管理台账、数据和软件退役处置记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有资产台账、每年盘点一次」就算生命周期管理。台账只回答「有什么」，不回答「这个系统什么时候该退役、谁来催、退役后数据怎么处置」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这台2015年上线的系统，退役日期写在哪份文件？谁负责催促？
+    - 系统下线时，里面的业务数据是怎么做处置决策的？
+    - 软件停止技术支持后，你们有没有走例外审批流程？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

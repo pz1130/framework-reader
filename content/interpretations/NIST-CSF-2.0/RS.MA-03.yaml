@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:RS.MA-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「所有事件一视同仁、按谁先喊谁先处理」——没有分类定级，高影响事件和小故障抢同一张工单队列，真正要命的没被优先处置。
+    basis: inferred
+  plain_zh:
+    value: 事件来了要按影响和紧急程度分档，让关键业务中断、数据泄露这类大事插队处理，小事排后面。定级标准和流程要写下来。
+    basis: inferred
+  practice:
+    value:
+      '1': 有事件分类和优先级定义（如高中低三级）；值班人员知道按什么特征套档位；高优先级有明确升级路径。
+      '2': 分类定级标准成文并全员培训；处理过程按档位联动 SLA（响应/解决时限）；分级结果有记录可追溯。
+      '3': 分类定级标准与业务影响分析联动，能按资产价值、监管要求动态调档；事件处置数据反哺标准修订；异常漏分错分有检测手段。
+    basis: inferred
+  evidence:
+    value: 事件分类定级标准文档、典型事件分级示例（含为什么定该级）、事件记录中分级字段与处理时限的对应关系、调级与争议处理的记录、分级标准培训签到。
+    basis: inferred
+  common_myth:
+    value: 以为「工单系统有『高/中/低』下拉框」就是分类定级。没有书面判定特征（哪些系统挂了算高、哪些数据泄露算严重），值班人员只会凭感觉选档，结果同一家公司的两个值班员对同类事件会给出不同优先级——下拉框选了什么没有依据，审计追问就露馅。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 值班员分错级了怎么办？有没有调级机制？最近一次调级记录给我看。
+    - 高优先级事件从发现到响应，SLA 是几小时？系统能统计超时率吗？
+    - 核心业务系统宕机和普通官网故障，在你的分级表里分别对应哪一档？判定特征写在哪？
+    basis: inferred
+  regional_note:
+    value: 两边都认「分级要能驱动响应时效」这个原则，但欧洲受 NIS2 影响，对事件分级与上报义务的联动更敏感——定级错了可能导致该报给监管的没报；美国审计员更常从
+      SLA 达成率、分级准确率抽样看。欧洲审计员会更早提到「这个级别的事件你们多快能判断出来」这个时间点问题。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

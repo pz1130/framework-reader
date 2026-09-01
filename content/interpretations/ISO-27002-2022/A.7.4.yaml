@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.4
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「物理访问记录和系统审计日志各记各的」——人进了机房、同时系统里有人用账号操作，两本账对不上，出了事无法确认「当时谁在现场」这种关键证据链。
+    basis: inferred
+  plain_zh:
+    value: 把进出机房、监控录像、门禁记录这几类物理信息，和服务器、应用里的登录审计日志放在一起对照，用来发现可疑行为，也方便事后调查还原。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房有门禁记录和基本监控录像；系统有登录日志；双方都留够保存期，出事时能分别调出。
+      '2': 定期把物理门禁记录和系统登录日志做比对抽查，比如深夜非工作时间有没有人进出对应时段有没有系统操作；比对结果有记录，异常有跟进。
+      '3': 物理与逻辑访问记录能按人、按时间自动关联；有规则或分析工具能发现「人不在现场却有该账号的系统登录」这类异常；调查结果和应急响应流程联动。
+    basis: inferred
+  evidence:
+    value: 门禁/监控日志、系统登录审计日志、物理与逻辑访问的关联比对记录、异常事件调查纪要、保存期限与可检索性证明。
+    basis: inferred
+  common_myth:
+    value: 以为装了门禁系统和监控摄像头、也开了服务器审计日志，就算做到位。真到调查时，两套日志的时钟不一致、只保存三十天，或者门禁记录根本导不出来变成
+      Excel 手工抄，物理日志和系统审计对不上，等于没有关联能力。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把门禁记录和系统登录日志按时间对齐后，你能直接告诉我某时段某账号的登录对应哪个人的物理在场记录吗？
+    - 日志保存期多长？取证时两套记录的时钟偏移怎么校准？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

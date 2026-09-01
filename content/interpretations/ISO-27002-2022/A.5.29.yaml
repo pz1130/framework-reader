@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.29
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「平时一切正常，一出事系统起不来或带着错误状态上线」——中断、被攻破或故障后，必须能把系统恢复到可信的已知状态，而不是随便重启就算完事。
+    basis: inferred
+  plain_zh:
+    value: 你得有一套预案，规定中断后怎么把系统恢复到干净、可信的状态，并且真去演练过，而不是文档写写。
+    basis: inferred
+  practice:
+    value:
+      '1': 有书面恢复预案，明确谁负责、按什么顺序恢复、恢复到什么状态；至少做过一次桌面推演。
+      '2': 预案包含恢复点和恢复时间目标；定期做恢复演练并记录结果；发现的问题有整改闭环。
+      '3': 恢复流程与备份策略联动，支持从干净基线重建而非仅依赖增量；演练覆盖完整中断场景；恢复操作有审计日志可供追溯。
+    basis: inferred
+  evidence:
+    value: 恢复预案文档、演练计划与签到表、演练后的复盘与整改记录、备份恢复验证报告、恢复过程中使用的脚本/SOP。
+    basis: inferred
+  common_myth:
+    value: 以为「有备份、能恢复数据」就等于系统恢复了——漏掉的是恢复后系统是否处于可信状态，例如恶意软件残留、配置被篡改、账号被植入后门，这些不清掉就上线等于白恢复。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次完整恢复演练是什么时候？有没有在演练中把系统从备份恢复到干净环境并验证安全配置？
+    - 恢复预案里写「恢复到已知可信状态」，这个状态具体怎么定义、由谁验证？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

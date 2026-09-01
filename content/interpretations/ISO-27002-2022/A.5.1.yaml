@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.1
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全要求散落在各部门的邮件、口头约定和个人习惯里」——没有一份被管理层正式认可、统一发布的信息安全方针，安全决策就失去依据，出了事也没法追责，审计更无从谈起。
+    basis: inferred
+  plain_zh:
+    value: 让公司有一份正式的安全总纲：写明安全为什么重要、覆盖哪些范围、谁负责什么、管理层怎么表态，并且定期更新、让该知道的人都看到。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份经管理层批准的信息安全方针文件，写明目的、范围、基本责任分工，并发布给全员。
+      '2': 方针配套了落地程序（如事件响应、访问控制、供应商安全），明确各角色具体职责，并有年度评审记录。
+      '3': 方针不是孤立文档——它驱动其他安全策略与制度，评审有正式流程和修订历史，管理层在重大变化时主动更新并重新传达。
+    basis: inferred
+  evidence:
+    value: 经批准并带版本号的信息安全方针文件、发布与传达记录（邮件、内网公告或培训签到）、方针评审与修订历史、方针与配套制度的引用关系说明。
+    basis: inferred
+  common_myth:
+    value: 以为「有一份安全制度汇编就算有方针」——很多公司把几十页制度堆在一起盖个章，却没有一份简短、被管理层签发的方针作为总纲。审计员看的是方针有没有单独成文、有没有明确管理承诺、有没有按周期评审，而不是制度有多厚。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份方针上一次评审是什么时候？谁发起的、结论是什么？
+    - 新员工入职时从哪里可以看到信息安全方针？你怎么确认他们真的看过？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

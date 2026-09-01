@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.13
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「数据只有一份，硬盘坏了、勒索加密了、误删了，全没了」——备份不是存档，是恢复的最后一道物理底线。没有可验证的恢复能力，备份只是占存储空间的死数据。
+    basis: inferred
+  plain_zh:
+    value: 把用户数据、系统配置、软件与授权、安全相关文档都按策略备份；备份本身要防篡改、防泄露，并且定期演练确实能恢复，而不是只做「备份行为」本身。
+    basis: inferred
+  practice:
+    value:
+      '1': 关键系统与用户数据有备份任务在跑；备份介质与生产环境物理隔离；至少做过一次恢复测试，有记录。
+      '2': 备份范围覆盖系统镜像、配置、应用与安全文档；备份有保留周期与加密；恢复测试有明确频次（如季度）与书面结果。
+      '3': 备份与恢复纳入变更管理——重大变更前强制快照；恢复测试有量化指标（如 RTO/RPO）并定期向管理层报告；备份完整性通过校验和或数字签名验证，防静默损坏。
+    basis: inferred
+  evidence:
+    value: 备份策略与范围清单；备份任务执行日志；备份介质存储位置与访问控制记录；加密与完整性校验配置；定期恢复演练报告（含恢复时长、数据丢失量、失败项及整改）。
+    basis: inferred
+  common_myth:
+    value: 以为「备份任务绿灯、存储空间够用」就算安全。最典型的翻车是备份脚本一直在跑，但恢复测试发现备份的是旧版本应用或数据库文件没随事务日志一起备份——恢复出来是坏的。另一个常见死法是备份介质跟生产在同一个机房同一个网段，勒索病毒横向扫一遍连备份一起加密。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 上次完整恢复测试是几月几号？恢复了哪套系统？花了多长时间？结果记录是谁签的字？
+    - 备份介质和生产环境的物理与网络隔离是怎么做的？勒索病毒进来之后备份能不能活下来？
+    - 备份数据本身的加密密钥放在哪儿？跟生产系统的密钥是同一套吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

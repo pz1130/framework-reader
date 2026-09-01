@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.5.15
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「账号在发、权限在改，但没有人能说清who can access what」——权限发错是慢性的，收不回是急性的；规则一旦靠口头与微信群而不是书面与系统，审计时任何一次抽查都能推翻你整套说法。
+    basis: inferred
+  plain_zh:
+    value: 把「谁能访问什么、凭什么访问、出格了怎么办」整理成明文规则，按规则发权限、拦访问、定期回头看，并跟其他安全流程接上轨。
+    basis: inferred
+  practice:
+    value:
+      '1': 有书面准入与访问规则文件，至少覆盖账号开通、权限审批、回收注销；审批有记录可查。
+      '2': 规则按角色与数据敏感度做了差异化；权限变更走工单；有周期评审，评审记录留存；特权账号单独管理。
+      '3': 访问授权由系统策略/工具强制支撑（如IAM或动态授权），异常访问有检测与阻断；规则与风险评审联动，变更可追溯、越权可拦、评审能揪出存量异常。
+    basis: inferred
+  evidence:
+    value: 准入与访问规则文件（含版本与审批记录）、账号开通/变更/回收的工单记录、访问权限matrix或角色定义、周期评审记录（含异常项处理）、特权账号清单及其使用与审批记录、授权策略与IAM系统截图。
+    basis: inferred
+  common_myth:
+    value: 以为把入离职账号管好、开通要审批就算这条过关。但规则文件本身必须存在且为最新——很多团队有实践没成文，审计员追问「开一个高风险系统账号要走哪几步、写在哪一页」就答不上来。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 一个员工转岗后，其原有系统访问权限是按什么流程收回的？最近三例转岗的处置记录给我看。
+    - 访问规则文件最近一次更新是什么时候？谁审批的？跟当前审批矩阵对得上吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

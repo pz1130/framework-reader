@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.24
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「有加密算法、证书、密钥就以为安全」——密钥存哪、怎么轮换、谁管根证书、证书有没有过期吊销没做对，加密就是个摆设，而审计看你有没有一处一处说得清，不是看你口号多响。
+    basis: inferred
+  plain_zh:
+    value: 把加密用到的算法、密钥、证书这条线完整管起来：算法得选对、密钥得有人负责且定期换、证书得从可信源头来且不过期。
+    basis: inferred
+  practice:
+    value:
+      '1': 给重要系统和传输通道配上加密算法与密钥；密钥有指定负责人；证书快过期时有人能续；密码学相关的坏习惯（比如硬编码密钥）没在正式环境蔓延。
+      '2': 有书面密钥管理政策，覆盖密钥生成、存储、分发、轮换与销毁；有集中或用户侧的信任库，只包含批准过的根证书；密钥轮换与证书续期按计划执行并有记录。
+      '3': 算法选择与密钥长度策略自动落地或至少能抽查拦阻不合规用法；密钥使用方式符合行业对其存储接口的要求；证书失效前有告警、失败有清单可查，供方或本地的加密组件也在追踪范围内。
+    basis: inferred
+  evidence:
+    value: 密钥与证书盘点表、指定的密钥负责人名单、密钥轮换与证书续期记录、信任库的根证书清单、密码学组件与算法版本追踪、自动化扫描或审计日志里有硬编码密钥的检查结果。
+    basis: inferred
+  common_myth:
+    value: 以为「装了个加密软件或 HTTPS 开着」就能交差。审计要的是你手里每个密钥长什么样、在哪、谁碰过、什么时候换过；你在问答里说不出来，等于没做。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 把这个系统的密钥生成和销毁流程按时间线走一遍，给我看实际执行的记录单。
+    - 除正式证书外，测试或临时的根证书有没有放进信任库？如果放进去了，批准人是谁？
+    - 你们最后一次全量扫描硬编码密钥是什么时候？结果里没清干净的，现在还在正式代码里跑吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

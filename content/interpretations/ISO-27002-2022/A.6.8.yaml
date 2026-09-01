@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.6.8
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是安全事件的信号卡在个别员工或单点工具里——没人知道、没人上报，等到影响扩散或监管问责时才发现根本没留下上报轨迹。这条管的是「发现到响应」之间的那条上报管道，而不是事件响应本身。
+    basis: inferred
+  plain_zh:
+    value: 建立一条明确的路径，让任何人发现可疑或实际的安全事态时知道往哪报、报什么、多快报，并且报完要有记录和跟进，不能只靠口头喊一嗓子。
+    basis: inferred
+  practice:
+    value:
+      '1': 有指定的事件上报渠道和联系人；员工知道发现可疑事态要找谁；收到上报有人记录并初步评估。
+      '2': 有书面上报流程，写明上报时限和上报内容要素；所有上报集中登记并跟踪闭环；定期向上级汇总上报情况。
+      '3': 上报渠道与监控告警联动自动触发；上报时限有系统监控；关键事态上报后自动升级并通知管理层；上报数据反哺风险处置和改进。
+    basis: inferred
+  evidence:
+    value: 事件上报流程文件、上报登记台账（含时间、上报人、事态描述、处理状态）、告警联动配置记录、上报统计分析报告、定期演练记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有安全团队邮箱和值班手机」就算建立了上报通道。员工不知道什么算事态、不知道该不该报、不知道该往哪报，通道就等于不存在。真正的考验是：随便问一个非安全岗员工，能不能在三十秒内说出具体怎么上报。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 抽三个实际工单，从员工发现到安全团队收到，间隔了多久？有人跟进吗？
+    - 员工入职培训里有没有教过什么情况必须上报？培训完多久复习一次？
+    - 系统监控告警与人工上报两条路径怎么合流？会不会各记各的账？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

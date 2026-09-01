@@ -1,0 +1,48 @@
+control_id: ISO-27002-2022:A.6.7
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是员工不在固定办公场所时，工作环境、网络和终端完全脱离安全视线——家里或咖啡馆的 Wi-Fi、个人电脑、共享设备都成了黑客进入企业内网的侧门；同时也要防远程办公只是“人在外面”而安全要求和设备配置完全没跟上。
+    basis: inferred
+  plain_zh:
+    value: 员工在外办公（家里、咖啡馆、客户现场等）时，得明确什么设备能用、网络要满足什么条件、数据怎么处理、出事找谁；而且不能只在制度里写一句“注意安全”，要有实际的技术和流程约束。
+    basis: inferred
+  practice:
+    value:
+      '1': 有远程办公政策；要求使用公司配发的设备并通过 VPN 访问内网；明确哪些数据不能带出办公环境。
+      '2': 远程接入有设备合规检查（如补丁、杀毒、磁盘加密）；VPN 有多因素认证；远程办公设备丢失或被入侵时有报告和处置流程。
+      '3': 远程接入按设备信任等级和用户风险动态控制；会话超时和异常行为有监控；公司能远程擦除或强制隔离失陷设备；远程办公政策与数据分类分级联动。
+    basis: inferred
+  evidence:
+    value: 远程办公政策文档、设备合规基线（如 MDM/UEM 策略）、VPN 配置与 MFA 启用记录、远程设备资产清单、事件响应流程中远程设备丢失或失陷的处理记录、抽查员工远程办公环境的记录。
+    basis: inferred
+  common_myth:
+    value: 以为“给员工发台笔记本、开了 VPN 就算远程办公安全”。实际很多人回家把公司电脑插到家用路由器上、和家人共用一台电脑处理工作邮件、或者 VPN
+      只是个形式根本没强制走流量——政策要不写清网络和终端的最低要求，VPN 就是一层纸。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 公司配发的笔记本在家里用，补丁和杀毒是谁在管？如果员工拿个人电脑办公，是怎么管控的？
+    - VPN 有没有强制所有员工使用？有没有例外清单？例外名单怎么审？
+    - 员工在咖啡厅连公共 Wi-Fi 办公，你们的政策和机制允许吗？
+    - 远程办公设备丢失或被入侵，员工报告给谁？处置时限是多久？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 背景下更关注远程办公中个人数据处理与设备混用带来的隐私合规问题，会追问家庭网络和同事共享的屏幕共享工具等；美国审计员更偏向基础设施控制，比如
+      VPN 配置、证书管理和 MDM 覆盖率。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

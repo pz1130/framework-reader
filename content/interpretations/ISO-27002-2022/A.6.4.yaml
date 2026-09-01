@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.6.4
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「违规了没人担责」——员工明知故犯或多次疏忽，却没有正式的追责路径，制度变成纸老虎，安全要求靠自觉而非约束。
+    basis: inferred
+  plain_zh:
+    value: 要有一套成文的违规处理规矩：员工不遵守安全政策会有什么后果、按什么流程处理、谁来决定，并且要让全员知道这条红线。
+    basis: inferred
+  practice:
+    value:
+      '1': 员工手册或安全政策里写明违规会受处分；有对应负责人（如安全主管/HR）知道怎么启动。
+      '2': 有正式的违规处理流程（调查、定级、通知、执行处分）；记录归档；新员工入职时明确告知违规后果。
+      '3': 违规处理与绩效/晋升挂钩；管理层按流程决策并有法务参与；定期回顾案例并用典型事件教育全员。
+    basis: inferred
+  evidence:
+    value: 员工手册或安全政策中的处分条款、违规处理流程文件、处分通知或 HR 记录、员工签收确认、违规案例教育材料。
+    basis: inferred
+  common_myth:
+    value: 以为「出了事劝退当事人就行」——没有正式流程和留痕，同样情况不同处理，审计员无法确认处分不是随机的，也看不出制度是否真在执行。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 过去一年里员工违规处理启动过几次？分别依据哪一条政策条款？
+    - 处分决定谁签发的？员工本人收到书面通知了吗？
+    - 普通员工从哪里知道违规会有纪律处分？有签收或培训记录吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.AA-05
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「账号权限发出去就没人管」——员工转岗、离职、外包到期后权限不清算，以及一个账号从头用到尾的超级权限，导致数据泄露或内部违规操作时既拦不住也追不到人。
+    basis: inferred
+  plain_zh:
+    value: 把「谁能进哪个系统、能看什么、能改什么」写成明确的政策，并管住权限的分配、执行和定期复查，确保每个人只有干活所需的最小权限，且关键操作需要多人互相制衡。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一套权限申请与审批的书面流程；新员工入职按岗位模板开通权限；离职或转岗时有人负责收权限（哪怕只是邮件通知）。
+      '2': 权限申请、审批、变更、删除都有记录；定期（如每季度）对系统权限做人工或工具辅助的账实核对；管理员账号有额外控制（如双人审批）。
+      '3': 权限开通与回收与 HR/ITSM 系统联动自动触发；关键系统权限定期自动复核并推送差异报告；对敏感权限实施批量变更需二次审批；特权账号有定期改密与审计回溯。
+    basis: inferred
+  evidence:
+    value: 权限管理政策文件（写明最小权限与职责分离原则）、角色权限矩阵、权限申请/变更/回收的审批单（含 HCM/ITSM 工单号）、定期权限复核记录（如季度常驻用户清单核对表）、管理员账号授予与复核记录。
+    basis: inferred
+  common_myth:
+    value: 以为上了 IAM/身份管理平台就等于做到最小权限和职责分离。工具只是管道，政策没把「什么角色配什么权限」写死、审批链没落到人、复核没人执行，权限照样越滚越大。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次全量权限复核是什么时候？对照的是哪一天的组织架构快照？
+    - 转岗员工的老系统权限，从 HR 变更到权限回收，平均隔了多少天？谁负责盯着这个时限？
+    - 业务系统里有多少个账号是「创建后 12 个月从未登录」？什么时候清理？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

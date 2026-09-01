@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:GV.PO-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「制度上墙、流程吃灰」——政策文件发布那天最正确，三年后环境、威胁、技术全变了，文件还在用旧逻辑管新问题，安全团队按过期条款做事，出了事才发现政策早就脱离现实。
+    basis: inferred
+  plain_zh:
+    value: 把管理网络安全风险的那套政策当成活文档：定期回头看、该改就改、改完要让该知道的人知道，并且真的按它办事——不是发完就完。
+    basis: inferred
+  practice:
+    value:
+      '1': 有一份经批准的信息安全政策文档，注明版本和生效日期；政策里写了会定期评审；有人认领维护责任。
+      '2': 按固定周期（如年度）评审政策，触发条件明确（重大事故、法规变化、组织重组、架构大改）；每次修订有变更记录、审批留痕、重新发布并留下传达证据。
+      '3': 政策评审与风险登记、威胁情报、合规义务变化联动，不是到点翻一遍；管理层在评审中真正参与拍板；评审发现的问题能回溯到政策修订和落地动作，形成闭环。
+    basis: inferred
+  evidence:
+    value: 政策文件版本历史与修订记录、评审会议纪要与签到、政策下发与确认签收记录、政策与近期风险事件或合规变化之间的对应改动说明。
+    basis: inferred
+  common_myth:
+    value: 以为「每年把政策文件拿出来改个日期重新发布」就算完成了年度评审——审计员要看到的是评审过程本身：谁看了、看了什么依据（新威胁、新合规、新技术）、改了什么、为什么改。只有日期变化没有内容变化的政策，比没有政策更难看。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 这份政策上一次真实修订是什么时候？触发修订的事件或评审依据是什么？
+    - 政策说安全事件要在 X 时间内上报，当前应急响应预案和它一致吗——有没有政策更新了但预案还是旧版的情况？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

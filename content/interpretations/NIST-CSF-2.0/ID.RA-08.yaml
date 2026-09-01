@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:ID.RA-08
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「漏洞被打到脸上才反应」——安全团队必须有一条对外公布的收件通道，外部研究员、客户、监管或供应商发现漏洞后能按明示流程递进来，内部有人接、有人评、有人处理、有人回复；否则漏洞信息要么烂在外部邮箱，要么被当作垃圾邮件无视。
+    basis: inferred
+  plain_zh:
+    value: 对外开一扇门，让任何人发现你们产品、系统或服务有漏洞时知道往哪儿报、报完会怎样；对内定好谁接收、谁判定真假、谁定严重性、谁推动修复、谁跟报告人保持沟通。整条链路要有书面流程支撑，不是靠某个人的私人邮箱碰巧收到。
+    basis: inferred
+  practice:
+    value:
+      '1': 有公开的漏洞报告邮箱或网页表单；指定至少一人定期查收并回执收到。
+      '2': 发布可访问的漏洞披露政策，写明响应时限与处理阶段；内部有漏洞接收、评估与处置流程并留痕。
+      '3': 披露流程与漏洞管理主流程打通，自动生成工单；有明确的 SLA（如首次回复、严重性评估、修复时间窗）；对重复报告与恶意报告有区分处理路径。
+    basis: inferred
+  evidence:
+    value: 公开可访问的漏洞披露政策（URL 或文档）、指向披露邮箱的网页截图、接收与响应记录（邮件工单或漏洞管理平台条目）、SLA 达成情况报表、重复与误报的处理记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有漏洞响应流程」就是建了个专门收漏洞的邮箱。真正的审计点不在邮箱存在，而在于整个处置链路能否闭环——报告进来后，有没有人当天回执、几天内定性、按优先级推进修复并在修复后通知报告人。邮箱只是入口，入口后没人接力，等同于没建。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 漏洞披露政策的公开链接在哪个页面？能截图给我看吗？
+    - 拉一条最近的漏洞报告工单，从接收到首次回复、再到修复通知，各间隔了多少天？
+    - 哪些渠道收到的漏洞才被纳入统计？如果研究员报到了你们老板的私人邮箱，这条算不算？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.28
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是把安全留在测试阶段才想——代码一写出来就带着漏洞进仓库，等上线前才扫已经晚了。这条要的是在写代码这个动作发生时就把常见弱点挡住，并且能证明每个改动都过了安全检查。
+    basis: inferred
+  plain_zh:
+    value: 制定安全编码规范，告诉开发者哪些函数不能用、哪些库要避坑；用自动化工具在每次代码提交或合并时自动扫一遍常见弱点；发现的问题要有修复和验证闭环，不能扫出来就完事。
+    basis: inferred
+  practice:
+    value:
+      '1': 有书面安全编码规范，覆盖常见弱点（如注入、越权、硬编码密钥）；开发仓库接入一种静态扫描工具，能出报告。
+      '2': 静态扫描在CI流水线里对每次变更自动执行，高危问题设拦截门禁；修复有工单或记录闭环；关键库/组件有版本核对。
+      '3': 除静态扫描外，针对架构层面做攻击面分析与威胁建模，编码规范随漏洞情报更新；扫描规则按业务定制，误报率受控；历史存量代码有分批整改计划。
+    basis: inferred
+  evidence:
+    value: 安全编码规范文件、静态扫描工具配置与扫描报告、CI流水线门禁配置截图或日志、漏洞修复记录或工单、库/组件版本清单及漏洞核对结果。
+    basis: inferred
+  common_myth:
+    value: 以为「CI里挂了个扫描器就完事」——常见错法是扫描结果没人看、高危不阻断、修复不留痕；或者扫描器规则从没更新，新出的弱点类型根本查不出来。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 高危漏洞在流水线里是拦截还是只提示？拦截依据写在哪条规则里？
+    - 最近一次扫描发现的高危问题，修复记录和验证结果在哪？
+    - 扫描器规则多久更新一次？怎么确认覆盖到了新公布的弱点类别？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

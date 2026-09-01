@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.5.11
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「人走了、东西没交、权限没关」——离职或转岗后账号照用、公司资产被带走、机密知识随人流失，出了事追不到责任，也拦不住前员工对系统的后续访问。
+    basis: inferred
+  plain_zh:
+    value: 人员离职或转岗时，要把门禁卡、电脑、U 盾、钥匙、工牌等公司财物收回来，把系统和物理权限按新岗位调好或停掉，再做一次离职面谈交代保密义务，并保留必要记录。
+    basis: inferred
+  practice:
+    value:
+      '1': 离职流程有明确清单：收回门禁卡、电脑、钥匙、U 盾等资产；停用系统账号；有离职面谈并签字确认。转岗时有通知触发权限重新评估。
+      '2': 离职与转岗流程有书面记录（签收单、工单）；权限回收有明确时限并有人跟踪；转岗时按新岗位重新审批权限，旧的调岗前权限及时废止。
+      '3': 离职权限回收在系统层面自动触发（如 HR 系统事件驱动 IAM/AD）；资产归还与权限回收对账无遗漏；转岗权限变更可审计追溯，离职后访问日志留档备查。
+    basis: inferred
+  evidence:
+    value: 离职交接清单与资产签收记录、离职面谈纪要、权限停用/变更工单与时间戳、HR 触发通知的流程记录、转岗权限评审与审批记录。
+    basis: inferred
+  common_myth:
+    value: 以为「让离职员工在交接单上签个字」就把资产和权限都收干净了。签收单只证明交了什么，不证明系统侧权限已关、门禁卡已失效——很多团队最后发现走了三个月的人还能登录公司
+      VPN。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 抽三个去年离职员工，系统账号与门禁权限分别是哪天停的？依据哪份流程、谁执行的？
+    - 转岗员工换了团队，旧团队的文件共享和项目仓库权限什么时候撤掉的？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

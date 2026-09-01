@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.15
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「出了事什么都查不到」——日志要么没开、要么记不全、要么留不久。这条要确保系统把关键事件按统一标准记下来，并且留到足够长的时间，让事后调查、取证和合规回应能有据可查。
+    basis: inferred
+  plain_zh:
+    value: 把该记的事件（登录、权限变更、系统操作等）都记下来，记录要包含时间、谁、做了什么、成没成功，并且设置保存期限，留着以后查。
+    basis: inferred
+  practice:
+    value:
+      '1': 核心系统开日志；覆盖登录成败、账号权限变更、关键业务操作；日志有统一的时间来源；不允许普通用户自行删除。
+      '2': 形成书面事件类型清单并注明理由；时钟同步；日志内容包括事件类型、时间、主体身份、结果；有明确保存期限并强制执行。
+      '3': 日志生成覆盖所有在架系统（含容器、云服务、网络设备）；按时自动归档；删除权限受控且全程留痕；有仪表盘对异常做自动提醒。
+    basis: inferred
+  evidence:
+    value: 事件类型与留存期限的书面清单、日志生成抓屏或配置样例、日志保留策略的执行抽查结果、时钟同步配置、权限分离（操作员不能删自己的日志）、日志容量监控或告警记录。
+    basis: inferred
+  common_myth:
+    value: 以为「日志留着就行」——很多团队日志开着但从不看、改系统时不加新事件、删除权限在运维手里没人复核；更常见的是日志只留十几天，出事时问 IT「怎么没了」才想起来当初没设留存。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 调上个月特权账号登录日志，给我看一条完整记录包含哪几个字段？
+    - 日志保留是几天的？删除谁有权限？有没有人独自能删日志？
+    - 新上线的系统是怎么加入日志采集的？谁负责、走什么流程？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

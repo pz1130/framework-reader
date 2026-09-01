@@ -1,0 +1,44 @@
+control_id: ISO-27002-2022:A.8.25
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「安全在开发流程末尾才入场」——需求阶段没人提安全要求，设计阶段没人看架构，测试阶段才发现漏洞，上线前只能靠加班补丁硬塞，最后安全成了上线阻碍而不是工程质量的一部分。
+    basis: inferred
+  plain_zh:
+    value: 让开发流程从需求、设计、编码、测试到发布的每个环节都带上安全和隐私要求——不是让安全团队在每个节点签字，而是让流程本身规定谁在什么时候做什么安全检查，并且把用的工具、配置、改了什么记下来。
+    basis: inferred
+  practice:
+    value:
+      '1': 开发流程文档里写了安全要求（如安全编码规范、漏洞扫描）；新项目立项时安全团队有评审入口；上线前做一次安全测试。
+      '2': 开发各阶段（需求/设计/编码/测试/发布）有明确的安全活动与责任人；开发工具链中集成基础安全工具（SAST/DAST/依赖扫描）；工具配置有记录；安全评审意见有跟踪闭环。
+      '3': 开发流程与工具链属于受管配置项——工具升级、规则集变更走变更审批；安全活动自动触发并生成度量数据；偏差（如跳过某阶段检查）有例外流程可追。
+    basis: inferred
+  evidence:
+    value: 开发流程文档（含安全活动与岗位职责）、项目需求与设计文档中的安全章节、CI流水线截图或配置（含安全工具与门槛条件）、安全评审缺陷跟踪记录、工具与规则集变更变更记录。
+    basis: inferred
+  common_myth:
+    value: 以为「买了SAST/DAST、挂在CI里」就算这条达标。工具只是形式——审计员会看规则集是谁配的、谁在维护、扫描结果怎么处置、如果流水线被跳过有没有人管。工具存在但没人负责跟进结果，比没工具更难看。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 流水线里SAST结果达到什么条件才能合并代码？谁设的阈值、多久调一次？
+    - 抽一个已上线项目：设计阶段的安全要求写在哪份文档？谁写的？生命周期里哪个节点做了安全评审？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.8.29
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「开发完、能跑就上线」——代码在交付前没有经过安全检测就进了生产，漏洞、后门、恶意代码被带进运行环境，等出事才回头补。
+    basis: inferred
+  plain_zh:
+    value: 在软件开发和验收阶段就要做安全检测，把常见漏洞、后门、恶意代码挡在上线之前，而不是上线后靠补丁和监控去救火。
+    basis: inferred
+  practice:
+    value:
+      '1': 上线前有人工代码走查或自动化扫描，能把高危漏洞（如注入、越权）拦在测试环境；修不完的漏洞有书面豁免记录。
+      '2': 安全检测纳入开发流程：每次发布前跑静态扫描和关键路径的漏洞检测；检测结果有记录、有负责人跟进修复；高危漏洞不修复不允许上线。
+      '3': 检测覆盖开发、测试、验收全程；动态测试和依赖库/供应链组件扫描与 CI/CD 集成，有问题阻断流水线；检测结果与缺陷管理打通，能从数据看出漏洞密度和修复时长的趋势。
+    basis: inferred
+  evidence:
+    value: 开发流程文档中关于安全检测的章节、静态/动态扫描报告、漏洞修复与豁免记录、验收环节安全测试的签字单、CI/CD 流水线中安全检测步骤的配置截图。
+    basis: inferred
+  common_myth:
+    value: 以为「采购的扫描工具在每个环境都跑一遍」就等于做了安全检测——很多团队扫描只是跑完输出 PDF 就归档，没人看结果，也不跟进修复；工具发出高危告警但没人管，审计员一追「这个高危漏洞后来怎么处理的」就露馅。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近三个版本的安全扫描报告各扫出多少高危漏洞？每个的修复或豁免状态是什么？
+    - 开发环境里用到的第三方组件/依赖库，扫描结果里有没有已知漏洞？这些漏洞谁在负责跟进？
+    - 扫描和漏洞修复的负责人分别是谁？修复记录在哪里能查到？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

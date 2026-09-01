@@ -1,0 +1,45 @@
+control_id: ISO-27002-2022:A.7.11
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「服务器泡在水里、机房热到宕机、着火时电闸找不到、断电后机器硬关机」这类物理环境事故——保障设施平时没人管，出事才想起，损失已经造成。
+    basis: inferred
+  plain_zh:
+    value: 机房/设备间里的水电气和温湿度等保障设施，要保证一直正常可用，坏了能快速处置，紧急时刻有人会正确操作，并且这些设施本身不能被随便误动。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房有 UPS、有温湿度计、有总水阀/电闸的位置标识；每年至少一次巡检和应急演练；关键人员知道开关在哪。
+      '2': UPS 和空调有定期维护与切换测试记录；水浸/温感/烟感有告警并能通知到人；备品备件有库存清单；应急处置流程有书面文件。
+      '3': 保障设施纳入监控平台（UPS 状态、温湿度、漏水检测实时可见）；排水和电力路径有图纸和冗余；维护和切换操作有工单记录可追溯；演练有报告并闭环改进。
+    basis: inferred
+  evidence:
+    value: 保障设施巡检表、UPS 测试与放电记录、空调维护记录、告警系统测试截图、应急演练脚本与签到及总结、水阀/电闸标识照片、对应设施的故障处置记录。
+    basis: inferred
+  common_myth:
+    value: 以为「有台 UPS 就算有保障」。UPS 电池三年没测过、告警没人看、电闸位置新来的值班员不知道——这些和没有一样。审计员要看的是这些设施在紧急时刻能不能真的起作用并有人会操作。
+    basis: inferred
+  auditor_asks:
+    value:
+    - UPS 上次放电测试是什么时候？持续了多久？结果记录在哪？
+    - 值班人员现场演示一下，机房进水了第一步关哪个阀？
+    - 温度告警触发后，通知到谁？上次真实触发是什么情况？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

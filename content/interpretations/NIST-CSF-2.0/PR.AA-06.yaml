@@ -1,0 +1,45 @@
+control_id: NIST-CSF-2.0:PR.AA-06
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「物理边界形同虚设」——机房、配电间、档案室谁都能进，服务器被拔盘、插U盘、拍照、剪线都没人知道；门禁卡借用、访客不登记、监控死角长期存在，等于把网络安全的最后一道物理防线交给运气。
+    basis: inferred
+  plain_zh:
+    value: 按资产的风险等级管好物理门禁——哪些区域能进、谁能进、什么时段进、进去干什么都要有规矩，门禁系统要能记、能查、能拦，监控和巡查要覆盖到位，不能让物理访问变成法外之地。
+    basis: inferred
+  practice:
+    value:
+      '1': 机房、配电间等高危区域有门禁或锁；访客有登记；员工有门禁卡；监控摄像头有但可能覆盖不全。
+      '2': 按资产风险划分物理区域（如公开区、受限区、高安全区）；不同区域不同授权层级；门禁记录留存可查；访客全程有人陪同；定期有人巡查并记录。
+      '3': 门禁系统与人员入离职/调岗流程联动，卡权限自动回收；监控覆盖所有关键入口且有保留期；异常物理访问（如非工作时间刷卡、尾随）有告警；物理安全事件有演练和复盘；能证明物理访问控制与风险评估等级相匹配。
+    basis: inferred
+  evidence:
+    value: 物理区域划分图与风险评估文档、门禁权限清单及开通/回收记录、访客登记簿或电子记录、监控录像保留与抽查记录、巡查签到表、物理安全事件报告与整改记录。
+    basis: inferred
+  common_myth:
+    value: 以为「装了门禁和监控就算达标」——门禁卡从不回收离职员工权限、访客尾随无人拦、监控录像坏了半年没人修，这些事审计员一查就穿帮。物理访问控制的关键在于「管理、监控、执行」三个动作都真实发生，不是只有设备。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 离职员工的物理门禁卡权限是什么时候回收的？有没有和HR离职流程挂钩？
+    - 监控录像覆盖哪些区域？保存多久？谁有权查看？最近一次验证录像能正常回放是什么时候？
+    - 非工作时间有人刷卡进机房，你们怎么发现？处置流程是什么？
+    basis: inferred
+  regional_note:
+    value: 欧洲审计员在 GDPR 语境下会追问物理访问记录是否包含个人数据（如访客证件复印件、生物识别信息），存储和访问权限是否合规；美国审计员更关注门禁与监控是否覆盖所有高风险区域、能否证明未授权访问被实际拦截。
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

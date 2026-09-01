@@ -1,0 +1,46 @@
+control_id: NIST-CSF-2.0:DE.AE-03
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「只盯单点告警、各看各的屏」——攻击者很少只触发一个信号，真正的入侵往往藏在多源数据的交集里；没有关联分析，安全事故要等到业务已受损才会被当成一回事。
+    basis: inferred
+  plain_zh:
+    value: 把网络设备、主机日志、威胁情报、应用日志、人员行为等不同来源的信息放在一起做关联分析，从中发现单看任何一路信号都发现不了的攻击迹象，并让分析结果能支撑后续处置。
+    basis: inferred
+  practice:
+    value:
+      '1': 有集中日志平台能接关键设备的日志，安全人员会在事情发生后手工翻日志找关联。
+      '2': 有固定的关联规则库（如登录失败+特权命令执行+异常外连），能命中已知攻击模式；关联结果有告警、有专人跟进。
+      '3': 关联分析覆盖攻击链阶段，结合威胁情报与资产上下文；新攻击模式通过定期更新规则和回溯检测来补齐；关联结果直接驱动事件升级与处置流程。
+    basis: inferred
+  evidence:
+    value: 日志统一管理平台与接入清单、关联规则列表及定期更新记录、告警事件分析记录、关联规则命中事件的处置工单、定期报告展示多源关联发现的事件。
+    basis: inferred
+  common_myth:
+    value: 以为「SIEM 上线了、日志都接进来了」就是做到了关联分析。多数 SIEM 只是把日志堆在同一个搜索框里，规则没建、命中没人看、情报没接进来——那不是「关联」，是「存档」。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 最近一次由关联分析发现、单点告警没发现的攻击或可疑行为是什么？
+    - 你们有哪些关联规则？这些规则上次更新是哪次安全事件或情报驱动改的？
+    - 威胁情报是怎么接入关联分析的——人工查还是系统对接？
+    - 一个关联告警命中后，从产生到有人处置的平均时间你清楚吗？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null

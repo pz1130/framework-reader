@@ -1,0 +1,44 @@
+control_id: NIST-CSF-2.0:RS.MA-02
+locale: zh-CN
+state: draft
+fields:
+  intent:
+    value: 防的是「事故响应变成睁眼说瞎话」——低级的误报和烟雾弹没人甄别，高优先级的真事件反而被埋在一堆工单里没人救火，最后统计出来的事故数字都是垃圾。
+    basis: inferred
+  plain_zh:
+    value: 所有报上来的安全事件得有个正式的接单和分流过程，有人判断它是不是真事故、有多严重、该谁来接，处理完要留痕。
+    basis: inferred
+  practice:
+    value:
+      '1': 有个官方邮箱或工单入口收事故报告；有人第一时间判断真假和优先级；能分清误报和真事件。
+      '2': 用带编号的工单系统记录每次分诊结论；有事件分级标准（如高危/中危/低危）；处理优先级跟业务影响挂钩并有记录。
+      '3': 分诊逻辑落成可自动排序的规则；误报来源会被反馈到检测规则做闭环改进；事后有统计证明高危事件没有被漏分或积压。
+    basis: inferred
+  evidence:
+    value: 分诊工单的流转记录含时间线和分诊负责人；事件分级定义文件；误报闭环改进的证据或报告。
+    basis: inferred
+  common_myth:
+    value: 以为建了个告警群或开了个邮箱就算「分诊」——实际上没有责任到人、没有分级标准、没有超时升级机制，五分钟抢一下的乱象仍然像消防队扑纸火：全员救火，却没人数清楚到底烧了几栋楼。
+    basis: inferred
+  auditor_asks:
+    value:
+    - 昨天被标记为高优先级的事故从接报到被第一人接手处理用了多久？具体是哪几个工单？
+    - 你们怎么区分安全性误报和真正需要注意的异常？谁有最终定级权？标准记录在哪？
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: null
+  confirmed_at: null
+  signed_digest: null
+  interview_seconds: null
