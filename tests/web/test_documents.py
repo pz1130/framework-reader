@@ -130,6 +130,16 @@ def test_a_pdf_is_refused_with_a_sentence_not_a_stack_trace(env):
     assert env.docs.list_documents() == []
 
 
+def test_an_oversized_document_is_rejected_before_parsing(env, monkeypatch):
+    from framework_reader.web import uploads
+
+    monkeypatch.setattr(uploads, "MAX_UPLOAD_BYTES", 8)
+    response = _upload(_as(env, "author"), body="这是一份超过限制的制度")
+    assert response.status_code == 413
+    assert "over" in response.text
+    assert env.docs.list_documents() == []
+
+
 def test_the_page_warns_that_this_leaves_the_building(env):
     """上传内部制度 = 把它发给你配置的模型厂商。这句话必须写在传之前。"""
     page = _as(env, "author").get("/documents").text

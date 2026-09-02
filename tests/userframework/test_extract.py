@@ -46,6 +46,15 @@ def test_a_renamed_doc_says_what_to_do():
     assert "Re-save it as .docx" in str(caught.value)
 
 
+def test_a_docx_with_an_excessive_expanded_document_is_rejected(monkeypatch):
+    import framework_reader.userframework.extract as module
+
+    monkeypatch.setattr(module, "MAX_DOCX_XML_BYTES", 32)
+    with pytest.raises(UnsupportedDocument) as caught:
+        extract("制度.docx", _docx(["正文" * 100]))
+    assert "expands past" in str(caught.value)
+
+
 def test_a_pdf_is_refused_with_a_reason(): 
     """从 PDF 切出来的段落是乱的。噪声接地比没有接地更糟。"""
     with pytest.raises(UnsupportedDocument) as caught:

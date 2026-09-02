@@ -139,12 +139,46 @@ def test_an_sso_only_account_cannot_log_in_with_a_blank_password(store):
         store.login("sso@acme.cn", "")
 
 
+def test_repeated_password_failures_are_rate_limited(store):
+    _admin(store)
+    for _ in range(5):
+        with pytest.raises(IdentityError):
+            store.login(" BOSS@ACME.CN ", "wrong")
+    before = len([e for e in store.audit() if e["event"] == "login.failed"])
+    with pytest.raises(IdentityError):
+        store.login("boss@acme.cn", "pw-boss")
+    after = len([e for e in store.audit() if e["event"] == "login.failed"])
+    assert after == before
+
+
 # ---------- 会话 ----------
 
 def test_a_session_resumes_from_its_token(store):
     _admin(store)
     session = store.login("boss@acme.cn", "pw-boss")
     assert store.resume(session.token).account.email == "boss@acme.cn"
+
+
+def test_resume_does_not_write_last_seen_on_every_request(store, monkeypatch):
+    import sqlite3
+    import framework_reader.identity.store as module
+
+    _admin(store)
+    session = store.login("boss@acme.cn", "pw-boss")
+
+    def last_seen():
+        conn = sqlite3.connect(store.path)
+        try:
+            return conn.execute("SELECT last_seen FROM session").fetchone()[0]
+        finally:
+            conn.close()
+
+    first = last_seen()
+    store.resume(session.token)
+    assert last_seen() == first
+    monkeypatch.setattr(module, "SESSION_TOUCH_INTERVAL", timedelta(seconds=-1))
+    store.resume(session.token)
+    assert last_seen() != first
 
 
 def test_the_raw_token_is_never_stored(store):

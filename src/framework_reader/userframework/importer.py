@@ -12,10 +12,27 @@ _PARENT_HEADERS = {"上级", "父级", "上级编号", "parent", "parent_id"}
 # 用户自己公司的制度原文。他的文档、他的机器、他的 key——可以拿去起草。
 # 与 Tier C/D 的受版权标准原文完全是两回事，后者永远不许出网（主 spec §9）。
 _BODY_HEADERS = {"正文", "描述", "要求", "内容", "条款正文", "body", "text", "description"}
+MAX_SHEETS = 100
+MAX_ROWS = 100_000
+MAX_CELLS = 2_000_000
 
 
 class ImportError_(Exception):
     """导入失败。消息要能让用户自己改好表，所以一律带行号或列名。"""
+
+
+def _bounded_rows(rows) -> list[list[str]]:
+    out = []
+    cells = 0
+    for number, row in enumerate(rows, start=1):
+        if number > MAX_ROWS:
+            raise ImportError_(f"The file has more than {MAX_ROWS:,} rows")
+        values = ["" if cell is None else str(cell) for cell in row]
+        cells += len(values)
+        if cells > MAX_CELLS:
+            raise ImportError_(f"The file has more than {MAX_CELLS:,} cells")
+        out.append(values)
+    return out
 
 
 def read_sheets(path: Path) -> list[tuple[str, list[list[str]]]]:
@@ -28,18 +45,20 @@ def read_sheets(path: Path) -> list[tuple[str, list[list[str]]]]:
     suffix = Path(path).suffix.lower()
     if suffix == ".csv":
         with Path(path).open(encoding="utf-8-sig", newline="") as handle:
-            return [("", [list(row) for row in csv.reader(handle)])]
+            return [("", _bounded_rows(csv.reader(handle)))]
     if suffix in (".xlsx", ".xlsm"):
         from openpyxl import load_workbook
 
         book = load_workbook(path, read_only=True, data_only=True)
-        return [
-            (sheet.title, [
-                ["" if cell is None else str(cell) for cell in row]
-                for row in sheet.iter_rows(values_only=True)
-            ])
-            for sheet in book.worksheets
-        ]
+        try:
+            if len(book.worksheets) > MAX_SHEETS:
+                raise ImportError_(f"The workbook has more than {MAX_SHEETS} sheets")
+            return [
+                (sheet.title, _bounded_rows(sheet.iter_rows(values_only=True)))
+                for sheet in book.worksheets
+            ]
+        finally:
+            book.close()
     raise ImportError_(f"Unknown file type {suffix} - supported: .csv and .xlsx")
 
 

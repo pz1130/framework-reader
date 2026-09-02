@@ -10,7 +10,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install -e ".[dev]"
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: ruff check src tests
+      - run: mypy src/framework_reader/web/uploads.py src/framework_reader/web/images.py src/framework_reader/schema/entities.py
       # Code tests only. No vendor/ fetch, no content-pack build, no signing keys. spec §10.C
       - run: pytest -v
       - name: Confirm vendor/ is absent in public CI
