@@ -26,7 +26,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "httpx2>=2.12,<3", "ruff>=0.12,<1", "mypy>=1.15,<2"]
 
 [project.scripts]
 fr = "framework_reader.cli.main:app"
@@ -47,3 +47,11 @@ framework_reader = ["identity/*.sql", "pack/*.sql", "prompts/*.md", "web/static/
 testpaths = ["tests"]
 # tests/query/test_sample.py and tests/blindtest/test_sample.py share a basename.
 addopts = ["--import-mode=importlib"]
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+check_untyped_defs = true

@@ -20,3 +20,11 @@ def test_compose_does_not_bind_http_to_all_interfaces_by_default():
     text = (ROOT / "docker-compose.yml").read_text(encoding="utf-8")
     assert "127.0.0.1" in text
     assert "0.0.0.0:8765" not in text
+
+
+def test_compose_requires_a_non_default_bootstrap_password():
+    compose = (ROOT / "docker-compose.yml").read_text(encoding="utf-8")
+    entrypoint = (ROOT / "deploy/docker-entrypoint.sh").read_text(encoding="utf-8")
+    assert "FR_BOOTSTRAP_ADMIN_PASSWORD:?" in compose
+    assert "changeme" not in compose
+    assert 'FR_BOOTSTRAP_ADMIN_PASSWORD" = "changeme"' in entrypoint

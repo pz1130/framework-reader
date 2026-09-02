@@ -34,6 +34,7 @@ The content pack does not leave this machine; model calls use your key.
 
 ```bash
 make install     # install dependencies (incl. dev)
+make check       # Ruff + focused type checks
 make test        # run the test suite (no vendor/, no API key needed)
 ./scripts/fetch_sources.sh   # fetch NIST public-domain sources into vendor/
 make build       # build build/content.sqlite (needs vendor/)
@@ -371,6 +372,7 @@ process, HTTP inside the container. TLS is terminated by Caddy in front,
 not by uvicorn.
 
 ```bash
+# First set FR_BOOTSTRAP_ADMIN_PASSWORD in .env.
 # HTTP on http://127.0.0.1:8765  (set FR_HTTP_BIND=0.0.0.0 to listen on the LAN)
 docker compose up --build
 
@@ -379,11 +381,10 @@ docker compose up --build
 docker compose -f docker-compose.yml -f deploy/compose.https.yml up --build
 ```
 
-Sign in at `/login` with **`admin@localhost` / `changeme`**. Change that
-password before exposing the port. Override with `FR_BOOTSTRAP_ADMIN_EMAIL`
-and `FR_BOOTSTRAP_ADMIN_PASSWORD`. The first account holds admin + author +
-approver so a solo deploy can actually use the workbench; after it exists,
-the door locks.
+Before the first start, set a strong `FR_BOOTSTRAP_ADMIN_PASSWORD` in `.env`;
+Compose refuses to start without it. `FR_BOOTSTRAP_ADMIN_EMAIL` defaults to
+`admin@localhost`. The first account holds admin + author + approver so a solo
+deploy can actually use the workbench; after it exists, the door locks.
 
 User data lives in the `fr-data` volume (`FRAMEWORK_READER_HOME` and a copy of
 the content pack). `FR_SECRET_KEY` comes from the environment; if you omit it,

@@ -1,10 +1,16 @@
 .PHONY: install test build clean
 
 install:
-	python -m pip install -e ".[dev]"
+	python -m pip install -c constraints.txt -e ".[dev]"
 
 test:
 	.venv/bin/python -m pytest -v
+
+.PHONY: check
+
+check:
+	.venv/bin/python -m ruff check src tests
+	.venv/bin/python -m mypy src/framework_reader/web/uploads.py src/framework_reader/web/images.py src/framework_reader/schema/entities.py
 
 build:
 	python -m framework_reader.pack.build

@@ -102,6 +102,34 @@ def test_stats_reports_counts(db):
     assert s["exportable_mappings"] == 0
 
 
+def test_framework_progress_counts_leaf_controls_and_interpretations(db):
+    progress = QueryAPI(db).framework_progress()
+    assert progress["NIST-CSF-2.0"] == (1, 0)
+    assert progress["ISO-27002-2022"] == (1, 0)
+
+
+def test_control_summaries_return_page_state_in_one_shape(db):
+    rows = QueryAPI(db).control_summaries("NIST-CSF-2.0")
+    assert len(rows) == 1
+    assert rows[0].id == "NIST-CSF-2.0:DE.CM-01"
+    assert rows[0].has_interpretation is False
+    assert rows[0].interpretation_state is None
+
+
+def test_query_api_exposes_forbidden_texts_without_exposing_its_connection(db):
+    conn = sqlite3.connect(db)
+    conn.execute(
+        "INSERT INTO original_text (control_id, locale, body) VALUES (?, ?, ?)",
+        ("ISO-27002-2022:A.8.16", "zh-CN", "不得发送给模型的标准原文"),
+    )
+    conn.commit()
+    conn.close()
+
+    api = QueryAPI(db)
+    assert api.forbidden_outbound_texts() == ["不得发送给模型的标准原文"]
+    assert not hasattr(api, "connection")
+
+
 def _superseded_db(tmp_path):
     """DE.CM-04（废止）被拆进 DE.CM-01 与 DE.CM-09。"""
     from framework_reader.pack.db import insert_supersessions

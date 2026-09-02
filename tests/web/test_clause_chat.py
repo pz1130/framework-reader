@@ -108,6 +108,46 @@ def test_the_model_does_not_see_more_than_six_turns(env):
     assert len(history) <= 6
 
 
+def test_the_default_chat_path_enforces_the_content_pack_guard(
+    tmp_path, monkeypatch,
+):
+    from types import SimpleNamespace
+
+    from framework_reader.llm.client import FakeClient
+    import framework_reader.llm.config as config_module
+    from framework_reader.web.app import create_app
+
+    env = _make(tmp_path, monkeypatch)
+    conn = sqlite3.connect(env.db)
+    forbidden = "这是不得发送给任何模型厂商的受版权标准原文完整片段内容"
+    conn.execute(
+        "INSERT INTO original_text (control_id, locale, body) VALUES (?, ?, ?)",
+        (BUILTIN_CID, "zh-CN", forbidden),
+    )
+    conn.commit()
+    conn.close()
+
+    inner = FakeClient(['{"reply":"should not run","updates":[]}'])
+
+    class Registry:
+        def build(self, _role, *, guard, key_lookup):
+            return inner
+
+        def role(self, _role):
+            return SimpleNamespace(model="fake")
+
+    monkeypatch.setattr(
+        config_module, "effective_registry",
+        lambda config: (Registry(), lambda _name: "key"),
+    )
+    client = TestClient(create_app(env.db), follow_redirects=False)
+    result = client.post(
+        f"/c/{BUILTIN_CID}/chat", data={"message": forbidden})
+    assert result.status_code == 303
+    assert inner.calls == []
+    assert "did not go through" in client.get(f"/c/{BUILTIN_CID}").text
+
+
 # ---------- 建议要人点头 ----------
 
 def _proposes(*a):

@@ -132,6 +132,15 @@ def test_an_unsupported_file_type_is_explained(client):
     assert "csv" in result.text
 
 
+def test_an_oversized_framework_upload_is_rejected(client, monkeypatch):
+    from framework_reader.web import uploads
+
+    monkeypatch.setattr(uploads, "MAX_UPLOAD_BYTES", 8)
+    result = _upload(client, b"number,title\n1,Account management\n")
+    assert result.status_code == 413
+    assert "over" in result.text
+
+
 def test_the_import_needs_an_id_and_a_name(client):
     body = "编号,标题\n3.1,账号\n".encode()
     assert _upload(client, body, framework_id="").status_code == 200

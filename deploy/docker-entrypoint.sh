@@ -46,6 +46,10 @@ if [ -n "${FR_BOOTSTRAP_ADMIN_EMAIL:-}" ]; then
         echo "FR_BOOTSTRAP_ADMIN_EMAIL is set but FR_BOOTSTRAP_ADMIN_PASSWORD is empty." >&2
         exit 1
     fi
+    if [ "$FR_BOOTSTRAP_ADMIN_PASSWORD" = "changeme" ]; then
+        echo "FR_BOOTSTRAP_ADMIN_PASSWORD must not use the published default 'changeme'." >&2
+        exit 1
+    fi
     fr account bootstrap --email "$FR_BOOTSTRAP_ADMIN_EMAIL" --password "$FR_BOOTSTRAP_ADMIN_PASSWORD"
 fi
 

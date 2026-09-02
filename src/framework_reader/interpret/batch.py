@@ -11,6 +11,7 @@ from framework_reader.interpret.model import (
     DIFFERENTIATING_FIELDS,
     Field,
     Interpretation,
+    InterviewRecord,
     InterpretationProvenance,
     ModelRef,
 )
@@ -38,7 +39,7 @@ def _is_empty(value) -> bool:
 def _keep_human_content(
     store: InterpretationStore, control_id: str, fresh: dict[str, Field],
     blanks_only: bool = False,
-) -> tuple[dict[str, Field], "InterviewRecord"]:
+) -> tuple[dict[str, Field], InterviewRecord]:
     """重跑起草只覆盖 AI 写的部分。作者的原话与他改过的字段一律保留。
 
     闸的方向是对的（W2 spec §6：作者说过的话不能丢），但粒度应当在字段上，
@@ -47,8 +48,6 @@ def _keep_human_content(
     `blanks_only`：只补空格。凡是已经有字的字段一概不动，不管是谁写的——
     用户点「补空缺」的意思就是「别碰我看过的那些」，包括他看过并认可的 AI 初稿。
     """
-    from framework_reader.interpret.model import InterviewRecord
-
     if not store.exists(control_id):
         return fresh, InterviewRecord()
     previous = store.load(control_id)

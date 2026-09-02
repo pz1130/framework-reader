@@ -8,9 +8,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
-COPY pyproject.toml README.md ./
+COPY pyproject.toml constraints.txt README.md ./
 COPY src ./src
-RUN pip install --no-cache-dir --root-user-action=ignore . \
+RUN pip install --no-cache-dir --root-user-action=ignore -c constraints.txt . \
     && python -c "from pathlib import Path; import framework_reader.identity as i, framework_reader.prompts as p, framework_reader.web as w; \
 assert (Path(i.__file__).parent/'schema.sql').is_file(); \
 assert (Path(p.__file__).parent/'drafter.md').is_file(); \

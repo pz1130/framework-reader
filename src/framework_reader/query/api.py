@@ -27,6 +27,11 @@ class ControlView(BaseModel):
     status: str
 
 
+class ControlSummary(ControlView):
+    has_interpretation: bool
+    interpretation_state: str | None = None
+
+
 class SupersessionView(BaseModel):
     control_id: str
     label: str
@@ -330,6 +335,43 @@ class QueryAPI:
         ).fetchall()
         return [ControlView(**dict(r)) for r in rows]
 
+    def framework_progress(self) -> dict[str, tuple[int, int]]:
+        """每个框架的（叶子条款数，有解读的叶子条款数）。
+
+        目录页要的是聚合数，不该先取出所有条款再逐条查解读。
+        """
+        rows = self._conn.execute(
+            "SELECT c.framework_id, COUNT(DISTINCT c.id) AS controls, "
+            "       COUNT(DISTINCT i.control_id) AS interpreted "
+            "FROM all_control c "
+            "LEFT JOIN all_interpretation i ON i.control_id = c.id "
+            "WHERE c.status <> 'deprecated' "
+            "  AND c.id NOT IN (SELECT parent_id FROM all_control "
+            "                   WHERE parent_id IS NOT NULL) "
+            "GROUP BY c.framework_id"
+        ).fetchall()
+        return {
+            r["framework_id"]: (r["controls"], r["interpreted"])
+            for r in rows
+        }
+
+    def control_summaries(self, framework_id: str) -> list[ControlSummary]:
+        """框架详情页所需的数据一次取齐，避免每条控制再查两次。"""
+        rows = self._conn.execute(
+            "SELECT c.id, c.framework_id, c.label, c.status, "
+            "       COUNT(i.control_id) > 0 AS has_interpretation, "
+            "       MAX(i.state) AS interpretation_state "
+            "FROM all_control c "
+            "LEFT JOIN all_interpretation i ON i.control_id = c.id "
+            "WHERE c.framework_id = ? AND c.status <> 'deprecated' "
+            "  AND c.id NOT IN (SELECT parent_id FROM all_control "
+            "                   WHERE parent_id IS NOT NULL) "
+            "GROUP BY c.id, c.framework_id, c.label, c.status "
+            "ORDER BY c.id",
+            (framework_id,),
+        ).fetchall()
+        return [ControlSummary(**dict(r)) for r in rows]
+
     def list_interpreted(self, *, leaf_only: bool = True) -> list[ControlView]:
         """有解读的条款。首页每天三条从这里抽，没解读的学了也是空壳。"""
         clauses = ["id IN (SELECT DISTINCT control_id FROM all_interpretation)"]
@@ -404,6 +446,17 @@ class QueryAPI:
             r["field"]: {"value": json.loads(r["value_json"]), "basis": r["basis"]}
             for r in rows
         }
+
+    def forbidden_outbound_texts(self) -> list[str]:
+        """不得进入模型 payload 的内容包原文。
+
+        调用方只拿业务含义明确的数据，不拿底层连接去写裸 SQL。
+        """
+        return [
+            r["body"] for r in self._conn.execute(
+                "SELECT body FROM original_text"
+            ).fetchall()
+        ]
 
     def interpretation_state(
         self, control_id: str, locale: str = "zh-CN"

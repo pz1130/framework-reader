@@ -19,6 +19,9 @@ CHUNK_TARGET = 700
 CHUNK_MAX = 1200
 
 SUPPORTED = (".txt", ".md", ".markdown", ".docx", ".pdf")
+MAX_EXTRACTED_CHARS = 5_000_000
+MAX_DOCX_XML_BYTES = 50 * 1024 * 1024
+MAX_PDF_PAGES = 1000
 
 _TAG = re.compile(r"<[^>]+>")
 _PARA_END = re.compile(r"</w:p>")
@@ -40,6 +43,10 @@ def extract(filename: str, data: bytes) -> str:
         raw = _from_text(data)
     else:
         raise UnsupportedDocument(f"Only {', '.join(SUPPORTED)}.")
+    if len(raw) > MAX_EXTRACTED_CHARS:
+        raise UnsupportedDocument(
+            f"The extracted text is over {MAX_EXTRACTED_CHARS:,} characters."
+        )
     return "\n".join(strip_toc_lines(normalize_cjk(raw).splitlines()))
 
 
@@ -151,7 +158,20 @@ def pdf_pages(data: bytes) -> list[str]:
 
     try:
         reader = PdfReader(io.BytesIO(data))
-        pages = [(page.extract_text() or "").strip() for page in reader.pages]
+        if len(reader.pages) > MAX_PDF_PAGES:
+            raise UnsupportedDocument(
+                f"That PDF has more than {MAX_PDF_PAGES:,} pages."
+            )
+        pages = []
+        chars = 0
+        for page in reader.pages:
+            text = (page.extract_text() or "").strip()
+            chars += len(text)
+            if chars > MAX_EXTRACTED_CHARS:
+                raise UnsupportedDocument(
+                    f"The extracted text is over {MAX_EXTRACTED_CHARS:,} characters."
+                )
+            pages.append(text)
     except (PdfReadError, OSError, ValueError, KeyError, TypeError) as exc:
         raise UnsupportedDocument(
             "This PDF won't open - it may not be a PDF, or the file was corrupted in transfer.") from exc
@@ -177,7 +197,12 @@ def _from_docx(data: bytes) -> str:
 
     try:
         with zipfile.ZipFile(io.BytesIO(data)) as bundle:
-            xml = bundle.read("word/document.xml").decode("utf-8", "replace")
+            member = bundle.getinfo("word/document.xml")
+            if member.file_size > MAX_DOCX_XML_BYTES:
+                raise UnsupportedDocument(
+                    f"The Word document expands past {MAX_DOCX_XML_BYTES // (1024 * 1024)} MB."
+                )
+            xml = bundle.read(member).decode("utf-8", "replace")
     except (zipfile.BadZipFile, KeyError) as exc:
         raise UnsupportedDocument(
             "This .docx won't open - it may be an old .doc with a renamed extension. "

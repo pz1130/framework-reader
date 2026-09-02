@@ -210,15 +210,13 @@ def create_app(
         from framework_reader.userframework.store import UserFrameworkStore
 
         mine = {f.id for f in UserFrameworkStore(_user_db()).list_frameworks()}
+        progress = reader.framework_progress()
         out = []
         for view in reader.list_frameworks():
-            controls = reader.list_controls(view.id, leaf_only=True)
+            controls, with_interp = progress.get(view.id, (0, 0))
             out.append({
                 "id": view.id, "name": view.name, "mine": view.id in mine,
-                "controls": len(controls),
-                "with_interp": sum(
-                    1 for c in controls if reader.interpretation(c.id)
-                ),
+                "controls": controls, "with_interp": with_interp,
             })
         out.sort(key=lambda f: (not f["mine"], f["id"]))
         return out
@@ -425,11 +423,10 @@ def create_app(
         controls = [
             {
                 "id": c.id, "short": _short(c.id), "label": c.label,
-                "has_interp": bool(reader.interpretation(c.id)),
-                # 签字状态只有用户库存得下。内置框架不查，省掉 1196 次多余查询。
-                "confirmed": reader.interpretation_state(c.id) == "confirmed",
+                "has_interp": c.has_interpretation,
+                "confirmed": c.interpretation_state == "confirmed",
             }
-            for c in reader.list_controls(framework_id, leaf_only=True)
+            for c in reader.control_summaries(framework_id)
         ]
         # 网页起草一律 overlay 到用户库当工作副本——导入的、内置的都一样，
         # 不进 git。views.framework 看 pending 决定画不画「起草 N 条」。
@@ -813,9 +810,7 @@ def create_app(
 
     def _ask_model(control_id: str, message: str, history) -> str:
         from framework_reader.llm.client import Message
-        from framework_reader.llm.guard import (
-            PayloadGuard, forbidden_texts_from_db,
-        )
+        from framework_reader.llm.guard import PayloadGuard
         from framework_reader.prompts import load_prompt
 
         reader = api()
@@ -833,7 +828,7 @@ def create_app(
         from framework_reader.userframework.chat import mapping_lines
         lines += ["", "The mappings for this control in the official mapping (when citing, copy IDs and sources verbatim; "
                   "do not invent entries that are not in the list):"]
-        lines += mapping_lines(api().neighbors(control_id, exportable_only=True))
+        lines += mapping_lines(reader.neighbors(control_id, exportable_only=True))
         if history:
             lines += ["", "Earlier in this conversation:"]
             lines += [f"{'User' if h.role == 'user' else 'AI'}: {h.text}"
@@ -843,8 +838,7 @@ def create_app(
         client, model = _extractor_client()
         # 守卫用**真的**受版权原文清单，不是空守卫：这条路径上正文来自
         # 用户自己的框架，但守卫是最后一道拦网，不该因为「应该不会有」就撤掉。
-        conn = api().connection() if hasattr(api(), "connection") else None
-        guard = PayloadGuard(forbidden_texts_from_db(conn)) if conn else PayloadGuard([])
+        guard = PayloadGuard(reader.forbidden_outbound_texts())
         from framework_reader.llm.guard import GuardedClient
 
         guarded = GuardedClient(client, guard)
@@ -1655,6 +1649,7 @@ def create_app(
             ImportError_, parse_any_sheet, parse_table, read_sheets,
         )
         from framework_reader.userframework.store import UserFrameworkStore
+        from framework_reader.web.uploads import UploadTooLarge, save_limited
 
         def fail(message: str) -> HTMLResponse:
             return HTMLResponse(views.import_page(error=message))
@@ -1674,7 +1669,7 @@ def create_app(
         tmp = Path(raw_path)
         try:
             with open(handle, "wb") as sink:
-                sink.write(await file.read())
+                await save_limited(file, sink)
             if suffix.lower() in _DOCUMENT_SUFFIXES:
                 return _outline_upload(
                     request, framework_id.strip(), name.strip(),
@@ -1696,6 +1691,8 @@ def create_app(
                 except ImportError_ as exc:
                     return fail(f"Import failed: {exc}"
                                 + (f"  {note}" if note else ""))
+        except UploadTooLarge as exc:
+            return HTMLResponse(views.import_page(error=str(exc)), 413)
         except ImportError_ as exc:
             return fail(f"Import failed: {exc}")
         finally:
@@ -1997,11 +1994,16 @@ def create_app(
     async def document_upload(request: Request, title: str = Form(""),
                               file: UploadFile = File(...)):
         from framework_reader.userframework.extract import UnsupportedDocument
+        from framework_reader.web.uploads import UploadTooLarge, read_limited
 
         try:
             doc = _documents().add(
-                file.filename or "", await file.read(),
+                file.filename or "", await read_limited(file),
                 by=_who(request) or _local_user(), title=title.strip())
+        except UploadTooLarge as exc:
+            return HTMLResponse(views.documents(
+                _documents().list_documents(), can_write=True,
+                error=str(exc)), 413)
         except UnsupportedDocument as exc:
             return HTMLResponse(views.documents(
                 _documents().list_documents(), can_write=True,
@@ -2145,80 +2147,6 @@ def create_app(
             if candidate.exists():
                 return candidate
         return None
-
-    def _sniff_image(data: bytes) -> str | None:
-        """按魔数认栅格图。SVG 单独走 _looks_like_svg + _sanitize_svg——
-        它能夹脚本与事件属性，放行前必须净化（见那条的注释）。"""
-        if data.startswith(b"\x89PNG\r\n\x1a\n"):
-            return "png"
-        if data.startswith(b"\xff\xd8\xff"):
-            return "jpg"
-        if data[:6] in (b"GIF87a", b"GIF89a"):
-            return "gif"
-        if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
-            return "webp"
-        return None
-
-    def _looks_like_svg(data: bytes) -> bool:
-        head = data[:512].lstrip(b"\xef\xbb\xbf\t\r\n ")
-        return head.startswith(b"<")
-
-    _SVG_FORBID = {"script", "foreignObject", "iframe", "object", "embed",
-                   "animate", "animateTransform", "animateMotion", "set",
-                   "handler", "audio", "video"}
-    _SVG_CSS_BAD = ("url(", "expression", "@import", "javascript:")
-
-    def _sanitize_svg(data: bytes) -> bytes:
-        """SVG 进场前的消毒：剥掉脚本、事件属性、外链引用与危险 CSS。
-
-        <img> 方式本就不执行 SVG 里的脚本，但这个文件也能被直接在地址栏
-        打开——净化加伺服时的 CSP（script-src 'none'）双保险。形如
-        「先解析成 XML（顺带验证良构），再白名单式拆东西」，不碰正文。
-        """
-        import xml.etree.ElementTree as ET
-
-        SVG = "http://www.w3.org/2000/svg"
-        ET.register_namespace("", SVG)
-        ET.register_namespace("xlink", "http://www.w3.org/1999/xlink")
-        root = ET.fromstring(data)
-        if root.tag != f"{{{SVG}}}svg":
-            raise ValueError("not an SVG document")
-
-        def local(name: str) -> str:
-            return name.split("}")[-1]
-
-        def scrub_css(text: str) -> str:
-            low = text.lower()
-            return text if not any(w in low for w in _SVG_CSS_BAD) else ""
-
-        for node in root.iter():
-            if local(node.tag) in _SVG_FORBID:
-                raise ValueError(f"forbidden element: {local(node.tag)}")
-            for name in list(node.attrib):
-                ln = local(name)
-                if ln.lower().startswith("on"):
-                    del node.attrib[name]
-                elif ln == "href":
-                    # href 白名单：#内部引用、data:image/ 内嵌位图都放行——
-                    # 「外壳是 SVG、里面是一张 base64 位图」是设计工具导出
-                    # logo 的标准形态，剥了它整张图就空白。其余一律剥：
-                    # http(s) 外链是跟踪面，data:image/svg+xml 是嵌套 SVG，
-                    # 会从净化过的外壳里夹带没净化的一份。
-                    value = str(node.attrib[name]).lstrip()
-                    allowed = value.startswith("#") or any(
-                        value.startswith(prefix) for prefix in
-                        ("data:image/png;base64,", "data:image/jpeg;base64,",
-                         "data:image/webp;base64,", "data:image/gif;base64,"))
-                    if not allowed:
-                        del node.attrib[name]
-                elif ln == "style":
-                    cleaned = scrub_css(node.attrib[name])
-                    if cleaned != node.attrib[name]:
-                        node.attrib[name] = cleaned
-            if local(node.tag) == "style":
-                node.text = scrub_css(node.text or "")
-        return (b'<?xml version="1.0" encoding="UTF-8"?>\n'
-                + ET.tostring(root))
 
     def _product_mark(name: str) -> Path:
         return Path(__file__).parent / "static" / name
@@ -2365,6 +2293,10 @@ def create_app(
     @app.post("/settings/branding")
     @needs(perm.MEMBER_MANAGE)
     async def branding_upload(request: Request):
+        from framework_reader.web.images import (
+            looks_like_svg, sanitize_svg, sniff_image,
+        )
+        from framework_reader.web.uploads import UploadTooLarge, read_limited
         def refuse(message: str):
             found = _branding_logo()
             logo = ({"version": int(found.stat().st_mtime)} if found else None)
@@ -2374,13 +2306,14 @@ def create_app(
         upload = form.get("file")
         if upload is None or not getattr(upload, "filename", ""):
             return refuse("Choose a file first.")
-        data = await upload.read()
-        if len(data) > 512 * 1024:
-            return refuse("That file is over 512 KB - a logo does not need to be that big.")
-        kind = _sniff_image(data)
-        if kind is None and _looks_like_svg(data):
+        try:
+            data = await read_limited(upload, max_bytes=512 * 1024)
+        except UploadTooLarge as exc:
+            return refuse(str(exc))
+        kind = sniff_image(data)
+        if kind is None and looks_like_svg(data):
             try:
-                data = _sanitize_svg(data)
+                data = sanitize_svg(data)
             except ValueError as exc:
                 return refuse(f"That SVG is not accepted: {exc}")
             except Exception:

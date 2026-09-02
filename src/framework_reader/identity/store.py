@@ -20,7 +20,10 @@ SCHEMA = Path(__file__).resolve().parent / "schema.sql"
 # 会话：绝对 8 小时、空闲 1 小时（设计 §5.5）
 ABSOLUTE_TTL = timedelta(hours=8)
 IDLE_TTL = timedelta(hours=1)
+SESSION_TOUCH_INTERVAL = timedelta(minutes=1)
 INVITE_TTL = timedelta(days=7)
+LOGIN_FAILURE_WINDOW = timedelta(minutes=5)
+MAX_LOGIN_FAILURES = 5
 # 从点「用公司账号登录」到 Entra 把人送回来。十分钟够慢的人输密码加二次验证，
 # 又短到那串一次性状态不会在库里躺一天。
 FLOW_TTL = timedelta(minutes=10)
@@ -557,6 +560,9 @@ class IdentityStore:
     def login(self, email: str, password: str) -> Session:
         from framework_reader.identity.passwords import verify_password
 
+        email = email.strip().lower()
+        if self._recent_login_failures(email) >= MAX_LOGIN_FAILURES:
+            raise IdentityError("Wrong email or password.")
         account = self.by_email(email)
         conn = self._conn()
         try:
@@ -577,6 +583,17 @@ class IdentityStore:
             raise IdentityError("Wrong email or password.")
         self.log("login.ok", actor=account.email)
         return self.start_session(account)
+
+    def _recent_login_failures(self, email: str) -> int:
+        conn = self._conn()
+        try:
+            return conn.execute(
+                "SELECT COUNT(*) FROM audit_log "
+                "WHERE event = 'login.failed' AND actor = ? AND at >= ?",
+                (email, (_now() - LOGIN_FAILURE_WINDOW).isoformat()),
+            ).fetchone()[0]
+        finally:
+            conn.close()
 
     def start_session(self, account: Account) -> Session:
         token = secrets.token_urlsafe(32)
@@ -616,9 +633,10 @@ class IdentityStore:
                 conn.execute("DELETE FROM session WHERE id = ?", (row["id"],))
                 conn.commit()
                 return None
-            conn.execute("UPDATE session SET last_seen = ? WHERE id = ?",
-                         (now.isoformat(), row["id"]))
-            conn.commit()
+            if datetime.fromisoformat(row["last_seen"]) + SESSION_TOUCH_INTERVAL < now:
+                conn.execute("UPDATE session SET last_seen = ? WHERE id = ?",
+                             (now.isoformat(), row["id"]))
+                conn.commit()
             account_row = conn.execute(
                 "SELECT * FROM account WHERE id = ?", (row["account_id"],)
             ).fetchone()

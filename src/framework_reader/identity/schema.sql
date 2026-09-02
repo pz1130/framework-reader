@@ -58,6 +58,9 @@ CREATE TABLE IF NOT EXISTS audit_log (
     detail TEXT NOT NULL DEFAULT ''
 );
 
+CREATE INDEX IF NOT EXISTS idx_audit_login_failures
+ON audit_log(event, actor, at);
+
 -- 运营开关。目前只有一条：allow_self_grant（设计 §4.3）
 CREATE TABLE IF NOT EXISTS setting (
     key     TEXT PRIMARY KEY,
