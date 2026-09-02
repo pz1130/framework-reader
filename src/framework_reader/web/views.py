@@ -391,6 +391,9 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         '<meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         f"<title>{escape(title)}</title>"
+        '<link rel="icon" href="/favicon.svg" type="image/svg+xml">'
+        '<link rel="icon" href="/favicon.ico" sizes="any">'
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
         # **不引任何外部资源。** `<link rel=stylesheet>` 是渲染阻塞的：
         # 外部主机连不上时浏览器要等到超时才继续，那段时间页面是半死的，
         # 点什么都没反应。而这个产品给中国的安全团队用，

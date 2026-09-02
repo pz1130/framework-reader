@@ -18,6 +18,7 @@ COOKIE = "fr_session"
 
 # 这几条必须在没登录时也能到达，否则登不进来
 PUBLIC_PREFIXES = ("/login", "/logout", "/invite", "/auth", "/static", "/favicon",
+                   "/favicon.ico", "/favicon.svg", "/apple-touch-icon.png",
                    # 自定义 logo：登录页（裸页）也要显示它，必须公开。
                    # 里面只有管理员上传的一张图，没有任何会话信息。
                    "/branding")

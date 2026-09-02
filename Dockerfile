@@ -11,9 +11,10 @@ RUN apt-get update \
 COPY pyproject.toml README.md ./
 COPY src ./src
 RUN pip install --no-cache-dir --root-user-action=ignore . \
-    && python -c "from pathlib import Path; import framework_reader.identity as i, framework_reader.prompts as p; \
+    && python -c "from pathlib import Path; import framework_reader.identity as i, framework_reader.prompts as p, framework_reader.web as w; \
 assert (Path(i.__file__).parent/'schema.sql').is_file(); \
-assert (Path(p.__file__).parent/'drafter.md').is_file()"
+assert (Path(p.__file__).parent/'drafter.md').is_file(); \
+assert (Path(w.__file__).parent/'static'/'favicon.svg').is_file()"
 COPY content ./content
 COPY scripts ./scripts
 # NIST public-domain sources; vendor/ is gitignored on the host.

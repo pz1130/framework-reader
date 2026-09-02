@@ -2220,6 +2220,33 @@ def create_app(
         return (b'<?xml version="1.0" encoding="UTF-8"?>\n'
                 + ET.tostring(root))
 
+    def _product_mark(name: str) -> Path:
+        return Path(__file__).parent / "static" / name
+
+    def _product_mark_response(name: str, media_type: str) -> Response:
+        path = _product_mark(name)
+        return Response(
+            path.read_bytes(),
+            media_type=media_type,
+            headers={
+                "Cache-Control": "public, max-age=86400",
+                "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox",
+                "X-Content-Type-Options": "nosniff",
+            },
+        )
+
+    @app.get("/favicon.ico")
+    def favicon_ico():
+        return _product_mark_response("favicon.ico", "image/x-icon")
+
+    @app.get("/favicon.svg")
+    def favicon_svg():
+        return _product_mark_response("favicon.svg", "image/svg+xml")
+
+    @app.get("/apple-touch-icon.png")
+    def apple_touch_icon():
+        return _product_mark_response("apple-touch-icon.png", "image/png")
+
     @app.get("/branding/logo")
     def branding_logo():
         from fastapi.responses import FileResponse
