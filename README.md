@@ -9,6 +9,29 @@ not the official standard text. NIST material is U.S. government work
 (public domain). Interpretations currently ship as AI drafts, marked as
 such; do not hand them to an auditor as-is.
 
+![The search workbench: a sentence or a control number, with three interpreted controls a day](docs/screenshots/workbench.jpg)
+
+![One control: what it defends against, plain words, how to implement, what serves as evidence — each field marked with who wrote it](docs/screenshots/control.jpg)
+
+## Why
+
+Asking a model "which controls cover log retention?" gets a plausible
+answer. What it does not get you:
+
+- the evidence reviewers usually prepare for that control,
+- the question an auditor asks next,
+- the **official** CSF ↔ ISO mapping edges with their sources — inferred
+  edges measured 17% accurate, so they are never auto-projected
+  (main spec §7.3.3),
+- a signature that records who confirmed an interpretation and voids
+  itself the moment the text changes.
+
+That gap is the product. The rest of this README is detail.
+
+## Install
+
+**From a clone** (what development uses):
+
 ```bash
 python -m pip install -e ".[dev]"
 make test
@@ -17,18 +40,37 @@ make build                   # build/content.sqlite
 fr serve                     # http://127.0.0.1:8765
 ```
 
+**From the release assets** (no clone): download the wheel and the
+prebuilt `content.sqlite` from the latest
+[GitHub Release](https://github.com/pz1130/framework-reader/releases), then:
+
+```bash
+python -m pip install framework_reader-*.whl
+export FR_CONTENT_DB=/path/to/content.sqlite
+fr serve                     # -> http://127.0.0.1:8765
+```
+
 Docker (HTTP or HTTPS in front of the same process) is optional; see
 **Optional Docker** below.
 
 Copy `.env.example` to `.env` and fill in the vendor keys you actually use.
 The content pack does not leave this machine; model calls use your key.
 
-- Design: `docs/superpowers/specs/2026-08-19-framework-reader-design.md`
-- **Web service (accounts / RBAC / Entra ID)**:
-  `docs/superpowers/specs/2026-08-23-hosted-service-rbac-aad-design.md`
-  - one organization, multiple users, role-based permissions; supersedes the
-    main spec §7.3.5 "local deployment"
-- W1 plan: `docs/superpowers/plans/2026-08-19-w1-content-graph-data-layer.md`
+## Repository guide
+
+- `docs/superpowers/` — the design specs, plans, and working notes this
+  README keeps referencing (working documents, written in Chinese). Start
+  at `specs/2026-08-19-framework-reader-design.md`; accounts / RBAC /
+  Entra ID for the web service are designed in
+  `specs/2026-08-23-hosted-service-rbac-aad-design.md`, which supersedes
+  the main spec §7.3.5 "local deployment".
+- `content/` — the YAML source of the content pack; `make build` compiles
+  it into `content.sqlite`. Your own frameworks and interpretations never
+  go here — they land in `~/.framework_reader/`.
+- `.claude/skills/framework-reader/` — a Claude Code Skill, so the CLI can
+  be asked for from inside an editor session.
+- `tests/` — includes a generated route × role authorization matrix that
+  walks every web route as every role (`tests/web/test_authorization.py`).
 
 ## Development
 
@@ -80,55 +122,14 @@ prints `[AI draft, not confirmed by the author - state=draft]` before the body.
 The build gate for signed interpretations did not loosen: they must be truly
 signed, unchanged since signing, and glossary-clean.
 
-## The one time you really use it (main spec §7.3.7)
+## Validating that it earns its place (main spec §7.3.7)
 
 The only validation question this tool has is **"what would you do without
-it?"** - if eight times out of ten the answer is "I would just ask the model
-directly", the core selling point does not hold.
-
-**But you cannot answer that yet.** The `framework-reader` Skill is installed
-globally: in Claude Code, any framework question automatically triggers
-`fr search`. You never experience "with the tool" and "without the tool"
-separately; mixed together everything feels "pretty useful" and you cannot tell
-whether the tool or the model is doing the work.
-
-So when the real moment comes, **deliberately separate the two sides once**:
-
-**① Ask elsewhere first.** Phone app, web chat, another vendor's model - **not
-in this repo's Claude Code session** (the Skill auto-triggers and contaminates
-the control on the spot). Ask the question you would ask anyway:
-
-> I'm writing a company policy on "server log retention and auditing". Under
-> NIST CSF 2.0, which controls does it map to, and what evidence is usually
-> prepared for each?
-
-**② Save the answer verbatim** (screenshot or paste into a file). That is the
-control; it may not be edited afterwards.
-
-**③ Then query the tool.**
-
-```bash
-fr search log retention
-fr show NIST-CSF-2.0:DE.CM-01
-```
-
-**④ Write one note answering a single question: what did the tool give you that
-the answer above did not?**
-
-```bash
-fr usage --note "Writing a log-retention policy. The model gave DE.CM-01/PR.PS-04
-and a general direction; the tool additionally gave the auditor_asks probe 'what
-is the basis for the retention period' and the official mapping to ISO A.8.15
-with sources. Without the tool I would have used the model's answer."
-```
-
-**That note is the entire deliverable.** If you cannot write what the tool
-added, the answer is that it added nothing - also a conclusion, and the kind
-that saves months.
-
-No thresholds, no trial counts. The peer blind test has a pass line fixed in
-advance because the 3-5 judges are a one-shot resource; self-usage is free and
-repeatable, so giving it the same gate would be over-engineering.
+it?"** — if eight times out of ten the answer is "I would just ask the model
+directly", the core selling point does not hold. The protocol for answering
+it honestly — separate the with-tool and without-tool answers once, save
+both verbatim, then write one note on what the tool actually added — lives
+in [docs/self-use-validation.md](docs/self-use-validation.md).
 
 ## Self-assessment and gaps (self-use)
 
