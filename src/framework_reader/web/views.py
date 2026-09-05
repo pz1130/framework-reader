@@ -1215,10 +1215,15 @@ def control(
     if (editable and written and state != "confirmed"
             and may("interpretation:confirm")):
         doing.append(
-            f'<form action="/c/{cid}/confirm" method="post" class="claim">'
-            '<p style="margin:0 0 .8rem">Do you stand behind the words above? Confirming records that you signed it, and when. '
+            f'<form action="/c/{cid}/confirm" method="post" class="claim confirm-card">'
+            '<div class="card-head">'
+            '<span class="card-badge confirm">🛡️ Verification</span>'
+            '<h4 class="card-title">Confirm Control</h4>'
+            '</div>'
+            '<p>Do you stand behind the words above? Confirming records that you signed it, and when. '
             "Any later change voids this sign-off.</p>"
-            '<p style="margin:0"><button type="submit">I confirm this control</button></p>'
+            '<div class="hint">Records signature timestamp to the audit ledger.</div>'
+            '<button type="submit">I confirm this control</button>'
             "</form>"
         )
 
@@ -1290,32 +1295,76 @@ def _clause_chat(control_id: str, turns: list) -> str:
                     "</p></form>")
         lines.append("</div>")
 
+    prompt_chips = (
+        '<div class="prompt-chips">'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">💡 Suggest evidence</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">🎯 Refine implementation</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What will auditors verify during examination?">🔍 Auditor questions</button>'
+        '</div>'
+    )
+
+    empty_state = (
+        '<div class="chat-empty">'
+        '<p class="empty">Ask questions or request scoped rewrites for this clause.</p>'
+        + prompt_chips +
+        '</div>'
+    )
+
+    thread_content = "".join(lines) if lines else empty_state
+
     return (
         f"<style>{_CHAT_CSS}</style>"
-        '<div class="doc chat"><h4><span class="gemini-sparkle">✨</span> Ask AI</h4><div class="thread">'
-        + ("".join(lines) if lines else
-           '<p class="empty">Nothing asked yet. Ask it to rewrite a field ("make "How to implement" more specific, we use Okta"), or just ask a question ("what evidence does this control usually need").</p>')
-        + "</div>"
-        + f'<form method="post" action="/c/{control_id}/chat">'
-        '<textarea name="message" rows="2" placeholder="What do you want to ask, or have it change?"></textarea>'
-        '<p class="hint">Its edits are <strong>suggestions only</strong>: nothing is written until you click. '
-        "Each question is one model call and spends the organization's money.</p>"
-        '<p style="margin:.8rem 0 0"><button type="submit">Send</button></p>'
+        '<div class="doc chat">'
+        '<div class="card-head">'
+        '<span class="card-badge"><span class="gemini-sparkle">✨</span> Copilot</span>'
+        '<h4 class="card-title">Ask AI</h4>'
+        '</div>'
+        f'<div class="thread">{thread_content}</div>'
+        f'<form method="post" action="/c/{control_id}/chat" class="chat-composer">'
+        '<textarea name="message" rows="2" placeholder="Ask questions or suggest edits..."></textarea>'
+        '<div class="composer-foot">'
+        '<span class="cost-hint">Suggestions only · Human review required</span>'
+        '<button type="submit">Send</button>'
+        '</div>'
         "</form></div>"
     )
 
 
 _CHAT_CSS = """
-.said{padding:.75rem 1rem;margin:0 0 .95rem;background:var(--surface);
-  border-radius:16px;border:1px solid var(--rule);box-shadow:var(--card-shadow)}
-.said.mine{background:var(--accent-soft);border-color:rgba(66,133,244,.25);
+.said{padding:.75rem .95rem;margin:0 0 .85rem;background:var(--surface);
+  border-radius:16px;border:1px solid var(--rule);box-shadow:var(--card-shadow);
+  word-break:break-word}
+.said.mine{background:var(--accent-soft);border-color:rgba(66,133,244,.28);
   border-top-right-radius:4px}
-.said.ai{background:var(--surface);border-color:rgba(251,188,4,.3);
+.said.ai{background:var(--sunk);border-color:rgba(155,114,203,.25);
   border-top-left-radius:4px}
-.said .who{font-family:var(--han);font-size:.78rem;font-weight:600;color:var(--muted);
+.said .who{font-family:var(--han);font-size:.76rem;font-weight:600;color:var(--muted);
   display:inline-flex;align-items:center;gap:.35rem}
-.said p{margin:.35rem 0 0;white-space:pre-wrap;font-size:.92rem;line-height:1.6}
-.said form{background:none;border:0;padding:0;box-shadow:none}
+.said p{margin:.35rem 0 0;white-space:pre-wrap;font-size:.9rem;line-height:1.55;color:var(--ink)}
+.said form{background:none;border:0;padding:0;box-shadow:none;margin-top:.4rem}
+.said form button.ghost{font-size:.78rem;padding:.25rem .65rem;background:var(--accent);
+  border:0;color:#fff;border-radius:6px;cursor:pointer;margin-left:.4rem;font-weight:600}
+.said form button.ghost:hover{opacity:.9}
+.doing .chat-empty{padding:.15rem 0}
+.doing .chat-empty .empty{font-size:.84rem;color:var(--muted);margin:0 0 .85rem;line-height:1.5}
+.doing .prompt-chips{display:flex;flex-direction:column;gap:.45rem}
+.doing .prompt-chips .chip{background:var(--sunk);border:1px solid var(--rule);
+  border-radius:10px;padding:.45rem .7rem;font-size:.8rem;color:var(--body);
+  text-align:left;cursor:pointer;transition:all .2s ease;font-weight:500;
+  display:flex;align-items:center;line-height:1.3}
+.doing .prompt-chips .chip:hover{background:var(--accent-soft);border-color:var(--accent);
+  color:var(--accent);transform:translateX(3px)}
+.doing .chat-composer{background:none;border:0;padding:0;box-shadow:none;margin-top:.85rem}
+.doing .chat-composer textarea{width:100%;box-sizing:border-box;padding:.65rem .8rem;
+  font:inherit;font-size:.88rem;background:var(--sunk);color:var(--ink);
+  border:1px solid var(--rule);border-radius:12px;margin:0 0 .55rem;
+  resize:vertical;min-height:3.2rem;transition:border-color .2s ease,box-shadow .2s ease}
+.doing .chat-composer textarea:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft)}
+.doing .composer-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.doing .cost-hint{font-size:.73rem;color:var(--muted);margin:0;line-height:1.35;flex:1}
+.doing .chat-composer button{padding:.45rem 1.15rem;font-size:.85rem;font-weight:600;
+  border-radius:980px;white-space:nowrap;cursor:pointer;flex:none}
 """
 
 
@@ -1338,13 +1387,18 @@ def _fill_blanks_invite(control_id: str, written: bool) -> str:
     """Fill just this control's blanks. A whole-framework draft costs dozens of controls; someone who wants to try one needs an entry."""
     what = ("fill in the empty fields above" if written
             else "draft all seven fields for this control")
+    button_label = "Fill the blanks" if written else "Draft this control"
+    badge_label = "Smart Completion" if written else "Initial Draft"
     return (
-        f'<form action="/c/{control_id}/draft" method="post" class="claim">'
-        f'<p style="margin:0 0 .8rem">Have AI {what}. '
+        f'<form action="/c/{control_id}/draft" method="post" class="claim draft-card">'
+        '<div class="card-head">'
+        f'<span class="card-badge"><span class="gemini-sparkle">✨</span> {badge_label}</span>'
+        '<h4 class="card-title">Smart Field Completion</h4>'
+        '</div>'
+        f'<p>Have AI {what}. '
         "<strong>Fields you already wrote will not be touched</strong>, including AI drafts you reviewed and accepted.</p>"
-        '<p class="hint">Drafts from the body text you imported, uses the model and key you configured, and bills only this control.</p>'
-        '<p style="margin:1rem 0 0"><button type="submit">'
-        f'{"Fill the blanks" if written else "Draft this control"}</button></p>'
+        '<div class="hint">Preserves your custom text · Uses configured model</div>'
+        f'<button type="submit">{button_label}</button>'
         "</form>"
     )
 
@@ -3075,22 +3129,45 @@ _POPUP_JS = """
 # Two columns with a persistent right rail. **Pure CSS, no JS** - this page already spent its one
 # JS exception on text selection; sticky layout is enough and should not owe another.
 _SPLIT_CSS = """
-.wrap.wide{max-width:68rem}
-.split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem}
+.wrap.wide{max-width:84rem}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem;align-items:start}
 .split .reading{min-width:0}
-.doing .stuck{position:sticky;top:0;height:100vh;box-sizing:border-box;
-  display:flex;flex-direction:column;justify-content:center;
-  gap:1rem;padding:1rem 0}
-.doing .chat{display:flex;flex-direction:column;min-height:0;
-  background:var(--surface);border:1px solid var(--rule);border-radius:18px;
-  padding:1.2rem;box-shadow:var(--card-shadow)}
-.doing .chat .thread{overflow-y:auto;min-height:0;flex:1;padding-right:.3rem}
-.doing .claim,.doing .chat{margin:0}
-.doing .claim{padding:1.2rem 1.3rem;background:var(--surface);
-  border:1px solid var(--rule);border-radius:18px;box-shadow:var(--card-shadow)}
+.doing{position:relative}
+.doing .stuck{position:sticky;top:5.25rem;max-height:calc(100vh - 6.2rem);box-sizing:border-box;
+  display:flex;flex-direction:column;gap:1.15rem;padding:.15rem 0;
+  overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:thin;scrollbar-color:var(--rule) transparent}
+.doing .stuck::-webkit-scrollbar{width:4px}
+.doing .stuck::-webkit-scrollbar-track{background:transparent}
+.doing .stuck::-webkit-scrollbar-thumb{background:var(--rule);border-radius:10px}
+.doing .claim,.doing .chat{margin:0;position:relative;background:var(--surface);
+  border:1px solid var(--rule);border-radius:20px;box-shadow:var(--card-shadow);
+  padding:1.35rem 1.4rem;transition:border-color .25s ease,box-shadow .25s ease;
+  overflow:hidden}
+.doing .claim:hover,.doing .chat:hover{border-color:var(--card-hover-line);box-shadow:var(--card-shadow-hover)}
+.doing .claim::before,.doing .chat::before{content:"";position:absolute;top:0;left:0;right:0;
+  height:2.5px;background:var(--g-rainbow);opacity:.85}
+.doing .claim.confirm-card::before{background:linear-gradient(90deg,var(--success),var(--g-blue))}
+.doing .card-head{margin-bottom:.65rem}
+.doing .card-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;
+  font-weight:600;padding:.15rem .55rem;border-radius:980px;
+  background:var(--accent-soft);color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+.doing .card-badge.confirm{background:var(--success-soft);color:var(--success)}
+.doing .card-title{font-size:1.05rem;color:var(--ink);font-weight:600;margin:.4rem 0 0;text-transform:none;letter-spacing:-.01em}
+.doing .claim p{margin:0 0 .75rem;font-size:.88rem;color:var(--body);line-height:1.55}
+.doing .claim .hint{font-size:.78rem;color:var(--muted);background:var(--sunk);
+  padding:.45rem .65rem;border-radius:10px;margin:.65rem 0 .95rem;line-height:1.45}
+.doing .claim button{width:100%;display:flex;align-items:center;justify-content:center;
+  gap:.4rem;font-weight:600;padding:.65rem 1rem;font-size:.9rem}
+.doing .claim.confirm-card button{background:var(--success);border-color:var(--success)}
+.doing .claim.confirm-card button:hover{box-shadow:0 4px 14px rgba(52,168,83,.35)}
+.doing .chat .thread{overflow-y:auto;max-height:16rem;min-height:3rem;padding-right:.35rem;
+  scrollbar-width:thin;scrollbar-color:var(--rule) transparent;display:flex;flex-direction:column}
+.doing .chat .thread::-webkit-scrollbar{width:4px}
+.doing .chat .thread::-webkit-scrollbar-thumb{background:var(--rule);border-radius:10px}
 @media (max-width:60rem){
-  .split{grid-template-columns:minmax(0,1fr)}
-  .doing .stuck{position:static;height:auto;display:block}
-  .doing .stuck > *{margin-bottom:1rem}
+  .split{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .doing .stuck{position:static;max-height:none;height:auto;display:block;overflow:visible}
+  .doing .stuck > *{margin-bottom:1.2rem}
 }
 """
