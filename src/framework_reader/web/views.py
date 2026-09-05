@@ -3157,8 +3157,8 @@ _SPLIT_CSS = """
 .doing .claim p{margin:0 0 .75rem;font-size:.86rem;color:var(--body);line-height:1.5}
 .doing .claim .hint{font-size:.76rem;color:var(--muted);background:var(--sunk);
   padding:.4rem .6rem;border-radius:10px;margin:.5rem 0 .85rem;line-height:1.4}
-.doing .claim button{width:100%;display:flex;align-items:center;justify-content:center;
-  gap:.4rem;font-weight:600;padding:.6rem 1rem;font-size:.88rem}
+.doing .claim button{width:auto;display:inline-flex;align-items:center;justify-content:center;
+  gap:.35rem;font-weight:600;padding:.36rem .95rem;font-size:.82rem;border-radius:980px}
 .doing .claim.confirm-card button{background:var(--success);border-color:var(--success)}
 .doing .claim.confirm-card button:hover{box-shadow:0 4px 14px rgba(52,168,83,.35)}
 .doing .chat .thread{overflow-y:auto;max-height:14rem;min-height:2.5rem;padding-right:.3rem;
