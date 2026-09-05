@@ -19,7 +19,7 @@ def test_interview_help_exposes_force_flag():
 def test_migrate_drafts_help_explains_what_it_moves():
     result = CliRunner().invoke(app, ["migrate-drafts", "--help"])
     assert result.exit_code == 0
-    assert "--delete" in result.stdout and "用户库" in result.stdout
+    assert "--delete" in result.stdout and "user library" in result.stdout
 
 
 # ---------- 用户框架不该走作者的工具 ----------

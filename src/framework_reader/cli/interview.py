@@ -1,6 +1,6 @@
-"""访谈终端壳与 $EDITOR 签字。W2 spec §5
+"""Interview terminal shell and $EDITOR sign-off. W2 spec §5
 
-逻辑在 interpret/session.py；本文件只负责渲染与读键盘。
+The logic lives in interpret/session.py; this file only renders and reads the keyboard.
 """
 import os
 import subprocess
@@ -40,7 +40,7 @@ def render_header(
 
 
 def already_done_message(interp: Interpretation, *, force: bool) -> str | None:
-    """已 interviewed/confirmed 时拒绝静默重抽；须显式 --force。"""
+    """Refuse to silently re-interview an already interviewed/confirmed control; requires explicit --force."""
     if force:
         return None
     if interp.state in (InterpretationState.INTERVIEWED, InterpretationState.CONFIRMED):
@@ -54,7 +54,7 @@ def already_done_message(interp: Interpretation, *, force: bool) -> str | None:
 def annotated_yaml(
     interp: Interpretation, scores: dict[str, float], threshold: float
 ) -> str:
-    """把原话与 lint 结果以注释贴在差异化字段上方。注释不影响 YAML 解析。"""
+    """Paste the verbatim answers and lint results as comments above the differentiating fields. Comments do not affect YAML parsing."""
     payload = interp.model_dump(mode="json", exclude_none=False)
     text = yaml.safe_dump(
         payload, allow_unicode=True, sort_keys=False, default_flow_style=False
@@ -89,7 +89,7 @@ def annotated_yaml(
 
 
 def sign(interp: Interpretation, signer: str, now: datetime) -> Interpretation:
-    """签字。摘要覆盖签字那一刻的内容，构建期重算比对。W2 spec §4.3"""
+    """Sign. The digest covers the content as it was at signing; the build recomputes and compares it. W2 spec §4.3"""
     data = interp.model_dump()
     data["state"] = InterpretationState.CONFIRMED
     data["provenance"]["confirmed_by"] = signer
@@ -119,9 +119,10 @@ def run_interview(
     clock: Callable[[], float] = time.perf_counter,
     threshold: float,
 ) -> float:
-    """三问三答 → 抽取 → 编辑器 → 签字。返回本条耗时（秒）。
+    """Three questions → extraction → editor → sign-off. Returns this control's elapsed seconds.
 
-    IO 全部注入，便于端到端测试：W3 要跑 106 遍，这条链不能只有 --help 冒烟。
+    All IO is injected for end-to-end testing: W3 runs this 106 times, so this chain
+    must not only ever be smoke-tested via --help.
     """
     started = clock()
 
@@ -138,7 +139,8 @@ def run_interview(
     edited = Interpretation(**yaml.safe_load(path.read_text(encoding="utf-8")))
     elapsed = clock() - started
     signed = sign(edited, signer, now())
-    # 耗时不进摘要（见 fields_digest），所以补记它不会让签字失效。
+    # Elapsed time stays out of the digest (see fields_digest), so recording it
+    # afterwards cannot invalidate the signature.
     signed.provenance.interview_seconds = elapsed
     store.save(signed)
     return elapsed

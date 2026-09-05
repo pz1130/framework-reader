@@ -1,4 +1,4 @@
-"""一次性 CLI 壳。B 阶段会被 Web UI 取代——因此不得包含任何业务逻辑或裸 SQL。"""
+"""Disposable CLI shell. Phase B replaces it with the web UI - hence no business logic or bare SQL in here."""
 from pathlib import Path
 
 import typer
@@ -14,9 +14,9 @@ BLINDTEST_DIR = Path("build/blindtest")
 
 @app.callback()
 def _log_every_call(ctx: typer.Context) -> None:
-    """每次调用追一行自用日志。主 spec §7.3.1——它是现在唯一的验证手段。
+    """Append one self-usage log line per invocation. Main spec §7.3.1 - the only validation signal so far.
 
-    `usage` 自己不记：报告命令算不上使用，记了只会把计数器灌水。
+    `usage` does not log itself: a report command is not usage, and logging it just pads the counter.
     """
     from framework_reader import usage
 
@@ -30,7 +30,7 @@ def _log_every_call(ctx: typer.Context) -> None:
 
 @app.command()
 def usage(days: int = 0, note: str = "") -> None:
-    """自用日志：出报告；`--note` 追一条手记。主 spec §7.3.1"""
+    """Self-usage log: print a report; `--note` appends a manual entry. Main spec §7.3.1"""
     from framework_reader import usage as usage_log
 
     if note:
@@ -45,14 +45,14 @@ def usage(days: int = 0, note: str = "") -> None:
 
 @app.command()
 def build(out: Path = DEFAULT_DB) -> None:
-    """跑完整导入、校验与构建断言。"""
+    """Run the full import, validation, and build assertions."""
     out.parent.mkdir(parents=True, exist_ok=True)
     typer.echo(f"built {build_content_db(out)}")
 
 
 @app.command()
 def show(control_id: str, db: Path = DEFAULT_DB) -> None:
-    """显示一条控制及其邻居。"""
+    """Show one control with its neighbours and its interpretation."""
     api = QueryAPI(db)
     ctl = api.get_control(control_id)
     if ctl is None:
@@ -75,7 +75,8 @@ def show(control_id: str, db: Path = DEFAULT_DB) -> None:
 
         state = api.interpretation_state(control_id)
         if state != "confirmed":
-            # 草稿进包是为了能用，不是为了冒充定稿。成色写在正文前面，不写在脚注里。
+            # Drafts ship so the pack is usable, not to pass them off as final.
+            # The state banner goes before the body, not in a footnote.
             typer.echo(f"\n[AI draft, not yet confirmed by the author · state={state}]")
         else:
             typer.echo("")
@@ -90,7 +91,7 @@ def show(control_id: str, db: Path = DEFAULT_DB) -> None:
 
 @app.command()
 def search(keyword: str, limit: int = 20, db: Path = DEFAULT_DB) -> None:
-    """按关键词找控制。标题和解读正文都搜——中文只在解读里。"""
+    """Find controls by keyword. Searches titles and interpretation bodies."""
     hits = QueryAPI(db).search(keyword, limit)
     if not hits:
         typer.echo(f'No control found containing "{keyword}"')
@@ -99,9 +100,10 @@ def search(keyword: str, limit: int = 20, db: Path = DEFAULT_DB) -> None:
         typer.echo(f"{ctl.id}  [{ctl.framework_id}]  {ctl.label}")
 
 
-# 「由第三方实施」必须和「不适用」分开。云厂商或写字楼业主实施的控制
-# **是适用的**，只是实施者不是你，证据是对方的合同条款或 SOC 2 / ISO 报告。
-# 把它标成不适用，是审核员专门挑的那类错。
+# "Implemented by a third party" must stay separate from "not applicable". A control
+# implemented by your cloud vendor or landlord **is applicable** - someone else does the
+# work, and the evidence is their contract or SOC 2 / ISO report. Marking it N/A is
+# exactly the mistake auditors look for.
 SOA_STATUS = {"0": "not started", "1": "in progress", "2": "implemented", "3": "implemented by a third party"}
 
 
@@ -114,7 +116,7 @@ def assess(
     redo: bool = False,
     db: Path = DEFAULT_DB,
 ) -> None:
-    """逐条录入现状：这条我们现在做到几档。默认跳过已评的，--redo 重评。"""
+    """Record current state control by control: what level are we at. Skips already-assessed ones; --redo re-asks."""
     from framework_reader.assess.store import AssessStore
 
     api = QueryAPI(db)
@@ -122,8 +124,8 @@ def assess(
     if control_id:
         targets = [control_id]
     else:
-        # 前缀匹配，不是按点切第一段：CSF 要的是 DE，ISO 要的是 A.7，
-        # 而 A.5.1 按点切出来是「A」，93 条会全中。
+        # Prefix match, not split-on-first-dot: CSF wants DE, ISO wants A.7 -
+        # splitting A.5.1 on dots yields "A", which would match all 93 controls.
         targets = [
             c.id for c in api.list_controls(framework, leaf_only=True)
             if not function or c.id.split(":", 1)[-1].startswith(function)
@@ -153,8 +155,9 @@ def assess(
                 typer.echo(f"  Level {rung}: {practice[rung]}")
             question = "\nWhat level are you at now? 0=not doing it, 1/2/3=level, n=not applicable, Enter to skip"
         else:
-            # 没有 practice 三档就问不出「几档」。这类框架（如 ISO Annex A）
-            # 要的是适用性声明：适用吗、做了吗、证据在哪。主 spec §7.3.3
+            # Without the three practice rungs there is no level to ask for. Frameworks
+            # like ISO Annex A want a Statement of Applicability instead: applicable?
+            # implemented? where is the evidence? Main spec §7.3.3
             from framework_reader.assess.soa import fill_hints
 
             for hint in fill_hints(api, cid):
@@ -187,7 +190,8 @@ def assess(
         done += 1
     left = sum(1 for cid in targets if store.get(cid, scope) is None)
     typer.echo(f"\nRecorded this round: {done} control(s) → {store.path}")
-    # 93 条分几次做完是常态。剩多少必须写在脸上，否则不知道还要坐多久。
+    # A 93-control walk takes several sittings. Always show what is left, or you
+    # cannot tell how long this will take.
     typer.echo(f"Remaining: {left} of {len(targets)} controls to assess")
 
 
@@ -198,7 +202,7 @@ def gap(
     out: Path | None = None,
     db: Path = DEFAULT_DB,
 ) -> None:
-    """差距报告：还差什么、最弱的先做、下一步做什么、拿什么当证据。"""
+    """Gap report: what is missing, weakest first, the next step, and what serves as evidence."""
     from framework_reader.assess.report import build_gap, render_gap
     from framework_reader.assess.store import AssessStore
 
@@ -231,7 +235,7 @@ def soa(
     out: Path | None = None,
     db: Path = DEFAULT_DB,
 ) -> None:
-    """导出适用性声明。93 条一条不少，没填的标「待填」。"""
+    """Export a Statement of Applicability. All 93 controls, unfilled ones marked TBD."""
     from framework_reader.assess.soa import (
         build_soa, render_soa_csv, render_soa_markdown,
     )
@@ -258,7 +262,7 @@ def publish(
     framework: str = "",
     db: Path = DEFAULT_DB,
 ) -> None:
-    """把中文解读渲成一页可发布的 HTML。留空 --framework 则收录全部框架。"""
+    """Render interpretations into one publishable HTML page. Empty --framework includes every framework."""
     from framework_reader.publish.site import FRAMEWORKS, collect, render_multi
 
     api = QueryAPI(db)
@@ -278,7 +282,7 @@ def publish(
 
 @app.command("frameworks")
 def frameworks(db: Path = DEFAULT_DB) -> None:
-    """列出所有框架：内置的与你导入的。"""
+    """List every framework: built-in and imported."""
     from framework_reader.userframework.store import UserFrameworkStore
 
     api = QueryAPI(db)
@@ -296,7 +300,7 @@ def import_framework(
     name: str = typer.Option(..., "--name", help="Display name"),
     version: str = "",
 ) -> None:
-    """导入你自己的框架（.csv / .xlsx，需要「编号」「标题」两列，「上级」可选）。"""
+    """Import your own framework (.csv / .xlsx; requires ID and Title columns, Parent optional)."""
     from framework_reader.userframework.importer import ImportError_, parse_table, read_rows
     from framework_reader.userframework.store import UserFrameworkStore
 
@@ -324,10 +328,12 @@ def migrate_drafts(
         False, "--delete", help="Delete the originals under content/ after moving; they are git-tracked, so think before deleting"
     ),
 ) -> None:
-    """把落在 content/interpretations/ 里的**导入框架**解读搬进用户库。
+    """Move imported-framework interpretations that landed in content/interpretations/ into the user library.
 
-    b971e12 之前起草导入的框架，YAML 会写进产品的内容仓，而查询层从不读那儿——
-    起草跑完页面上仍然是「这条还没有解读」。存储层已经改好，这条命令搬旧账。
+    Before b971e12, drafting an imported framework wrote its YAML into the product
+    content repo, which the query layer never reads - after drafting, the page still
+    said "no interpretation yet". The storage layer is fixed; this command moves the
+    old entries.
     """
     from framework_reader.interpret.migrate import migrate_user_drafts
 
@@ -388,7 +394,7 @@ def account_invite(
     role: str = typer.Option("viewer", "--role", help="admin | author | approver | viewer"),
     base_url: str = typer.Option("http://127.0.0.1:8765", "--url"),
 ) -> None:
-    """发一个一次性邀请链接。**链接只打印这一次**，库里只留哈希。"""
+    """Issue a one-time invite link. The link is printed once; only its hash is stored."""
     from framework_reader.identity.store import IdentityError
 
     try:
@@ -404,7 +410,7 @@ def account_invite(
 
 @account_app.command("list")
 def account_list() -> None:
-    """列出所有账号与角色。"""
+    """List all accounts and their roles."""
     accounts = _identity().list_accounts()
     if not accounts:
         typer.echo("No accounts yet, so the web workbench does not require login.")
@@ -417,13 +423,13 @@ def account_list() -> None:
 
 @account_app.command("grant")
 def account_grant(email: str, role: str) -> None:
-    """给某人加一个角色。角色相加不继承——见设计 §1.1。"""
+    """Grant someone a role. Roles add up; no inheritance tree - design §1.1."""
     _role_change(email, role, revoke=False)
 
 
 @account_app.command("revoke")
 def account_revoke(email: str, role: str) -> None:
-    """撤销某人的一个角色。撤最后一个 admin 会被拒绝。"""
+    """Revoke someone's role. Revoking the last admin is refused."""
     _role_change(email, role, revoke=True)
 
 
@@ -450,13 +456,13 @@ def _role_change(email: str, role: str, *, revoke: bool) -> None:
 
 @account_app.command("disable")
 def account_disable(email: str) -> None:
-    """停用一个账号，并立刻断掉他的会话。"""
+    """Disable an account and kill its sessions immediately."""
     _status_change(email, "disabled")
 
 
 @account_app.command("enable")
 def account_enable(email: str) -> None:
-    """恢复一个被停用的账号。"""
+    """Re-enable a disabled account."""
     _status_change(email, "active")
 
 
@@ -483,7 +489,7 @@ app.add_typer(secret_app, name="secret")
 
 @secret_app.command("new")
 def secret_new() -> None:
-    """生成一把主密钥。**只打印这一次**，我们不存它——存了就等于没加密。"""
+    """Generate a master key. Printed once and never stored - storing it would mean nothing is encrypted."""
     from framework_reader import crypto
 
     typer.echo(crypto.new_master_key())
@@ -496,7 +502,7 @@ def secret_new() -> None:
 
 @secret_app.command("status")
 def secret_status() -> None:
-    """主密钥配了没有，已经存了哪几家的 key（只显示后四位）。"""
+    """Is the master key configured, and which vendor keys are stored (last four chars only)."""
     from framework_reader import crypto
     from framework_reader.llm.config import ModelConfig
 
@@ -527,7 +533,7 @@ ENTRA_ENV = """Set these five environment variables (never write the client secr
 
 @entra_app.command("check")
 def entra_check() -> None:
-    """连一次发现文档，把配置里错的那一项指出来。**这条会真的出网。**"""
+    """Fetch the discovery document once and point at the wrong config item. Makes a real network call."""
     from framework_reader.identity.entra import EntraClient, EntraConfig, EntraError
 
     config = EntraConfig.from_env()
@@ -572,7 +578,7 @@ def entra_check() -> None:
 
 @account_app.command("audit")
 def account_audit(limit: int = 40) -> None:
-    """审计日志：谁在什么时候做了什么。只追加，不改不删。"""
+    """Audit log: who did what when. Append-only; nothing is edited or deleted."""
     entries = _identity().audit(limit)
     if not entries:
         typer.echo("No entries yet.")
@@ -589,10 +595,10 @@ def serve(
     reload: bool = False,
     db: Path = DEFAULT_DB,
 ) -> None:
-    """起本地工作台。默认只监听 127.0.0.1——数据不出这台机器。
+    """Run the local workbench. Listens on 127.0.0.1 by default - data never leaves this machine.
 
-    `--reload` 在改代码时用：不开的话进程会一直跑启动那一刻的代码，
-    新加的路由全是 404，看起来就像「点了没东西」。
+    Use --reload while changing code: without it the process keeps running the code
+    from startup time, new routes all 404, and it looks like "clicking does nothing".
     """
     import uvicorn
 
@@ -602,15 +608,16 @@ def serve(
     else:
         typer.echo("Note: restart this process after code changes - "
                    "uvicorn does not hot-reload (or pass --reload).")
-    # **两条路径都要报。** 原先这几行只在非 --reload 那条上打印，
-    # 而改代码时用的正是 --reload：最需要看状态的那次，一句都不说。
+    # Report on both paths. These lines used to print only on the non---reload path,
+    # yet code changes are exactly when --reload is on: the run that most needs the
+    # status said nothing.
     _startup_report(host, port)
 
     if reload:
-        # 只监视源码目录。不装 watchfiles 时 uvicorn 退回 StatReload：
-        # 纯 Python 每秒递归 stat 一遍 cwd——.venv/build/.worktrees 加起来
-        # 几万个文件，实测常驻 40-60% CPU 纯空转。改代码改的是 src/，
-        # 监视它一个就够了。
+        # Watch the source directory only. Without watchfiles, uvicorn falls back to
+        # StatReload: pure-Python recursive stat of the cwd every second - tens of
+        # thousands of files across .venv/build/.worktrees, measured at a steady
+        # 40-60% CPU for nothing. Code changes happen in src/; watching that is enough.
         src_dir = str(Path(__file__).resolve().parent.parent)
         uvicorn.run(
             "framework_reader.web.app:create_app", factory=True,
@@ -624,12 +631,13 @@ def serve(
 
 
 def _startup_report(host: str, port: int) -> None:
-    """起服务时最该一眼看见的几件事：门锁没锁、SSO 通没通、主密钥配没配。
+    """The things worth seeing at a glance on startup: is the door locked, does SSO work, is the master key set.
 
-    共同点是**它们都在别处以离奇的症状出现**：门没锁的后果在成员页，
-    SSO 没配的后果在登录页，而主密钥没配的后果是「模型页上填的 key
-    存不进去」——离「环境变量没加载」这个原因隔了三层。起服务时说一句，
-    比让人对着 400 猜半小时便宜。
+    What they share: each one surfaces somewhere else as a bizarre symptom. An unlocked
+    door shows up on the members page, unconfigured SSO on the login page, and a missing
+    master key as "keys entered on the models page cannot be stored" - three steps away
+    from the cause ("environment variable not loaded"). One line at startup is cheaper
+    than half an hour staring at a 400.
     """
     from framework_reader import crypto
     from framework_reader.identity.entra import EntraConfig
@@ -647,10 +655,10 @@ def _startup_report(host: str, port: int) -> None:
                    "once it exists, the door locks.")
         in_docker = Path("/.dockerenv").exists()
         if host not in ("127.0.0.1", "localhost", "::1") and not in_docker:
-            # 门开着 + 绑到别的地址 = 同网段的人能**抢先**建第一个管理员，
-            # 而他建完门就锁上，锁在外面的是你。
-            # Docker 里必须绑 0.0.0.0 才能被 compose 的 published port 转到；
-            # 真正的暴露面是宿主机的 FR_HTTP_BIND（默认 127.0.0.1）。
+            # Open door + non-localhost bind = anyone on the network can race you to
+            # the first admin, and once they create it the door locks - on you.
+            # Inside Docker the bind must be 0.0.0.0 for compose's published port to
+            # reach it; the real exposure is the host's FR_HTTP_BIND (default 127.0.0.1).
             typer.secho(
                 f"⚠ Bound to {host} with no accounts yet: anyone who can reach this port "
                 "can race you to the first admin and lock you out. "
@@ -659,8 +667,8 @@ def _startup_report(host: str, port: int) -> None:
 
     if crypto.configured():
         return
-    # 这里**不自动去读 .env**：自动加载 .env 在生产上是个坏习惯，
-    # 而这条提示已经够把人指到原因上了。
+    # No automatic .env loading here: auto-loading .env is a bad habit in production,
+    # and this hint is enough to point at the cause.
     typer.secho(
         f"⚠ Missing {crypto.MASTER_ENV}: API keys entered on the models page cannot be stored "
         "(the app refuses rather than store them in the clear). Already-stored keys cannot be decrypted."
@@ -671,7 +679,7 @@ def _startup_report(host: str, port: int) -> None:
 
 @app.command()
 def stats(db: Path = DEFAULT_DB) -> None:
-    """打印图谱统计。"""
+    """Print graph statistics."""
     for k, v in QueryAPI(db).stats().items():
         typer.echo(f"{k:24} {v}")
 
@@ -681,7 +689,7 @@ def sample_derived(
     n: int = 30, seed: int = 42,
     out: Path = Path("build/r7_sample.csv"), db: Path = DEFAULT_DB,
 ) -> None:
-    """R7：抽样导出推导边，供人工判定准确率。"""
+    """R7: sample derived edges for human accuracy review."""
     from framework_reader.query.sample import sample_derived_edges, write_review_sheet
 
     samples = sample_derived_edges(db, n=n, seed=seed)
@@ -691,7 +699,7 @@ def sample_derived(
 
 @app.command("golden")
 def golden(action: str = typer.Argument(..., help="validate | diff")) -> None:
-    """黄金样例：validate 校验，diff 与访谈产出对比。"""
+    """Golden samples: validate checks them, diff compares against interview output."""
     from framework_reader.interpret.compare import diff_against_golden, render_diff_table
     from framework_reader.interpret.golden import GOLDEN_CONTROLS, load_golden
     from framework_reader.interpret.store import InterpretationStore
@@ -721,7 +729,7 @@ def golden(action: str = typer.Argument(..., help="validate | diff")) -> None:
 
 @app.command("lint")
 def lint(action: str = typer.Argument(..., help="calibrate | citations")) -> None:
-    """calibrate：标定忠实度阈值。citations：列出待核实的条号/百分比/年份。"""
+    """calibrate: fit the extraction-fidelity threshold. citations: list clause numbers/percentages/years to verify."""
     if action == "citations":
         from framework_reader.interpret.lint import citation_flags
         from framework_reader.interpret.store import InterpretationStore
@@ -766,7 +774,7 @@ def lint(action: str = typer.Argument(..., help="calibrate | citations")) -> Non
 
 @app.command("llm")
 def llm(action: str = typer.Argument(..., help="check")) -> None:
-    """厂商预设验活。会发真实请求，只手工跑。"""
+    """Probe every vendor preset. Sends real requests; run manually."""
     import os
 
     from framework_reader.llm.client import Message
@@ -781,8 +789,8 @@ def llm(action: str = typer.Argument(..., help="check")) -> None:
 
     registry = LLMRegistry.load(DEFAULT_REGISTRY_PATH)
     guard = PayloadGuard([])
-    # 先看库里管理员配的 key，再回落环境变量——否则网页上配好了、
-    # 这里却说「未设」，两边对不上账。
+    # Check admin-configured keys in the store first, then fall back to environment
+    # variables - otherwise the web says "configured" while this says "not set".
     key_lookup = ModelConfig().key_lookup()
     for preset in registry.providers:
         if not key_lookup(preset.api_key_env):
@@ -798,7 +806,7 @@ def llm(action: str = typer.Argument(..., help="check")) -> None:
                 model=preset.default_model, max_tokens=8,
             )
             typer.echo(f"{preset.id:14} OK   {preset.default_model}")
-        except Exception as exc:  # 验活失败不中断其余厂商
+        except Exception as exc:  # one vendor failing must not stop the others
             typer.echo(f"{preset.id:14} FAIL {type(exc).__name__}: {exc}")
 
 
@@ -824,10 +832,10 @@ def draft(
     ),
     db: Path = DEFAULT_DB,
 ) -> None:
-    """批量起草四个非差异化字段。离线跑，可并发。"""
+    """Batch-draft the four non-differentiating fields. Runs concurrently, offline."""
     from framework_reader.interpret.run import UnknownFrameworkError, draft_framework
 
-    _ = all_  # no-op：draft 本来就是整框架批量
+    _ = all_  # no-op: draft already batches the whole framework
 
     try:
         report = draft_framework(
@@ -846,7 +854,7 @@ def draft(
 
 
 def _short(value, limit: int = 90) -> str:
-    """把字段值压成一行，便于在终端对照。"""
+    """Collapse a field value onto one line for terminal comparison."""
     if value is None:
         return "(empty)"
     if isinstance(value, list):
@@ -867,7 +875,7 @@ def proofread(
     dry_run: bool = typer.Option(False, "--dry-run", help="Report only, write nothing"),
     db: Path = DEFAULT_DB,
 ) -> None:
-    """校对 pass：只改语言不改内容。可疑改动一律拦下来报告，不落盘。"""
+    """Proofread pass: language only, never content. Suspicious edits are blocked and reported, not written."""
     from concurrent.futures import ThreadPoolExecutor
 
     from framework_reader.interpret.proofread import proofread_fields
@@ -879,8 +887,9 @@ def proofread(
         MissingApiKeyError,
     )
 
-    # 按框架选存储。写死 InterpretationStore 的话，对着导入的框架校对永远
-    # 只会说「没有可校对的解读」——它的解读根本不在内容仓里。
+    # Pick the store per framework. Hardwiring InterpretationStore makes proofreading
+    # an imported framework always report "nothing to proofread" - its interpretations
+    # never live in the content repo.
     store = store_for(QueryAPI(db).get_framework(framework_id))
     targets = [
         i for i in store.iter_all()
@@ -946,11 +955,11 @@ def proofread(
 
 
 def _refuse_imported(control_id: str | None) -> None:
-    """访谈是作者的工具，对着用户导入的框架跑会把他的解读写进内容仓。
+    """Interviews are the author's tool; running one on an imported framework would write the user's interpretations into the content repo.
 
-    拦在装配之前——拦在模型调用之后，钱已经花了。写入口那道门（
-    InterpretationStore 的 content root guard）也拦得住，但那时用户已经
-    答完三问三答，白答。
+    Blocked before assembly - blocking after the model call means the money is already
+    spent. The write-side gate (InterpretationStore's content root guard) would also
+    catch it, but by then the user has answered all three questions for nothing.
     """
     if not control_id:
         return
@@ -980,10 +989,11 @@ def interview(
     ),
     db: Path = DEFAULT_DB,
 ) -> None:
-    """访谈一条控制：三问三答，抽取，$EDITOR 签字。
+    """Interview one control: three questions, extraction, sign-off in $EDITOR.
 
-    这是**作者给内置框架签字**的工具：写的是 `content/interpretations/`，
-    产出要进 git、要评审。用户导入的框架不走这里——见下面的拦截。
+    This is the **author's signing tool for built-in frameworks**: it writes to
+    content/interpretations/, which goes into git and gets reviewed. Imported
+    frameworks do not go through here - see the guard below.
     """
     import getpass
     import sqlite3
@@ -1036,7 +1046,7 @@ def interview(
         questioner = registry.build("questioner", guard=guard)
         extractor = registry.build("extractor", guard=guard)
     except MissingApiKeyError as exc:
-        # 这条命令 W3 要跑 106 遍，忘设 key 不该甩一屏 traceback。
+        # W3 runs this command 106 times; a missing key must not dump a screen of traceback.
         typer.echo(f"{exc}\nExport that variable first, or change the roles in content/llm_providers.yaml")
         raise typer.Exit(2)
 
@@ -1085,7 +1095,7 @@ def blindtest(
     n: int = 10,
     db: Path = DEFAULT_DB,
 ) -> None:
-    """盲测：prepare 出题、repacket 重渲问卷、tally 录判定、report 出结论。"""
+    """Blind test: prepare builds the packet, repacket re-renders it, tally records verdicts, report concludes."""
     import json
 
     from framework_reader.blindtest.packet import (
@@ -1128,14 +1138,16 @@ def blindtest(
                 AnswerKey(**json.loads(key_path.read_text(encoding="utf-8"))), frame
             )
             if drift:
-                # 静悄悄出另一批题是最难自察的作弊。宁可停下。spec §3
+                # Quietly drawing a different question set is the hardest cheat to
+                # notice yourself. Stop instead. spec §3
                 typer.echo(f"{drift}; to regenerate anyway, delete {room}")
                 raise typer.Exit(1)
         picked = stratified_sample(frame, n, seed)
         registry = LLMRegistry.load(DEFAULT_REGISTRY_PATH)
         model = registry.role("drafter").model
 
-        # 只取可导出的边。L2 推导边 R7 抽样 correct 17%，不进评委眼前。主 spec §3.3
+        # Exportable edges only. L2 derived edges sampled 17% correct in R7; they
+        # never reach the judges. Main spec §3.3
         names: dict[str, str] = {}
 
         def mappings_for(control_id: str) -> list[MappingRef]:
@@ -1168,7 +1180,8 @@ def blindtest(
                 ),
                 original=render_original(outcome),
             ))
-            # 每生成一条就落盘：build_packet 的泄露断言若失败，已花掉的调用不能白花。
+            # Persist after each item: if build_packet's leak assertion fails, the
+            # model calls already paid for must not be wasted.
             raw_path.write_text(
                 json.dumps([i.model_dump() for i in items], ensure_ascii=False, indent=2),
                 encoding="utf-8",
@@ -1193,8 +1206,9 @@ def blindtest(
     key = AnswerKey(**json.loads(key_path.read_text(encoding="utf-8")))
 
     if action == "repacket":
-        # 只重渲问卷（例如改了答题说明），不重新抽样、不调模型。
-        # 重新抽样会换一批题，重调模型会换一份裸问文字——都等于换了一份卷子。
+        # Re-render the questionnaire only (e.g. changed instructions): no resampling,
+        # no model calls. Resampling swaps the questions, re-calling the model swaps
+        # the bare-LLM text - either way it is a different exam.
         items = load_cached_items(room / "variants.json", key.order)
         if items is None:
             typer.echo(
@@ -1207,7 +1221,8 @@ def blindtest(
             excluded=key.excluded,
         )
         if fresh.mapping != key.mapping:
-            # 评委手上的甲乙丙一旦变了，已收回的判定全废。宁可不产出。
+            # Once the letters in the judges' hands change, every returned verdict is
+            # void. Prefer producing nothing.
             typer.echo("Re-rendering would change the A/B/C-to-variant mapping; stopped - answer_key untouched")
             raise typer.Exit(1)
         (room / "packet.md").write_text(text, encoding="utf-8")
