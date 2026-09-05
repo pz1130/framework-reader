@@ -98,11 +98,12 @@ def test_an_empty_search_returns_to_the_home_desk(client):
 def test_home_shows_three_daily_controls_to_study(client):
     page = client.get("/").text
     assert "Learn three today" in page
-    linked = [short for short, _label, _ in CONTROLS if short in page]
-    # 四条里抽出三条，恰好这个数，且都点得进条款页。
+    # Count /c/ links, not bare control numbers: the omnibox quick chip also
+    # carries a control id outside the daily block.
+    linked = [short for short, _label, _ in CONTROLS
+              if f'href="/c/{FW}:{short}"' in page]
+    # Four controls in the fixture, three drawn for today - all clickable.
     assert len(linked) == 3
-    for short in linked:
-        assert f'href="/c/{FW}:{short}"' in page
 
 
 def test_the_daily_three_are_stable_across_a_day(client):

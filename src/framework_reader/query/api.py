@@ -434,7 +434,15 @@ class QueryAPI:
         }
 
     def interpretation(self, control_id: str, locale: str = "zh-CN") -> dict[str, dict]:
-        """读一条控制的解读。调用方不得直接写 SQL。主 spec §8①"""
+        """读一条控制的解读。调用方不得直接写 SQL。主 spec §8①
+
+        `locale` is a preference, not a hard filter: each control's rows live in
+        exactly one language, but the label is not trustworthy across tiers — the
+        signed 800-53 rows keep their zh-CN label (the signature digest covers
+        locale, so relabelling would break every signature) while the translated
+        CSF/ISO rows are labelled en. Ask for the preferred locale; if the control
+        has no rows there, serve the language it actually has.
+        """
         import json
 
         rows = self._conn.execute(
@@ -442,6 +450,12 @@ class QueryAPI:
             "WHERE control_id = ? AND locale = ? ORDER BY field",
             (control_id, locale),
         ).fetchall()
+        if not rows:
+            rows = self._conn.execute(
+                "SELECT field, value_json, basis FROM all_interpretation "
+                "WHERE control_id = ? ORDER BY field",
+                (control_id,),
+            ).fetchall()
         return {
             r["field"]: {"value": json.loads(r["value_json"]), "basis": r["basis"]}
             for r in rows
@@ -464,10 +478,17 @@ class QueryAPI:
         """这条解读的成色：`draft` 是 AI 初稿、未经作者确认。主 spec §7.3.1
 
         自用降级后草稿也进包，成色必须能读出来——否则读的人会把初稿当定稿。
+        Locale is a preference here too — see interpretation().
         """
         row = self._conn.execute(
             "SELECT state FROM all_interpretation "
             "WHERE control_id = ? AND locale = ? LIMIT 1",
             (control_id, locale),
         ).fetchone()
+        if row is None:
+            row = self._conn.execute(
+                "SELECT state FROM all_interpretation "
+                "WHERE control_id = ? LIMIT 1",
+                (control_id,),
+            ).fetchone()
         return row["state"] if row else None

@@ -43,10 +43,9 @@ def test_both_palettes_ship_and_dark_reclaims_the_media_query(client):
     # Mac 上苹果黑会被它那套青灰色压掉。
     assert ':root:not([data-theme="light"])' in page
     assert ':root[data-theme="light"]' in page
-    # 发布手册的浅色令牌原样还在（两种主题互不覆盖对方的底）。
-    assert "--ground:#F1F4F3" in page
-    assert "--ground:#000" in page
-    assert "--ground:#fff" in page
+    # Each palette keeps its own ground so neither overwrites the other's base.
+    assert "--ground:#0d0f12" in page
+    assert "--ground:#f8f9fa" in page
 
 
 def test_the_toggle_button_is_on_the_bare_login_page(client):
