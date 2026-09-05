@@ -1,30 +1,50 @@
 control_id: ISO-27002-2022:A.5.6
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是安全团队闭门造车——威胁情报、漏洞披露、监管新规都在外部圈子先流动，不主动接入，等自家被通报或被打了才知道，反应永远慢半拍。
+    value: The concern is that the security team works in isolation—threat intelligence, vulnerability
+      disclosures, and new regulatory requirements circulate in external communities first. Without proactive
+      engagement, the organization only learns after being notified or attacked, always reacting a step
+      too late.
     basis: inferred
   plain_zh:
-    value: 别自己闷头干，要跟外面的安全圈子（同行、厂商、行业组织、情报源）建立并保持联系，拿外面的信息回来自我教育、更新认知、提前预警，并有一套把外部预警转成内部行动的流程。
+    value: Don't work in a silo; establish and maintain contact with the external security community (peers,
+      vendors, industry organizations, intelligence sources). Use external information for self-education,
+      updating awareness, and early warning, and have a process to convert external alerts into internal
+      actions.
     basis: inferred
   practice:
     value:
-      '1': 有专人订阅关键漏洞与威胁情报源（至少厂商公告与CVE）；重大漏洞能在一到两天内得知并有人跟进。
-      '2': 有正式的成员与月度会议纪要；对外部预警有分级与传播机制；接获紧急更新指令时按既定时间表执行并有合规性反馈。
-      '3': 主动参与行业威胁情报共享（平台或群组）；内部预警与响应流程与事件管理挂钩，能追溯到某条外部预警如何变成某次具体处置。
+      '1': Designated personnel subscribe to key vulnerability and threat intelligence sources (at least
+        vendor advisories and CVEs); major vulnerabilities are known within one to two days and followed
+        up by someone.
+      '2': Formal membership with monthly meeting minutes; a classification and dissemination mechanism
+        for external alerts; when urgent update directives are received, they are executed per the established
+        schedule with compliance feedback.
+      '3': Active participation in industry threat intelligence sharing (platforms or groups); internal
+        alert and response processes are linked to incident management, allowing traceability from an
+        external alert to a specific handling action.
     basis: inferred
   evidence:
-    value: 成员名单与加入日期、外部情报源订阅清单、外部预警接收与转发的工单或邮件记录、内部预警响应的闭环记录、参与行业组织或合作会议的纪要。
+    value: Membership list with join dates, subscription list of external intelligence sources, tickets
+      or email records of external alert receipt and forwarding, closed-loop records of internal alert
+      responses, and minutes of participation in industry organizations or cooperative meetings.
     basis: inferred
   common_myth:
-    value: 以为加入一个微信群或邮件列表、有人看看就算是「对接」。真正的问题是你从外面收到消息到内部有人评估、有人决定处置之间有没有闭环；群消息没人负责转工单，等于没接入。
+    value: Assuming that joining a WeChat group or mailing list and having someone read it counts as 'engagement.'
+      The real issue is whether there is a closed loop from receiving external information to internal
+      assessment and decision on handling; if no one is responsible for converting group messages into
+      tickets, it's equivalent to not being connected.
     basis: inferred
   auditor_asks:
     value:
-    - 把外部预警转成内部行动的步骤写在哪？谁负责决定这个预警要不要响应？
-    - 最近一次你们依据外部情报做处置是哪个事件？花了多久？用什么渠道接到的？
-    - 你们的威胁情报源清单有版本管理吗？换人负责时怎么交接？
+    - Where is the process for converting external alerts into internal actions documented? Who decides
+      whether an alert requires a response?
+    - What was the most recent incident where you acted based on external intelligence? How long did it
+      take? Through what channel was it received?
+    - Is there version management for your list of threat intelligence sources? How is handover handled
+      when the responsible person changes?
     basis: inferred
   regional_note:
     value: null

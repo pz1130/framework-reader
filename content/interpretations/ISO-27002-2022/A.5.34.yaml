@@ -1,32 +1,54 @@
 control_id: ISO-27002-2022:A.5.34
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「个人数据当普通资产管」——数据被收集、使用、共享、删除的每个环节缺少法律依据和边界限制，处理目的没有书面记录，个人无法获知自己的数据被拿去做什么，出事后既说不清为何收集、也说不清凭何处理。
+    value: The concern is about treating personal data as ordinary assets—where collection, use, sharing,
+      and deletion of data lack legal basis and boundary limits at each step, processing purposes are
+      not documented in writing, individuals cannot learn what their data is used for, and when incidents
+      occur, it is unclear why data was collected or on what basis it was processed.
     basis: inferred
   plain_zh:
-    value: 你得说清楚每类个人信息是依据什么法律或业务理由被收集的、用来干什么，并且按这个目的设好边界——不能想采就采、想用就用。目的变更时要重新评估，敏感类别要特殊对待，同时把这一切形成可查的政策与程序。
+    value: You must clarify the legal or business basis for collecting each category of personal information,
+      what it is used for, and set boundaries accordingly—you cannot collect or use data arbitrarily.
+      When purposes change, reassess them; treat sensitive categories specially; and document all this
+      in auditable policies and procedures.
     basis: inferred
   practice:
     value:
-      '1': 有隐私政策；收集个人信息时能说得出业务目的；个人数据存哪、谁在用基本摸清。
-      '2': 书面记录每类数据的处理目的、法律依据与保存期限；处理目的写进隐私通知；目的变更走审批并重新评估兼容性；对敏感数据有额外分级和保护规则。
-      '3': 处理目的与数据流转做系统化登记（如数据字典或隐私平台）；监控实际处理活动与声明目的是否一致并拦截不相容用途；敏感类别的处理须双人复核或法务确认；删除或匿名化有自动化保障。
+      '1': Privacy policy exists; business purpose can be stated when collecting personal information;
+        basic understanding of where personal data is stored and who uses it.
+      '2': Document in writing the processing purpose, legal basis, and retention period for each data
+        category; include processing purposes in privacy notices; purpose changes undergo approval and
+        compatibility reassessment; additional classification and protection rules for sensitive data.
+      '3': Systematically register processing purposes and data flows (e.g., data dictionary or privacy
+        platform); monitor actual processing activities against stated purposes and block incompatible
+        uses; sensitive category processing requires dual-person review or legal confirmation; automated
+        safeguards for deletion or anonymization.
     basis: inferred
   evidence:
-    value: 隐私政策与通知、个人信息处理目的与法律依据登记表、数据分级清单（含敏感类别标识）、处理目的变更的审批与兼容性评估记录、数据流转图或系统台账。
+    value: Privacy policy and notices, registry of personal information processing purposes and legal
+      bases, data classification list (including sensitive category markers), approval and compatibility
+      assessment records for purpose changes, data flow diagrams or system inventories.
     basis: inferred
   common_myth:
-    value: 以为「挂一页隐私政策弹窗」就算合规。真正的差距在内部——谁依据什么采集了哪些字段、采集后往哪些系统流转、保存多久、按什么清理，这些没有书面目的与批准记录，外网挂再漂亮的隐私承诺都是空的。
+    value: Assuming that 'displaying a privacy policy pop-up' constitutes compliance. The real gap lies
+      internally—who collected which fields based on what, which systems data flows to after collection,
+      how long it is retained, and how it is purged. Without documented purposes and approval records,
+      even the most polished external privacy promises are hollow.
     basis: inferred
   auditor_asks:
     value:
-    - 公司处理个人数据的法律依据是什么？逐类列出来是哪份文件？
-    - 哪类数据被认定为敏感类别？依据标准是什么？处理走什么额外审批？
+    - What is the legal basis for the company's processing of personal data? List each category and the
+      corresponding document.
+    - Which data categories are identified as sensitive? What criteria are used? What additional approvals
+      are required for processing?
     basis: inferred
   regional_note:
-    value: 欧洲审计员对「处理目的明确」和「目的相容性」盯得很紧，常拿 GDPR 第 5 条逐项核对目的和期限；美国则以 FTC 与州法（如 CCPA/CPRA）下的隐私通知与消费者权利响应为主，追踪深度不同。
+    value: European auditors closely scrutinize 'specified processing purposes' and 'purpose compatibility,'
+      often checking purposes and retention against GDPR Article 5 item by item; in the U.S., the focus
+      is on privacy notices and consumer rights responses under the FTC and state laws (e.g., CCPA/CPRA),
+      with different tracking depths.
     basis: inferred
 interview:
   questions: []

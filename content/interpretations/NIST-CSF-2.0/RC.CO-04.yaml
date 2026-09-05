@@ -1,29 +1,42 @@
 control_id: NIST-CSF-2.0:RC.CO-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全事件刚平稳，对外一句话把舆情引爆」——事故应对得再好，面向客户、监管和公众的通报口径不统一或未经批准，会二次伤害信任并招致合规追责。
+    value: The concern is that a single external statement right after an incident is stabilized could
+      ignite public opinion. Even if incident response is handled well, inconsistent or unapproved messaging
+      to customers, regulators, and the public can cause secondary damage to trust and lead to compliance
+      accountability.
     basis: inferred
   plain_zh:
-    value: 对外说灾后恢复进展，必须走批准过的渠道、用批准过的措辞。各部门不能各说各话，更不能拿临时想到的词直接发。
+    value: When communicating recovery progress externally, you must use approved channels and approved
+      wording. Departments cannot speak independently, nor can they directly release impromptu statements.
     basis: inferred
   practice:
     value:
-      '1': 明确了指定对外发言人；恢复期间任何对外通报前，有口头或邮件审批。
-      '2': 有书面沟通计划，列出获准渠道与标准模板；每次对外发布有记录，含审批人与发布时间。
-      '3': 发布话术与渠道在事件响应流程里预设并演练过；审批动作系统留痕；发布内容与恢复状态自动同步，避免口径过期。
+      '1': A designated external spokesperson is identified; any external communication during recovery
+        requires verbal or email approval before release.
+      '2': A written communication plan exists, listing approved channels and standard templates; each
+        external release is documented, including approver and release time.
+      '3': Messaging and channels are pre-defined and rehearsed in the incident response process; approval
+        actions are systematically logged; released content is automatically synchronized with recovery
+        status to avoid outdated messaging.
     basis: inferred
   evidence:
-    value: 事件沟通计划、发言人指派文件、对外公告样稿与审批链记录（邮件或工作流）、演练时模拟发布脚本。
+    value: Incident communication plan, spokesperson designation documents, draft external announcements
+      with approval chain records (email or workflow), and simulated release scripts from exercises.
     basis: inferred
   common_myth:
-    value: 以为「有发言人就行」，但发言人讲什么并不是自己说了算，对外口径得先获批。常见错法是：法务、公关、技术各发各的，技术人员跟客户直接说细节，没人拦。
+    value: The misconception is that 'having a spokesperson is enough,' but the spokesperson does not
+      decide what to say; the external messaging must be approved first. A common mistake is that legal,
+      PR, and technical teams each release their own statements, and technical staff directly share details
+      with customers without any oversight.
     basis: inferred
   auditor_asks:
     value:
-    - 这次事件的对外公告是谁批准的？审批记录在哪？
-    - 客户问恢复时间，你们有标准答法吗？谁制定、谁批准、在哪个系统里留痕？
+    - Who approved the external announcement for this incident? Where are the approval records?
+    - When customers ask about recovery time, do you have a standard response? Who develops it, who approves
+      it, and in which system is it logged?
     basis: inferred
   regional_note:
     value: null

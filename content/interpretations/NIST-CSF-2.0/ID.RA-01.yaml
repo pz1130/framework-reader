@@ -1,29 +1,47 @@
 control_id: NIST-CSF-2.0:ID.RA-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「漏扫报告出来了没人管」——资产里的漏洞从被发现到确认到记录必须形成闭环，否则扫描只是花架子，漏洞堆在报告里没人处置，后续风险没法排序也没法追踪。
+    value: The concern is that 'vulnerability scan reports are generated but no one acts on them' — vulnerabilities
+      in assets must go through a closed loop from discovery to confirmation to recording; otherwise,
+      scanning is just a facade, vulnerabilities pile up in reports without handling, and subsequent risk
+      prioritization and tracking are impossible.
     basis: inferred
   plain_zh:
-    value: 把企业内部资产（服务器、终端、网络设备、应用等）的漏洞找出来，确认它是真漏洞还是误报，并把它记到一个能追踪的地方，形成一份可持续更新的漏洞清单。
+    value: Identify vulnerabilities in the organization's internal assets (servers, endpoints, network
+      devices, applications, etc.), confirm whether they are true vulnerabilities or false positives,
+      and record them in a trackable location to form a continuously updated vulnerability list.
     basis: inferred
   practice:
     value:
-      '1': 有漏洞扫描工具或服务，定期扫核心资产；发现结果有人整理成一个清单（表格或文档）。
-      '2': 有明确的漏洞发现-验证-记录流程；扫描结果经过人工或自动确认，误报有标记；漏洞清单有负责人和更新频率。
-      '3': 漏洞识别自动化接入资产清单，新资产上线即纳入扫描范围；验证过程有工具辅助或复测；记录系统能按资产、严重度、状态查询，并支持与处置流程联动追踪。
+      '1': Have vulnerability scanning tools or services that regularly scan core assets; scan results
+        are compiled into a list (table or document) by someone.
+      '2': Have a clear vulnerability discovery-verification-recording process; scan results are manually
+        or automatically confirmed, false positives are marked; the vulnerability list has an owner and
+        update frequency.
+      '3': Vulnerability identification is automated and integrated with the asset inventory; new assets
+        are included in the scanning scope upon deployment; the verification process is aided by tools
+        or re-testing; the recording system can query by asset, severity, and status, and supports linkage
+        with the remediation process for tracking.
     basis: inferred
   evidence:
-    value: 漏洞扫描报告、漏洞清单（含状态字段：待验证/已验证/误报）、扫描配置文件（扫描范围、频率）、漏洞记录条目与处理状态、复测或验证记录。
+    value: 'Vulnerability scan reports, vulnerability lists (including status fields: pending verification/verified/false
+      positive), scan configuration files (scan scope, frequency), vulnerability record entries with handling
+      status, re-test or verification records.'
     basis: inferred
   common_myth:
-    value: 以为「买了个商业漏扫工具，定时跑一跑，报告发出去」就等于满足。工具跑完不等于漏洞被识别、验证、记录——审计员要看到清单里有确认状态的字段，误报被标注，且验证这一步有依据（比如复测、人工判断或参考公开库比对）。
+    value: Assuming that 'purchasing a commercial vulnerability scanner, running it periodically, and
+      sending out reports' is sufficient. Running the tool does not equal vulnerabilities being identified,
+      verified, and recorded — auditors need to see status fields in the list, false positives marked,
+      and evidence for the verification step (e.g., re-testing, manual judgment, or comparison with public
+      databases).
     basis: inferred
   auditor_asks:
     value:
-    - 漏洞清单里标记为已确认的条目，验证依据是什么？
-    - 新采购的设备或新上线的应用，多久能进扫描范围？流程在哪？
+    - For entries marked as confirmed in the vulnerability list, what is the verification basis?
+    - How long does it take for newly purchased devices or newly deployed applications to be included
+      in the scanning scope? Where is the process documented?
     basis: inferred
   regional_note:
     value: null

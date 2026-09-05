@@ -1,29 +1,45 @@
 control_id: NIST-CSF-2.0:ID.AM-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「资产说不清、家底摸不着」——不知道组织里有哪些硬件在跑，就谈不上监控漏洞、处置事件、划分责任边界；审计一看系统记录与实物对不上就露馅。
+    value: The concern is about "unclear asset inventory and unknown infrastructure"—if you don't know
+      which hardware is running in the organization, you can't monitor vulnerabilities, handle incidents,
+      or define responsibility boundaries; auditors will notice discrepancies between system records and
+      physical assets.
     basis: inferred
   plain_zh:
-    value: 把组织管着的所有硬件设备（服务器、终端、网络设备、物联网设备等）记成一份清单，而且要持续维护、保持更新，不能是开业时做一次就再也不碰。
+    value: Maintain a list of all hardware devices managed by the organization (servers, endpoints, network
+      devices, IoT devices, etc.), and keep it continuously updated, not just a one-time effort at the
+      start.
     basis: inferred
   practice:
     value:
-      '1': 有一份硬件资产清单，至少覆盖主要数据中心与办公终端；有新设备或报废设备会人工登记。
-      '2': 资产清单有明确责任人与更新机制，覆盖范围含网络设备与运维终端；定期盘点并与实际设备核对差异。
-      '3': 资产清单由自动发现工具驱动，与配置管理库联动，新上线或下线设备在数小时内反映到清单；盘点差异自动告警并走处置流程。
+      '1': There is a hardware asset inventory covering at least major data centers and office endpoints;
+        new or decommissioned devices are manually registered.
+      '2': The asset inventory has clear ownership and update mechanisms, covering network devices and
+        operational endpoints; regular physical checks are conducted and discrepancies are reconciled.
+      '3': The asset inventory is driven by automated discovery tools, integrated with the configuration
+        management database (CMDB); new or decommissioned devices are reflected in the inventory within
+        hours; discrepancies trigger automatic alerts and follow a remediation process.
     basis: inferred
   evidence:
-    value: 硬件资产清单文件或系统导出、资产责任人任命记录、定期盘点纪要、自动发现工具的采集范围与日志、新增/下线设备的变更记录。
+    value: Hardware asset inventory file or system export, records of asset owner appointments, minutes
+      of regular physical checks, collection scope and logs of automated discovery tools, change records
+      for added/decommissioned devices.
     basis: inferred
   common_myth:
-    value: 以为「有 CMDB 就算有资产清单」。很多团队的 CMDB 只录了服务器，网络设备和办公终端不在里面；或者录了从不更新，上线的没加、下线的没删，审计抽查时实物与系统对不上。
+    value: Assuming that "having a CMDB counts as having an asset inventory." Many teams' CMDBs only include
+      servers, excluding network devices and office endpoints; or they are never updated—new devices aren't
+      added, decommissioned ones aren't removed—leading to mismatches between physical assets and the
+      system during audits.
     basis: inferred
   auditor_asks:
     value:
-    - 清单上一共有多少台硬件？覆盖了哪些类型，哪些类型不在清单里？
-    - 上一次全面盘点是什么时候？发现差异后谁负责整改、记录在哪？
+    - How many hardware devices are in the inventory? What types are covered, and which types are not
+      included?
+    - When was the last comprehensive physical check? Who is responsible for rectifying discrepancies
+      and where are they recorded?
     basis: inferred
   regional_note:
     value: null

@@ -1,30 +1,48 @@
 control_id: NIST-CSF-2.0:GV.OC-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是企业只从内部视角定义「什么是关键业务」——外部利益相关方（客户、监管、合作伙伴）真正依赖你交付的到底是什么。如果没人说清，一旦中断，恢复优先级可能完全做反，投入的资源也没对准别人真正要的东西。
+    value: The concern is that enterprises only define 'what is critical business' from an internal perspective—what
+      external stakeholders (customers, regulators, partners) truly rely on you to deliver. If no one
+      articulates this, then in the event of disruption, recovery priorities could be completely reversed,
+      and resources invested may not align with what others truly need.
     basis: inferred
   plain_zh:
-    value: 把外部利益相关方（客户、监管机构、关键合作伙伴）指望你提供的核心目标、能力和服务梳理清楚，并且让内部相关团队都理解、形成共识、能讲出来。
+    value: Identify the core objectives, capabilities, and services that external stakeholders (customers,
+      regulators, key partners) expect you to provide, and ensure that relevant internal teams understand,
+      reach consensus on, and can articulate them.
     basis: inferred
   practice:
     value:
-      '1': 有一份清单或文档，列明外部依赖的关键服务或目标；业务线负责人能说出自己对外承诺了什么。
-      '2': 关键外部服务与内部支撑系统/流程做了映射；每年至少一次与业务线确认清单有效性；变更时有更新记录。
-      '3': 外部依赖清单直接驱动业务影响分析和恢复优先级排序；关键客户或监管有书面确认或签约承诺；董事会或高管层定期审阅并签字。
+      '1': There is a list or document identifying key services or objectives that external parties depend
+        on; business line owners can articulate what they have committed to externally.
+      '2': Key external services are mapped to internal supporting systems/processes; the list's validity
+        is confirmed with business lines at least annually; updates are recorded when changes occur.
+      '3': The external dependency list directly drives business impact analysis and recovery prioritization;
+        key customers or regulators have written confirmation or contractual commitments; the board or
+        senior management reviews and signs off regularly.
     basis: inferred
   evidence:
-    value: 外部关键服务清单、与内部系统/流程的映射表、业务线确认评审纪要、对外承诺文件（如SLA、监管承诺函）、关键服务变更记录。
+    value: List of key external services, mapping tables to internal systems/processes, meeting minutes
+      of business line confirmation reviews, external commitment documents (e.g., SLAs, regulatory commitment
+      letters), and change records for key services.
     basis: inferred
   common_myth:
-    value: 以为把内部业务影响分析（BIA）里标的「核心系统」抄一遍就算完成。BIA是内部视角——IT定的「核心」不等于外部客户真正依赖的「关键」。这一条款要求的是对外承诺与内部支撑的对接，光有系统清单没有对外承诺的定义，审计员一问「客户凭合同要求你们必须提供什么」就露馅。
+    value: Assuming that copying the 'core systems' identified in the internal Business Impact Analysis
+      (BIA) suffices. BIA is an internal perspective—what IT deems 'core' is not necessarily what external
+      customers truly depend on as 'critical.' This requirement calls for aligning external commitments
+      with internal support; having only a system list without defining external commitments will be exposed
+      when an auditor asks, 'What are you contractually obligated to provide to customers?'
     basis: inferred
   auditor_asks:
     value:
-    - 外部关键服务清单最近一次更新是什么时候？谁负责确认它仍然有效？
-    - 贵司对外SLA或合同承诺的「关键交付物」有哪些？内部是如何映射到具体系统或团队的？
-    - 当业务线负责人认为某服务不再关键时，走什么流程去更新这份清单？
+    - When was the list of key external services last updated? Who is responsible for confirming its continued
+      validity?
+    - What are the 'critical deliverables' your company has committed to in external SLAs or contracts?
+      How are these internally mapped to specific systems or teams?
+    - When a business line owner believes a service is no longer critical, what process is followed to
+      update this list?
     basis: inferred
   regional_note:
     value: null

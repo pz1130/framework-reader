@@ -1,30 +1,51 @@
 control_id: ISO-27002-2022:A.7.13
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「设备坏了才找人修、修完不留痕」——维修保养如果不受控，等于把系统完整性、数据保密性和供应链可信度交给第三方维修人员临时决定，而且事后无从追溯谁动过什么、装了什么、带走了什么。
+    value: The concern is about 'only calling for repairs when equipment breaks, and leaving no trace
+      after repairs' — if maintenance and repair are not controlled, it effectively hands over system
+      integrity, data confidentiality, and supply chain trustworthiness to the ad-hoc decisions of third-party
+      repair personnel, with no way to trace afterward who touched what, installed what, or took away
+      what.
     basis: inferred
   plain_zh:
-    value: 把设备维修保养当安全控制来管：修什么、谁修、怎么修、修完留下什么记录，都要有计划和审批；送外维修前必须清数据；关键设备要能及时修或换。
+    value: 'Manage equipment maintenance and repair as a security control: what is repaired, who repairs
+      it, how it is repaired, and what records are left after repair must all be planned and approved;
+      data must be cleared before off-site repair; critical equipment must be repairable or replaceable
+      in a timely manner.'
     basis: inferred
   practice:
     value:
-      '1': 有维修记录本或工单，记录维修时间、人员和基本操作；送外维修前做一次数据清除，至少口头要求并签个单。
-      '2': 维修有审批流程，区分现场/远程/外送；维修记录定期审核；外送维修有设备交接单和清除确认；关键备件有清单和采购渠道。
-      '3': 维修记录结构化、可检索，与设备台账关联；外送维修有标准消毒流程并留证明；远程维修有会话审计；关键设备有冗余或备件库，维修时限写入合同 SLA。
+      '1': Maintain a repair log or work order, recording repair time, personnel, and basic operations;
+        perform data clearing before off-site repair, at least with a verbal request and a signed form.
+      '2': Implement an approval process for repairs, distinguishing on-site/remote/off-site; regularly
+        review repair records; use equipment handover forms and clearing confirmations for off-site repairs;
+        maintain a list of critical spare parts and procurement channels.
+      '3': Make repair records structured and searchable, linked to the equipment asset register; have
+        a standard sanitization process with proof for off-site repairs; conduct session audits for remote
+        repairs; ensure redundancy or spare parts inventory for critical equipment, with repair timeframes
+        written into contractual SLAs.
     basis: inferred
   evidence:
-    value: 维修工单与审批记录、设备离场交接单与数据消毒证明、远程维修会话日志、维修人员资质与授权记录、备件与维修合同 SLA。
+    value: Repair work orders and approval records, equipment off-site handover forms and data sanitization
+      certificates, remote repair session logs, repair personnel qualification and authorization records,
+      spare parts and repair contract SLAs.
     basis: inferred
   common_myth:
-    value: 以为「维修有工单就行」——工单只证明有活干了，不证明数据在维修前后是安全的。审计真正追的是数据清除证据、维修人员有没有超出授权范围碰了不该碰的数据、以及远程维修到底有没有全程受监管。
+    value: The misconception is that 'having a work order for repairs is enough' — a work order only proves
+      that work was done, not that data was secure before and after the repair. Auditors actually pursue
+      evidence of data clearing, whether repair personnel exceeded their authorized scope and accessed
+      data they shouldn't have, and whether remote repairs were fully supervised throughout.
     basis: inferred
   auditor_asks:
     value:
-    - 送外维修的设备，数据清除由谁执行、用什么标准验证？证据放在哪？
-    - 远程维修时，维修人员看到的画面和数据有没有录屏或审计日志？
-    - 关键设备坏了，多久必须修好或换好？写在哪份合同或 SLA 里？
+    - For equipment sent off-site for repair, who performs data clearing and what standard is used for
+      verification? Where is the evidence stored?
+    - During remote repairs, are the screens and data seen by repair personnel recorded or audited via
+      logs?
+    - If critical equipment fails, how long before it must be repaired or replaced? Where is this specified
+      in a contract or SLA?
     basis: inferred
   regional_note:
     value: null

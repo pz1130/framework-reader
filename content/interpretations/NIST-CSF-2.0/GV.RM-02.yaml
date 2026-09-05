@@ -1,30 +1,51 @@
 control_id: NIST-CSF-2.0:GV.RM-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是企业上下对「多大风险算大」没有共识——董事会拍板方向、管理层做执行、安全团队拿预算、业务部门推项目，各自心里那把尺不一样。结果就是安全该花多少钱、哪些业务红线绝不能碰、哪个风险先处置，全部各说各话，责任最后落到安全团队头上。
+    value: The concern is that there is no consensus across the organization on what constitutes 'significant
+      risk'—the board sets direction, management executes, the security team requests budgets, and business
+      units push projects, each with a different yardstick. As a result, discussions on how much to spend
+      on security, which business red lines must never be crossed, and which risks to address first all
+      become fragmented, with accountability ultimately falling on the security team.
     basis: inferred
   plain_zh:
-    value: 高层正式定下一个声明：这个公司为了做事，愿意承担多大的风险、多大就坚决不接受。这个声明要写下来、发下去、让做决策的人真用起来，并且定期更新。说白了就是给全公司一把统一的尺子量风险。
+    value: 'Senior leadership formally establishes a statement: the level of risk the company is willing
+      to accept in pursuit of its objectives, and the level it firmly will not accept. This statement
+      must be documented, disseminated, genuinely used by decision-makers, and regularly updated. In essence,
+      it provides a unified yardstick for measuring risk across the entire company.'
     basis: inferred
   practice:
     value:
-      '1': 董事会或最高管理层通过一份书面的风险偏好声明；有正式的签发记录；安全负责人能拿出这份文件来。
-      '2': 声明被翻译成不同层级能用的语言——董事会看总体表述、管理层有具体可测量的容忍度阈值；新项目立项或重大变更时会引用这份声明做判断；定期（至少年度）有评审更新。
-      '3': 风险偏好与容忍度已经被量化到业务决策流程里——预算分配、新产品上线、供应商准入等环节会硬性检查是否触碰红线；有明确的反馈机制把实际风险敞口报告回来对照偏好；偏离时有升级和处置路径。
+      '1': The board or top management approves a written risk appetite statement; there is a formal issuance
+        record; the security leader can produce this document.
+      '2': The statement is translated into language usable at different levels—the board sees the overall
+        expression, management has specific measurable tolerance thresholds; new project initiation or
+        major changes reference this statement for judgment; there is periodic (at least annual) review
+        and update.
+      '3': Risk appetite and tolerance are quantified into business decision processes—budget allocation,
+        new product launches, supplier onboarding, etc., include hard checks against red lines; there
+        is a clear feedback mechanism to report actual risk exposure back against the appetite; there
+        are escalation and remediation paths for deviations.
     basis: inferred
   evidence:
-    value: 经最高管理层签发的风险偏好声明文件、配套的风险容忍度量化指标、该声明被引用进治理/决策会议纪要的记录、定期评审与修订记录、沟通宣贯的证明材料。
+    value: Risk appetite statement signed by top management, supporting quantified risk tolerance metrics,
+      records of the statement being referenced in governance/decision meeting minutes, periodic review
+      and revision records, and communication and awareness materials.
     basis: inferred
   common_myth:
-    value: 以为「风险管理委员会开过会、通过了一份风险偏好文档」就等于这条做完了。常见情况是那份文档写得太笼统（比如「秉持审慎原则」），业务部门根本看不懂换算成自己项目怎么办，管理层做决策时也从不翻它——文件进了架子，尺子没有进流程。
+    value: Assuming that 'the risk management committee met and approved a risk appetite document' means
+      this is complete. A common situation is that the document is too vague (e.g., 'adhere to prudent
+      principles'), business units cannot translate it into their projects, and management never consults
+      it when making decisions—the document sits on a shelf, and the yardstick is not embedded in processes.
     basis: inferred
   auditor_asks:
     value:
-    - 这份风险偏好声明最近一次评审是什么时候？谁批的？改了什么？
-    - 举一个具体例子：过去一年里哪个决策或项目因为触及风险容忍度被拦下或改道？
-    - 安全团队今年的预算和项目优先级，是怎么从这条风险偏好声明推导出来的？
+    - When was the last review of this risk appetite statement? Who approved it? What changed?
+    - 'Give a specific example: in the past year, which decision or project was halted or redirected because
+      it hit a risk tolerance threshold?'
+    - How was the security team's budget and project priorities this year derived from this risk appetite
+      statement?
     basis: inferred
   regional_note:
     value: null

@@ -1,33 +1,56 @@
 control_id: ISO-27002-2022:A.6.3
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「培训做给人看、上完就忘」——人员安全意识没有转化成行为改变和技能沉淀，钓鱼、误操作、内外勾结、应急时不知所措等跟人相关的风险，靠定期培训记录掩盖不了。
+    value: The concern is about "training done for show, forgotten after completion" — personnel security
+      awareness not translating into behavioral change and skill retention. Risks related to people, such
+      as phishing, misoperations, insider collusion, and panic during emergencies, cannot be masked by
+      routine training records.
     basis: inferred
   plain_zh:
-    value: 不光是每年上一次课、考一次试。要按岗位角色区分培训内容，让每个人知道自己该会什么、出事该找谁，并且用真实事件、案例反复强化，让知识和技能真正长在员工身上，而不只是培训记录里。
+    value: It's not just about taking a course and an exam once a year. Training content should be differentiated
+      by role, so everyone knows what they need to master and who to contact in an incident. Use real
+      events and cases for repeated reinforcement, ensuring knowledge and skills truly take root in employees,
+      not just in training records.
     basis: inferred
   practice:
     value:
-      '1': 新员工入职有安全意识培训；关键岗位（运维、开发、客服）有基础的角色技能培训；培训留存签到和考试成绩单。
-      '2': 按岗位风险设计差异化培训计划；培训内容随真实事故、钓鱼演练结果定期更新；有明确再培训触发条件（如岗位变动、系统大改）；记录可追溯到人。
-      '3': 培训依赖度量（如模拟钓鱼点击率）而非签到率来驱动改进；应急、演练与培训联动形成闭环，真实事件复盘结论能反哺课程内容；覆盖外包与第三方人员的同等要求。
+      '1': New employees receive security awareness training upon onboarding; key roles (operations, development,
+        customer service) receive basic role-specific skills training; training records include sign-in
+        sheets and exam scores.
+      '2': Differentiated training plans are designed based on role-specific risks; training content is
+        regularly updated based on real incidents and phishing drill results; clear retraining triggers
+        exist (e.g., role changes, major system overhauls); records are traceable to individuals.
+      '3': Training effectiveness is driven by metrics (e.g., simulated phishing click rates) rather than
+        attendance rates; emergency response, drills, and training form a closed loop, with lessons from
+        real incident reviews feeding back into course content; equivalent requirements cover outsourced
+        and third-party personnel.
     basis: inferred
   evidence:
-    value: 年度培训计划、分岗位课程大纲与签到表、培训考核记录、钓鱼演练结果与分析报告、再培训触发与执行记录、培训满意度与知识测验数据。
+    value: Annual training plans, role-specific course outlines and sign-in sheets, training assessment
+      records, phishing drill results and analysis reports, retraining trigger and execution records,
+      training satisfaction and knowledge test data.
     basis: inferred
   common_myth:
-    value: 以为「全员每年统一看一支视频、考一次试」就算培训达标。按角色差异化、按威胁演进更新内容、按证据证明培训有效，才是这条真正的验收点——统一考试覆盖不了应急指挥、开发安全和供应商人员这些关键角色。
+    value: Assuming that "a unified annual video and exam for all staff" constitutes compliance. Role-based
+      differentiation, content updates aligned with threat evolution, and evidence proving training effectiveness
+      are the real acceptance criteria — a unified exam cannot cover key roles such as emergency command,
+      development security, and supplier personnel.
     basis: inferred
   auditor_asks:
     value:
-    - 去年钓鱼演练点击率是多少？这个数字比前年好了还是差了？原因是什么？
-    - 新来的外包运维人员上岗前，培训了哪些内容？怎么证明他学会了？
-    - 哪个岗位的培训是每年只做一次、内容没变过的？
+    - What was the click rate in last year's phishing drill? How does this compare to the previous year,
+      and what are the reasons?
+    - What training did newly hired outsourced operations personnel receive before starting? How is their
+      learning verified?
+    - Which role's training is conducted only once a year with unchanged content?
     basis: inferred
   regional_note:
-    value: 欧洲因与 GDPR 等法规联动，更侧重隐私保护在内的综合意识培训；美国在合规导向下更关注按岗位落实和可审计记录。差异主要在内容覆盖范围，做法框架类似。
+    value: In Europe, due to linkage with regulations like GDPR, there is greater emphasis on comprehensive
+      awareness training including privacy protection; in the US, under a compliance-oriented approach,
+      there is more focus on role-based implementation and auditable records. Differences mainly lie in
+      content coverage, with similar methodological frameworks.
     basis: inferred
 interview:
   questions: []

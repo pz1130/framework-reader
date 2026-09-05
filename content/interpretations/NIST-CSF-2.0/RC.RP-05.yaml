@@ -1,30 +1,46 @@
 control_id: NIST-CSF-2.0:RC.RP-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「恢复完能开机就宣布业务正常」——备份能拉起来不等于数据完整、配置正确、上下游依赖就位；事后上线再出问题，比不恢复更难追责。
+    value: The concern is about declaring business operations normal merely because the system can boot
+      after recovery—being able to restore backups does not mean data is complete, configurations are
+      correct, or upstream/downstream dependencies are in place; if issues arise after going live, accountability
+      is harder than if recovery had not been performed.
     basis: inferred
   plain_zh:
-    value: 灾难或事故恢复之后，不能只确认系统跑起来了，要逐项验证恢复出来的数据完整、服务功能正常、业务状态被确认可用，整套流程才算完。
+    value: After disaster or incident recovery, it is not enough to merely confirm that systems are running;
+      you must verify item by item that recovered data is complete, service functions are normal, and
+      business status is confirmed usable. Only then is the entire process considered complete.
     basis: inferred
   practice:
     value:
-      '1': 恢复演练或真实恢复后，至少确认关键系统能启动、主要数据能读取；有问题有记录。
-      '2': 恢复流程里写入验证步骤；对数据做抽样核对或完整性校验，对系统做功能冒烟测试；验证结果有记录。
-      '3': 验证脚本和校验位自动化，恢复过程按 Playbook 执行，验证结果留痕可追溯；每次演练对验证步骤本身有复盘和改进。
+      '1': After recovery drills or actual recovery, at least confirm that critical systems can start
+        and primary data can be read; document any issues.
+      '2': Incorporate verification steps into the recovery process; perform sample checks or integrity
+        verification on data, and functional smoke tests on systems; document verification results.
+      '3': Automate verification scripts and checksums; execute recovery processes according to playbooks;
+        keep verification results traceable; review and improve the verification steps themselves after
+        each drill.
     basis: inferred
   evidence:
-    value: 恢复验证清单或脚本、数据校验和、抽查记录、系统功能测试结果、恢复演练报告，以及问题修复记录。
+    value: Recovery verification checklists or scripts, data checksums, sample check records, system functional
+      test results, recovery drill reports, and issue remediation records.
     basis: inferred
   common_myth:
-    value: 以为「备份能成功恢复、系统能启动」就等于恢复完整性验证——数据可能静默损坏，配置可能过期，日志可能错位，系统起得来不代表业务对；验证要落到数据级和功能级，不是进程级的「活着」就行。
+    value: Assuming that 'successful backup recovery and system startup' equals complete recovery verification—data
+      may be silently corrupted, configurations may be outdated, logs may be misaligned; a system that
+      starts does not mean business is correct; verification must be at the data and functional level,
+      not just process-level 'alive'.
     basis: inferred
   auditor_asks:
     value:
-    - 上一次恢复演练里，验证数据完整性用的什么方法？抽查了多少比例的数据？
-    - 系统恢复后由谁在哪个环节确认业务可正常使用？凭证是什么？
-    - 如果恢复验证发现数据有问题，你们会怎么处理？有没有按这个流程走过？
+    - In the last recovery drill, what method was used to verify data integrity? What percentage of data
+      was sampled?
+    - After system recovery, who confirms that business is usable and at what stage? What evidence is
+      used?
+    - If recovery verification finds data issues, how do you handle them? Have you followed this process
+      before?
     basis: inferred
   regional_note:
     value: null

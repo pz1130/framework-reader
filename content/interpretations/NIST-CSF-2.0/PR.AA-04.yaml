@@ -1,30 +1,46 @@
 control_id: NIST-CSF-2.0:PR.AA-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「身份凭据只在登录那一瞬间被验证」——后续每一次操作、每一次服务间调用都默认信任已建立的会话或令牌，导致会话劫持、令牌重放、伪造身份一路畅通。
+    value: The concern is that identity credentials are only verified at the moment of login—every subsequent
+      operation and service-to-service call implicitly trusts the established session or token, allowing
+      session hijacking, token replay, and identity spoofing to go unchecked.
     basis: inferred
   plain_zh:
-    value: 身份断言（登录凭证、令牌、会话标识）要在传输中加密、在存储中保护、在每次使用时验证真伪和有效期，不能签发一次就永久有效、走到哪都认。
+    value: Identity assertions (login credentials, tokens, session identifiers) must be encrypted in transit,
+      protected at rest, and verified for authenticity and validity at each use; they cannot be issued
+      once and remain valid forever, accepted everywhere.
     basis: inferred
   practice:
     value:
-      '1': 登录和关键接口走加密通道；会话令牌有过期时间；退出后服务端令牌失效。
-      '2': 令牌或断言做签名或绑定到会话上下文；关键操作（改密、转账等）重新验证身份；日志能追溯令牌使用。
-      '3': 令牌短时效且可轮换；服务间调用按调用方身份逐次验证，不信任内网或既定会话；异常令牌使用有检测和阻断。
+      '1': Login and critical interfaces use encrypted channels; session tokens have expiration times;
+        after logout, server-side tokens are invalidated.
+      '2': Tokens or assertions are signed or bound to the session context; critical operations (e.g.,
+        password changes, transfers) require re-verification of identity; logs can trace token usage.
+      '3': Tokens have short validity and can be rotated; service-to-service calls verify the caller's
+        identity each time, not trusting the internal network or established sessions; abnormal token
+        usage is detected and blocked.
     basis: inferred
   evidence:
-    value: 认证与授权配置（令牌生命周期、加密套件）、密钥管理与轮换记录、会话或令牌使用审计日志、安全测试报告中对令牌重放/伪造的验证记录。
+    value: Authentication and authorization configurations (token lifecycle, encryption suites), key management
+      and rotation records, audit logs of session or token usage, and verification records of token replay/forgery
+      in security test reports.
     basis: inferred
   common_myth:
-    value: 以为「上了 JWT 或单点登录就算做到了」——JWT 默认只有签名没有加密，payload 明文可读；如果密钥硬编码在代码里、令牌不设短过期、服务间拿同一个令牌到处用，那签名形同虚设。真正要做的是令牌本身受保护、每个使用点都在验证，而不是签发那一下。
+    value: The misconception is that 'using JWT or single sign-on is enough'—JWT by default is only signed,
+      not encrypted, and the payload is readable in plaintext; if keys are hardcoded in code, tokens lack
+      short expiration, and the same token is used across services, the signature is meaningless. What
+      truly matters is that the token itself is protected and verified at every point of use, not just
+      at issuance.
     basis: inferred
   auditor_asks:
     value:
-    - 两个微服务之间互相调用时，是怎么证明调用方身份的？拿同一个用户令牌还是独立的服务凭据？
-    - 你的令牌有效期多长？过期后旧令牌还能不能用？
-    - 令牌在日志或监控里会不会以明文出现？谁有权限读写存令牌的地方？
+    - When two microservices call each other, how is the caller's identity proven? Is it the same user
+      token or independent service credentials?
+    - What is the validity period of your tokens? Can old tokens still be used after expiration?
+    - Do tokens appear in plaintext in logs or monitoring? Who has permission to read or write where tokens
+      are stored?
     basis: inferred
   regional_note:
     value: null

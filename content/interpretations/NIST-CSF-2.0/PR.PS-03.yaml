@@ -1,30 +1,50 @@
 control_id: NIST-CSF-2.0:PR.PS-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是硬件在生命周期各环节脱离管控——在用设备带病运行无人管，退役设备里的数据没清就扔，供应链里混进假货或改装件。不做这条，漏洞靠补丁和软件修不好，硬件层面的篡改和泄露直接绕过所有上层防护。
+    value: The concern is that hardware may escape control at various stages of its lifecycle—active devices
+      operating with defects without oversight, retired devices disposed of without data sanitization,
+      and counterfeit or modified components entering the supply chain. Without this, vulnerabilities
+      cannot be remediated through patches and software alone; hardware-level tampering and leakage bypass
+      all upper-layer defenses.
     basis: inferred
   plain_zh:
-    value: 硬件的维护、更换和退役不能顺手做，要按风险来定节奏和方式：知道每台设备里跑什么、风险多高，该修就修、该换就换、该毁就毁，全过程有记录。
+    value: 'Hardware maintenance, replacement, and retirement should not be done casually; the pace and
+      methods must be determined based on risk: know what runs on each device and its risk level, repair
+      when needed, replace when needed, and destroy when needed, with full records throughout the process.'
     basis: inferred
   practice:
     value:
-      '1': 有硬件资产清单；设备坏了有维修流程；退役设备有基本的数据擦除动作（至少格式化）。
-      '2': 按资产重要性定维护周期与退役标准；维修和退役有审批与记录；数据擦除有验证（如擦除后抽查）；供应链采购走正规渠道。
-      '3': 硬件健康与漏洞信息自动采集并关联风险评分；退役流程覆盖存储介质物理销毁；关键设备有更换预案；供应链可信度有验证机制（如固件校验、拆机检查）。
+      '1': Maintain a hardware asset inventory; have a repair process for faulty devices; perform basic
+        data sanitization (at least formatting) for retired devices.
+      '2': Define maintenance cycles and retirement criteria based on asset criticality; require approval
+        and records for repairs and retirements; verify data sanitization (e.g., spot checks after wiping);
+        procure through legitimate supply chain channels.
+      '3': Automatically collect hardware health and vulnerability information and correlate with risk
+        scores; retirement processes cover physical destruction of storage media; have replacement plans
+        for critical devices; implement supply chain trust verification mechanisms (e.g., firmware validation,
+        physical inspection).
     basis: inferred
   evidence:
-    value: 硬件资产台账与风险分级、维护保养记录（含故障单）、退役审批单及数据擦除/销毁证明、采购渠道与固件校验记录、硬件变更日志。
+    value: Hardware asset ledger with risk classification, maintenance and repair records (including fault
+      tickets), retirement approval forms and data sanitization/destruction certificates, procurement
+      channel and firmware validation records, hardware change logs.
     basis: inferred
   common_myth:
-    value: 以为「资产清单上列了设备就算台账，退役时把硬盘格式化了就算擦除」。实际上审计员会抽查退役设备的擦除验证记录，格式化的盘能恢复数据，而且没有审批链的退役设备往往最后不知去向。
+    value: The misconception is that 'listing devices in the asset ledger counts as a register, and formatting
+      the hard drive during retirement counts as sanitization.' In reality, auditors will sample retired
+      devices to check sanitization verification records; formatted drives can have data recovered, and
+      devices retired without an approval chain often end up unaccounted for.
     basis: inferred
   auditor_asks:
     value:
-    - 抽三台去年退役的设备，数据擦除是哪天做的？用的什么方法？有验证结果吗？
-    - 关键生产设备的硬件故障，更换备件的型号和渠道是怎么审核的？
-    - 硬件资产清单和实际机房盘点，上次对账是什么时候、差了几台？
+    - 'Pick three devices retired last year: when was data sanitization performed? What method was used?
+      Is there verification evidence?'
+    - For hardware failures on critical production equipment, how are replacement part models and procurement
+      channels reviewed?
+    - When was the last reconciliation between the hardware asset list and the actual data center inventory,
+      and what was the discrepancy count?
     basis: inferred
   regional_note:
     value: null

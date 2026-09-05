@@ -1,30 +1,46 @@
 control_id: ISO-27002-2022:A.5.36
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「写在纸上的方针和真实世界是两张皮」——安全方针若没人核对它有没有被遵守，那它只是文件柜里的装饰；没有核对机制，偏差永远不会浮上来，所有后续审计都会在文件层面翻车。
+    value: The concern is that 'the policy written on paper and the real world are two separate things'
+      — if no one verifies whether security policies are being followed, they are just decorations in
+      a filing cabinet; without a verification mechanism, deviations will never surface, and all subsequent
+      audits will fail at the documentation level.
     basis: inferred
   plain_zh:
-    value: 把信息安全方针和相关规则落地后，要有专人定期确认实际做法跟写出来的一致，并把核对结果记录在案；发现不一致要有人管。
+    value: After implementing information security policies and related rules, there should be designated
+      personnel to regularly confirm that actual practices align with what is written, and record the
+      verification results; any inconsistencies found should be managed.
     basis: inferred
   practice:
     value:
-      '1': 明确谁来负责方针落地情况的核对，至少每年做一次抽查，核对结果有纪要。
-      '2': 核对有固定清单、抽样方法和频次；不一致项有整改跟踪；核对报告报给管理层或安全负责人。
-      '3': 核对结果与方针修订形成闭环——偏差反馈回文件更新；核对行为本身被纳入监控指标，能向审计证明流程持续运转。
+      '1': Clarify who is responsible for verifying policy implementation, conduct spot checks at least
+        once a year, and keep minutes of verification results.
+      '2': Verification has a fixed checklist, sampling method, and frequency; non-conformities have rectification
+        tracking; verification reports are reported to management or the security officer.
+      '3': Verification results form a closed loop with policy revision — deviations feed back into document
+        updates; the verification activity itself is included in monitoring metrics, proving to auditors
+        that the process is continuously operating.
     basis: inferred
   evidence:
-    value: 核对计划/日程表、核对检查表、抽查记录、偏差发现与整改追踪表、核对报告、向管理层汇报的会议纪要。
+    value: Verification plan/schedule, verification checklist, spot-check records, deviation discovery
+      and rectification tracking table, verification report, meeting minutes reported to management.
     basis: inferred
   common_myth:
-    value: 以为「发了方针文件就是落实了」——文件发布只是起点；不确定有没有人真的按它干活，才算做了核对。更常见的错法是找合规或内控的人「走过场打勾」，而没让实际执行安全的人参与判断。
+    value: Thinking that 'issuing a policy document is implementation' — document issuance is just the
+      starting point; only when you are unsure whether anyone actually follows it in practice does verification
+      count. A more common mistake is having compliance or internal control personnel 'go through the
+      motions and tick boxes' without involving those who actually execute security in the judgment.
     basis: inferred
   auditor_asks:
     value:
-    - 上一次方针执行情况核对是哪天做的？是谁做的、抽查了哪些范围？
-    - 核对中发现的不一致，哪些还开着？整改到哪一步了？
-    - 方针和实际流程出现偏差时，先改流程还是先改方针？谁拍板？
+    - When was the last verification of policy implementation conducted? Who did it, and what scope was
+      spot-checked?
+    - Of the inconsistencies found during verification, which are still open? What stage is the rectification
+      at?
+    - When there is a deviation between policy and actual process, do you change the process or the policy
+      first? Who makes the decision?
     basis: inferred
   regional_note:
     value: null

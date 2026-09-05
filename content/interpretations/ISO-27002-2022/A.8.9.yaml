@@ -1,30 +1,47 @@
 control_id: ISO-27002-2022:A.8.9
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「系统配置没人管、谁都能改、改完不知改了什么」——由此引入的未授权变更、配置漂移、以及回滚无门的风险。
+    value: This addresses the risk of "system configuration being unmanaged, modifiable by anyone, and
+      changes being undocumented"—thereby introducing risks of unauthorized changes, configuration drift,
+      and inability to roll back.
     basis: inferred
   plain_zh:
-    value: 给系统定一套正式的「出厂设置」（基线），对生产环境的任何改动都要走申请、审批、记录、实施的流程，并且要能回退到之前的版本。
+    value: Establish a formal "baseline" (default settings) for systems; any change to the production
+      environment must go through a process of request, approval, recording, and implementation, and must
+      be able to revert to previous versions.
     basis: inferred
   practice:
     value:
-      '1': 关键服务器有配置基线文档，改动前至少口头审批，能说出改了什么。
-      '2': 基线与变更流程形成书面制度，变更单记录申请、评估、审批、实施人，有独立的变更评审会。
-      '3': 配置管理工具自动比对实际配置与基线，未经批准的变更触发告警；变更审批与工单系统联动，配置漂移能自动发现并拦截，保留历史版本可一键回滚。
+      '1': Critical servers have configuration baseline documentation; changes require at least verbal
+        approval before implementation, and the change details can be articulated.
+      '2': Baselines and change processes are formalized in written procedures; change tickets record
+        request, assessment, approval, and implementer, with an independent change review board.
+      '3': Configuration management tools automatically compare actual configurations against baselines;
+        unauthorized changes trigger alerts; change approval is integrated with the ticketing system;
+        configuration drift is automatically detected and blocked; historical versions are retained for
+        one-click rollback.
     basis: inferred
   evidence:
-    value: 配置基线文档（含硬件、软件、配置项清单）、配置变更审批单或工单记录、变更评审会议纪要、配置漂移检查/告警记录、回滚演练记录。
+    value: Configuration baseline documentation (including hardware, software, and configuration item
+      lists), configuration change approval forms or ticket records, change review meeting minutes, configuration
+      drift check/alert records, and rollback drill records.
     basis: inferred
   common_myth:
-    value: 以为运维平时手动改服务器是常态，审计时补一份变更记录就好——审计员会查变更记录与系统实际配置的对应关系，按你说的变更记录抽查系统配置会当场对不上；且日常零散变更根本没有走评审流程，记录后补也补不齐。
+    value: Assuming that manual server changes by operations staff are routine and that supplementing
+      change records during audits suffices—auditors will cross-check change records against actual system
+      configurations, and spot checks based on your change records will immediately reveal discrepancies;
+      moreover, routine ad-hoc changes never went through the review process, and retrospective documentation
+      cannot fully cover them.
     basis: inferred
   auditor_asks:
     value:
-    - 挑一台核心服务器，当前配置与基线一致吗？最后一次配置漂移是什么时候、怎么发现的？
-    - 能演示一下从提交变更到审批到回滚的完整链路吗？
-    - 上一季度有多少次变更？其中多少次在变更单里能找到对应的审批人？
+    - 'Pick a core server: does its current configuration match the baseline? When was the last configuration
+      drift, and how was it discovered?'
+    - Can you demonstrate the complete chain from change submission to approval to rollback?
+    - How many changes occurred last quarter? How many of those have a corresponding approver in the change
+      tickets?
     basis: inferred
   regional_note:
     value: null

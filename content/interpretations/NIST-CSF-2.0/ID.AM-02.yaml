@@ -1,33 +1,52 @@
 control_id: NIST-CSF-2.0:ID.AM-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「不知道自己有什么」——绕过的影子资产、版本停更但仍暴露的组件、一上线的临时服务没人认领。没有可靠清单，后续的漏洞管理、补丁、风险评估全都白做。
+    value: The concern is about 'not knowing what you have'—shadow assets that are bypassed, components
+      that are no longer updated but still exposed, and temporary services that go live without an owner.
+      Without a reliable inventory, subsequent vulnerability management, patching, and risk assessment
+      are all futile.
     basis: inferred
   plain_zh:
-    value: 把组织管着的软件、服务和系统列出清单，并持续更新，做到随时能说清当前手上到底有哪些资产。
+    value: Inventory the software, services, and systems managed by the organization, and keep it updated
+      to always be able to clearly state what assets are currently on hand.
     basis: inferred
   practice:
     value:
-      '1': 有静态资产台账（Excel 或 CMDB），能列出主要服务器、终端、核心业务系统。
-      '2': 台账有明确负责人和更新频率；网络扫描、云账号、域控等来源定期对齐；手工变更流程让新设备、新服务能进清单。
-      '3': 资产发现以自动采集为主（扫描、代理、云 API），关键字段齐全（负责人、环境、版本、暴露面）；持续比对实际环境，未登记的资产有告警和处置流程。
+      '1': There is a static asset ledger (Excel or CMDB) that can list major servers, endpoints, and
+        core business systems.
+      '2': The ledger has clear owners and update frequency; sources such as network scans, cloud accounts,
+        and domain controllers are regularly reconciled; manual change processes allow new devices and
+        services to be added to the inventory.
+      '3': Asset discovery is primarily automated (scanning, agents, cloud APIs), with key fields complete
+        (owner, environment, version, exposure); continuous comparison with the actual environment, with
+        alerts and handling processes for unregistered assets.
     basis: inferred
   evidence:
-    value: 资产台账或 CMDB 记录（含负责人、IP、版本、环境）、资产发现任务的扫描报告或 API 拉取记录、台账与实际环境的差异比对报告、未登记资产的处置记录。
+    value: Asset ledger or CMDB records (including owner, IP, version, environment), scan reports or API
+      pull records from asset discovery tasks, discrepancy reports between the ledger and the actual environment,
+      and handling records for unregistered assets.
     basis: inferred
   common_myth:
-    value: 以为「用某款网络扫描器跑过一遍」就等于有资产清单。扫描器只能看到应答的主机，看不到云上关闭的状态、离线但可接人的笔记本或扫码当天没开机的设备——单次扫描不是资产台账，更替代不了持续更新。
+    value: Thinking that 'running a network scanner once' equals having an asset inventory. Scanners can
+      only see hosts that respond, not cloud instances that are shut down, offline but connectable laptops,
+      or devices not powered on during the scan—a single scan is not an asset ledger, let alone a substitute
+      for continuous updates.
     basis: inferred
   auditor_asks:
     value:
-    - 你们怎么发现未经申报就上线的系统？最近一次发现是什么时候、谁负责处理？
-    - 资产清单里有多少项超过 90 天没有确认是否还在管？
-    - 开发环境和生产环境的资产是不是在同一份清单里？边界怎么分？
+    - How do you discover systems that go live without prior declaration? When was the last discovery,
+      and who is responsible for handling it?
+    - How many items in the asset inventory have not been confirmed as still managed for over 90 days?
+    - Are assets in development and production environments in the same inventory? How are boundaries
+      defined?
     basis: inferred
   regional_note:
-    value: 欧洲审计员在 NIS2 落地后更关心清单是否覆盖关键服务的完整供应链组件；美国常用在 SOC 2 与 FedRAMP 审查里，以 CMDB 准确性与自动发现为主要证据，欧方更追「能不能用清单说清依赖关系」。
+    value: European auditors, after NIS2 implementation, are more concerned about whether the inventory
+      covers the complete supply chain components of critical services; in the US, it is commonly used
+      in SOC 2 and FedRAMP reviews, with CMDB accuracy and automated discovery as primary evidence, while
+      European parties focus more on 'whether the inventory can clearly explain dependencies'.
     basis: inferred
 interview:
   questions: []

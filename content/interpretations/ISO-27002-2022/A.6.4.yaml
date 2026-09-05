@@ -1,30 +1,44 @@
 control_id: ISO-27002-2022:A.6.4
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「违规了没人担责」——员工明知故犯或多次疏忽，却没有正式的追责路径，制度变成纸老虎，安全要求靠自觉而非约束。
+    value: The concern is that 'violations go unpunished'—employees who knowingly or repeatedly neglect
+      security requirements face no formal accountability path, making policies toothless and security
+      compliance a matter of self-discipline rather than enforcement.
     basis: inferred
   plain_zh:
-    value: 要有一套成文的违规处理规矩：员工不遵守安全政策会有什么后果、按什么流程处理、谁来决定，并且要让全员知道这条红线。
+    value: 'There must be a documented disciplinary process: what consequences employees face for non-compliance
+      with security policies, the procedure for handling violations, who decides, and all employees must
+      be aware of this red line.'
     basis: inferred
   practice:
     value:
-      '1': 员工手册或安全政策里写明违规会受处分；有对应负责人（如安全主管/HR）知道怎么启动。
-      '2': 有正式的违规处理流程（调查、定级、通知、执行处分）；记录归档；新员工入职时明确告知违规后果。
-      '3': 违规处理与绩效/晋升挂钩；管理层按流程决策并有法务参与；定期回顾案例并用典型事件教育全员。
+      '1': The employee handbook or security policy states that violations will result in disciplinary
+        action; designated responsible parties (e.g., security manager/HR) know how to initiate the process.
+      '2': A formal violation handling process exists (investigation, classification, notification, execution
+        of discipline); records are archived; new employees are clearly informed of consequences upon
+        onboarding.
+      '3': Violation handling is linked to performance/promotion; management makes decisions per process
+        with legal involvement; cases are periodically reviewed and typical incidents used to educate
+        all staff.
     basis: inferred
   evidence:
-    value: 员工手册或安全政策中的处分条款、违规处理流程文件、处分通知或 HR 记录、员工签收确认、违规案例教育材料。
+    value: Disciplinary clauses in employee handbook or security policy, violation handling process documents,
+      disciplinary notices or HR records, employee acknowledgment receipts, violation case education materials.
     basis: inferred
   common_myth:
-    value: 以为「出了事劝退当事人就行」——没有正式流程和留痕，同样情况不同处理，审计员无法确认处分不是随机的，也看不出制度是否真在执行。
+    value: Assuming 'just dismiss the offender when something happens'—without a formal process and documentation,
+      similar cases are treated differently, and auditors cannot confirm that discipline is not arbitrary
+      or that the policy is actually enforced.
     basis: inferred
   auditor_asks:
     value:
-    - 过去一年里员工违规处理启动过几次？分别依据哪一条政策条款？
-    - 处分决定谁签发的？员工本人收到书面通知了吗？
-    - 普通员工从哪里知道违规会有纪律处分？有签收或培训记录吗？
+    - How many times were employee violation cases initiated in the past year? Which policy clauses were
+      cited each time?
+    - Who signed off on the disciplinary decisions? Did the employees receive written notification?
+    - How do regular employees learn about disciplinary consequences for violations? Are there acknowledgment
+      or training records?
     basis: inferred
   regional_note:
     value: null

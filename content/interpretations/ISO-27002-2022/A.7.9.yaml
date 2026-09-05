@@ -1,30 +1,50 @@
 control_id: ISO-27002-2022:A.7.9
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是设备一离开办公室就脱离你视线——丢失、被换、被插了不该插的东西、数据被拷走，你既看不见也拦不住；同时防员工把公司设备带到家里或差旅地，用没有管控的网络和设备接入公司系统，等于让边界失控。
+    value: The concern is that once equipment leaves the office, it is out of your sight—loss, substitution,
+      insertion of unauthorized peripherals, and data exfiltration can occur without your visibility or
+      ability to intervene. Additionally, it addresses employees taking company devices home or on business
+      trips and using unmanaged networks and devices to access company systems, effectively losing control
+      of the perimeter.
     basis: inferred
   plain_zh:
-    value: 公司配的手机、笔记本、平板带出办公区，要有管理制度和手段盯住：批准谁带、带出去怎么保护、丢了怎么办；员工用自己的私人设备或用家里、酒店的电脑处理公司数据，也要有明确规则。
+    value: 'Company-issued phones, laptops, and tablets taken outside the office require management systems
+      and measures to monitor: who is approved to take them, how they are protected when taken out, and
+      what to do if lost. Employees using personal devices or home/hotel computers to process company
+      data also need clear rules.'
     basis: inferred
   practice:
     value:
-      '1': 有设备带出与归还登记表；公司设备强制加密与锁屏；设备丢失有上报途径。
-      '2': 带出设备按业务需要批准并记录；资产台账能看出设备当前在谁手上、在哪个城市；允许自带设备的话有书面可接受用途与数据边界说明。
-      '3': 带出设备纳入移动设备管理，可远程定位、锁定与擦除；敏感数据经虚拟桌面或沙盒访问而不落地；差异环境接入有分级策略与验证，不靠员工自觉。
+      '1': Maintain a register for equipment checkout and return; enforce mandatory encryption and screen
+        lock on company devices; have a reporting channel for lost devices.
+      '2': Approve and record equipment checkout based on business needs; asset inventory can show who
+        currently holds each device and in which city; if BYOD is allowed, have a written acceptable use
+        policy and data boundary statement.
+      '3': Enroll checked-out devices in mobile device management for remote location, lock, and wipe;
+        sensitive data accessed via virtual desktop or sandbox without local storage; implement tiered
+        policies and verification for access from untrusted environments, not relying on employee discretion.
     basis: inferred
   evidence:
-    value: 设备带出/归还登记记录、移动设备管理平台报表（含最近同步时间与地理位置）、加密策略配置基线、丢失上报与处置工单、自带设备政策签字记录、数据防泄漏网关日志。
+    value: Equipment checkout/return registration records, mobile device management platform reports (including
+      last sync time and geolocation), encryption policy baseline, lost device reporting and handling
+      tickets, signed BYOD policy records, data loss prevention gateway logs.
     basis: inferred
   common_myth:
-    value: 以为设备加密了、屏幕锁了就算管住带出了。加密只解决「丢了数据读不了」，但设备在外面连过什么网络、插过什么外设、被装了什么软件，照样看不见——真正要补的是端侧管控与远程处置能力，而不是只依赖加密。
+    value: Assuming that device encryption and screen lock are sufficient to manage checkout. Encryption
+      only addresses 'if lost, data cannot be read,' but what networks the device connected to, what peripherals
+      were plugged in, and what software was installed while outside remain invisible—what truly needs
+      to be added is endpoint control and remote response capability, not just reliance on encryption.
     basis: inferred
   auditor_asks:
     value:
-    - 出差员工的笔记本在酒店插过别人给的U盘，你们能知道吗？
-    - 设备报丢失到触发远程锁定，中间隔着多久？谁执行、走哪条线？
-    - 员工用自己的手机查公司邮件，手机碎了送修，里面有多少公司数据在你控制之外？
+    - If an employee on a business trip plugs a USB drive given by someone else into their laptop at a
+      hotel, can you detect it?
+    - What is the time gap between device loss reporting and triggering remote lock? Who executes it and
+      through what channel?
+    - If an employee uses their personal phone to check company email, and the phone is sent for repair
+      after breaking, how much company data is beyond your control?
     basis: inferred
   regional_note:
     value: null

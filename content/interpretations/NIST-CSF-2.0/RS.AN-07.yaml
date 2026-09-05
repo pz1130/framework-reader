@@ -1,32 +1,51 @@
 control_id: NIST-CSF-2.0:RS.AN-07
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事件复盘靠脑补和聊天记录」——如果事件数据没被结构化采集、完整性不可信、来源不可追溯，调查结论就站不住脚，甚至会把误判当定论、把恶意行为当误操作。
+    value: This control addresses the risk of incident reviews relying on memory and chat logs. If incident
+      data is not collected in a structured manner, its integrity is not trustworthy, and its source cannot
+      be traced, investigation conclusions are untenable, potentially leading to misjudgments being treated
+      as definitive findings and malicious activities being mistaken for errors.
     basis: inferred
   plain_zh:
-    value: 把事件相关的日志、样本、时间线、操作记录按时收集、集中存放，并保证这些数据没被改过、知道是哪来的、能证明是原始数据。
+    value: Collect and centrally store incident-related logs, samples, timelines, and operational records
+      in a timely manner, ensuring that this data has not been tampered with, its origin is known, and
+      it can be proven to be original data.
     basis: inferred
   practice:
     value:
-      '1': 事件发生时能抓到日志和快照；采集到的数据有时间戳和来源标识；存放位置有基本访问控制。
-      '2': 定义事件数据采集清单与流程；采集数据有哈希或签名校验完整性；有集中存储与归档，采集过程有记录。
-      '3': 事件数据采集自动化接入监控与终端工具；完整性校验纳入常规验证；数据来源链可完整回溯；调查时可直接引用不存疑。
+      '1': Capture logs and snapshots when incidents occur; collected data has timestamps and source identifiers;
+        storage locations have basic access controls.
+      '2': Define an incident data collection checklist and process; use hashing or signature verification
+        to ensure data integrity; have centralized storage and archiving, with collection processes documented.
+      '3': Automate incident data collection by integrating with monitoring and endpoint tools; incorporate
+        integrity checks into routine verification; maintain a fully traceable data source chain; enable
+        direct citation of data without doubt during investigations.
     basis: inferred
   evidence:
-    value: 事件数据采集清单与脚本、日志存储与归档配置、哈希或数字签名校验记录、数据来源标记规范、事件调查中引用原始数据的截图或导出件。
+    value: Incident data collection checklists and scripts, log storage and archiving configurations,
+      hash or digital signature verification records, data source marking standards, and screenshots or
+      exports of original data cited in incident investigations.
     basis: inferred
   common_myth:
-    value: 以为「日志都入了 SIEM 就算数据完整」——SIEM 只收了一部分字段，且时间戳被前置接入设备重写已是家常便饭；没做完整性校验时，谁说「这是原始日志」都没凭据。
+    value: The misconception is that 'if logs are in the SIEM, data integrity is assured'—but SIEMs often
+      only receive a subset of fields, and timestamps are frequently rewritten by upstream devices; without
+      integrity checks, no one can substantiate claims of 'this is the original log'.
     basis: inferred
   auditor_asks:
     value:
-    - 从事件报告中挑一条关键证据，原始数据存在哪、哈希值是多少、谁验证过？
-    - 采集链路里哪些环节可能改时间戳或截断字段？你们怎么证明没有？
+    - 'Select a key piece of evidence from an incident report: where is the original data stored, what
+      is its hash value, and who verified it?'
+    - Which points in the collection chain could alter timestamps or truncate fields? How do you prove
+      they haven't?
     basis: inferred
   regional_note:
-    value: 欧洲审计员更在意数据收集本身是否符合隐私与最小化（GDPR 背景下「收集了什么、留了多久」要能说清），美国审计员更偏重证据链完整性与取证可用性。两边着眼点不同，但都要求「收了就要能证明没被动过」。
+    value: European auditors are more concerned about whether data collection complies with privacy and
+      minimization principles (under GDPR, being able to explain 'what was collected and how long it was
+      retained'), while American auditors focus more on evidence chain integrity and forensic usability.
+      The perspectives differ, but both require that 'if data is collected, you must be able to prove
+      it hasn't been tampered with'.
     basis: inferred
 interview:
   questions: []

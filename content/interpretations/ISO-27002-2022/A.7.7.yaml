@@ -1,33 +1,52 @@
 control_id: ISO-27002-2022:A.7.7
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「屏幕亮着就走人」「文件打出来没人收」——路过的人、保洁、面试者在物理空间里顺手看到敏感信息，机密不靠网络攻破，靠眼睛扫走。
+    value: The concern is about 'leaving the screen on when walking away' and 'printed documents left
+      uncollected'—passersby, cleaners, and interviewees can casually see sensitive information in the
+      physical space; confidentiality is breached not through network attacks but through visual scanning.
     basis: inferred
   plain_zh:
-    value: 人离开工位时把屏幕锁上或清空；打印、传真、复印出来的敏感材料不能放在没人看着的地方；电脑、纸张等存敏感信息的载体要收好、锁好，坏掉或扔的时候要抹干净。
+    value: Lock or clear the screen when leaving the workstation; sensitive materials printed, faxed,
+      or copied must not be left unattended; storage media containing sensitive information, such as computers
+      and paper, should be properly secured and locked away, and wiped clean when disposed of or discarded.
     basis: inferred
   practice:
     value:
-      '1': 电脑有自动锁屏策略（如无操作几分钟后锁定）；离开工位时手动锁屏是明文要求；打印敏感文件后立即取走。
-      '2': 不同区域的锁屏时长分级（如研发区更短）；敏感打印走指定打印机，且有清场检查或碎纸流程；访客区域看不到敏感屏幕。
-      '3': 无感锁屏（如离开自动锁定）是标配；敏感文件打印走门禁或刷卡领取；物理载体从领用、存放、销毁都有台账，销毁用有认证的记录。
+      '1': Computers have an automatic screen lock policy (e.g., lock after a few minutes of inactivity);
+        manual screen locking when leaving the workstation is an explicit requirement; promptly retrieve
+        printed sensitive documents.
+      '2': Screen lock durations are tiered by area (e.g., shorter in R&D zones); sensitive printing goes
+        to designated printers with area clearance checks or shredding procedures; visitor areas cannot
+        see sensitive screens.
+      '3': Seamless screen locking (e.g., automatic lock upon departure) is standard; sensitive document
+        printing requires access control or card-based retrieval; physical media have logs from issuance,
+        storage, to destruction, with certified destruction records.
     basis: inferred
   evidence:
-    value: 锁屏策略配置与下发记录、员工信息安全承诺或培训签到、打印登记与碎纸记录、物理载体台账、销毁记录或服务商资质。
+    value: Screen lock policy configuration and distribution records, employee information security commitments
+      or training attendance, printing logs and shredding records, physical media logs, destruction records
+      or service provider qualifications.
     basis: inferred
   common_myth:
-    value: 以为「设置了锁屏时长」就等于这条做完了，但打印机旁边、公区桌面上的纸质敏感文件没人管，隐私屏幕贴也没贴——审计员看的是全物理环境，不是只看电脑设置。
+    value: Assuming that 'setting a screen lock duration' means this is fully addressed, but paper-based
+      sensitive documents near printers or on public desks are unmanaged, and privacy screens are not
+      applied—auditors examine the entire physical environment, not just computer settings.
     basis: inferred
   auditor_asks:
     value:
-    - 屏幕自动锁屏的时长是多久？研发、客服、领导层是不是同一档？
-    - 敏感文件打印后不及时取走，有没有制度约束或技术拦截？
-    - 废纸、废弃硬盘、旧打印硒鼓走什么销毁流程？最近一次销毁记录在哪？
+    - What is the automatic screen lock duration? Is it the same for R&D, customer service, and leadership?
+    - Are there policy constraints or technical controls for sensitive documents not promptly retrieved
+      after printing?
+    - What destruction process do waste paper, discarded hard drives, and old printer toner cartridges
+      follow? Where are the most recent destruction records?
     basis: inferred
   regional_note:
-    value: 欧洲审计员更关注纸质载体和可移动介质——GDPR 语境下，有人看到别人屏幕上的个人数据就算泄露；美国审计员则更看重锁屏策略配置和物理访问控制，对纸面材料的追问相对少。
+    value: European auditors focus more on paper media and removable media—under GDPR, someone seeing
+      another person's personal data on a screen constitutes a breach; U.S. auditors emphasize screen
+      lock policy configuration and physical access control, with relatively fewer inquiries about paper
+      materials.
     basis: inferred
 interview:
   questions: []

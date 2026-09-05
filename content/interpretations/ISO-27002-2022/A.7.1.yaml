@@ -1,30 +1,53 @@
 control_id: ISO-27002-2022:A.7.1
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是人从物理入口进来却没被核实身份——门禁卡、钥匙、访客牌一旦失控，任何逻辑层安全（杀毒、补丁、防火墙）都白搭；这条拦的是「有人能直接摸到机房、配电间、档案室」这个最根本的信任崩塌。
+    value: The concern is that people can enter through physical entrances without identity verification—if
+      access cards, keys, or visitor badges are uncontrolled, any logical security (antivirus, patches,
+      firewalls) is useless; this control addresses the fundamental trust collapse when someone can directly
+      access server rooms, power distribution rooms, or archives.
     basis: inferred
   plain_zh:
-    value: 把每一道物理门、每一张卡、每一条钥匙的发放和收回都管住：谁在什么时候有权限进哪个区域要有记录，访客必须有人跟着，密码锁和钥匙丢了必须立即换。
+    value: 'Manage the issuance and return of every physical door, card, and key: maintain records of
+      who has access to which areas at what times, ensure visitors are accompanied, and immediately change
+      combination locks and replace keys if lost.'
     basis: inferred
   practice:
     value:
-      '1': 机房、配电间等关键区域有门禁或锁；门禁卡和钥匙有台账，离职和调岗会回收；访客在前台登记、有人陪同。
-      '2': 门禁系统记录每次进出；区域按业务需要分区（如机房、办公区、公共接待区）；钥匙和卡有定期盘点，丢失和补发有记录；访客有独立访问牌和全程陪同。
-      '3': 门禁与人员花名册联动，离职当场失效；区域权限模型按职责分离设计（运维人员能进机房但进不了财务档案室）；所有门禁记录自动留存并可回溯；钥匙和密码的组合层级有定义，换锁和「某离职者曾拿过密码」的联动处置有流程。
+      '1': Critical areas such as server rooms and power distribution rooms have access control or locks;
+        access cards and keys are tracked in a ledger, and are recovered upon termination or role change;
+        visitors register at the front desk and are accompanied.
+      '2': The access control system records each entry and exit; areas are zoned by business needs (e.g.,
+        server room, office area, public reception area); keys and cards are periodically inventoried,
+        with records of loss and reissuance; visitors have separate badges and are accompanied throughout.
+      '3': Access control is linked to the personnel roster, with immediate deactivation upon termination;
+        area permission models are designed based on segregation of duties (operations staff can enter
+        server rooms but not financial archives); all access control records are automatically retained
+        and traceable; the hierarchy of keys and password combinations is defined, with procedures for
+        lock changes and coordinated handling when a former employee knew a password.
     basis: inferred
   evidence:
-    value: 门禁系统进出日志、钥匙与门禁卡发放/回收台账、离职和调岗的权限回收记录、访客登记簿及陪同签字、区域图或区域级别定义、密码与组合更换记录（含丢失和人员变动触发）。
+    value: Access control system entry/exit logs, key and access card issuance/return ledgers, permission
+      recovery records for terminations and role changes, visitor registration logs with accompanying
+      signatures, area maps or area level definitions, and password/combination change records (including
+      those triggered by loss or personnel changes).
     basis: inferred
   common_myth:
-    value: 以为「门上有锁、机房贴了登记表」就算做到。真正的坑在两头：一头是卡和钥匙回收——离职人员的卡能否在当天失效，而不是等 HR 通知再手动删；另一头是密码锁——离职或辞退的人知道密码，但密码没换，等于门锁形同虚设。
+    value: 'Assuming that ''the door has a lock and the server room has a registration form'' is sufficient.
+      The real pitfalls are at both ends: one is card and key recovery—whether a terminated employee''s
+      card can be deactivated the same day, rather than waiting for HR notification to manually delete;
+      the other is combination locks—if a terminated or dismissed employee knows the password but it hasn''t
+      been changed, the lock is effectively useless.'
     basis: inferred
   auditor_asks:
     value:
-    - 拿一张上周离职的门禁卡去刷门，系统是当场拒绝还是能进去？
-    - 密码锁的密码多久换一次？上一个知晓密码的人离职时，锁换过吗？
-    - 访客在非工作时间进入机房，有审批记录和陪同人员是谁？
+    - Take an access card from an employee who left last week and try to swipe it—does the system reject
+      it immediately or allow entry?
+    - How often are combination lock passwords changed? When the last person who knew the password left,
+      was the lock changed?
+    - For visitors entering the server room during non-working hours, is there an approval record and
+      who is the accompanying person?
     basis: inferred
   regional_note:
     value: null

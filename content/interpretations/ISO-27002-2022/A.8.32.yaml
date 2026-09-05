@@ -1,29 +1,49 @@
 control_id: ISO-27002-2022:A.8.32
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「改了就出事」——没人审、没人测、没人记录，代码或配置一改，业务中断或系统被攻破后连谁改的、改了什么、为什么改都查不到，也退不回去。
+    value: The concern is about 'changes that cause problems' — if no one reviews, tests, or records changes,
+      then after a code or configuration change leads to business disruption or system compromise, you
+      cannot trace who changed what, why, or roll back.
     basis: inferred
   plain_zh:
-    value: 所有对系统有影响的改动（代码、配置、设备、流程）都要走统一流程：先提申请、做影响评估、经过审批，才能动手改；改完要有记录，之后还要追踪有没有问题。
+    value: 'All changes affecting systems (code, configuration, equipment, processes) must follow a unified
+      process: first submit a request, conduct an impact assessment, and obtain approval before making
+      the change; after the change, there must be records, and follow-up monitoring for issues.'
     basis: inferred
   practice:
     value:
-      '1': 重大变更（如上线新系统、改核心配置）至少有人口头审批并做基本备份记录；知道「谁在什么时候批准了什么」。
-      '2': 有书面变更管理流程并全员执行；生产环境变更必须提变更申请单，经过技术评审与负责人批准后方可操作，变更窗口内完成并记录结果。
-      '3': 变更与配置管理打通，能自动记录生产环境实际变更并与审批单核验；紧急变更仍走流程且事后补记录；可追踪到每次改动对应的开发需求、缺陷修复或安全补丁；有回滚计划与演练。
+      '1': Major changes (e.g., deploying new systems, modifying core configurations) at least require
+        verbal approval and basic backup records; know 'who approved what and when'.
+      '2': A documented change management process is in place and followed by all staff; changes to the
+        production environment must be submitted via a change request form, undergo technical review and
+        approval by the responsible person before implementation, and be completed within the change window
+        with results recorded.
+      '3': Change and configuration management are integrated, automatically recording actual production
+        environment changes and verifying them against approval forms; emergency changes still follow
+        the process with post-hoc documentation; each change can be traced to the corresponding development
+        requirement, defect fix, or security patch; rollback plans and drills are in place.
     basis: inferred
   evidence:
-    value: 变更申请审批单（含影响分析、回滚计划）、变更实施记录与产出物（发布记录、配置变更日志）、变更窗口期间的监控与验证记录（测试报告、发布后检查清单）、紧急变更的补记录流程材料。
+    value: Change request approval forms (including impact analysis, rollback plan), change implementation
+      records and deliverables (release records, configuration change logs), monitoring and verification
+      records during the change window (test reports, post-release checklists), and materials for the
+      post-hoc documentation process of emergency changes.
     basis: inferred
   common_myth:
-    value: 以为「生产环境有堡垒机记录，谁敲了什么命令都录下来」就等于变更管理。录像是事后追查用；变更管理是要在动手之前就拦住不该改的、评估过风险、并且知道为什么改。没有审批单做对照，堡垒机日志只能回答「改了什么」，回答不了「谁批准的、为什么批」。
+    value: The misconception is that 'having a bastion host recording all commands in the production environment'
+      equals change management. Recording is for post-incident investigation; change management is about
+      preventing unauthorized changes before they happen, assessing risks, and knowing why changes are
+      made. Without approval forms for comparison, bastion host logs can only answer 'what was changed',
+      not 'who approved it and why'.
     basis: inferred
   auditor_asks:
     value:
-    - 拉最近五张生产变更审批单，对应到实施记录和验证结果，有没有改了没批的？
-    - 紧急变更（hotfix）的流程是什么？上次紧急变更的补录审批和效果验证记录在哪里？
+    - Pull the last five production change approval forms and match them to implementation records and
+      verification results — are there any changes made without approval?
+    - What is the process for emergency changes (hotfixes)? Where are the post-hoc approval and effectiveness
+      verification records for the last emergency change?
     basis: inferred
   regional_note:
     value: null

@@ -1,29 +1,45 @@
 control_id: ISO-27002-2022:A.5.13
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「信息资产放出去之后没人知道它到底有多敏感」——没有标识，U盘、纸质文档、服务器、甚至会议室白板上的内容就会按错误的方式流转，该保密的被随手转发，该限制分发的被当公开材料使用。
+    value: 'The concern is that after information assets are released, no one knows how sensitive they
+      really are—without labeling, USB drives, paper documents, servers, and even content on whiteboards
+      in meeting rooms will be handled incorrectly: confidential items get casually forwarded, and items
+      with restricted distribution are treated as public materials.'
     basis: inferred
   plain_zh:
-    value: 要让每一份承载信息的载体（纸质文件、U盘、电脑、服务器、甚至打印机输出）都能一眼看出它里面装的信息属于哪个敏感等级、能发给谁、不能给谁，让处理它的人不用猜。
+    value: Ensure that every carrier of information (paper documents, USB drives, computers, servers,
+      even printer outputs) can clearly indicate the sensitivity level of the information it contains,
+      who it can be shared with, and who it cannot, so that handlers do not have to guess.
     basis: inferred
   practice:
     value:
-      '1': 有分级标识规则；新产生的文档和介质按规则打标；关键介质在显著位置标注等级。
-      '2': 标识规则覆盖数字和物理介质；不同等级有对应处理和分发要求（谁可复制、谁可外带）；定期抽查标识合规性。
-      '3': 系统按分级自动施加标识（如文件系统标记、水印、邮件头标注）；高敏介质有追溯机制；标识与访问控制联动。
+      '1': There are classification labeling rules; newly created documents and media are labeled according
+        to the rules; key media have their classification level marked in prominent locations.
+      '2': Labeling rules cover digital and physical media; different levels have corresponding handling
+        and distribution requirements (who can copy, who can take out); periodic spot checks for labeling
+        compliance.
+      '3': Systems automatically apply labels based on classification (e.g., file system tags, watermarks,
+        email header annotations); high-sensitivity media have traceability mechanisms; labeling is linked
+        with access control.
     basis: inferred
   evidence:
-    value: 分级标识管理办法、各类介质实物或照片示例、标注等级的分类清单、抽查记录、系统自动打标的产品配置截图。
+    value: Classification labeling management policy, physical examples or photos of various media, classification
+      lists with marked levels, spot check records, and product configuration screenshots showing automatic
+      labeling.
     basis: inferred
   common_myth:
-    value: 以为「在文件属性里填了个密级字段」或「文档首页盖了个章」就算标识——标识的价值是让不知情的人在一手碰到介质时就知道该按什么规矩对待它，而不是让同一个部门的人去系统里查。
+    value: The misconception is that 'filling in a classification field in file properties' or 'stamping
+      a seal on the first page of a document' counts as labeling—the value of labeling is that an uninformed
+      person, upon first contact with the medium, immediately knows how to treat it, rather than having
+      to look it up in a system within the same department.
     basis: inferred
   auditor_asks:
     value:
-    - 抽一个标为机密的U盘，它里面存的文件分别是什么密级？标识是刻上去还是贴纸？
-    - 从外部打印回来的纸质文件没有标识，你们怎么判断它能不能分发？
+    - Pick a USB drive marked as confidential; what are the classification levels of the files stored
+      on it? Is the label engraved or a sticker?
+    - Paper documents printed from outside have no labels; how do you determine whether they can be distributed?
     basis: inferred
   regional_note:
     value: null

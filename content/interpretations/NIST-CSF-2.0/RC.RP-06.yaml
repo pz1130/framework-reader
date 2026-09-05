@@ -1,29 +1,45 @@
 control_id: NIST-CSF-2.0:RC.RP-06
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事故处理完了但没人宣布结束」——响应人员各自散场、系统悄悄回到生产、复盘文件没人写，真正的根因和改进项跟着烂尾。
+    value: The concern is that "the incident is handled but no one declares it over" - responders disperse,
+      systems quietly return to production, and no post-incident review documents are written, leaving
+      root causes and improvements unfinished.
     basis: inferred
   plain_zh:
-    value: 事故恢复完要有明确的收尾标准：谁有权宣布结束、依据什么条件宣布，并且相关文档（时间线、影响、处置动作）必须在这个时间点补齐。
+    value: 'After incident recovery, there must be clear closure criteria: who has the authority to declare
+      the end, based on what conditions, and relevant documentation (timeline, impact, response actions)
+      must be completed at that point.'
     basis: inferred
   practice:
     value:
-      '1': 在应急预案里写了「由应急指挥宣布恢复结束」，但没定义具体触发条件；事故后会有个简单总结。
-      '2': 书面定义了恢复结束的多条判断标准（如业务功能验证通过、系统监控恢复正常、证据已保全），由明确角色签字确认后归档；复盘文档按时限完成。
-      '3': 收尾标准与业务连续性指标绑定，系统自动检查关键指标后辅助决策；复盘文档结构化且关联到问题追踪系统，改进项有闭环跟踪。
+      '1': The emergency plan states "the emergency commander declares recovery complete," but specific
+        trigger conditions are not defined; a simple summary is produced after the incident.
+      '2': Multiple written criteria for declaring recovery complete (e.g., business function verification
+        passed, system monitoring returned to normal, evidence preserved) are defined, signed by a designated
+        role, and archived; post-incident review documents are completed on time.
+      '3': Closure criteria are linked to business continuity metrics, with automated system checks of
+        key metrics to support decision-making; review documents are structured and linked to the issue
+        tracking system, with closed-loop tracking of improvement actions.
     basis: inferred
   evidence:
-    value: 事故报告中的「恢复结束」签字页含角色与时间、收尾判断条件核对表、恢复结束后系统验证记录、复盘会议纪要与改进项追踪清单。
+    value: The "recovery complete" signature page in the incident report includes role and time, a checklist
+      of closure criteria, system verification records after recovery, post-incident review meeting minutes,
+      and an improvement action tracking list.
     basis: inferred
   common_myth:
-    value: 以为「能访问了、业务不报了」就算恢复结束。没有书面标准时，常在压力下提前宣布恢复，等数据不一致或监控波动再二次返工——收尾的判断依据必须落在笔头上，不能靠感觉。
+    value: Assuming that "accessible and no business complaints" means recovery is complete. Without written
+      criteria, there is a tendency to prematurely declare recovery under pressure, leading to rework
+      when data inconsistencies or monitoring fluctuations appear - closure judgments must be documented,
+      not based on intuition.
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次中高危事故，谁在哪份文件上签字宣布恢复结束？当时核对的是哪几条标准？
-    - 事故复盘报告有没有明确的截止时限？逾期怎么办？改进项是挂到缺陷库还是开完会就散了？
+    - For the most recent medium-to-high severity incident, who signed which document to declare recovery
+      complete? Which criteria were checked at that time?
+    - Is there a clear deadline for the post-incident review report? What happens if it is overdue? Are
+      improvement actions tracked in a defect management system or do they dissipate after the meeting?
     basis: inferred
   regional_note:
     value: null

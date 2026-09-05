@@ -1,33 +1,53 @@
 control_id: ISO-27002-2022:A.8.12
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是数据以任何形态离开你允许的边界——无论是黑客拖库、内部人拷走、员工误发邮件，还是物理介质被带出。核心是「知道数据去哪了，并且拦得住不该走的」，而不是只在出口装个监控就算完事。
+    value: The concern is data leaving your permitted boundaries in any form—whether through hacker exfiltration,
+      insider copying, employees accidentally sending emails, or physical media being taken out. The core
+      is to 'know where data goes and be able to stop what shouldn't leave,' not just to install monitoring
+      at the exit and call it done.
     basis: inferred
   plain_zh:
-    value: 要你建立一套机制，能发现、阻止并处理数据未经授权离开公司的各种途径——包括网络出口、终端设备、物理边界和第三方渠道，而且这套机制要经过测试。
+    value: You need to establish a mechanism that can detect, prevent, and handle various paths by which
+      data leaves the organization without authorization—including network egress, endpoint devices, physical
+      boundaries, and third-party channels—and this mechanism must be tested.
     basis: inferred
   practice:
     value:
-      '1': 网络出口有基本防护（如DLP或防火墙规则）；有数据分级；能讲清敏感数据主要存在哪、通过哪些通道出去。
-      '2': 有明确的数据外泄检测与响应流程；DLP策略覆盖主要通道（邮件、Web、USB）；定期做数据外泄测试/演练并有记录。
-      '3': 出口与终端监控联动，异常外发能自动阻断；使用蜜标数据等主动追踪手段；外泄测试纳入常规安全评估，结果驱动策略改进。
+      '1': Basic protection at network egress (e.g., DLP or firewall rules); data classification exists;
+        you can articulate where sensitive data primarily resides and through which channels it exits.
+      '2': Clear data leakage detection and response procedures exist; DLP policies cover major channels
+        (email, web, USB); regular data leakage tests/drills are conducted with records.
+      '3': Egress and endpoint monitoring are integrated, with automatic blocking of abnormal outbound
+        transmissions; proactive tracking measures such as honeytokens are used; leakage tests are incorporated
+        into routine security assessments, with results driving policy improvements.
     basis: inferred
   evidence:
-    value: DLP策略与规则配置、出口流量监控日志、数据分级清单、外泄告警与处置记录、数据外泄演练测试报告、蜜标数据部署记录。
+    value: DLP policy and rule configurations, egress traffic monitoring logs, data classification inventory,
+      leakage alerts and handling records, data leakage drill test reports, honeytoken deployment records.
     basis: inferred
   common_myth:
-    value: 以为「装了DLP产品、邮件出去要审批」就达标。DLP落不了地最常见的原因是没做数据分级——不知道哪些是敏感数据，规则就没法写准，结果要么全放行要么全拦截，审计员只要问「你的DLP重点保护哪几类数据、规则按什么写的」就露馅。
+    value: The misconception is that 'installing a DLP product and requiring approval for outgoing emails'
+      is sufficient. The most common reason DLP fails is the lack of data classification—without knowing
+      which data is sensitive, rules cannot be written accurately, resulting in either allowing everything
+      or blocking everything. Auditors only need to ask 'What categories of data does your DLP focus on,
+      and what are the rules based on?' to expose the gap.
     basis: inferred
   auditor_asks:
     value:
-    - 你的DLP策略按什么数据分级规则配置的？规则最近一次更新是什么时候？
-    - 外泄演练最近一次是什么时候？演练发现了什么问题、改了什么？
-    - 内部人员把机密文件压缩改名后经网盘上传，你的监控能发现吗？
+    - What data classification rules are your DLP policies configured against? When were the rules last
+      updated?
+    - When was the last leakage drill? What issues were found and what changes were made?
+    - If an insider compresses a confidential file, renames it, and uploads it via cloud storage, would
+      your monitoring detect it?
     basis: inferred
   regional_note:
-    value: 美国审计员常以NIST框架为参照，关注网络出口技术控制（SC-7.10）和检测能力；欧洲审计员在GDPR语境下更关心数据主体信息去哪了、有没有跨境传输，问题会追到「你怎么证明个人数据没有被未经授权转移出去」——比纯技术出口监控要宽。
+    value: U.S. auditors often reference NIST frameworks, focusing on network egress technical controls
+      (SC-7.10) and detection capabilities; European auditors in the GDPR context are more concerned about
+      where personal data goes and whether there is cross-border transfer, with questions probing 'How
+      do you prove that personal data has not been transferred without authorization?'—which is broader
+      than purely technical egress monitoring.
     basis: inferred
 interview:
   questions: []

@@ -1,29 +1,44 @@
 control_id: NIST-CSF-2.0:PR.IR-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「系统只在正常情况设计好了、一到故障或攻击就崩」——冗余、降级、故障转移这些韧性要求必须设计进机制里，而不是出事后再临时救火。
+    value: The concern is that systems are only designed for normal conditions and collapse during failures
+      or attacks—resilience requirements such as redundancy, degradation, and failover must be designed
+      into the mechanisms, not addressed reactively after incidents.
     basis: inferred
   plain_zh:
-    value: 要在系统里真正做出应对正常和异常情况的韧性机制：资源够用、有冗余、能降级、能隔离、能自愈，而且这些是设计出来的，不是靠运气。
+    value: 'Truly implement resilience mechanisms in systems to handle both normal and abnormal conditions:
+      sufficient resources, redundancy, degradation capability, isolation, and self-healing, and these
+      must be designed in, not left to chance.'
     basis: inferred
   practice:
     value:
-      '1': 关键系统有明确的冗余或备份安排；有基础的故障转移或重启机制；知道单点故障在哪。
-      '2': 韧性要求写进系统设计文档；关键组件有冗余且定期演练切换；有降级运行模式并有操作手册。
-      '3': 韧性目标量化并在架构层落实；异常场景（断网、宕机、注入攻击）有自动化响应与自愈；韧性测试纳入发布门禁。
+      '1': Critical systems have clear redundancy or backup arrangements; basic failover or restart mechanisms
+        exist; single points of failure are identified.
+      '2': Resilience requirements are documented in system design documents; critical components have
+        redundancy with periodic switchover drills; degraded operation modes exist with operational manuals.
+      '3': Resilience objectives are quantified and implemented at the architecture level; abnormal scenarios
+        (network outages, downtime, injection attacks) have automated responses and self-healing; resilience
+        testing is included in release gates.
     basis: inferred
   evidence:
-    value: 系统架构图中的冗余设计、韧性需求与设计文档、故障切换演练记录、容量与压力测试报告、降级模式操作手册、自愈脚本或编排策略。
+    value: Redundancy design in system architecture diagrams, resilience requirements and design documents,
+      failover drill records, capacity and stress test reports, degraded mode operational manuals, self-healing
+      scripts or orchestration policies.
     basis: inferred
   common_myth:
-    value: 以为「服务器做了双机热备、数据库有主从」就算有韧性机制。双机只解决硬件单点；网络分区、流量突增、上游依赖故障、恶意注入这些异常场景下能否降级和自愈，才是审计员真正会追问的。
+    value: The misconception is that having dual-server hot standby or database master-slave setups constitutes
+      resilience mechanisms. Dual servers only address hardware single points; whether the system can
+      degrade and self-heal under network partitions, traffic spikes, upstream dependency failures, and
+      malicious injections is what auditors will truly probe.
     basis: inferred
   auditor_asks:
     value:
-    - 依赖的第三方服务不可用时，系统会怎么表现？降级路径演练过没有？
-    - 同城双活或异地多活是怎么做到数据一致的？故障切换的 RTO/RPO 依据是什么？
+    - How would the system behave if a dependent third-party service becomes unavailable? Have degradation
+      paths been tested?
+    - How is data consistency achieved in same-city active-active or cross-region active-active setups?
+      What is the basis for RTO/RPO in failover?
     basis: inferred
   regional_note:
     value: null

@@ -1,29 +1,45 @@
 control_id: NIST-CSF-2.0:RS.MA-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事件在手里捂不住也传不上去」——一线人员判断不了严重性，或者判断了但没人接、没记录、没升级路径，小事件拖成大事故，事后复盘连升级链条都说不清。
+    value: This control addresses the risk that incidents are not contained or escalated—frontline staff
+      cannot assess severity, or if they do, no one receives the information, it is not recorded, or there
+      is no escalation path. Minor issues can escalate into major incidents, and post-incident reviews
+      cannot trace the escalation chain.
     basis: inferred
   plain_zh:
-    value: 把事件升级的规则和路径定下来：什么情况算升级、升级给谁、用什么方式通知、多久之内必须升，并且要让所有人知道这套规则，遇到事件时真的按它走。
+    value: 'Define the rules and paths for incident escalation: what constitutes an escalation, to whom
+      to escalate, how to notify, and within what timeframe escalation must occur. Ensure all personnel
+      are aware of these rules and follow them when incidents occur.'
     basis: inferred
   practice:
     value:
-      '1': 口头约定升级给人——有值班手机或群，但没书面规则；事件处理人凭经验和职位自行判断。
-      '2': 有书面的升级矩阵（按严重度、影响、时间定义升级对象与时限）；升级行为有通知记录（群、邮件、工单）；定期做一次升级演练或桌面推演。
-      '3': 升级矩阵与事件管理工具联动，达到阈值自动建单并通知对应角色；升级过程全程留痕；定期复盘升级耗时和准确性，并据此修订矩阵。
+      '1': Escalation is verbally agreed upon—there is an on-call phone or group, but no written rules;
+        incident handlers rely on experience and position to make judgments.
+      '2': A written escalation matrix exists (defining escalation targets and timeframes based on severity,
+        impact, and time); escalation actions are logged (via groups, email, or tickets); periodic escalation
+        drills or tabletop exercises are conducted.
+      '3': The escalation matrix is integrated with incident management tools; thresholds trigger automatic
+        ticket creation and notification to relevant roles; the entire escalation process is fully documented;
+        regular reviews of escalation time and accuracy are conducted, and the matrix is updated accordingly.
     basis: inferred
   evidence:
-    value: 升级矩阵与分级标准文档、事件工单中升级节点的时间戳与通知记录、演练或真实事件的升级复盘纪要、事件响应预案中关于升级路径的描述。
+    value: Escalation matrix and classification standard documents, timestamps and notification logs of
+      escalation points in incident tickets, review minutes from drills or real incidents, and descriptions
+      of escalation paths in incident response plans.
     basis: inferred
   common_myth:
-    value: 以为「有个写满应急联系人的通讯录」就是升级机制。通讯录只是名单——没有分级阈值、没有升级时限、没有确认机制时，人找到了也未必知道该不该升、什么时候升。
+    value: The misconception is that having a contact list full of emergency contacts constitutes an escalation
+      mechanism. A contact list is just a list—without classification thresholds, escalation timeframes,
+      or confirmation mechanisms, even if people are reachable, they may not know whether or when to escalate.
     basis: inferred
   auditor_asks:
     value:
-    - 一线发现疑似勒索软件时，从发现到通知到应急负责人的目标时限是几分钟？写在哪？
-    - 最近一次事件升级是几级升几级？花了多久？比目标快还是慢？
+    - When frontline staff suspect ransomware, what is the target time from detection to notification
+      of the incident response lead? Where is this documented?
+    - In the most recent incident escalation, what was the escalation level change? How long did it take?
+      Was it faster or slower than the target?
     basis: inferred
   regional_note:
     value: null

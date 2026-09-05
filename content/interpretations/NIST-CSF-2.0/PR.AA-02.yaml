@@ -1,29 +1,47 @@
 control_id: NIST-CSF-2.0:PR.AA-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「有账号就能进」——身份没有经过可信核验就发放凭证，攻击者可以靠伪造身份、撞库或内部人员虚报身份获得合法入口，后续所有访问控制都建立在一个不可信的地基上。
+    value: The concern is about "anyone with an account can get in" — credentials are issued without trusted
+      identity verification, allowing attackers to gain legitimate access through fake identities, credential
+      stuffing, or insider misrepresentation. All subsequent access controls are then built on an untrusted
+      foundation.
     basis: inferred
   plain_zh:
-    value: 给用户发账号和凭证之前，必须根据使用场景（是内部员工、合作伙伴还是外部客户）做相应强度的身份核验，确保这个身份是真的，并且身份和凭证是绑定的。
+    value: Before issuing accounts and credentials to users, identity verification of appropriate strength
+      must be performed based on the usage scenario (whether internal employee, partner, or external customer),
+      ensuring that the identity is genuine and that the identity and credentials are bound together.
     basis: inferred
   practice:
     value:
-      '1': 内部员工入职时进行基本身份核验（如身份证件核对）；统一身份源（如 HR 系统）是账号创建的唯一依据。
-      '2': 不同场景（员工/外包/客户/API）有明确的身份核验等级要求；高风险角色（如管理员、财务）有增强核验流程；身份变更（改名、转岗）能同步到凭证。
-      '3': 身份核验过程有审计日志，能追溯每个账号创建时的核验依据；对特权账号实施多因素认证且绑定到已验证身份；系统能检测并阻止身份复用或凭证与身份不匹配的情况。
+      '1': Basic identity verification (e.g., checking ID documents) is performed for internal employees
+        upon onboarding; a unified identity source (e.g., HR system) is the sole basis for account creation.
+      '2': Different scenarios (employee/outsourced/customer/API) have clear identity verification level
+        requirements; high-risk roles (e.g., administrators, finance) have enhanced verification processes;
+        identity changes (e.g., name changes, role transfers) are synchronized to credentials.
+      '3': The identity verification process has audit logs that can trace the verification basis for
+        each account creation; privileged accounts are subject to multi-factor authentication bound to
+        verified identities; the system can detect and prevent identity reuse or mismatches between credentials
+        and identities.
     basis: inferred
   evidence:
-    value: 身份核验流程文档（分场景）、入职/账号创建工单中的核验记录、身份源系统截图、MFA 绑定记录、身份核验失败的日志或报告。
+    value: Identity verification process documentation (by scenario), verification records in onboarding/account
+      creation tickets, screenshots of identity source systems, MFA binding records, logs or reports of
+      identity verification failures.
     basis: inferred
   common_myth:
-    value: 以为「让 HR 系统建了账号」就等于完成了身份核验。HR 建号只是录入信息，如果系统之间是手动同步、或外包人员由项目组口头申请建号，那身份实际上没有被核验过——账号和真实的人对不上。
+    value: Assuming that "having the HR system create an account" equals completing identity verification.
+      HR account creation only records information; if systems are manually synchronized, or outsourced
+      personnel are requested verbally by project teams, the identity has not actually been verified —
+      the account does not match a real person.
     basis: inferred
   auditor_asks:
     value:
-    - 外包人员或临时人员的身份是谁核验的？核验了什么证件？记录在哪里？
-    - 一个离职员工的身份能否被拿来重新建号？系统里怎么防止身份被复用？
+    - Who verifies the identity of outsourced or temporary personnel? What documents are verified? Where
+      are the records?
+    - Can a departed employee's identity be used to create a new account? How does the system prevent
+      identity reuse?
     basis: inferred
   regional_note:
     value: null

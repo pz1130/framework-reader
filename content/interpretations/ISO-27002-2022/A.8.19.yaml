@@ -1,34 +1,56 @@
 control_id: ISO-27002-2022:A.8.19
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「生产环境的软件没人管，装什么都能跑」——没人知道生产上有哪些软件、哪些能装、哪些不允许，攻击者或误操作就能装个马进来跑；同时缺一条审批链，可能有人绕过变更流程直接在生产机上装东西破坏稳定性或引入后门。
+    value: The concern is that 'software in production environments is unmanaged, and anything can be
+      installed and run'—no one knows what software exists in production, what can be installed, and what
+      is not allowed, allowing attackers or accidental actions to install and run malicious software;
+      additionally, without an approval chain, someone might bypass the change process and directly install
+      software on production machines, undermining stability or introducing backdoors.
     basis: inferred
   plain_zh:
-    value: 管住生产系统上的软件安装——什么能装、什么不能装、谁能装、要走什么流程，都要有明文规定并在技术上拦得住,还要定期看看实际装的跟规则对不对得上。
+    value: Manage software installation on production systems—what can be installed, what cannot, who
+      can install, and what process must be followed—all must be clearly specified and technically enforced,
+      with regular checks to ensure actual installations align with the rules.
     basis: inferred
   practice:
     value:
-      '1': 有书面生产软件安装政策；生产机不允许普通用户随意装软件，至少要管理员权限；装软件前有人口头或邮件批准。
-      '2': 有明确的软件白名单/黑名单；安装要走变更审批流程，有记录；用系统配置或管理工具限制用户能否执行安装；定期抽查生产机装的软件与审批记录是否一致。
-      '3': 生产环境默认 deny-all 按白名单放行，未批准的软件执行不了；软件清单与安装授权自动关联，变更审批通过才允许安装；定期评审白名单并清理过期项，异常安装尝试会告警。
+      '1': There is a written policy for software installation in production; ordinary users are not allowed
+        to install software on production machines without at least administrator privileges; installation
+        requires verbal or email approval beforehand.
+      '2': There is a clear software whitelist/blacklist; installation follows a change approval process
+        with records; system configuration or management tools restrict user execution of installations;
+        periodic spot checks compare installed software on production machines against approval records.
+      '3': Production environments default to deny-all and allow only whitelisted software; unapproved
+        software cannot execute; software inventory is automatically linked to installation authorizations,
+        and installation is only permitted after change approval; whitelists are regularly reviewed and
+        outdated items removed, with alerts for anomalous installation attempts.
     basis: inferred
   evidence:
-    value: 生产软件安装政策文档、变更审批工单（软件安装类）、软件白/黑名单列表与评审记录、定期抽查比对结果（服务器实际软件清单 vs 授权清单）、技术控制截图（如组策略、EDR白名单、配置管理平台）。
+    value: Production software installation policy documents, change approval tickets (software installation
+      type), software whitelist/blacklist lists and review records, periodic spot-check comparison results
+      (actual server software inventory vs. authorized list), and technical control screenshots (e.g.,
+      group policy, EDR whitelist, configuration management platform).
     basis: inferred
   common_myth:
-    value: 以为「生产机只有管理员能装软件」就达标，但管理员装了什么没人审批、没留记录，装错了或者装了有问题的软件照样没人发现；更常见的是有一堆配套工具、脚本、agent，装着装着就没人记得谁批过。
+    value: Assuming that 'only administrators can install software on production machines' is sufficient,
+      but no one approves or records what administrators install, so misinstallations or problematic software
+      go unnoticed; more commonly, a bunch of supporting tools, scripts, and agents are installed, and
+      eventually no one remembers who approved them.
     basis: inferred
   auditor_asks:
     value:
-    - 我指一台生产服务器，你告诉我它上面装了哪些软件，清单在哪？
-    - 上个季度有人在生产机上装过软件吗？装了什么、谁批的、走哪个工单号？
-    - 生产机上能不能执行未列入白名单的可执行文件？用什么机制拦的？
+    - Pointing to a production server, tell me what software is installed on it and where is the inventory?
+    - Did anyone install software on production machines last quarter? What was installed, who approved
+      it, and under which ticket number?
+    - Can unlisted executable files be run on production machines? What mechanism blocks them?
     basis: inferred
   regional_note:
-    value: 欧洲审计通常更直接追异常安装尝试有没有真正被阻断并留痕，他们关心技术控制的实际拦截效果；美国审计较多关注白名单清单是否完整以及有没有定期更新评审。整体差异不大，可写
-      null。
+    value: European audits typically focus more directly on whether anomalous installation attempts were
+      actually blocked and logged, caring about the real-world effectiveness of technical controls; U.S.
+      audits often focus more on whether the whitelist is complete and regularly updated and reviewed.
+      Overall differences are minor; can be written as null.
     basis: inferred
 interview:
   questions: []

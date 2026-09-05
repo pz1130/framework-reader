@@ -1,30 +1,48 @@
 control_id: ISO-27002-2022:A.8.18
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是高权限账号被当普通账号用、被共享、被长期挂机——拥有管理员或特权身份的人一旦被冒用或误操作，影响面是全局的，而且这类账号往往是攻击者拿下域控或核心系统的最后一跳。
+    value: The concern is that privileged accounts are used as ordinary accounts, shared, or left logged
+      in for long periods—if someone with administrator or privileged identity is impersonated or makes
+      an erroneous operation, the impact is global, and such accounts are often the last hop for attackers
+      to take over the domain controller or core systems.
     basis: inferred
   plain_zh:
-    value: 把能装软件、改配置、看全量数据的高权限工具和账号单独管起来：能不用就不用、用时最小化、用完即收、全程有记录、定期复查谁还在用。
+    value: 'Manage privileged tools and accounts that can install software, change configurations, or
+      view full data separately: avoid using them when possible, minimize usage when needed, revoke promptly
+      after use, keep records throughout, and periodically review who still has access.'
     basis: inferred
   practice:
     value:
-      '1': 高权限账号不共享、不写死在脚本里；用前申请、用后回收；高危操作至少有一个人审批。
-      '2': 高权限操作执行在专门的跳板机或特权管理平台上；每次操作有审计日志；定期（如每季度）复核高权限账号清单与持有人。
-      '3': 登录即临时授权，用完自动失效；高危命令通过堡垒机拦截或告警；高权限会话录屏或全量记录；权限发放与回收与身份治理联动，离职或调岗即自动回收。
+      '1': Privileged accounts are not shared or hardcoded in scripts; request before use, revoke after
+        use; high-risk operations require at least one person's approval.
+      '2': Privileged operations are performed on dedicated jump servers or privileged access management
+        platforms; each operation has audit logs; periodically (e.g., quarterly) review the list of privileged
+        accounts and their holders.
+      '3': Login grants temporary authorization that automatically expires after use; high-risk commands
+        are intercepted or alerted via bastion hosts; privileged sessions are recorded via screen capture
+        or full logging; permission issuance and revocation are integrated with identity governance, with
+        automatic revocation upon termination or role change.
     basis: inferred
   evidence:
-    value: 高权限账号清单与审批工单、堡垒机或特权管理平台的会话日志与操作录屏、高危命令拦截/告警记录、定期账号复核纪要、离职调岗触发权限回收的流程记录。
+    value: List of privileged accounts and approval tickets, session logs and operation recordings from
+      bastion hosts or privileged access management platforms, interception/alert records for high-risk
+      commands, meeting minutes of periodic account reviews, and process records of permission revocation
+      triggered by termination or role change.
     basis: inferred
   common_myth:
-    value: 以为给几个管理员账号设置了强密码就算管住了高权限——真正会出事的是这些账号被日常登录、开着会话不锁屏、或者共用同一套 root/administrator
-      口令在几十台机器上复用，密码强度根本拦不住这类滥用。
+    value: The misconception is that setting strong passwords for a few administrator accounts is enough
+      to manage privileged access—but the real issues arise when these accounts are used for daily logins,
+      sessions left unlocked, or the same root/administrator password is reused across dozens of machines;
+      password strength cannot prevent such misuse.
     basis: inferred
   auditor_asks:
     value:
-    - 这三个月里哪些人用过高权限账号？能按时间拉出每次登录和操作记录吗？
-    - 两个星期前某台服务器被 rm -rf 或删库了，你们怎么追溯是谁干的、当时有没有审批？
+    - Who has used privileged accounts in the past three months? Can you provide a time-based record of
+      each login and operation?
+    - If a server was hit by rm -rf or database deletion two weeks ago, how would you trace who did it
+      and whether there was approval at the time?
     basis: inferred
   regional_note:
     value: null

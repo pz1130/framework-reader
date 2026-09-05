@@ -1,30 +1,48 @@
 control_id: ISO-27002-2022:A.7.4
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「物理访问记录和系统审计日志各记各的」——人进了机房、同时系统里有人用账号操作，两本账对不上，出了事无法确认「当时谁在现场」这种关键证据链。
+    value: The concern is that physical access records and system audit logs are kept separately—people
+      enter the server room while accounts are used in the system, but the two records do not align, making
+      it impossible to confirm the key evidence chain of 'who was physically present at the time' in the
+      event of an incident.
     basis: inferred
   plain_zh:
-    value: 把进出机房、监控录像、门禁记录这几类物理信息，和服务器、应用里的登录审计日志放在一起对照，用来发现可疑行为，也方便事后调查还原。
+    value: Correlate physical information such as entry/exit logs, surveillance footage, and access control
+      records with login audit logs from servers and applications to detect suspicious behavior and facilitate
+      post-incident investigation and reconstruction.
     basis: inferred
   practice:
     value:
-      '1': 机房有门禁记录和基本监控录像；系统有登录日志；双方都留够保存期，出事时能分别调出。
-      '2': 定期把物理门禁记录和系统登录日志做比对抽查，比如深夜非工作时间有没有人进出对应时段有没有系统操作；比对结果有记录，异常有跟进。
-      '3': 物理与逻辑访问记录能按人、按时间自动关联；有规则或分析工具能发现「人不在现场却有该账号的系统登录」这类异常；调查结果和应急响应流程联动。
+      '1': The server room has access control records and basic surveillance footage; systems have login
+        logs; both are retained for a sufficient period, and can be retrieved separately when needed.
+      '2': Periodically compare and sample physical access control records with system login logs, for
+        example, checking whether entries/exits during late night or non-working hours correspond to system
+        operations during those times; comparison results are documented, and anomalies are followed up.
+      '3': Physical and logical access records can be automatically correlated by person and time; rules
+        or analysis tools can detect anomalies such as 'system logins with an account while the person
+        is not physically present'; investigation results are linked to incident response procedures.
     basis: inferred
   evidence:
-    value: 门禁/监控日志、系统登录审计日志、物理与逻辑访问的关联比对记录、异常事件调查纪要、保存期限与可检索性证明。
+    value: Access control/surveillance logs, system login audit logs, correlation and comparison records
+      of physical and logical access, investigation minutes for anomalous events, and proof of retention
+      period and retrievability.
     basis: inferred
   common_myth:
-    value: 以为装了门禁系统和监控摄像头、也开了服务器审计日志，就算做到位。真到调查时，两套日志的时钟不一致、只保存三十天，或者门禁记录根本导不出来变成
-      Excel 手工抄，物理日志和系统审计对不上，等于没有关联能力。
+    value: It is mistakenly assumed that installing an access control system and surveillance cameras,
+      and enabling server audit logs, is sufficient. In reality, during an investigation, the clocks of
+      the two log sets may be inconsistent, logs may be retained for only thirty days, or access control
+      records may not be exportable and are manually transcribed into Excel, causing physical logs and
+      system audits to not align, which means there is no correlation capability.
     basis: inferred
   auditor_asks:
     value:
-    - 把门禁记录和系统登录日志按时间对齐后，你能直接告诉我某时段某账号的登录对应哪个人的物理在场记录吗？
-    - 日志保存期多长？取证时两套记录的时钟偏移怎么校准？
+    - After aligning access control records and system login logs by time, can you directly tell me which
+      person's physical presence record corresponds to a login with a specific account during a specific
+      period?
+    - What is the log retention period? How is the clock offset between the two record sets calibrated
+      during forensic analysis?
     basis: inferred
   regional_note:
     value: null

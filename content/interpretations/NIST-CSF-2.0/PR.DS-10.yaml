@@ -1,32 +1,55 @@
 control_id: NIST-CSF-2.0:PR.DS-10
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「数据只在磁盘和传输中受保护」的盲区——数据在内存、CPU 缓存、寄存器里被处理时，既不能被人读走，也不能被篡改，更不能因为进程崩溃或系统残留导致下个进程读到上一手的数据。
+    value: The concern is the blind spot of 'data protected only at rest on disk and in transit'—when
+      data is being processed in memory, CPU cache, or registers, it must neither be readable nor tampered
+      with by others, nor can a process crash or system residue cause the next process to read the previous
+      process's data.
     basis: inferred
   plain_zh:
-    value: 处理中的数据（在内存里、CPU 里、计算过程中）也要保证保密性、完整性和可用性——该加密的加密、该隔离的隔离、该清理的清理，不能只盯着存储和网络。
+    value: Data in processing (in memory, in CPU, during computation) must also ensure confidentiality,
+      integrity, and availability—encrypt what should be encrypted, isolate what should be isolated, and
+      clear what should be cleared; do not focus only on storage and network.
     basis: inferred
   practice:
     value:
-      '1': 服务器内存和磁盘加密开启；明确定义数据使用中保护的责任人；生产环境不允许明文口令在内存中长期驻留。
-      '2': 有进程与内存隔离机制；关键数据在内存中处理完即清零；对内存转储（dump）有访问控制；虚拟化平台开启内存加密（如机密计算或等价手段）用于高敏感数据。
-      '3': 机密计算或同态加密用于高敏感数据处理；内存清理与生命周期有自动验证工具；能证明代码运行时数据不可被宿主或管理员读取。
+      '1': Server memory and disk encryption enabled; clearly define the responsible person for protecting
+        data in use; production environments do not allow plaintext passwords to reside in memory for
+        extended periods.
+      '2': Process and memory isolation mechanisms in place; critical data is zeroed immediately after
+        processing in memory; access control for memory dumps; virtualization platforms enable memory
+        encryption (e.g., confidential computing or equivalent measures) for highly sensitive data.
+      '3': Confidential computing or homomorphic encryption used for processing highly sensitive data;
+        automated verification tools for memory clearing and lifecycle; ability to prove that data during
+        code execution cannot be read by the host or administrators.
     basis: inferred
   evidence:
-    value: 内存加密与清理策略文件、机密计算或隔离环境的配置记录、内存转储访问控制清单、高敏感数据内存生命周期管理方案、容器或虚拟化隔离及加固配置基线、相关操作日志。
+    value: Memory encryption and clearing policy documents, configuration records for confidential computing
+      or isolated environments, access control lists for memory dumps, memory lifecycle management plans
+      for highly sensitive data, container or virtualization isolation and hardening configuration baselines,
+      and relevant operation logs.
     basis: inferred
   common_myth:
-    value: 以为「开了全盘加密就等于保护了使用中的数据」——那是落盘加密，只管静止。数据被进程读进内存后是明文存在 RAM 里的，不处理内存保护，等于把文件从保险柜拿出来摊在桌上办公。
+    value: The misconception is that 'enabling full-disk encryption equals protecting data in use'—that
+      is encryption at rest, which only covers stored data. Once data is read into memory by a process,
+      it exists as plaintext in RAM; without memory protection, it is like taking files out of a safe
+      and spreading them on a desk for work.
     basis: inferred
   auditor_asks:
     value:
-    - 最高敏感的数据在内存里是明文还是密文？有没有做过内存转储并成功读到明文的验证？
-    - 进程崩溃或异常退出后，内存页如何清理？上级进程退出，子进程还持有密钥的场景怎么兜底？
+    - For the most highly sensitive data, is it in plaintext or ciphertext in memory? Has there been any
+      verification by performing a memory dump and successfully reading plaintext?
+    - After a process crash or abnormal exit, how are memory pages cleared? What is the fallback when
+      a parent process exits but child processes still hold keys?
     basis: inferred
   regional_note:
-    value: 欧洲在 DORA 与云服务背景下对使用中加密的期望明显更高，尤其金融行业审计员会追问云租户能否证明云厂商管理员读不到其数据处理过程；美国审计员相对停留在内存保护、进程隔离和转储审计层面，主动谈机密计算的较少。
+    value: In Europe, expectations for encryption in use are notably higher in the context of DORA and
+      cloud services, especially where financial industry auditors will question whether cloud tenants
+      can prove that cloud provider administrators cannot read their data processing; U.S. auditors relatively
+      remain at the level of memory protection, process isolation, and dump auditing, with fewer proactively
+      discussing confidential computing.
     basis: inferred
 interview:
   questions: []

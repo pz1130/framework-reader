@@ -1,34 +1,57 @@
 control_id: NIST-CSF-2.0:GV.SC-07
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是供应商和第三方在产品与服务的生命周期里持续成为后门或断点——签合同时轰轰烈烈，平时无人看管，出事时才想起来供应商也是攻击面的一部分，导致数据泄露或供应链中断。
+    value: The concern is that suppliers and third parties continuously become backdoors or points of
+      failure throughout the lifecycle of products and services—contracts are signed with great fanfare,
+      but then no one oversees them; only when an incident occurs do people remember that suppliers are
+      also part of the attack surface, leading to data breaches or supply chain disruptions.
     basis: inferred
   plain_zh:
-    value: 对供应商、他们的产品和服务、以及其他第三方带来的风险，要在合作的全过程里持续搞明白：有什么风险、记下来、按重要性排队、评估、采取措施应对、并且持续盯着直到关系结束。
+    value: 'Risks posed by suppliers, their products and services, and other third parties must be continuously
+      understood throughout the entire collaboration: identify risks, document them, prioritize them,
+      assess them, take action to address them, and monitor them until the relationship ends.'
     basis: inferred
   practice:
     value:
-      '1': 有供应商清单；与关键供应商签约前做过一次基础风险评估；知道哪些供应商碰得到你的数据或系统。
-      '2': 有正式的供应商风险管理制度和风险分级；定期（如年度）对高风险的供应商做评估；合同中含安全与保密条款；发生安全事故或产品重大变更时会通报评估。
-      '3': 供应商风险与业务系统资产关联，实时、自动地跟踪供应商产品漏洞或安全事件；风险处置（接受、缓解、转嫁、终止）有记录可查；有供应商退出与数据销毁流程，并有证据验证执行。
+      '1': Maintain a supplier inventory; conduct a basic risk assessment before contracting with key
+        suppliers; know which suppliers have access to your data or systems.
+      '2': Have a formal supplier risk management policy and risk classification; conduct regular (e.g.,
+        annual) assessments of high-risk suppliers; include security and confidentiality clauses in contracts;
+        notify and reassess in the event of security incidents or major product changes.
+      '3': Link supplier risk to business system assets; track supplier product vulnerabilities or security
+        incidents in real time and automatically; document risk treatment (accept, mitigate, transfer,
+        terminate) with records; have supplier exit and data destruction processes with evidence of execution.
     basis: inferred
   evidence:
-    value: 供应商清单及风险评级矩阵、年度或持续风险评估报告、供应商安全合同条款（保密、事件通报、审计权）、供应商沟通与事件通报记录、供应商退出与数据销毁验证记录。
+    value: Supplier inventory and risk rating matrix, annual or continuous risk assessment reports, supplier
+      security contract clauses (confidentiality, incident notification, audit rights), supplier communication
+      and incident notification records, supplier exit and data destruction verification records.
     basis: inferred
   common_myth:
-    value: 以为把「供应商信息安全承诺函」签回来存档就完成了这条。常见误区是只审纸面资质，不审实际接入了哪些系统、数据流到哪里、多久重新评一次风险等级——合同签了三年，供应商那边的安全环境早已今非昔比，却没人更新过这个风险判断。
+    value: The misconception is that simply obtaining and archiving a 'Supplier Information Security Commitment
+      Letter' completes this requirement. A common mistake is to only review paper qualifications without
+      examining which systems are actually connected, where data flows, and how often risk levels are
+      reassessed—the contract may be signed for three years, but the supplier's security environment may
+      have changed drastically, yet no one updates the risk assessment.
     basis: inferred
   auditor_asks:
     value:
-    - 你的供应商清单里，哪些是今年新引入的？他们的风险评估报告在哪里，谁批的？
-    - 如果 Cloudflare 昨天爆出一个严重漏洞，你通过什么机制知道这件事，并在多快时间内评估对你的系统有影响？
-    - 去年有哪家供应商因为风险等级上升被要求整改或终止合作？具体记录给我看一下。
-    - 供应商合作结束后，你在技术上怎么确保他的访问权限和数据都被收回了？
+    - Which suppliers in your inventory were newly introduced this year? Where are their risk assessment
+      reports, and who approved them?
+    - If Cloudflare disclosed a severe vulnerability yesterday, what mechanism would you use to learn
+      about it, and how quickly would you assess its impact on your systems?
+    - Which supplier was required to remediate or had its contract terminated last year due to an elevated
+      risk level? Show me the specific records.
+    - After a supplier relationship ends, how do you technically ensure that their access permissions
+      and data are revoked?
     basis: inferred
   regional_note:
-    value: 欧洲审计员在 GDPR 链条下更常追供应商是否签署数据处理协议（DPA）以及数据跨境路径；美国审计员更关注关键信息基础设施与供应链安全要求，以及是否把供应商纳入事件响应演练。
+    value: European auditors, under the GDPR chain, more often check whether suppliers have signed Data
+      Processing Agreements (DPAs) and the data cross-border paths; U.S. auditors focus more on critical
+      infrastructure and supply chain security requirements, and whether suppliers are included in incident
+      response exercises.
     basis: inferred
 interview:
   questions: []

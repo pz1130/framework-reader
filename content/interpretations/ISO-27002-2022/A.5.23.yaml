@@ -1,29 +1,47 @@
 control_id: ISO-27002-2022:A.5.23
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「签了采购合同就等于把安全责任转给厂商了」——采购进来的云服务、软件、硬件如果没把安全要求写进合同，出事时既没追究依据，也没办法证明自己已尽责。
+    value: The intent is to prevent the misconception that signing a procurement contract transfers all
+      security responsibility to the vendor—if security requirements for procured cloud services, software,
+      or hardware are not written into the contract, there is no basis for recourse in the event of an
+      incident, nor can the organization demonstrate that it has fulfilled its due diligence.
     basis: inferred
   plain_zh:
-    value: 在采购云服务或 IT 产品时，把安全需求写进合同条款，并且在产品使用期间保持对应约的持续管理，确保外部服务商按约定执行安全要求。
+    value: When procuring cloud services or IT products, incorporate security requirements into contract
+      terms, and maintain ongoing management of these agreements throughout the product's lifecycle to
+      ensure that external service providers implement security requirements as agreed.
     basis: inferred
   practice:
     value:
-      '1': 采购合同或订单中有安全相关条款（如数据保护、合规要求）；对关键云服务进行基本的安全评估。
-      '2': 建立云服务采购的安全评估流程，合同明确安全要求、服务等级、审计权利、数据处置责任；有服务商安全承诺或云安全评估报告存档。
-      '3': 将安全要求分类固化为采购模板；对云服务安全能力做持续监控，定期对服务商进行安全复评；对高风险供应商有退出与数据返还/销毁预案并演练。
+      '1': Procurement contracts or purchase orders include security-related clauses (e.g., data protection,
+        compliance requirements); basic security assessments are conducted for critical cloud services.
+      '2': Establish a security assessment process for cloud service procurement; contracts clearly define
+        security requirements, service levels, audit rights, and data disposal responsibilities; maintain
+        records of vendor security commitments or cloud security assessment reports.
+      '3': Categorize and standardize security requirements into procurement templates; conduct continuous
+        monitoring of cloud service security capabilities, periodically re-assess vendor security; for
+        high-risk suppliers, have exit and data return/destruction plans and conduct drills.
     basis: inferred
   evidence:
-    value: 采购合同中的安全条款文本、云服务安全评估表（如针对数据保护、加密、访问控制）、服务商的安全报告或证书（如 SOC 2）、安全复评记录、供应商退出预案与演练记录。
+    value: Security clause texts in procurement contracts, cloud service security assessment forms (e.g.,
+      covering data protection, encryption, access control), vendor security reports or certificates (e.g.,
+      SOC 2), security re-assessment records, supplier exit plans and drill records.
     basis: inferred
   common_myth:
-    value: 以为「采购流程里加一栏『是否满足安全要求』打勾」就算执行了这条控制。真正的关键是合同层面有没有写清楚安全职责归属、审计权利和违约后果——否则事后追责无据，审计追问时也拿不出实际的采购决策依据。
+    value: The misconception is that adding a checkbox item like 'Does it meet security requirements?'
+      in the procurement process constitutes implementation of this control. The real key is whether the
+      contract clearly defines security responsibilities, audit rights, and consequences of breach—otherwise,
+      there is no basis for post-incident accountability, and during audits, no actual procurement decision
+      evidence can be provided.
     basis: inferred
   auditor_asks:
     value:
-    - 去年采购的云服务中，哪几份合同里有明确的审计权和数据处置条款？
-    - 供应商答复不配合安全评估或整改时，合同中有什么救济措施？实际用过吗？
+    - Among the cloud services procured last year, which contracts contain explicit audit rights and data
+      disposal clauses?
+    - When a supplier fails to cooperate with security assessments or remediation, what remedial measures
+      are specified in the contract? Have they actually been used?
     basis: inferred
   regional_note:
     value: null

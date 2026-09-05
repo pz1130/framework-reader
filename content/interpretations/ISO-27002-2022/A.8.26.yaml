@@ -1,30 +1,47 @@
 control_id: ISO-27002-2022:A.8.26
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「业务系统裸奔上线」——该系统没按安全基线加固、默认账密未改、补丁不齐、加密与传输保护缺失，攻击者直接用已知手法就能打穿。
+    value: This addresses the risk of business systems going live without proper security hardening—such
+      systems lack security baseline hardening, default credentials remain unchanged, patches are incomplete,
+      and encryption and transmission protections are missing, allowing attackers to compromise them using
+      known techniques.
     basis: inferred
   plain_zh:
-    value: 业务系统在上线前必须按安全基线（配置加固、账号口令、补丁、加密要求）打好底子，上线后要持续验证配置没被改回去、加密和传输保护仍然有效。
+    value: Business systems must be hardened according to security baselines (configuration hardening,
+      account credentials, patching, encryption requirements) before going live, and after deployment,
+      continuous verification is required to ensure configurations have not been reverted and encryption
+      and transmission protections remain effective.
     basis: inferred
   practice:
     value:
-      '1': 有系统上线检查清单，含默认密码修改、最低加密强度、生产环境隔离；上线前有人签核。
-      '2': 有安全配置基线文档并应用到各类系统；配置变更走工单且有复核；定期做配置核查。
-      '3': 配置核查自动化并接入告警；密钥与证书集中管理且有轮换流程；补丁与漏洞管理覆盖全生命周期；基线随威胁态势定期修订。
+      '1': There is a system launch checklist that includes default password changes, minimum encryption
+        strength, and production environment isolation; sign-off is required before launch.
+      '2': Security configuration baseline documents exist and are applied to various system types; configuration
+        changes follow a ticket process with review; regular configuration audits are conducted.
+      '3': Configuration audits are automated and integrated with alerts; keys and certificates are centrally
+        managed with rotation processes; patch and vulnerability management covers the full lifecycle;
+        baselines are periodically revised based on the threat landscape.
     basis: inferred
   evidence:
-    value: 系统上线审批单与安全检查清单、安全配置基线文档、配置核查报告（人工或自动）、密钥/证书管理台账及轮换记录、补丁与漏洞修复记录。
+    value: System launch approval forms and security checklists, security configuration baseline documents,
+      configuration audit reports (manual or automated), key/certificate management logs and rotation
+      records, and patch and vulnerability remediation records.
     basis: inferred
   common_myth:
-    value: 以为「云平台/厂商提供的默认镜像和默认配置就够安全」——默认镜像里常有公开的默认凭据、未加固的服务和过期组件，正是入侵的最常见入口，必须做一次真正的加固配置而非直接启用。
+    value: Assuming that 'default images and configurations provided by cloud platforms/vendors are secure
+      enough'—default images often contain publicly known default credentials, unhardened services, and
+      outdated components, which are the most common entry points for intrusions. A real hardening configuration
+      is required rather than enabling them directly.
     basis: inferred
   auditor_asks:
     value:
-    - 新系统上线前，这份安全检查清单由谁执行、谁来复核？
-    - 上次对生产系统做配置基线核查是什么时候？有没有发现偏离基线又没修的实例？
-    - 应用的密钥或证书到期前，由什么机制触发轮换，最近一次轮换是什么时候？
+    - Before a new system goes live, who executes and who reviews this security checklist?
+    - When was the last configuration baseline audit of production systems? Were there any instances of
+      deviation from the baseline that were not remediated?
+    - What mechanism triggers rotation of application keys or certificates before expiry, and when was
+      the last rotation?
     basis: inferred
   regional_note:
     value: null

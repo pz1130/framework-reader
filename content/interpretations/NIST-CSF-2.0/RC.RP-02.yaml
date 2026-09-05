@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:RC.RP-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「灾备演练做过了、预案也写了，但真出事儿时不知按什么顺序恢复、恢复谁、恢复多少」——恢复动作没有取舍标准，资源有限时只能拍脑袋，核心业务反而等最久。
+    value: The concern is that "disaster recovery drills have been conducted and plans have been written,
+      but when a real incident occurs, it is unclear in what order to recover, what to recover, and to
+      what extent" — recovery actions lack prioritization criteria, so when resources are limited, decisions
+      are made on the fly, and core business ends up waiting the longest.
     basis: inferred
   plain_zh:
-    value: 把「出事后先恢复什么、恢复到什么程度、按什么次序、谁来执行」这件事选定、限定范围、排好优先级，然后真做出来。
+    value: Define and scope "what to recover first after an incident, to what extent, in what order, and
+      who executes it," prioritize it, and then actually carry it out.
     basis: inferred
   practice:
     value:
-      '1': 有恢复预案，写明关键系统的恢复顺序与负责人；重大事故后按预案执行过基本恢复。
-      '2': 恢复优先级与业务影响分析挂钩，按 RTO/RPO 分档；定期演练覆盖主要场景，演练后修订预案并留记录。
-      '3': 恢复动作与依赖关系（系统、数据、人员、外部服务）自动联动；演练含故障注入与资源受限场景；恢复结果可量化比对目标。
+      '1': There is a recovery plan that specifies the recovery order and responsible persons for critical
+        systems; after a major incident, basic recovery has been executed according to the plan.
+      '2': Recovery priorities are linked to business impact analysis, with tiers based on RTO/RPO; regular
+        drills cover major scenarios, and after drills, the plan is revised with records kept.
+      '3': Recovery actions are automatically coordinated with dependencies (systems, data, personnel,
+        external services); drills include fault injection and resource-constrained scenarios; recovery
+        results can be quantitatively compared against targets.
     basis: inferred
   evidence:
-    value: 恢复预案及版本历史、业务影响分析与 RTO/RPO 分级表、演练计划与总结报告、演练中暴露问题的整改记录、恢复负责人名单及联系方式、重大事故后的复盘报告。
+    value: Recovery plan and version history, business impact analysis and RTO/RPO tiering table, drill
+      plans and summary reports, rectification records for issues exposed during drills, list of recovery
+      responsible persons and contact information, and post-incident review reports after major incidents.
     basis: inferred
   common_myth:
-    value: 以为「预案写得很厚、演练也算过了」就算达标。真正要审的是演练时有没有人按优先级取舍——好多团队演练从不设资源约束，恢复顺序永远照本宣科，真出事发现核心系统依赖的辅助系统没在清单里。
+    value: Assuming that "a thick plan and completed drills" mean compliance. What really needs to be
+      audited is whether anyone made prioritization trade-offs during drills — many teams never set resource
+      constraints in drills, and the recovery order is always followed mechanically, only to find that
+      auxiliary systems on which core systems depend are not on the list when a real incident occurs.
     basis: inferred
   auditor_asks:
     value:
-    - 演练时资源只够恢复两个系统，按什么标准先恢复哪个？标准写在哪？
-    - 上一次演练后，预案里哪些恢复步骤被改了？谁审核的？
+    - During a drill, if resources are only enough to recover two systems, what criteria determine which
+      ones to recover first? Where are the criteria documented?
+    - After the last drill, which recovery steps in the plan were changed? Who reviewed the changes?
     basis: inferred
   regional_note:
     value: null

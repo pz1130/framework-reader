@@ -1,30 +1,48 @@
 control_id: ISO-27002-2022:A.5.22
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「把系统或服务外包出去之后，内部没人持续盯」——供方改动、升级、下线、换人都会悄悄改变你的攻击面，而合同签完就没人再管，等于把安全盲区交给外部。
+    value: The concern is that after outsourcing systems or services, no one internally keeps continuous
+      oversight—supplier changes, upgrades, decommissioning, or personnel changes can silently alter your
+      attack surface, and once the contract is signed, no one manages it further, effectively handing
+      security blind spots to external parties.
     basis: inferred
   plain_zh:
-    value: 要你持续监控外部供方提供的服务有没有按约定在跑——包括他们自己做的改动、版本升级、配置变更、运维动作，都要有台账、有触发机制、有重新评估，而不是只在上线前验收一次。
+    value: Requires you to continuously monitor whether services provided by external suppliers are operating
+      as agreed—including their own changes, version upgrades, configuration changes, and operational
+      actions—all must have records, trigger mechanisms, and reassessment, rather than only a one-time
+      acceptance before go-live.
     basis: inferred
   practice:
     value:
-      '1': 关键外部服务有清单；供方有变更通知义务（合同里写了）；收到通知会做影响评估并记录。
-      '2': 定义什么叫「重大改动」（如版本大升级、架构调整、运维人员更换）；改动前必须经过你方批准；有定期（如按季度）供方服务回顾会并有纪要。
-      '3': 通过技术手段持续监控供方服务变更（如配置漂移检测、接口版本监测）；供方变动与内部风险登记关联；偏离约定时有明确升级与处置流程。
+      '1': There is an inventory of critical external services; suppliers have a contractual obligation
+        to notify changes; upon notification, impact assessments are conducted and recorded.
+      '2': Define what constitutes a 'significant change' (e.g., major version upgrades, architectural
+        adjustments, changes in operational personnel); changes must receive your approval beforehand;
+        there are periodic (e.g., quarterly) supplier service review meetings with minutes.
+      '3': Continuously monitor supplier service changes through technical means (e.g., configuration
+        drift detection, API version monitoring); supplier changes are linked to the internal risk register;
+        there are clear escalation and handling procedures when deviations from agreements occur.
     basis: inferred
   evidence:
-    value: 外部服务清单与合同变更条款、供方变更通知记录、影响评估与批准单、定期服务回顾纪要、技术监控告警日志或截图。
+    value: External service inventory and contract change clauses, supplier change notification records,
+      impact assessment and approval forms, periodic service review minutes, technical monitoring alert
+      logs or screenshots.
     basis: inferred
   common_myth:
-    value: 以为合同里写了「供方须提前通知我们重大变更」就完事了——没有定义什么叫重大、没有规定通知后走什么评估流程、没有跟踪供方是否真的提前通知了，这条变成一句空话，审计一追「上次供方通知你们是什么时候」就露馅。
+    value: Assuming that having 'suppliers must notify us in advance of significant changes' in the contract
+      is sufficient—without defining what constitutes significant, specifying the assessment process after
+      notification, or tracking whether suppliers actually notify in advance, this becomes an empty statement.
+      Auditors will expose this when they ask, 'When was the last time a supplier notified you?'
     basis: inferred
   auditor_asks:
     value:
-    - 供方通知你们变更的时限和触发条件写在哪份合同的哪一条？
-    - 过去一年哪几次供方改动触发过你们的风险重评？重评结论是谁批的？
-    - 怎么验证供方确实提前通知了而不是事后补通知？
+    - Which contract clause specifies the timeframe and trigger conditions for supplier change notifications?
+    - In the past year, which supplier changes triggered your risk reassessment? Who approved the reassessment
+      conclusions?
+    - How do you verify that suppliers actually notified you in advance rather than providing retroactive
+      notifications?
     basis: inferred
   regional_note:
     value: null

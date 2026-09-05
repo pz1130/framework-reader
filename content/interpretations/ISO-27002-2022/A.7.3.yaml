@@ -1,30 +1,51 @@
 control_id: ISO-27002-2022:A.7.3
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「人到了就能进」——没有门禁授权校验、访客没人管、钥匙和门卡随便复制，或者打印机复印机上堆着敏感文件被路过的人随手拿走。
+    value: The concern is about 'people can enter just by showing up'—no access authorization checks at
+      doors, visitors unmanaged, keys and access cards freely duplicated, or sensitive documents piled
+      on printers and copiers where passersby can easily take them.
     basis: inferred
   plain_zh:
-    value: 把安全边界从网络延伸到物理世界：进机房和办公区要先验身份再放行，进出要有记录，访客要有陪同和活动限制，钥匙门卡要管起来，打印出来的敏感东西不能随便让人看见。
+    value: 'Extend the security boundary from the network to the physical world: verify identity before
+      allowing entry into server rooms and office areas, maintain entry/exit logs, ensure visitors are
+      escorted and have activity restrictions, manage keys and access cards, and prevent sensitive printed
+      materials from being visible to unauthorized individuals.'
     basis: inferred
   practice:
     value:
-      '1': 机房和关键办公区有门禁（刷卡或钥匙），进出有登记；访客有前台登记和陪同；钥匙和门卡有保管记录。
-      '2': 门禁授权按岗位审批和定期回收；进出日志留存可审计；访客全程有人陪同且活动范围受限；钥匙和门卡丢失或人员离职后及时更换和回收；打印机、复印机摆放在非公共通道区域。
-      '3': 门禁系统与人员管理系统联动（入职自动开卡、离职自动禁用）；进出日志定期分析和告警（如非工作时间进入）；监控覆盖出入口和敏感设备周边；钥匙和门卡有定期盘点，损坏或丢失有书面处置记录。
+      '1': Server rooms and critical office areas have access control (card or key), with entry/exit registration;
+        visitors are registered at the front desk and escorted; keys and access cards have custody records.
+      '2': Access authorizations are approved based on job roles and periodically revoked; entry/exit
+        logs are retained for audit; visitors are escorted throughout and restricted in activity range;
+        keys and access cards are promptly replaced or recovered upon loss or employee departure; printers
+        and copiers are placed in non-public corridor areas.
+      '3': Access control systems are integrated with personnel management systems (automatic card activation
+        upon onboarding, automatic deactivation upon departure); entry/exit logs are periodically analyzed
+        with alerts (e.g., entries during non-working hours); surveillance covers entry/exit points and
+        areas around sensitive equipment; keys and access cards are periodically inventoried, with written
+        records for damage or loss.
     basis: inferred
   evidence:
-    value: 门禁授权清单与审批记录、进出日志、访客登记表（含陪同人签字）、钥匙/门卡领用与归还登记、设备摆放区域示意图或照片。
+    value: Access authorization lists and approval records, entry/exit logs, visitor registration forms
+      (including escort signatures), key/access card issuance and return records, and diagrams or photos
+      of equipment placement areas.
     basis: inferred
   common_myth:
-    value: 以为机房装了门禁、办公室有前台就算达标。这条核心在「授权校验」——门禁系统里有没有人离职三个月卡还刷得进？访客登记完有没有人真的在陪着走？钥匙借出去有没有人记得催回来？日志存了有没有人看过？
+    value: It is assumed that having access control in the server room and a front desk in the office
+      is sufficient. The core of this control lies in 'authorization verification'—can an employee who
+      left three months ago still use their card to enter? After visitor registration, is someone actually
+      escorting them? When keys are borrowed, is there a reminder to return them? Are logs reviewed by
+      anyone?
     basis: inferred
   auditor_asks:
     value:
-    - 员工离职后，他的门禁卡是系统自动禁用还是靠行政手工回收？最近一次是多久前？
-    - 访客进入机房时，陪同人是全程陪同还是只负责开门？有没有访客独自留在敏感区域的记录？
-    - 打印机和复印机放在哪个位置？路过的人能不能看到输出内容？
+    - After an employee leaves, is their access card automatically deactivated by the system or manually
+      recovered by administration? When was the last time this happened?
+    - When visitors enter the server room, is the escort present throughout or only responsible for opening
+      the door? Are there records of visitors being left alone in sensitive areas?
+    - Where are printers and copiers located? Can passersby see the output content?
     basis: inferred
   regional_note:
     value: null

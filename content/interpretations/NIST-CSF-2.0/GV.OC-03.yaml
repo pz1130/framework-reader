@@ -1,34 +1,58 @@
 control_id: NIST-CSF-2.0:GV.OC-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是法务、合规、安全三个部门各说各话——数据隐私、行业监管、合同里的安全条款，如果不能落到一份统一的清单并有人持续跟踪变化，出事时才发现没跟上新法规或没履行合同承诺，罚单和违约金都会变成事故的一部分。
+    value: The concern is that legal, compliance, and security departments each speak their own language—data
+      privacy, industry regulations, and security clauses in contracts, if they cannot be consolidated
+      into a unified list with someone continuously tracking changes, then when an incident occurs, it
+      is discovered that new regulations were not followed or contractual commitments were not met, and
+      fines and penalties become part of the incident.
     basis: inferred
   plain_zh:
-    value: 把公司所有跟网络安全有关的法律责任、监管要求和客户合同条款整理成一份清单，明确哪些要求适用、谁来负责跟进、变化了怎么办，别让这些义务散落在各个部门的抽屉里。
+    value: Compile all cybersecurity-related legal obligations, regulatory requirements, and customer
+      contract clauses into a single list, clarifying which requirements apply, who is responsible for
+      follow-up, and what to do when changes occur, so that these obligations are not scattered across
+      departmental silos.
     basis: inferred
   practice:
     value:
-      '1': 有一份清单列出主要适用的法律、监管要求和重要合同中的安全条款；指定了至少一个人或部门负责关注法规变化并更新清单。
-      '2': 清单有明确的适用性判断和责任人；新项目或新合同签约时会对照清单检查新增义务；法规变化时有正式的通知和更新流程，并有记录。
-      '3': 清单作为企业风险管理的正式输入，与供应商合同条款、内部策略联动；有系统或工具跟踪法规变化并自动评估影响；对未完成的法律义务有闭环整改跟踪。
+      '1': There is a list identifying major applicable laws, regulatory requirements, and security clauses
+        in important contracts; at least one person or department is designated to monitor regulatory
+        changes and update the list.
+      '2': The list has clear applicability determinations and responsible parties; new projects or contract
+        signings are checked against the list for new obligations; formal notification and update processes
+        with records exist for regulatory changes.
+      '3': The list serves as a formal input to enterprise risk management, linked with supplier contract
+        terms and internal policies; systems or tools track regulatory changes and automatically assess
+        impact; closed-loop remediation tracking exists for unmet legal obligations.
     basis: inferred
   evidence:
-    value: 法律与监管要求清单及责任人、法规更新跟踪记录、新合同或新项目的合规性核查记录、年度合规评估报告、义务履行状态追踪表。
+    value: List of legal and regulatory requirements with responsible parties, regulatory update tracking
+      records, compliance review records for new contracts or projects, annual compliance assessment reports,
+      and obligation fulfillment status tracking tables.
     basis: inferred
   common_myth:
-    value: 以为「法务部门有合同台账、合规部门有法规清单」就算达标。台账只回答「有什么」，不回答「哪些适用我们、谁来执行、何时复查」。审计员要看的是把散落的法律义务跟具体系统和流程对齐的证据——比如某条法规要求的数据保留期限，有没有落到对应的备份策略和删除流程里。
+    value: The misconception is that having a contract ledger in the legal department and a regulatory
+      list in the compliance department is sufficient. A ledger only answers 'what exists,' not 'which
+      apply to us, who executes them, and when to review.' Auditors look for evidence that scattered legal
+      obligations are aligned with specific systems and processes—for example, whether a regulatory data
+      retention requirement is reflected in the corresponding backup policy and deletion process.
     basis: inferred
   auditor_asks:
     value:
-    - 这份法规清单上一次更新是什么时候？谁负责的？依据什么触发条件？
-    - 选一个你清单里的数据保护义务，告诉我对应落实到哪个系统或流程？
-    - 去年新签的合同里，有没有给安全团队新增了没在清单里的义务？
-    - 你们怎么发现新的适用法规？有没有见过漏掉法律义务导致的问题？
+    - When was this regulatory list last updated? Who is responsible? What triggered the update?
+    - Pick one data protection obligation from your list and tell me which system or process it maps to.
+    - In contracts signed last year, did any impose new obligations on the security team not on the list?
+    - How do you identify new applicable regulations? Have you ever seen issues caused by missed legal
+      obligations?
     basis: inferred
   regional_note:
-    value: 欧盟审计员会拿 GDPR 和 NIS2 的具体条款逐条对照你的义务清单和落实证据，追问数据跨境和通知义务的执行细节；美国审计员更常以合同条款承诺和行业监管要求（如金融、医疗）为核查标的。两边都认「契约义务没落实」是严重发现，只是欧盟更爱把隐私和公民权利作为主线来查。
+    value: EU auditors will cross-check your obligation list and evidence against specific GDPR and NIS2
+      provisions, probing details on data transfers and notification duties; US auditors more often focus
+      on contractual commitments and industry regulatory requirements (e.g., financial, healthcare). Both
+      view 'unfulfilled contractual obligations' as a serious finding, but the EU tends to emphasize privacy
+      and civil rights as the main thread.
     basis: inferred
 interview:
   questions: []

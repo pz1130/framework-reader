@@ -1,29 +1,44 @@
 control_id: ISO-27002-2022:A.7.14
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「旧设备里藏着没清干净的数据」——报废、转赠、返修、换新时，硬盘、手机、打印机、复印机里的残留数据被捡走拿走，造成数据泄露。
+    value: The concern is about 'residual data in old devices not being properly cleaned'—when devices
+      are scrapped, donated, returned for repair, or replaced, residual data on hard drives, phones, printers,
+      and copiers can be retrieved and removed, leading to data leakage.
     basis: inferred
   plain_zh:
-    value: 任何要退出你管控范围的设备或介质，先按要求把数据清干净，让它没法被恢复；清理强度要和里面装的数据敏感程度匹配。
+    value: For any device or media that will leave your control, first clean the data as required to make
+      it unrecoverable; the cleaning intensity should match the sensitivity of the data stored on it.
     basis: inferred
   practice:
     value:
-      '1': 有设备报废/转交登记表；报废前有人负责把存储介质做清除或物理销毁，并记录签字。
-      '2': 按数据敏感度分类处置：普通数据可清空重写，敏感数据用专业工具多次擦除或物理销毁；处置有台账、有复核人。
-      '3': 处置流程与资产台账打通：每台设备报废前自动触发清理工单，处置结果回写记录，定期抽查物理销毁是否真到位；云上虚拟化和存储资源也有类似的清理流程。
+      '1': Maintain a device disposal/transfer registration form; before disposal, someone is responsible
+        for clearing or physically destroying storage media, with records and signatures.
+      '2': 'Handle disposal based on data sensitivity: ordinary data can be cleared and overwritten, while
+        sensitive data requires professional tools for multiple overwrites or physical destruction; disposal
+        has a ledger and a reviewer.'
+      '3': 'Integrate the disposal process with the asset ledger: automatically trigger a cleaning work
+        order before each device is scrapped, write back the disposal results, and periodically sample-check
+        whether physical destruction is truly effective; similar cleaning processes exist for cloud virtualized
+        and storage resources.'
     basis: inferred
   evidence:
-    value: 报废/转交处置登记表（设备编号、处置方式、操作人、复核人、日期）、擦除或销毁工具的记录或报告、资产台账状态更新、抽查照片或销毁服务商的回收证明。
+    value: Disposal/transfer registration form (device ID, disposal method, operator, reviewer, date),
+      records or reports from wiping or destruction tools, asset ledger status updates, sample photos,
+      or recycling certificates from destruction service providers.
     basis: inferred
   common_myth:
-    value: 以为「把硬盘格式化、删掉文件」就算清理了。普通格式化后专业工具仍能恢复数据；敏感设备必须用专业擦除工具做多次覆写或物理粉碎，而且要有记录可查，不能口头说清过。
+    value: Assuming that 'formatting the hard drive or deleting files' counts as cleaning. After a normal
+      format, professional tools can still recover data; sensitive devices must be wiped multiple times
+      with professional tools or physically shredded, and there must be verifiable records—not just a
+      verbal claim of cleaning.
     basis: inferred
   auditor_asks:
     value:
-    - 这台打印机报废时，里面缓存的数据你们怎么处理？记录在哪？
-    - 员工离职后他的工作电脑转给下一个人之前，谁负责清理、用什么工具、怎么证明清了？
+    - When this printer is scrapped, how do you handle the cached data on it? Where are the records?
+    - When an employee leaves and their work computer is transferred to the next person, who is responsible
+      for cleaning it, what tools are used, and how is it proven that it was cleaned?
     basis: inferred
   regional_note:
     value: null

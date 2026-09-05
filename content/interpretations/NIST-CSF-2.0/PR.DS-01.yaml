@@ -1,33 +1,56 @@
 control_id: NIST-CSF-2.0:PR.DS-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「数据在硬盘上裸奔」——数据库、文件服务器、备份磁带、云硬盘被盗或运维人员越权直读时，明文数据直接泄露；同时防止内部人员绕过应用层直接改库或删归档，事后无痕。
+    value: The concern is about data being 'exposed in plaintext on storage media'—when databases, file
+      servers, backup tapes, or cloud volumes are stolen or when privileged operations staff bypass application
+      layers to read data directly, plaintext data leaks; it also prevents insiders from bypassing the
+      application layer to directly modify databases or delete archives without leaving a trace.
     basis: inferred
   plain_zh:
-    value: 落到存储介质上的数据（硬盘、数据库文件、备份、云存储卷、日志归档）必须做加密、访问控制和完整性保护，确保即使介质被偷走或系统被攻破，数据也读不出、改不动、删不掉。
+    value: Data stored on media (hard drives, database files, backups, cloud storage volumes, log archives)
+      must be protected with encryption, access control, and integrity measures to ensure that even if
+      the media is stolen or the system is compromised, the data cannot be read, modified, or deleted.
     basis: inferred
   practice:
     value:
-      '1': 生产数据库、备份文件、敏感文件共享目录已开启加密（如透明数据加密、磁盘加密）；存储系统有访问控制。
-      '2': 加密密钥由独立机制管理（如 KMS 或 HSM），有轮换周期；对敏感存储路径有完整性校验（如校验和或基线比对）；备份介质加密并定期验证可恢复。
-      '3': 加密覆盖全部数据类型和全部副本（含日志、临时文件、开发者本地拷贝）；密钥有全生命周期管理（创建、分发、轮换、吊销、销毁）且审计可追踪；完整性监控联动告警，发现非授权修改自动触发事件响应。
+      '1': Production databases, backup files, and sensitive file share directories have encryption enabled
+        (e.g., transparent data encryption, disk encryption); storage systems have access control.
+      '2': Encryption keys are managed by an independent mechanism (e.g., KMS or HSM) with a rotation
+        schedule; integrity checks (e.g., checksums or baseline comparisons) are in place for sensitive
+        storage paths; backup media is encrypted and periodically verified for recoverability.
+      '3': Encryption covers all data types and all copies (including logs, temporary files, and developer
+        local copies); keys have full lifecycle management (creation, distribution, rotation, revocation,
+        destruction) with auditable tracking; integrity monitoring is linked to alerts, and unauthorized
+        modifications automatically trigger incident response.
     basis: inferred
   evidence:
-    value: 加密配置截图（数据库 TDE 配置、磁盘加密策略）、密钥管理系统的轮换与访问日志、存储权限矩阵与变更记录、备份加密与恢复演练报告、对关键文件/数据库的完整性校验日志（可展示某段时间无异常或异常已处置）。
+    value: Screenshots of encryption configurations (e.g., database TDE configuration, disk encryption
+      policies), key management system rotation and access logs, storage permission matrices and change
+      records, backup encryption and recovery drill reports, and integrity verification logs for critical
+      files/databases (showing no anomalies or resolved anomalies over a period).
     basis: inferred
   common_myth:
-    value: 以为「云主机选了加密盘」就一劳永逸——应用层写出来的明文临时文件、未加密的数据库备份导出到对象存储、测试环境拷贝的生产数据副本，往往躺在同一个账号下没加密没监控，审计员翻存储清单时一找一个准。
+    value: The misconception is that 'choosing an encrypted disk for cloud hosts' is a one-time solution—plaintext
+      temporary files written by the application layer, unencrypted database backups exported to object
+      storage, and production data copies in test environments often reside under the same account without
+      encryption or monitoring, and auditors can easily find them when reviewing storage inventories.
     basis: inferred
   auditor_asks:
     value:
-    - 把最近一次导出的数据库备份拿给我看，这份文件在存储上是加密的吗？密钥在哪管？
-    - 哪些存储桶或路径没有被加密覆盖？为什么？
-    - 密钥最近一次轮换是什么时候？轮换时旧密钥是立即销毁还是有宽限期？
+    - Show me the most recent database backup export—is this file encrypted on storage? Where are the
+      keys managed?
+    - Which storage buckets or paths are not covered by encryption? Why?
+    - When was the last key rotation? Were old keys immediately destroyed upon rotation, or was there
+      a grace period?
     basis: inferred
   regional_note:
-    value: 欧洲审计员（尤其 GDPR 语境下）更关注加密是否覆盖个人数据的每一份副本以及密钥的可解释性；美国则更多落在具体合规项（如加密算法、密钥长度）和行业惯例上。两边对「哪些数据算敏感所以必须加密」的判定会有分歧，但都看加密配置与密钥管理落实度。
+    value: European auditors (especially in GDPR contexts) focus more on whether encryption covers every
+      copy of personal data and the explainability of keys; U.S. auditors tend to focus on specific compliance
+      items (e.g., encryption algorithms, key lengths) and industry practices. Both sides may differ on
+      determining which data is sensitive and thus must be encrypted, but both examine the implementation
+      of encryption configurations and key management.
     basis: inferred
 interview:
   questions: []

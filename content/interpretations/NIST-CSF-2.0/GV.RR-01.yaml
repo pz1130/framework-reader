@@ -1,33 +1,53 @@
 control_id: NIST-CSF-2.0:GV.RR-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「一把手觉得安全是技术部门的事」——出了大事最高层说不知情、安全部门背着锅。责任悬空时，资源、拍板权、问责链全部没有抓手。
+    value: This addresses the situation where top leadership believes cybersecurity is solely an IT matter—when
+      a major incident occurs, senior executives claim ignorance, leaving the security team to bear the
+      blame. When responsibility is ambiguous, there is no leverage for resources, decision-making authority,
+      or accountability chains.
     basis: inferred
   plain_zh:
-    value: 把网络安全风险的责任和权限明确安在组织最高层头上，由他们负责、被问责，并且要在整个组织里带出认风险、讲伦理、持续改进的文化，而不能只靠安全部门自己推动。
+    value: Clearly assign responsibility and authority for cybersecurity risk to the highest levels of
+      the organization, making them accountable and answerable, and fostering a culture across the organization
+      that embraces risk, ethics, and continuous improvement, rather than relying solely on the security
+      department to drive efforts.
     basis: inferred
   practice:
     value:
-      '1': 管理层有一名明确负责人，批准过安全策略；重大安全事项能到达最高层。
-      '2': 网安风险进入高管会议常规议题；有正式的风险接受与升级机制；管理层定期听取并决策重大风险。
-      '3': 管理层薪酬、考核或公司披露中体现网安责任；文化指标（如举报、通报、改进建议）有数据支撑并纳入管理回顾。
+      '1': A designated leader in management has approved the security policy; significant security matters
+        can reach the highest level.
+      '2': Cybersecurity risk is a regular agenda item in executive meetings; formal risk acceptance and
+        escalation mechanisms exist; management regularly reviews and decides on significant risks.
+      '3': Cybersecurity responsibility is reflected in management compensation, performance reviews,
+        or corporate disclosures; cultural metrics (e.g., reporting, notifications, improvement suggestions)
+        are data-supported and included in management reviews.
     basis: inferred
   evidence:
-    value: 任命或授权文件、董事会/高管会议关于网络风险的纪要、安全策略的批准签字页、风险接受与升级记录、领导层参与的培训或文化宣贯记录。
+    value: Appointment or authorization documents, minutes of board/executive meetings on cyber risk,
+      signed approval pages of security policies, records of risk acceptance and escalation, and records
+      of training or culture communication involving leadership.
     basis: inferred
   common_myth:
-    value: 以为「CISO 是最高负责人」就算领导层尽责——审计员要看责任是不是落在拥有资源与人事权的那一层，安全负责人只是执行者，不能替一把手背责任。
+    value: Assuming that having a CISO as the top responsible person suffices for leadership accountability—auditors
+      look for whether responsibility lies with the level that holds resources and personnel authority;
+      the security lead is an executor and cannot substitute for top leadership accountability.
     basis: inferred
   auditor_asks:
     value:
-    - 公司董事会或最高管理层上一次正式审议网络风险是什么时候？纪要里做了什么决策？
-    - 如果重大风险被业务拒绝整改，谁能拍板？这个人的批准确认文件在哪里？
-    - 管理层如何证明自己理解公司面临的主要网络风险，而不只是听安全部门汇报？
+    - When was the last time the board or top management formally reviewed cyber risk? What decisions
+      were made in the minutes?
+    - If a significant risk is rejected for remediation by the business, who has the authority to decide?
+      Where is the approval document?
+    - How does management demonstrate its understanding of the organization's main cyber risks, beyond
+      just listening to security department reports?
     basis: inferred
   regional_note:
-    value: 欧洲在 NIS2 的背景下，董事会个人对网络安全失职可能要负法律责任，审计员会更严地核查个人问责记录；美国审计员通常看 SEC 披露要求是否触发、以及高管层是否有实质性参与，个人追责链条相对松散。
+    value: In Europe, under NIS2, board members may face personal legal liability for cybersecurity failures,
+      so auditors scrutinize individual accountability records more strictly; in the US, auditors typically
+      check whether SEC disclosure requirements are triggered and whether senior management has substantive
+      involvement, with a relatively looser chain of personal accountability.
     basis: inferred
 interview:
   questions: []

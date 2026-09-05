@@ -1,29 +1,49 @@
 control_id: NIST-CSF-2.0:RS.MA-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事后才决定要不要恢复」——事件发生时无人能当场拍板进入恢复，或恢复动作的触发全凭个人感觉，导致该恢复的拖成灾难、不该恢复的草率重启，破坏取证并造成二次损失。
+    value: The concern is about 'deciding whether to recover only after the fact' — when an incident occurs,
+      no one on site can make an immediate decision to enter recovery, or the trigger for recovery actions
+      is based entirely on personal judgment, causing incidents that should be recovered to drag into
+      disasters, and those that should not be recovered to be hastily restarted, compromising forensics
+      and causing secondary losses.
     basis: inferred
   plain_zh:
-    value: 事先把「什么时候算事件结束、什么时候开始恢复」的判断标准写清楚，并让执行的人在实际触发时能照着标准走，而不是临时开会议价。
+    value: Clearly define in advance the criteria for 'when an incident is considered over and when recovery
+      should begin,' and enable the executing personnel to follow these criteria when actual triggers
+      occur, rather than holding impromptu meetings to negotiate.
     basis: inferred
   practice:
     value:
-      '1': 在应急预案或事件响应流程里有一句话：发生信息安全事件后，由谁、基于什么条件、批准进入恢复阶段。
-      '2': 恢复触发条件按事件类别或等级写明（如核心业务中断时长、数据影响范围、取证完成标志）；触发时留下审批记录；事件复盘时对触发是否恰当做回看。
-      '3': 恢复准入条件在预案与剧本中量化且演练验证过；触发与批准在工单或平台上留痕可审计；实际触发偏离条件时事件负责人必须写明理由并升级；恢复条件与业务连续性计划绑定并自动告知相关决策层。
+      '1': In the emergency plan or incident response process, there is a statement specifying who, based
+        on what conditions, approves entry into the recovery phase after an information security incident.
+      '2': Recovery trigger conditions are clearly written by incident category or severity (e.g., core
+        business interruption duration, data impact scope, forensics completion markers); when triggered,
+        approval records are left; during incident reviews, the appropriateness of the trigger is revisited.
+      '3': Recovery entry conditions are quantified and validated through exercises in plans and playbooks;
+        triggers and approvals are auditable and logged in ticketing systems or platforms; when actual
+        triggers deviate from conditions, the incident owner must document the reasons and escalate; recovery
+        conditions are linked to business continuity plans and automatically notify relevant decision-makers.
     basis: inferred
   evidence:
-    value: 应急预案或事件响应手册中包含恢复触发条件的章节、事件记录中恢复阶段的批准动作（签批人、时间、依据条件）、演练中模拟恢复触发的脚本与纪要、事件复盘报告中对恢复时机是否恰当的分析。
+    value: Sections in the emergency plan or incident response manual covering recovery trigger conditions,
+      approval actions for the recovery phase in incident records (approver, time, basis conditions),
+      scripts and minutes from exercises simulating recovery triggers, and analysis in incident review
+      reports on whether the recovery timing was appropriate.
     basis: inferred
   common_myth:
-    value: 以为「应急响应流程里写了恢复步骤」就等于有了触发标准。很多团队只写「确认事件解决后恢复服务」——这不构成标准，因为没有任何可判断的指标；审计追问「谁确认？确认什么？依据什么证据？」时立即露馅。
+    value: Assuming that 'having recovery steps written in the incident response process' equates to having
+      trigger criteria. Many teams only write 'restore services after confirming the incident is resolved'
+      — this does not constitute a standard because there are no measurable indicators; auditors immediately
+      expose this when asking 'Who confirms? What is confirmed? Based on what evidence?'
     basis: inferred
   auditor_asks:
     value:
-    - 翻出最近一次真实事件记录，告诉我恢复阶段是谁在什么时间点批准进入的？
-    - 预案里写明的触发条件与实际触发之间有没有差距？差距在复盘里怎么处理的？
+    - Pull up the most recent real incident record and tell me who approved entry into the recovery phase
+      and at what time?
+    - Is there a gap between the trigger conditions specified in the plan and the actual trigger? How
+      was the gap addressed in the review?
     basis: inferred
   regional_note:
     value: null

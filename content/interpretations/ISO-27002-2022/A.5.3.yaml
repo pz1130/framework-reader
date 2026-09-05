@@ -1,29 +1,49 @@
 control_id: ISO-27002-2022:A.5.3
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「一个人从头到尾把一个关键流程做完」——从授权、执行到复核都在同一人手里，既有权限凌驾于监督之上，出问题时没有任何人发现或拦住，内部作案或单点失误无人能纠。
+    value: The concern is preventing "one person completing a critical process from start to finish"—where
+      authorization, execution, and review are all in the same hands, giving that person authority that
+      overrides oversight, with no one to detect or stop issues when they arise, and no one to correct
+      internal wrongdoing or single-point errors.
     basis: inferred
   plain_zh:
-    value: 把敏感业务或技术流程拆成多段，让不同的人分别承担关键步骤，并把这个拆分写成制度、落到系统权限上——不是靠自觉，而是靠系统不允许同一个人走过全程。
+    value: Break sensitive business or technical processes into multiple segments, assigning key steps
+      to different individuals, and codify this segregation in policies and enforce it through system
+      permissions—relying not on self-discipline but on system controls that prevent the same person from
+      completing the entire process.
     basis: inferred
   practice:
     value:
-      '1': 识别出财务付款、账号授权、系统管理员等高风险岗位；凭据明确规定这些岗位必须拆分，关键操作需要双人复核。
-      '2': 为拆分后每段职责明确到具体角色和系统权限；职责分离冲突的解除要书面审批留痕，并做周期性复核确认配置未绕开。
-      '3': 访问控制管理系统强制匹配职责分离矩阵，发现冲突即自动阻断或告警；权限与审计日志分离管理；冲突案例有定期复盘并触发矩阵更新。
+      '1': Identify high-risk roles such as financial payments, account authorization, and system administration;
+        clearly document in policies that these roles must be segregated, with critical operations requiring
+        dual-person review.
+      '2': Define specific roles and system permissions for each segregated duty; document and approve
+        any exceptions to segregation of duties in writing, and conduct periodic reviews to ensure configurations
+        have not been bypassed.
+      '3': Access control management systems enforce the segregation of duties matrix, automatically blocking
+        or alerting on conflicts; separate management of permissions and audit logs; conduct regular reviews
+        of conflict cases and trigger matrix updates.
     basis: inferred
   evidence:
-    value: 职责分离矩阵或岗位职责说明、冲突审批与豁免记录、系统权限与角色映射表、权限评审纪要、审计日志中关键操作的双人记录或系统强制阻断告警。
+    value: Segregation of duties matrix or role responsibility descriptions, conflict approval and exemption
+      records, system permission and role mapping tables, permission review minutes, dual-person records
+      or system-enforced blocking alerts for critical operations in audit logs.
     basis: inferred
   common_myth:
-    value: 以为「订了制度说采购和付款由不同人管」就结束了。现实中不少人同时持有两套权限，或虽然名义上分岗，但复核人只看结果不看单据——审计抽查到具体个案马上露馅。制度是起点，系统权限和实际执行是否一致才是关键。
+    value: Assuming that "having a policy stating procurement and payment are handled by different people"
+      is sufficient. In reality, many individuals hold permissions for both functions, or although roles
+      are nominally separated, reviewers only check results without examining documents—audits that sample
+      specific cases quickly reveal gaps. Policy is the starting point; consistency between system permissions
+      and actual execution is key.
     basis: inferred
   auditor_asks:
     value:
-    - 这位主管为什么同时有系统管理员权和审计日志查看权？豁免写在哪个流程、谁批的？
-    - 抽一笔金额最高的付款，从发起、审批到支付，每一个节点分别是谁、各自用的什么账号？
+    - Why does this supervisor have both system administrator rights and audit log viewing rights? Which
+      process documented the exemption, and who approved it?
+    - For the highest-value payment, trace each step from initiation, approval, to payment—who performed
+      each step and what accounts were used?
     basis: inferred
   regional_note:
     value: null

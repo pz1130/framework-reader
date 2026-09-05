@@ -1,29 +1,48 @@
 control_id: NIST-CSF-2.0:DE.AE-08
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「所有告警都当成事件来处置」或反过来「所有异常都当噪音放过」——没有明确的事件判定标准，一线人员就会凭个人感觉决定要不要启动应急，导致该升级的没升级、不该惊动的全员出动。
+    value: The concern is about either treating all alerts as incidents or conversely dismissing all anomalies
+      as noise—without clear incident determination criteria, frontline personnel will rely on personal
+      judgment to decide whether to initiate emergency response, leading to failures to escalate when
+      needed or unnecessary full mobilization.
     basis: inferred
   plain_zh:
-    value: 把「什么情况算安全事故」定义清楚、成文、可判断，让一线和安全团队在告警出现时能按同一把尺子决定是否正式宣布进入应急响应。
+    value: Define clearly, in writing, and assessably what constitutes a security incident, so that frontline
+      and security teams can use the same yardstick to decide whether to formally declare an incident
+      response when alerts occur.
     basis: inferred
   practice:
     value:
-      '1': 有一份书面的事件定级标准（如影响范围、数据敏感度、系统重要性、是否涉及法律通知义务），告警发生后能对照判定是否成立事件。
-      '2': 标准细化为可勾选的判定条件；告警与事件有登记台账；判定过程留痕，包括谁定的级、依据哪条标准。
-      '3': 判定标准与告警规则联动（如特定规则触达即自动宣告事件）；定级偏差有复盘机制；标准随威胁环境和业务变化定期修订并有人负责。
+      '1': There is a written incident classification standard (e.g., impact scope, data sensitivity,
+        system criticality, whether legal notification obligations are triggered), and after an alert
+        occurs, it can be compared against the standard to determine whether an incident exists.
+      '2': The standard is detailed into checkable determination conditions; alerts and incidents are
+        logged in a register; the determination process is documented, including who made the classification
+        and which criterion was used.
+      '3': The determination standard is linked with alert rules (e.g., specific rule triggers automatically
+        declare an incident); there is a review mechanism for classification deviations; the standard
+        is periodically revised in response to the threat environment and business changes, with a responsible
+        owner.
     basis: inferred
   evidence:
-    value: 事件定级标准文件、告警记录与事件登记台账的关联、判定人签字或系统留痕、定级偏差复盘纪要、标准修订版本记录。
+    value: Incident classification standard documents, linkage between alert records and incident logs,
+      classifier signatures or system audit trails, minutes of classification deviation reviews, and revision
+      history of the standard.
     basis: inferred
   common_myth:
-    value: 以为「把安全设备的告警全接进工单系统、有人盯着」就算做到位了。没有明确的、成文的判定标准时，同一个告警今天有人当事件报、明天有人当误报删——标准不写在纸上、不培训到人，工具堆再多也没用。
+    value: Assuming that 'connecting all security device alerts to a ticketing system and having someone
+      monitor them' is sufficient. Without clear, written determination criteria, the same alert may be
+      reported as an incident one day and deleted as a false positive the next—if the standard is not
+      documented and staff are not trained, more tools are useless.
     basis: inferred
   auditor_asks:
     value:
-    - 给我看一条最近的告警记录，从告警到判定为事件的决策依据写在哪？
-    - 谁有权修改事件定级标准？最近一次修改是什么时候、因为什么？
+    - Show me a recent alert record; where is the documented basis for the decision from alert to incident
+      determination?
+    - Who has the authority to modify the incident classification standard? When was the last modification
+      and for what reason?
     basis: inferred
   regional_note:
     value: null

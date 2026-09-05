@@ -1,30 +1,50 @@
 control_id: NIST-CSF-2.0:GV.OC-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全部门自说自话定优先级」——业务、监管、客户、供应商的真实诉求没被接进风险管理，安全做了一堆事却没人认账；也防关键利益方在重大变更或事件中才知道被牵连。
+    value: The intent is to prevent the security department from setting priorities in isolation—where
+      the real needs of business, regulators, customers, and suppliers are not incorporated into risk
+      management, resulting in security efforts that no one acknowledges; it also prevents key stakeholders
+      from only learning of their involvement during major changes or incidents.
     basis: inferred
   plain_zh:
-    value: 把公司内外所有跟网络风险相关的角色找出来，搞清楚他们对你们在安全上「管什么、怎么管、管到什么程度」有什么要求与期待，并把这些期待正式纳入风险管理决策，而不是停留在礼貌性沟通。
+    value: Identify all internal and external roles related to cyber risk, understand their requirements
+      and expectations regarding what you manage, how you manage it, and to what extent in security, and
+      formally incorporate these expectations into risk management decisions rather than leaving them
+      as polite communication.
     basis: inferred
   practice:
     value:
-      '1': 有一份利益相关方清单，含内外部主要角色（如高管、法务、监管、关键客户、供应商），并识别各自最关心的风险主题。
-      '2': 利益相关方的需求与期待被收集并有记录，关键差异项有专人跟进，并在年度风险评估中体现其输入。
-      '3': 利益相关方分析嵌入风险管理全流程，需求变更触发风险评估更新；有机制可证明「谁的什么期待被如何考量和优先排序」，并把结论回传给对方确认。
+      '1': There is a stakeholder list that includes major internal and external roles (e.g., executives,
+        legal, regulators, key customers, suppliers), and identifies the risk topics each cares most about.
+      '2': Stakeholder needs and expectations are collected and documented, with key differences assigned
+        to individuals for follow-up, and their input is reflected in the annual risk assessment.
+      '3': Stakeholder analysis is embedded in the entire risk management process, with changes in needs
+        triggering updates to risk assessments; there is a mechanism to demonstrate whose expectations
+        were considered and how they were prioritized, with conclusions communicated back to stakeholders
+        for confirmation.
     basis: inferred
   evidence:
-    value: 利益相关方注册表（含分类、需求摘要、更新日期）、访谈纪要或问卷采集记录、风险评估文档中引用利益相关方输入的章节、需求变更后的风险重估记录、向利益相关方反馈结论的沟通记录。
+    value: Stakeholder registry (including classification, needs summary, update dates), interview minutes
+      or survey collection records, sections in risk assessment documents citing stakeholder input, risk
+      reassessment records after needs changes, and communication records of conclusions fed back to stakeholders.
     basis: inferred
   common_myth:
-    value: 以为「建了一个利益相关方微信群、有需要抛进去冒个泡」这就算做到。真正的差距在于：微信里聊的和风险评估、控制决策是两套话——一句「客户说他们很担心供应链安全」从未转化成风险条目或控制要求，审计员翻记录时找不到它进过任何评审环节。
+    value: The misconception is that creating a stakeholder WeChat group and posting when needed counts
+      as compliance. The real gap lies in the disconnect between what is discussed in WeChat and risk
+      assessments or control decisions—a statement like 'the customer said they are very concerned about
+      supply chain security' never translates into a risk item or control requirement, and auditors find
+      no record of it entering any review process when checking documentation.
     basis: inferred
   auditor_asks:
     value:
-    - 员工隐私数据泄露这件事，工会或员工代表的声音在哪条风险评估里出现过？
-    - 上次供应商合同变更时，哪些利益相关方的期待被重新评估过？依据什么证据？
-    - 有哪些利益相关方提出了冲突需求？你们按什么原则裁决？记录在哪？
+    - Regarding employee personal data breaches, where in which risk assessment has the voice of the union
+      or employee representatives appeared?
+    - During the last supplier contract change, which stakeholders' expectations were reassessed? Based
+      on what evidence?
+    - Which stakeholders have raised conflicting needs? By what principles do you adjudicate? Where is
+      this recorded?
     basis: inferred
   regional_note:
     value: null

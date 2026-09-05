@@ -1,29 +1,44 @@
 control_id: NIST-CSF-2.0:PR.PS-06
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全开发只是一次性培训或上线前的检查清单」——如果开发实践没有从需求到发布持续被监控，漏洞与不合规会随迭代悄悄积累，等审计或出事时才暴露。
+    value: The concern is that secure development is only a one-time training or a pre-release checklist.
+      If development practices are not continuously monitored from requirements to release, vulnerabilities
+      and non-compliance will silently accumulate over iterations, only to be exposed during audits or
+      incidents.
     basis: inferred
   plain_zh:
-    value: 把安全开发的做法（如威胁建模、代码审查、安全测试）嵌入整个研发流程，并且持续盯它们的执行情况和效果，而不是只在某个节点做一次。
+    value: Embed secure development practices (such as threat modeling, code review, and security testing)
+      into the entire development lifecycle, and continuously monitor their execution and effectiveness,
+      rather than performing them only once at a specific point.
     basis: inferred
   practice:
     value:
-      '1': 有安全开发政策或指南；关键流程节点（如需求评审、发布前）有安全活动；团队知道要做什么。
-      '2': 安全活动按风险分级嵌入各阶段；执行有记录，如威胁建模文档、缺陷跟踪；定期抽查执行情况并推动整改。
-      '3': 安全活动由工具与平台支撑，如 CI/CD 内嵌扫描与门禁；度量指标（如缺陷密度、修复时长）定期汇报；发现偏差会自动拦截。
+      '1': There is a secure development policy or guideline; security activities are present at key process
+        points (e.g., requirements review, pre-release); teams know what to do.
+      '2': Security activities are embedded in each phase according to risk levels; execution is documented,
+        such as threat modeling documents and defect tracking; periodic spot checks on execution are conducted,
+        and remediation is driven.
+      '3': Security activities are supported by tools and platforms, such as embedded scanning and gates
+        in CI/CD; metrics (e.g., defect density, fix time) are reported regularly; deviations are automatically
+        blocked when detected.
     basis: inferred
   evidence:
-    value: 安全开发政策与流程文档、威胁建模与代码审查记录、SAST/DAST 扫描报告、CI/CD 门禁配置与阻断日志、度量 Dashboard 或定期报告。
+    value: Secure development policy and process documents, threat modeling and code review records, SAST/DAST
+      scan reports, CI/CD gate configuration and blocking logs, metrics dashboards or periodic reports.
     basis: inferred
   common_myth:
-    value: 以为「固件更新由供应商负责，我们只做整机发布，所以不适用」——只要你在组装、配置或定制过程中有代码或脚本参与，这条就适用；审计员会追问你有没有对这些环节做安全验证。
+    value: The misconception is that 'firmware updates are the supplier's responsibility, and we only
+      do full machine releases, so this does not apply.' As long as you have code or scripts involved
+      in assembly, configuration, or customization, this applies; auditors will ask whether you have performed
+      security verification on these processes.
     basis: inferred
   auditor_asks:
     value:
-    - 你的 CI/CD 流水线里，扫描和门禁是从哪个环节开始生效的？
-    - 一次发布在什么情况下可以跳过安全门禁？谁有权限，留什么审计记录？
+    - In your CI/CD pipeline, at which stage do scanning and gates take effect?
+    - Under what circumstances can a release skip security gates? Who has the authority, and what audit
+      records are kept?
     basis: inferred
   regional_note:
     value: null

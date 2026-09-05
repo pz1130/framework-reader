@@ -1,30 +1,51 @@
 control_id: ISO-27002-2022:A.5.25
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「日志在采、告警在响，但没人真正坐下来把事态看明白」——安全团队沦为告警转发器：看到异常不知道影响面、不判断真假、不升级、不留研判痕迹，等真出事时既说不出过程也复盘不了。
+    value: 'The concern is that ''logs are being collected and alerts are sounding, but no one actually
+      sits down to make sense of the situation'' — the security team becomes an alert forwarding machine:
+      upon seeing anomalies, they don''t understand the impact scope, don''t judge authenticity, don''t
+      escalate, and leave no analysis trail, so when a real incident occurs, they can neither explain
+      the process nor conduct a review.'
     basis: inferred
   plain_zh:
-    value: 把日志和告警变成有意义的判断：有人定期审、分析异常是否成立、评估潜在影响、上报该报的人，并且根据形势变化调整审计的频度和深度。同时要从每次事件里学到东西，改进响应流程。
+    value: 'Turning logs and alerts into meaningful judgments: someone regularly reviews them, analyzes
+      whether anomalies are valid, assesses potential impact, reports to the appropriate people, and adjusts
+      the frequency and depth of audits based on changing circumstances. At the same time, learn from
+      each incident and improve the response process.'
     basis: inferred
   practice:
     value:
-      '1': 有日志留痕和基本告警；安排了人值班看告警；重大异常知道口头报给谁。
-      '2': 有书面的事态研判流程：谁在什么时限内分析什么告警、按什么标准升级；每次研判有记录；事件结束后有复盘并更新流程。
-      '3': 研判节奏与风险动态联动（威胁情报变化、新漏洞爆发时主动加频次加深度）；告警去重与关联分析系统化；复盘结论直接驱动剧本、培训和工具规则更新。
+      '1': Logs are retained and basic alerts exist; personnel are assigned to monitor alerts; major anomalies
+        are verbally reported to a designated person.
+      '2': 'A documented incident analysis process exists: who analyzes which alerts within what timeframe,
+        and by what criteria escalation occurs; each analysis is recorded; after an incident, a review
+        is conducted and the process is updated.'
+      '3': The analysis cadence is dynamically linked to risk (e.g., proactively increasing frequency
+        and depth when threat intelligence changes or new vulnerabilities emerge); alert deduplication
+        and correlation analysis are systematized; review conclusions directly drive updates to playbooks,
+        training, and tool rules.
     basis: inferred
   evidence:
-    value: 告警处理记录或工单、研判分析截图或文档、升级上报的记录与时间戳、研判值班表、事件复盘纪要、复盘后对流程/规则/剧本的变更记录。
+    value: Alert handling records or tickets, analysis screenshots or documents, escalation records with
+      timestamps, analysis duty rosters, incident review minutes, and change records to processes/rules/playbooks
+      after reviews.
     basis: inferred
   common_myth:
-    value: 以为「装了一堆告警、拉了个工作群」就是研判——实际上告警没人看、看了不回、回了不记、记了不改，审计员一问具体某次告警谁分析的、结论是什么，就露馅了。研判的价值在分析动作本身，不在告警数量。
+    value: The misconception is that 'setting up a bunch of alerts and creating a work group' constitutes
+      analysis — in reality, alerts go unmonitored, responses are not recorded, records are not acted
+      upon, and auditors quickly expose gaps when asking who analyzed a specific alert and what the conclusion
+      was. The value of analysis lies in the analytical action itself, not in the number of alerts.
     basis: inferred
   auditor_asks:
     value:
-    - 上周某个中危告警是谁研判的？结论记录在哪？升级依据是什么？
-    - 最近一次事件复盘改了什么流程或规则？改之前和之后的行为差异是什么？
-    - 威胁情报里出现新攻击手法时，你们怎么调整研判的重点或频度？
+    - Who analyzed last week's medium-severity alert? Where is the conclusion recorded? What was the basis
+      for escalation?
+    - What process or rule changes resulted from the most recent incident review? What behavioral differences
+      exist before and after the change?
+    - When new attack techniques appear in threat intelligence, how do you adjust the focus or frequency
+      of your analysis?
     basis: inferred
   regional_note:
     value: null

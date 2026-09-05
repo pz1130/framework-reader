@@ -1,32 +1,54 @@
 control_id: ISO-27002-2022:A.8.17
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是日志时间不可信——审计记录里的时间戳如果来自未同步的系统时钟，出事时无法把不同系统、不同时区、不同设备上的日志拼成准确的事件还原，法律取证、责任界定和异常分析都会失去可靠的时间基准。
+    value: The concern is untrustworthy log timestamps—if timestamps in audit records come from unsynchronized
+      system clocks, it becomes impossible to piece together logs from different systems, time zones,
+      and devices into an accurate event reconstruction during incidents. Legal forensics, accountability
+      determination, and anomaly analysis would all lose a reliable time reference.
     basis: inferred
   plain_zh:
-    value: 让所有系统用来记录日志和时间戳的内部时钟对得上话——统一时间源或统一协调世界时偏移；时钟偏差太大时要么自动同步、要么在日志里把偏移写清楚，并证明这个时钟是维护过的、没乱跳。
+    value: Ensure that the internal clocks used by all systems for logging and timestamps are aligned—either
+      through a unified time source or a consistent UTC offset; if clock skew is significant, either synchronize
+      automatically or clearly record the offset in logs, and demonstrate that the clock has been maintained
+      and has not jumped erratically.
     basis: inferred
   practice:
     value:
-      '1': 服务器和工作站启用时间同步服务，指向企业内部时间服务器或公共时间源；关键系统时间戳包含日期和时间。
-      '2': 所有日志相关系统配置统一的协调世界时或固定本地时区偏移；时间同步服务有配置记录与监控告警；时间戳字段格式统一，不带歧义。
-      '3': 时间同步链路上溯到权威时间源，有自动纠正与偏差告警；日志时间戳定期抽验与预期标准时钟比对；同步中断或偏差超阈值时事件响应能追踪到受影响日志范围并做补充说明。
+      '1': Enable time synchronization services on servers and workstations, pointing to internal enterprise
+        time servers or public time sources; critical system timestamps include date and time.
+      '2': Configure all log-related systems with a unified UTC or a fixed local time zone offset; time
+        synchronization services have configuration records and monitoring alerts; timestamp field formats
+        are uniform and unambiguous.
+      '3': The time synchronization chain traces back to an authoritative time source, with automatic
+        correction and skew alerts; log timestamps are periodically sampled and compared against expected
+        standard clocks; when synchronization is interrupted or skew exceeds thresholds, incident response
+        can trace the affected log scope and provide supplementary explanations.
     basis: inferred
   evidence:
-    value: 时间同步配置（如配置文件或组策略）、时间同步状态与偏差报告、监控告警与处置记录、抽验日志时间戳与标准时钟对比的测试结果、时钟维护与变更记录。
+    value: Time synchronization configurations (e.g., configuration files or group policies), time synchronization
+      status and skew reports, monitoring alerts and handling records, test results comparing sampled
+      log timestamps against standard clocks, and clock maintenance and change records.
     basis: inferred
   common_myth:
-    value: 以为「开了网络时间协议同步」就算完成这条——很多机器同步失败静默、偏差积累到几分钟才被发现，或本地时钟参数没设置时区偏移，导致日志时间戳对不上其他系统。开了同步不等于偏差受控、受监控、可证明。
+    value: Assuming that merely enabling NTP synchronization fulfills this requirement—many machines fail
+      to synchronize silently, skew accumulates for minutes before detection, or local clock parameters
+      lack time zone offset settings, causing log timestamps to mismatch other systems. Enabling synchronization
+      does not mean skew is controlled, monitored, and provable.
     basis: inferred
   auditor_asks:
     value:
-    - 如果某台服务器的时钟同步失效，你怎么知道？告警灵敏度是多少？
-    - 日志时间印戳的来源与字段格式在哪个文档里定义？有没有抽查过偏差？
+    - If a server's clock synchronization fails, how would you know? What is the alert sensitivity?
+    - Where is the source and field format of log timestamps defined? Have you ever sampled and checked
+      for skew?
     basis: inferred
   regional_note:
-    value: 欧洲在 GDPR 与网络韧性法规下，审计员更注重日志准确性能作为法律证据，时间戳可靠性常被直接追问；美国审计员多把重点放在是否遵循标准统一协调时间或本地偏移约定，以及是否有偏差处置流程。两边对时钟同步本身的严格程度相差不大，但欧洲在追溯链完整性上更细。
+    value: In Europe, under GDPR and the Cyber Resilience Act, auditors emphasize log accuracy as legal
+      evidence, and timestamp reliability is often directly questioned; in the US, auditors focus more
+      on adherence to standard UTC or local offset conventions and the existence of skew handling procedures.
+      The strictness regarding clock synchronization itself is similar, but Europe is more detailed on
+      the completeness of the traceability chain.
     basis: inferred
 interview:
   questions: []

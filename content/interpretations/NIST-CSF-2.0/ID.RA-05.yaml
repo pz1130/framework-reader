@@ -1,32 +1,53 @@
 control_id: NIST-CSF-2.0:ID.RA-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「风险登记册一填了之」——威胁、漏洞、可能性、影响四个要素如果不真正参与排序，风险分析就退化成填表游戏，响应资源永远砸在嗓门最大的部门，而不是最该处置的风险上。
+    value: The concern is that the risk register is filled out and then forgotten—if threats, vulnerabilities,
+      likelihood, and impact do not genuinely inform prioritization, risk analysis degenerates into a
+      form-filling exercise, and response resources are always allocated to the loudest department rather
+      than to the risks that most need treatment.
     basis: inferred
   plain_zh:
-    value: 做风险分析时，必须把威胁、漏洞、发生可能性和影响四件事都摆到台面上，用它们算出固有风险，再按这个结果决定先处理谁、后处理谁。
+    value: When conducting risk analysis, threats, vulnerabilities, likelihood, and impact must all be
+      considered, used to calculate inherent risk, and then prioritized accordingly.
     basis: inferred
   practice:
     value:
-      '1': 有风险清单；风险评估模板里包含威胁、漏洞、可能性、影响四个字段；填写人知道四者都要写。
-      '2': 评估有统一评分标准；每个风险都按四要素打分，并算出固有风险值；处置优先级明确引用风险评估结果，而非仅凭主观判断。
-      '3': 四要素数据有来源支撑（如威胁情报、漏洞扫描、历史事件）；风险评估结果与处置决策系统联动；定期依据新威胁和漏洞复评，优先级随数据变化自动调整。
+      '1': There is a risk list; the risk assessment template includes fields for threat, vulnerability,
+        likelihood, and impact; those filling it out know that all four must be addressed.
+      '2': There is a unified scoring standard; each risk is scored against the four factors, and an inherent
+        risk value is calculated; treatment priorities explicitly reference the risk assessment results,
+        not just subjective judgment.
+      '3': Data for the four factors has supporting sources (e.g., threat intelligence, vulnerability
+        scans, historical incidents); risk assessment results are linked to treatment decision systems;
+        regular reassessment based on new threats and vulnerabilities, with priorities automatically adjusted
+        as data changes.
     basis: inferred
   evidence:
-    value: 风险评估方法文件、评分标准、风险登记册（含四要素得分与固有风险值）、处置优先级排序记录、由评估结果触发的处置行动证据。
+    value: Risk assessment methodology documents, scoring standards, risk register (including scores for
+      the four factors and inherent risk values), records of treatment prioritization, and evidence of
+      treatment actions triggered by assessment results.
     basis: inferred
   common_myth:
-    value: 以为把四要素做成下拉菜单选一选就是达标。没有统一定义时，不同人填的「高可能性」指的是不同的事——有人按历史事件频率，有人按业内传闻。评分标准不统一，登记册就是数字垃圾。
+    value: The misconception is that making the four factors into dropdown menus and selecting options
+      is sufficient. Without a unified definition, different people's 'high likelihood' means different
+      things—some base it on historical event frequency, others on industry rumors. If scoring standards
+      are not unified, the register is just digital garbage.
     basis: inferred
   auditor_asks:
     value:
-    - 「可能性=高」和「影响=高」分别对应什么客观标准？写在哪份文件？
-    - 处置优先级是直接引用了风险评分排序，还是管理层按经验调整过？调整依据是什么？
+    - What objective criteria correspond to 'likelihood = high' and 'impact = high'? In which document
+      are they written?
+    - Are treatment priorities directly derived from the risk scoring ranking, or have they been adjusted
+      by management based on experience? What is the basis for any adjustments?
     basis: inferred
   regional_note:
-    value: 欧洲审计员更倾向追「固有风险与残余风险的对比分析」是否清晰——NIS2 与 DORA 语境下经常要求两者同时呈现；美国审计员更爱看四要素算法是否可复现、评分是否有人复核。两侧都认「有来源、可追溯」，但欧洲对叙事完整性要求更严。
+    value: European auditors tend to focus on whether the comparison between inherent and residual risk
+      is clearly presented—in the context of NIS2 and DORA, both are often required to be shown; American
+      auditors prefer to see whether the algorithm for the four factors is reproducible and whether scores
+      are reviewed by someone. Both sides recognize 'sourced and traceable,' but Europe places stricter
+      demands on narrative completeness.
     basis: inferred
 interview:
   questions: []

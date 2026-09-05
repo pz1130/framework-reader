@@ -1,32 +1,50 @@
 control_id: ISO-27002-2022:A.7.2
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「进出没人管」——外部人员、离职人员、临时访客能混进门禁区，或设备材料被悄悄带出带入，造成失窃、篡改和数据泄露。
+    value: The concern is about 'uncontrolled entry and exit'—external personnel, departing employees,
+      and temporary visitors could sneak into restricted areas, or equipment and materials could be quietly
+      taken out or brought in, leading to theft, tampering, and data leakage.
     basis: inferred
   plain_zh:
-    value: 对人员进出办公区域和核心区域做授权和登记，访客要有人陪同，钥匙门禁卡要管好，设备物资进出要有记录。
+    value: Authorize and register personnel entering and exiting office areas and core areas; visitors
+      must be accompanied; keys and access cards must be managed properly; equipment and material movements
+      must be recorded.
     basis: inferred
   practice:
     value:
-      '1': 有门禁或前台登记；访客登记并佩戴访客牌；离职人员门禁卡当天回收。
-      '2': 进出区域分等级授权；访客全程有人陪同并有记录；钥匙/门禁卡发放台账清晰，丢失有补办流程。
-      '3': 门禁系统与人员台账联动，离职或调岗权限自动失效；设备物资进出有审批和登记；门禁日志定期审计并留存。
+      '1': Access control or front desk registration in place; visitors register and wear visitor badges;
+        departing employees' access cards are recovered on the same day.
+      '2': Access to areas is authorized by level; visitors are accompanied throughout and records are
+        kept; key/access card issuance logs are clear, with a replacement process for loss.
+      '3': Access control system is linked with personnel records; permissions for departing or transferred
+        employees automatically expire; equipment and material movements require approval and registration;
+        access logs are regularly audited and retained.
     basis: inferred
   evidence:
-    value: 门禁权限申请与变更记录、访客登记表、陪同人签名、钥匙/门禁卡发放与回收台账、设备及物资进出登记单、门禁系统日志及审计抽查记录。
+    value: Access permission requests and change records, visitor registration forms, companion signatures,
+      key/access card issuance and recovery logs, equipment and material movement registration forms,
+      access control system logs, and audit sampling records.
     basis: inferred
   common_myth:
-    value: 以为装了门禁系统、前台有登记本就算过关——真正的问题是离职人员门禁权限没及时清、访客登记后没人陪同、物资进出无人过问，审计员抽查几笔就能看出执行是空转。
+    value: It's a misconception that installing an access control system and having a front desk registration
+      book is sufficient—the real issues are that departing employees' access permissions are not promptly
+      revoked, visitors are not accompanied after registration, and material movements are unmonitored;
+      auditors can spot the hollow execution with just a few samples.
     basis: inferred
   auditor_asks:
     value:
-    - 抽三个离职员工，门禁权限是哪天注销的？依据哪份流程？
-    - 访客进入核心机房时，陪同人的签字或记录在哪？访客可以独自离开吗？
+    - For three departed employees, on what date were their access permissions revoked? Based on which
+      procedure?
+    - When a visitor enters the core server room, where is the companion's signature or record? Can the
+      visitor leave unaccompanied?
     basis: inferred
   regional_note:
-    value: 欧洲受 GDPR 影响，审计员更关注人员进出记录是否涉及个人数据、留存期限是否合规；美国更侧重门禁日志的完整性和对敏感区域的物理隔离。两边对「访客陪同」这条都较严，但欧洲会追记录本身的数据保护合规性。
+    value: In Europe, under GDPR influence, auditors focus more on whether entry/exit records involve
+      personal data and whether retention periods comply; in the US, the emphasis is more on the completeness
+      of access logs and physical isolation of sensitive areas. Both are strict on 'visitor accompaniment,'
+      but Europe also scrutinizes the data protection compliance of the records themselves.
     basis: inferred
 interview:
   questions: []

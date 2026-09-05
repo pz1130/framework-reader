@@ -1,33 +1,49 @@
 control_id: ISO-27002-2022:A.8.3
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「授权了就能随便读」——审批过了就没人再管这个人到底有没有读的权力，以及读的边界在哪；信息一旦被不该读的人读走，损失已发生，事后很难收回。
+    value: The concern is about 'once authorized, one can read freely'—after approval, no one checks whether
+      the person still has the right to read, or the boundaries of that right; once information is read
+      by someone who should not, the loss has occurred and is hard to recover afterward.
     basis: inferred
   plain_zh:
-    value: 按信息敏感度和岗位职责，把谁能读什么、读到什么程度管起来；不该读的人系统要拦，该读的人也要先判断有没有授权再放行，不能笼统一刀切。
+    value: Manage who can read what and to what extent based on information sensitivity and job responsibilities;
+      the system should block those who should not read, and for those who should, verify authorization
+      before granting access, avoiding a one-size-fits-all approach.
     basis: inferred
   practice:
     value:
-      '1': 有信息分级；按岗位设了读取角色的基础权限；离职或调岗时能基本查封账号。
-      '2': 读取权限按角色和敏感级细分；申请、审批、开通有记录；定期做读取权限评审并修正。
-      '3': 权限控制与数据分级联动，系统级和业务应用级都拦；读取行为有监控和异常告警；高敏感信息可追溯谁在何时读过。
+      '1': Information classification exists; basic read permissions set by role; accounts can be basically
+        disabled upon departure or role change.
+      '2': Read permissions are finely divided by role and sensitivity level; application, approval, and
+        activation are recorded; periodic reviews and corrections of read permissions are conducted.
+      '3': Permission control is linked with data classification, enforced at both system and business
+        application levels; read behavior is monitored with anomaly alerts; high-sensitivity information
+        can trace who read it and when.
     basis: inferred
   evidence:
-    value: 信息分级清单、角色与权限矩阵、读取权限申请审批记录、系统或应用访问控制配置、读取行为日志、定期权限评审纪要。
+    value: Information classification list, role and permission matrix, read permission application and
+      approval records, system or application access control configuration, read behavior logs, periodic
+      permission review minutes.
     basis: inferred
   common_myth:
-    value: 以为「有登录账号、有文件夹权限」就等于读了权限受控——很多系统里业务应用层没有按岗位细分的读取控制，任何登录用户能翻全部数据；直到泄露了才意识到系统层和业务层权限是两层，得都管住。
+    value: Assuming 'having a login account and folder permission' means read access is controlled—many
+      systems lack role-based read control at the business application layer, allowing any logged-in user
+      to browse all data; only after a leak do they realize system-level and business-level permissions
+      are two layers that both need management.
     basis: inferred
   auditor_asks:
     value:
-    - 同一份高敏感报告，市场部和财务部的人读权限是怎么区分开的？
-    - 调岗员工在新岗位还能读旧部门文件吗？上次核查是什么时候？
+    - For the same high-sensitivity report, how are read permissions differentiated between marketing
+      and finance staff?
+    - Can an employee who changed roles still read old department files? When was the last check?
     basis: inferred
   regional_note:
-    value: 欧洲审计员更爱追「个人数据谁能读、读了做什么用途」，常要求读取日志能对应到 GDPR 的合法性与目的限制；美国审计员多以 NIST 的 AC-3
-      为基准，更关注权限是否按最小权限落地和是否有职责分离。
+    value: European auditors tend to probe 'who can read personal data and for what purpose', often requiring
+      read logs to align with GDPR lawfulness and purpose limitation; US auditors often use NIST AC-3
+      as a baseline, focusing on whether permissions are implemented with least privilege and separation
+      of duties.
     basis: inferred
 interview:
   questions: []

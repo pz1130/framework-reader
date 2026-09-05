@@ -1,29 +1,43 @@
 control_id: ISO-27002-2022:A.5.29
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「平时一切正常，一出事系统起不来或带着错误状态上线」——中断、被攻破或故障后，必须能把系统恢复到可信的已知状态，而不是随便重启就算完事。
+    value: The concern is about 'everything is normal in daily operations, but when an incident occurs,
+      the system cannot start or comes online with an erroneous state'—after an interruption, breach,
+      or failure, the system must be restored to a trusted known state, not merely rebooted and considered
+      done.
     basis: inferred
   plain_zh:
-    value: 你得有一套预案，规定中断后怎么把系统恢复到干净、可信的状态，并且真去演练过，而不是文档写写。
+    value: You need to have a plan in place that specifies how to restore the system to a clean, trusted
+      state after an interruption, and you must actually conduct exercises, not just write documentation.
     basis: inferred
   practice:
     value:
-      '1': 有书面恢复预案，明确谁负责、按什么顺序恢复、恢复到什么状态；至少做过一次桌面推演。
-      '2': 预案包含恢复点和恢复时间目标；定期做恢复演练并记录结果；发现的问题有整改闭环。
-      '3': 恢复流程与备份策略联动，支持从干净基线重建而非仅依赖增量；演练覆盖完整中断场景；恢复操作有审计日志可供追溯。
+      '1': Have a documented recovery plan that specifies who is responsible, the order of recovery, and
+        the target state; conduct at least one tabletop exercise.
+      '2': The plan includes recovery point and recovery time objectives; conduct regular recovery exercises
+        and record results; identified issues have a closed-loop for remediation.
+      '3': Recovery processes are linked with backup strategies, supporting rebuild from a clean baseline
+        rather than relying solely on incremental backups; exercises cover full interruption scenarios;
+        recovery operations have audit logs for traceability.
     basis: inferred
   evidence:
-    value: 恢复预案文档、演练计划与签到表、演练后的复盘与整改记录、备份恢复验证报告、恢复过程中使用的脚本/SOP。
+    value: Recovery plan documents, exercise plans and attendance sheets, post-exercise reviews and remediation
+      records, backup recovery verification reports, scripts/SOPs used during recovery.
     basis: inferred
   common_myth:
-    value: 以为「有备份、能恢复数据」就等于系统恢复了——漏掉的是恢复后系统是否处于可信状态，例如恶意软件残留、配置被篡改、账号被植入后门，这些不清掉就上线等于白恢复。
+    value: The misconception is that 'having backups and being able to recover data' equals system recovery—what
+      is missed is whether the system is in a trusted state after recovery, such as residual malware,
+      tampered configurations, or implanted backdoor accounts; if these are not cleared before going live,
+      the recovery is in vain.
     basis: inferred
   auditor_asks:
     value:
-    - 上次完整恢复演练是什么时候？有没有在演练中把系统从备份恢复到干净环境并验证安全配置？
-    - 恢复预案里写「恢复到已知可信状态」，这个状态具体怎么定义、由谁验证？
+    - When was the last full recovery exercise? Did the exercise restore the system from backup to a clean
+      environment and verify security configurations?
+    - The recovery plan states 'restore to a known trusted state'—how is this state specifically defined,
+      and who verifies it?
     basis: inferred
   regional_note:
     value: null

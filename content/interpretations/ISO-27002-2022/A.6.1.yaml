@@ -1,30 +1,50 @@
 control_id: ISO-27002-2022:A.6.1
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「用人不察」——把一个有重大风险前科或资质造假的人放进能碰关键资产或数据的岗位，等出事才发现背景里有雷。同时也防核验走过场：查了等于没查，或查完没有记录，事后说不清。
+    value: 'The intent is to prevent "careless hiring"—placing a person with significant risk history
+      or credential fraud into a role that can access critical assets or data, only to discover background
+      issues after the fact. It also prevents perfunctory verification: checking as if not checking, or
+      checking without records, leaving ambiguity afterward.'
     basis: inferred
   plain_zh:
-    value: 在给人开系统账号或授权接触业务数据之前，先按岗位风险把人的背景查清楚；查什么、查多深要跟岗位能碰的东西匹配，不是所有人一律查身份证就算完。
+    value: Before granting system accounts or authorizing access to business data, conduct background
+      checks on individuals based on role risk; what to check and how deep should match what the role
+      can access, not merely verifying ID for everyone as a formality.
     basis: inferred
   practice:
     value:
-      '1': 招聘入职能交出一份身份证与学历复印件；有专人核对原件；关键岗位承诺后续补查但未做。
-      '2': 按岗位风险分档做背景调查（如犯罪记录、失信记录、工作履历验证）；核验结果存档；高风险岗位授前必须核验完成，有审批豁免流程。
-      '3': 核验标准与岗位风险等级联动并写进制度，终身复核（如复职、调岗、转外包）触发重新核验；核验记录可检索；核验失败有明确的拒用或限权决策链。
+      '1': On recruitment onboarding, provide copies of ID and academic certificates; designated personnel
+        verify originals; for critical roles, commit to supplementary checks later but do not perform
+        them.
+      '2': Conduct background checks by role risk tier (e.g., criminal records, credit defaults, employment
+        history verification); archive verification results; for high-risk roles, verification must be
+        completed before authorization, with an approval exemption process.
+      '3': Verification standards are linked to role risk levels and documented in policy; lifetime re-verification
+        (e.g., rehire, role change, outsourcing) triggers re-checks; verification records are searchable;
+        verification failures have a clear decision chain for rejection or access restriction.
     basis: inferred
   evidence:
-    value: 核验记录表与报告原件/复印件、按岗位风险分级的核验标准清单、经办人与审批人签字、复验触发记录（复职/调岗）、核验异常的处理决策记录。
+    value: Verification record forms and original/copies of reports, verification standard checklist by
+      role risk tier, signatures of handler and approver, re-verification trigger records (rehire/role
+      change), decision records for handling verification anomalies.
     basis: inferred
   common_myth:
-    value: 以为「入职时看过身份证、验了学历」就算背景核验。真正的核验针对的是风险，不是身份存在性——犯罪记录、失信、竞业限制、工作经历造假，这些才决定一个人能不能碰关键资产。「验证了身份」与「核验了背景」是两件事，审计员一眼看得出。
+    value: The myth is that "checking ID and verifying education at onboarding" counts as background verification.
+      Real verification targets risk, not identity existence—criminal records, credit defaults, non-compete
+      restrictions, and employment history fraud determine whether someone can access critical assets.
+      "Verifying identity" and "verifying background" are two different things; auditors can see the difference
+      at a glance.
     basis: inferred
   auditor_asks:
     value:
-    - 这个财务主管岗位的背景核验周期是几天？核验报告里查了哪几项？
-    - 一个有刑事记录的候选人走到哪一级审批可以破例录用？依据写在哪？
-    - 调岗的人进新系统前重新核验过吗？调岗记录在哪？
+    - What is the background check cycle for this financial supervisor role? Which items were checked
+      in the verification report?
+    - At what approval level can a candidate with a criminal record be exceptionally hired? Where is the
+      basis documented?
+    - Was the person re-verified before accessing the new system after a role change? Where is the role
+      change record?
     basis: inferred
   regional_note:
     value: null

@@ -1,30 +1,52 @@
 control_id: ISO-27002-2022:A.8.13
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「数据只有一份，硬盘坏了、勒索加密了、误删了，全没了」——备份不是存档，是恢复的最后一道物理底线。没有可验证的恢复能力，备份只是占存储空间的死数据。
+    value: The concern is that data exists in only one copy, and if the hard disk fails, ransomware encrypts
+      it, or it is accidentally deleted, everything is lost. Backup is not archiving; it is the last physical
+      line of defense for recovery. Without verifiable recovery capability, backup is just dead data occupying
+      storage space.
     basis: inferred
   plain_zh:
-    value: 把用户数据、系统配置、软件与授权、安全相关文档都按策略备份；备份本身要防篡改、防泄露，并且定期演练确实能恢复，而不是只做「备份行为」本身。
+    value: Back up user data, system configurations, software and licenses, and security-related documents
+      according to policy; the backup itself must be protected against tampering and leakage, and regular
+      drills must confirm that recovery is actually possible, rather than merely performing the 'backup
+      act' itself.
     basis: inferred
   practice:
     value:
-      '1': 关键系统与用户数据有备份任务在跑；备份介质与生产环境物理隔离；至少做过一次恢复测试，有记录。
-      '2': 备份范围覆盖系统镜像、配置、应用与安全文档；备份有保留周期与加密；恢复测试有明确频次（如季度）与书面结果。
-      '3': 备份与恢复纳入变更管理——重大变更前强制快照；恢复测试有量化指标（如 RTO/RPO）并定期向管理层报告；备份完整性通过校验和或数字签名验证，防静默损坏。
+      '1': Backup tasks are running for critical systems and user data; backup media are physically isolated
+        from the production environment; at least one recovery test has been performed with records.
+      '2': Backup scope covers system images, configurations, applications, and security documents; backups
+        have retention periods and encryption; recovery tests have a defined frequency (e.g., quarterly)
+        with documented results.
+      '3': Backup and recovery are integrated into change management—mandatory snapshots before major
+        changes; recovery tests have quantitative metrics (e.g., RTO/RPO) and are regularly reported to
+        management; backup integrity is verified via checksums or digital signatures to prevent silent
+        corruption.
     basis: inferred
   evidence:
-    value: 备份策略与范围清单；备份任务执行日志；备份介质存储位置与访问控制记录；加密与完整性校验配置；定期恢复演练报告（含恢复时长、数据丢失量、失败项及整改）。
+    value: Backup policy and scope list; backup task execution logs; backup media storage location and
+      access control records; encryption and integrity verification configuration; regular recovery drill
+      reports (including recovery duration, data loss amount, failures, and remediation).
     basis: inferred
   common_myth:
-    value: 以为「备份任务绿灯、存储空间够用」就算安全。最典型的翻车是备份脚本一直在跑，但恢复测试发现备份的是旧版本应用或数据库文件没随事务日志一起备份——恢复出来是坏的。另一个常见死法是备份介质跟生产在同一个机房同一个网段，勒索病毒横向扫一遍连备份一起加密。
+    value: Assuming that 'backup tasks are green and storage space is sufficient' counts as secure. The
+      most typical failure is that the backup script keeps running, but recovery testing reveals that
+      the backup is of an old application version or database files were not backed up along with transaction
+      logs—so the recovery result is broken. Another common fatal flaw is that backup media are in the
+      same data center and network segment as production, so ransomware scans laterally and encrypts the
+      backups as well.
     basis: inferred
   auditor_asks:
     value:
-    - 上次完整恢复测试是几月几号？恢复了哪套系统？花了多长时间？结果记录是谁签的字？
-    - 备份介质和生产环境的物理与网络隔离是怎么做的？勒索病毒进来之后备份能不能活下来？
-    - 备份数据本身的加密密钥放在哪儿？跟生产系统的密钥是同一套吗？
+    - What was the date of the last full recovery test? Which system was recovered? How long did it take?
+      Who signed off on the results?
+    - How are backup media physically and network-isolated from the production environment? Can backups
+      survive a ransomware intrusion?
+    - Where are the encryption keys for the backup data stored? Are they the same as the production system
+      keys?
     basis: inferred
   regional_note:
     value: null

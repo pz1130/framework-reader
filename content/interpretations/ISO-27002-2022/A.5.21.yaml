@@ -1,30 +1,54 @@
 control_id: ISO-27002-2022:A.5.21
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「买的设备、软件、云服务在链路里被人动过手脚」——从厂商研发、生产、运输到上线，哪个环节被植入后门、替换固件、掺入伪造组件，单靠到货验收根本看不出来；这条逼你从采购源头就设计管控，而不是等系统出事了才溯源。
+    value: The concern is that purchased equipment, software, and cloud services may be tampered with
+      along the supply chain—from vendor development, production, and transportation to deployment, any
+      stage could involve implanted backdoors, replaced firmware, or counterfeit components that cannot
+      be detected by simple acceptance checks upon delivery. This control requires you to design controls
+      from the procurement source, rather than waiting for incidents to trace back.
     basis: inferred
   plain_zh:
-    value: 对ICT产品和服务，从供应商的选择、合同条款、采购方式、交付验收到运行维护全链条，建立并执行一套防篡改、防伪造、可溯源的管控流程。
+    value: For ICT products and services, establish and implement a control process covering the entire
+      chain from supplier selection, contract terms, procurement methods, delivery acceptance, to operation
+      and maintenance, to prevent tampering, counterfeiting, and ensure traceability.
     basis: inferred
   practice:
     value:
-      '1': 对供应商做准入审查；采购合同里写明安全要求（如禁止转包关键部件、交付物须含来源证明）；到货做外观和基本完整性检查。
-      '2': 按风险分级选择采购策略（如关键系统不买二手、不买来路不明渠道）；要求供应商提供物料清单和来源证明；对交付与运输过程有记录和签收核对；对高风险部件做额外验证（如固件哈希比对）。
-      '3': 建立并维护每个关键系统/组件的完整溯源档案（从厂商、批次、序列号、涉及人员到变更记录）；采购策略、工具和供应商安全要求定期评审并随威胁变化更新；对供应链安全事件有检测和响应机制，能定位到具体环节并处置。
+      '1': Conduct qualification reviews of suppliers; include security requirements in procurement contracts
+        (e.g., prohibit subcontracting of critical components, require proof of origin for deliverables);
+        perform visual and basic integrity checks upon receipt.
+      '2': Select procurement strategies based on risk levels (e.g., avoid second-hand or unknown-source
+        channels for critical systems); require suppliers to provide bills of materials and proof of origin;
+        maintain records and verify signatures for delivery and transportation processes; perform additional
+        verification for high-risk components (e.g., firmware hash comparison).
+      '3': Establish and maintain complete traceability records for each critical system/component (from
+        manufacturer, batch, serial number, personnel involved, to change records); regularly review procurement
+        strategies, tools, and supplier security requirements, updating them as threats evolve; have detection
+        and response mechanisms for supply chain security incidents, enabling identification and remediation
+        at specific stages.
     basis: inferred
   evidence:
-    value: 供应商准入与分级记录、采购合同中的安全条款、采购策略/方法文档、物料清单及来源证明、到货验收记录与签收单、溯源档案（组件/系统级）、供应链安全事件处置记录。
+    value: Supplier qualification and classification records, security clauses in procurement contracts,
+      procurement strategy/method documents, bills of materials and proof of origin, delivery acceptance
+      records and signed receipts, traceability records (component/system level), and supply chain security
+      incident handling records.
     basis: inferred
   common_myth:
-    value: 以为「用了知名品牌、从正规代理下单」供应链就安全。大品牌照样有地区代工差异和批次问题；关键是能不能证明自己拿到的这批货，从出厂到你手里链路没断——没有物料清单和到货核对，任何设备都可能被调包。
+    value: Assuming that using well-known brands and ordering from authorized distributors ensures supply
+      chain security. Major brands still have regional manufacturing differences and batch issues; the
+      key is proving that the specific batch received has an unbroken chain from factory to your hands—without
+      a bill of materials and delivery verification, any device could be swapped.
     basis: inferred
   auditor_asks:
     value:
-    - 关键设备/软件的物料清单和来源证明存放在哪？抽查一件，链路能追溯到厂商哪条生产线？
-    - 采购合同里哪一条禁止供应商把固件开发或关键部件生产转包给未经你批准的分包商？
-    - 到货验收时发现封条破损或固件哈希不一致，你们的处置流程是什么？最近一次发生是什么时候？
+    - Where are the bills of materials and proof of origin for critical equipment/software stored? Pick
+      one item and trace the chain back to the manufacturer's production line.
+    - Which clause in the procurement contract prohibits suppliers from subcontracting firmware development
+      or production of critical components to subcontractors not approved by you?
+    - What is your handling process when you find broken seals or firmware hash mismatches during delivery
+      acceptance? When was the last time this occurred?
     basis: inferred
   regional_note:
     value: null

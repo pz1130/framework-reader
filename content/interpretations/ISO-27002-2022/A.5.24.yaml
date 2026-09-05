@@ -1,29 +1,45 @@
 control_id: ISO-27002-2022:A.5.24
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「出事才现抓人」——没有提前写好的预案，事件发生时靠临时拼凑，决策链混乱、响应延迟、该上报的不上报，事后也说不清谁该做什么。
+    value: The concern is about 'scrambling only after an incident occurs'—without a pre-written plan,
+      relying on ad hoc assembly during an event leads to chaotic decision-making chains, delayed response,
+      failure to escalate as required, and an inability to clarify who should have done what afterward.
     basis: inferred
   plain_zh:
-    value: 提前写一份安全事件的书面预案，说清楚组织怎么组织应急响应、各角色干什么、哪些事件必须上报、用什么指标衡量响应水平，并且持续维护。
+    value: Prepare a written security incident plan in advance, specifying how the organization will organize
+      incident response, what each role will do, which incidents must be reported, what metrics will be
+      used to measure response effectiveness, and maintain it continuously.
     basis: inferred
   practice:
     value:
-      '1': 有一份应急预案文档，定义了事件分级和上报路径，关键角色（指挥、技术处置、对外沟通）有名单。
-      '2': 预案描述完整事件响应生命周期，包含上报指标、决策流程和业务连续性衔接；至少每年做一次桌面推演并有记录。
-      '3': 预案随业务、系统架构和团队变化定期修订；演练覆盖真实场景且形成改进项闭环；响应流程与外部监管上报时限对齐。
+      '1': There is an incident response plan document that defines incident severity levels and escalation
+        paths, with a list of key roles (command, technical handling, external communication).
+      '2': The plan describes the complete incident response lifecycle, including escalation metrics,
+        decision-making processes, and business continuity integration; at least one tabletop exercise
+        is conducted annually with records.
+      '3': The plan is regularly revised in line with business, system architecture, and team changes;
+        exercises cover realistic scenarios and form a closed loop for improvement items; response processes
+        align with external regulatory reporting deadlines.
     basis: inferred
   evidence:
-    value: 应急预案文档及版本历史、事件分级定义、上报流程图或清单、演练策划与总结记录、演练改进项跟踪表。
+    value: Incident response plan document and version history, incident severity definitions, escalation
+      flowchart or list, exercise planning and summary records, and a tracking table for exercise improvement
+      items.
     basis: inferred
   common_myth:
-    value: 以为「有份应急预案文档」就行——但预案里只有流程没有具体联系人、没有升级时限、没有对外沟通口径，出事照样乱。预案必须能回答「事发后第一个电话打给谁、几分钟内必须上报到哪一级」这类具体问题。
+    value: Thinking that 'having an incident response plan document' is enough—but if the plan only contains
+      processes without specific contacts, escalation time limits, or external communication guidelines,
+      chaos will still ensue during an incident. The plan must answer concrete questions like 'Who is
+      the first call after an incident?' and 'To what level must it be escalated within how many minutes?'
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次应急演练是什么时候？演练出的改进项有哪些已经闭环？
-    - 凌晨三点发现核心业务宕机，第一响应人按哪份文档联系谁、多少时间内上报？
+    - When was the last incident response exercise? Which improvement items from the exercise have been
+      closed out?
+    - If core business goes down at 3 AM, which document does the first responder use to contact whom,
+      and within what time must it be escalated?
     basis: inferred
   regional_note:
     value: null

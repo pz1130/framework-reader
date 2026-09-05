@@ -1,29 +1,49 @@
 control_id: NIST-CSF-2.0:ID.RA-09
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「买来就用」——硬件固件、软件安装包或云镜像在进环境前没验过签名和哈希，供应链里被人换过包、植入过后门，等上线后才发现就晚了。
+    value: The concern is 'buy and use without verification' - hardware firmware, software installation
+      packages, or cloud images are not checked for signatures and hashes before entering the environment.
+      If packages are swapped or backdoors are implanted in the supply chain, it may be too late once
+      they go live.
     basis: inferred
   plain_zh:
-    value: 在采购和部署硬件、软件之前，要验证来源真实、内容没被改过；判断依据是官方签名、可信哈希或可信交付链，而不是看商家信誉好就放心。
+    value: Before procuring and deploying hardware and software, verify that the source is authentic and
+      content has not been altered; the basis for judgment is official signatures, trusted hashes, or
+      trusted delivery chains, not relying on the vendor's good reputation.
     basis: inferred
   practice:
     value:
-      '1': 关键软硬件有采购审批流程；安装前要求供应商提供官方哈希或签名，并做比对；有发票或采购单可追溯来源。
-      '2': 对内部环境要安装的每款软件与固件都走签名或哈希校验，校验结果有记录；供应商或版本变更时重新验证；有软件物料清单（SBOM）意识。
-      '3': 校验自动化接入构建流水线或设备入库流程；比对基准来自可信源且受保护；校验失败自动阻断上线；定期抽查硬件串号与固件哈希是否与供应商出厂记录一致。
+      '1': Critical hardware and software have procurement approval processes; before installation, require
+        suppliers to provide official hashes or signatures and compare them; have invoices or purchase
+        orders to trace the source.
+      '2': For every software and firmware to be installed in the internal environment, perform signature
+        or hash verification, and record the verification results; re-verify when suppliers or versions
+        change; have awareness of Software Bill of Materials (SBOM).
+      '3': Automate verification integrated into build pipelines or device intake processes; comparison
+        baselines come from trusted sources and are protected; verification failures automatically block
+        deployment; periodically sample hardware serial numbers and firmware hashes to check consistency
+        with supplier factory records.
     basis: inferred
   evidence:
-    value: 采购与验收记录、软件或固件签名与哈希校验报告、校验基准来源说明、SBOM 清单、对不一致项的处置记录、自动化校验的日志或阻断记录。
+    value: Procurement and acceptance records, software or firmware signature and hash verification reports,
+      baseline source descriptions, SBOM lists, disposition records for discrepancies, and logs or blocking
+      records of automated verification.
     basis: inferred
   common_myth:
-    value: 以为「有正版授权、从官网下载」就等于验过真伪。官网下载不代表安装包没在交付途中被篡改——只有对签名或哈希做过实际比对才算数；很多团队部署时校验了，但校验用的哈希也是从同一个不安全的下载渠道拿到的，等于没验。
+    value: Assuming that 'having a legitimate license and downloading from the official website' equals
+      verifying authenticity. Downloading from the official website does not mean the installation package
+      has not been tampered with during delivery - only actual comparison of signatures or hashes counts;
+      many teams verify during deployment, but the hashes used for verification are also obtained from
+      the same insecure download channel, which is equivalent to not verifying.
     basis: inferred
   auditor_asks:
     value:
-    - 上次部署的软件包，哈希值是从哪个渠道拿到的？和安装包是同一个服务器吗？
-    - 有没有出现过校验失败但仍强行安装的情况？怎么处理的？
+    - For the last deployed software package, from which channel was the hash value obtained? Is it the
+      same server as the installation package?
+    - Has there been any case where verification failed but installation was still forced? How was it
+      handled?
     basis: inferred
   regional_note:
     value: null

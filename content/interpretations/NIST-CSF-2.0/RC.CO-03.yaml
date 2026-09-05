@@ -1,29 +1,49 @@
 control_id: NIST-CSF-2.0:RC.CO-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是恢复进展没人知道、各干各的——系统恢复了但业务方还在干等，或者外部监管、合作伙伴反复来问你们到底行不行了，内部却在互相猜进度，导致恢复期出现二次混乱。
+    value: The concern is that recovery progress is unknown to stakeholders, and efforts are siloed—systems
+      may be restored, but business units are left waiting, or external regulators and partners repeatedly
+      ask whether you are operational, while internally there is mutual guessing about progress, leading
+      to secondary confusion during the recovery period.
     basis: inferred
   plain_zh:
-    value: 恢复期间和恢复之后，要把「恢复到哪一步了、还剩什么没恢复、预计什么时候好」主动讲给该听的人听，包括内部管理层、业务部门和外部该通知的机构。
+    value: 'During and after recovery, proactively communicate to those who need to know: ''What stage
+      of recovery are we at, what remains unrecovered, and when is it expected to be complete''—including
+      internal management, business units, and external entities that must be notified.'
     basis: inferred
   practice:
     value:
-      '1': 有恢复沟通的对接人名单；恢复响应期间按预设计划向管理层和受影响部门通报进展；恢复完成后有结果汇报。
-      '2': 有书面恢复沟通计划，写明沟通对象、频率、渠道与内容模板；每次通报有记录，含时间、对象、要点；对外通报有口径审批。
-      '3': 恢复进展通报与恢复执行同步自动化，干系人可在看板上实时查看关键系统状态；通报格式与执法或监管要求对接；恢复结束后有复盘，确认所有应告知方均已收到最终结论。
+      '1': Have a list of designated contacts for recovery communication; during the recovery response,
+        report progress to management and affected departments according to the predefined plan; after
+        recovery is complete, provide a results briefing.
+      '2': Have a written recovery communication plan specifying communication targets, frequency, channels,
+        and content templates; each notification is recorded, including time, recipients, and key points;
+        external communications require approval of the official messaging.
+      '3': Recovery progress reporting is automated in sync with recovery execution; stakeholders can
+        view real-time status of critical systems on a dashboard; reporting formats align with legal or
+        regulatory requirements; after recovery, conduct a review to confirm that all parties that should
+        be informed have received the final conclusion.
     basis: inferred
   evidence:
-    value: 恢复沟通计划、按时间排序的通报邮件或会议纪要与签收记录、对外通报的审批痕迹与送达凭证、恢复状态看板截图、恢复完成报告及分发名单。
+    value: Recovery communication plan, time-sequenced notification emails or meeting minutes with acknowledgment
+      records, approval traces and delivery receipts for external communications, screenshots of the recovery
+      status dashboard, recovery completion report and distribution list.
     basis: inferred
   common_myth:
-    value: 以为这条就是「恢复的时候发几封邮件报平安」。漏掉的是「对内对外分别讲什么」——内部业务方关心的不是技术细节，而是「我什么时候能开工」；外部机构要的是正式口径，而非微信群消息。没有区分受众、没有审批流、没有签收确认，通报发了等于没发。
+    value: The misconception is that this control simply means 'sending a few emails to report safety
+      during recovery.' What is missed is 'what to communicate internally versus externally'—internal
+      business units care not about technical details but 'when can I resume work'; external entities
+      require formal messaging, not group chat messages. Without distinguishing audiences, having an approval
+      process, or obtaining acknowledgment, sending notifications is equivalent to not sending them.
     basis: inferred
   auditor_asks:
     value:
-    - 恢复期间你们向业务部门的第一次通报是在事件发生后多久发出的？
-    - 对外通报（如监管或合作方）谁有权定口径？最近一次恢复演练中，对外通报走了什么审批流程？
+    - How long after the incident did your first notification to business units during recovery occur?
+    - Who has the authority to define the official messaging for external communications (e.g., regulators
+      or partners)? In the most recent recovery exercise, what approval process did external communications
+      follow?
     basis: inferred
   regional_note:
     value: null

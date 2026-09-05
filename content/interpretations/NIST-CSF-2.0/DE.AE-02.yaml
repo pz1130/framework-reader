@@ -1,29 +1,46 @@
 control_id: NIST-CSF-2.0:DE.AE-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「告警响了、事件记录了，但没人真正去拆解发生了什么、波及多大、为什么发生」——日志变成流水账，监控屏闪烁但响应团队只能靠猜，小事拖成大事。
+    value: The concern is that 'alerts sound and events are logged, but no one truly dissects what happened,
+      how far it reached, or why it occurred'—logs become a running tally, the monitoring screen flashes,
+      but the response team can only guess, and small issues escalate into major ones.
     basis: inferred
   plain_zh:
-    value: 看到异常告警或安全事件后，不能只记录或通知，要真正去分析：这件事的来龙去脉、涉及的资产和用户、影响的业务范围、是怎么发生的。让「发生了什么」从零散的原始告警变成有结构的理解。
+    value: 'After seeing an anomaly alert or security event, one must not merely log or notify but genuinely
+      analyze: the sequence of events, the assets and users involved, the business scope affected, and
+      how it happened. Transform ''what happened'' from scattered raw alerts into structured understanding.'
     basis: inferred
   practice:
     value:
-      '1': 安全团队对每个中等及以上告警会打开原始日志，人工翻看关联记录，能口头说出大概发生了什么。
-      '2': 有标准的事件分析流程，规定分析哪些字段（源IP、目标资产、账号、时间线），分析结果形成书面事件记录并通知相关方。
-      '3': 分析过程系统化，使用关联分析工具或剧本自动把多个日志源的线索聚合；关键事件有根因分析，结论反哺检测规则修复盲区。
+      '1': The security team opens raw logs for every medium or higher alert, manually reviews related
+        records, and can verbally describe roughly what occurred.
+      '2': There is a standard event analysis procedure specifying which fields to analyze (source IP,
+        target asset, account, timeline), and analysis results form written event records and are communicated
+        to relevant parties.
+      '3': The analysis process is systematic, using correlation analysis tools or playbooks to automatically
+        aggregate clues from multiple log sources; key events undergo root cause analysis, and conclusions
+        feed back to detection rules to fix blind spots.
     basis: inferred
   evidence:
-    value: 事件分析报告（含时间线、涉及资产、账号、影响评估）、告警关闭前的分析记录、SIEM告警与工单关联记录、分析流程文件。
+    value: Event analysis reports (including timeline, involved assets, accounts, impact assessment),
+      analysis records before alert closure, SIEM alert-ticket correlation records, analysis procedure
+      documents.
     basis: inferred
   common_myth:
-    value: 以为「有SIEM、每台服务器都装了EDR」就算这条达标。告警数上来后团队只快速看一眼「是不是误报」就关闭，从没形成一份像样的分析时间线——审计抽查工单时，问「这个事件源头是哪台机器、横向移动了几步」答不上来就等于没做。
+    value: Assuming that 'having a SIEM and EDR installed on every server' meets this requirement. When
+      alert volume rises, the team quickly glances to see if it's a false positive and closes it, never
+      forming a proper analysis timeline—during audits, when spot-checking tickets, if asked 'what machine
+      was the source of this event, and how many lateral movement steps occurred' and they can't answer,
+      it's as if they didn't do it.
     basis: inferred
   auditor_asks:
     value:
-    - 抽一个上季度的中等级告警工单，分析结论里有没有写清楚影响资产清单和事件时间线？
-    - 你们关联分析是靠人工翻日志还是工具有规则在跑？有没有工具查不到就漏掉的情况？
+    - 'Pick a medium-level alert ticket from last quarter: does the analysis conclusion clearly state
+      the affected asset list and event timeline?'
+    - Is your correlation analysis done manually by reviewing logs, or are there tools with rules running?
+      Are there cases where things are missed because tools can't find them?
     basis: inferred
   regional_note:
     value: null

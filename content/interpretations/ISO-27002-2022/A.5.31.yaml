@@ -1,29 +1,46 @@
 control_id: ISO-27002-2022:A.5.31
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「法律怎么说、合同怎么签」和实际安全控制完全脱节——法务说合规、安全说技术，两边各干各的；真出事时才发现隐私承诺没做到、客户合同要求没落地、行业法规条款没人认领。
+    value: The concern is that legal and contractual obligations become completely disconnected from actual
+      security controls—legal says compliance, security says technology, and the two operate in silos;
+      when an incident occurs, it is discovered that privacy commitments were not met, customer contract
+      requirements were not implemented, and industry regulatory clauses were not owned by anyone.
     basis: inferred
   plain_zh:
-    value: 把所有法律、法规、监管要求和合同承诺里跟信息安全有关的部分找出来、列成清单、写明谁负责、定期核对，确保安全控制确实对得上这些义务，而不是嘴上合规。
+    value: Identify all legal, regulatory, and contractual obligations related to information security,
+      list them, assign responsibility, and periodically verify that security controls actually align
+      with these obligations, rather than merely claiming compliance verbally.
     basis: inferred
   practice:
     value:
-      '1': 有一份法规与合同义务清单；知道哪些法律和合同条款管着本企业的信息安全；有人负责盯这件事。
-      '2': 义务清单映射到具体安全控制或责任人；有定期核对与更新机制；关键合规状态有记录可查；新法规或客户条款有正式接入流程。
-      '3': 义务清单接入合同评审和业务变更流程；合规状态持续监控并有自动化提醒；义务与控制的映射可追溯，审计能按条款查到位。
+      '1': Maintain a list of regulatory and contractual obligations; know which laws and contract clauses
+        govern the organization's information security; someone is responsible for monitoring this.
+      '2': Map the obligation list to specific security controls or responsible parties; have a periodic
+        review and update mechanism; key compliance status is documented and traceable; new regulations
+        or customer clauses have a formal intake process.
+      '3': Integrate the obligation list into contract review and business change processes; compliance
+        status is continuously monitored with automated alerts; the mapping between obligations and controls
+        is traceable, allowing auditors to verify compliance clause by clause.
     basis: inferred
   evidence:
-    value: 法律与合同义务登记表、义务到安全控制的映射矩阵、合规状态核查记录、合同评审中安全条款的流转记录、新法规追踪与影响评估文件。
+    value: Register of legal and contractual obligations, mapping matrix from obligations to security
+      controls, compliance status review records, records of security clauses in contract reviews, and
+      documents for new regulation tracking and impact assessment.
     basis: inferred
   common_myth:
-    value: 以为「法务审过合同、条款写进去了」就算完成。合同里写了数据保护条款，但没人告诉安全团队哪条系统要加密、哪条日志要留多久——法律承诺停留在纸面，没有落到技术配置和运维动作上，审计一追就断链。
+    value: Assuming that 'legal reviewed the contract and clauses were included' is sufficient. The contract
+      includes data protection clauses, but no one informs the security team which systems require encryption
+      or how long logs must be retained—legal commitments remain on paper without being translated into
+      technical configurations and operational actions, causing the chain to break during audits.
     basis: inferred
   auditor_asks:
     value:
-    - 把合同里要求加密存储的条款指给我，对应的系统清单在哪？怎么验证真的加密了？
-    - 去年生效新法规或新签的大型客户条款，从识别义务到落地控制用了多久？谁负责推动？
+    - Show me the contract clauses requiring encrypted storage; where is the corresponding system list?
+      How do you verify that encryption is actually implemented?
+    - For new regulations or major customer clauses that took effect last year, how long did it take from
+      identifying obligations to implementing controls? Who is responsible for driving this?
     basis: inferred
   regional_note:
     value: null

@@ -1,30 +1,58 @@
 control_id: ISO-27002-2022:A.8.2
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「高权限账号一旦被滥用，可以直接绕过所有下层控制」——备份、日志、EDR 这些保护在拥有管理员权限的攻击者面前全可被关闭，一个被钓鱼或内鬼拿下的域管账号，效果等同于一次全盘失守。没有对高权限使用的单点盯防，就等于把大楼钥匙放在前台抽屉里还告诉所有人。
+    value: The concern is that once a high-privilege account is abused, it can directly bypass all lower-level
+      controls—backups, logs, and EDR protections can all be disabled in the face of an attacker with
+      administrator rights. A domain admin account compromised via phishing or an insider threat is equivalent
+      to a total breach. Without dedicated monitoring of high-privilege usage, it's like leaving the building
+      keys in the front desk drawer and telling everyone.
     basis: inferred
   plain_zh:
-    value: 对拥有系统级、域级或应用级最高权限的账号，要比普通账号高出一个量级地去管：得知道谁有、以什么方式用、每次使用能不能对上岗位职责，并且这些使用要能回溯、能告警、能拦截，而不是只看个权限审批单。
+    value: 'Accounts with the highest system, domain, or application privileges must be managed an order
+      of magnitude more strictly than ordinary accounts: you need to know who holds them, how they are
+      used, and whether each use aligns with job responsibilities. These uses must be traceable, alertable,
+      and blockable, not just reviewed via permission approval forms.'
     basis: inferred
   practice:
     value:
-      '1': 高权限账号有清单并有人负责；开通要走单独审批，不用时不挂在那里；启用过程至少留一份纸质或工单记录。
-      '2': 高权限操作走堡垒机或专用跳板机统一入口，所有会话有录屏或按键日志；每周至少抽查一次是否有与工作无关的登录；离职或调岗时，高权限当天回收且留回收证明。
-      '3': 高权限账号与身份无关（无固定口令或按需签发临时凭证）；所有特权行为在日志平台做关联分析与自动告警，触发条件如非工作时间登录、批量查询、新增其他高权限账号；由独立一方（如安全团队而非运维自审）做周期性特权账号使用评审，评审结论回写为权限变更动作。
+      '1': A list of high-privilege accounts exists with an assigned owner; activation requires separate
+        approval; accounts are not left active when unused; at least a paper or ticket record is kept
+        for the activation process.
+      '2': High-privilege operations go through a bastion host or dedicated jump host as a unified entry
+        point, with all sessions recorded via screen capture or keystroke logs; at least weekly spot checks
+        for logins unrelated to work; upon termination or role change, high privileges are revoked the
+        same day with proof of revocation.
+      '3': High-privilege accounts are not tied to identity (no fixed passwords or credentials issued
+        on-demand as temporary); all privileged actions are correlated and auto-alerted in the log platform,
+        with triggers such as off-hours logins, bulk queries, or creation of other high-privilege accounts;
+        an independent party (e.g., security team rather than self-review by operations) conducts periodic
+        privileged account usage reviews, with review conclusions fed back as permission change actions.
     basis: inferred
   evidence:
-    value: 高权限账号清单及负责人；特权账号开通/回收审批工单；堡垒机会话录像或按键审计日志；抽查某事件回溯时能把某次特权操作对应到具体人和会话的截图；特权使用评审纪要或自动化分析报告；按用户（而非仅按服务器）维度的登录与操作日志。
+    value: List of high-privilege accounts and owners; approval tickets for provisioning/revocation of
+      privileged accounts; bastion host session recordings or keystroke audit logs; screenshots from spot
+      checks showing a specific privileged operation traced to a specific person and session during incident
+      reconstruction; minutes of privileged usage reviews or automated analysis reports; login and operation
+      logs by user (not just by server).
     basis: inferred
   common_myth:
-    value: 以为「装了堡垒机」就算高权限管控完成，但从堡垒机看到的所有操作照样可以全是合法的——审计员更在意是否有人能看出「某个高权限账号在凌晨三点登录了数据库并把表删除干净」这条操作链，而不是你录了多少小时的屏。屏幕录像不停在录，但没有人看、没有规则去触发它，等于只是留了个故障现场录像机。
+    value: Assuming that 'installing a bastion host' completes high-privilege control, but all operations
+      seen from the bastion host can still be legitimate—auditors care more about whether someone can
+      spot the chain of 'a high-privilege account logged into the database at 3 AM and deleted tables
+      cleanly' rather than how many hours of screen you recorded. Screen recordings keep running, but
+      if no one watches them and no rules trigger on them, it's just leaving a CCTV camera at the incident
+      scene.
     basis: inferred
   auditor_asks:
     value:
-    - 把所有有过域管权限的账号列出来——其中哪些在过去 90 天内实际登录过？为什么？
-    - 某高权限账号上一次被使用是在什么时间、什么 IP、做了什么，你能在五分钟内拉出证据吗？
-    - 你们怎么区分「这个高权限操作是某人干的」与「任何人都可以用这个共享账号干的」？
+    - List all accounts that have ever had domain admin rights—which of them have actually logged in during
+      the past 90 days, and why?
+    - When was a particular high-privilege account last used, from what IP, and what did it do—can you
+      produce evidence within five minutes?
+    - How do you distinguish between 'this high-privilege action was done by a specific person' and 'anyone
+      could have done it using this shared account'?
     basis: inferred
   regional_note:
     value: null

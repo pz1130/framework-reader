@@ -1,29 +1,47 @@
 control_id: ISO-27002-2022:A.6.6
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是员工签完保密协议就当作永久授权——人员转岗、离开、合作结束或协议条款更新后，原有的保密义务没有重新确认或解除，导致数据访问权与保密承诺脱节，出事后无法追责。
+    value: The concern is that employees signing a confidentiality agreement is treated as permanent authorization—after
+      personnel transfers, departures, contract endings, or agreement updates, the original confidentiality
+      obligations are not reconfirmed or released, causing a disconnect between data access rights and
+      confidentiality commitments, making it impossible to hold anyone accountable after an incident.
     basis: inferred
   plain_zh:
-    value: 让每个能接触公司系统和数据的人都签一份书面承诺，明确什么能碰、什么不能碰、什么必须保密；而且这份承诺要跟随人员的角色变化和协议更新不断重新签，不是入职签一次就完了。
+    value: Ensure that every person who can access company systems and data signs a written commitment,
+      clearly stating what they can access, what they cannot, and what must be kept confidential; and
+      this commitment must be re-signed as roles change and agreements are updated, not just once at onboarding.
     basis: inferred
   practice:
     value:
-      '1': 入职或授予系统访问权限前要求签署保密/行为约定；有签收记录；离职时提醒保密义务继续有效。
-      '2': 定期（如年度）重签或确认；转岗、项目变更时同步更新约定内容；未签或拒签者无法获得或继续持有访问权限。
-      '3': 系统在账号开通前强制校验签署状态；协议条款变更自动触发重签流程；未及时重签账号自动降权或冻结；签收与版本历史可完整追溯。
+      '1': Require signing of confidentiality/behavioral agreements before onboarding or granting system
+        access; maintain signed records; remind departing employees that confidentiality obligations remain
+        in effect.
+      '2': Periodically (e.g., annually) re-sign or confirm; update agreement content synchronously with
+        role changes or project modifications; those who have not signed or refuse to sign cannot obtain
+        or retain access rights.
+      '3': The system enforces verification of signing status before account activation; agreement changes
+        automatically trigger re-signing processes; accounts not re-signed in time are automatically downgraded
+        or frozen; signing and version history are fully traceable.
     basis: inferred
   evidence:
-    value: 签收记录（含电子签收日志）、保密协议模板与版本历史、重签周期与触发记录、访问权限与签署状态的关联审计截图或报表、未签署人员清单及处置记录。
+    value: Signed records (including electronic signing logs), confidentiality agreement templates and
+      version history, re-signing cycles and trigger records, audit screenshots or reports linking access
+      rights and signing status, lists of unsigned personnel and handling records.
     basis: inferred
   common_myth:
-    value: 以为入职时签的保密协议是「永久有效」的，转岗、合作方续约或协议升级后从不重签。审计一查，发现目前持有数据库访问权限的第三方人员在协议列表里根本找不到对应签署记录。
+    value: Assuming that the confidentiality agreement signed at onboarding is 'permanently valid,' and
+      never re-signing after role changes, partner renewals, or agreement upgrades. During an audit, it
+      is found that third-party personnel with current database access have no corresponding signing records
+      in the agreement list.
     basis: inferred
   auditor_asks:
     value:
-    - 目前拥有系统访问权限的人员里，有多少人签署状态已过期或缺失？请给出清单和对应处置。
-    - 协议条款更新后，你们用什么机制确保现有人员重新签署？拿三个最近转岗的人员看看重签记录。
+    - Among personnel currently with system access, how many have expired or missing signing status? Provide
+      the list and corresponding handling.
+    - After agreement updates, what mechanism do you use to ensure existing personnel re-sign? Look at
+      re-signing records for three recent role changes.
     basis: inferred
   regional_note:
     value: null

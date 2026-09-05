@@ -1,30 +1,49 @@
 control_id: NIST-CSF-2.0:PR.AT-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「全员安全培训做了，但真正碰核心系统的人反而不会干」——开发、运维、云管理员这类特殊岗位如果只上过通用安全意识课，遇到真实攻击面照样裸奔。
+    value: The concern is that 'security training for all employees was conducted, but those who actually
+      touch core systems still don't know what to do' — if special roles like developers, operations,
+      and cloud administrators only receive general security awareness training, they remain exposed to
+      real attack surfaces.
     basis: inferred
   plain_zh:
-    value: 给干特殊活的人（开发、运维、云管理员、安全分析员等）提供贴合其岗位职责的安全培训，让他们干活时脑子里装着对应的安全风险。
+    value: Provide security training tailored to the job responsibilities of personnel in special roles
+      (e.g., developers, operations, cloud administrators, security analysts), so that they keep corresponding
+      security risks in mind while performing their duties.
     basis: inferred
   practice:
     value:
-      '1': 识别出特殊岗位清单（开发/运维/云管理等）；给这些岗位的人安排过至少一次安全培训，有签到或记录。
-      '2': 按岗位角色分别设计培训内容（如开发讲安全编码、运维讲加固配置）；新入岗和转岗的人接受过对应培训；培训效果有简单考核或印证。
-      '3': 培训内容随威胁与岗位职责变化定期更新；有证据表明这些岗位的人在犯安全错误后接受过针对性再培训；培训与岗位技能认证或准入挂钩。
+      '1': Identify a list of special roles (e.g., development/operations/cloud management); arrange at
+        least one security training session for personnel in these roles, with attendance records or logs.
+      '2': Design training content by role (e.g., secure coding for developers, hardening configuration
+        for operations); new hires and role changers receive corresponding training; training effectiveness
+        is assessed through simple tests or verification.
+      '3': Training content is regularly updated in line with evolving threats and job responsibilities;
+        there is evidence that personnel in these roles receive targeted retraining after security mistakes;
+        training is linked to role-based skill certification or access authorization.
     basis: inferred
   evidence:
-    value: 特殊岗位清单及职责定义、按角色区分的培训课程大纲与材料、培训签到表或学习记录、培训效果考核或实操验证结果、针对典型安全事件的相关培训复盘记录。
+    value: List of special roles and their responsibility definitions, role-specific training course outlines
+      and materials, training attendance sheets or learning records, training effectiveness assessments
+      or practical verification results, and review records of training related to typical security incidents.
     basis: inferred
   common_myth:
-    value: 以为「全员信息安全意识培训一年两次」就覆盖了这条。通用普适培训针对的是鼠标乱点、密码泄露这类行为；特殊岗位培训必须讲清楚这个岗位干活时怎么构建、配置、运维才不出安全事故——两者的教学目标和考核方式完全不同。
+    value: Assuming that 'organization-wide information security awareness training twice a year' covers
+      this requirement. General awareness training targets behaviors like careless clicking and password
+      leakage; special-role training must clearly explain how to build, configure, and operate without
+      causing security incidents in that role — the teaching objectives and assessment methods are completely
+      different.
     basis: inferred
   auditor_asks:
     value:
-    - 你们的开发人员最近一次安全编码培训是什么时候？培训材料里覆盖了哪些常见漏洞类型？
-    - 新入职的云平台管理员在拿到生产环境权限之前，接受了什么专门的安全培训？
-    - 上次运维人员因配置错误导致事件后，有没有安排针对性的再培训？记录在哪？
+    - When was the last secure coding training for your developers? What common vulnerability types were
+      covered in the training materials?
+    - What specific security training did newly hired cloud platform administrators receive before gaining
+      access to the production environment?
+    - After the last incident caused by an operations staff configuration error, was targeted retraining
+      arranged? Where are the records?
     basis: inferred
   regional_note:
     value: null

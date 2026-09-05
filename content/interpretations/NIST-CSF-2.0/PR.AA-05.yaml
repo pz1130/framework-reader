@@ -1,30 +1,51 @@
 control_id: NIST-CSF-2.0:PR.AA-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「账号权限发出去就没人管」——员工转岗、离职、外包到期后权限不清算，以及一个账号从头用到尾的超级权限，导致数据泄露或内部违规操作时既拦不住也追不到人。
+    value: The concern is that "once permissions are granted, no one manages them" — permissions are not
+      revoked when employees transfer, leave, or when external contractors' engagements end, and a single
+      account retains superuser privileges indefinitely, leading to data breaches or insider misuse that
+      cannot be blocked or traced.
     basis: inferred
   plain_zh:
-    value: 把「谁能进哪个系统、能看什么、能改什么」写成明确的政策，并管住权限的分配、执行和定期复查，确保每个人只有干活所需的最小权限，且关键操作需要多人互相制衡。
+    value: Establish clear policies defining "who can access which systems, what they can view, and what
+      they can modify," and manage the allocation, enforcement, and periodic review of permissions to
+      ensure each individual has only the minimum access needed for their role, with critical operations
+      requiring segregation of duties.
     basis: inferred
   practice:
     value:
-      '1': 有一套权限申请与审批的书面流程；新员工入职按岗位模板开通权限；离职或转岗时有人负责收权限（哪怕只是邮件通知）。
-      '2': 权限申请、审批、变更、删除都有记录；定期（如每季度）对系统权限做人工或工具辅助的账实核对；管理员账号有额外控制（如双人审批）。
-      '3': 权限开通与回收与 HR/ITSM 系统联动自动触发；关键系统权限定期自动复核并推送差异报告；对敏感权限实施批量变更需二次审批；特权账号有定期改密与审计回溯。
+      '1': There is a documented process for permission requests and approvals; new employees are provisioned
+        based on role templates; someone is responsible for revoking permissions upon termination or transfer
+        (even if just via email notification).
+      '2': Records exist for permission requests, approvals, changes, and deletions; periodic (e.g., quarterly)
+        manual or tool-assisted reconciliation of system permissions against actual needs; administrator
+        accounts have additional controls (e.g., dual approval).
+      '3': Permission provisioning and revocation are automatically triggered in integration with HR/ITSM
+        systems; critical system permissions undergo regular automated reviews with discrepancy reports
+        pushed out; bulk changes to sensitive permissions require secondary approval; privileged accounts
+        have periodic password changes and audit trails.
     basis: inferred
   evidence:
-    value: 权限管理政策文件（写明最小权限与职责分离原则）、角色权限矩阵、权限申请/变更/回收的审批单（含 HCM/ITSM 工单号）、定期权限复核记录（如季度常驻用户清单核对表）、管理员账号授予与复核记录。
+    value: Permission management policy document (stating least privilege and segregation of duties principles),
+      role-permission matrix, approval forms for permission requests/changes/revocations (including HCM/ITSM
+      ticket numbers), periodic permission review records (e.g., quarterly checklist of active user accounts),
+      and administrator account grant and review records.
     basis: inferred
   common_myth:
-    value: 以为上了 IAM/身份管理平台就等于做到最小权限和职责分离。工具只是管道，政策没把「什么角色配什么权限」写死、审批链没落到人、复核没人执行，权限照样越滚越大。
+    value: Assuming that implementing an IAM/identity management platform automatically achieves least
+      privilege and segregation of duties. Tools are just conduits; if policies do not strictly define
+      "what permissions are assigned to which roles," approval chains are not assigned to individuals,
+      and reviews are not executed, permissions will still expand unchecked.
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次全量权限复核是什么时候？对照的是哪一天的组织架构快照？
-    - 转岗员工的老系统权限，从 HR 变更到权限回收，平均隔了多少天？谁负责盯着这个时限？
-    - 业务系统里有多少个账号是「创建后 12 个月从未登录」？什么时候清理？
+    - When was the last full permission review conducted? Against which organizational structure snapshot?
+    - For transferring employees, what is the average time from HR change to permission revocation in
+      legacy systems? Who is responsible for monitoring this timeframe?
+    - How many accounts in business systems have "never logged in for 12 months since creation"? When
+      will they be cleaned up?
     basis: inferred
   regional_note:
     value: null

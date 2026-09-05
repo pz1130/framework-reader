@@ -1,30 +1,46 @@
 control_id: NIST-CSF-2.0:DE.AE-06
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「监控告警只存在于 SIEM 里，没人真正读到或用上」——事件信号若不能及时送达处置人员，检测能力形同虚设，威胁在等待人工查询的空窗期内持续造成影响。
+    value: The concern is that monitoring alerts exist only in the SIEM, with no one actually reading
+      or using them—if event signals are not delivered to response personnel in a timely manner, detection
+      capabilities are rendered ineffective, and threats continue to cause impact during the window while
+      waiting for manual queries.
     basis: inferred
   plain_zh:
-    value: 出了安全事故，要把事件信息按规则发给该知道的人和对应系统，确保有人响应、有工具承接，而不是只看仪表盘或等人的好奇心。
+    value: When a security incident occurs, event information should be sent to the appropriate people
+      and systems according to rules, ensuring someone responds and tools are available to handle it,
+      rather than relying solely on dashboards or people's curiosity.
     basis: inferred
   practice:
     value:
-      '1': 有安全事件的通知流向，知道事件报给谁；告警能发到值班群或工单系统，至少有人登记。
-      '2': 明确按事件等级和受影响系统的通知矩阵；关键事件有人介入，响应动作留痕；工具与人员名单定期核对。
-      '3': 告警分诊自动化，按规则直达对应角色与工具链；通知路径与人员变更联动；对「未送达/未处置即升级」有兜底机制。
+      '1': There is a notification flow for security events, knowing who to report to; alerts can be sent
+        to an on-duty group or ticketing system, with at least someone registering them.
+      '2': A notification matrix based on event severity and affected systems is defined; key events have
+        human intervention, response actions are logged; tools and personnel lists are regularly verified.
+      '3': Alert triage is automated, directly routing to corresponding roles and tool chains based on
+        rules; notification paths are linked to personnel changes; there is a fallback mechanism for 'escalation
+        if not delivered or not handled'.
     basis: inferred
   evidence:
-    value: 事件通知矩阵或升级流程文档、告警/工单系统里的分发记录、值班交接记录、对未读或未确认告警的催办或升级日志、相关人员权限核对记录。
+    value: Event notification matrix or escalation process documents, distribution records in alert/ticketing
+      systems, shift handover records, follow-up or escalation logs for unread or unacknowledged alerts,
+      and records of personnel permission verification.
     basis: inferred
   common_myth:
-    value: 以为「加了告警、有人拉群就算上报」——群里消息刷过去没人确认，却没有升级链路和触发规则，等于把命运交给值班员当天的心情。
+    value: Assuming that 'adding an alert and creating a group chat counts as reporting'—messages scroll
+      by in the group without confirmation, and without an escalation chain and trigger rules, you are
+      leaving the outcome to the on-duty person's mood that day.
     basis: inferred
   auditor_asks:
     value:
-    - 一条 P1 告警从产生到第一个有效处置动作，标准时限是多少？超时找谁？
-    - 通知矩阵里的人员名单最后一次核对是几号？换人后谁来改？
-    - 哪些工具能接收事件数据？有没有一类工具常年收不到告警？
+    - What is the standard time limit from a P1 alert being generated to the first effective response
+      action? Who is contacted if it times out?
+    - When was the personnel list in the notification matrix last verified? Who updates it after personnel
+      changes?
+    - Which tools can receive event data? Are there any tools that have not received alerts for a long
+      time?
     basis: inferred
   regional_note:
     value: null

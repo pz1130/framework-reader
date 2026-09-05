@@ -1,30 +1,44 @@
 control_id: ISO-27002-2022:A.8.8
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「漏洞扫出来就算完」——扫描报告躺在那没人管，真正危险的漏洞一直暴露在系统里，直到被利用才被发现。
+    value: The concern is about 'scanning and then calling it done' — scan reports sit unattended, and
+      truly dangerous vulnerabilities remain exposed in systems until exploited, only to be discovered
+      then.
     basis: inferred
   plain_zh:
-    value: 要有系统化的流程，持续发现技术漏洞，评估风险，在合理时间内修复，并且把修复工作纳入配置管理。
+    value: There should be a systematic process to continuously identify technical vulnerabilities, assess
+      risks, remediate them within a reasonable timeframe, and integrate remediation efforts into configuration
+      management.
     basis: inferred
   practice:
     value:
-      '1': 有漏洞扫描工具定期扫生产环境；扫描结果有人看；高危漏洞有人跟踪到关闭。
-      '2': 漏洞从发现到修复有明确的优先级和时间要求；修复前在测试环境验证补丁；修复记录与漏洞跟踪系统关联。
-      '3': 扫描覆盖范围自动化验证（新资产自动纳入）；漏洞流程与工单系统联动；关键资产有修复时间超期的升级上报机制；定期复盘漏洞趋势。
+      '1': Vulnerability scanning tools are used to regularly scan the production environment; scan results
+        are reviewed by someone; high-risk vulnerabilities are tracked until closure.
+      '2': Vulnerabilities have clear priorities and time requirements from discovery to remediation;
+        patches are validated in a test environment before remediation; remediation records are linked
+        to the vulnerability tracking system.
+      '3': Scan coverage is automatically validated (new assets are automatically included); the vulnerability
+        process is integrated with the ticketing system; critical assets have an escalation mechanism
+        for remediation time overruns; vulnerability trends are regularly reviewed.
     basis: inferred
   evidence:
-    value: 扫描报告与覆盖范围清单；漏洞跟踪记录（发现、优先级、修复时间、复扫确认）；补丁验证记录；修复超期的升级与例外审批；漏洞趋势与分析报告。
+    value: Scan reports and coverage lists; vulnerability tracking records (discovery, priority, remediation
+      time, rescan confirmation); patch validation records; escalations and exception approvals for remediation
+      overruns; vulnerability trend and analysis reports.
     basis: inferred
   common_myth:
-    value: 以为「买了漏洞扫描工具」就等于做到了，扫描报告自动生成、没人跟进修复，漏洞列表一直只增不减。工具只是起点，关键是每个漏洞有没有责任人、有没有截止时间、有没有超时升级。
+    value: Thinking that 'buying a vulnerability scanning tool' equals compliance. Scan reports are auto-generated,
+      no one follows up on remediation, and the vulnerability list only grows. The tool is just the starting
+      point; the key is whether each vulnerability has an owner, a deadline, and escalation for overruns.
     basis: inferred
   auditor_asks:
     value:
-    - 这个季度发现的高危漏洞，平均修复周期是几天？有哪个超期了，为什么？
-    - 新上线一台服务器，多久会被纳入扫描覆盖范围？
-    - 漏洞扫描报告的复扫确认记录在哪？
+    - What is the average remediation cycle for high-risk vulnerabilities discovered this quarter? Which
+      ones exceeded the deadline, and why?
+    - When a new server is brought online, how long until it is included in scan coverage?
+    - Where are the rescan confirmation records for vulnerability scan reports?
     basis: inferred
   regional_note:
     value: null

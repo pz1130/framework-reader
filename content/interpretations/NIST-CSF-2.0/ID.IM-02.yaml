@@ -1,32 +1,51 @@
 control_id: NIST-CSF-2.0:ID.IM-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防止演练和测试做完就归档——不整改、不闭环，下次事故还是同一批问题；同时也遮盖了供应商与第三方参与测试的价值。
+    value: Prevent exercises and tests from being archived after completion without remediation or closure,
+      ensuring the same issues do not recur in the next incident; also highlight the value of supplier
+      and third-party participation in testing.
     basis: inferred
   plain_zh:
-    value: 把内外部安全测试和演练（含灾备、红蓝对抗、供应商联合演练）暴露出的问题正式提出来，并且真正做到改进，不只是记在报告里。
+    value: Formally raise issues exposed by internal and external security tests and exercises (including
+      disaster recovery, red team/blue team, and joint supplier exercises), and genuinely implement improvements,
+      not just record them in reports.
     basis: inferred
   practice:
     value:
-      '1': 安全测试/演练报告中有问题清单；每季度归一次，识别出大问题；改进项有负责人和截止日期。
-      '2': 问题整改有跟踪台账，状态定期刷新；整改完成有验证记录；有分层分级（谁必须改、谁可以缓）；供应商/第三方演练问题也进同一流程。
-      '3': 整改闭环进入变更或风险流程，与预算和资源挂钩；测试结果反哺安全策略与预算计划；问题逾期率有趋势指标，能证明在下降。
+      '1': Security test/exercise reports include an issue list; quarterly consolidation to identify major
+        issues; improvement items have owners and deadlines.
+      '2': Issue remediation has a tracking ledger with regularly updated status; completion verification
+        records exist; issues are prioritized (who must fix, who can defer); supplier/third-party exercise
+        issues also enter the same process.
+      '3': Remediation closure enters change or risk processes, linked to budget and resources; test results
+        feed back into security strategy and budget planning; overdue issue rate has trend indicators
+        demonstrating a decline.
     basis: inferred
   evidence:
-    value: 测试/演练问题清单与整改台账、含责任人与日期的跟踪记录、完成验证证据（复测截图或确认单）、供应商演练问题进台账的样例、定期向管理层提交的测试结论文档。
+    value: Test/exercise issue lists and remediation ledgers, tracking records with owners and dates,
+      completion verification evidence (retest screenshots or confirmation forms), samples of supplier
+      exercise issues in the ledger, and periodic test conclusion documents submitted to management.
     basis: inferred
   common_myth:
-    value: 以为「做完一次渗透测试、出了报告、高管签了字」就满足这条。没有整改跟踪和验证闭环时，报告和风险登记册只会越积越厚，安全水平原地踏步——审计员要的是「问题从发现到关闭的生命周期可查」。
+    value: Assuming that 'completing a penetration test, issuing a report, and obtaining executive sign-off'
+      satisfies this requirement. Without remediation tracking and verification closure, reports and risk
+      registers only accumulate, while the security level remains stagnant—auditors expect a 'lifecycle
+      from issue discovery to closure that is traceable.'
     basis: inferred
   auditor_asks:
     value:
-    - 过去一年测试/演练里最重要的问题，什么时候关掉的？验证证据是什么？
-    - 供应商和第三方参与的演练，问题清单进了哪份台账？谁在跟踪？
+    - When was the most significant issue from the past year's tests/exercises closed? What is the verification
+      evidence?
+    - For exercises involving suppliers and third parties, which ledger contains the issue list? Who is
+      tracking it?
     basis: inferred
   regional_note:
-    value: 欧洲在 DORA 框架下对供应商联合测试与数字化韧性测试更强调整改闭环与报告期限；美国则更看重测试覆盖范围与整改计划是否有治理层批准——两边对「改完怎么证明」的追问重点不同。
+    value: In Europe, under the DORA framework, there is a stronger emphasis on remediation closure and
+      reporting deadlines for joint supplier testing and digital operational resilience testing; in the
+      US, more emphasis is placed on test coverage scope and whether remediation plans have governance
+      approval—the focus of 'how to prove completion' differs between the two.
     basis: inferred
 interview:
   questions: []

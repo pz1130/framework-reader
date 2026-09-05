@@ -1,31 +1,48 @@
 control_id: NIST-CSF-2.0:DE.AE-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「只盯单点告警、各看各的屏」——攻击者很少只触发一个信号，真正的入侵往往藏在多源数据的交集里；没有关联分析，安全事故要等到业务已受损才会被当成一回事。
+    value: The concern is about 'only watching single-point alerts and each monitoring screen separately'
+      — attackers rarely trigger just one signal; real intrusions often hide in the intersection of multi-source
+      data. Without correlation analysis, security incidents are not taken seriously until business has
+      already been impacted.
     basis: inferred
   plain_zh:
-    value: 把网络设备、主机日志、威胁情报、应用日志、人员行为等不同来源的信息放在一起做关联分析，从中发现单看任何一路信号都发现不了的攻击迹象，并让分析结果能支撑后续处置。
+    value: Correlate information from different sources, such as network devices, host logs, threat intelligence,
+      application logs, and personnel behavior, to identify attack indicators that would not be visible
+      by looking at any single signal alone, and ensure that the analysis results can support subsequent
+      response actions.
     basis: inferred
   practice:
     value:
-      '1': 有集中日志平台能接关键设备的日志，安全人员会在事情发生后手工翻日志找关联。
-      '2': 有固定的关联规则库（如登录失败+特权命令执行+异常外连），能命中已知攻击模式；关联结果有告警、有专人跟进。
-      '3': 关联分析覆盖攻击链阶段，结合威胁情报与资产上下文；新攻击模式通过定期更新规则和回溯检测来补齐；关联结果直接驱动事件升级与处置流程。
+      '1': There is a centralized log platform that can ingest logs from key devices, and security personnel
+        manually review logs to find correlations after an event occurs.
+      '2': There is a fixed set of correlation rules (e.g., login failures + privileged command execution
+        + abnormal outbound connections) that can detect known attack patterns; correlation results generate
+        alerts with dedicated personnel following up.
+      '3': Correlation analysis covers attack chain stages, integrating threat intelligence and asset
+        context; new attack patterns are addressed through regular rule updates and retrospective detection;
+        correlation results directly drive incident escalation and response processes.
     basis: inferred
   evidence:
-    value: 日志统一管理平台与接入清单、关联规则列表及定期更新记录、告警事件分析记录、关联规则命中事件的处置工单、定期报告展示多源关联发现的事件。
+    value: Unified log management platform and ingestion list, correlation rule list and periodic update
+      records, alert event analysis records, incident tickets for events triggered by correlation rules,
+      and periodic reports showcasing events discovered through multi-source correlation.
     basis: inferred
   common_myth:
-    value: 以为「SIEM 上线了、日志都接进来了」就是做到了关联分析。多数 SIEM 只是把日志堆在同一个搜索框里，规则没建、命中没人看、情报没接进来——那不是「关联」，是「存档」。
+    value: The misconception is that 'once the SIEM is deployed and logs are ingested, correlation analysis
+      is achieved.' Most SIEMs simply pile logs into the same search box; rules are not built, hits are
+      not reviewed, and intelligence is not integrated — that is not 'correlation,' it is 'archiving.'
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次由关联分析发现、单点告警没发现的攻击或可疑行为是什么？
-    - 你们有哪些关联规则？这些规则上次更新是哪次安全事件或情报驱动改的？
-    - 威胁情报是怎么接入关联分析的——人工查还是系统对接？
-    - 一个关联告警命中后，从产生到有人处置的平均时间你清楚吗？
+    - What was the most recent attack or suspicious behavior discovered through correlation analysis that
+      was not detected by single-point alerts?
+    - What correlation rules do you have? What security event or intelligence drove the last update to
+      these rules?
+    - How is threat intelligence integrated into correlation analysis — manual lookup or system integration?
+    - Do you know the average time from when a correlation alert fires to when someone handles it?
     basis: inferred
   regional_note:
     value: null

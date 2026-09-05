@@ -1,30 +1,48 @@
 control_id: ISO-27002-2022:A.5.26
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「出了事没人接、接不住、或各团队各打各的」——安全事件如果处置混乱，影响面扩大、恢复变慢，损失和合规风险都会被放大。
+    value: The concern is that "when an incident occurs, no one takes charge, no one can handle it, or
+      teams act independently"—if security incidents are handled chaotically, the impact expands, recovery
+      slows, and losses and compliance risks are amplified.
     basis: inferred
   plain_zh:
-    value: 建立一套事件响应能力，从准备、检测、分析、遏制、根除到恢复都有既定流程，并且事件处置要与业务连续性计划协同，事后还要把教训固化回流程、培训和测试里。
+    value: Establish an incident response capability with defined processes from preparation, detection,
+      analysis, containment, eradication, to recovery; incident handling should be coordinated with business
+      continuity plans; after the event, lessons learned should be fed back into processes, training,
+      and testing.
     basis: inferred
   practice:
     value:
-      '1': 有事件响应计划和基本处置流程；指定了事件响应负责人；重大事件知道找谁、按什么步骤走。
-      '2': 事件处置有记录与分类分级；与业务连续性团队有对接机制；每次事件后有复盘并把改进项落实到流程或培训中。
-      '3': 事件响应的严谨度、强度、范围与结果在全组织内可比、可预测；定期开展演练验证流程有效性；复盘改进项有跟踪闭环并纳入测试。
+      '1': An incident response plan and basic handling procedures exist; an incident response lead is
+        designated; for major incidents, it is clear who to contact and what steps to follow.
+      '2': Incident handling is documented and classified/graded; there is a coordination mechanism with
+        the business continuity team; after each incident, a review is conducted, and improvement items
+        are incorporated into processes or training.
+      '3': The rigor, intensity, scope, and results of incident response are comparable and predictable
+        across the organization; regular exercises are conducted to validate process effectiveness; review
+        improvement items have a tracking loop and are included in testing.
     basis: inferred
   evidence:
-    value: 事件响应计划与流程文档、事件记录（含时间线、处置动作、影响）、事件分级标准、复盘报告及改进项跟踪清单、演练计划与总结。
+    value: Incident response plan and process documents, incident records (including timeline, actions
+      taken, impact), incident classification criteria, post-incident review reports and improvement item
+      tracking lists, exercise plans and summaries.
     basis: inferred
   common_myth:
-    value: 以为「建了个事件响应群、有值班手机」就算有处置能力——群里没人按流程走、没有分级、没有记录、没有复盘，出了事全凭个人经验救火，审计员一眼看穿。
+    value: Thinking that "creating an incident response group chat and having an on-call phone" constitutes
+      response capability—if no one in the group follows procedures, there is no classification, no documentation,
+      no review, and incidents are handled based on personal experience, auditors will see through it
+      immediately.
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次真实安全事件是几月几号？从检测到遏制花了多久？流程文件里写的目标时间是多少？
-    - 事件响应计划最近一次测试是什么时候？测试发现了哪三个改进项？
-    - 事件处理记录里有没有分类分级？最高级别事件谁有权拍板遏制措施？
+    - When was the last real security incident? How long did it take from detection to containment? What
+      is the target time in the process document?
+    - When was the last test of the incident response plan? What three improvement items were identified
+      during the test?
+    - Are incident handling records classified and graded? Who has the authority to decide containment
+      measures for the highest-level incidents?
     basis: inferred
   regional_note:
     value: null

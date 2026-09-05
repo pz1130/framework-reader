@@ -1,30 +1,47 @@
 control_id: NIST-CSF-2.0:GV.RM-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「风险信息卡在安全部内部」——供方出问题、业务上线新系统、高管问风险态势时，消息传不到该拍板的人那里，决策层在真出事前根本不知道存在的风险。
+    value: The concern is that risk information stays stuck inside the security department—when suppliers
+      have issues, business launches new systems, or executives ask about the risk posture, the message
+      does not reach the decision-makers, and the leadership is unaware of existing risks before an actual
+      incident occurs.
     basis: inferred
   plain_zh:
-    value: 在组织内打通网络安全风险（包括供方和第三方带来的）的传递渠道：谁发现风险、传给谁、谁负责处置、谁最终拍板，这条线要明确且实际能走通。
+    value: 'Establish clear and operable channels for communicating cybersecurity risks (including those
+      from suppliers and third parties) within the organization: who identifies risks, who they are communicated
+      to, who is responsible for handling them, and who makes the final decision—this chain must be explicit
+      and functional.'
     basis: inferred
   practice:
     value:
-      '1': 有安全联系人名单；风险能通过邮件或例会传递到相关负责人，有基本记录。
-      '2': 正式的风险上报与沟通机制（如例会、工单、上报单）；供方风险有专人对接；升级路径成文且相关部门知晓。
-      '3': 风险沟通渠道按风险等级分线（日常、升级、危机），定期演练沟通有效性；重大风险自动通知决策层；第三方风险有明确对接窗口与响应时限。
+      '1': A list of security contacts exists; risks can be communicated to responsible personnel via
+        email or regular meetings, with basic records maintained.
+      '2': Formal risk reporting and communication mechanisms (e.g., regular meetings, tickets, escalation
+        forms) are in place; supplier risks have dedicated points of contact; escalation paths are documented
+        and known to relevant departments.
+      '3': Risk communication channels are tiered by risk level (routine, escalation, crisis), with periodic
+        drills to test communication effectiveness; major risks automatically notify the leadership; third-party
+        risks have clear points of contact and response timeframes.
     basis: inferred
   evidence:
-    value: 风险上报流程文件、供方风险联系人清单、安全风险会议纪要、重大风险上报与响应记录（含时间线）、沟通机制演练或测试记录。
+    value: Risk reporting process documents, supplier risk contact lists, security risk meeting minutes,
+      major risk reporting and response records (including timelines), and communication mechanism drill
+      or test records.
     basis: inferred
   common_myth:
-    value: 以为「建了个钉钉/企业微信群」就算建立了沟通线。群不等于机制——谁在群里、出事时谁必须回应、多久必须回应、群记录能否作为审计证据，这些没定死，群只是聊天工具，不是沟通线。
+    value: Assuming that creating a DingTalk or WeChat Work group establishes a communication line. A
+      group is not a mechanism—who is in the group, who must respond during an incident, how quickly they
+      must respond, and whether group records can serve as audit evidence are not defined; without these,
+      the group is just a chat tool, not a communication line.
     basis: inferred
   auditor_asks:
     value:
-    - 一个高危供方风险从发现到上报给决策层，标准路径是哪几步？每一步时限是什么？
-    - 安全负责人休假时，风险上报的替代联系人是谁？
-    - 最近一次跨部门风险沟通是什么时候？有记录吗？
+    - What is the standard path for a high-risk supplier risk from identification to reporting to the
+      leadership? What are the timeframes for each step?
+    - When the security lead is on leave, who is the alternate contact for risk reporting?
+    - When was the last cross-departmental risk communication? Are there records?
     basis: inferred
   regional_note:
     value: null

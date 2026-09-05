@@ -1,29 +1,46 @@
 control_id: NIST-CSF-2.0:RS.MA-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事件处置只在自家围墙内转」——供应链、云服务商、外包运维这些第三方手里掐着你的关键资产，出事时不联动，他们那边火烧起来你这边还不知道，等发现时账已经算不清了。
+    value: The concern is that incident handling only occurs within one's own organization—third parties
+      such as supply chain, cloud service providers, and outsourced operations hold critical assets. If
+      there is no coordination during incidents, you may not be aware when they are affected, and by the
+      time you discover it, the impact is difficult to assess.
     basis: inferred
   plain_zh:
-    value: 应急预案不是给自己看的，事发时要按约定把相关方拉进来一起处置，该通知的通知、该升级的升级、该接管的接管，并且平时就要有对接窗口。
+    value: Emergency plans are not just for internal use; during an incident, relevant parties should
+      be brought in for coordinated response as agreed, including notifications, escalations, and takeovers,
+      and there should be designated points of contact in place beforehand.
     basis: inferred
   practice:
     value:
-      '1': 应急预案里写明关键第三方是谁、联系方式是什么、什么事件必须通知，出事时能找到人。
-      '2': 与关键第三方有正式联动协议，明确事件通报时限、各自职责、升级路径，且至少演练过一次或做过桌面推演。
-      '3': 第三方联动是应急预案的固定环节，包含实时情报同步接口，每次真实事件或演练后有复盘，协议随供方变更而更新。
+      '1': The emergency plan identifies key third parties, their contact information, and the types of
+        incidents that require notification, ensuring they can be reached during an incident.
+      '2': Formal coordination agreements with key third parties are in place, specifying incident notification
+        timelines, respective responsibilities, and escalation paths, and at least one drill or tabletop
+        exercise has been conducted.
+      '3': Third-party coordination is a standard component of the emergency plan, including real-time
+        intelligence sharing interfaces, with post-incident or post-exercise reviews, and agreements are
+        updated when suppliers change.
     basis: inferred
   evidence:
-    value: 应急预案里的第三方联络清单、与供方签的事件联动或通报协议、演练或真实事件的联动记录、复盘会议纪要与改进项。
+    value: Third-party contact lists in emergency plans, incident coordination or notification agreements
+      with suppliers, records of coordination during drills or real incidents, and review meeting minutes
+      with improvement actions.
     basis: inferred
   common_myth:
-    value: 以为「甲方和安全乙方都有应急预案」就等于满足联动。两边各备各的预案、没有约定通报时限和对接人，事件发生时互相打不通电话、口径对不上，等于没联动。
+    value: Assuming that having emergency plans on both the client and security provider sides is sufficient
+      for coordination. If each side has its own plan without agreed notification timelines and points
+      of contact, they may not be able to reach each other or align on messaging during an incident, which
+      means there is no effective coordination.
     basis: inferred
   auditor_asks:
     value:
-    - 去年真实事件或演练里，有几次是按预案通知了第三方的？距发现到通知过了多久？
-    - 关键云服务商变更了接口人，你们的应急联络清单同步更新的流程是什么？
+    - In the past year, during real incidents or drills, how many times were third parties notified according
+      to the plan? What was the time between detection and notification?
+    - When a key cloud service provider changes its point of contact, what is your process for updating
+      the emergency contact list?
     basis: inferred
   regional_note:
     value: null

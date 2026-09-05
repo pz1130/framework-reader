@@ -1,29 +1,48 @@
 control_id: ISO-27002-2022:A.8.4
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是源码、构建产物和版本库凭据被当成普通文件随便给——公司最值钱的代码资产一旦落到无业务必要的人手里，泄漏路径就不可控，而且改代码的人要是没受控，相当于给后门留了门。
+    value: The concern is that source code, build artifacts, and repository credentials might be treated
+      as ordinary files and shared casually—once the company's most valuable code assets fall into the
+      hands of people without business necessity, the leakage path becomes uncontrollable, and if those
+      who modify code are not controlled, it is equivalent to leaving a door open for backdoors.
     basis: inferred
   plain_zh:
-    value: 只有经过批准、确有工作需要的角色才能碰源码和构建系统；访问要按策略执行，变更要受限，能碰仓库、能触发构建、能合并分支的人必须能对上号。
+    value: Only approved roles with a genuine work need can access source code and build systems; access
+      must be enforced according to policy, changes must be restricted, and those who can access repositories,
+      trigger builds, or merge branches must be identifiable.
     basis: inferred
   practice:
     value:
-      '1': 源码仓库按角色开访问权限，新人入职只给最小权限；离开或调岗时权限回收有流程；有权限名单可查。
-      '2': 对源码及构建系统按角色划分权限并定期评审；代码变更走审批合并流程，管理员账号独立；高权限操作有日志可追溯。
-      '3': 源码与构建系统权限与身份管理联动，变更自动审批并留痕；构建产物和机密库（密钥、令牌等）访问被单独管控；异常访问（如非工作时间拉取全量代码）有告警和阻断。
+      '1': Source repositories grant access permissions based on roles; new employees receive only least
+        privilege; there is a process for revoking permissions upon departure or role change; an accessible
+        list of authorized personnel exists.
+      '2': Permissions for source code and build systems are divided by role and reviewed periodically;
+        code changes follow an approval and merge process; administrator accounts are separate; high-privilege
+        operations are logged for traceability.
+      '3': Source code and build system permissions are integrated with identity management; changes are
+        automatically approved and logged; access to build artifacts and secret stores (keys, tokens,
+        etc.) is separately controlled; abnormal access (e.g., pulling full code outside working hours)
+        triggers alerts and blocking.
     basis: inferred
   evidence:
-    value: 权限矩阵或角色定义文档、源码仓库与构建系统的访问控制列表、权限评审记录、代码合并审批记录、高权限操作审计日志、密钥与令牌的单独访问授权记录。
+    value: Permission matrix or role definition documents, access control lists for source repositories
+      and build systems, permission review records, code merge approval records, audit logs of high-privilege
+      operations, and separate access authorization records for keys and tokens.
     basis: inferred
   common_myth:
-    value: 以为「代码仓库有私有权限、不公开访问」就算限制到位——实际常见问题是团队内所有人对全仓库可读或可写，管理员账号多人共用，离职后权限回收依赖口头提醒，审计时拿不出权限清单和对应关系。
+    value: The misconception is that 'code repositories have private permissions and are not publicly
+      accessible' is sufficient—but common issues include all team members having read or write access
+      to all repositories, shared administrator accounts, permission revocation after departure relying
+      on verbal reminders, and an inability to provide permission lists and mappings during audits.
     basis: inferred
   auditor_asks:
     value:
-    - 你们源码仓库的访问权限名单上次全量评审是什么时候？谁批准的变更？
-    - 能触发生产构建或合并到主干的账号有哪些？这些人对应什么岗位？
+    - When was the last full review of the access permission list for your source repositories? Who approved
+      the changes?
+    - Which accounts can trigger production builds or merge to the main branch? What positions do these
+      correspond to?
     basis: inferred
   regional_note:
     value: null

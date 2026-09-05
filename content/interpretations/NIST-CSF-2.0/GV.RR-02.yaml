@@ -1,30 +1,51 @@
 control_id: NIST-CSF-2.0:GV.RR-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「责任分工写在组织图上，但出事时没人认账」——安全风险管理职责如果没有正式授权和跨部门明确边界，事件响应、风险处置、合规整改就会出现推诿或空转，审计时拿不出一份谁能拍板、谁必须执行的文件。
+    value: The concern is that 'responsibility division is written on the organizational chart, but when
+      an incident occurs, no one acknowledges accountability' — if security risk management responsibilities
+      lack formal authorization and clear cross-departmental boundaries, incident response, risk treatment,
+      and compliance remediation will result in buck-passing or inaction. During audits, you cannot produce
+      a document stating who has the authority to make decisions and who must execute.
     basis: inferred
   plain_zh:
-    value: 把谁负责识别风险、谁有权处置风险、谁对结果承担责任写清楚，让岗位上的每个人都知道自己的安全职责边界，并且在实际运行中真的有权限和资源去执行，而不是只挂个名。
+    value: Clearly define who is responsible for identifying risks, who has the authority to treat risks,
+      and who is accountable for outcomes, so that every person in a role knows their security responsibility
+      boundaries, and in actual operation, they truly have the authority and resources to execute, rather
+      than merely holding a nominal title.
     basis: inferred
   practice:
     value:
-      '1': 有一份书面文件列出主要安全风险岗位（如CISO、部门接口人）的职责与权限；新任命时明确告知。
-      '2': 职责分工细化到具体角色（如云平台负责人、数据owner），有岗位说明与授权书；跨部门职责有书面交接与协同机制。
-      '3': 职责与权限嵌入到招聘、转岗、绩效和晋升流程；职责变更自动触发权限和汇报关系调整；定期有职责履行情况的回顾与证据。
+      '1': There is a written document listing the responsibilities and authorities of key security risk
+        roles (e.g., CISO, departmental liaisons); new appointees are clearly informed.
+      '2': Responsibility division is detailed to specific roles (e.g., cloud platform owner, data owner),
+        with job descriptions and authorization letters; cross-departmental responsibilities have written
+        handover and coordination mechanisms.
+      '3': Responsibilities and authorities are embedded in recruitment, transfer, performance, and promotion
+        processes; responsibility changes automatically trigger adjustments in authorities and reporting
+        lines; there are periodic reviews and evidence of responsibility fulfillment.
     basis: inferred
   evidence:
-    value: 安全风险管理职责说明、岗位授权书、组织架构图（含安全职责标注）、职责传达记录、跨部门安全协作会议纪要或合同务条款。
+    value: Security risk management responsibility descriptions, role authorization letters, organizational
+      charts (annotated with security responsibilities), responsibility communication records, cross-departmental
+      security collaboration meeting minutes or contractual clauses.
     basis: inferred
   common_myth:
-    value: 以为「信息部门墙上挂了安全责任牌」就算职责明确。真正要验证的是责任人的权限是否匹配——比如责信息部负责修复漏洞，但没有服务器变更权限，那这个职责就是空的，审计一追就被打穿。
+    value: It is assumed that 'hanging a security responsibility sign on the wall of the IT department'
+      constitutes clear responsibility. What truly needs verification is whether the responsible person's
+      authority matches — for example, if the IT department is responsible for fixing vulnerabilities
+      but lacks server change authority, then that responsibility is empty, and an audit will quickly
+      expose it.
     basis: inferred
   auditor_asks:
     value:
-    - 数据泄露时，最终拍板处置方案的人是谁？这个权限写在哪份文件里？
-    - 安全职责挂在岗位还是挂在人头？调岗后新来的负责人有书面授权吗？
-    - 业务部门的安全接口人知道自己有权叫停高风险变更吗？有实际行使过吗？
+    - In the event of a data breach, who is the final decision-maker for the response plan? In which document
+      is this authority written?
+    - Are security responsibilities attached to positions or to individuals? After a transfer, does the
+      new responsible person have written authorization?
+    - Do business department security liaisons know they have the authority to halt high-risk changes?
+      Have they actually exercised it?
     basis: inferred
   regional_note:
     value: null

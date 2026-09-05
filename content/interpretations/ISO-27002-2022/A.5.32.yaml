@@ -1,29 +1,46 @@
 control_id: ISO-27002-2022:A.5.32
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「软件随便装、代码随便抄、文档随便传」带来的法律与合规风险——未经授权使用、复制、分发受版权保护的成果，轻则吃诉讼罚款，重则让整个供应链的授权资质被吊销。
+    value: To prevent legal and compliance risks arising from arbitrary software installation, code copying,
+      and document transmission—unauthorized use, reproduction, or distribution of copyrighted materials
+      can lead to lawsuits and fines, and in severe cases, revocation of the entire supply chain's licensing
+      qualifications.
     basis: inferred
   plain_zh:
-    value: 让软件、代码、文档等知识成果的使用方式符合合同和版权法：该买许可的买，该限制副本数的限制，该禁止的盗版和未授权传播要管住。
+    value: 'Ensure that the use of knowledge assets such as software, code, and documents complies with
+      contracts and copyright law: purchase licenses where required, restrict the number of copies as
+      necessary, and manage prohibited piracy and unauthorized distribution.'
     basis: inferred
   practice:
     value:
-      '1': 有正版软件清单；采购走正规渠道；禁止员工私自安装未授权软件；发现盗版能下架。
-      '2': 软件资产管理有台账并与采购记录对得上；限制批量许可的副本数和分发范围；文件共享与P2P工具有使用规定且能追踪。
-      '3': 软件使用与授权自动盘点、异常告警；对外发布、外包交付的代码和文档有知识产权审查流程；离职员工的知识成果交接有明确约定和回收记录。
+      '1': Maintain an inventory of licensed software; procure through official channels; prohibit employees
+        from installing unauthorized software; remove pirated software when discovered.
+      '2': Maintain a software asset register that reconciles with procurement records; restrict the number
+        of copies and distribution scope of volume licenses; have usage policies for file sharing and
+        P2P tools with traceability.
+      '3': Automatically inventory software usage and licenses with anomaly alerts; implement intellectual
+        property review processes for externally released and outsourced code and documents; have clear
+        agreements and retrieval records for knowledge asset handover when employees leave.
     basis: inferred
   evidence:
-    value: 软件资产台账、采购合同与许可证、软件使用监控或审计日志、P2P/文件共享使用策略与阻断记录、知识产权条款（含员工协议与供应商合同）、违规处置记录。
+    value: Software asset register, procurement contracts and licenses, software usage monitoring or audit
+      logs, P2P/file sharing usage policies and blocking records, intellectual property clauses (including
+      employee agreements and supplier contracts), and violation handling records.
     basis: inferred
   common_myth:
-    value: 以为「买了软件授权书就万事大吉」——很多授权是按设备数或用户数限量的，超装超分照样违约。还有团队把重点放在防外盗、却对内部员工把代码文档上传到个人网盘或公网仓库视而不见。
+    value: Assuming that 'purchasing a software license is sufficient'—many licenses are limited by device
+      or user count, and exceeding installation or distribution still constitutes a breach. Additionally,
+      some teams focus on preventing external theft but overlook internal employees uploading code and
+      documents to personal cloud drives or public repositories.
     basis: inferred
   auditor_asks:
     value:
-    - 批量许可的软件实际安装数是多少？许可数是多少？怎么证明没超？
-    - 员工离职时，他手里的代码和文档怎么交接、哪些带走是被允许的？依据是什么？
+    - What is the actual number of installations for volume-licensed software? What is the licensed number?
+      How is compliance proven?
+    - When employees leave, how is their code and documentation handed over, and what is allowed to be
+      taken? What is the basis?
     basis: inferred
   regional_note:
     value: null

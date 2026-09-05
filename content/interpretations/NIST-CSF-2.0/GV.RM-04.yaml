@@ -1,29 +1,48 @@
 control_id: NIST-CSF-2.0:GV.RM-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「风险处置方式没有统一口径」——业务部门出事按自己的方便来，有的人一上来就花钱买保险、有的人压住不上报、有的人直接砍业务，没有管理层定过的应对策略，处置决定全凭感觉和职位。
+    value: The concern is the lack of a unified approach to risk treatment—business units handle incidents
+      based on their own convenience; some immediately buy insurance, some suppress reporting, and some
+      directly cut business operations, without a management-defined response strategy, leaving treatment
+      decisions to personal judgment and position.
     basis: inferred
   plain_zh:
-    value: 要让管理层先定好「遇到什么风险时，我们是接受、规避、转移还是缓解」，把这句话变成成文战略，并让相关部门都收到、看懂，处置时按这个口径走。
+    value: Management should first define 'for what risks we accept, avoid, transfer, or mitigate,' turning
+      this into a documented strategy, and ensure relevant departments receive and understand it, so treatment
+      follows this approach.
     basis: inferred
   practice:
     value:
-      '1': 有一份经管理层批准的战略文件，里面至少写清楚四类处置选项（接受、规避、转移、缓解）各自的适用边界；关键部门负责人能说出文件的存放位置。
-      '2': 风险处置战略与具体风险的处置决定有对照记录；每类处置选项都有指定负责人或审批路径；新入职或新晋管理者能被指引到这份文件。
-      '3': 处置战略不是一次性文件——定期与实际处置案例对账；有案例显示业务想走「接受」而安全说不行的分歧是怎么被规则解决的；重大威胁变化时战略主动修订而非等出事。
+      '1': There is a management-approved strategy document that clearly defines the applicable boundaries
+        for at least four treatment options (accept, avoid, transfer, mitigate); key department heads
+        can state the document's location.
+      '2': There is a cross-reference record between the risk treatment strategy and specific risk treatment
+        decisions; each treatment option has a designated owner or approval path; new hires or newly promoted
+        managers are directed to this document.
+      '3': The treatment strategy is not a one-time document—it is regularly reconciled with actual treatment
+        cases; there are cases showing how disagreements, such as business wanting to 'accept' while security
+        says no, are resolved by rules; the strategy is proactively revised upon major threat changes
+        rather than waiting for incidents.
     basis: inferred
   evidence:
-    value: 经批准的处置战略文件、传达记录（邮件或培训签到）、具体风险处置决定与战略对得上的案例、例外审批记录、修订历史与触发理由。
+    value: Approved treatment strategy document, communication records (e.g., emails or training sign-in
+      sheets), cases where specific risk treatment decisions align with the strategy, exception approval
+      records, revision history and triggering reasons.
     basis: inferred
   common_myth:
-    value: 以为「每个风险在登记表上写了『缓解』二字」就等于有处置战略。登记表上的词只是结果标签，不是战略——战略要讲的是「什么条件下我们整体倾向接受、什么条件下必须转移」。没有这层前提，登记表上的处置词就是事后编的。
+    value: The misconception is that writing 'mitigate' for each risk in the register equates to having
+      a treatment strategy. The terms in the register are just outcome labels, not strategy—strategy should
+      articulate 'under what conditions we generally lean toward acceptance and when transfer is mandatory.'
+      Without this premise, the treatment terms in the register are retroactively fabricated.
     basis: inferred
   auditor_asks:
     value:
-    - 一个被标记为『接受』的风险，接受的决定是谁签的？依据战略文件哪一条？
-    - 战略文件说『高影响事件不得接受』，但实际登记表里有高影响事件标了『接受』——这两者怎么对上的？
+    - For a risk marked as 'accepted,' who signed off on the acceptance decision? Which clause of the
+      strategy document supports it?
+    - The strategy document states 'high-impact events must not be accepted,' but the actual register
+      shows a high-impact event marked as 'accepted'—how do these reconcile?
     basis: inferred
   regional_note:
     value: null

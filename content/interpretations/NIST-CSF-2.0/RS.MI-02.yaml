@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:RS.MI-02
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事件响应停在隔离与遏制就完事」——恶意组件、后门、入侵痕迹不清除干净，业务一恢复又立刻复发，甚至把攻击者重新带进门。
+    value: The concern is that incident response stops at isolation and containment—malicious components,
+      backdoors, and traces of intrusion are not fully removed, so business operations recur immediately
+      upon recovery, or even let attackers back in.
     basis: inferred
   plain_zh:
-    value: 事件处置末段，要把攻击者在系统里留下的东西（恶意软件、后门账号、持久化机制、可疑配置）彻底清掉，确认环境干净后才恢复业务。
+    value: At the end of incident handling, thoroughly remove what attackers left in the system (malware,
+      backdoor accounts, persistence mechanisms, suspicious configurations), and confirm the environment
+      is clean before restoring business operations.
     basis: inferred
   practice:
     value:
-      '1': 有专人负责清除阶段；对已知恶意软件和后门有标准清理动作；清理完成后才恢复服务。
-      '2': 清除流程有书面预案，覆盖持久化机制排查、账号与启动项核查、配置回滚；清除动作有记录可查。
-      '3': 清除前有取证快照保存证据；清除后做针对性验证（如台账核查、安全扫描、行为监控）；确认干净走正式恢复审批。
+      '1': A designated person is responsible for the eradication phase; standard cleanup actions exist
+        for known malware and backdoors; services are restored only after cleanup is complete.
+      '2': The eradication process has a documented plan covering persistence mechanism checks, account
+        and startup item verification, and configuration rollback; eradication actions are recorded and
+        traceable.
+      '3': Before eradication, take forensic snapshots to preserve evidence; after eradication, conduct
+        targeted verification (e.g., asset inventory checks, security scans, behavior monitoring); confirm
+        cleanliness and proceed with formal restoration approval.
     basis: inferred
   evidence:
-    value: 事件处置单中的清除阶段记录、清理操作日志（账号删除、文件移除、配置回滚）、恢复前验证报告（扫描结果、服务器台账复查）、残余风险处理说明。
+    value: Eradication phase records in incident handling tickets, cleanup operation logs (account deletion,
+      file removal, configuration rollback), pre-restoration verification reports (scan results, server
+      asset inventory rechecks), and residual risk treatment explanations.
     basis: inferred
   common_myth:
-    value: 以为「隔离了、杀毒扫过一遍」就算完成清除。攻击者常留多套持久化手段，没有对照初始感染向量和系统基线逐项排查，扫完病毒、业务一恢复，后门自动复活。
+    value: Assuming that 'isolating and running an antivirus scan' completes eradication. Attackers often
+      leave multiple persistence mechanisms; without systematically checking against the initial infection
+      vector and system baseline, after the scan and business recovery, backdoors automatically revive.
     basis: inferred
   auditor_asks:
     value:
-    - 这个事件的清除清单是什么？你凭什么判断已清干净而非只是没扫到？
-    - 恢复服务前做了哪几项验证？验证结果谁确认的？
+    - What is the eradication checklist for this incident? How do you determine it is clean rather than
+      just not detected?
+    - What verifications were performed before restoring services? Who confirmed the verification results?
     basis: inferred
   regional_note:
     value: null

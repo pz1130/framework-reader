@@ -1,33 +1,58 @@
 control_id: NIST-CSF-2.0:ID.RA-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 这条控制防的是风险登记册里只记「有漏洞」这种单点事实，却没有把漏洞与具体威胁、被利用后的业务影响和发生概率串起来——这样漏洞扫描结果就是一份没人敢拍板的废纸，决策者只能凭感觉分优先级。
+    value: This control guards against the risk register containing only single-point facts like 'has
+      vulnerabilities' without linking vulnerabilities to specific threats, the business impact of exploitation,
+      and the likelihood of occurrence—thus making vulnerability scan results a useless piece of paper
+      that no one dares to sign off on, leaving decision-makers to prioritize based on gut feeling.
     basis: inferred
   plain_zh:
-    value: 对每一个已知的弱点（漏洞）明确：什么样的威胁会利用它、利用成功后业务受多大影响、这种发生的可能性有多高，并把这三个答案成文记录下来，作为风险处置的依据。
+    value: 'For each known weakness (vulnerability), specify: what threat could exploit it, how much business
+      impact would result if successfully exploited, and how likely this occurrence is; document these
+      three answers in writing as the basis for risk treatment.'
     basis: inferred
   practice:
     value:
-      '1': 漏洞扫描和渗透测试的结果有记录；对已确认的漏洞有初步的影响和可能性评估，哪怕只用高/中/低来分。
-      '2': 评估过程有固定方法，输入包括资产价值、现有控制措施和真实威胁情报；每一次评估（源、日期、方法、参与者）可追溯；重大漏洞的影响和可能性有书面意见。
-      '3': 评估结果直接驱动风险处置与预算分配，形成「威胁-漏洞-影响」三元组的风险场景库；系统内的评估会随资产变更、威胁情报变化而自动触发重新评估，不是静态存档。
+      '1': Records exist of vulnerability scan and penetration test results; confirmed vulnerabilities
+        have preliminary impact and likelihood assessments, even if only classified as high/medium/low.
+      '2': The assessment process follows a defined methodology, with inputs including asset value, existing
+        controls, and real threat intelligence; each assessment (source, date, method, participant) is
+        traceable; material vulnerabilities have documented opinions on impact and likelihood.
+      '3': Assessment results directly drive risk treatment and budget allocation, forming a risk scenario
+        library of 'threat-vulnerability-impact' triples; assessments within the system are automatically
+        triggered for re-assessment upon asset changes or threat intelligence updates, not remaining as
+        static archives.
     basis: inferred
   evidence:
-    value: 覆盖威胁-漏洞-影响/可能性字段的风险评估报告；任务分配给特定漏洞的评估工单或决策记录；评估方法或分级标准的定义文件；扫描与评估日期的可追溯记录；评估结果与风险处置决定之间的对应矩阵。
+    value: Risk assessment reports covering threat-vulnerability-impact/likelihood fields; assessment
+      work orders or decision records assigning tasks to specific vulnerabilities; definition documents
+      for assessment methodology or rating criteria; traceable records of scan and assessment dates; a
+      mapping matrix between assessment results and risk treatment decisions.
     basis: inferred
   common_myth:
-    value: 以为扫描器出了「高中低危」的列表就满足这条——那是漏洞修补清单，不是风险评估。真正的差异在于：每个高危漏洞后面有没有写「可能被谁利用，击穿后最坏影响是什么，可能性有多大」这三个问题，恰恰是这三个答案决定了你能不能跳过修低危、集中资源打高危。
+    value: 'Assuming that a scanner outputting a list of ''high/medium/low risk'' satisfies this control—that
+      is a vulnerability remediation list, not a risk assessment. The real difference lies in whether
+      behind each high-risk vulnerability there are written answers to the three questions: ''who might
+      exploit it, what is the worst-case impact if breached, and how likely is it''; it is precisely these
+      three answers that determine whether you can skip fixing low-risk items and concentrate resources
+      on high-risk ones.'
     basis: inferred
   auditor_asks:
     value:
-    - 把这个高危漏洞的原始扫描报告拿过来——上面写的可能性和影响是谁评估的？用什么方法？签过字没有？
-    - 如果某个漏洞的影响是「客户数据泄露」，那可能性参数用了哪份威胁情报来支撑？还是拍脑袋定的？
-    - 漏洞扫描之后隔了多久才完成影响/可能性评估？有没有一个SLA？
+    - Bring the original scan report for this high-risk vulnerability—who assessed the likelihood and
+      impact? Using what method? Was it signed off?
+    - If the impact of a vulnerability is 'customer data breach,' which threat intelligence source supports
+      the likelihood parameter? Or was it determined arbitrarily?
+    - How long after the vulnerability scan was the impact/likelihood assessment completed? Is there an
+      SLA?
     basis: inferred
   regional_note:
-    value: 欧洲审计员在 GDPR 语境下更在意「可能性评估是否有个人数据泄露的量化或建模样式」，而美国在 FedRAMP 语境下更常见追到 RA-3 的正式文档链。两者都要求成文，但欧洲追问更偏重可能性评估的数据来源。
+    value: European auditors in the GDPR context are more concerned about whether the likelihood assessment
+      includes a quantitative or modeling pattern for personal data breaches, while in the U.S. FedRAMP
+      context, it is more common to trace back to the formal documentation chain of RA-3. Both require
+      documentation, but European inquiries lean more toward the data sources for likelihood assessment.
     basis: inferred
 interview:
   questions: []

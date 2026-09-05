@@ -1,34 +1,48 @@
 control_id: NIST-CSF-2.0:PR.AA-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「匿名访问」或「弱认证」——用户、服务、硬件如果没有可靠的认证机制，攻击者可以冒充合法主体进入系统，数据泄露、横向移动都从这里开始。
+    value: The intent is to prevent anonymous access or weak authentication—if users, services, or hardware
+      lack reliable authentication mechanisms, attackers can impersonate legitimate entities to enter
+      the system, leading to data breaches and lateral movement.
     basis: inferred
   plain_zh:
-    value: 所有访问系统的东西——人、软件服务、硬件设备——都必须先验证身份，而且验证方式要够强，不能靠用户名密码走天下。
+    value: All entities accessing the system—people, software services, hardware devices—must first verify
+      their identity, and the verification method must be strong, not relying solely on usernames and
+      passwords.
     basis: inferred
   practice:
     value:
-      '1': 所有用户登录需要密码；所有服务账号有独立口令；所有接入网络的设备有注册和识别机制。
-      '2': 关键系统启用多因素认证；服务账号凭证定期轮换；硬件设备有证书或 MAC 白名单并记录变更。
-      '3': 高风险系统强制 MFA；服务账号实现自动化凭证轮换且不可交互登录；硬件认证采用证书或 TPM 等强身份，设备接入即校验、异常即隔离。
+      '1': All user logins require passwords; all service accounts have independent passwords; all devices
+        connected to the network have registration and identification mechanisms.
+      '2': Multi-factor authentication is enabled for critical systems; service account credentials are
+        rotated periodically; hardware devices have certificates or MAC whitelists with change logging.
+      '3': MFA is mandatory for high-risk systems; service accounts implement automated credential rotation
+        and cannot be used for interactive login; hardware authentication uses strong identities such
+        as certificates or TPM, with device verification upon connection and isolation upon anomaly.
     basis: inferred
   evidence:
-    value: 认证策略文档、MFA 启用范围与覆盖率报告、服务账号凭证轮换记录、设备注册清单与接入审计日志、认证失败告警记录。
+    value: Authentication policy documents, MFA enablement scope and coverage reports, service account
+      credential rotation records, device registration lists and access audit logs, authentication failure
+      alert records.
     basis: inferred
   common_myth:
-    value: 以为「有用户名密码就算认证了」——对服务账号和硬件设备，密码要么共享、要么硬编码在脚本里，等于没有认证。真正的认证要求是「每个实体有独立且可靠的身份凭证」。
+    value: The misconception is that 'having a username and password counts as authentication'—for service
+      accounts and hardware devices, passwords are either shared or hardcoded in scripts, which is equivalent
+      to no authentication. True authentication requires that each entity has an independent and reliable
+      identity credential.
     basis: inferred
   auditor_asks:
     value:
-    - 多少个服务账号启用了 MFA？多少个不能启用的，理由是什么？
-    - 服务器、打印机、IoT 设备接入网络时用什么识别它们？
-    - 上次服务账号密码轮换是什么时候？流程写在哪？
+    - How many service accounts have MFA enabled? For those that cannot, what are the reasons?
+    - What is used to identify servers, printers, and IoT devices when they connect to the network?
+    - When was the last service account password rotation? Where is the process documented?
     basis: inferred
   regional_note:
-    value: 欧洲在 NIS2 落地后对 MFA 和强认证要求更硬性，尤其是关键基础设施的管理员访问；美国审计员更关注与 NIST 800-53 映射的 IA
-      系列控制证据，对设备认证的抽查更细。
+    value: In Europe, after NIS2 implementation, MFA and strong authentication requirements are more stringent,
+      especially for administrator access to critical infrastructure; U.S. auditors focus more on evidence
+      for IA controls mapped to NIST 800-53, with more detailed sampling of device authentication.
     basis: inferred
 interview:
   questions: []

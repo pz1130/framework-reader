@@ -1,30 +1,52 @@
 control_id: NIST-CSF-2.0:GV.OV-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全投入与风险处置做完就完了，不回头问效果」——队伍在忙、预算在花、报告在写，但想没想过处置后风险是否真的降了、降了多少、该不该调整策略与投入；没有评估与回顾，风险管理工作会逐渐变成流程摆设。
+    value: The intent is to prevent a situation where security investments and risk treatment are completed
+      without revisiting their effectiveness—teams are busy, budgets are spent, reports are written, but
+      there is no reflection on whether the risk has actually been reduced after treatment, by how much,
+      and whether strategies and investments should be adjusted; without evaluation and review, risk management
+      activities gradually become a procedural formality.
     basis: inferred
   plain_zh:
-    value: 定期评估企业整体网络安全风险管理干得怎么样：目标有没有实现、措施有没有效果、资源是不是投在最有用的地方，然后按评估结果调整做法。不是每个项目做后评估，而是站在整个组织层面看待风险管理的性能，并形成迭代。
+    value: 'Periodically evaluate how well the organization''s overall cybersecurity risk management is
+      performing: whether objectives are being met, whether measures are effective, and whether resources
+      are invested where they are most useful, then adjust practices based on the evaluation results.
+      This is not about post-project evaluations for each project, but rather assessing the performance
+      of risk management from an organizational-wide perspective and forming an iterative process.'
     basis: inferred
   practice:
     value:
-      '1': 每年至少做一次安全风险管理有效性回顾（集中会议或汇报），结论有记录。
-      '2': 有明确的绩效指标（如风险削减、目标完成度、重大事件复发率）；对比上期结论，差异有书面分析；调整建议能指向具体做法。
-      '3': 风险管理性能评估进组织的采购、预算、战略规划节奏；调整有闭环追踪；评估结果能追溯到变化（如重新定级、改控制、换工具）。
+      '1': Conduct at least one annual review of the effectiveness of security risk management (through
+        a focused meeting or report), with conclusions documented.
+      '2': Have clear performance indicators (such as risk reduction, objective completion, recurrence
+        rate of major incidents); compare with previous conclusions, with written analysis of differences;
+        adjustment recommendations point to specific actions.
+      '3': Risk management performance evaluation is integrated into the organization's procurement, budgeting,
+        and strategic planning cycles; adjustments are tracked to closure; evaluation results can be traced
+        to changes (e.g., reclassification, control modifications, tool replacements).
     basis: inferred
   evidence:
-    value: 定期（年度或按周期）的评估报告、管理评审会议纪要、绩效指标（KPI）及其趋势图、由评估而生的行动项与闭环记录、调整前后的风险登记或策略修订历史。
+    value: Periodic (annual or cyclical) evaluation reports, management review meeting minutes, performance
+      indicators (KPIs) and their trend charts, action items and closure records arising from evaluations,
+      and risk registers or strategy revision history before and after adjustments.
     basis: inferred
   common_myth:
-    value: 以为做了一次年度「信息安全委员会汇报」、把各部门安全事件和指标念一遍就算评估。汇报不等于评估——如果汇报不回答「投入是否改变了风险敞口」、不产出「下一年要改什么」并以行动闭环，那就只是信息同步，不是性能评估。审计员要看的是从评估结论到调整动作的那条链。
+    value: Assuming that conducting an annual 'information security committee briefing' and reading out
+      security incidents and metrics from each department constitutes an evaluation. A briefing is not
+      an evaluation—if the briefing does not answer whether investments have changed the risk exposure,
+      does not produce 'what to change next year,' and does not close the loop with actions, it is merely
+      information sharing, not performance evaluation. Auditors look for the chain from evaluation conclusions
+      to adjustment actions.
     basis: inferred
   auditor_asks:
     value:
-    - 上次管理评审的结论是什么？由此产生的行动项有几条，活到哪了？
-    - 你们说风险管理绩效好，依据的指标是什么？这个指标比上一次是升是降？
-    - 上次评估之后，安全策略或资源配置改了什么？
+    - What were the conclusions of the last management review? How many action items resulted from it,
+      and what is their status?
+    - You claim good risk management performance; what indicators is that based on? Have these indicators
+      improved or declined compared to the last period?
+    - After the last evaluation, what changes were made to security policies or resource allocation?
     basis: inferred
   regional_note:
     value: null

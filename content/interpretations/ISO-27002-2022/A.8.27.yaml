@@ -1,29 +1,45 @@
 control_id: ISO-27002-2022:A.8.27
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全要求只写在需求和验收文档里，架构上没落地」——系统拆分、组件边界、信任等级在图纸阶段一旦含糊，后面所有控制都靠打补丁，漏洞和越权是架构性问题，不是补丁能补的。
+    value: The concern is that security requirements are only written in requirements and acceptance documents
+      but not implemented in the architecture—if system decomposition, component boundaries, and trust
+      levels are vague at the design stage, all subsequent controls rely on patching, and vulnerabilities
+      and privilege escalation become architectural issues that cannot be fixed by patches.
     basis: inferred
   plain_zh:
-    value: 在系统设计、开发和改造时，按既定安全工程原则来做，让安全功能与各组件如何协作在架构图里说得清，并且这套设计要和公司的整体安全架构一致。
+    value: During system design, development, and modification, follow established security engineering
+      principles so that the architecture diagram clearly shows how security functions and components
+      collaborate, and this design aligns with the organization's overall security architecture.
     basis: inferred
   practice:
     value:
-      '1': 新系统设计有安全架构图；明确关键组件边界和信任等级；高风险设计有安全评审。
-      '2': 设计阶段有安全工程原则检查清单；安全架构评审有记录；变更走设计再评估流程。
-      '3': 安全架构模板化、原则驱动验证进 CI/CD；威胁建模与架构评审绑定；偏离原则必须有书面豁免和高层批准。
+      '1': New system designs have a security architecture diagram; key component boundaries and trust
+        levels are defined; high-risk designs undergo security review.
+      '2': Design phase includes a security engineering principles checklist; security architecture reviews
+        are documented; changes follow a design re-evaluation process.
+      '3': Security architecture is templated, and principle-driven validation is integrated into CI/CD;
+        threat modeling is linked with architecture review; deviations from principles require written
+        exemption and senior management approval.
     basis: inferred
   evidence:
-    value: 系统设计说明书与安全架构图、威胁建模报告、安全设计评审会议纪要、设计原则检查清单及偏离豁免记录、架构变更的重新评估记录。
+    value: System design specifications and security architecture diagrams, threat modeling reports, meeting
+      minutes of security design reviews, design principle checklists and deviation exemption records,
+      and re-evaluation records for architecture changes.
     basis: inferred
   common_myth:
-    value: 以为「过了等保测评、安全测试都通过」就代表架构符合工程原则。测试验证的是成品行为，架构原则管的是设计是否让控制能有效安置——评审图纸和测试代码是两件事。
+    value: The misconception is that passing MLPS assessment and security tests implies the architecture
+      conforms to engineering principles. Testing validates the behavior of the final product, while architecture
+      principles govern whether the design allows controls to be effectively placed—reviewing diagrams
+      and testing code are two different things.
     basis: inferred
   auditor_asks:
     value:
-    - 这个系统的安全架构图和实际部署架构差多远？上次核对是什么时候？
-    - 开发时你用了哪些安全工程原则？原则和最终实现不一致时，谁决定怎么办？
+    - How far does this system's security architecture diagram deviate from the actual deployment architecture?
+      When was the last verification?
+    - Which security engineering principles did you use during development? When principles and the final
+      implementation diverge, who decides what to do?
     basis: inferred
   regional_note:
     value: null

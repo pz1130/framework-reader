@@ -1,30 +1,52 @@
 control_id: NIST-CSF-2.0:GV.SC-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「供应链风险管理」只剩采购合同里的安全条款，而没有组织级的程序、策略和治理节奏——一旦供方出事或业务战略变化，安全部门只能临时救火，董事会和高管既没有决策依据也没有背书。
+    value: The concern is that 'supply chain risk management' is reduced to security clauses in procurement
+      contracts, without organization-level procedures, policies, and governance cadence—so when a supplier
+      incident occurs or business strategy changes, the security department can only fight fires ad hoc,
+      and the board and executives have neither decision-making basis nor endorsement.
     basis: inferred
   plain_zh:
-    value: 要在组织层面把「怎么管供应链安全风险」立成一套正式的东西：目标是什么、职责谁扛、流程怎么走、跟谁通报，并且让业务、采购、法务、安全等关键方都签字认可，而不是安全自己关起门定的。
+    value: 'At the organizational level, establish a formal framework for ''how to manage supply chain
+      security risks'': define objectives, assign responsibilities, outline processes, specify reporting
+      lines, and obtain sign-off from key stakeholders such as business, procurement, legal, and security—rather
+      than being decided solely by security in isolation.'
     basis: inferred
   practice:
     value:
-      '1': 有供应链安全风险管理程序文件；指定了牵头部门；高层有人签批；文件在共享盘可查。
-      '2': 程序覆盖供方全生命周期（引入、评估、监控、退出）；与业务、采购、法务等开过会确认分工；有年度回顾。
-      '3': 供应链风险目标与公司战略明确挂钩；程序随供方面貌和外部威胁定期迭代；新供方进场或重大业务变化时，程序能自动触发重新评估和策略调整；审计可验证程序是否真正驱动了决策。
+      '1': A supply chain security risk management procedure document exists; a lead department is designated;
+        senior management has approved it; the document is accessible on a shared drive.
+      '2': The procedure covers the full supplier lifecycle (onboarding, assessment, monitoring, offboarding);
+        meetings with business, procurement, legal, etc., have been held to confirm division of responsibilities;
+        an annual review is conducted.
+      '3': Supply chain risk objectives are explicitly linked to corporate strategy; the procedure is
+        periodically updated in response to changes in the supplier landscape and external threats; when
+        new suppliers are onboarded or significant business changes occur, the procedure automatically
+        triggers reassessment and strategy adjustment; audits can verify that the procedure genuinely
+        drives decisions.
     basis: inferred
   evidence:
-    value: 制定并获批的供应链安全风险管理程序、策略与目标文件；组织层面的供方风险章程或董事会/高管批准记录；各岗位职责说明；程序年度回顾或修订纪要；跨部门协商会议签到或审批记录。
+    value: Developed and approved supply chain security risk management procedure, policy, and objective
+      documents; organizational supplier risk charter or board/executive approval records; job responsibility
+      descriptions for relevant roles; minutes of annual procedure reviews or revisions; attendance or
+      approval records from cross-departmental coordination meetings.
     basis: inferred
   common_myth:
-    value: 以为「把供方安全问卷和合同条款整理成册」就等于有了供应链风险管理程序。问卷和合同只是落地工具；组织级程序要回答的是目标、职责、决策路径和治理节奏——没有这些，良莠不齐的问卷只是各干各的，出了事没人拍板。
+    value: Assuming that 'compiling supplier security questionnaires and contract clauses into a binder'
+      equates to having a supply chain risk management procedure. Questionnaires and contracts are merely
+      implementation tools; an organizational-level procedure must address objectives, responsibilities,
+      decision paths, and governance cadence—without these, disparate questionnaires lead to siloed efforts,
+      and no one takes charge when issues arise.
     basis: inferred
   auditor_asks:
     value:
-    - 高管对供应链风险的可接受水平是怎么定义并传达给业务、采购和安全三方的？
-    - 上一次程序修订是什么时候、因什么触发？谁审批的？
-    - 业务坚持要引入一个高风险供方时，按这份程序，谁能否决、依据是什么？
+    - How is the executive's acceptable level of supply chain risk defined and communicated to business,
+      procurement, and security?
+    - When was the last procedure revision, what triggered it, and who approved it?
+    - If business insists on onboarding a high-risk supplier, according to this procedure, who can veto
+      it and based on what criteria?
     basis: inferred
   regional_note:
     value: null

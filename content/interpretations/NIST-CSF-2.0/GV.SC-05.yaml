@@ -1,33 +1,54 @@
 control_id: NIST-CSF-2.0:GV.SC-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「供方安全要求只停留在采购问卷和口头承诺」——合同里没有硬性条款，出事时没有追责和整改的契约依据，审计时拿不出一份能约束对方的书面安全义务。
+    value: The concern is that supplier security requirements remain only in procurement questionnaires
+      and verbal commitments—without binding clauses in contracts, there is no contractual basis for accountability
+      and remediation when incidents occur, and auditors cannot find a written security obligation that
+      constrains the supplier.
     basis: inferred
   plain_zh:
-    value: 把网络安全风险要求写进对供方和第三方的合同或协议里，而且不是写一句「应保障安全」就完事——要按风险排序，明确写清安全责任、标准和违约后果。
+    value: Write cybersecurity risk requirements into contracts or agreements with suppliers and third
+      parties, not just a generic statement like "shall ensure security"—prioritize by risk and clearly
+      specify security responsibilities, standards, and consequences of breach.
     basis: inferred
   practice:
     value:
-      '1': 有供应商准入流程，合同范本中有安全条款的通用表述；高风险供方合同签前有安全评审。
-      '2': 按供方风险分级，不同档位合同模板内含对应安全要求（如数据保护、事件通报、审计权）；新签与续签合同均经过法务与安全确认。
-      '3': 合同安全条款随风险偏好和威胁态势定期更新；关键供方合同明确安全审计权、整改时限与违约终止条件；合同履行有安全验收环节。
+      '1': There is a supplier onboarding process, and the contract template includes general security
+        clause language; high-risk supplier contracts undergo security review before signing.
+      '2': Suppliers are classified by risk level, and contract templates for different tiers include
+        corresponding security requirements (e.g., data protection, incident notification, audit rights);
+        both new and renewed contracts are confirmed by legal and security teams.
+      '3': Contract security clauses are regularly updated in line with risk appetite and threat landscape;
+        key supplier contracts explicitly include security audit rights, remediation timelines, and termination
+        conditions for breach; contract performance includes a security acceptance step.
     basis: inferred
   evidence:
-    value: 供应商合同或框架协议中的安全条款截图、按风险分级的合同模板、合同签订前的安全评审流程记录、法务与安全会签记录。
+    value: Screenshots of security clauses in supplier contracts or framework agreements, risk-tiered
+      contract templates, records of pre-signing security review processes, and legal and security co-signing
+      records.
     basis: inferred
   common_myth:
-    value: 以为「采购合同里有一段『供应商应遵守相关法律法规』」就算有安全条款了。这句话对出事时的强制整改、审计权和违约赔偿没有任何约束力，真正的安全条款要写清：能审什么、发现问题后限时改、不改善可以断合同。
+    value: 'Assuming that having a paragraph in the procurement contract stating "the supplier shall comply
+      with relevant laws and regulations" counts as a security clause. This language has no binding force
+      for mandatory remediation, audit rights, or breach compensation when incidents occur. A real security
+      clause must specify: what can be audited, time limits for fixing issues after discovery, and the
+      ability to terminate the contract if improvements are not made.'
     basis: inferred
   auditor_asks:
     value:
-    - 这份合同模板里，安全条款与保密条款、数据保护条款是怎么区分的？还是全揉在一段里？
-    - 高风险供方的合同里有没有写明甲方有权做安全审计或索要 SOC 2 报告？这权力在合同哪一条？
-    - 供方在合同期内被发现有重大安全问题，触发整改的约定时限是几周？
+    - In this contract template, how are security clauses distinguished from confidentiality and data
+      protection clauses? Or are they all merged into one paragraph?
+    - Does the contract for high-risk suppliers explicitly grant the client the right to conduct security
+      audits or request SOC 2 reports? Which clause covers this right?
+    - If a supplier is found to have a major security issue during the contract period, what is the agreed
+      timeline for triggering remediation?
     basis: inferred
   regional_note:
-    value: 欧洲在 NIS2 与 DORA 的推进下，审计员比美国同行更常翻合同原文，看数字韧性（digital resilience）条款是否真正落进与第三方的协议里；美国审计通常停在「有没有安全条款」的是非判断上。
+    value: In Europe, with the push of NIS2 and DORA, auditors more often than their US counterparts review
+      contract texts to see whether digital resilience clauses are truly embedded in agreements with third
+      parties; US audits typically stop at the yes/no question of whether security clauses exist.
     basis: inferred
 interview:
   questions: []

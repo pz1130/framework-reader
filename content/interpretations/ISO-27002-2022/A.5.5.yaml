@@ -1,33 +1,56 @@
 control_id: ISO-27002-2022:A.5.5
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是安全事件被捂在本地或业务线内部——监管机构、行业主管和司法辖区对事件通报有法定义务和时限，漏报或不报会带来处罚、牌照风险和在监管面前失去信任。
+    value: The concern is that security incidents may be concealed within local or business line operations—regulatory
+      bodies, industry supervisors, and jurisdictions have legal obligations and time limits for incident
+      reporting, and failure to report or underreporting can lead to penalties, licensing risks, and loss
+      of trust with regulators.
     basis: inferred
   plain_zh:
-    value: 让你把安全事件按法律和监管要求，在规定的时限和格式内，报给该报的主管机关，并且要有明确的责任人来干这件事，还得留下证据。
+    value: Requires you to report security incidents to the competent authorities as required by law and
+      regulation, within specified time limits and formats, with clear responsibility assigned for this
+      task, and evidence retained.
     basis: inferred
   practice:
     value:
-      '1': 法务或安全负责人手里有一份清单，写明哪些事件类型和规模需要报哪个主管机关，以及大概的时限；至少有一个明确的联系人负责对外报告。
-      '2': 制定了书面的事件报告流程，明确事件分级和对应的上报时限；运行过至少一次上报演练或真实上报，有记录可查。
-      '3': 事件上报流程与事件响应流程联动，系统能自动触发待上报事件提醒；定期跟主管机关预沟通确认最新要求和联系方式；上报有专人复核并留存完整证据链。
+      '1': Legal or security leads maintain a list specifying which incident types and scales need to
+        be reported to which authority, along with approximate time limits; at least one clear contact
+        is responsible for external reporting.
+      '2': A written incident reporting procedure is established, defining incident severity levels and
+        corresponding reporting deadlines; at least one reporting drill or actual report has been conducted,
+        with records available.
+      '3': The incident reporting process is integrated with the incident response process, with systems
+        able to automatically trigger reminders for incidents pending reporting; regular pre-communication
+        with authorities to confirm latest requirements and contact details; reporting is reviewed by
+        designated personnel, and a complete evidence chain is retained.
     basis: inferred
   evidence:
-    value: 事件报告清单及责任人名单、对外报告模板、真实或演练的上报记录（含时间戳和提交回执）、与主管机关的沟通函件或会议纪要。
+    value: Incident reporting list and list of responsible persons, external reporting templates, actual
+      or drill reporting records (including timestamps and submission receipts), and communication letters
+      or meeting minutes with authorities.
     basis: inferred
   common_myth:
-    value: 以为「跟网安大队或监管吃了顿饭，真出事打个电话就行」。没有成文的事件分级表和上报时限，口头沟通在审计和法律上都不算数；事件上报要有书面记录和回执才算闭环。
+    value: Assuming that 'having dinner with the cybersecurity brigade or regulator means a phone call
+      in a real incident is enough.' Without a written incident severity classification table and reporting
+      deadlines, verbal communication does not count in audits or legally; incident reporting requires
+      written records and receipts to be considered complete.
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次向主管机关报告安全事件是什么时候？报告内容的存档和回执在哪？
-    - 你们判断某种事件类型需要上报的依据是什么？写在哪份文件里？
-    - 如果今天凌晨发现一起涉及个人数据泄露的事件，明早几点之前必须有动作？责任人是谁？
+    - When was the last time you reported a security incident to a competent authority? Where are the
+      archived report content and receipts?
+    - What is the basis for determining that a certain type of incident needs to be reported? In which
+      document is this written?
+    - If a data breach involving personal data is discovered early this morning, by what time tomorrow
+      morning must action be taken? Who is responsible?
     basis: inferred
   regional_note:
-    value: 欧洲更强调事件类型按 GDPR 等法规细分类别上报，时限紧且有追溯审查；美国则以行业监管和州法为主，审计员更看重你是否能证明「知道该报哪里、报得及」。
+    value: In Europe, there is more emphasis on reporting incident types in detailed categories according
+      to regulations like GDPR, with tight deadlines and retrospective review; in the US, it is primarily
+      industry regulation and state laws, and auditors focus more on whether you can demonstrate that
+      you 'know where to report and can report in time.'
     basis: inferred
 interview:
   questions: []

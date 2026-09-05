@@ -1,29 +1,44 @@
 control_id: NIST-CSF-2.0:GV.OC-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是安全团队自说自话——安全风险和投入跟业务目标脱节，最后钱花在审计或合规上，而不是真正保护组织要办的事。
+    value: The concern is that the security team operates in isolation—security risks and investments
+      are disconnected from business objectives, ultimately spending money on audits or compliance rather
+      than genuinely protecting what the organization aims to achieve.
     basis: inferred
   plain_zh:
-    value: 把公司到底要干什么说清楚，然后让安全工作围着这个目标转，而不是安全自己定一套优先级。
+    value: Clearly articulate what the company intends to accomplish, then align security efforts around
+      that objective, rather than the security team setting its own priorities independently.
     basis: inferred
   practice:
     value:
-      '1': 能拿出一段书面文字，写明组织的使命或业务目标；安全负责人能说出这些目标是什么。
-      '2': 有正式的机制，让安全规划或风险评估的输入包含业务使命或目标；安全项目清单里能标注出支撑哪个业务目标。
-      '3': 安全风险管理流程本身就是从业务使命推导出来的——业务战略变，安全优先级跟着变；有证据表明安全投资是在为业务目标服务。
+      '1': Can produce a written document stating the organization's mission or business objectives; the
+        security lead can articulate what these objectives are.
+      '2': There is a formal mechanism ensuring that security planning or risk assessment inputs include
+        the business mission or objectives; the security project list can indicate which business objective
+        each project supports.
+      '3': The security risk management process itself is derived from the business mission—when business
+        strategy changes, security priorities follow; there is evidence that security investments serve
+        business objectives.
     basis: inferred
   evidence:
-    value: 经批准的使命或战略文件、安全风险管理章程或方法论中引用使命的段落、董事会或高管层审议安全风险的会议纪要、安全项目与业务目标映射表。
+    value: Approved mission or strategy documents, sections of the security risk management charter or
+      methodology that reference the mission, meeting minutes of board or executive reviews of security
+      risks, and a mapping table of security projects to business objectives.
     basis: inferred
   common_myth:
-    value: 以为「把公司官网上的使命宣言下载下来贴在安全文档首页」就算了事。审计员要看的不是引用，而是安全计划的决策链条里有没有真的出现过业务输入——比如业务目标调整时，安全风险评估重新做过没有。
+    value: Assuming that downloading the mission statement from the company website and pasting it on
+      the first page of the security documentation suffices. What auditors look for is not the citation,
+      but whether business input has genuinely appeared in the decision-making chain of the security program—for
+      example, when business objectives change, has the security risk assessment been redone?
     basis: inferred
   auditor_asks:
     value:
-    - 你说安全工作支撑业务目标，具体举个今年某个安全项目是因为某个业务方向而立项的例子。
-    - 业务使命或方向发生变化时，哪个流程会触发安全风险管理的调整？最近一次触发是何时？
+    - You say security work supports business objectives; give a specific example this year of a security
+      project initiated due to a particular business direction.
+    - When the business mission or direction changes, which process triggers adjustments in security risk
+      management? When was the most recent trigger?
     basis: inferred
   regional_note:
     value: null

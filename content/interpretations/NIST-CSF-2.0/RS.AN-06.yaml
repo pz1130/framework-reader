@@ -1,30 +1,49 @@
 control_id: NIST-CSF-2.0:RS.AN-06
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防止调查过程中做了什么无从追溯——应急响应时是谁、在何时、做了什么操作、依据什么决定，如果这些不留痕，事后复盘、追责、法律举证和监管问询都站不住脚，甚至调查本身会被质疑为删改证据。
+    value: To prevent untraceable actions during an investigation—if who, when, and what operations were
+      performed during incident response, and the basis for decisions, are not recorded, then post-incident
+      review, accountability, legal evidence, and regulatory inquiries will be untenable, and the investigation
+      itself may be questioned as tampering with evidence.
     basis: inferred
   plain_zh:
-    value: 安全事件调查期间，所有动作（包括查询、取证、隔离、封禁、变更、分析判断）都要留记录；这些记录本身不能被篡改，还要能说清它们是怎么来的、原始出处是哪里。
+    value: During security incident investigations, all actions (including queries, evidence collection,
+      isolation, blocking, changes, and analytical judgments) must be recorded; these records themselves
+      must be tamper-proof, and it must be possible to explain how they were generated and where the original
+      sources are.
     basis: inferred
   practice:
     value:
-      '1': 调查操作至少记入变更工单、操作日志或邮件；关键步骤有责任人标记；日志留存周期明确。
-      '2': 调查过程有专门事件记录（时间线+操作人+操作内容+依据）；日志防篡改（如只读归档、WORM）；来源信息（时间、主机、账号）可提取。
-      '3': 调查环境本身有全程操作审计（如堡垒机、终端记录、命令日志）；记录自动汇入案件时间线；每一步操作能关联到原始日志出处，支持完整取证链。
+      '1': Investigation operations are at least recorded in change tickets, operation logs, or emails;
+        key steps have responsible person markers; log retention periods are clearly defined.
+      '2': The investigation process has dedicated incident records (timeline + operator + operation content
+        + basis); logs are tamper-proof (e.g., read-only archives, WORM); source information (time, host,
+        account) is extractable.
+      '3': The investigation environment itself has full operation auditing (e.g., bastion hosts, terminal
+        recording, command logs); records are automatically integrated into the incident timeline; each
+        operation can be linked to the original log source, supporting a complete evidence chain.
     basis: inferred
   evidence:
-    value: 事件调查记录（时间线、操作日志、截图、取证命令输出）、堡垒机或终端审计记录、日志完整性校验证明、调查报告中关键动作与原始日志的对应关系。
+    value: Incident investigation records (timelines, operation logs, screenshots, forensic command outputs),
+      bastion host or terminal audit records, log integrity verification proofs, and the correspondence
+      between key actions in the investigation report and original logs.
     basis: inferred
   common_myth:
-    value: 以为「所有服务器日志统一留存」就等于满足这条——调查时手动敲的命令、临时创建的账号、手动改的防火墙策略，如果只落在工程师脑子里而不记进案件记录，统一日志留存覆盖不了。调查过程的动作链完整保存在案件记录里才算数。
+    value: Assuming that 'unified retention of all server logs' satisfies this requirement—if manually
+      entered commands during the investigation, temporarily created accounts, or manually changed firewall
+      policies exist only in the engineer's mind and are not recorded in the incident records, unified
+      log retention cannot cover them. Only when the complete chain of actions during the investigation
+      is preserved in the incident records does it count.
     basis: inferred
   auditor_asks:
     value:
-    - 这次事件调查中，执行过哪些关键操作？每一步操作记录在哪里，能不能指出来？
-    - 调查记录的这些日志，你凭什么相信它没被改过？校验机制是什么？
-    - 事件报告里的分析结论，能对应到原始日志的具体出处吗？
+    - During this incident investigation, what key operations were performed? Where is each step recorded,
+      and can you point it out?
+    - For these logs in the investigation records, what makes you believe they have not been altered?
+      What is the verification mechanism?
+    - Can the analytical conclusions in the incident report be mapped to specific original log sources?
     basis: inferred
   regional_note:
     value: null

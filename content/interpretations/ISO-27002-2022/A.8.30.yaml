@@ -1,32 +1,59 @@
 control_id: ISO-27002-2022:A.8.30
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「外包方把代码交上来、我们付钱验收就完事」——开发过程、测试、缺陷修复合不合格没人盯，拿到手的软件可能带着后门或一堆没修的漏洞，后续出问题还得自己背锅。
+    value: The concern is that 'the outsourced party delivers code, we pay and accept it, and that's the
+      end of it' — no one monitors whether the development process, testing, and defect remediation are
+      adequate, so the software received may contain backdoors or many unpatched vulnerabilities, and
+      later problems become our own responsibility.
     basis: inferred
   plain_zh:
-    value: 对外包开发要提出明确的安全要求，从合同条款到日常管理都要管，包括开发过程、测试与缺陷修复，以及交付物是否真实完整，而不是只看功能跑通就算验收通过。
+    value: For outsourced development, clear security requirements must be set, covering everything from
+      contract terms to day-to-day management, including the development process, testing and defect remediation,
+      and whether the deliverables are authentic and complete — not just checking that functions work
+      before accepting.
     basis: inferred
   practice:
     value:
-      '1': 采购合同里写明安全要求（如漏洞修复义务、测试要求）；交付时确认功能是对方按约定完成的；对关键外包项目有验收测试记录。
-      '2': 对外包项目有书面开发与测试计划；要求对方提供测试与漏洞修复证据；合同列出安全漏洞的修复责任与时限；对交付软件做必要的安全测试（如漏洞扫描、代码走查）。
-      '3': 对高风险外包坚持关键环节在场审核或抽查（如架构评审、代码审查）；在测试环境用真实数据做上线前的安全验证；对开发过程的变更、缺陷修复有跟踪，并能追溯到具体提交；把外包测试结果纳入本方测试报告的正式章节。
+      '1': Include security requirements in the procurement contract (e.g., vulnerability remediation
+        obligations, testing requirements); upon delivery, confirm that the functionality was completed
+        by the other party as agreed; maintain acceptance test records for critical outsourced projects.
+      '2': Have a written development and testing plan for outsourced projects; require the other party
+        to provide evidence of testing and vulnerability remediation; the contract lists responsibilities
+        and timelines for fixing security vulnerabilities; perform necessary security testing on delivered
+        software (e.g., vulnerability scanning, code review).
+      '3': For high-risk outsourcing, insist on on-site review or spot checks of critical phases (e.g.,
+        architecture review, code review); use real data in the test environment for pre-production security
+        validation; track changes and defect remediation during the development process, with traceability
+        to specific commits; incorporate outsourced test results as a formal section in our own test report.
     basis: inferred
   evidence:
-    value: 外包合同的安全条款、外包方的安全测试计划与方法说明、开发过程文档（开发标准与工具清单）、漏洞修复记录、验收测试报告（含安全项）、代码走查或渗透测试证据、交付物清单与版本记录。
+    value: Security clauses in the outsourcing contract, the outsourced party's security test plan and
+      methodology description, development process documentation (development standards and tool lists),
+      vulnerability remediation records, acceptance test reports (including security items), evidence
+      of code review or penetration testing, and delivery lists with version records.
     basis: inferred
   common_myth:
-    value: 以为「外包方说测过了、给了份测试报告」就算有证据。报告可能是功能测试或对方自说自话——要的是能验证的证据（执行记录、缺陷单、修复前后对照），并且关键外包项目应有本方独立的安全抽查，否则等于把安全赌在对方的自觉上。
+    value: Assuming that 'the outsourced party said they tested and provided a test report' counts as
+      evidence. The report may be functional testing or self-serving claims — what is needed is verifiable
+      evidence (execution records, defect tickets, before-and-after remediation comparisons), and for
+      critical outsourced projects, there should be independent security spot checks by our side; otherwise,
+      we are betting security on the other party's conscientiousness.
     basis: inferred
   auditor_asks:
     value:
-    - 合同里写明了漏洞必须在多久内修复吗？最后一次外包交付时对方的确切交付物有哪些？
-    - 你们怎么验证外包方声称的『已测试』不是一句空话？最后一次安全测试是谁做的、依据什么标准？
+    - Does the contract specify how quickly vulnerabilities must be fixed? What were the exact deliverables
+      from the last outsourced delivery?
+    - How do you verify that the outsourced party's claim of 'tested' is not empty talk? Who performed
+      the last security test and against what standards?
     basis: inferred
   regional_note:
-    value: 欧洲与美国的审计员对这条都看重合同约束力与可验证证据，欧洲因供应链攻击案例更常追到「外包在转包或升级组件时，你们有没有要求对方按约定流程做事」；美国则偏重采购流程与验收测试的具体记录。两边口径差异不大，抽样深度可能不同。
+    value: Auditors in Europe and the US both value contractual binding force and verifiable evidence.
+      In Europe, due to supply chain attack cases, they more often probe whether you required the outsourced
+      party to follow agreed processes when subcontracting or upgrading components; in the US, the focus
+      is more on procurement processes and specific acceptance test records. The differences in approach
+      are not significant, but sampling depth may vary.
     basis: inferred
 interview:
   questions: []

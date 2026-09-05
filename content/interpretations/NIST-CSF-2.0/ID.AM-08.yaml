@@ -1,30 +1,42 @@
 control_id: NIST-CSF-2.0:ID.AM-08
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「采购即终结」——系统和资产买回来之后就没人管到它退役，导致老旧系统带病运行、供应方停止支持还继续裸奔，数据在生命周期末端无人处置或随意删除。
+    value: The concern is 'procurement as the end'—systems and assets, once purchased, are not managed
+      until retirement, leading to outdated systems operating with defects, running unsupported without
+      protection, and data at the end of the lifecycle being left unmanaged or arbitrarily deleted.
     basis: inferred
   plain_zh:
-    value: 从规划采购、投入使用、变更升级、维护保养，到退役处置，全程都要有人管，不能买回来就当甩手掌柜。
+    value: From planning and procurement, deployment, change and upgrade, maintenance, to retirement and
+      disposal, there must be responsible management throughout the entire process; assets cannot be left
+      unmanaged after purchase.
     basis: inferred
   practice:
     value:
-      '1': 有资产清单；采购流程有人参与安全评估；合同里写了运维和退役责任。
-      '2': 有贯穿全生命周期的管理流程和负责人；重大变更走变更审批；系统和软件有明确的退役计划。
-      '3': 生命周期流程与配置管理、风险管理联动；系统退役前有数据处置和迁移审批；淘汰清单与资产台账能自动对上。
+      '1': An asset inventory exists; procurement processes involve security assessment; contracts specify
+        maintenance and retirement responsibilities.
+      '2': There is a management process and responsible person throughout the lifecycle; major changes
+        go through change approval; systems and software have clear retirement plans.
+      '3': Lifecycle processes are linked with configuration management and risk management; data disposal
+        and migration approvals occur before system retirement; the retirement list automatically aligns
+        with the asset ledger.
     basis: inferred
   evidence:
-    value: 资产清单与生命周期状态标记、采购/变更/退役审批记录、运维与补丁管理台账、数据和软件退役处置记录。
+    value: Asset inventory with lifecycle status markers, procurement/change/retirement approval records,
+      maintenance and patch management logs, and data and software retirement disposal records.
     basis: inferred
   common_myth:
-    value: 以为「有资产台账、每年盘点一次」就算生命周期管理。台账只回答「有什么」，不回答「这个系统什么时候该退役、谁来催、退役后数据怎么处置」。
+    value: The misconception is that 'having an asset ledger and conducting an annual inventory' constitutes
+      lifecycle management. The ledger only answers 'what exists,' not 'when this system should be retired,
+      who will prompt it, and how data will be handled after retirement.'
     basis: inferred
   auditor_asks:
     value:
-    - 这台2015年上线的系统，退役日期写在哪份文件？谁负责催促？
-    - 系统下线时，里面的业务数据是怎么做处置决策的？
-    - 软件停止技术支持后，你们有没有走例外审批流程？
+    - For this system launched in 2015, in which document is the retirement date specified? Who is responsible
+      for prompting it?
+    - When the system is decommissioned, how are decisions made regarding the disposal of business data?
+    - After software support ends, have you followed an exception approval process?
     basis: inferred
   regional_note:
     value: null

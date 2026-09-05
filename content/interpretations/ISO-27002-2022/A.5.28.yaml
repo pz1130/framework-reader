@@ -1,29 +1,44 @@
 control_id: ISO-27002-2022:A.5.28
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「日志有留，但事后追溯时链断了」——事件发生后要把证据串起来，能说清谁在什么时间、出于什么目的经手过哪些数据；否则审计和司法取证时，证据链断裂导致结论不被采信，也查不清内部泄露或外部入侵的完整路径。
+    value: The concern is about 'logs exist, but the chain breaks during post-incident tracing' — after
+      an event, evidence must be linked together to clearly state who handled what data, at what time,
+      and for what purpose; otherwise, during audits and judicial forensics, a broken evidence chain leads
+      to conclusions not being accepted, and the complete path of internal leaks or external intrusions
+      cannot be traced.
     basis: inferred
   plain_zh:
-    value: 把日志和证据按规矩收好、存够时间，并且记录每一次查看、复制、移交或分析的人和时间，确保从采集到结案的整条线可追溯、没断点。
+    value: Collect and store logs and evidence properly and for a sufficient duration, and record every
+      instance of viewing, copying, transfer, or analysis, including the person and time, ensuring the
+      entire chain from collection to case closure is traceable without gaps.
     basis: inferred
   practice:
     value:
-      '1': 日志统一收集中存储；设置基本保留期限；有明确责任人管理日志归档。
-      '2': 对关键证据建立交接登记表（谁、何时、何目的经手）；日志保留期限写入书面政策；定期检查日志完整性。
-      '3': 证据收存全程自动化记录存取行为，并与事件管理流程打通；保留期限按法规与业务需要分类设定；取证操作有独立审计轨迹且防篡改。
+      '1': Centralized log collection and storage; set basic retention periods; have a designated person
+        responsible for log archiving.
+      '2': Establish a handover registration form for key evidence (who, when, for what purpose handled
+        it); document log retention periods in a written policy; regularly check log integrity.
+      '3': Fully automate the recording of access and handling actions throughout evidence storage, and
+        integrate with the incident management process; set retention periods by category based on legal
+        and business needs; forensic operations have an independent audit trail that is tamper-proof.
     basis: inferred
   evidence:
-    value: 日志集中存储与备份配置、保留期限政策文件、交接登记表或系统存取审计记录、完整性校验记录（如哈希）、取证演练或真实事件中的链式记录。
+    value: Centralized log storage and backup configurations, retention period policy documents, handover
+      registration forms or system access audit records, integrity verification records (e.g., hashes),
+      and chain-of-custody records from forensic exercises or real incidents.
     basis: inferred
   common_myth:
-    value: 以为「日志都存进 SIEM 里了」就等于证据链完整——SIEM 只负责收集，谁查过这些日志、查完做了什么、导出去传给谁，如果没有任何留痕，事后照样说不清楚。
+    value: Assuming that 'all logs are in the SIEM' equals a complete evidence chain — SIEM only handles
+      collection; if there is no trace of who queried these logs, what they did after querying, and who
+      they exported them to, it still cannot be clarified afterward.
     basis: inferred
   auditor_asks:
     value:
-    - 抽最近一次安全事件的证据，谁在几点几分查过原始日志？有记录吗？
-    - 日志保留期限是依据哪份政策定的？超过期限的删除有没有审批流程？
+    - For the most recent security incident, who accessed the raw logs and at what time? Is there a record?
+    - Which policy defines the log retention period? Is there an approval process for deletion beyond
+      the retention period?
     basis: inferred
   regional_note:
     value: null

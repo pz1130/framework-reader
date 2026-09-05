@@ -1,34 +1,59 @@
 control_id: NIST-CSF-2.0:GV.PO-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是安全政策和公司实际业务两张皮——有了业务战略和优先级，但没有成文政策把两者焊在一起，结果安全决策靠人拍脑袋，政策修订没有章法，管理层签字只签了个空壳。
+    value: The concern is the disconnect between security policy and actual business operations—having
+      business strategy and priorities but no documented policy to weld them together, resulting in security
+      decisions made by gut feeling, policy revisions without a structured process, and management signatures
+      that are mere formalities.
     basis: inferred
   plain_zh:
-    value: 先搞清公司业务目标、战略方向和优先级，再写出一整套匹配的网络安全政策，并把它发下去、培训和执行，还得让它跟着公司变化定期更新。
+    value: First clarify the company's business objectives, strategic direction, and priorities, then
+      develop a comprehensive set of matching cybersecurity policies, disseminate them, provide training,
+      enforce them, and ensure they are regularly updated in line with organizational changes.
     basis: inferred
   practice:
     value:
-      '1': 有一份或多份经管理层批准的网络安全政策文档，覆盖基础要求（如密码、访问控制、事件上报）；新员工入职时能拿到或看到政策。
-      '2': 政策文档由业务/战略输入驱动编写，明确定期评审周期（如每年）；有版本管理和审批留痕；有培训签到或邮件证明政策已传达给全员。
-      '3': 政策框架按安全域（如备份、外包、开发、数据）拆解成族系，每份政策都映射到对应业务风险与优先级，并设有评审触发器（如重大业务上线或架构变更时无条件触发修订）；政策执行有抽查、违规有记录、修订有回看。
+      '1': One or more management-approved cybersecurity policy documents exist, covering baseline requirements
+        (e.g., passwords, access control, incident reporting); new employees can access or view the policies
+        upon onboarding.
+      '2': Policy documents are developed based on business/strategic inputs, with a defined periodic
+        review cycle (e.g., annually); version control and approval trails are maintained; training attendance
+        records or emails demonstrate that policies have been communicated to all staff.
+      '3': The policy framework is broken down into families by security domain (e.g., backup, outsourcing,
+        development, data), with each policy mapped to corresponding business risks and priorities, and
+        review triggers are established (e.g., unconditional revision upon major business launches or
+        architectural changes); policy enforcement is subject to spot checks, violations are recorded,
+        and revisions are reviewed.
     basis: inferred
   evidence:
-    value: 政策文件及审批签字页、政策发布与全员传达记录（邮件通知、培训考勤或线上阅读确认）、版本变更历史、定期评审纪要、政策与组织上下文/战略对齐的说明文档或汇报材料。
+    value: Policy documents and approval signature pages, records of policy publication and communication
+      to all staff (email notifications, training attendance, or online read confirmations), version change
+      history, periodic review meeting minutes, and documentation or presentation materials showing alignment
+      between policies and organizational context/strategy.
     basis: inferred
   common_myth:
-    value: 以为把 ISO 27001 或等保模板改个文件名换成自己公司抬头，让高管签字，就完成了这条。审计员看重的是政策有没有按本公司的业务战略和优先级定制，模板如果写了个放之四海皆准的通用版本，和公司实际业务没有对应关系，等于没有政策。
+    value: The misconception is that simply renaming an ISO 27001 or equivalent protection template with
+      the company's name and having executives sign it completes this requirement. Auditors focus on whether
+      policies are tailored to the company's business strategy and priorities; if a generic template is
+      used without correspondence to actual business operations, it is equivalent to having no policy.
     basis: inferred
   auditor_asks:
     value:
-    - 这份政策上一次修订是基于什么业务变化或事件触发的？
-    - 新员工入职或转岗时，从哪里、以什么形式拿到与岗位相关的政策文件？
-    - 政策里哪一条直接对应今年公司定的业务优先事项？
-    - 全员是怎么确认已阅读并理解政策的——有没有留痕？
+    - What business change or event triggered the last revision of this policy?
+    - When new employees onboard or transfer roles, where and in what form do they receive job-relevant
+      policy documents?
+    - Which clause in the policy directly corresponds to the business priorities set by the company this
+      year?
+    - How is it confirmed that all staff have read and understood the policies—is there evidence?
     basis: inferred
   regional_note:
-    value: 美国的审计员通常看政策文件本身和审批链，认可「管理层批准+全员可访问」即达标；欧洲在 NIS2 语境下会更追政策是否真的嵌入到业务决策流程中，常常要求展示政策和风险评估或业务影响分析之间的联动证据，而不只是审批签字。
+    value: Auditors in the U.S. typically review the policy documents and approval chain, accepting 'management
+      approval plus staff accessibility' as compliance; in Europe, within the NIS2 context, there is greater
+      scrutiny on whether policies are truly embedded in business decision-making processes, often requiring
+      evidence of linkage between policies and risk assessments or business impact analyses, not just
+      approval signatures.
     basis: inferred
 interview:
   questions: []

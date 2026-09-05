@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:ID.IM-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「评估完就完事」——演练、审计、红队、事故复盘得出来的问题没人跟踪，整改建议躺在报告里，风险原地踏步。
+    value: The concern is about 'assessing and then moving on'—issues identified from exercises, audits,
+      red teaming, and incident reviews are not tracked, improvement recommendations remain in reports,
+      and risks remain unchanged.
     basis: inferred
   plain_zh:
-    value: 把各种评估（演练、审计、测试、事件复盘）中发现的改进点收集起来，排优先级，真正落到流程、技术或人员上，并验证改完了。
+    value: Collect improvement points identified from various assessments (exercises, audits, tests, incident
+      reviews), prioritize them, actually implement them in processes, technology, or personnel, and verify
+      that they have been completed.
     basis: inferred
   practice:
     value:
-      '1': 评估报告里有明确的改进建议清单；有人负责跟进；下次评估时能说清楚改了没改。
-      '2': 改进项进入正式的整改跟踪机制（如问题台账或风险登记册），有优先级、负责人、截止日期；定期回顾进展。
-      '3': 改进项与风险管理、变更管理联动；系统能自动追踪状态并提醒；重大改进完成时有验证记录；评估迭代中能看到前次问题确认关闭。
+      '1': The assessment report includes a clear list of improvement recommendations; someone is responsible
+        for follow-up; at the next assessment, it can be clearly stated whether changes have been made.
+      '2': Improvement items enter a formal remediation tracking mechanism (such as an issue log or risk
+        register), with priorities, owners, and deadlines; progress is reviewed periodically.
+      '3': Improvement items are linked with risk management and change management; the system can automatically
+        track status and send reminders; verification records exist when major improvements are completed;
+        in subsequent assessment cycles, previous issues can be confirmed as closed.
     basis: inferred
   evidence:
-    value: 评估报告中的改进建议清单、问题跟踪台账（含优先级/负责人/状态）、整改完成凭证（工单、配置变更记录、复测结果）、管理层对整改状态的定期回顾纪要。
+    value: List of improvement recommendations in assessment reports, issue tracking logs (including priority/owner/status),
+      remediation completion evidence (work orders, configuration change records, retest results), and
+      minutes of management's periodic reviews of remediation status.
     basis: inferred
   common_myth:
-    value: 以为「汇报过评估结果、PPT 里列了整改方向」就算识别了改进。没有责任人、没有截止日期、没有验证环节，清单只是愿望清单，审计员翻台账第一页就能看出有没有闭环。
+    value: Thinking that 'reporting assessment results and listing remediation directions in a PPT' counts
+      as identifying improvements. Without an owner, deadline, or verification step, the list is just
+      a wish list; an auditor can tell from the first page of the log whether there is a closed loop.
     basis: inferred
   auditor_asks:
     value:
-    - 上一次演练/审计提出的改进项中，有多少已关闭？关闭的证据是什么？
-    - 改进项的优先级是谁定的、依据什么标准？滞后项有上报机制吗？
+    - Of the improvements identified in the last exercise/audit, how many have been closed? What is the
+      evidence of closure?
+    - Who set the priorities for improvement items, and based on what criteria? Is there an escalation
+      mechanism for delayed items?
     basis: inferred
   regional_note:
     value: null

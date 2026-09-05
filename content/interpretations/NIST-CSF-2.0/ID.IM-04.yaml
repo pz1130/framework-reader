@@ -1,30 +1,45 @@
 control_id: NIST-CSF-2.0:ID.IM-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「应急响应计划躺在文档库里发霉」——计划写完没传达、没更新、没和其他运营计划对齐，真出事时大家各干各的，响应动作和日常运营脱节。
+    value: The concern is that the emergency response plan may sit unused in a document repository—written
+      but not communicated, updated, or aligned with other operational plans. When an actual incident
+      occurs, everyone acts independently, and response actions are disconnected from daily operations.
     basis: inferred
   plain_zh:
-    value: 应急响应计划以及影响运营的其他网络安全计划，不能只在出事时拿出来翻——要建立、要让人知道、要跟着变化维护，并且要通过演练或复盘不断改进。
+    value: Emergency response plans and other cybersecurity plans that affect operations must not be pulled
+      out only when an incident occurs—they need to be established, communicated, maintained in response
+      to changes, and continuously improved through exercises or after-action reviews.
     basis: inferred
   practice:
     value:
-      '1': 有应急响应计划文档，定义了角色和流程；相关人员知道文件在哪；计划有版本号和审批记录。
-      '2': 计划按周期（如每年或重大变更时）评审更新；新员工或转岗员工入职时能看到计划；变更有记录。
-      '3': 计划与业务连续性、灾难恢复等其他运营计划互相引用、口径一致；演练或真实事件后的改进项有跟踪闭环；计划可随时访问并支持离线使用。
+      '1': An emergency response plan document exists, defining roles and procedures; relevant personnel
+        know where the document is; the plan has a version number and approval records.
+      '2': The plan is reviewed and updated on a periodic basis (e.g., annually or upon significant changes);
+        new employees or those transferring roles are shown the plan during onboarding; changes are documented.
+      '3': The plan cross-references and is consistent with other operational plans such as business continuity
+        and disaster recovery; improvement items from exercises or real incidents have a tracking loop
+        for closure; the plan is accessible at all times and supports offline use.
     basis: inferred
   evidence:
-    value: 现行版应急响应计划（含审批签字页）、计划分发与确认记录、评审/修订历史、演练报告与改进项跟踪表、与其他计划（如BCP/DR）的交叉引用关系图。
+    value: Current version of the emergency response plan (including approval signature page), plan distribution
+      and acknowledgment records, review/revision history, exercise reports and improvement item tracking
+      sheets, and cross-reference diagrams with other plans (e.g., BCP/DR).
     basis: inferred
   common_myth:
-    value: 以为「有应急响应计划」就等于「这条做到了」——计划写于两年前、只有安全团队看过、演练后发现的改进项没人跟，计划实际是废纸。要证明的是计划在呼吸：被读过、被改过、被验证过。
+    value: 'Assuming that ''having an emergency response plan'' equates to ''this requirement is met''—if
+      the plan was written two years ago, only seen by the security team, and improvement items from exercises
+      have not been followed up, the plan is effectively useless. What needs to be demonstrated is that
+      the plan is alive: it has been read, updated, and validated.'
     basis: inferred
   auditor_asks:
     value:
-    - 计划上一次修订是什么时候？触发那次修订的事件或输入是什么？
-    - IT运维和客服部门的新人入职时，从哪里接触到应急响应计划？有确认签字吗？
-    - 上次演练中发现了哪些问题？每个问题现在的状态是开还是关？
+    - When was the last revision of the plan? What event or input triggered that revision?
+    - When new employees in IT operations and customer service join, where do they access the emergency
+      response plan? Is there an acknowledgment signature?
+    - What issues were identified in the last exercise? What is the current status of each issue—open
+      or closed?
     basis: inferred
   regional_note:
     value: null

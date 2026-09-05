@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:GV.SC-06
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「先合作、后看底细」——签合同或建立第三方关系之前，不做规划与尽职调查，把风险审查变成了买完后的补救，导致选错供应商、条款没兜底、灾难性依赖。
+    value: The concern is about 'cooperate first, check details later'—signing contracts or establishing
+      third-party relationships without prior planning and due diligence, turning risk review into post-purchase
+      remediation, leading to wrong supplier selection, terms without safeguards, and catastrophic dependencies.
     basis: inferred
   plain_zh:
-    value: 在签合同或正式建立第三方关系之前，先做规划与尽职调查，摸清对方底细，再决定要不要合作、怎么合作。
+    value: Before signing contracts or formally establishing third-party relationships, conduct planning
+      and due diligence to understand the other party thoroughly, then decide whether and how to cooperate.
     basis: inferred
   practice:
     value:
-      '1': 关键供方在签约前做基本尽调，包括资质核查与安全问卷；合同包含最低安全与合规要求。
-      '2': 有正式的供应商准入流程，尽职调查结果与风险评级进审批；高风险供方有书面处置方案（如额外补救、保险或替代路径）。
-      '3': 尽调范围按风险档位伸缩，覆盖安全、合规与运营韧性；合同条款与尽调结果联动，并留退出与转移权利；合作关系存续期内持续对尽调质量复盘。
+      '1': Key suppliers undergo basic due diligence before contracting, including qualification checks
+        and security questionnaires; contracts include minimum security and compliance requirements.
+      '2': There is a formal supplier admission process; due diligence results and risk ratings go into
+        approval; high-risk suppliers have documented handling plans (e.g., additional remediation, insurance,
+        or alternative paths).
+      '3': Due diligence scope scales by risk tier, covering security, compliance, and operational resilience;
+        contract terms are linked to due diligence results, with exit and transfer rights reserved; due
+        diligence quality is reviewed continuously during the relationship.
     basis: inferred
   evidence:
-    value: 供应商准入流程与审批记录、尽职调查问卷与结果、合同安全条款清单、高风险供方处置与退出预案、尽调结果与风险评级文档。
+    value: Supplier admission process and approval records, due diligence questionnaires and results,
+      contract security clause lists, handling and exit plans for high-risk suppliers, and documents of
+      due diligence results and risk ratings.
     basis: inferred
   common_myth:
-    value: 以为「采购部门说这家供应商没问题，技术团队不用参与」——尽调如果只有商务与法务参与，价格谈得再漂亮，技术安全风险照样裸奔进门。
+    value: Thinking 'the procurement department says this supplier is fine, so the technical team doesn't
+      need to be involved'—if due diligence only involves business and legal, no matter how good the price
+      negotiation, technical security risks still walk in naked.
     basis: inferred
   auditor_asks:
     value:
-    - 这个供方签合同前做过哪些尽调？调查结果和风险评级记录在哪？
-    - 如果尽调发现高风险，合同里写了哪些补救或退出条款？谁来落实？
+    - What due diligence was done on this supplier before contract signing? Where are the investigation
+      results and risk rating records?
+    - If due diligence reveals high risk, what remediation or exit clauses are written into the contract?
+      Who implements them?
     basis: inferred
   regional_note:
     value: null

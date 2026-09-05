@@ -1,30 +1,51 @@
 control_id: ISO-27002-2022:A.5.16
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是账号从创建到注销之间没人管到底——人走了、岗位变了、外包合同到期了，账号还在系统里活着，变成潜伏的准入通道；同时身份标识如果不唯一，出事时连是谁做的都查不出来。
+    value: The concern is that accounts may not be managed from creation to deactivation—when people leave,
+      change roles, or contractor contracts expire, accounts remain active in the system, becoming latent
+      access channels; also, if identifiers are not unique, it may be impossible to determine who performed
+      an action in the event of an incident.
     basis: inferred
   plain_zh:
-    value: 账号的整个生命周期都要有人管：开号要审批、用唯一标识认人、密码等凭证要安全分发和定期更换、人走或转岗要及时停用或回收，并且这一切要有记录可查。
+    value: 'The entire lifecycle of accounts must be managed: account creation requires approval, unique
+      identifiers are used to identify individuals, credentials such as passwords are securely distributed
+      and periodically changed, accounts are promptly deactivated or revoked when people leave or change
+      roles, and all of this must be recorded and auditable.'
     basis: inferred
   practice:
     value:
-      '1': 开号有审批流程；每个员工有唯一账号，不用共享账号；离职时有人负责删号或禁用。
-      '2': 账号类型有明文定义和台账；转岗、合同到期触发权限变更流程；定期抽查账号与在职人员清单对得上；凭证更换和回收有基本记录。
-      '3': 账号生命周期与 HR 或采购系统联动，离职即自动触发回收；凭证管理有强度策略和定期强制轮换；共享账号只在有充分理由且纳入监控时使用；回收流程有验证步骤。
+      '1': There is an approval process for account creation; each employee has a unique account, and
+        shared accounts are not used; when someone leaves, a designated person is responsible for deleting
+        or disabling the account.
+      '2': Account types are clearly defined and documented in a register; role changes or contract expirations
+        trigger the permission change process; periodic checks ensure that accounts match the list of
+        current employees; there are basic records of credential changes and revocations.
+      '3': The account lifecycle is integrated with HR or procurement systems, with automatic revocation
+        upon departure; credential management has strength policies and regular forced rotation; shared
+        accounts are used only when there is a strong justification and they are subject to monitoring;
+        the revocation process includes verification steps.
     basis: inferred
   evidence:
-    value: 账号登记台账，开号/变更/回收的申请与审批记录，与 HR 或采购数据的对账结果，离职后账号回收的执行记录或系统截图，凭证变更记录。
+    value: Account registration register, application and approval records for creation/change/revocation,
+      reconciliation results with HR or procurement data, execution records or system screenshots of account
+      revocation after departure, and credential change records.
     basis: inferred
   common_myth:
-    value: 以为入职建号有流程、离职提交通知就算完事——最常掉链子的是转岗和外包人员，合同到期没人触发回收，账号在系统里躺半年。
+    value: It is assumed that having a process for account creation upon onboarding and submitting a notification
+      upon departure is sufficient—the most common failure points are role changes and contractors, where
+      contract expiration does not trigger revocation, leaving accounts dormant in the system for six
+      months.
     basis: inferred
   auditor_asks:
     value:
-    - 能不能拉一份上季度离职人员清单，和你们的账号回收记录对一遍？
-    - 外包人员合同到期时，谁负责触发账号停用？没有这个人会怎样？
-    - 你们的账号台账里，勾选停用的依据是什么？多久核对一次？
+    - Can you pull a list of employees who left last quarter and reconcile it with your account revocation
+      records?
+    - When a contractor's contract expires, who is responsible for triggering account deactivation? What
+      happens if that person is unavailable?
+    - In your account register, what is the basis for marking an account as deactivated? How often is
+      it reconciled?
     basis: inferred
   regional_note:
     value: null

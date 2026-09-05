@@ -1,29 +1,50 @@
 control_id: ISO-27002-2022:A.8.21
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「网络通路只管打通、不管约定」——系统和外部网络一接，边界就模糊了；没有书面约定，接口特性、安全要求、双方责任全是口头默契，出事互相甩锅，审计也查不到底。
+    value: The concern is about 'network connectivity being established without agreements'—once a system
+      connects to an external network, boundaries blur; without written agreements, interface characteristics,
+      security requirements, and responsibilities are all verbal understandings, leading to blame-shifting
+      when issues arise, and audits cannot trace accountability.
     basis: inferred
   plain_zh:
-    value: 凡是你和外部系统之间要走数据的网络连接——专线、VPN、和其他企业的接口——都要有正式协议说清楚：带宽够不够、走什么协议、传什么敏感度级别的数据、出事谁负责、多久检查一次连接是否还合规。
+    value: 'For any network connection between you and external systems—dedicated lines, VPNs, interfaces
+      with other enterprises—there must be a formal agreement specifying: sufficient bandwidth, protocols
+      used, sensitivity level of data transmitted, responsibility in case of incidents, and how often
+      to review whether the connection remains compliant.'
     basis: inferred
   practice:
     value:
-      '1': 所有对外网络连接有台账；每个连接有责任人；知道连的是谁、传什么数据。
-      '2': 每类连接有书面交换协议（接口特征、安全要求、双方责任、数据敏感级别）；连接变更走审批；协议定期评审有记录。
-      '3': 协议模板标准化并进合同与采购流程；连接台账与资产库联动，新连接不放行就进不去；定期做连接级风险评估，并跟踪协议条款与实际配置的偏差。
+      '1': All external network connections are documented in a register; each connection has an owner;
+        it is known who is connected and what data is transmitted.
+      '2': Each type of connection has a written exchange agreement (interface characteristics, security
+        requirements, responsibilities of both parties, data sensitivity level); connection changes go
+        through approval; agreement reviews are periodically conducted and recorded.
+      '3': Agreement templates are standardized and integrated into contract and procurement processes;
+        the connection register is linked with the asset inventory, and new connections cannot proceed
+        without approval; periodic connection-level risk assessments are conducted, and deviations between
+        agreement terms and actual configurations are tracked.
     basis: inferred
   evidence:
-    value: 对外连接台账与连接拓扑图、信息交换协议文件（含接口特性、双方责任、数据级别）、连接开通与变更审批单、协议评审记录、对连接配置的技术核查结果。
+    value: Register of external connections and connection topology diagrams, information exchange agreement
+      documents (including interface characteristics, responsibilities of both parties, data classification),
+      approval forms for connection establishment and changes, agreement review records, and technical
+      verification results of connection configurations.
     basis: inferred
   common_myth:
-    value: 以为「网络是网络团队管的，安全只要在防火墙上做点策略就行」。协议不是网络配置——漏了写数据敏感级别和双方责任，审计时拿防火墙策略说明不了服务约定是否成文、是否有人定期回头看连接是否还必要。
+    value: The misconception is that 'the network is managed by the network team, and security only needs
+      some firewall policies.' An agreement is not a network configuration—if you omit data sensitivity
+      levels and responsibilities of both parties, during an audit, firewall policies cannot demonstrate
+      whether service agreements are documented and whether someone periodically reviews if connections
+      are still necessary.
     basis: inferred
   auditor_asks:
     value:
-    - 和 AWS / 那个供应商之间的那条专线，当初是谁批的？数据级别写在哪份协议第几节？
-    - 上次协议评审是哪年？连接用途变了但协议没改，你们怎么发现？
+    - Who approved the dedicated line between you and AWS / that supplier? In which section of which agreement
+      is the data level specified?
+    - When was the last agreement review? If the connection's purpose changed but the agreement wasn't
+      updated, how would you detect that?
     basis: inferred
   regional_note:
     value: null

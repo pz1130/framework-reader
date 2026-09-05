@@ -1,30 +1,46 @@
 control_id: ISO-27002-2022:A.8.10
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「数据删了但没真正删干净」——硬盘报废、设备返修、云存储释放后，旧数据还能被恢复出来，造成客户数据、源代码或财务信息在物理或虚拟层面泄露。
+    value: The concern is about 'data deleted but not truly erased'—when hard drives are scrapped, devices
+      are returned for repair, or cloud storage is released, old data can still be recovered, leading
+      to leakage of customer data, source code, or financial information at the physical or virtual level.
     basis: inferred
   plain_zh:
-    value: 对所有存过数据的介质——硬盘、SSD、手机、磁带、云存储——在退役、返修、转手或跨安全域转移前，用不可逆的方法把数据销毁，并留下证明。
+    value: For all media that have stored data—hard drives, SSDs, mobile phones, tapes, cloud storage—before
+      retirement, repair, transfer, or cross-security-domain movement, use irreversible methods to destroy
+      the data and leave proof.
     basis: inferred
   practice:
     value:
-      '1': 有设备报废清单；报废前用整盘擦除或物理销毁；有销毁登记表但内容较简。
-      '2': 按介质类型定擦除标准（如云存储释放、硬盘清磁、SSD安全擦除）；返修及转交给第三方前先擦除；记录保存一定年限。
-      '3': 擦除方法与介质类型匹配且可验证（如加密后擦除、双重擦除）；云存储与虚拟磁盘释放流程自动化；擦除失败有隔离与补救流程。
+      '1': There is an equipment retirement list; before retirement, full-disk erasure or physical destruction
+        is used; there is a destruction registration form but with relatively simple content.
+      '2': Erasure standards are defined by media type (e.g., cloud storage release, hard drive degaussing,
+        SSD secure erase); erasure is performed before repair and transfer to third parties; records are
+        kept for a certain number of years.
+      '3': Erasure methods match media type and are verifiable (e.g., encryption-then-erasure, double
+        erasure); release processes for cloud storage and virtual disks are automated; there are isolation
+        and remediation processes for erasure failures.
     basis: inferred
   evidence:
-    value: 介质报废与回收台账、擦除工具日志或报告（含序列号与时间戳）、物理销毁照片或第三方销毁凭证、含数据的设备返修审批单、云存储释放确认。
+    value: Media retirement and recycling logs, erasure tool logs or reports (including serial numbers
+      and timestamps), physical destruction photos or third-party destruction certificates, approval forms
+      for repair of devices containing data, cloud storage release confirmations.
     basis: inferred
   common_myth:
-    value: 以为「清空回收站」或「把文件删除」就算擦除。普通删除只是标记可覆盖，数据还在盘上；只有对存储介质做不可逆覆盖、加密后擦除或物理销毁，才算真正完成。
+    value: Thinking that 'emptying the recycle bin' or 'deleting files' counts as erasure. Ordinary deletion
+      only marks space as overwritable; the data is still on the disk. Only irreversible overwriting of
+      the storage media, encryption-then-erasure, or physical destruction truly completes the process.
     basis: inferred
   auditor_asks:
     value:
-    - 这块硬盘报废走的是什么流程？擦除命令的输出日志在哪？
-    - 返修的机器里有客户数据吗？谁批准带走，带走前怎么确认已经擦净？
-    - 云存储里的数据删除后，底层存储空间是怎么释放的？有没有残留快照？
+    - What process does this hard drive follow for retirement? Where is the output log of the erasure
+      command?
+    - Do the machines returned for repair contain customer data? Who approved the removal, and how is
+      it confirmed that they have been erased before removal?
+    - After data deletion in cloud storage, how is the underlying storage space released? Are there residual
+      snapshots?
     basis: inferred
   regional_note:
     value: null

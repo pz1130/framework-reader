@@ -1,29 +1,48 @@
 control_id: NIST-CSF-2.0:RS.AN-08
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是应急响应一开始就把事件量级估错——估小了，投入的资源不够，影响蔓延；估大了，关键系统被过度隔离，业务损失被二次放大。事件响应的所有优先级与资源调度都建立在对量级的判断上，这个判断错了，后面都是错的。
+    value: The concern is that at the very start of incident response, the magnitude of the event may
+      be misestimated—if underestimated, insufficient resources are allocated and the impact spreads;
+      if overestimated, critical systems are overly isolated, and business losses are amplified a second
+      time. All priorities and resource allocation in incident response are based on the judgment of magnitude;
+      if this judgment is wrong, everything that follows is wrong.
     basis: inferred
   plain_zh:
-    value: 事件发生后要有人对影响范围、严重程度和波及系统做出估计，并且这个估计要经得起验证——不是一个人拍脑袋说「不太严重」，而是有依据、有交叉确认、事后能用实际影响来校准。
+    value: After an event occurs, someone must estimate the scope of impact, severity, and affected systems,
+      and this estimate must be verifiable—not just one person saying 'it's not too serious' based on
+      gut feeling, but based on evidence, cross-validation, and later calibration with actual impact.
     basis: inferred
   practice:
     value:
-      '1': 事件响应流程里规定必须做影响评估；有对应表单或模板；由当值分析师填写量级判断。
-      '2': 有量级评估的明确定义与分级标准；评估过程会收集证据（如受影响资产清单、数据泄露可能性）；评估结果需要第二人复核或主管审批。
-      '3': 评估与验证被嵌入响应工具链——关联资产台账、漏洞情报与业务影响力数据；事后用实际损失复盘并校准评估模型；评估结论随时间推移自动触发对初始判断的修订。
+      '1': The incident response process specifies that impact assessment must be performed; there is
+        a corresponding form or template; the on-duty analyst fills in the magnitude judgment.
+      '2': There are clear definitions and classification criteria for magnitude assessment; the assessment
+        process collects evidence (such as lists of affected assets, likelihood of data breach); the assessment
+        result requires a second-person review or supervisor approval.
+      '3': Assessment and validation are embedded in the response toolchain—correlating asset inventory,
+        vulnerability intelligence, and business impact data; after the event, actual losses are used
+        to review and calibrate the assessment model; assessment conclusions automatically trigger revisions
+        to initial judgments over time.
     basis: inferred
   evidence:
-    value: 包含量级估计的事件记录（工单/IR报告）、分级标准定义文件、复核或审批记录、事后复盘或教训总结、评估模型更新日志。
+    value: Incident records containing magnitude estimates (tickets/IR reports), classification criteria
+      definition documents, review or approval records, post-incident reviews or lessons learned, assessment
+      model update logs.
     basis: inferred
   common_myth:
-    value: 以为「有事件分级表、填了 SLA 和上报时间」就等于完成了量级估计。分级表只是输入条件——如果没人把攻击路径、受影响的系统、是否有数据跨境或业务连续性风险的信息填进去，那个「紧急/重大」的勾只是流程道具，不是估算。
+    value: Thinking that 'having an incident classification table, filling in SLA and escalation time'
+      equals completing the magnitude estimate. The classification table is only an input condition—if
+      no one fills in information about the attack path, affected systems, whether there is data cross-border
+      or business continuity risk, then the 'urgent/major' checkbox is just a process prop, not an estimate.
     basis: inferred
   auditor_asks:
     value:
-    - 这个事件当时定为『重大』，判断依据是哪几条具体证据？谁复核过？
-    - 事后复盘有没有验证当初的量级判断？往下调或往上调了，改了什么流程？
+    - For this incident classified as 'major', what specific evidence was the judgment based on? Who reviewed
+      it?
+    - Did the post-incident review validate the initial magnitude judgment? If adjusted up or down, what
+      process changes were made?
     basis: inferred
   regional_note:
     value: null

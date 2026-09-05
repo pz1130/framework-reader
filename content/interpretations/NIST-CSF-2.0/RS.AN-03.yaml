@@ -1,29 +1,44 @@
 control_id: NIST-CSF-2.0:RS.AN-03
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「事件处置完就算结束」——如果只恢复业务不查根因，同类事件会换个方式再来，安全团队永远在救火而不是灭火。
+    value: The concern is that "the incident is considered closed once handling is complete"—if you only
+      restore business operations without investigating the root cause, similar incidents will recur in
+      different forms, and the security team will always be fighting fires rather than extinguishing them.
     basis: inferred
   plain_zh:
-    value: 出了安全事件，要分析到底发生了什么、为什么发生，把攻击路径和根本原因挖出来，而不是把系统重启就完事。
+    value: When a security incident occurs, analyze what actually happened and why it happened, uncovering
+      the attack path and root cause, rather than simply restarting the system and calling it done.
     basis: inferred
   practice:
     value:
-      '1': 事件处置后要求写一份包含时间线、影响范围和初步原因的描述，存档备查。
-      '2': 有正式的事件分析流程，区分直接原因与根本原因；使用基础分析手法（如 5 Whys、鱼骨图）并有分析报告模板。
-      '3': 根因分析结果驱动整改项，有责任人、截止日期和验证闭环；分析能力依托日志与取证平台，能回溯完整攻击链。
+      '1': After incident handling, require a description that includes a timeline, impact scope, and
+        preliminary cause, archived for future reference.
+      '2': Have a formal incident analysis process that distinguishes between direct causes and root causes;
+        use basic analysis techniques (such as 5 Whys, fishbone diagrams) and have an analysis report
+        template.
+      '3': Root cause analysis results drive remediation items, with responsible persons, deadlines, and
+        verification closure; analysis capability relies on logs and forensic platforms to trace the full
+        attack chain.
     basis: inferred
   evidence:
-    value: 事件分析报告（含时间线、影响面、根因结论）、日志与取证证据保留记录、根因导致的整改项及其关闭凭证。
+    value: Incident analysis reports (including timeline, impact scope, root cause conclusions), log and
+      forensic evidence retention records, and remediation items arising from root cause analysis along
+      with their closure evidence.
     basis: inferred
   common_myth:
-    value: 以为「重启系统、封了 IP、业务恢复」就等于完成了事件响应。没有根因的处置只是临时止痛，攻击者换入口或复用同样漏洞很快再来；审计员要的是「为什么能打成这样」的分析，不是「我们怎么恢复的」的总结。
+    value: The misconception is that "restarting the system, blocking the IP, and restoring business operations"
+      equals completing incident response. Handling without root cause analysis is only temporary pain
+      relief; attackers will return through alternate entry points or by exploiting the same vulnerabilities.
+      Auditors want an analysis of "how the attacker was able to do this," not a summary of "how we restored
+      operations."
     basis: inferred
   auditor_asks:
     value:
-    - 最近一次重大事件，根因结论是什么？由谁签字确认的？
-    - 根因分析里提出的整改项，哪几条已经关闭、哪几条还开着？关了的拿什么证明有效？
+    - For the most recent major incident, what was the root cause conclusion? Who signed off on it?
+    - Of the remediation items proposed in the root cause analysis, which ones have been closed and which
+      are still open? For those closed, what evidence demonstrates their effectiveness?
     basis: inferred
   regional_note:
     value: null

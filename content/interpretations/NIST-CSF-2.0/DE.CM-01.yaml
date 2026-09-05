@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:DE.CM-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「边界防火墙开着、盯着流量，但内网东西向流量和终端行为没有监控——横向移动和钓鱼成功落地后没人察觉」。网络监控必须覆盖关键网段与网络服务，发现潜在恶意事件并告警，而不是只看互联网入口的流量。
+    value: The concern is that the boundary firewall is on and monitoring traffic, but internal east-west
+      traffic and endpoint behavior are not monitored—lateral movement and successful phishing landings
+      go unnoticed. Network monitoring must cover critical network segments and network services, detect
+      potential malicious events, and alert, rather than only watching traffic at the internet entry point.
     basis: inferred
   plain_zh:
-    value: 对入网、出网和东西向流量以及网络设备上的服务做持续监控，抓出可能构成威胁的事件；监控不是装个流量探针就行，要覆盖重要网段、要能看到加密流量之外的行为线索、要有告警和响应流程。
+    value: Continuously monitor inbound, outbound, and east-west traffic, as well as services on network
+      devices, to identify events that may constitute threats; monitoring is not just installing a traffic
+      probe—it must cover important network segments, see behavioral clues beyond encrypted traffic, and
+      have alerting and response processes.
     basis: inferred
   practice:
     value:
-      '1': 边界和核心交换处有流量监控或探针；IDS/IPS 开着且规则加载；有告警接收与响应联系人。
-      '2': 监控覆盖内外网关键网段与关键网络服务；告警有分级与正常响应时限；探针与规则变更、告警处理均有记录。
-      '3': 监控通道与纵深防御体系打通，与日志分析和威胁情报联动；对加密流量、DNS 隧道、异常协议行为有检测手段；定期做监控覆盖盲区评审与探测有效性测试。
+      '1': Traffic monitoring or probes are in place at boundary and core switches; IDS/IPS is enabled
+        with rules loaded; there are contacts for receiving and responding to alerts.
+      '2': Monitoring covers critical internal and external network segments and key network services;
+        alerts have severity levels and normal response timeframes; probe and rule changes, as well as
+        alert handling, are documented.
+      '3': Monitoring channels are integrated with defense-in-depth systems, linked with log analysis
+        and threat intelligence; there are detection methods for encrypted traffic, DNS tunneling, and
+        anomalous protocol behavior; regular reviews of monitoring coverage blind spots and detection
+        effectiveness tests are conducted.
     basis: inferred
   evidence:
-    value: 网络拓扑与监控覆盖图、IDS/IPS 规则库版本与加载记录、告警工单与处理记录、带宽与协议基线分析报告、定期监控有效性测试报告。
+    value: Network topology and monitoring coverage diagrams, IDS/IPS rule library versions and loading
+      records, alert tickets and handling records, bandwidth and protocol baseline analysis reports, and
+      periodic monitoring effectiveness test reports.
     basis: inferred
   common_myth:
-    value: 以为部署了 IDS 就算做到监控了
-    basis: practitioner
+    value: Assuming that deploying an IDS is sufficient for monitoring
+    basis: inferred
   auditor_asks:
     value:
-    - 只要人看的，就有失误的风险
-    basis: practitioner
+    - Where human review is involved, there is a risk of error
+    basis: inferred
   regional_note:
     value: null
     basis: inferred

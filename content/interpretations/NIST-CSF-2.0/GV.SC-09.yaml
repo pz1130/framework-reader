@@ -1,30 +1,49 @@
 control_id: NIST-CSF-2.0:GV.SC-09
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「供应链安全挂在采购部门或安全部门各自为政，和公司整体风险治理脱节」——供方出事影响业务连续性或合规时，没人能把它纳入企业级风险决策，也没人持续盯着供方表现直到产品退市。
+    value: The concern is that supply chain security is siloed within procurement or security departments,
+      disconnected from the company's overall risk governance—when a supplier incident affects business
+      continuity or compliance, no one incorporates it into enterprise-level risk decisions, and no one
+      continuously monitors supplier performance until product end-of-life.
     basis: inferred
   plain_zh:
-    value: 把供应链安全做法融进企业网络安全和风险管理体系，并且从选型、采购、使用到退市，全程盯着供方表现，不能签完合同就不管。
+    value: Integrate supply chain security practices into the enterprise cybersecurity and risk management
+      system, and monitor supplier performance throughout the entire lifecycle from selection, procurement,
+      and use to end-of-life; do not stop after signing the contract.
     basis: inferred
   practice:
     value:
-      '1': 有供应链安全要求和供方清单；采购流程里纳入基本安全条款；能指出谁负责供方风险。
-      '2': 供方风险分级并进入企业风险登记；有定期的供方表现评审与安全复评；问题有升级路径和处置记录。
-      '3': 供应链安全指标纳入企业级风险报告；关键供方有全生命周期监控与退出预案；供方变更（如转包、产品停售）能触发重新评估。
+      '1': There are supply chain security requirements and a supplier list; basic security clauses are
+        included in the procurement process; it is clear who is responsible for supplier risk.
+      '2': Supplier risks are classified and entered into the enterprise risk register; there are periodic
+        supplier performance reviews and security reassessments; there is an escalation path and handling
+        records for issues.
+      '3': Supply chain security metrics are included in enterprise-level risk reports; critical suppliers
+        have full lifecycle monitoring and exit plans; supplier changes (e.g., subcontracting, product
+        discontinuation) trigger reassessment.
     basis: inferred
   evidence:
-    value: 供方风险登记与企业风险报告、供应链安全政策、采购合同中的安全条款与供方表现评审记录、供方生命周期管理流程文件、关键供方退出或切换演练纪要。
+    value: Supplier risk register and enterprise risk reports, supply chain security policy, security
+      clauses in procurement contracts and supplier performance review records, supplier lifecycle management
+      process documents, and minutes of drills for critical supplier exit or switch.
     basis: inferred
   common_myth:
-    value: 以为「安全问卷做完了、合同条款签了，这条就算完成」——问卷和条款只是入场门槛。审计员真正要看的是供方风险有没有进入企业级风险登记、有没有持续评审供方表现、产品停售或供方转包时有没有触发重新评估。只做一次评估不算「integrated」。
+    value: The misconception is that 'once the security questionnaire is completed and contract clauses
+      are signed, this control is done'—questionnaires and clauses are just entry thresholds. Auditors
+      really look at whether supplier risk has entered the enterprise risk register, whether supplier
+      performance is continuously reviewed, and whether product discontinuation or supplier subcontracting
+      triggers reassessment. A one-time assessment does not count as 'integrated'.
     basis: inferred
   auditor_asks:
     value:
-    - 你们关键供方的风险等级，上一次是企业风险委员会议什么时间讨论的？记录在哪？
-    - 供方产品宣布停售或供方转包核心组件时，你们的评估流程是怎么触发的？
-    - 请指出从采购合同签订到产品退市，供方风险由哪个岗位以什么频率跟进，依据哪份文件？
+    - When was the risk level of your critical suppliers last discussed at an enterprise risk committee
+      meeting? Where are the records?
+    - How is your assessment process triggered when a supplier announces product discontinuation or subcontracts
+      core components?
+    - Please identify which role follows up on supplier risk from contract signing to product end-of-life,
+      at what frequency, and based on which document.
     basis: inferred
   regional_note:
     value: null

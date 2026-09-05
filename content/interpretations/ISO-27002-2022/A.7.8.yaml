@@ -1,34 +1,69 @@
 control_id: ISO-27002-2022:A.7.8
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是设备被放在一个既没想清楚物理威胁、也没算过环境极限的地方——火灾、漏水、断电、震动、温度湿度超标、电磁泄漏，任何一个先到，设备先死或数据先漏，而机房和安全办公室在决策时根本没人把这些当约束条件。
+    value: The concern is that equipment may be placed in locations without due consideration of physical
+      threats or environmental limits—fire, water leakage, power outage, vibration, temperature/humidity
+      extremes, or electromagnetic leakage—any of which could damage equipment or cause data leakage first,
+      while decision-makers in server rooms and security offices fail to treat these as constraints.
     basis: inferred
   plain_zh:
-    value: 服务器、网络设备、安防设备这些核心资产放在哪、环境怎么控、灭火防水怎么做，都要按风险算过而不是按装修习惯来；同时防止设备位置本身成为泄密渠道——比如屏幕对窗、电磁辐射被截获、维修口朝公共区。
+    value: The placement of core assets such as servers, network devices, and security equipment, along
+      with environmental controls and fire suppression/water protection measures, should be based on risk
+      assessment rather than renovation habits; also prevent equipment location itself from becoming a
+      channel for information leakage—for example, screens facing windows, electromagnetic radiation being
+      intercepted, or maintenance access points facing public areas.
     basis: inferred
   practice:
     value:
-      '1': 机房、弱电间有灭火器和感烟探测器；温湿度有空调撑着；漏水风险点（空调排水、水管上方）有基本防水措施；设备不上人行走道正下方。
-      '2': 关键机房用独立供电的感烟与灭火系统，不是只靠手持灭火器；温湿度有实时监控和告警；主水阀和隔离阀位置画在图上、挂牌、有专人知道；设备部署位置有书面记录并做过多灾种风险评审。
-      '3': 火灾探测与灭火系统独立供电并定期联动测试，不是到年检才试；环境监控接入值班告警，阈值按设备厂商规格设而不是拍脑袋；关键区域的地图、阀门位置、断电顺序全部对安保与运维做过实操演练；对电磁泄漏有实测或屏蔽措施，不是默认没有。
+      '1': Server rooms and telecommunications rooms have fire extinguishers and smoke detectors; temperature
+        and humidity are supported by air conditioning; basic water protection measures are in place at
+        leakage risk points (e.g., air conditioning drainage, areas above water pipes); equipment is not
+        placed directly beneath pedestrian walkways.
+      '2': Critical server rooms use independently powered smoke detection and fire suppression systems,
+        not just handheld extinguishers; temperature and humidity have real-time monitoring and alarms;
+        the locations of main water valves and isolation valves are indicated on diagrams, labeled, and
+        known to designated personnel; equipment deployment locations are documented and have undergone
+        multi-hazard risk reviews.
+      '3': Fire detection and suppression systems have independent power supplies and are regularly tested
+        in conjunction, not just during annual inspections; environmental monitoring is integrated into
+        duty alarms, with thresholds set according to equipment manufacturer specifications rather than
+        arbitrarily; maps of critical areas, valve locations, and power-down sequences have been practically
+        drilled with security and operations staff; electromagnetic leakage is measured or shielded, not
+        assumed to be absent.
     basis: inferred
   evidence:
-    value: 机房/弱电间设计图与设备部署图、灭火系统年检与联动测试报告、温湿度监控系统的告警记录与阈值配置截图、主水阀/隔离阀位置图和巡检签字、新设备选址的风险评审表、电磁泄漏评估报告（如做了的话）。
+    value: Design drawings of server rooms/telecommunications rooms and equipment deployment diagrams,
+      annual inspection and joint testing reports of fire suppression systems, alarm records and threshold
+      configuration screenshots of temperature/humidity monitoring systems, diagrams of main water valve/isolation
+      valve locations with patrol signatures, risk review forms for new equipment site selection, and
+      electromagnetic leakage assessment reports (if conducted).
     basis: inferred
   common_myth:
-    value: 以为这条就是「把设备放机房、机房有灭火器和空调」——其实审计员先看的是设备位置有没有经过风险评估记录可查，再看消防和水阀有没有独立电源和联动测试，最后盯环境监控阈值是不是按设备规格设的，不是把灭火器和温度计拍照交差。
+    value: It is mistakenly believed that this requirement simply means 'placing equipment in a server
+      room with fire extinguishers and air conditioning'—but auditors first check whether equipment placement
+      has undergone documented risk assessment, then examine whether fire protection and water valves
+      have independent power supplies and joint testing, and finally scrutinize whether environmental
+      monitoring thresholds are set according to equipment specifications, rather than merely submitting
+      photos of fire extinguishers and thermometers.
     basis: inferred
   auditor_asks:
     value:
-    - 机房的消防系统是接市电还是独立供电？上次联动测试是什么时候，报告呢？
-    - 机柜正上方有没有水管经过？如果有，隔离阀在哪、谁负责关、演练过吗？
-    - 温湿度告警阈值是谁定的？依据是设备厂商规格还是随便填的？
+    - Is the fire protection system in the server room connected to the main power supply or independently
+      powered? When was the last joint test, and where is the report?
+    - Are there water pipes directly above the equipment racks? If so, where are the isolation valves,
+      who is responsible for closing them, and have drills been conducted?
+    - Who set the temperature and humidity alarm thresholds? Were they based on equipment manufacturer
+      specifications or arbitrarily assigned?
     basis: inferred
   regional_note:
-    value: 欧洲审计员对这条普遍更严，特别是数据中心相关场景——他们常引用 EN 50600 系列对物理安全与环境分类的分级要求来核对你的防护等级是否与资产等级匹配；美国审计员则更集中在消防系统独立供电和
-      NFPA 相关对标。能做到「防护等级与资产分类挂钩并能解释」，两边都能过关。
+    value: European auditors generally impose stricter requirements for this control, especially in data
+      center scenarios—they often reference the EN 50600 series' graded requirements for physical security
+      and environmental classification to verify that your protection level matches the asset classification;
+      American auditors focus more on independent power supply for fire protection systems and alignment
+      with NFPA standards. If you can ensure that the protection level is linked to asset classification
+      and can explain this, you will pass in both regions.
     basis: inferred
 interview:
   questions: []

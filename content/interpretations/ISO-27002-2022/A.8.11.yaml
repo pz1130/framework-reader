@@ -1,29 +1,48 @@
 control_id: ISO-27002-2022:A.8.11
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防止数据在内部不同安全域之间流动时，把不该带出去的敏感信息原样带了过去——比如生产库里的真实手机号进了测试环境、客户姓名进了分析报表。给数据做脱敏是为了即使数据被不该看的人看到，也无法直接关联到具体个人。
+    value: To prevent sensitive information from being carried over as-is when data flows between different
+      security domains within the organization—for example, real phone numbers from a production database
+      entering a test environment, or customer names appearing in analytical reports. Data masking is
+      applied so that even if data is viewed by unauthorized individuals, it cannot be directly linked
+      to specific individuals.
     basis: inferred
   plain_zh:
-    value: 数据从一个系统或环境搬到另一个系统或环境时，先识别里面哪些字段是敏感字段（手机号、身份证、姓名、地址等），然后按规则把这些字段变形——打码、替换成假值或删除——让最终使用者看不到真实值，但又不至于让数据完全没法用。
+    value: When data is moved from one system or environment to another, first identify which fields are
+      sensitive (phone numbers, ID numbers, names, addresses, etc.), then transform these fields according
+      to rules—masking, replacing with fake values, or deleting—so that end users cannot see the real
+      values, but the data remains usable to a certain extent.
     basis: inferred
   practice:
     value:
-      '1': 识别了哪些数据属于敏感数据；在测试环境和生产环境之间的复制流程里有手工或半自动的脱敏步骤；有基本的脱敏规则清单。
-      '2': 脱敏规则按数据种类和环境差异化配置（生产到测试、生产到分析、跨部门共享各有规则）；脱敏过程有日志记录可回溯；关键敏感字段的脱敏结果有人抽查。
-      '3': 脱敏工具自动嵌入数据流转管道，未经脱敏的数据无法进入目标环境；脱敏规则版本管控并定期评审；定期用自动化工具扫描目标环境里是否存在未脱敏的真实数据。
+      '1': Sensitive data has been identified; manual or semi-automated masking steps exist in the copy
+        process between test and production environments; a basic list of masking rules is available.
+      '2': Masking rules are configured differently based on data type and environment (production to
+        test, production to analytics, cross-department sharing each have rules); masking processes are
+        logged for traceability; spot checks are conducted on masking results for key sensitive fields.
+      '3': Masking tools are automatically embedded in data flow pipelines, preventing unmasked data from
+        entering target environments; masking rules are version-controlled and regularly reviewed; automated
+        tools are used periodically to scan target environments for the presence of unmasked real data.
     basis: inferred
   evidence:
-    value: 敏感字段分类清单、脱敏规则配置文档、脱敏执行日志或脚本记录、对目标环境（如测试库）的数据抽样检查结果、工具的配置截图或变更记录。
+    value: Sensitive field classification list, masking rule configuration documents, masking execution
+      logs or script records, data sampling inspection results from target environments (e.g., test databases),
+      tool configuration screenshots or change records.
     basis: inferred
   common_myth:
-    value: 以为「脱敏就是写个脚本把手机号中间四位换掉」就算做到了——脱敏的关键是识别全生命周期里每一个复制点，比如备份恢复、数据导出的临时通道、日志里带的字段，漏掉任意一条管道，真实数据照样能流出去。
+    value: The misconception is that 'masking is just writing a script to replace the middle four digits
+      of a phone number'—the key to masking is identifying every copy point throughout the data lifecycle,
+      such as backup restoration, temporary channels for data export, and fields included in logs. If
+      any pipeline is missed, real data can still flow out.
     basis: inferred
   auditor_asks:
     value:
-    - 生产数据到测试环境的每条复制路径都覆盖脱敏了吗？备份恢复到开发环境算不算一条路径？
-    - 数据字典里哪些字段标记为敏感？谁确认的？脱敏规则和字段标记更新的频率是什么？
+    - Is masking applied to every copy path from production data to test environments? Does backup restoration
+      to a development environment count as a path?
+    - Which fields in the data dictionary are marked as sensitive? Who confirmed this? What is the frequency
+      of updating masking rules and field markings?
     basis: inferred
   regional_note:
     value: null

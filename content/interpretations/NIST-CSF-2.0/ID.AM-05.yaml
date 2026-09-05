@@ -1,29 +1,43 @@
 control_id: NIST-CSF-2.0:ID.AM-05
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「所有资产一视同仁」——没有优先级，钱和人力就摊在低价值资产上；真出事时，最关键的系统和数据反而没有最快恢复、最优保障。
+    value: The concern is about treating all assets equally—without prioritization, money and effort are
+      spread across low-value assets; when an incident occurs, the most critical systems and data do not
+      receive the fastest recovery and optimal protection.
     basis: inferred
   plain_zh:
-    value: 把资产按重要性排个队：关键不关键、丢了影响多大，决定了安全投入、监控密度和恢复顺序该往哪放。
+    value: 'Rank assets by importance: whether they are critical and the impact of their loss determine
+      where security investment, monitoring intensity, and recovery order should be directed.'
     basis: inferred
   practice:
     value:
-      '1': 有一份资产清单，能指认哪个系统最重要，口头能说清理由。
-      '2': 资产按类型、重要性和对业务的影响打了分、分了档；分档结果驱动了备份频率和监控范围，有记录可查。
-      '3': 资产优先级与业务连续性、灾难恢复计划联动，能证明不同档位资产的恢复顺序和时间目标是按优先级定的，且随资产变化定期修订。
+      '1': There is an asset inventory that can identify which system is most important, with the ability
+        to verbally explain the rationale.
+      '2': Assets are scored and categorized by type, importance, and impact on business; the categorization
+        results drive backup frequency and monitoring scope, with records available for review.
+      '3': Asset prioritization is linked to business continuity and disaster recovery plans, demonstrating
+        that recovery order and time objectives for different asset categories are set based on priority,
+        and are regularly revised as assets change.
     basis: inferred
   evidence:
-    value: 资产清单和分档表、影响分析或评分记录、恢复优先级清单、分档结果与实际安全投入（如监控、备份、访问控制）的对应记录。
+    value: Asset inventory and categorization table, impact analysis or scoring records, recovery priority
+      list, and records showing the correspondence between categorization results and actual security
+      investment (e.g., monitoring, backup, access control).
     basis: inferred
   common_myth:
-    value: 以为「资产清点过一遍、分过类」就完事。常见错法是信息系统负责人拍脑袋给资产打了几档，但业务部门没参与、恢复顺序也没按优先级做——分档停在台账里，关键系统恢复顺序跟分档结果对不上。
+    value: Assuming that 'once assets are inventoried and classified, the job is done.' A common mistake
+      is that the information system owner arbitrarily assigns a few categories to assets, but business
+      units are not involved, and recovery order is not based on priority—the categorization remains in
+      the ledger, and the recovery order for critical systems does not match the categorization results.
     basis: inferred
   auditor_asks:
     value:
-    - 你分成最高优先级的三个资产是哪个？判定依据是评分表还是口头汇报？
-    - 资产优先级有没有对应到备份频率和重大事故时的恢复顺序上？请指给我看。
+    - Which three assets have you classified as highest priority? Is the basis a scoring table or verbal
+      reporting?
+    - Does asset priority correspond to backup frequency and recovery order during major incidents? Please
+      show me.
     basis: inferred
   regional_note:
     value: null

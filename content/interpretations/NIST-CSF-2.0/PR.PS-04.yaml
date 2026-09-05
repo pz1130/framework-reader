@@ -1,34 +1,52 @@
 control_id: NIST-CSF-2.0:PR.PS-04
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「日志在但没人看」——记录若只躺在存储里、无法持续消费与关联，攻击发生几天甚至几周后才被发现，取证与止损都来不及。
+    value: The concern is 'logs exist but no one reviews them'—if records merely sit in storage without
+      continuous consumption and correlation, attacks may be discovered days or even weeks later, making
+      forensics and mitigation too late.
     basis: inferred
   plain_zh:
-    value: 要把产生日志做成常态：系统按配置生成日志，日志及时收拢，能持续供监控与分析使用，而不是等出事才想起翻日志。
+    value: 'Make log generation a routine: systems generate logs as configured, logs are collected promptly,
+      and are continuously available for monitoring and analysis, rather than only thinking of reviewing
+      logs after an incident.'
     basis: inferred
   practice:
     value:
-      '1': 关键系统开启基础日志（登录、权限变更、异常行为），日志按保留期存好，出现安全事件时至少能查得到。
-      '2': 日志按风险分级产生并集中收集；监控工具对关键事件能实时告警；日志轮转和保留时间有书面策略并执行。
-      '3': 日志产生与监控闭环纳入系统生命周期：新系统上线先过「日志就绪」检查；异常检测规则按环境变化定期更新；日志完整性（如哈希、防篡改）有保障，能支撑取证与响应。
+      '1': Enable basic logging on critical systems (logins, privilege changes, anomalous behavior); store
+        logs per retention periods so that at least they can be retrieved when security incidents occur.
+      '2': Generate logs based on risk levels and centrally collect them; monitoring tools provide real-time
+        alerts for critical events; log rotation and retention times are defined in written policies and
+        executed.
+      '3': 'Integrate log generation and monitoring into the system lifecycle: new systems must pass a
+        ''log readiness'' check before deployment; anomaly detection rules are periodically updated based
+        on environmental changes; log integrity (e.g., hashing, tamper prevention) is ensured to support
+        forensics and response.'
     basis: inferred
   evidence:
-    value: 日志配置基线、日志集中平台接入清单、告警规则及触发记录、日志保留策略与定期抽查日志内容、监控工具的覆盖率报告。
+    value: Log configuration baselines, list of systems connected to the central log platform, alert rules
+      and trigger records, log retention policies with periodic sampling of log content, and monitoring
+      tool coverage reports.
     basis: inferred
   common_myth:
-    value: 以为「服务器装了个日志收集代理，把日志灌进 SIEM」就完成了。实际常见的是日志多但没关联规则、告警风暴导致运营团队麻木、部分系统根本不产生日志，或时间不同步导致分析错乱——代理装没装不等于日志可用。
+    value: The misconception is that 'installing a log collection agent on servers and feeding logs into
+      a SIEM' completes the task. In reality, common issues include having many logs but no correlation
+      rules, alert fatigue desensitizing operations teams, some systems not generating logs at all, or
+      time synchronization issues causing analysis errors—agent installation does not equal log usability.
     basis: inferred
   auditor_asks:
     value:
-    - 哪些系统不在日志监控范围内？为什么？
-    - 你们如何证明日志没有被篡改或丢失？
-    - 最近一次基于日志发现的安全事件是什么？触发点是什么？
+    - Which systems are outside the log monitoring scope, and why?
+    - How do you demonstrate that logs have not been tampered with or lost?
+    - What was the most recent security incident discovered through logs, and what triggered it?
     basis: inferred
   regional_note:
-    value: 欧洲审计员常追 GDPR 与 ePrivacy 对日志中个人数据的最小化与保留期限限制，倾向于要求日志留存明显短、用途明确；美国审计员更关心日志能否支撑合规取证与持续监控覆盖面，通常在
-      1-3 年区间要求更长的保留。两边对「日志里能放什么、放多久、谁能碰」的答案期望不同。
+    value: European auditors often pursue GDPR and ePrivacy constraints on minimization and retention
+      of personal data in logs, tending to require significantly shorter retention with clear purposes;
+      U.S. auditors focus more on whether logs support compliance forensics and continuous monitoring
+      coverage, typically requiring longer retention in the 1-3 year range. Expectations differ on 'what
+      can be in logs, how long, and who can access them.'
     basis: inferred
 interview:
   questions: []

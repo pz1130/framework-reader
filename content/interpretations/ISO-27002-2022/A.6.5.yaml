@@ -1,30 +1,48 @@
 control_id: ISO-27002-2022:A.6.5
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「人走了权限还在」和「人还在但岗位变了权限没跟着变」——离职不回收凭据、调岗不裁撤原职责访问，等于给外部攻击者留后门，也给内部职责分离埋雷。
+    value: The concern is about 'people leaving but permissions remaining' and 'people changing roles
+      but permissions not following' — if credentials are not revoked upon termination, or access based
+      on former responsibilities is not removed upon transfer, it leaves a backdoor for external attackers
+      and creates risks for internal segregation of duties.
     basis: inferred
   plain_zh:
-    value: 员工离职或调岗时，要在规定时限内收回或调整其对系统和物理设施的访问权限，并确保当事人清楚离职后的保密义务和资产归还要求。
+    value: When an employee leaves or transfers, their access rights to systems and physical facilities
+      must be revoked or adjusted within a specified timeframe, and the individual must be made aware
+      of confidentiality obligations and asset return requirements after departure.
     basis: inferred
   practice:
     value:
-      '1': 有离职/调岗流程；HR或主管发起通知；IT按流程关账号、收令牌；有交接清单。
-      '2': 流程有时间限制（如离职当日或次日内）；调岗有审批确认新岗位权限需求；涉及保密义务的离职面谈有记录；资产归还列表有签字。
-      '3': 账号生命周期与HR系统联动自动触发；调岗触发权限重评并自动调整；离职后账号回收有审计日志可验证；对高权限或关键岗位有额外复核。
+      '1': There is a termination/transfer process; HR or supervisor initiates notification; IT follows
+        the process to disable accounts and collect tokens; there is a handover checklist.
+      '2': The process has time limits (e.g., on the day of termination or the next day); transfers require
+        approval confirming the access needs for the new role; exit interviews covering confidentiality
+        obligations are documented; asset return lists are signed.
+      '3': Account lifecycle is linked with the HR system for automatic triggering; transfers trigger
+        access re-review and automatic adjustment; account revocation after termination is verifiable
+        via audit logs; additional review is conducted for high-privilege or critical positions.
     basis: inferred
   evidence:
-    value: 离职/调岗流程文件、权限变更工单或系统日志、资产归还清单、离职面谈记录、HR与IT的接口流程记录、定期抽样核对在职名单与有效账号的差异报告。
+    value: Termination/transfer process documents, permission change tickets or system logs, asset return
+      lists, exit interview records, HR-IT interface process records, and periodic sample checks comparing
+      the active employee list with valid accounts to identify discrepancies.
     basis: inferred
   common_myth:
-    value: 以为「HR通知IT关账号」就完事——很多公司没有规定时限，也没有自动触发机制，离职账号拖一周甚至一个月还活着；更常见的是HR根本不会主动通知IT，全靠离职员工自己提。调岗也一样，没人管旧权限是否该收回。
+    value: Assuming that 'HR notifying IT to disable accounts' is sufficient — many companies lack defined
+      time limits and automatic trigger mechanisms, leaving terminated accounts active for a week or even
+      a month; more commonly, HR does not proactively notify IT, relying on the departing employee to
+      initiate. Similarly, for transfers, no one manages whether old permissions should be revoked.
     basis: inferred
   auditor_asks:
     value:
-    - 最近三个月离职的员工，账号平均多久收回？最长多久？有超过时限的吗？
-    - 员工从A部门调到B部门，旧权限是谁负责关？关的时机依据什么？
-    - 离职面谈时，有没有明确告知保密义务？记录在哪里能查到？
+    - For employees who left in the last three months, how long on average did it take to revoke their
+      accounts? What was the longest? Were there any exceeding the time limit?
+    - When an employee transfers from Department A to Department B, who is responsible for disabling old
+      permissions? What basis is used for the timing?
+    - During exit interviews, is the confidentiality obligation clearly communicated? Where can records
+      be found?
     basis: inferred
   regional_note:
     value: null

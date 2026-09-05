@@ -1,29 +1,48 @@
 control_id: ISO-27002-2022:A.5.4
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「安全政策签字人不在、责任真空」——管理层的义务没落到具体人头上，出事时没人拍板、没人担责，政策与流程无人维护，安全体系随人员流动而失修。
+    value: The intent is to prevent the situation where the signatory of the security policy is absent,
+      creating a responsibility vacuum—where management's obligations are not assigned to specific individuals,
+      leaving no one to make decisions or take responsibility in the event of an incident, and no one
+      to maintain the policy and processes, causing the security system to deteriorate as personnel change.
     basis: inferred
   plain_zh:
-    value: 必须有一个高层管理者（或层级）对信息安全政策负总责：签发政策、分配职责、定期评审更新、确保资源到位，并且让全组织知道该找谁。
+    value: 'A senior manager (or a management level) must be designated as having overall responsibility
+      for the information security policy: issuing the policy, assigning responsibilities, conducting
+      regular reviews and updates, ensuring resources are available, and making the organization aware
+      of whom to contact.'
     basis: inferred
   practice:
     value:
-      '1': 指定一位高管（如 CISO 或分管副总）为安全政策负责人；政策文件上有其签字与生效日期；员工知道政策在哪里看。
-      '2': 该负责人按既定周期（如每年）组织政策评审与修订，评审有纪要；政策变更需其审批；职责分工明确写在政策内。
-      '3': 管理层的义务与组织治理流程挂钩（如董事会汇报）；政策更新由风险与业务变化触发而非固定周期；负责人缺位时有备位安排。
+      '1': Designate a senior executive (e.g., CISO or a vice president in charge) as the person responsible
+        for the security policy; the policy document bears their signature and the effective date; employees
+        know where to access the policy.
+      '2': The responsible person organizes policy reviews and revisions according to a defined cycle
+        (e.g., annually), with meeting minutes recorded; policy changes require their approval; the division
+        of responsibilities is clearly stated within the policy.
+      '3': Management's obligations are linked to organizational governance processes (e.g., reporting
+        to the board); policy updates are triggered by risk and business changes rather than a fixed cycle;
+        there is a backup arrangement when the responsible person is unavailable.
     basis: inferred
   evidence:
-    value: 经高管签字的安全政策或章程文件、政策评审与修订记录（含审批人）、管理层关于安全职责的会议纪要或任命书、向全员传达政策的记录。
+    value: Security policy or charter documents signed by senior management, records of policy reviews
+      and revisions (including approvers), meeting minutes or appointment letters regarding management's
+      security responsibilities, and records of communicating the policy to all employees.
     basis: inferred
   common_myth:
-    value: 以为「写了安全管理制度、盖了章」就算落实。制度上没有指定「谁负责维护、谁审批修订、谁对政策执行负责」，审计员追问三个为什么就会露馅——找不到担责人，文件就是一张纸。
+    value: The misconception is that merely having a written security management system with a stamp of
+      approval is sufficient. If the system does not specify who is responsible for maintenance, who approves
+      revisions, and who is accountable for policy implementation, auditors will uncover gaps by asking
+      three 'whys'—if no one can be identified as accountable, the document is just a piece of paper.
     basis: inferred
   auditor_asks:
     value:
-    - 这份政策如果今年要修订，流程是什么？谁有权批准？
-    - 上一任安全负责人离职到新负责人上任之间，政策的评审和更新由谁在做？
+    - If this policy needs to be revised this year, what is the process? Who has the authority to approve
+      it?
+    - Between the departure of the previous security officer and the appointment of a new one, who is
+      responsible for policy reviews and updates?
     basis: inferred
   regional_note:
     value: null

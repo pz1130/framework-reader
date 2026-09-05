@@ -1,29 +1,49 @@
 control_id: NIST-CSF-2.0:PR.IR-01
-locale: zh-CN
-state: confirmed
+locale: en
+state: draft
 fields:
   intent:
-    value: 防的是「网络通了就什么都不设防」——内部人员横向乱窜、外部流量直接摸到核心系统。这条管的是逻辑层的门禁和隔离，不是防火墙设备买没买，而是流量和访问到底有没有按规则被拦下来。
+    value: The concern is about 'no defense once the network is connected'—insiders moving laterally without
+      restriction, and external traffic directly reaching core systems. This control addresses logical
+      access control and isolation at the network layer, not just whether firewalls are purchased, but
+      whether traffic and access are actually blocked according to rules.
     basis: inferred
   plain_zh:
-    value: 给网络和运行环境装好逻辑门禁：进出的流量、人、系统之间的访问，都得按规则放行或拒绝；异常流量要有能力扛住，不能随便什么请求都能打到内部。
+    value: 'Implement logical access control for networks and operating environments: traffic, people,
+      and systems accessing each other must be allowed or denied based on rules; the capability to withstand
+      abnormal traffic is required, and not just any request should be able to reach internal systems.'
     basis: inferred
   practice:
     value:
-      '1': 有基本边界防火墙或网络ACL，内外部网段有区分；核心系统不在公网裸奔；访问规则有变更记录。
-      '2': 按业务需要启用最小开放策略（默认拒绝、按需放行）；内部按安全域或VLAN分段，段间访问有受控路径；关键流量有准入与访问控制策略并定期评审。
-      '3': 网络与环境访问控制策略系统化管理，规则变更走审批流且可回滚；对异常流量或横向移动有主动检测与拦截能力；架构上做到默认隔离，开放是例外且可追溯。
+      '1': Basic perimeter firewall or network ACLs are in place, with separation between internal and
+        external network segments; core systems are not directly exposed to the public internet; access
+        rule changes are documented.
+      '2': Least-privilege policies are enabled based on business needs (default deny, allow on demand);
+        internal segmentation by security zones or VLANs, with controlled paths for inter-segment access;
+        critical traffic has admission and access control policies that are regularly reviewed.
+      '3': Network and environment access control policies are systematically managed, rule changes follow
+        an approval workflow and are reversible; proactive detection and blocking of abnormal traffic
+        or lateral movement; architecture defaults to isolation, with openness as an exception that is
+        traceable.
     basis: inferred
   evidence:
-    value: 网络拓扑图、防火墙/ACL规则表及变更审批单、策略评审记录、内部网段划分文档、针对异常访问或横移的告警与拦截日志样例。
+    value: Network topology diagrams, firewall/ACL rule sets and change approval forms, policy review
+      records, internal network segmentation documents, and sample alerts and blocking logs for abnormal
+      access or lateral movement.
     basis: inferred
   common_myth:
-    value: 以为「装了防火墙/买了下一代防火墙」就等于这条做到了。设备只是载体——规则是不是默认拒绝、有没有人定期清理无效规则、内部网段之间是不是裸通，这些才是审计员真正盯的；很多人设备花钱上了，规则却永远只加不减，等于没设防。
+    value: The misconception is that 'installing a firewall or next-generation firewall' means this control
+      is satisfied. Devices are just the medium—whether rules are default-deny, whether someone regularly
+      cleans up invalid rules, and whether internal segments are directly connected without protection
+      are what auditors really focus on; many organizations spend money on devices but only add rules
+      without ever removing them, effectively leaving no defense.
     basis: inferred
   auditor_asks:
     value:
-    - 把外网到内网、内网到内网核心段的放行规则拉出来，哪些是长期闲置没验证过的？
-    - 员工从办公网段直连数据库或生产服务器的路径，有没有被ACL或防火墙拦过？还是全通？
+    - List the rules that allow traffic from external to internal and from internal to core segments—which
+      ones are long-standing and have not been validated?
+    - Are there paths for employees to directly connect from the office network to databases or production
+      servers that are not blocked by ACLs or firewalls? Or are they all open?
     basis: inferred
   regional_note:
     value: null
