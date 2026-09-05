@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.8.3
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'once authorized, one can read freely'—after approval, no one checks whether
+      the person still has the right to read, or the boundaries of that right; once information is read
+      by someone who should not, the loss has occurred and is hard to recover afterward.
+    basis: inferred
+  plain_zh:
+    value: Manage who can read what and to what extent based on information sensitivity and job responsibilities;
+      the system should block those who should not read, and for those who should, verify authorization
+      before granting access, avoiding a one-size-fits-all approach.
+    basis: inferred
+  practice:
+    value:
+      '1': Information classification exists; basic read permissions set by role; accounts can be basically
+        disabled upon departure or role change.
+      '2': Read permissions are finely divided by role and sensitivity level; application, approval, and
+        activation are recorded; periodic reviews and corrections of read permissions are conducted.
+      '3': Permission control is linked with data classification, enforced at both system and business
+        application levels; read behavior is monitored with anomaly alerts; high-sensitivity information
+        can trace who read it and when.
+    basis: inferred
+  evidence:
+    value: Information classification list, role and permission matrix, read permission application and
+      approval records, system or application access control configuration, read behavior logs, periodic
+      permission review minutes.
+    basis: inferred
+  common_myth:
+    value: Assuming 'having a login account and folder permission' means read access is controlled—many
+      systems lack role-based read control at the business application layer, allowing any logged-in user
+      to browse all data; only after a leak do they realize system-level and business-level permissions
+      are two layers that both need management.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the same high-sensitivity report, how are read permissions differentiated between marketing
+      and finance staff?
+    - Can an employee who changed roles still read old department files? When was the last check?
+    basis: inferred
+  regional_note:
+    value: European auditors tend to probe 'who can read personal data and for what purpose', often requiring
+      read logs to align with GDPR lawfulness and purpose limitation; US auditors often use NIST AC-3
+      as a baseline, focusing on whether permissions are implemented with least privilege and separation
+      of duties.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.410228Z'
+  signed_digest: 19d392f3ed498fa8396cd08aecd292f33086124e72cba921a7417a748face6b6
+  interview_seconds: null
+  inherited_from: null

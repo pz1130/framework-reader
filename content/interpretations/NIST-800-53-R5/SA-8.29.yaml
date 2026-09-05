@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-8.29
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems being built 'the way the senior dev always built
+      them' — undocumented design decisions are unreviewable, un-replicable when staff
+      leave, and impossible to defend in audit or post-incident review.
+    basis: inferred
+  plain_zh:
+    value: Make engineers actually write down, in a way peers and reviewers can follow,
+      the secure design and engineering procedures they are supposed to use. Not a
+      one-page 'we follow best practices' statement — the steps themselves, repeatable.
+    basis: inferred
+  practice:
+    value:
+      '1': There is at least a short written procedure per recurring security-engineering
+        task (e.g. threat modeling for a new service, secure code review checklist)
+        and the team can point to it.
+      '2': Procedures are versioned, owners are named, engineers are trained on them,
+        and reviews/test runs produce records showing the procedure was followed.
+      '3': Procedures are tied to specific systems or services, deviations require
+        sign-off, and outcomes (defects found, exceptions granted) feed back into
+        procedure updates — so the documented process is the one actually being run.
+    basis: inferred
+  evidence:
+    value: Written secure engineering procedures with version and owner, training
+      or onboarding records showing engineers have read them, review/test records
+      referencing the procedure ID, exception logs, and change history showing procedures
+      evolve from real use.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a Secure SDLC policy' as the answer. The policy is the
+      wrapper; auditors want the actual repeatable steps a developer follows for threat
+      modeling, secure design review, or code review — and proof those steps were
+      executed on a real system.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick the last system you threat modeled: show me the procedure you followed
+      and the artifact it produced.'
+    - When an engineer skips a step in the documented process, how is that caught
+      and recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.291710Z'
+  signed_digest: 5895a61abab94bb901e14a9873404c4da791715d69068f3ff25e510e3cbc6e5d
+  interview_seconds: null
+  inherited_from: null

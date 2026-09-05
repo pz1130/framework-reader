@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:IA-5.18
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents password reuse, weak passwords, and credential theft by ensuring
+      users do not manage passwords manually or insecurely (e.g., spreadsheets, sticky
+      notes), and that password generation and storage are governed by an approved
+      tool.
+    basis: inferred
+  plain_zh:
+    value: Requires you to deploy and enforce an organization-approved password manager
+      so that users do not have to remember or reuse passwords, and that credentials
+      are generated, stored, and retrieved in a manner that reduces interception and
+      phishing risk.
+    basis: inferred
+  practice:
+    value:
+      '1': Select and deploy an approved password manager; provide basic training;
+        enforce its use for new password creation.
+      '2': Centralize password vault access policies, enforce multi-factor authentication
+        on the vault, and integrate password generation rules; document roles, responsibilities,
+        and periodic review.
+      '3': Automatically enforce password manager use via browser extensions or policy,
+        block unsanitized password storage outside the tool, monitor for violations,
+        and regularly audit vault access and password hygiene (e.g., reuse, age).
+    basis: inferred
+  evidence:
+    value: Approved password manager policy document, deployment checklist, training
+      records, reports showing vault adoption or usage logs, password policy settings
+      (e.g., complexity, reuse blocking), and audit log samples of vault access reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying or installing a password manager is enough; compliance
+      requires proof of enforcement and adoption, not just tool presence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you demonstrate that users actually use the password manager rather than
+      keeping a spreadsheet?
+    - What is your policy for storing shared or privileged credentials — are they
+      all in the vault, and how is access controlled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.199847Z'
+  signed_digest: aac063aa42099561b0a0614cab84ee4f9f2775a4ce7be1b66e55fa0af0589ed6
+  interview_seconds: null
+  inherited_from: null

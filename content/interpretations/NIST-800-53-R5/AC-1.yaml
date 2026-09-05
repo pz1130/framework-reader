@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an organization running security on undocumented tribal
+      knowledge — where access-control rules differ by team, nobody can prove what
+      the rule is, and after a breach the only answer is 'that's how Bob used to do
+      it.' Without a written, approved policy and procedure, AC-2 through AC-25 cannot
+      be enforced consistently or audited at all.
+    basis: inferred
+  plain_zh:
+    value: Write down who is responsible for access control, what the rules are, how
+      they are carried out, get it approved at the right level, and keep it current.
+      Everything else in the AC family hangs off this document existing.
+    basis: inferred
+  practice:
+    value:
+      '1': A single access-control policy exists, names an owner, is signed by a leader,
+        and is reachable by staff who grant or review access.
+      '2': Procedures accompany the policy for the recurring tasks (onboarding, change
+        of role, termination, periodic review); staff can show where they live; the
+        policy has a review date.
+      '3': Policy and procedures are versioned, reviewed on a fixed cadence and after
+        relevant incidents or regulatory change, exceptions are tracked, and the policy
+        is the artifact actually cited when access decisions are challenged.
+    basis: inferred
+  evidence:
+    value: Signed and dated access-control policy and procedures, version history,
+      review/approval records, owner designation, and evidence the document is referenced
+      in onboarding, change, and termination workflows.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have an information-security policy that mentions access control
+      somewhere' as satisfying AC-1. AC-1 requires a dedicated, addressable access-control
+      policy with a named owner — a one-line mention inside a general infosec policy
+      is not what auditors accept.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the access-control policy, who owns it, and when it was last approved.
+    - Where in the onboarding, role-change, and review workflows is this policy actually
+      cited?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:51.986388Z'
+  signed_digest: 22a7c7af65713ff3daa882d7d669b2377eb965811ee905a63eab7a5ccf3413ac
+  interview_seconds: null
+  inherited_from: null

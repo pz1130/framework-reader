@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where the organization cannot answer 'where
+      is PII, who has it, and what happens to it' — without that map, breach response
+      is guesswork, retention rules cannot be enforced, subject-rights requests cannot
+      be answered in time, and regulators presume non-compliance the moment PII is
+      mishandled.
+    basis: inferred
+  plain_zh:
+    value: Identify and list every system, application, database, file share, backup,
+      third-party service, and business process that holds, processes, or transmits
+      PII, and keep that list current enough to act on.
+    basis: inferred
+  practice:
+    value:
+      '1': A written list exists of systems and locations known to hold PII; the obvious
+        databases, HR systems, and customer-facing apps are named; someone is responsible
+        for keeping it.
+      '2': The inventory records what PII elements are stored, the lawful basis or
+        purpose, retention expectation, and the internal/external parties who handle
+        it; changes go through a documented update process; subject-rights and breach
+        responses reference the inventory.
+      '3': Inventory is discovery-driven (scans, data-flow mapping, not just self-report),
+        linked to retention enforcement and DSAR workflows, reviewed on a fixed cadence
+        and on system change, and exceptions for shadow PII are tracked to closure.
+    basis: inferred
+  evidence:
+    value: PII inventory register with system owners, data elements, retention and
+      purpose, update logs and review cadence, supporting data-flow diagrams, scan
+      or discovery results, and DSAR/incident records referencing inventory entries.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have a system inventory, so PII is covered' is enough. A general
+      IT asset list does not tell you which assets hold PII, which categories of PII,
+      on what lawful basis, or for how long — and that is precisely what auditors
+      and regulators ask.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where you store employee background-check PII and who can access it.
+    - When you receive a data-subject deletion request, how do you locate every copy
+      of that person's data using the inventory?
+    basis: inferred
+  regional_note:
+    value: EU auditors (under GDPR) routinely ask for inventories tied to records
+      of processing activities and will probe shadow-IT and backup retention; US auditors
+      more often treat PII inventory as a privacy-program artifact and focus on sectoral
+      PII (HIPAA, GLBA, FERPA). Both sides want the same artifact, but the depth and
+      the data categories probed differ.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.791121Z'
+  signed_digest: 5581a02d7b5b15703351e929a3771a6d50fd56d0045bf23b3053d8ac5d321622
+  interview_seconds: null
+  inherited_from: null

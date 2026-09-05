@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:PR.IR-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that business continuity plans only cover cyberattacks—environmental events
+      such as water ingress in the server room, air conditioning failure, accidental fire suppression
+      activation, and power outages are unmanaged. If infrastructure collapses, recovery capabilities
+      alone are useless.
+    basis: inferred
+  plain_zh:
+    value: Technical assets (server rooms, servers, network equipment, storage) must have physical protection
+      measures against environmental threats, covering power supply, temperature and humidity, fire protection,
+      water leakage, etc., and these measures themselves must be considered for maintenance and emergency
+      backup.
+    basis: inferred
+  practice:
+    value:
+      '1': The server room has UPS and fire suppression equipment; critical equipment is in a temperature-
+        and humidity-controlled environment; there are water leak alarms; these devices are covered by
+        maintenance contracts.
+      '2': Environmental monitoring has alarms and on-duty response procedures; UPS switching has periodic
+        test records; fire protection/temperature control equipment is included in annual inspections;
+        there are contingency plans for emergency cooling or drainage.
+      '3': Power supply has dual redundancy with automatic switching; environmental monitoring is integrated
+        with the operations platform, automatically creating tickets for incidents; fire suppression systems
+        are linked with data backup strategies; waterproof/fire compartmentalization has design documents
+        and is regularly validated through drills.
+    basis: inferred
+  evidence:
+    value: Physical environment design drawings of the server room, UPS test records, temperature/humidity/water
+      leak monitoring alarm records, fire protection annual inspection reports, post-incident reviews
+      of environmental events, and minutes of generator or dual-power switching drills.
+    basis: inferred
+  common_myth:
+    value: Assuming that purchasing a UPS and precision air conditioning meets the standard, but UPS batteries
+      are unmanaged, and it is discovered during switching that they cannot last ten minutes; air conditioning
+      cooling capacity is calculated based on full load but actually has a single point of failure; fire
+      protection system annual inspection is overdue—equipment existence does not mean environmental threats
+      are blocked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time the UPS batteries were replaced? What was the test load?
+    - What is the temperature alarm threshold in the server room? How many minutes after the alarm is
+      there a response?
+    - When the gas fire suppression system is released, is there backup power to maintain critical services
+      on the servers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.588206Z'
+  signed_digest: 0bc53dabca76594883fbc9ca44afb27e1fe0de852560cba730c0bca0c53ef058
+  interview_seconds: null
+  inherited_from: null

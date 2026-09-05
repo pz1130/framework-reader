@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:RC.RP-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that a corrupted backup is used for recovery, turning the recovery action itself
+      into a new disaster. Backup data has not been verified for integrity before recovery; a bad backup,
+      a tampered backup, or recovery to the wrong version not only fails to save the system but also spreads
+      bad data to the production environment.
+    basis: inferred
+  plain_zh:
+    value: Don't wait until recovery time to touch the backup for the first time. All backup and recovery
+      assets (including images, snapshots, archives, and recovery servers) must undergo integrity verification
+      before being formally used for recovery, to confirm that they are indeed usable and not corrupted.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Embed a step in the recovery process: integrity verification of the backup must be performed
+        before recovery, at least once using hash comparison or checksum verification; the verification
+        must be recorded.'
+      '2': Have integrity verification schemes for different types of backups (full, incremental, database,
+        virtual machine); conduct regular recovery drills or verifications and keep records; have alerts
+        and handling procedures for verification failures.
+      '3': Integrate integrity verification into the backup platform or recovery orchestration system
+        so that backups that fail verification cannot trigger recovery; feed verification results into
+        monitoring and alerting; have data proving that verification is completed before every actual
+        recovery.
+    basis: inferred
+  evidence:
+    value: Written recovery process documentation includes the 'pre-verification step'; verification records
+      or logs (hash comparison, checksum, integrity check tool output); recovery drill reports with verification
+      steps; handling records and root cause analysis for verification failures.
+    basis: inferred
+  common_myth:
+    value: The belief that 'enabling the backup system's built-in verification feature equals having done
+      it.' The backup software saying 'backup complete' does not mean 'backup recoverable'—many successful
+      backup logs only record that writing was completed, without verifying data integrity on the media.
+      What really needs to be done is to run a separate verification before recovery and treat this step
+      as a hard gate in the recovery process.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Can you show me the records of an actual recovery from last month? What commands or tools did you
+      use to verify integrity before recovery?
+    - Are there any records of backup file corruption where the backup task still showed success? How
+      was that handled later?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.614476Z'
+  signed_digest: a80653d150bb9cfeb1f323857336bb4df28a1f91da3159ddedc4b75728865364
+  interview_seconds: null
+  inherited_from: null

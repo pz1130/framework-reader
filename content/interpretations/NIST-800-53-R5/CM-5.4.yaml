@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-5.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single compromised or coerced administrator silently
+      making high-impact changes (e.g., promoting malicious code to production, disabling
+      security controls, exfiltrating sensitive data) by requiring two independent
+      principals to act together so collusion, error, or account takeover alone cannot
+      complete the change.
+    basis: inferred
+  plain_zh:
+    value: For the most sensitive system changes, require two separate authorized
+      people to each approve and apply them, so one compromised or coerced account
+      cannot carry out the action alone.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify a small, explicit list of high-impact actions (e.g., production
+        code promotion, security policy disablement, privileged key/cert issuance)
+        that cannot be executed by a single account; document them in a policy.
+      '2': Enforce dual authorization in the tool that performs the action (CI/CD,
+        IaC, IAM, PAM, vault) so two distinct authenticated principals are required;
+        log both identities with timestamps and the action outcome.
+      '3': Block the action at the system layer when only one principal is present,
+        including break-glass paths; periodically test and review attempts where dual-auth
+        was bypassed or skipped, and tie exceptions to a named approval with a time
+        bound.
+    basis: inferred
+  evidence:
+    value: Policy defining which actions require dual authorization; configuration/screenshots
+      of the enforcing system showing two-principal enforcement; audit logs pairing
+      both approvers and the resulting change; exception register and post-hoc reviews
+      of any bypass.
+    basis: inferred
+  common_myth:
+    value: Treating dual authorization as 'a second person gets an email notification
+      and clicks Approve.' A notification-only approval on the same account or same
+      session is not dual authorization; the second principal must independently authenticate
+      and the system must refuse to proceed if only one is present.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last production code promotion - which two accounts authenticated,
+      and can you replay the change against the dual-auth logs?
+    - Is there any admin path - including emergency or break-glass - where a single
+      account can perform one of these actions, and how is that detected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.810711Z'
+  signed_digest: 394b5532e3faffdb0b6c4a768dc08e78014b50c115fde27a31f710b51452de6c
+  interview_seconds: null
+  inherited_from: null

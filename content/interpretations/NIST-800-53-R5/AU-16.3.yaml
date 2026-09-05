@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AU-16.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against cross-pipeline leakage in the audit infrastructure itself:
+      when monitoring, analytics, or correlation systems aggregate logs across organizational
+      boundaries, an attacker or insider with access to one pipeline can pivot into
+      another tenant''s or business unit''s data. The control exists so audit data
+      cannot be inferred or joined back to its source beyond what the consumer is
+      authorized to see.'
+    basis: inferred
+  plain_zh:
+    value: Make sure that audit data traveling through or processed by monitoring,
+      analytics, and correlation systems cannot be re-linked to other sources, tenants,
+      or business units except as authorized — i.e., audit consumers only see what
+      they are allowed to see, and cannot stitch it back together to reconstruct something
+      they were never entitled to.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which audit pipelines cross data boundaries (e.g., shared SIEM
+        tenants, MSSP hand-offs, multi-tenant log platforms) and name the authorized
+        consumers for each flow.
+      '2': Apply separation mechanisms (dedicated indices, tenant-scoped keys, masking,
+        or one-way transformations) so each consumer's view is bound to a defined
+        scope, with records showing the boundary was tested.
+      '3': Periodically verify disassociability through tests or reviews that attempt
+        to re-link samples across pipelines, track exceptions, and reassess after
+        any platform or tenancy change.
+    basis: inferred
+  evidence:
+    value: A boundary map of audit pipelines with authorized consumers per flow, the
+      separation mechanisms in place (tenant keys, masking, one-way transforms, dedicated
+      storage), and records of tests or reviews confirming consumers cannot re-link
+      data across scopes.
+    basis: inferred
+  common_myth:
+    value: Assuming that because each pipeline logs to the same SIEM vendor, separation
+      is the vendor's problem. Disassociability is an attribute of how data is partitioned,
+      keyed, and exposed to each consumer — using a shared platform without tenant-scoped
+      keys, role separation, and one-way transformations means consumers (or a compromised
+      analytics account) can correlate across boundaries.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which audit pipelines in this environment cross organizational or tenant boundaries,
+      and how are consumers on each side restricted to their own scope?
+    - Show me a recent test or review that tried to re-link data across these pipelines
+      — what did it look for and what was the outcome?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.564474Z'
+  signed_digest: 08305dcace8f9501e9326b95d3a79e9db83c8e026e22036b3bb197462145413d
+  interview_seconds: null
+  inherited_from: null

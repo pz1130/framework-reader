@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:ID.AM-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is loss of control over network architecture and security boundaries—no one knows
+      which internal segments can communicate with each other, what external interfaces are open, or where
+      data flows. Firewall rules and micro-segmentation policies become ineffective, and in the event
+      of an incident, there is no basis for investigation or accountability.
+    basis: inferred
+  plain_zh:
+    value: Document the organization's authorized network communication paths, including all data flows
+      between internal zones and between internal and external networks, and maintain updates to keep
+      the documentation consistent with the actual network.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a network topology diagram that identifies major segments and boundary devices; know
+        which external ports and services are open.
+      '2': Extend the data flow diagram to cover application-layer and critical data flows; the topology
+        diagram has version control and an owner; update the diagram when network changes occur.
+      '3': Integrate the network flow diagram with the configuration management database to automatically
+        detect new devices and unauthorized connections; regularly compare actual traffic against authorized
+        identifiers, with alerts and remediation processes for discrepancies.
+    basis: inferred
+  evidence:
+    value: Versioned network topology diagrams, data flow diagrams or matrices, update records with change
+      linkage, named responsible parties, and reports comparing against actual traffic on a regular basis.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a drawn network topology diagram means compliance'—the diagram's
+      updates depend on someone remembering to change it, or it sits on a shared drive with no one knowing
+      if the version is current. When an auditor samples firewall rules for an actual segment and compares
+      them to the communication paths indicated on the diagram, any mismatch exposes the entire defense.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last revision date of this diagram? What change triggered that update?
+    - For the communication between this segment and that segment shown on the diagram, which firewall
+      rule corresponds to it?
+    - When a new external service is added, who is the first person to take action in the process of updating
+      the flow diagram?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.522555Z'
+  signed_digest: e7093cd363560561f035d258a1a23552d0db267bfb3e34e4bfc900e2a0e80648
+  interview_seconds: null
+  inherited_from: null

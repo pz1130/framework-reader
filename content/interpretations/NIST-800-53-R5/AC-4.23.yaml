@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-4.23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the silent loss of classified, sensitive, or otherwise
+      non-releasable content when it is being modified, reformatted, or rewritten
+      by a system — situations where 'I never exported it' becomes 'I transformed
+      it inside the boundary and now it sits in plaintext outside the boundary' without
+      anyone noticing.
+    basis: inferred
+  plain_zh:
+    value: When systems process or rewrite non-releasable information, make sure the
+      protection travels with the data through every transformation — sanitization,
+      downgrading, reformatting, re-encoding — so the output does not leak content
+      that was supposed to stay protected.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which data classes are non-releasable and where they are processed;
+        require manual review of any transformation that crosses a release boundary.
+      '2': Document approved sanitization, downgrade, and reformatting procedures
+        per data class; record who ran the transformation, what tool, and the resulting
+        output class.
+      '3': Use vetted tools with auditable transformation rules, block transformations
+        that would expose non-releasable content at the destination, and review procedures
+        when tools or data sources change.
+    basis: inferred
+  evidence:
+    value: Inventory of non-releasable data classes, written sanitization/downgrading
+      procedures per class, transformation logs linking inputs to outputs and reviewers,
+      tool approval records, change history for procedures.
+    basis: inferred
+  common_myth:
+    value: Assuming that redaction in the source document is enough — many leaks happen
+      because a 'safe' formatted export, log line, or downstream cache reconstructs
+      or retains the original non-releasable content after transformation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last time a piece of non-releasable content was transformed and who
+      signed off on the output.
+    - Which tools are approved to perform downgrades or reformatting, and how was
+      their sanitization behavior verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.304315Z'
+  signed_digest: 8121109ae0d8786409f344a443f6bb001dfe1e5dc8c79298a8dd4cf5594f3edd
+  interview_seconds: null
+  inherited_from: null

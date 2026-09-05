@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-6.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Privileged functions executed silently, without a per-event trail, make
+      it impossible to detect a compromised admin account, an insider abusing elevated
+      rights, or a misconfiguration pushed by mistake; if the log is missing, the
+      incident looks like nothing happened, and forensic timelines start in the dark.
+    basis: inferred
+  plain_zh:
+    value: Every execution of a privileged command or function must produce a log
+      entry that captures who did it, when, where from, and what was run, so the activity
+      is reviewable and not deniable.
+    basis: inferred
+  practice:
+    value:
+      '1': Privilege escalation and privileged command execution are written to a
+        system or audit log with at least user, timestamp, source, and command/function
+        identifier.
+      '2': Privileged function logs are centralized, time-synced, and retained per
+        policy; admins are made aware that their privileged actions are recorded.
+      '3': Logs are forwarded to a tamper-evident or write-once path, alerting rules
+        exist for anomalous privileged use (off-hours, unexpected accounts, sensitive
+        commands), and gaps in the privileged-log stream are detected and investigated.
+    basis: inferred
+  evidence:
+    value: Sample log entries from representative privileged actions (sudo, service
+      account elevation, admin console actions, configuration changes), retention
+      and protection settings on those logs, and an example alert or review triggered
+      off the privileged-use stream.
+    basis: inferred
+  common_myth:
+    value: Assuming that having any audit policy turned on means privileged actions
+      are logged; in practice, the default audit policy on many systems excludes high-value
+      privileged events, or logs them only to a local file the same admin can clear.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a privileged command executed last week and what the log entry looks
+      like.
+    - Who can modify or delete the logs that record privileged activity, and how would
+      you notice if entries went missing?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.409484Z'
+  signed_digest: f2fc397f506a3f7199efd58f49078b78afed47a6bc5faad73d63e0053e368d75
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:AC-4.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents ad-hoc disabling or bypassing of content/security policy filters
+      by network or messaging components - so that traffic cannot be quietly permitted
+      or denied outside of policy just because someone toggled a rule at a device,
+      and so that auditors can reconstruct who changed what, when, and why.
+    basis: inferred
+  plain_zh:
+    value: Make sure policy filters on network and messaging systems are turned on
+      by default, are only turned off through a controlled change, and that you can
+      prove who disabled them, for how long, and under which approved exception.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which devices enforce which policy filters; disable actions are
+        limited to named administrators via change ticket; filters default to 'deny'
+        or last-known-good on boot.
+      '2': Each disable/enable event produces a change record with approver, ticket,
+        start/end time, affected traffic, and compensating control; exceptions expire
+        automatically.
+      '3': Disable actions generate real-time alerts and require two-person review;
+        post-event review verifies no unfiltered traffic flowed in the window; the
+        control is tested periodically.
+    basis: inferred
+  evidence:
+    value: Change tickets and approvals for every filter disable/enable, device configs
+      showing default-deny, alert logs on filter state changes, exception register
+      with expiry dates, post-event review records.
+    basis: inferred
+  common_myth:
+    value: Treating 'enable filters' as a one-time config - filters are only 'on'
+      if you can show they were never silently turned off by a junior admin during
+      a troubleshooting window with no ticket and no review.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three times a security policy filter was disabled on a perimeter
+      or messaging device - who approved it and for how long?
+    - How do you detect and react if a filter is toggled off outside of change windows?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.257710Z'
+  signed_digest: 4f190eaf706ebb312de0feed07250f53fa10f74017fcb67d8168a05433346355
+  interview_seconds: null
+  inherited_from: null

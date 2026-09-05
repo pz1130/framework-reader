@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-9.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against automated guessing, credential stuffing, and brute-force
+      attacks that would otherwise succeed silently; without a lockout and delay mechanism,
+      an attacker can iterate passwords indefinitely from a single account or IP,
+      and without logging the failures there is no forensic trail to detect the attempt
+      before damage is done.
+    basis: inferred
+  plain_zh:
+    value: Configure systems to count failed logon attempts, lock the account or delay
+      further tries after a defined threshold, and record each failure so the attempt
+      is visible.
+    basis: inferred
+  practice:
+    value:
+      '1': Account locks (or progressive delays) after a small number of consecutive
+        failed logons; failed attempts are written to a log somewhere.
+      '2': Lockout threshold and observation period are documented; lockouts and unlocks
+        are logged with user, source, and timestamp; help desk has a documented reset
+        procedure that verifies identity.
+      '3': Lockout policy is centrally enforced and consistent across systems; logs
+        feed SIEM with alerting on burst patterns; lockout-resistant controls (captcha,
+        IP throttling, anomaly detection) supplement account lockout; the reset process
+        is tested and resistant to social-engineering bypass.
+    basis: inferred
+  evidence:
+    value: Lockout configuration screenshots or baselines, samples of failed-logon
+      log entries, help-desk reset tickets showing identity verification, and SIEM
+      alert examples for logon-failure bursts.
+    basis: inferred
+  common_myth:
+    value: Believing that simply setting a lockout threshold (e.g., '5 attempts')
+      in Active Directory satisfies the control, while leaving verbose failed-logon
+      logging off, having no monitoring of the failures, and running the help-desk
+      reset as an unauthenticated phone call that an attacker can exploit to lock
+      out legitimate users (denial-of-service) or walk through after socially engineering
+      a reset.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the actual log entry from a recent failed logon for your most sensitive
+      system — what fields are captured?
+    - Walk me through how an employee gets their account unlocked after being locked
+      out, and how you confirm it is really them.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.428249Z'
+  signed_digest: 8fdd9fa5d5bbe4752b670152e1e3be2421f4604770b63f38dcbe8d0fb2618de6
+  interview_seconds: null
+  inherited_from: null

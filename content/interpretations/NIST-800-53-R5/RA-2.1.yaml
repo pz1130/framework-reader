@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:RA-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against security categorization being treated as a paperwork checkbox
+      - if every system is stamped 'moderate' or 'low' by default, scarce resources
+      get spread evenly across low-risk and high-risk systems, and the systems that
+      actually justify stronger controls get the same treatment as a brochure site.
+      The point of impact-level prioritization is that categorization drives ordering,
+      investment, and control selection, not just a label.
+    basis: inferred
+  plain_zh:
+    value: Assign a security impact level (low/moderate/high) to every information
+      system based on what harm its loss of confidentiality, integrity, or availability
+      would cause, and use those levels to decide which systems get stronger controls,
+      more attention, and faster remediation. Categorization is the input to prioritization,
+      not the output.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Every in-scope system has an assigned impact level on record (FIPS 199
+        style: low/moderate/high for C, I, A), with a brief justification naming the
+        information type and worst-case harm.'
+      '2': 'Impact levels feed downstream decisions: control baselines chosen per
+        level, assessment scope, monitoring depth, and recovery time targets are documented
+        and consistent with the level assigned. Categorizations are reviewed when
+        systems change scope or data changes.'
+      '3': Levels are challenged in a review forum - not self-declared by system owners
+        alone - and revisited on a defined cadence. Changes in impact level trigger
+        re-baselining of controls, re-assessment, and re-prioritization of findings;
+        deviations from expected levels are investigated rather than accepted.
+    basis: inferred
+  evidence:
+    value: Authorised security categorisation records for each system showing C/I/A
+      impact values and the information types supporting them; control baseline selection
+      linked to category; review/approval records; change log of categories over time;
+      mapping of assessment depth and remediation SLAs to impact tier.
+    basis: inferred
+  common_myth:
+    value: Treating categorisation as the system owner's self-attested survey that
+      gets filed away. When owners assign their own level with no challenge, and the
+      level does not actually change which controls, monitoring, or response speed
+      the system gets, the exercise is decorative. The control breaks the moment someone
+      assumes the label on paper equals prioritisation in practice.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a system whose categorisation was challenged or changed in the last
+      year - what triggered the review and what changed downstream?
+    - 'Pick your highest-impact and lowest-impact systems: do their monitoring coverage,
+      assessment depth, and remediation timelines actually differ in line with the
+      label?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.930203Z'
+  signed_digest: 4414b75140bb9acfeea04fff5bb1959a82c13ba41272f8958d593beefba337c9
+  interview_seconds: null
+  inherited_from: null

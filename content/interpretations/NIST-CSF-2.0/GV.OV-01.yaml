@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:GV.OV-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about the 'set-and-forget' mentality—external threats, business direction, and
+      technology stacks are constantly changing. If the outputs of risk management strategy are never
+      revisited, executing the same strategy two years later is like using last year's map to navigate
+      this year's voyage.
+    basis: inferred
+  plain_zh:
+    value: Periodically review whether the cybersecurity risk management strategy and objectives are appropriate
+      and effective, and adjust the strategic direction and priorities based on the review results, forming
+      a closed loop rather than setting them at the beginning of the year and archiving them at the end.
+    basis: inferred
+  practice:
+    value:
+      '1': At least annually, management holds a meeting to review the risk strategy and objectives, with
+        meeting minutes and conclusions, and the 'evaluation conclusions' are signed by someone.
+      '2': There is a documented review process and trigger conditions (e.g., ad-hoc reviews upon major
+        security incidents or significant business changes). The review compares actual risk treatment
+        data from the previous cycle, with conclusions and a tracking list for improvement items.
+      '3': Review conclusions feed back into specific controls, budget, and staffing decisions; quantitative
+        effectiveness indicators (e.g., objective achievement rate, residual risk trends) support strategy
+        adjustments; each adjustment has version records and communication evidence, ensuring continuous
+        improvement.
+    basis: inferred
+  evidence:
+    value: Approved risk management strategy review plan, meeting minutes from all reviews (including
+      attendees, conclusions, improvement items), revision history and version records of strategy documents,
+      follow-up work items and tracking lists triggered by review conclusions, and emails or training
+      records communicating the new strategy to stakeholders.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'holding a meeting at year-end and stamping the strategy document as 'reviewed''
+      constitutes a closed loop. Without distilling 'which strategic objectives were not achieved, why,
+      and what to change next,' meeting minutes are just archival props, and the loop is fake.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What strategic objectives were found unachieved in the last review? What controls or budget changes
+      were made accordingly?
+    - Is the review triggered only by calendar, or also by major security incidents or business changes?
+      When was the last trigger?
+    basis: inferred
+  regional_note:
+    value: European auditors, influenced by GDPR accountability principles, tend to ask more about 'how
+      review conclusions demonstrate effective protection of personal data,' focusing on governance explainability;
+      U.S. auditors typically check against the NIST framework for formal review procedures and output
+      documents, with less probing into the causal chain between strategy and actual protection effectiveness.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.465286Z'
+  signed_digest: f0e04fa81bcae93ffcb6df3a34b7508259638e2d49794cb9c645928bf30128e8
+  interview_seconds: null
+  inherited_from: null

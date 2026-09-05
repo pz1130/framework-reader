@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against privilege drift and untracked restriction removal: when
+      access restrictions and their changes are only enforced or recorded by hand,
+      authorized users quietly accumulate permissions no one notices, and malicious
+      or accidental changes to security-relevant settings leave no trail to investigate.'
+    basis: inferred
+  plain_zh:
+    value: Make systems automatically enforce who is allowed to change security-relevant
+      restrictions, and automatically record every such change so it can be audited.
+      People should not be the only line of defense.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems/configurations that count as security-relevant restrictions
+        (e.g., ACLs, firewall rules, service permissions, registry hardening). Restrict
+        who can change them to a named set of accounts.
+      '2': Configure those systems to enforce the restriction through technical controls
+        (groups, RBAC, change windows) and to emit audit records on every change,
+        retained per the audit log policy.
+      '3': 'Enforcement and audit generation are tested periodically: failed/denied
+        attempts and successful changes are reviewed, anomalies trigger alerts, and
+        the privileged-account list is reconciled against actual changes found in
+        logs.'
+    basis: inferred
+  evidence:
+    value: List of security-relevant restrictions and the accounts/roles permitted
+      to change them, system configuration showing automated enforcement, sample audit
+      log entries for recent changes with who/what/when, and evidence those logs are
+      reviewed.
+    basis: inferred
+  common_myth:
+    value: 'Assuming that because only the sysadmin team has the root password, access
+      is effectively restricted. Manual discipline is not automated enforcement: if
+      a change can be made without the system checking the actor and without producing
+      an audit record, the control is not met.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one security-relevant configuration item and the system rule that decides
+      who is allowed to modify it.
+    - Pick the last change to that item from the audit log and walk me through who
+      made it, when, and how it was reviewed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.807150Z'
+  signed_digest: 7fcba50919fc22b1cc64267307d6016842a3098fa97e97acac6247acc5c79a89
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:MP-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against media sanitization being performed but never proven - drives,
+      tapes, and mobile devices leave the building with claimed wipes that were never
+      checked, and a 'we erased it' email becomes the only artifact when a breach
+      investigation needs to know what really happened to data that left controlled
+      space.
+    basis: inferred
+  plain_zh:
+    value: Every piece of media that gets sanitized or destroyed must be reviewed,
+      approved, tracked on paper, and the result verified - not just handed to a vendor
+      or technician on a verbal promise.
+    basis: inferred
+  practice:
+    value:
+      '1': A sanitization ticket exists for each item, listing what it is, who approved
+        it, when, and how it was handled.
+      '2': Tickets follow a defined lifecycle (request, approval, execution, verification,
+        closure) with logs retained per the records policy; exceptions are documented.
+      '3': Verification is independent - someone other than the person who wiped it
+        checks the result on a sample or all items, and unverified or failed items
+        cannot leave controlled space.
+    basis: inferred
+  evidence:
+    value: Sanitization and destruction logs showing each item's identifier, sanitization
+      method, operator, approver, verification result, and disposition date, plus
+      retention of these records per the organization's records schedule.
+    basis: inferred
+  common_myth:
+    value: Assuming that outsourcing sanitization to a destruction vendor with a certificate
+      of destruction closes the loop - the certificate is the vendor's claim, not
+      your verification, and the items need to be tracked and matched to that certificate
+      on your side.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last ten items sanitized: for each, where is the approval, the execution
+      record, and the verification?'
+    - Who independently checks that a wiped drive is actually empty, and what do they
+      check it with?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.478875Z'
+  signed_digest: fd3f0c13c532c39c99d9ecf5d56879f0cf1f3d016669c9977c1cb5c623159ce3
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:RC.CO-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that recovery progress is unknown to stakeholders, and efforts are siloed—systems
+      may be restored, but business units are left waiting, or external regulators and partners repeatedly
+      ask whether you are operational, while internally there is mutual guessing about progress, leading
+      to secondary confusion during the recovery period.
+    basis: inferred
+  plain_zh:
+    value: 'During and after recovery, proactively communicate to those who need to know: ''What stage
+      of recovery are we at, what remains unrecovered, and when is it expected to be complete''—including
+      internal management, business units, and external entities that must be notified.'
+    basis: inferred
+  practice:
+    value:
+      '1': Have a list of designated contacts for recovery communication; during the recovery response,
+        report progress to management and affected departments according to the predefined plan; after
+        recovery is complete, provide a results briefing.
+      '2': Have a written recovery communication plan specifying communication targets, frequency, channels,
+        and content templates; each notification is recorded, including time, recipients, and key points;
+        external communications require approval of the official messaging.
+      '3': Recovery progress reporting is automated in sync with recovery execution; stakeholders can
+        view real-time status of critical systems on a dashboard; reporting formats align with legal or
+        regulatory requirements; after recovery, conduct a review to confirm that all parties that should
+        be informed have received the final conclusion.
+    basis: inferred
+  evidence:
+    value: Recovery communication plan, time-sequenced notification emails or meeting minutes with acknowledgment
+      records, approval traces and delivery receipts for external communications, screenshots of the recovery
+      status dashboard, recovery completion report and distribution list.
+    basis: inferred
+  common_myth:
+    value: The misconception is that this control simply means 'sending a few emails to report safety
+      during recovery.' What is missed is 'what to communicate internally versus externally'—internal
+      business units care not about technical details but 'when can I resume work'; external entities
+      require formal messaging, not group chat messages. Without distinguishing audiences, having an approval
+      process, or obtaining acknowledgment, sending notifications is equivalent to not sending them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How long after the incident did your first notification to business units during recovery occur?
+    - Who has the authority to define the official messaging for external communications (e.g., regulators
+      or partners)? In the most recent recovery exercise, what approval process did external communications
+      follow?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.606763Z'
+  signed_digest: a38747e920d4cb5f6ae0fe5f8b7516e4a53a9933f2c8bc1d2974c4998a7c5523
+  interview_seconds: null
+  inherited_from: null

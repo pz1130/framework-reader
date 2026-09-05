@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where an organization depends on external
+      systems whose attack surface is unknown or undocumented, so a vulnerability
+      in a third-party service becomes the organization's incident without anyone
+      having a clear picture of what was exposed or how to scope the response.
+    basis: inferred
+  plain_zh:
+    value: For every system, service, or component you rely on that is provided by
+      someone outside your organization, you must be able to list the functions it
+      performs, the network ports it uses, the protocols it talks, and the services
+      it exposes, so the exposure is visible and controllable.
+    basis: inferred
+  practice:
+    value:
+      '1': Keep a current list of external systems in scope; for each, note the high-level
+        function, key ports, protocols, and services in use; require the provider
+        to give you this information before the connection goes live.
+      '2': Define a standard template for what providers must report (function, port,
+        protocol, service, direction, purpose); collect and review it on a defined
+        cadence; store the artifacts so they can be diffed when providers change things.
+      '3': Require advance notice and re-validation when providers add or change functions,
+        ports, protocols, or services; tie the inventory to your vulnerability management,
+        firewall rules, and monitoring so anything undocumented on an external dependency
+        is flagged; verify accuracy by sampling against actual traffic.
+    basis: inferred
+  evidence:
+    value: Inventory of external systems with documented functions, ports, protocols,
+      and services; provider submission artifacts and review records; change-notification
+      correspondence; cross-reference of the inventory against firewall rules, monitoring
+      coverage, and recent vulnerability disclosures affecting those providers.
+    basis: inferred
+  common_myth:
+    value: Treating the provider's general datasheet or a signed architecture diagram
+      as proof that the externally exposed surface is known — these documents almost
+      never list every listening port or service and go stale quickly, so the organization
+      believes it knows the exposure but cannot answer a targeted question when an
+      incident hits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system on the external-systems list: what specific ports and protocols
+      does it use to talk to you, and where is that documented?'
+    - When was the last time a provider added or changed an exposed service, and how
+      did you find out and update your records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.345295Z'
+  signed_digest: fc82303ef724c0c4f4f0d7b070edbbbcbc36ec08a4e173ee58129210513feead
+  interview_seconds: null
+  inherited_from: null

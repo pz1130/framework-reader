@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:GV.OV-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent a situation where security investments and risk treatment are completed
+      without revisiting their effectiveness—teams are busy, budgets are spent, reports are written, but
+      there is no reflection on whether the risk has actually been reduced after treatment, by how much,
+      and whether strategies and investments should be adjusted; without evaluation and review, risk management
+      activities gradually become a procedural formality.
+    basis: inferred
+  plain_zh:
+    value: 'Periodically evaluate how well the organization''s overall cybersecurity risk management is
+      performing: whether objectives are being met, whether measures are effective, and whether resources
+      are invested where they are most useful, then adjust practices based on the evaluation results.
+      This is not about post-project evaluations for each project, but rather assessing the performance
+      of risk management from an organizational-wide perspective and forming an iterative process.'
+    basis: inferred
+  practice:
+    value:
+      '1': Conduct at least one annual review of the effectiveness of security risk management (through
+        a focused meeting or report), with conclusions documented.
+      '2': Have clear performance indicators (such as risk reduction, objective completion, recurrence
+        rate of major incidents); compare with previous conclusions, with written analysis of differences;
+        adjustment recommendations point to specific actions.
+      '3': Risk management performance evaluation is integrated into the organization's procurement, budgeting,
+        and strategic planning cycles; adjustments are tracked to closure; evaluation results can be traced
+        to changes (e.g., reclassification, control modifications, tool replacements).
+    basis: inferred
+  evidence:
+    value: Periodic (annual or cyclical) evaluation reports, management review meeting minutes, performance
+      indicators (KPIs) and their trend charts, action items and closure records arising from evaluations,
+      and risk registers or strategy revision history before and after adjustments.
+    basis: inferred
+  common_myth:
+    value: Assuming that conducting an annual 'information security committee briefing' and reading out
+      security incidents and metrics from each department constitutes an evaluation. A briefing is not
+      an evaluation—if the briefing does not answer whether investments have changed the risk exposure,
+      does not produce 'what to change next year,' and does not close the loop with actions, it is merely
+      information sharing, not performance evaluation. Auditors look for the chain from evaluation conclusions
+      to adjustment actions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What were the conclusions of the last management review? How many action items resulted from it,
+      and what is their status?
+    - You claim good risk management performance; what indicators is that based on? Have these indicators
+      improved or declined compared to the last period?
+    - After the last evaluation, what changes were made to security policies or resource allocation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.469230Z'
+  signed_digest: 1be390f1469a5122298870de672920dd4fc145c9076819fbf2913d48c853114d
+  interview_seconds: null
+  inherited_from: null

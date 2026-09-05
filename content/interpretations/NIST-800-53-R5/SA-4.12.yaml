@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SA-4.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from treating data as an undifferentiated asset
+      — without a named owner, decisions about access, retention, protection, and
+      sharing default to whoever happens to touch the data, which leads to inconsistent
+      controls and audit failures.
+    basis: inferred
+  plain_zh:
+    value: It asks you to formally assign a person or role to each data asset, document
+      that ownership, and make sure the owner actually has the authority and responsibility
+      to make security decisions about that data.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate a data owner for each major data set or system that stores data,
+        and record the assignment in a document or spreadsheet.
+      '2': Define the data owner's responsibilities (access approvals, classification,
+        retention, incident response) and require them to be reviewed or acknowledged
+        periodically.
+      '3': Maintain a data inventory with owner information, integrate ownership into
+        access review workflows, and regularly validate that owners still exist and
+        have the right authority.
+    basis: inferred
+  evidence:
+    value: A data inventory or asset register that lists data sets, their classifications,
+      and the named owner; evidence of owner sign-off on access decisions or classification
+      changes; periodic review meeting minutes or tickets showing owner review.
+    basis: inferred
+  common_myth:
+    value: Assuming that naming an IT administrator or system custodian satisfies
+      data ownership — but the requirement is about the business or senior owner who
+      decides on data usage, not the technical keeper.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the data owner for the customer database, and how did they get that role?
+    - Can you show me a recent access request that the data owner approved or rejected?
+    - What happens if a data owner leaves — how is a replacement assigned and documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.181013Z'
+  signed_digest: 1cd4d971172464d271cfd6052b5ddc4a75614ab683d39c1f2449017bb0518af9
+  interview_seconds: null
+  inherited_from: null

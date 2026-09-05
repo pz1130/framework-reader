@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-9.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against assuming an external system provider is running the same
+      software and configuration you provisioned — when the provider silently swaps
+      components, downgrades patches, or substitutes VMs, your baseline integrity
+      claims become fiction and undetected tampering or supply-chain compromise goes
+      live.
+    basis: inferred
+  plain_zh:
+    value: Require external system providers to run integrity checks of their own
+      software, firmware, and information, and give you evidence that those checks
+      actually happen on what is running in production.
+    basis: inferred
+  practice:
+    value:
+      '1': Contract or SLA states that the provider must perform integrity verification
+        on the systems handling your data, and must tell you if a check fails.
+      '2': Provider delivers periodic integrity reports (hash baselines, scan results,
+        or attestation) tied to the specific assets serving you; failures trigger
+        a defined notification and remediation path.
+      '3': Integrity checks cover provider-managed changes such as image rebuilds,
+        hypervisor migrations, and hardware replacements; you can independently sample
+        or receive machine-readable proof, and integrity findings feed into your third-party
+        risk register.
+    basis: inferred
+  evidence:
+    value: Contract/SLA clause on integrity verification, provider integrity reports
+      or attestation tied to in-scope assets, incident/notification records from failed
+      checks, and your own sampling or validation log.
+    basis: inferred
+  common_myth:
+    value: Treating the provider's SOC 2 report as proof of integrity — a SOC 2 covers
+      controls at a point in time, not whether the specific binaries running your
+      workload today match the expected baseline.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the most recent integrity report from this provider and which assets it
+      covered.
+    - When was the last time a provider integrity check failed, and how did you find
+      out?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.363866Z'
+  signed_digest: f8533a418fc67765c2907acb140c31ff5f3c70940394e923665433e1d1f00bd8
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker who has reached the internal network but cannot
+      easily walk to your most sensitive systems because every protected boundary
+      is enforced through the same handful of chokepoints you expected to exist. SC-7.3
+      is what stops the failure mode where each subsystem quietly grows its own ad-hoc
+      path to the internet, a partner, or a test network, and the perimeter you audited
+      last year no longer matches the one attackers actually see.
+    basis: inferred
+  plain_zh:
+    value: Make sure every flow between the protected boundary and anything outside
+      it - internet, partner networks, less-trusted zones, even test or ops networks
+      - passes through a small, defined set of access points that you actively manage,
+      instead of letting systems open their own paths.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a current diagram showing the boundary, and identify in writing which
+        devices/interfaces are the access points that traffic to/from outside must
+        use.
+      '2': Block or remove direct external paths on systems that are not designated
+        access points; require change control and security review before adding any
+        new path; periodically scan for paths that bypass the designated points.
+      '3': Continuously monitor for and alert on new external connectivity from protected
+        systems; review the access-point list and bypass-scan results on a fixed cadence;
+        require exception, justification, and compensating controls for any allowed
+        bypass with a sunset date.
+    basis: inferred
+  evidence:
+    value: Boundary architecture diagram with marked access points, firewall/router/ACL
+      configuration scoped to those points, change tickets for any added external
+      path, periodic scan reports for unauthorized paths, exception register with
+      justifications and expiry dates.
+    basis: inferred
+  common_myth:
+    value: Believing that having a firewall at the network edge satisfies SC-7.3.
+      The control fails when developer laptops, cloud workloads, test environments,
+      third-party integrations, or rogue wireless bridges establish their own paths
+      around the edge - the perimeter still exists on paper but is no longer the only
+      door.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how you detect a new external connection that does not go through your
+      designated access points.
+    - Which systems, if any, are allowed to reach outside networks directly, and what
+      justified each exception?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.751618Z'
+  signed_digest: 1cad8b94c15752b4bcc1ad1ab0b50d2200d93c342902d9d7fccbd5e0d4f2f151
+  interview_seconds: null
+  inherited_from: null

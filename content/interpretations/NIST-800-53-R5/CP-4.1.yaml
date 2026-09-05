@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:CP-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents the scenario where a system''s contingency plan is an island:
+      when a disruption hits, the activation of the system''s plan fails because it
+      conflicts with, duplicates, or is unaware of other plans (e.g., business continuity,
+      crisis communications, IT disaster recovery, third-party response). The result
+      is costly delays, contradictory decisions, and uncoordinated recovery.'
+    basis: inferred
+  plain_zh:
+    value: This control asks you to make sure the contingency plan for the system
+      is exercised and tested in coordination with other relevant plans—not just on
+      its own. You need to show that when you test your plan, you also involve the
+      people and processes from related plans (like the organization-wide BCP or the
+      incident response plan) to flush out conflicts and gaps.
+    basis: inferred
+  practice:
+    value:
+      '1': List which other plans exist (e.g., business continuity, crisis comms,
+        IT disaster recovery) and note the system's plan's dependencies on them. During
+        a tabletop or a simple walkthrough, at least mention the coordination points
+        and document any obvious overlaps or conflicts.
+      '2': Schedule and perform an exercise where representatives from each related
+        plan participate (or at least are notified and asked for input). Document
+        the exercise scope, who was involved, and what coordination issues were found.
+        Have a formal process to update the system plan based on those findings.
+      '3': 'Integrate the coordination into a regular cycle: coordinate the schedule
+        with other plan owners, use a common exercise scenario that cuts across plans,
+        and systematically track and resolve coordination gaps. Use the results to
+        update both the system plan and the related plans, with a clear audit trail
+        of changes.'
+    basis: inferred
+  evidence:
+    value: Exercise plan and invitations that list which plans and participants were
+      coordinated with; after-action report that specifically addresses coordination
+      issues found and updates made to the contingency plan or related plans; meeting
+      minutes or email threads showing joint planning sessions.
+    basis: inferred
+  common_myth:
+    value: Believing that because the contingency plan mentions other plans in a reference
+      section, the control is met—without ever actually exercising the points of contact
+      or dependencies, so when a real incident happens, the hand-offs still break.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which other plans were you coordinating with in the last exercise, and who from
+      those plans actually participated?
+    - What coordination gaps did you find in the last exercise, and how did you change
+      either your plan or theirs because of it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.961559Z'
+  signed_digest: 45a5647ec870cdb765c5fbf4043a91e18cf4e63449d5d98ea7dfb7f56fea984b
+  interview_seconds: null
+  inherited_from: null

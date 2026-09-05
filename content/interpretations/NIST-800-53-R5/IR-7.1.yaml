@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IR-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an incident response contact line that is reachable in
+      theory but dead when needed—out-of-date rosters, no after-hours channel, no
+      backup when the primary IR coordinator is unreachable—because a missed contact
+      during the first hours of a real incident turns containable damage into a multi-day
+      crisis.
+    basis: inferred
+  plain_zh:
+    value: Make sure the people who must be reached during an incident—and the way
+      to reach them—actually work when something blows up, including outside business
+      hours, and verify that regularly instead of trusting the contact list on file.
+    basis: inferred
+  practice:
+    value:
+      '1': An IR contact list with named roles exists, includes after-hours numbers,
+        and a primary coordinator is designated; basic out-of-band channel (phone,
+        SMS) is documented.
+      '2': Contact list is exercised periodically (call tree test or tabletop) with
+        failures recorded and fixed; a secondary coordinator or succession path is
+        defined for when the primary is unreachable.
+      '3': 'Automation supports availability: distribution lists or paging systems
+        auto-route based on time-of-day and escalation tier, contacts are validated
+        against HR/system-of-record changes, and unanswered pages auto-escalate without
+        human action.'
+    basis: inferred
+  evidence:
+    value: Current IR contact roster, after-hours and out-of-band channel inventory,
+      periodic call-tree or contact-test logs with failure remediation, escalation
+      and succession procedures, automated paging/escalation configuration evidence.
+    basis: inferred
+  common_myth:
+    value: Assuming the org chart or a shared spreadsheet is the control—until the
+      one person on it is on leave, the desk phone forwards to voicemail, and the
+      email goes to an inbox nobody monitors at 02:00. A contact list that has not
+      been dialed under realistic conditions is just paper.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last test the IR contact list end-to-end, including after-hours,
+      and how many people did not respond?
+    - If your primary IR coordinator is unreachable, who is contacted next and by
+      what mechanism—show me the procedure.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.352731Z'
+  signed_digest: 7065532921ecbdddffb8d11f062012c41458d0bec43adeeb60f9314263086edb
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:AU-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against audit gaps being discovered too late to act on—when audit
+      processing fails or fills up silently, evidence that should exist for an investigation
+      simply isn't there, and nobody notices until an incident is already unreconstructable.
+    basis: inferred
+  plain_zh:
+    value: When the audit system itself fails, gets overloaded, or starts dropping
+      events, alert someone in real time so the gap doesn't silently continue.
+    basis: inferred
+  practice:
+    value:
+      '1': Configure the SIEM/audit pipeline to send an alert (email, ticket, page)
+        to a named role when log sources stop sending or when the collector/forwarder
+        goes offline; someone is on the hook to look.
+      '2': Alerts cover multiple failure modes—agent down, storage thresholds, parse
+        errors, clock skew—each with a defined recipient, severity, and expected response
+        window documented in the runbook.
+      '3': Failures are tracked as incidents with SLA timers, dashboards show coverage
+        gaps by source, alerting itself is tested periodically (simulated outage),
+        and escalations are wired so an unanswered alert does not get lost.
+    basis: inferred
+  evidence:
+    value: Alerting configuration (thresholds, recipients, channels), runbooks for
+      each failure mode, recent alert examples with their resolution timestamps, and
+      any periodic test of the alerting path itself.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the SIEM dashboard shows a green status, logging
+      is actually working on every host. Green usually means the SIEM is up—not that
+      every source is reaching it; without per-source alerts, a single dropped agent
+      can go unnoticed for months.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which log sources are not currently reporting, and how would you know within
+      an hour if one stopped?
+    - Show me the last time an audit-failure alert fired and what happened next.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.583055Z'
+  signed_digest: d70c2113c8711e4009643588cfd1bfd84a228c47d3783e3c9c71c547dbc31fc9
+  interview_seconds: null
+  inherited_from: null

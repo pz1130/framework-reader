@@ -1,0 +1,98 @@
+control_id,label_zh,parent_id
+A.5,Org-level controls,
+A.6,People-side controls,
+A.7,Physical-site controls,
+A.8,Tech-side controls,
+A.5.1,Security charter,A.5
+A.5.2,Who owns security duties,A.5
+A.5.3,Split conflicting duties,A.5
+A.5.4,Management's security duties,A.5
+A.5.5,Liaison with regulators,A.5
+A.5.6,Liaison with peer groups,A.5
+A.5.7,Gathering attack clues,A.5
+A.5.8,Security in projects,A.5
+A.5.9,Register of info and supporting assets,A.5
+A.5.10,Rules for using info and supporting assets,A.5
+A.5.11,Handing back supporting assets,A.5
+A.5.12,Grading information,A.5
+A.5.13,Marking the grade,A.5
+A.5.14,Sending information out,A.5
+A.5.15,Who may enter and access,A.5
+A.5.16,Opening and closing identities,A.5
+A.5.17,Custody of authenticators,A.5
+A.5.18,Granting and revoking rights,A.5
+A.5.19,Security demands on suppliers,A.5
+A.5.20,Security clauses in supplier contracts,A.5
+A.5.21,Security along the ICT supply chain,A.5
+A.5.22,Watching and changing supplier services,A.5
+A.5.23,Terms for using cloud,A.5
+A.5.24,Incident playbook,A.5
+A.5.25,Judging security events,A.5
+A.5.26,Handling incidents,A.5
+A.5.27,Learning after incidents,A.5
+A.5.28,Keeping evidence,A.5
+A.5.29,Security during disruption,A.5
+A.5.30,ICT ready for continuity,A.5
+A.5.31,Legal and contract duties,A.5
+A.5.32,Protecting intellectual work,A.5
+A.5.33,Keeping records,A.5
+A.5.34,Protecting personal identifiers,A.5
+A.5.35,Independent look at security work,A.5
+A.5.36,Checking rules are followed,A.5
+A.5.37,Written operating procedures,A.5
+A.6.1,Pre-hire background check,A.6
+A.6.2,Security terms in the employment deal,A.6
+A.6.3,Security awareness and training,A.6
+A.6.4,How violations are handled,A.6
+A.6.5,Duties after leaving or changing role,A.6
+A.6.6,Confidentiality agreement,A.6
+A.6.7,Security when working remotely,A.6
+A.6.8,Reporting security events,A.6
+A.7.1,Site outer barrier,A.7
+A.7.2,Controlling who walks in,A.7
+A.7.3,Protecting offices and machine rooms,A.7
+A.7.4,Watching the premises,A.7
+A.7.5,Guarding against physical and environmental harm,A.7
+A.7.6,Working inside protected areas,A.7
+A.7.7,No sensitive leftover on desk or screen,A.7
+A.7.8,Placing and shielding equipment,A.7
+A.7.9,Looking after assets taken off-site,A.7
+A.7.10,Managing storage media,A.7
+A.7.11,Power water and similar utilities,A.7
+A.7.12,Protecting cables,A.7
+A.7.13,Servicing equipment,A.7
+A.7.14,Wipe before scrap or reuse,A.7
+A.8.1,Devices in people's hands,A.8
+A.8.2,Use of elevated rights,A.8
+A.8.3,Restricting who can read information,A.8
+A.8.4,Restricting who can touch source code,A.8
+A.8.5,Solid authentication,A.8
+A.8.6,Capacity planning,A.8
+A.8.7,Guarding against malware,A.8
+A.8.8,Handling technical flaws,A.8
+A.8.9,Baseline config and its changes,A.8
+A.8.10,Erasing data that should go,A.8
+A.8.11,Masking data,A.8
+A.8.12,Stopping data from leaking out,A.8
+A.8.13,Copies kept so we can restore,A.8
+A.8.14,Spare processing facilities,A.8
+A.8.15,Keeping logs,A.8
+A.8.16,Watching activity,A.8
+A.8.17,Aligning clocks,A.8
+A.8.18,Use of privileged tools,A.8
+A.8.19,Installing software on live systems,A.8
+A.8.20,Protecting network paths,A.8
+A.8.21,Terms for network services,A.8
+A.8.22,Splitting networks apart,A.8
+A.8.23,Filtering web access,A.8
+A.8.24,Using cryptographic techniques,A.8
+A.8.25,Security throughout development,A.8
+A.8.26,Protection conditions for applications,A.8
+A.8.27,Architecture and engineering principles,A.8
+A.8.28,Writing code that avoids holes,A.8
+A.8.29,Security tests in build and acceptance,A.8
+A.8.30,Development done outside,A.8
+A.8.31,Keeping build test and live apart,A.8
+A.8.32,Approving and landing changes,A.8
+A.8.33,Data used for tests,A.8
+A.8.34,Protecting systems during audit tests,A.8

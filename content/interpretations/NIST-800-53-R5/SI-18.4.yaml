@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SI-18.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against spoofing and unauthorized remote access where an attacker
+      piggybacks on the mobile code your site willingly runs on a user's machine —
+      without per-request user opt-in, the user has no way to reject or inspect what
+      is executing on their device.
+    basis: inferred
+  plain_zh:
+    value: When your systems deliver mobile code to a user's device (browser, app,
+      plugin), the user must be able to see what is about to run, decide whether to
+      accept it, and not have it execute automatically.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which user-facing systems can deliver mobile code (web pages,
+        browser extensions, scripts, embedded objects); document which ones auto-execute
+        versus prompt the user.
+      '2': Configure delivery so the user is prompted before code runs; capture and
+        retain user consent records; provide a clear notice of what the code does
+        and who signed it.
+      '3': Verify the prompt happens before execution and is not bypassable by caching,
+        redirects, or embedded frames; periodically test with a sample of remote users
+        to confirm the control still fires in production.
+    basis: inferred
+  evidence:
+    value: Inventory of mobile-code delivery points, sample of delivery flows showing
+      the user prompt, user-consent logs, and test records confirming prompt-before-execution
+      behavior.
+    basis: inferred
+  common_myth:
+    value: Assuming a site-wide banner or cookie consent dialog satisfies this control
+      — those cover privacy/terms, not 'do not execute code on my device without me
+      saying yes to this specific code right now.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a remote session where mobile code was about to run — what did the user
+      see and what did they have to click?
+    - Which of your web endpoints auto-execute scripts without a per-request prompt?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.886478Z'
+  signed_digest: e322270c0c7e84363729454a7ec1b7b855d976c1f7266060e64c7c6085c161ac
+  interview_seconds: null
+  inherited_from: null

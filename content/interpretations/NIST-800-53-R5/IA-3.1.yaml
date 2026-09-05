@@ -1,0 +1,77 @@
+control_id: NIST-800-53-R5:IA-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a device, system, or service from being accepted on faith and
+      then used to impersonate, intercept, or inject traffic. If the authenticator
+      only proves itself to you, or only proves you to itself, a rogue endpoint or
+      relay can still slip in — so mutual cryptographic proof is required before any
+      trust is placed.
+    basis: inferred
+  plain_zh:
+    value: Make sure that before either side trusts the other, both sides cryptographically
+      prove their identity to each other. One-way authentication (the classic TLS-server-only
+      model, or a token checked by the client alone) is not enough when the channel,
+      device, or workload is high-risk.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which connections are high enough risk that one-way authentication
+        is unacceptable (system-to-system APIs holding sensitive data, admin channels,
+        device-to-cloud telemetry, inter-zone traffic in sensitive networks). At least
+        enforce mutual TLS or equivalent on those paths; reject any session where
+        the peer fails to present a valid certificate.
+      '2': 'Standardize the mutual auth pattern per connection class: which PKI /
+        CA / issuer is trusted on each side, how certificates are issued, rotated,
+        and revoked, and what cipher suites are acceptable. Reflect the pattern in
+        configuration baselines and pipeline checks; review it after cert or CA changes.'
+      '3': Make mutual cryptographic authentication the default for every machine-to-machine
+        and high-trust channel, not a special case. Continuously verify that both
+        peers actually validate (mTLS strict mode, client cert pinning where appropriate,
+        fail-closed on handshake errors), monitor for downgrades to one-way auth,
+        and revoke or block any peer whose cert is no longer valid. The check lives
+        in code, config, and runtime telemetry — not in a design doc.
+    basis: inferred
+  evidence:
+    value: Architecture and design documents that call out bidirectional authentication
+      per channel class, configuration baselines and hardening guides for mutual TLS
+      or equivalent, certificate/CA inventory and rotation procedures, sample configurations
+      from real systems, monitoring or alert evidence for handshake failures and downgrade
+      attempts, and test or scan results showing both peer identities are enforced
+      end-to-end.
+    basis: inferred
+  common_myth:
+    value: Treating TLS with server certificate validation as 'mutual auth' because
+      the server proved itself to the client. Server-only auth protects the client
+      from a fake server, but does nothing to protect the server (or the network between
+      them) from a fake client or a rogue endpoint — which is precisely the failure
+      IA-3(1) is closing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one production channel where both peers must present a certificate,
+      and walk through what happens when the client cert is invalid.
+    - Which high-risk channels in your environment still rely on one-way authentication,
+      and what is the documented reason mutual auth is not used there?
+    - How do you detect an attempt to downgrade a mutual-authenticated session to
+      one-way, and what is the response?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.136881Z'
+  signed_digest: 038ae627d1eff4773e78433f8a2fe3f94af62e3d5843a1858cfc0498ec3796a2
+  interview_seconds: null
+  inherited_from: null

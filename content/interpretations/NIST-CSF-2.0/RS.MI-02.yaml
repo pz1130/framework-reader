@@ -1,0 +1,59 @@
+control_id: NIST-CSF-2.0:RS.MI-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that incident response stops at isolation and containment—malicious components,
+      backdoors, and traces of intrusion are not fully removed, so business operations recur immediately
+      upon recovery, or even let attackers back in.
+    basis: inferred
+  plain_zh:
+    value: At the end of incident handling, thoroughly remove what attackers left in the system (malware,
+      backdoor accounts, persistence mechanisms, suspicious configurations), and confirm the environment
+      is clean before restoring business operations.
+    basis: inferred
+  practice:
+    value:
+      '1': A designated person is responsible for the eradication phase; standard cleanup actions exist
+        for known malware and backdoors; services are restored only after cleanup is complete.
+      '2': The eradication process has a documented plan covering persistence mechanism checks, account
+        and startup item verification, and configuration rollback; eradication actions are recorded and
+        traceable.
+      '3': Before eradication, take forensic snapshots to preserve evidence; after eradication, conduct
+        targeted verification (e.g., asset inventory checks, security scans, behavior monitoring); confirm
+        cleanliness and proceed with formal restoration approval.
+    basis: inferred
+  evidence:
+    value: Eradication phase records in incident handling tickets, cleanup operation logs (account deletion,
+      file removal, configuration rollback), pre-restoration verification reports (scan results, server
+      asset inventory rechecks), and residual risk treatment explanations.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'isolating and running an antivirus scan' completes eradication. Attackers often
+      leave multiple persistence mechanisms; without systematically checking against the initial infection
+      vector and system baseline, after the scan and business recovery, backdoors automatically revive.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the eradication checklist for this incident? How do you determine it is clean rather than
+      just not detected?
+    - What verifications were performed before restoring services? Who confirmed the verification results?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.646278Z'
+  signed_digest: 3f39056fa11755402a8c95066962fd9fe80bebe2f8f1f6048fb56685ca4bce65
+  interview_seconds: null
+  inherited_from: null

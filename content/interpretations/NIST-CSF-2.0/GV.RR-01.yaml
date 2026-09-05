@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:GV.RR-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: This addresses the situation where top leadership believes cybersecurity is solely an IT matter—when
+      a major incident occurs, senior executives claim ignorance, leaving the security team to bear the
+      blame. When responsibility is ambiguous, there is no leverage for resources, decision-making authority,
+      or accountability chains.
+    basis: inferred
+  plain_zh:
+    value: Clearly assign responsibility and authority for cybersecurity risk to the highest levels of
+      the organization, making them accountable and answerable, and fostering a culture across the organization
+      that embraces risk, ethics, and continuous improvement, rather than relying solely on the security
+      department to drive efforts.
+    basis: inferred
+  practice:
+    value:
+      '1': A designated leader in management has approved the security policy; significant security matters
+        can reach the highest level.
+      '2': Cybersecurity risk is a regular agenda item in executive meetings; formal risk acceptance and
+        escalation mechanisms exist; management regularly reviews and decides on significant risks.
+      '3': Cybersecurity responsibility is reflected in management compensation, performance reviews,
+        or corporate disclosures; cultural metrics (e.g., reporting, notifications, improvement suggestions)
+        are data-supported and included in management reviews.
+    basis: inferred
+  evidence:
+    value: Appointment or authorization documents, minutes of board/executive meetings on cyber risk,
+      signed approval pages of security policies, records of risk acceptance and escalation, and records
+      of training or culture communication involving leadership.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a CISO as the top responsible person suffices for leadership accountability—auditors
+      look for whether responsibility lies with the level that holds resources and personnel authority;
+      the security lead is an executor and cannot substitute for top leadership accountability.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time the board or top management formally reviewed cyber risk? What decisions
+      were made in the minutes?
+    - If a significant risk is rejected for remediation by the business, who has the authority to decide?
+      Where is the approval document?
+    - How does management demonstrate its understanding of the organization's main cyber risks, beyond
+      just listening to security department reports?
+    basis: inferred
+  regional_note:
+    value: In Europe, under NIS2, board members may face personal legal liability for cybersecurity failures,
+      so auditors scrutinize individual accountability records more strictly; in the US, auditors typically
+      check whether SEC disclosure requirements are triggered and whether senior management has substantive
+      involvement, with a relatively looser chain of personal accountability.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.490323Z'
+  signed_digest: 4f998b95f1f20eb13147a2955d3d7e14c40789e4312bf6b8385376438bb8de8a
+  interview_seconds: null
+  inherited_from: null

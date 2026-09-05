@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a system crashing, hanging, or misbehaving in an unsafe
+      or undefined way when it hits an unrecoverable error — leaving the attacker
+      in control, leaving data half-written, or leaving the device in a state an operator
+      cannot diagnose. The control forces the system into a known, bounded state on
+      failure so recovery, forensics, and safety all have somewhere to start.
+    basis: inferred
+  plain_zh:
+    value: When a system component fails (crash, fault, integrity error, attack),
+      it must land in a state that is defined, documented, and safe — not in an undefined,
+      half-broken, or attacker-controlled state — and the system must be able to return
+      to operation without corrupting data or hiding what happened.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the components whose failure could leave the system in an unsafe
+        or undefined state (OS, crypto modules, network gear, ICS/medical controllers,
+        database servers). Document, at a high level, what 'fail in known state' means
+        for each (crash dump, halt, reboot, safe mode).
+      '2': 'For each such component, the failure behavior is implemented and tested:
+        a fault or integrity violation produces a defined outcome (halt, restart,
+        or degraded mode) rather than undefined continuation. Recovery procedures
+        are written and reference the expected failure state. Logs capture what failed
+        and how the component landed.'
+      '3': Failure behavior is verified by fault injection or chaos testing on a cadence;
+        the known-state outcome is exercised end-to-end including recovery; deviations
+        from the documented behavior are tracked as defects; safety-critical components
+        have independent watchdog or hardware-enforced fail-state.
+    basis: inferred
+  evidence:
+    value: Component-level 'fail in known state' specifications, fault/panic-handling
+      design docs, test results from fault injection or crash scenarios, recovery
+      procedures tied to documented failure states, and incident records showing how
+      a real failure landed.
+    basis: inferred
+  common_myth:
+    value: Assuming the operating system's default crash behavior (blue screen, core
+      dump, reboot) counts as the control — without ever documenting what state the
+      system is supposed to land in, what data must be preserved, or how recovery
+      resumes safely. Default behavior is not a designed behavior.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one safety- or integrity-critical component: what state is it required
+      to enter on failure, and where is that written?'
+    - Show me a test or real incident where that component failed and landed in the
+      documented state — what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.470003Z'
+  signed_digest: c51f4bc66c931ee5cbcafb8f8ec98bee92a07df4e475e4cbc3d9966524d9b819
+  interview_seconds: null
+  inherited_from: null

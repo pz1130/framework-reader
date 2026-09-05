@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:RC.RP-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent "restoring everything to business as usual after an incident" — if
+      the recovery process does not distinguish which business functions are critical for survival and
+      which can wait, resources and effort are spread evenly across all systems, causing truly critical
+      business functions to recover the slowest, or allowing the same vulnerability to be exploited a
+      second time during recovery because security controls were not kept up.
+    basis: inferred
+  plain_zh:
+    value: When establishing post-incident recovery rules, you must first identify which business functions
+      are core to the company's survival and what the security risks of these functions are, then set
+      recovery priorities and operational guidelines around them, rather than making recovery a matter
+      of "restarting systems in the order of the IT system list."
+    basis: inferred
+  practice:
+    value:
+      '1': There is a post-incident recovery process, and the process specifies prioritization by business
+        criticality, at least separating core business from ordinary business.
+      '2': There is a clear list of critical mission functions linked to specific systems and responsible
+        persons; the recovery process includes separate security checks and recovery order for critical
+        functions; recovery operations are documented.
+      '3': The recovery process is regularly exercised and validated with business stakeholders; security
+        requirements for critical functions are enforced as preconditions for recovery; recovery priorities
+        are dynamically linked to cybersecurity risk, and are proactively revised during major changes.
+    basis: inferred
+  evidence:
+    value: Approved post-incident recovery and business continuity plans, list of critical mission functions
+      and their system mappings, security checklists in the recovery process, exercise records and improvement
+      items, recovery operation logs.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having a disaster recovery plan and regular backups is sufficient
+      to meet this requirement. A common problem with disaster recovery plans is that they only describe
+      the order and method of system recovery, without answering "why is this system recovered first"
+      — the basis for the recovery order, the definition of critical business functions, and the associated
+      security risk considerations are exactly what auditors really look for.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you define which business functions are "critical mission functions"? When was this definition
+      last updated?
+    - In the process of recovering a critical business system, at what step are security measures (such
+      as patch verification, vulnerability scanning, access control review) enforced?
+    - If you discover during recovery that the core database backup is corrupted, does the process specify
+      what to do? Who decides on degraded recovery?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.616592Z'
+  signed_digest: 3f7e8e6c6e933b9e362831eb7f6a3775822a254a0958dd4398c7bab817f4b1e6
+  interview_seconds: null
+  inherited_from: null

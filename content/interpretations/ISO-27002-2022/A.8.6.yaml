@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.8.6
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about systems crashing when peak demand hits and logs filling up first—when
+      business growth or sudden traffic spikes occur, insufficient compute, storage, bandwidth, or log
+      capacity leads to service outages and loss of audit trails for security events, with no prior planning
+      for required capacity.
+    basis: inferred
+  plain_zh:
+    value: Don't wait until systems are overwhelmed to scale up. Plan ahead based on business growth,
+      peak traffic, and log retention requirements, ensuring adequate compute, storage, bandwidth, and
+      audit log capacity, and prioritize core business during critical times.
+    basis: inferred
+  practice:
+    value:
+      '1': Capacity estimates have been performed for core systems (e.g., daily request volume, peaks,
+        log growth rate); alerts exist when resources are nearly exhausted; responsible parties for scaling
+        are known.
+      '2': Capacity planning follows a formal process with records (e.g., periodic reviews, annual forecasts);
+        log storage capacity is allocated based on retention periods and audit needs, with monitoring
+        and over-limit alerts.
+      '3': Capacity planning is linked to business growth data to predict future needs; critical business
+        has preemption/degradation strategies; large-scale stress testing has been validated; log storage
+        has independent allocation and overflow protection, preventing log loss when primary storage is
+        full.
+    basis: inferred
+  evidence:
+    value: Capacity planning documents (including assumptions and calculations), monitoring alert thresholds
+      and alert records, resource utilization trend reports, scaling tickets, log storage allocation and
+      retention policy configurations, stress test reports.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'servers are powerful enough, just buy bigger ones'—capacity planning is not
+      about purchasing hardware; it's about continuously tracking business and log growth rates and validating
+      peak scenarios. Many teams only discover that the logging system fails before the business when
+      disks fill up.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How was the capacity forecast for the next six months calculated? What business metrics are based
+      on?
+    - What retention period is log storage allocated for? When full, does it overwrite the oldest logs
+      first or stop writing?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.425839Z'
+  signed_digest: 4ce848cdebd273037cf2f911eefe3d17978b48b6c518ce19c1d5c4e296eafaba
+  interview_seconds: null
+  inherited_from: null

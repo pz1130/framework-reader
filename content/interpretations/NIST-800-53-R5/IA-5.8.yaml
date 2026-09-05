@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IA-5.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers or insiders exploiting shared, group, or anonymous
+      system accounts to hide who did what, escalate privilege, or evade accountability
+      once a single credential is compromised. If every admin shares 'root' or 'svc_acct',
+      a breach investigation ends at the door of the group instead of a person.
+    basis: inferred
+  plain_zh:
+    value: Wherever multiple people share a system or application account, you must
+      define which ones, why sharing is allowed, force individual accountability through
+      alternatives where possible, and audit every use.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify shared/group/anonymous accounts in the inventory; document a business
+        reason for each one; require shared admin use to go through an individual
+        breakout account or jump host that ties back to a person.
+      '2': Approve shared accounts through change control with a named owner and expiry;
+        ensure all actions by shared accounts produce logs that name the requesting
+        individual; periodically review whether each shared account is still justified.
+      '3': Phase shared accounts out via SSO, named service principals, or PAM checkout
+        that issues ephemeral credentials per technician; enforce that shared accounts
+        cannot log directly to sensitive systems without an individual traceability
+        layer; alert on shared-account use outside approved windows.
+    basis: inferred
+  evidence:
+    value: Shared-account inventory with owners and justifications, approval records,
+      PAM or break-glass logs tying shared-account sessions to individuals, periodic
+      review minutes, and decommission evidence for retired shared accounts.
+    basis: inferred
+  common_myth:
+    value: 'Treating ''no shared passwords in the password policy'' as proof the control
+      is met. The real gap is operational: legacy service accounts, vendor ''sa''-style
+      logins, and Unix root still get used daily by multiple admins who each type
+      the same secret, so logs only point at the group. Policy that bans password
+      sharing does nothing about that.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of every shared or group account in production today and who
+      owns each one.
+    - Pick one shared account I just named - prove from last month's logs which individual
+      performed a specific privileged action through it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.218445Z'
+  signed_digest: 59013b1a7c85c1a6666b9b8aaf1e61ad5be16f39eefa758d83d7072ca1c445ba
+  interview_seconds: null
+  inherited_from: null

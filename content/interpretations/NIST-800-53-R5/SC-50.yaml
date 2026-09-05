@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SC-50
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against relying on hardware or network segmentation to separate
+      security domains and enforce policy — such as VLANs, ACLs, or physical isolation
+      — which can be bypassed, misconfigured, or fail to protect workloads that share
+      physical infrastructure.
+    basis: inferred
+  plain_zh:
+    value: Where security separation or policy enforcement is needed, do it in software
+      — within the operating system, hypervisor, or application layer — rather than
+      assuming isolation provided by the network or hardware is sufficient.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which protections (e.g., sandboxing, access control, data flow
+        rules) must be enforced by software; document the decision in system design.
+      '2': Enforce policy in software and show it is configured at the OS, virtual
+        machine, or application layer; updated via change management.
+      '3': Design enforcement so that bypassing requires defeating multiple independent
+        software controls; test fallback behavior when one layer is disabled.
+    basis: inferred
+  evidence:
+    value: System security plans showing which separation controls are software-enforced;
+      configuration baselines for the enforcement layer; change records; test reports
+      (e.g., penetration or fault injection) proving policy is not bypassed when hardware/network
+      isolation is removed.
+    basis: inferred
+  common_myth:
+    value: Assuming that placing systems on separate VLANs or physical hosts satisfies
+      the separation requirement — without software enforcement, any misconfiguration
+      or shared infrastructure (e.g., a cloud hypervisor) leaves the boundary open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in the system design you explicitly decided software enforcement,
+      and which software control is the primary separator.
+    - What happens to policy enforcement if the underlying network or hardware isolation
+      is removed or fails?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.662450Z'
+  signed_digest: f4cbb53687d7bc12327abf712783e68b4836c3a9b89e2e91dd3e8bf8f8228dfe
+  interview_seconds: null
+  inherited_from: null

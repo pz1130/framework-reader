@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:RC.RP-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "the incident is handled but no one declares it over" - responders disperse,
+      systems quietly return to production, and no post-incident review documents are written, leaving
+      root causes and improvements unfinished.
+    basis: inferred
+  plain_zh:
+    value: 'After incident recovery, there must be clear closure criteria: who has the authority to declare
+      the end, based on what conditions, and relevant documentation (timeline, impact, response actions)
+      must be completed at that point.'
+    basis: inferred
+  practice:
+    value:
+      '1': The emergency plan states "the emergency commander declares recovery complete," but specific
+        trigger conditions are not defined; a simple summary is produced after the incident.
+      '2': Multiple written criteria for declaring recovery complete (e.g., business function verification
+        passed, system monitoring returned to normal, evidence preserved) are defined, signed by a designated
+        role, and archived; post-incident review documents are completed on time.
+      '3': Closure criteria are linked to business continuity metrics, with automated system checks of
+        key metrics to support decision-making; review documents are structured and linked to the issue
+        tracking system, with closed-loop tracking of improvement actions.
+    basis: inferred
+  evidence:
+    value: The "recovery complete" signature page in the incident report includes role and time, a checklist
+      of closure criteria, system verification records after recovery, post-incident review meeting minutes,
+      and an improvement action tracking list.
+    basis: inferred
+  common_myth:
+    value: Assuming that "accessible and no business complaints" means recovery is complete. Without written
+      criteria, there is a tendency to prematurely declare recovery under pressure, leading to rework
+      when data inconsistencies or monitoring fluctuations appear - closure judgments must be documented,
+      not based on intuition.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the most recent medium-to-high severity incident, who signed which document to declare recovery
+      complete? Which criteria were checked at that time?
+    - Is there a clear deadline for the post-incident review report? What happens if it is overdue? Are
+      improvement actions tracked in a defect management system or do they dissipate after the meeting?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.620877Z'
+  signed_digest: 5e4e3059376c38cbcf057e314e79d24e6aded96dfd4e3b2a2513516bef845e0a
+  interview_seconds: null
+  inherited_from: null

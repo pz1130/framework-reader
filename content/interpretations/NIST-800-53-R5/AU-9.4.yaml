@@ -1,0 +1,77 @@
+control_id: NIST-800-53-R5:AU-9.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It defends against audit-log tampering by insiders who would otherwise
+      be able to read and rewrite their own tracks - including the administrators
+      of the systems that store the logs. If the people who can change logs are also
+      the people under investigation, post-incident reconstruction collapses and accountability
+      becomes theatre.
+    basis: inferred
+  plain_zh:
+    value: Only a deliberately small, named subset of privileged users may access
+      audit records and the systems that hold them, so that this group is itself auditable
+      and cannot silently cover its own activity. Everyone else who needs read access
+      for operational reasons gets it through controlled, indirect means - never through
+      privileged accounts that could also alter the log.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which human accounts can read, modify, or delete audit logs and
+        which can administer the logging infrastructure; reduce that list to a named
+        subset (e.g. a 'log custodians' group) and keep everyone else out of direct
+        access.
+      '2': Document who is in the subset, why each person is on it, and how access
+        is granted and revoked; route operational read needs (SOC analysts, ops) through
+        a separate role that cannot tamper with the log store; review the subset list
+        on a defined cadence.
+      '3': Enforce the restriction in the system itself - the logging platform rejects
+        privileged accounts not on the approved list, changes to the subset require
+        approval and produce an auditable trail, and any read or write by the privileged
+        subset is itself captured to a tamper-evident or out-of-band store so the
+        watchers are watched.
+    basis: inferred
+  evidence:
+    value: The named list of privileged users authorized for audit-record access (with
+      justification and approval), the access-control configuration showing that other
+      privileged roles are denied, role separation between log-read users and log-administrator
+      users, review records of the authorized-subset list, and log entries showing
+      that access by the privileged subset is itself captured to a separate, protected
+      store.
+    basis: inferred
+  common_myth:
+    value: Treating this as a logging-platform feature rather than a people-and-roles
+      decision - assuming the SIEM vendor ships 'separation of duties' so the box
+      is compliant. The control is about who is on the human privileged list, not
+      about the software; an admin who provisions the log server can usually also
+      read or alter its contents, and that person needs to be one of a small, named,
+      reviewed group with their own access captured elsewhere.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the named list of humans who can read or administer audit logs - how
+      many are on it and who approved each one?
+    - Can the people on that list also delete, truncate, or modify the logs they read,
+      and is their own access captured to a separate store an auditor can verify?
+    - Walk me through how a SOC analyst accesses the logs today - is that role distinct
+      from the role that administers the log store?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.644451Z'
+  signed_digest: ec57725ef781dda764a40ed838c283a02fae8d066a0393dd2c4f49436f4146e9
+  interview_seconds: null
+  inherited_from: null

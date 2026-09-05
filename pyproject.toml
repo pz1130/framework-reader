@@ -1,0 +1,57 @@
+[project]
+name = "framework-reader"
+version = "2026.08"
+description = "A workbench for international security frameworks"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "pz1130"}]
+requires-python = ">=3.12"
+urls = {Homepage = "https://github.com/pz1130/framework-reader"}
+dependencies = [
+    "pydantic>=2.7",
+    "PyYAML>=6.0",
+    "openpyxl>=3.1",
+    "typer>=0.12",
+    "prompt_toolkit>=3.0",
+    "httpx>=0.27",
+    "anthropic>=0.40",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "python-multipart>=0.0.9",
+    # 只为 PDF 的文字层。docx 那条路仍是零依赖（zipfile + 正则）。
+    "pypdf>=5.0",
+    "reportlab>=4.0",
+    # Entra 的 id_token 是 RS256 签名的 JWT。校验签名这件事不自己写。
+    "PyJWT[crypto]>=2.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx2>=2.12,<3", "ruff>=0.12,<1", "mypy>=1.15,<2"]
+
+[project.scripts]
+fr = "framework_reader.cli.main:app"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Wheel install (Docker `pip install .`) drops these unless declared.
+# Editable `pip install -e .` hides the hole because files sit next to the .py.
+[tool.setuptools.package-data]
+framework_reader = ["identity/*.sql", "pack/*.sql", "prompts/*.md", "web/static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# tests/query/test_sample.py and tests/blindtest/test_sample.py share a basename.
+addopts = ["--import-mode=importlib"]
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+check_untyped_defs = true

@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:RS.MA-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: This control addresses the risk that incidents are not contained or escalated—frontline staff
+      cannot assess severity, or if they do, no one receives the information, it is not recorded, or there
+      is no escalation path. Minor issues can escalate into major incidents, and post-incident reviews
+      cannot trace the escalation chain.
+    basis: inferred
+  plain_zh:
+    value: 'Define the rules and paths for incident escalation: what constitutes an escalation, to whom
+      to escalate, how to notify, and within what timeframe escalation must occur. Ensure all personnel
+      are aware of these rules and follow them when incidents occur.'
+    basis: inferred
+  practice:
+    value:
+      '1': Escalation is verbally agreed upon—there is an on-call phone or group, but no written rules;
+        incident handlers rely on experience and position to make judgments.
+      '2': A written escalation matrix exists (defining escalation targets and timeframes based on severity,
+        impact, and time); escalation actions are logged (via groups, email, or tickets); periodic escalation
+        drills or tabletop exercises are conducted.
+      '3': The escalation matrix is integrated with incident management tools; thresholds trigger automatic
+        ticket creation and notification to relevant roles; the entire escalation process is fully documented;
+        regular reviews of escalation time and accuracy are conducted, and the matrix is updated accordingly.
+    basis: inferred
+  evidence:
+    value: Escalation matrix and classification standard documents, timestamps and notification logs of
+      escalation points in incident tickets, review minutes from drills or real incidents, and descriptions
+      of escalation paths in incident response plans.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having a contact list full of emergency contacts constitutes an escalation
+      mechanism. A contact list is just a list—without classification thresholds, escalation timeframes,
+      or confirmation mechanisms, even if people are reachable, they may not know whether or when to escalate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When frontline staff suspect ransomware, what is the target time from detection to notification
+      of the incident response lead? Where is this documented?
+    - In the most recent incident escalation, what was the escalation level change? How long did it take?
+      Was it faster or slower than the target?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.640430Z'
+  signed_digest: 4674ce2c0f01f0d5267bd1bc338d5c2de9a97391b4c532d9654f98f4b85537d2
+  interview_seconds: null
+  inherited_from: null

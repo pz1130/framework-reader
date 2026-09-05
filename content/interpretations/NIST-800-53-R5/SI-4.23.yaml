@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-4.23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents blind spots where attacks bypass network sensors by riding endpoints
+      directly — USB drops, malicious peripherals, compromised host connections, or
+      rogue devices on the host's own I/O channels. Network monitoring alone never
+      sees these; without host-level visibility and enforcement, an attacker with
+      physical or local proximity can land payloads, exfiltrate over covert channels,
+      or persist through attached hardware.
+    basis: inferred
+  plain_zh:
+    value: Make endpoint systems themselves watch and act on what is plugged into
+      them, attached to them, or running on their I/O interfaces — not just trust
+      the network edge to catch everything.
+    basis: inferred
+  practice:
+    value:
+      '1': Endpoints (servers, laptops, sensitive workstations) have basic device
+        control turned on; known malicious USB and unauthorized storage are blocked
+        or alerted; users cannot easily disable it.
+      '2': Policy distinguishes which device classes and interfaces are blocked, read-only,
+        or allowed on which endpoint groups; exceptions are documented; alerts go
+        somewhere a human reviews.
+      '3': Host-based detection covers removable media, peripheral types, and behavioral
+        anomalies (new devices, unusual data flows to/from devices); integrated with
+        the SOC's detection pipeline; coverage gaps on legacy or air-gapped hosts
+        are explicitly tracked.
+    basis: inferred
+  evidence:
+    value: Host device control policy and configuration baselines, endpoint tooling
+      configuration showing enforced rules, alert-to-ticket records for device events,
+      exception register, and a documented scope statement of which endpoints are
+      covered vs. excluded.
+    basis: inferred
+  common_myth:
+    value: Assuming a network IPS or EDR's network-monitoring mode is enough. EDR
+      that watches processes is still blind to a USB HID injector or a rogue modem,
+      and network sensors cannot see traffic that never traverses a controlled choke
+      point — host-level I/O controls are a separate layer, not a subset of network
+      monitoring.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which endpoint groups have host-based device control enforced and which
+      do not, and why the gaps are accepted.
+    - What happens when a user plugs in an unauthorized USB device on a finance laptop
+      — where does the alert land and who sees it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.034246Z'
+  signed_digest: 24657673bf5ebdff4810fe20ee4615c3d012948fee9f8a703074b758ccc3cbb6
+  interview_seconds: null
+  inherited_from: null

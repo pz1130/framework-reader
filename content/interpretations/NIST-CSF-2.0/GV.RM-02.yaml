@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:GV.RM-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that there is no consensus across the organization on what constitutes 'significant
+      risk'—the board sets direction, management executes, the security team requests budgets, and business
+      units push projects, each with a different yardstick. As a result, discussions on how much to spend
+      on security, which business red lines must never be crossed, and which risks to address first all
+      become fragmented, with accountability ultimately falling on the security team.
+    basis: inferred
+  plain_zh:
+    value: 'Senior leadership formally establishes a statement: the level of risk the company is willing
+      to accept in pursuit of its objectives, and the level it firmly will not accept. This statement
+      must be documented, disseminated, genuinely used by decision-makers, and regularly updated. In essence,
+      it provides a unified yardstick for measuring risk across the entire company.'
+    basis: inferred
+  practice:
+    value:
+      '1': The board or top management approves a written risk appetite statement; there is a formal issuance
+        record; the security leader can produce this document.
+      '2': The statement is translated into language usable at different levels—the board sees the overall
+        expression, management has specific measurable tolerance thresholds; new project initiation or
+        major changes reference this statement for judgment; there is periodic (at least annual) review
+        and update.
+      '3': Risk appetite and tolerance are quantified into business decision processes—budget allocation,
+        new product launches, supplier onboarding, etc., include hard checks against red lines; there
+        is a clear feedback mechanism to report actual risk exposure back against the appetite; there
+        are escalation and remediation paths for deviations.
+    basis: inferred
+  evidence:
+    value: Risk appetite statement signed by top management, supporting quantified risk tolerance metrics,
+      records of the statement being referenced in governance/decision meeting minutes, periodic review
+      and revision records, and communication and awareness materials.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'the risk management committee met and approved a risk appetite document' means
+      this is complete. A common situation is that the document is too vague (e.g., 'adhere to prudent
+      principles'), business units cannot translate it into their projects, and management never consults
+      it when making decisions—the document sits on a shelf, and the yardstick is not embedded in processes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last review of this risk appetite statement? Who approved it? What changed?
+    - 'Give a specific example: in the past year, which decision or project was halted or redirected because
+      it hit a risk tolerance threshold?'
+    - How was the security team's budget and project priorities this year derived from this risk appetite
+      statement?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.478137Z'
+  signed_digest: 5c8fe36ca26818115fb24e0431db091a7c6a8bd38ac9df6cf77b4dbaa3e290ad
+  interview_seconds: null
+  inherited_from: null

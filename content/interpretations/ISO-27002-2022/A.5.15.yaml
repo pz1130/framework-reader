@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.5.15
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that accounts are being issued and permissions changed, but no one can clearly
+      state who can access what—issuing permissions incorrectly is a chronic problem, while failing to
+      revoke them is acute; if rules rely on word of mouth and WeChat groups rather than written documentation
+      and systems, any audit spot-check can overturn your entire narrative.
+    basis: inferred
+  plain_zh:
+    value: Formalize 'who can access what, on what basis, and what to do if out of bounds' into documented
+      rules, issue permissions, block access, and conduct periodic reviews according to the rules, and
+      integrate with other security processes.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a documented access provisioning and access control policy covering at least account
+        creation, permission approval, and revocation/deregistration; approvals are recorded and auditable.
+      '2': Rules are differentiated by role and data sensitivity; permission changes go through tickets;
+        periodic reviews are conducted with records retained; privileged accounts are managed separately.
+      '3': Access authorization is enforced by system policies/tools (e.g., IAM or dynamic authorization),
+        with detection and blocking of anomalous access; rules are linked to risk reviews, changes are
+        traceable, unauthorized access is blocked, and reviews can identify existing anomalies.
+    basis: inferred
+  evidence:
+    value: Access provisioning and access control policy documents (including version and approval records),
+      ticket records for account creation/change/revocation, access permission matrix or role definitions,
+      periodic review records (including handling of anomalies), privileged account list with usage and
+      approval records, and screenshots of authorization policies and IAM systems.
+    basis: inferred
+  common_myth:
+    value: It is assumed that managing onboarding/offboarding accounts and requiring approval for provisioning
+      is sufficient. However, the policy document itself must exist and be current—many teams have practices
+      but no documentation, and when auditors ask 'what are the steps to provision a high-risk system
+      account and where is it written?', they cannot answer.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When an employee transfers roles, what process is used to revoke their existing system access? Show
+      me the handling records for the last three transfers.
+    - When was the access control policy last updated? Who approved it? Does it align with the current
+      approval matrix?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.263527Z'
+  signed_digest: 6d5950b42a5d783e6a5dc262c528af313451dc26a3afbcdad652b3cf725a9e58
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-16.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against confidential data leaking through output paths that bypass
+      the access controls of the source object - e.g., printing a 'Confidential' document
+      to a shared printer, exporting a sensitivity-tagged record to PDF, or rendering
+      a labeled record on a screen in a public area - because the output device has
+      no idea how to honor the label, so without explicit display rules the human
+      or downstream system decides.
+    basis: inferred
+  plain_zh:
+    value: When a system produces output (screen, print, file export, API response),
+      the security attributes attached to the source object must travel with that
+      output and visibly indicate the handling the output requires - so whoever sees,
+      prints, or forwards it cannot claim they did not know what they were handling.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the output channels that carry sensitive data (print, screen,
+        export, email); define at minimum a banner/header/footer that signals the
+        handling required for each sensitivity label in use.
+      '2': Build the attribute into the rendering pipeline - print drivers, export
+        templates, screen labels - and document which output paths are covered; partial
+        coverage is acceptable as long as the gaps are known.
+      '3': Cover all output channels including DLP-emulated print, mobile/BYOD screens,
+        screen sharing, and downstream exports; test that stripping the attribute
+        from the object also strips it from every output; raise an alert or block
+        when an output path is missing the mandated display.
+    basis: inferred
+  evidence:
+    value: Output-handling design docs, samples of printed/exported/rendered output
+      for each label category, test results showing label travel with the output,
+      list of output channels with their coverage status.
+    basis: inferred
+  common_myth:
+    value: Believing that because the source object is labeled, the printout or export
+      is automatically protected. The label lives on the object inside the application;
+      once data leaves through a print spool, a PDF writer, or a screen, that label
+      is gone unless the output process was specifically built to carry and render
+      it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a 'Confidential' record and show me what its printed, exported, and on-screen
+      versions look like - where is the handling indicator on each?
+    - Which output channels are not covered by the attribute display, and what is
+      the compensating control for each?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.032033Z'
+  signed_digest: 28f1615ab6db2df57a4355af298937d0c5142d6b36956e5ffefb0b7a1580d6bb
+  interview_seconds: null
+  inherited_from: null

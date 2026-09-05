@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where monitoring sensors detect something
+      bad but the signal never reaches a human who can act — alerts sit in a vendor
+      console, get dropped by noisy thresholds, or only flow to a team that has no
+      on-call path. Without system-generated alerts wired into a defined response,
+      detection is decorative.
+    basis: inferred
+  plain_zh:
+    value: Make the monitoring tools themselves push alerts to the right people when
+      they spot suspicious activity, not just log it locally. Define who gets notified,
+      on what channel, within what time, and that the alert is acknowledged.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensors (IDS/IPS, AV, integrity monitors, log analyzers) are configured
+        to emit alerts on defined events, not just write to local logs; a basic on-call
+        contact receives them.
+      '2': Alert routing is documented per system class with severity tiers, recipient
+        roles, and channels (email, ticket, paging); alerts flow into a queue or ticket
+        where they are acknowledged and tracked to closure.
+      '3': Alert paths are tested end-to-end on a schedule (synthetic triggers), escalation
+        trees kick in when no acknowledgement occurs, and metrics on alert-to-acknowledge
+        latency and drop rates are reviewed and used to tune detection.
+    basis: inferred
+  evidence:
+    value: Alert routing matrix (system → severity → recipient → channel → escalation),
+      sample alerts with acknowledgement timestamps, on-call schedules, synthetic
+      test results showing the alert reached a human, and tuning/retirement records
+      for stale alert rules.
+    basis: inferred
+  common_myth:
+    value: Treating 'the SIEM is configured to alert' as proof — the SIEM may be configured,
+      but if alerts only go to a mailbox nobody monitors, or the rule was silenced
+      last quarter and never re-enabled, the control does not exist. The auditor wants
+      to see a human received it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick the last three alerts your IDS generated — show me the ticket, who acknowledged
+      it, and how long after generation.
+    - When the primary recipient does not acknowledge, what happens next and how is
+      that tested?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.052925Z'
+  signed_digest: 7d8c27b786b62612eb6854ff8bbf467e0734ca951569595c75d0f061929e7c4c
+  interview_seconds: null
+  inherited_from: null

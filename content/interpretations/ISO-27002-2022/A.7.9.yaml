@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.7.9
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that once equipment leaves the office, it is out of your sight—loss, substitution,
+      insertion of unauthorized peripherals, and data exfiltration can occur without your visibility or
+      ability to intervene. Additionally, it addresses employees taking company devices home or on business
+      trips and using unmanaged networks and devices to access company systems, effectively losing control
+      of the perimeter.
+    basis: inferred
+  plain_zh:
+    value: 'Company-issued phones, laptops, and tablets taken outside the office require management systems
+      and measures to monitor: who is approved to take them, how they are protected when taken out, and
+      what to do if lost. Employees using personal devices or home/hotel computers to process company
+      data also need clear rules.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a register for equipment checkout and return; enforce mandatory encryption and screen
+        lock on company devices; have a reporting channel for lost devices.
+      '2': Approve and record equipment checkout based on business needs; asset inventory can show who
+        currently holds each device and in which city; if BYOD is allowed, have a written acceptable use
+        policy and data boundary statement.
+      '3': Enroll checked-out devices in mobile device management for remote location, lock, and wipe;
+        sensitive data accessed via virtual desktop or sandbox without local storage; implement tiered
+        policies and verification for access from untrusted environments, not relying on employee discretion.
+    basis: inferred
+  evidence:
+    value: Equipment checkout/return registration records, mobile device management platform reports (including
+      last sync time and geolocation), encryption policy baseline, lost device reporting and handling
+      tickets, signed BYOD policy records, data loss prevention gateway logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that device encryption and screen lock are sufficient to manage checkout. Encryption
+      only addresses 'if lost, data cannot be read,' but what networks the device connected to, what peripherals
+      were plugged in, and what software was installed while outside remain invisible—what truly needs
+      to be added is endpoint control and remote response capability, not just reliance on encryption.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If an employee on a business trip plugs a USB drive given by someone else into their laptop at a
+      hotel, can you detect it?
+    - What is the time gap between device loss reporting and triggering remote lock? Who executes it and
+      through what channel?
+    - If an employee uses their personal phone to check company email, and the phone is sent for repair
+      after breaking, how much company data is beyond your control?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.364616Z'
+  signed_digest: 43cb15335fcc2f015411c173cdb9977a2119731fedc8a053f6d291e4c9910969
+  interview_seconds: null
+  inherited_from: null

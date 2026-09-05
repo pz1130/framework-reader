@@ -1,0 +1,69 @@
+control_id: ISO-27002-2022:A.7.1
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that people can enter through physical entrances without identity verification—if
+      access cards, keys, or visitor badges are uncontrolled, any logical security (antivirus, patches,
+      firewalls) is useless; this control addresses the fundamental trust collapse when someone can directly
+      access server rooms, power distribution rooms, or archives.
+    basis: inferred
+  plain_zh:
+    value: 'Manage the issuance and return of every physical door, card, and key: maintain records of
+      who has access to which areas at what times, ensure visitors are accompanied, and immediately change
+      combination locks and replace keys if lost.'
+    basis: inferred
+  practice:
+    value:
+      '1': Critical areas such as server rooms and power distribution rooms have access control or locks;
+        access cards and keys are tracked in a ledger, and are recovered upon termination or role change;
+        visitors register at the front desk and are accompanied.
+      '2': The access control system records each entry and exit; areas are zoned by business needs (e.g.,
+        server room, office area, public reception area); keys and cards are periodically inventoried,
+        with records of loss and reissuance; visitors have separate badges and are accompanied throughout.
+      '3': Access control is linked to the personnel roster, with immediate deactivation upon termination;
+        area permission models are designed based on segregation of duties (operations staff can enter
+        server rooms but not financial archives); all access control records are automatically retained
+        and traceable; the hierarchy of keys and password combinations is defined, with procedures for
+        lock changes and coordinated handling when a former employee knew a password.
+    basis: inferred
+  evidence:
+    value: Access control system entry/exit logs, key and access card issuance/return ledgers, permission
+      recovery records for terminations and role changes, visitor registration logs with accompanying
+      signatures, area maps or area level definitions, and password/combination change records (including
+      those triggered by loss or personnel changes).
+    basis: inferred
+  common_myth:
+    value: 'Assuming that ''the door has a lock and the server room has a registration form'' is sufficient.
+      The real pitfalls are at both ends: one is card and key recovery—whether a terminated employee''s
+      card can be deactivated the same day, rather than waiting for HR notification to manually delete;
+      the other is combination locks—if a terminated or dismissed employee knows the password but it hasn''t
+      been changed, the lock is effectively useless.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Take an access card from an employee who left last week and try to swipe it—does the system reject
+      it immediately or allow entry?
+    - How often are combination lock passwords changed? When the last person who knew the password left,
+      was the lock changed?
+    - For visitors entering the server room during non-working hours, is there an approval record and
+      who is the accompanying person?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.338972Z'
+  signed_digest: b464287179062d9288f57716ccf5e4b01e113719b2d9b8a67d6c4e2d67784f20
+  interview_seconds: null
+  inherited_from: null

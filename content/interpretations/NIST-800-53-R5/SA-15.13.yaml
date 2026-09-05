@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-15.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where component logs are technically generated
+      but operationally unreadable or unfusable — different subsystems emit logs in
+      incompatible formats, so an incident response team (or a SIEM) cannot reconstruct
+      a timeline, correlate events across tiers, or hand evidence to investigators
+      without days of custom parsing. The control exists so logs have a defined, documented,
+      machine-readable syntax before components go live, not after a forensic gap
+      is discovered.
+    basis: inferred
+  plain_zh:
+    value: Require every component that produces security-relevant logs to emit them
+      in a documented, machine-readable format that your logging pipeline and incident
+      responders can actually consume — not free-text blobs that look like logs but
+      cannot be parsed or correlated.
+    basis: inferred
+  practice:
+    value:
+      '1': Each log source has a named format (e.g., a published syslog/CEF/JSON profile)
+        listed in a logging inventory; ad-hoc text dumps are flagged, not silently
+        accepted.
+      '2': A written logging-syntax standard exists, is referenced in procurement
+        and integration specs, and any deviation (legacy device, vendor black-box)
+        is documented with its known gaps.
+      '3': Syntax conformance is verified at onboarding (a parser round-trip or schema
+        check) and re-verified after major component upgrades; unparseable logs trigger
+        a defined response rather than being dropped quietly.
+    basis: inferred
+  evidence:
+    value: Logging inventory with format per source, the internal logging-syntax standard,
+      onboarding parser-check results, records of format exceptions with rationale,
+      and sample correlation queries showing cross-source log lines parse together.
+    basis: inferred
+  common_myth:
+    value: Treating 'the device produces logs' as proof of compliance. A component
+      dumping unstructured human-readable lines to a file satisfies no one during
+      an incident — the SIEM cannot parse them, timestamps do not align, and the team
+      learns the gap only when they most need the timeline.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two log sources from different tiers (e.g., application and database) and
+      show me they parse into one correlated event timeline.
+    - How do you detect when a component's log format changes after an upgrade or
+      patch?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.075773Z'
+  signed_digest: a16948be04d4c4da4199ffd71b7398cfaac55d0a7287bc6a8d62db573996d37c
+  interview_seconds: null
+  inherited_from: null

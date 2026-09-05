@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:CP-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the business from being surprised by a contingency plan that nobody
+      outside the security team knows about—backup, IT DR, crisis comms, vendor failover,
+      business continuity all need to align so one team's recovery doesn't collide
+      with another's, and so the plan actually reflects the systems and people it
+      claims to cover.
+    basis: inferred
+  plain_zh:
+    value: Make sure the contingency plan is consistent with the plans it depends
+      on and the plans that depend on it—IT disaster recovery, backup, crisis communications,
+      business continuity, incident response, emergency operations—so they share assumptions,
+      exercise together, and don't quietly contradict each other.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the other plans the contingency plan touches (IT DR, backup, crisis
+        comms, business continuity, incident response) and have someone review them
+        side by side for obvious conflicts such as different recovery time targets
+        or alternate site lists.
+      '2': Document cross-references between plans; align RTO/RPO and contact lists;
+        run a joint tabletop at least once a year; track discrepancies to closure.
+      '3': Maintain a plan-of-plans map with shared assumptions (sites, personnel,
+        dependency tiers) versioned together; cross-functional exercise with after-action
+        reviews that update all linked plans in the same change cycle; verify that
+        dependencies (cloud failover, third-party services) are reciprocally referenced
+        in the vendor's own continuity plan.
+    basis: inferred
+  evidence:
+    value: Cross-reference matrix between the contingency plan and related plans,
+      aligned RTO/RPO and site/personnel lists, meeting minutes from joint review
+      or tabletop exercises, discrepancy logs and their closures, evidence that linked
+      plans were updated in the same change cycle.
+    basis: inferred
+  common_myth:
+    value: 'Thinking the contingency plan is ''done'' once it is written and approved—and
+      assuming alignment with other plans is a documentation nicety, not a control.
+      In practice the failure usually shows up only at exercise or real incident time:
+      IT DR swaps over to a site business continuity has already declared offline,
+      crisis comms calls an executive who the incident response playbook says is unreachable,
+      or a critical dependency is in the contingency plan but not in the vendor''s
+      continuity plan.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where the contingency plan and the IT DR plan agree on RTO/RPO and the
+      alternate site for our top system.
+    - When was the last joint exercise across contingency, business continuity, and
+      crisis communications, and what changed in the plans as a result?
+    - Pick a critical third-party service in your contingency plan—does it appear
+      in that vendor's published continuity plan too?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.927778Z'
+  signed_digest: b071d903aab281f4fac8737b355899cbe20670deec33161dcf199767f798eb71
+  interview_seconds: null
+  inherited_from: null

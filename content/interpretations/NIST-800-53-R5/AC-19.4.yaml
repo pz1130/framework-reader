@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-19.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against classified or otherwise high-sensitivity data leaking out
+      of the trusted environment through mobile devices—because once data lands on
+      a phone, tablet, or removable media that is carried, lost, stolen, or connected
+      to uncontrolled networks, the organization loses the practical ability to keep
+      the information confidential.
+    basis: inferred
+  plain_zh:
+    value: When the device can hold or carry classified or otherwise specially-protected
+      information, restrict what it may connect to, how it stores data, how it is
+      labeled and stored, and when it must be wiped or destroyed—so that the data
+      cannot escape the trusted boundary even if the device leaves the building.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which device classes are ever permitted to process classified/sensitive
+        data; require authorization before connection; encrypt storage and use only
+        approved apps or media.
+      '2': Maintain an inventory of authorized mobile devices and removable media
+        that touch classified data; enforce labeling, transport, and storage rules;
+        log connections and wipe-on-return or wipe-on-loss.
+      '3': Make the restrictions enforceable by technical controls (DLP, MDM policy,
+        port restrictions, storage encryption keys escrowed to the org), not just
+        policy text; verify in audits that no classified data resides on personal
+        or unauthorized devices.
+    basis: inferred
+  evidence:
+    value: Written restrictions for mobile/removable use of classified data, inventory
+      of authorized devices and media, encryption and MDM configuration records, connection/transport
+      logs, and destruction or wipe records tied to individual devices and media.
+    basis: inferred
+  common_myth:
+    value: Treating 'no smartphones in the SCIF' as the whole control—while the real
+      failure mode is a sanctioned laptop or USB drive that legitimately entered the
+      secure area and now carries classified data out through a hotel Wi-Fi or a lost
+      bag.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last six months of removable media authorized to hold classified data
+      and how each was tracked and destroyed.
+    - Which technical control stops a managed mobile device from writing classified
+      files to a personal cloud account while it is connected inside the secure area?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.097997Z'
+  signed_digest: 511c6fff5fe9df8465810636f64b52f7b5e4536a671f58ba629a8dae9adb4aba
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SA-15.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: It defends against a development process that 'passed' once and then quietly
+      rots — secure engineering practices are assumed effective forever, so vulnerabilities
+      and weaknesses accumulate between major reworks until a breach exposes years
+      of decay.
+    basis: inferred
+  plain_zh:
+    value: Require the organization to keep measuring how well its secure development
+      process actually works and to feed the findings back into process changes, on
+      a recurring basis — not as a one-off certification.
+    basis: inferred
+  practice:
+    value:
+      '1': Metrics exist for the SDLC (e.g., defect escape rate, review coverage,
+        mean time to remediate) and are reviewed when something obvious goes wrong.
+      '2': A documented, recurring improvement cycle (e.g., quarterly retrospective)
+        reviews secure-dev metrics, root-cause analyses from incidents and pentests,
+        and assigns owners to corrective actions with dates.
+      '3': Improvement actions are tracked to closure, trends visible to engineering
+        leadership, security gates (threat models, code review, SAST/DAST) are tuned
+        from the data, and the cycle influences tooling, training, and standards revisions.
+    basis: inferred
+  evidence:
+    value: Recurring improvement-meeting minutes, secure-SDLC metrics dashboards,
+      root-cause analyses tied to process changes, action trackers with closure evidence,
+      and version history of secure-dev standards showing revisions driven by measurement.
+    basis: inferred
+  common_myth:
+    value: Treating an initial SDL assessment or a single pentest remediation cycle
+      as proof of 'continuous improvement' — once the report is closed, the process
+      is assumed mature and untouched until the next audit.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three times your secure-dev metrics caused an actual change
+      to process, tooling, or standards.
+    - Who owns each improvement action, and how do you know it was completed rather
+      than just logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.091330Z'
+  signed_digest: 3cad5c6bf42b1e640d7754a2a0fc65c3048b968e5b8d0f7b95bf62a853d3ac1f
+  interview_seconds: null
+  inherited_from: null

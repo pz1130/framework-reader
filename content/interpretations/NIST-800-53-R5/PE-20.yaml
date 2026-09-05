@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PE-20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the loss, theft, or unauthorized relocation of physical
+      assets whose value, sensitivity, or replacement cost matters—once equipment
+      leaves a known location, you cannot account for what data it held, who touched
+      it, or whether it has resurfaced in a competitor's lab. Asset monitoring without
+      tracking only tells you what you already owned; tracking is what closes the
+      loop when something walks out the door or shows up where it shouldn't.
+    basis: inferred
+  plain_zh:
+    value: Know where your physical assets are, watch for them moving in ways they
+      shouldn't, and be able to act when one disappears or turns up in the wrong place.
+      It is not enough to inventory what you bought—assets must be locatable on demand
+      and their movements explainable.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a register of assets whose loss would actually hurt (sensitive
+        data, expensive kit, regulated items); tag or mark them so they can be identified
+        if found; react when one is reported missing.
+      '2': Apply tracking technology (RFID, GPS, barcode scans at checkpoints, MDM-tied
+        devices) to high-value items; log movements in and out of controlled areas;
+        investigate unexplained changes in location.
+      '3': Integrate asset location data with physical access and incident systems;
+        trigger automated alerts on unexpected movement or exit without authorization;
+        run periodic reconciliation between inventory records and tracked positions;
+        track assets through disposal to destruction.
+    basis: inferred
+  evidence:
+    value: Asset register with risk-based classification, tracking logs or system
+      reports, investigation records for missing or relocated items, reconciliation
+      reports between inventory and location data, disposal-to-destruction chain-of-custody
+      records.
+    basis: inferred
+  common_myth:
+    value: Treating the annual inventory check-off as proof of asset monitoring. A
+      once-a-year count tells you what is missing now, not where assets have been
+      in between—and it cannot distinguish 'still here, never moved' from 'walked
+      out six months ago and came back before the audit'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three high-value assets from your register: where is each one right now,
+      and how would you prove it?'
+    - When an asset leaves a controlled area, who is alerted and what does the alert
+      trigger?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.578124Z'
+  signed_digest: 20611439ae080847de5ecc89ffcb059fa20e5636f888c2d7e31ef613a5d0d0ac
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-34.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a read-only system being silently rewritten underneath
+      the OS so it boots 'clean' while actually running attacker firmware, hypervisor,
+      or bootloader changes. If the media's read-only state is enforced only by convention
+      or by a software flag, anyone with physical or root access can flip the bit
+      and the rest of the security stack is meaningless.
+    basis: inferred
+  plain_zh:
+    value: For systems, devices, or media that are supposed to be read-only, the immutability
+      has to be enforced by the hardware itself, not by the operating system trusting
+      a flag. Any integrity check must live outside the very media it is verifying.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems, boot media, and appliances are designed to run
+        read-only (kiosks, industrial controllers, reference images, bootable recovery
+        media). For each, confirm the read-only nature comes from physical write-protection,
+        not a software switch.
+      '2': Document the read-only inventory, the hardware mechanism enforcing it,
+        and the procedure for re-imaging that does not bypass that mechanism. Include
+        a verification step that proves the media is still write-protected before
+        reuse.
+      '3': Build integrity verification (hash, signature) into a path that is independent
+        of the media being verified — e.g., a trusted external verifier compares the
+        device's measured hash against a known-good value at boot or before use, and
+        deviations halt boot or trigger an alert.
+    basis: inferred
+  evidence:
+    value: Inventory of read-only systems and media, the hardware write-protection
+      mechanism in use, records showing integrity is verified by something other than
+      the media itself, and incident records for any case where tampering was detected
+      or suspected.
+    basis: inferred
+  common_myth:
+    value: Assuming a CD/DVD burned once, or a USB marked 'read-only', or a partition
+      mounted read-only in the OS, actually prevents rewriting. Software mounts and
+      firmware-blockable flags are advisory; without a physical write-protect switch
+      or a separate verifier, the media can be rewritten and the 'read-only' property
+      is theater.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Walk me through one system on your read-only inventory: what physically prevents
+      the media from being rewritten, and how do you know?'
+    - Where does the integrity check run, and what verifies it is not itself on the
+      same writable media?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.550227Z'
+  signed_digest: 13cbb61ac836828955cfe1955505ced1a2c0d71467666ea12bc31bb767dde766
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-6.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the risk that third parties (vendors, contractors, maintenance
+      staff) are granted root or admin access to your systems and then outlive their
+      contract — their accounts stay active, are monitored by nobody, and can be used
+      to sabotage or exfiltrate data after they no longer have a legitimate reason
+      to be there.
+    basis: inferred
+  plain_zh:
+    value: 'If you must give non-employees privileged access (admin, root, database
+      admin, network admin), you must govern it as strictly as — or stricter than
+      — employee privileged access: require a documented business justification, approve
+      it through a formal process, enforce time boxes, and revoke it the moment the
+      engagement ends.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a register of all non-organic users with privileged access, including
+        who they are, which company they belong to, why they have access, and when
+        it expires.
+      '2': Require a formal approval workflow for each grant (sponsor + security sign-off),
+        set an explicit expiry date, use separate accounts rather than shared credentials,
+        and perform a quarterly review of the list to confirm continued need.
+      '3': 'Automate account lifecycle: integrate with the vendor contract/PO system
+        so when a contract ends or changes, the account is automatically disabled;
+        log and alert on privileged usage by non-organic users; require an emergency
+        break-glass process that logs who did what and why.'
+    basis: inferred
+  evidence:
+    value: A register of non-organic users with privileged access; completed access
+      request forms with sponsor approvals and expiry dates; evidence of quarterly
+      reviews (dated, with signatures); contract/PRO integration to trigger disablement;
+      audit logs showing the use of these accounts; a documented offboarding procedure.
+    basis: inferred
+  common_myth:
+    value: Assuming that because your IAM tool has a 'vendor account' group, you are
+      compliant — in practice, these accounts are often granted 'just in case' during
+      a project and left active after the contractor leaves because no one owns the
+      cleanup; the register is never cross-checked against active contracts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of third-party users with admin rights. How many of those have
+      an active contract today?
+    - When a contractor's contract ends, who is responsible for disabling the account,
+      and how is that enforced?
+    - What is the maximum time a third party can hold privileged access without a
+      re-review? Where is that written?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.398685Z'
+  signed_digest: 1ad5b2551c05f282efc973d31615fc0ca101faa3dc57100680e15fd12663e603
+  interview_seconds: null
+  inherited_from: null

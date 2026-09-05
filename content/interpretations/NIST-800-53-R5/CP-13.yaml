@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:CP-13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a situation where the primary protection fails and there
+      is nothing to fall back on — a control, service, or safeguard that quietly breaks,
+      degrades, or is compromised while everyone assumes the main path is fine. The
+      point is not redundancy for its own sake, but a deliberate, pre-decided alternative
+      that can be invoked under defined conditions without ad-hoc scrambling.
+    basis: inferred
+  plain_zh:
+    value: Identify the protections your mission actually depends on, decide in advance
+      what you will do if one of them becomes unavailable or untrustworthy, document
+      it, and make sure people can actually switch to the alternative when needed.
+    basis: inferred
+  practice:
+    value:
+      '1': List the security mechanisms (e.g., a specific DNS resolver, CA, identity
+        provider, key management service, EDR platform, network control) that the
+        business relies on; for the most critical ones, write down a rough fallback
+        such as 'switch to provider B' or 'rebuild from offline media'.
+      '2': For each high-dependency mechanism, define the trigger to activate the
+        alternative, who decides, how long the fallback must be sustainable, and how
+        recovery back to the primary is decided; document it; brief on-call and leadership;
+        rehearse at least once.
+      '3': Alternatives are exercised on a fixed cadence, coverage gaps surfaced and
+        fixed, triggers tied to monitoring signals rather than human rumors, and the
+        list is reviewed when architectures, vendors, or threat posture change; failures
+        of the primary that were caught only by the alternative are reviewed and fed
+        back into design.
+    basis: inferred
+  evidence:
+    value: Inventory of critical security mechanisms with their named alternatives,
+      activation triggers and decision rights, rehearsal or test records showing the
+      alternative was actually used, after-action notes from any real fallback event,
+      and change records when the list was updated.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a backup vendor contract or a hot-standby appliance
+      in a rack means the control is met — the alternative has to be reachable, tested,
+      and known to the people who would have to switch to it, otherwise on the bad
+      day nobody finds the runbook, the credentials are expired, or the alternative
+      silently depends on the same component that just failed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one mechanism on your critical list and walk me through what actually happens
+      the moment you decide to switch over, including who has the credentials and
+      how you know the alternative is not relying on the same thing that just broke.
+    - When was the alternative last exercised end-to-end, what failed, and what did
+      you change afterwards?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.923707Z'
+  signed_digest: 2b1b5291d9c1611a903234874ed532cc291ac5084c88d55b5f6c40c58563a7b5
+  interview_seconds: null
+  inherited_from: null

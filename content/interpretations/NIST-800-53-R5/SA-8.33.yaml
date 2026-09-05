@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-8.33
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against components accumulating functionality, services, and interfaces
+      beyond what the system is supposed to do — because every extra capability is
+      an extra attack surface, an extra path for data to leak, and an extra dependency
+      that can break or be subverted. If you ship a binary or container with hundreds
+      of features you never use, you are handing attackers a buffet.
+    basis: inferred
+  plain_zh:
+    value: Design and build systems so each component does only what it has to — no
+      bundled services, no enabled-by-default features, no exposed interfaces that
+      are not justified by a documented requirement. Cut the rest out before deployment
+      and keep cutting as the system evolves.
+    basis: inferred
+  practice:
+    value:
+      '1': Before deploying any new component, write down which features and interfaces
+        are actually needed; disable or remove the rest. Hardened images replace vendor
+        defaults.
+      '2': Have a documented minimization review tied to design and change management.
+        Each component ships with a stated allowed-functions list, and deviations
+        need sign-off. Build/CI pipelines drop unused modules.
+      '3': Minimization is enforced in the build pipeline (compiler/linker flags,
+        image scanners blocking unexpected binaries, SBOM diffs against an approved
+        manifest). Releases are blocked if extra capability appears. Periodic re-review
+        checks for capability creep after patches and upgrades.
+    basis: inferred
+  evidence:
+    value: Component-level allowed-functions or hardening baselines, build pipeline
+      configurations that strip or block unused functionality, SBOMs and image scan
+      reports showing only approved capabilities, change records that justify each
+      retained feature.
+    basis: inferred
+  common_myth:
+    value: Treating minimization as a one-time hardening exercise against the vendor's
+      CIS benchmark and assuming it sticks. Patches, minor upgrades, and 'just one
+      more flag for the new team' re-introduce capabilities every release, and nobody
+      notices because the original baseline is never re-checked against the live image.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the image that ran in production last week — how many binaries in it
+      are not on the allowed list, and how did they get there?
+    - When this component was last upgraded, what new capabilities came with the new
+      version, and who approved retaining them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.311573Z'
+  signed_digest: 64eb6a137b8404ace98ff9b2c3f727d9e382ed149401eeb4ec28035fcd06408c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:GV.RR-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security rules carefully established by the security department can be
+      rendered ineffective by the entire HR process of recruitment, onboarding, transfer, and offboarding—as
+      people come and go, account permissions, confidentiality obligations, and security responsibilities
+      are not handed over, ultimately making insider threats and human errors commonplace.
+    basis: inferred
+  plain_zh:
+    value: 'Integrate cybersecurity requirements into the entire HR process: screen during recruitment,
+      sign upon onboarding, train during employment, adjust upon role change, and revoke upon offboarding—each
+      step is documented and has an accountable owner.'
+    basis: inferred
+  practice:
+    value:
+      '1': Sign confidentiality and security commitment agreements upon onboarding; revoke account permissions
+        on the day of offboarding; conduct at least one organization-wide security awareness training
+        session.
+      '2': Include security responsibility descriptions in job postings and interviews; upon role change,
+        re-authorize based on the new role and revoke old permissions; provide role- and level-specific
+        training with assessments; have an offboarding checklist with documented handover between HR and
+        the security department.
+      '3': Embed security requirements into HR system workflows, with automatic linkage between permission
+        changes and personnel changes; quantitatively track training effectiveness; implement an escalation
+        mechanism for those who fail to complete security training or miss exams, up to suspension of
+        access; extend offboarding reviews to cover contractors and temporary personnel.
+    basis: inferred
+  evidence:
+    value: Security responsibility entries in job descriptions; HR process documents for onboarding, role
+      changes, and offboarding; scanned signatures of confidentiality agreements and security commitment
+      letters; training attendance sheets and online assessment records; tickets for account permission
+      revocation and provisioning in response to personnel changes; completed offboarding checklist records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having employees sign a confidentiality agreement upon onboarding and returning
+      their computers upon offboarding' completes this practice. The real focus is on managing role changes
+      and contractor offboarding—where accounts are not revoked, permissions are not changed, and confidentiality
+      obligations are not extended; by the time an incident occurs, it is too late to fix the process.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For three employees who changed roles last year, at what point were their old role permissions revoked?
+      Based on which form?
+    - When contractors or temporary personnel leave, does account revocation follow the same process or
+      a separate one? Are there records?
+    - How are employees who fail security training assessments subsequently handled? Has anyone been restricted
+      or had access suspended as a result?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.496036Z'
+  signed_digest: 0833dd29e3183c9d3bddae8c4df5fe9c13285bdcfe81ed6b279475ed85858e87
+  interview_seconds: null
+  inherited_from: null

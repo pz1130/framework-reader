@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:RA-9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against treating every system as if it mattered equally — without
+      a defensible criticality ranking, money and attention get spent on low-value
+      assets while the ones whose loss would actually stop the mission are starved,
+      and disaster recovery / investment / monitoring decisions have no anchor.
+    basis: inferred
+  plain_zh:
+    value: Identify and rank the systems, services, information and assets that are
+      critical to the organization's mission, document the rationale, and use that
+      ranking to drive protection, recovery and investment decisions.
+    basis: inferred
+  practice:
+    value:
+      '1': Produce a written criticality list of the systems and information the business
+        cannot do without, with a brief reason for each entry; senior management signs
+        off on it.
+      '2': Each critical system has a documented criticality tier with recovery time
+        and data loss objectives tied to it; the list is used as the basis for backup,
+        BCP and security investment choices, and is revisited at planned intervals.
+      '3': Criticality is derived from an explicit mission-impact model (e.g. dependency
+        graph from business processes to systems to data); changes to the business
+        or architecture trigger re-scoring; criticality feeds and is fed by risk register,
+        BCP, incident response, supply chain and change management — not a standalone
+        document.
+    basis: inferred
+  evidence:
+    value: Approved criticality analysis document or register showing systems/assets,
+      assigned tiers, rationale, recovery objectives, sign-off, last review date and
+      the decisions (backup, BCP, investment, monitoring) that reference the tiers.
+    basis: inferred
+  common_myth:
+    value: Believing a BIA from a few years ago or a list of 'crown jewels' on a slide
+      deck satisfies this control. A static list with no impact model, no recovery
+      objectives and no linkage to actual protection and recovery decisions is exactly
+      the failure mode the control exists to prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in the last backup or BCP decision the criticality tier of the
+      affected system was actually used.
+    - When did you last re-score a system's criticality, and what event triggered
+      it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.990742Z'
+  signed_digest: cbe23e147f09c78b8277402f7b4ca637c56f517cd79b2058c0815220f31d264a
+  interview_seconds: null
+  inherited_from: null

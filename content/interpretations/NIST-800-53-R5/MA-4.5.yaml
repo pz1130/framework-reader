@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MA-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents maintenance work from being performed on production systems silently
+      or by unauthorized hands — when maintenance happens without explicit approval
+      and the right people are not notified, unauthorized changes, untracked outages,
+      and unreported tampering can land in the environment with no one the wiser until
+      something breaks.
+    basis: inferred
+  plain_zh:
+    value: Every non-local maintenance session on an information system must be explicitly
+      approved beforehand and the right people (system owner, security, etc.) must
+      be told it is happening — and the same applies when it is finished.
+    basis: inferred
+  practice:
+    value:
+      '1': Local maintenance policy exists; any remote maintenance requires a ticket
+        or work order approved by the system owner before connection; owner is notified
+        when work starts and ends.
+      '2': Approvals and notifications are recorded in the change/maintenance system
+        with timestamps, approver, technician, and system identifier; completed records
+        are retained and reviewable.
+      '3': Remote maintenance sessions are technically controlled (session logging,
+        out-of-band approval workflow, after-hours restrictions, automatic notification
+        on connect/disconnect) so approval and notification cannot be bypassed by
+        a technician who 'just needs to log in.'
+    basis: inferred
+  evidence:
+    value: Maintenance approval records (ticket, approver, scope, timestamp), start/finish
+      notifications to owners, session logs for remote sessions, and a sample of change
+      tickets cross-referenced to system owner acknowledgments.
+    basis: inferred
+  common_myth:
+    value: Assuming a standing change-window approval covers every remote maintenance
+      session — it does not. Each non-local session still needs its own approval and
+      notification, especially for emergency or vendor-initiated access; auditors
+      will pull individual session logs and ask who approved that specific connection.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pull the last five remote maintenance sessions on this system — who approved
+      each one and when was the owner notified?
+    - Show the notification that went out when this session ended — to whom, and at
+      what timestamp?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.415847Z'
+  signed_digest: fe313c01e3e7e069ed2e5c5360f45b2db4187eaf2bb1319d1ceeb94ad65edc11
+  interview_seconds: null
+  inherited_from: null

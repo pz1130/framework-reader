@@ -1,0 +1,61 @@
+control_id: ISO-27002-2022:A.5.13
+locale: en
+state: draft
+fields:
+  intent:
+    value: 'The concern is that after information assets are released, no one knows how sensitive they
+      really are—without labeling, USB drives, paper documents, servers, and even content on whiteboards
+      in meeting rooms will be handled incorrectly: confidential items get casually forwarded, and items
+      with restricted distribution are treated as public materials.'
+    basis: inferred
+  plain_zh:
+    value: Ensure that every carrier of information (paper documents, USB drives, computers, servers,
+      even printer outputs) can clearly indicate the sensitivity level of the information it contains,
+      who it can be shared with, and who it cannot, so that handlers do not have to guess.
+    basis: inferred
+  practice:
+    value:
+      '1': There are classification labeling rules; newly created documents and media are labeled according
+        to the rules; key media have their classification level marked in prominent locations.
+      '2': Labeling rules cover digital and physical media; different levels have corresponding handling
+        and distribution requirements (who can copy, who can take out); periodic spot checks for labeling
+        compliance.
+      '3': Systems automatically apply labels based on classification (e.g., file system tags, watermarks,
+        email header annotations); high-sensitivity media have traceability mechanisms; labeling is linked
+        with access control.
+    basis: inferred
+  evidence:
+    value: Classification labeling management policy, physical examples or photos of various media, classification
+      lists with marked levels, spot check records, and product configuration screenshots showing automatic
+      labeling.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'filling in a classification field in file properties' or 'stamping
+      a seal on the first page of a document' counts as labeling—the value of labeling is that an uninformed
+      person, upon first contact with the medium, immediately knows how to treat it, rather than having
+      to look it up in a system within the same department.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a USB drive marked as confidential; what are the classification levels of the files stored
+      on it? Is the label engraved or a sticker?
+    - Paper documents printed from outside have no labels; how do you determine whether they can be distributed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.259529Z'
+  signed_digest: 232c93a1941d4962fb96687d1724cd67f76fc8448189a3aa2cf8b75f1ab9abae
+  interview_seconds: null
+  inherited_from: null

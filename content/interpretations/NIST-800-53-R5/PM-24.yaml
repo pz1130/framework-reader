@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PM-24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against personally identifiable information (PII) being processed
+      under matching agreements or computer-matching programs without independent
+      review, so that data shared between agencies for non-routine purposes does not
+      become a back door for surveillance, repurposing, or privacy harm outside the
+      original collection purpose.
+    basis: inferred
+  plain_zh:
+    value: If your agency runs or participates in programs that match PII across systems
+      (or uses PII under a formal agreement for a new purpose), establish or engage
+      with an independent Data Integrity Board that reviews those activities for privacy,
+      accuracy, and legal compliance.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify whether your organization conducts or receives data from inter-agency
+        matching programs or PII-sharing agreements that trigger the requirement;
+        document those programs and the board that reviews them.
+      '2': Maintain written charters, meeting cadence, and documented review/approval
+        decisions for each matching program or significant new PII use; ensure board
+        membership meets independence and composition rules.
+      '3': Track each program from initiation through renewal, audit board decisions
+        against actual data flows, publish aggregated outcomes, and feed findings
+        back into PIAs, SORNs, and system authorization packages.
+    basis: inferred
+  evidence:
+    value: Charter or designation memo for the Data Integrity Board, list of matching
+      programs and covered PII-sharing agreements, board meeting minutes and review
+      decisions, renewal and termination records, cross-references to PIAs and SORNs
+      covering the same data.
+    basis: inferred
+  common_myth:
+    value: Treating the board as a formality whose sign-off can be obtained after
+      the matching program has already started sharing data. The board's value is
+      the pre-implementation review of purpose, authority, data minimization, and
+      redress; rubber-stamping an active program is not a control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which programs are currently subject to Data Integrity Board review, and when
+      did the board last review each one?
+    - Show the board's written determination for a specific matching program, including
+      the privacy and accuracy findings it relied on.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.749255Z'
+  signed_digest: f73be93fe961651373b99edd4996771a80ca052d6ee2c992099529584c114888
+  interview_seconds: null
+  inherited_from: null

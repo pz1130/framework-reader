@@ -1,0 +1,27 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  code-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: ruff check src tests
+      - run: mypy src/framework_reader/web/uploads.py src/framework_reader/web/images.py src/framework_reader/schema/entities.py
+      # Code tests only. No vendor/ fetch, no content-pack build, no signing keys. spec §10.C
+      - run: pytest -v
+      - name: Confirm vendor/ is absent in public CI
+        # vendor/README.md is tracked as a placeholder; NIST/copyrighted sources must not appear
+        run: |
+          extras=$(find vendor -type f ! -name README.md 2>/dev/null || true)
+          if [ -n "$extras" ]; then
+            echo "vendor/ must not appear in public CI"
+            echo "$extras"
+            exit 1
+          fi
+          test ! -d vendor/nist || (echo "vendor/ must not appear in public CI" && exit 1)

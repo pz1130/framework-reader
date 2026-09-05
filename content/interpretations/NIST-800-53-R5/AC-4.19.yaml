@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.19
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against information flowing between systems carrying hidden instructions
+      in metadata (malicious macros in documents, smuggled EXIF data, encoded payloads
+      in email headers) that get parsed downstream and detonate in a less-protected
+      environment. The guard fails when the protection system itself trusts fields
+      it never inspected, so the boundary check is consistent but the content is still
+      hostile.
+    basis: inferred
+  plain_zh:
+    value: When information moves across security boundaries, check the metadata attached
+      to it (not just the body). Reject, strip, or sanitize metadata fields that the
+      receiving system would otherwise execute or trust blindly.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the data flows that cross trust boundaries (perimeter email, file
+        uploads, partner feeds, API ingress). For each, list which metadata fields
+        the receiving parser or application actually consumes.
+      '2': 'Document per-flow rules: which metadata fields are required, which are
+        stripped, which are flagged. Implement filters at the boundary (mail gateways,
+        DLP, API gateways, file-transfer middleware) and log every metadata rejection
+        or sanitization action.'
+      '3': 'Continuously verify boundary filters against evasion: test with Office
+        documents carrying remote-template or macro metadata, images with steganographic
+        or EXIF payloads, and email headers with encoded routing. Tune rules from
+        real bypasses, not only from vendor defaults. Confirm downstream parsers cannot
+        be tricked by metadata that survived the boundary.'
+    basis: inferred
+  evidence:
+    value: Per-flow metadata handling rules, boundary filter configurations and change
+      history, sample logs of rejected/stripped metadata, test or red-team artifacts
+      showing attempted metadata bypasses and the system's response.
+    basis: inferred
+  common_myth:
+    value: Treating a content-filtering or DLP product as covering this control because
+      it scans attachments for malware. Body scanning is not metadata validation;
+      fields like document properties, Office macro settings, X-headers, custom XML
+      parts, and embedded URLs in metadata are routinely missed by AV-only stacks.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a flow where you actually stripped or rejected metadata in the last
+      quarter — what triggered it and what was the field?
+    - Which downstream parsers or applications on the receiving side consume metadata
+      from inbound files, and did you verify they don't act on fields you didn't filter?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.284522Z'
+  signed_digest: eb6d9e0d44cd840b0051f872cb24d6d055d5e1876c50c57c1d3d025a2e0ebb26
+  interview_seconds: null
+  inherited_from: null

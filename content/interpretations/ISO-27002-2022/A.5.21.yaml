@@ -1,0 +1,70 @@
+control_id: ISO-27002-2022:A.5.21
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that purchased equipment, software, and cloud services may be tampered with
+      along the supply chain—from vendor development, production, and transportation to deployment, any
+      stage could involve implanted backdoors, replaced firmware, or counterfeit components that cannot
+      be detected by simple acceptance checks upon delivery. This control requires you to design controls
+      from the procurement source, rather than waiting for incidents to trace back.
+    basis: inferred
+  plain_zh:
+    value: For ICT products and services, establish and implement a control process covering the entire
+      chain from supplier selection, contract terms, procurement methods, delivery acceptance, to operation
+      and maintenance, to prevent tampering, counterfeiting, and ensure traceability.
+    basis: inferred
+  practice:
+    value:
+      '1': Conduct qualification reviews of suppliers; include security requirements in procurement contracts
+        (e.g., prohibit subcontracting of critical components, require proof of origin for deliverables);
+        perform visual and basic integrity checks upon receipt.
+      '2': Select procurement strategies based on risk levels (e.g., avoid second-hand or unknown-source
+        channels for critical systems); require suppliers to provide bills of materials and proof of origin;
+        maintain records and verify signatures for delivery and transportation processes; perform additional
+        verification for high-risk components (e.g., firmware hash comparison).
+      '3': Establish and maintain complete traceability records for each critical system/component (from
+        manufacturer, batch, serial number, personnel involved, to change records); regularly review procurement
+        strategies, tools, and supplier security requirements, updating them as threats evolve; have detection
+        and response mechanisms for supply chain security incidents, enabling identification and remediation
+        at specific stages.
+    basis: inferred
+  evidence:
+    value: Supplier qualification and classification records, security clauses in procurement contracts,
+      procurement strategy/method documents, bills of materials and proof of origin, delivery acceptance
+      records and signed receipts, traceability records (component/system level), and supply chain security
+      incident handling records.
+    basis: inferred
+  common_myth:
+    value: Assuming that using well-known brands and ordering from authorized distributors ensures supply
+      chain security. Major brands still have regional manufacturing differences and batch issues; the
+      key is proving that the specific batch received has an unbroken chain from factory to your hands—without
+      a bill of materials and delivery verification, any device could be swapped.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where are the bills of materials and proof of origin for critical equipment/software stored? Pick
+      one item and trace the chain back to the manufacturer's production line.
+    - Which clause in the procurement contract prohibits suppliers from subcontracting firmware development
+      or production of critical components to subcontractors not approved by you?
+    - What is your handling process when you find broken seals or firmware hash mismatches during delivery
+      acceptance? When was the last time this occurred?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.277364Z'
+  signed_digest: 7a30183652e3338c9f75db83ce4df6091099d8e2ed572ad025c8e89e61657934
+  interview_seconds: null
+  inherited_from: null

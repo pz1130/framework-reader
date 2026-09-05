@@ -1,0 +1,1303 @@
+{
+  "source_file": "NIST_CSF_v2.0_catalog.json",
+  "source_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/CSF/v2.0/json/NIST_CSF_v2.0_catalog.json",
+  "catalog_uuid": "720a010b-253c-4a94-bb65-cb58400966f5",
+  "catalog_title": "Electronic Version of NIST Cybersecurity Framework 2.0",
+  "subcategories": [
+    {
+      "id": "DE.AE-01",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "A baseline of network operations and expected data flows for users and systems is established and managed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.AE-02",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Potentially adverse events are analyzed to better understand associated activities",
+      "status": "active"
+    },
+    {
+      "id": "DE.AE-03",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Information is correlated from multiple sources",
+      "status": "active"
+    },
+    {
+      "id": "DE.AE-04",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "The estimated impact and scope of adverse events are understood",
+      "status": "active"
+    },
+    {
+      "id": "DE.AE-05",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Incident alert thresholds are established",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.AE-06",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Information on adverse events is provided to authorized staff and tools",
+      "status": "active"
+    },
+    {
+      "id": "DE.AE-07",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Cyber threat intelligence and other contextual information are integrated into the analysis",
+      "status": "active"
+    },
+    {
+      "id": "DE.AE-08",
+      "parent_id": "DE.AE",
+      "function_id": "DE",
+      "statement": "Incidents are declared when adverse events meet the defined incident criteria",
+      "status": "active"
+    },
+    {
+      "id": "DE.CM-01",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Networks and network services are monitored to find potentially adverse events",
+      "status": "active"
+    },
+    {
+      "id": "DE.CM-02",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "The physical environment is monitored to find potentially adverse events",
+      "status": "active"
+    },
+    {
+      "id": "DE.CM-03",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Personnel activity and technology usage are monitored to find potentially adverse events",
+      "status": "active"
+    },
+    {
+      "id": "DE.CM-04",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Malicious code is detected",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.CM-05",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Unauthorized mobile code is detected",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.CM-06",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "External service provider activities and services are monitored to find potentially adverse events",
+      "status": "active"
+    },
+    {
+      "id": "DE.CM-07",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Monitoring for unauthorized personnel, connections, devices, and software is performed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.CM-08",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Vulnerability scans are performed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.CM-09",
+      "parent_id": "DE.CM",
+      "function_id": "DE",
+      "statement": "Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events",
+      "status": "active"
+    },
+    {
+      "id": "DE.DP-01",
+      "parent_id": "DE.DP",
+      "function_id": "DE",
+      "statement": "Roles and responsibilities for detection are well defined to ensure accountability",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.DP-02",
+      "parent_id": "DE.DP",
+      "function_id": "DE",
+      "statement": "Detection activities comply with all applicable requirements",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.DP-03",
+      "parent_id": "DE.DP",
+      "function_id": "DE",
+      "statement": "Detection processes are tested",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.DP-04",
+      "parent_id": "DE.DP",
+      "function_id": "DE",
+      "statement": "Event detection information is communicated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "DE.DP-05",
+      "parent_id": "DE.DP",
+      "function_id": "DE",
+      "statement": "Detection processes are continuously improved",
+      "status": "withdrawn"
+    },
+    {
+      "id": "GV.OC-01",
+      "parent_id": "GV.OC",
+      "function_id": "GV",
+      "statement": "The organizational mission is understood and informs cybersecurity risk management",
+      "status": "active"
+    },
+    {
+      "id": "GV.OC-02",
+      "parent_id": "GV.OC",
+      "function_id": "GV",
+      "statement": "Internal and external stakeholders are understood, and their needs and expectations regarding cybersecurity risk management are understood and considered",
+      "status": "active"
+    },
+    {
+      "id": "GV.OC-03",
+      "parent_id": "GV.OC",
+      "function_id": "GV",
+      "statement": "Legal, regulatory, and contractual requirements regarding cybersecurity - including privacy and civil liberties obligations - are understood and managed",
+      "status": "active"
+    },
+    {
+      "id": "GV.OC-04",
+      "parent_id": "GV.OC",
+      "function_id": "GV",
+      "statement": "Critical objectives, capabilities, and services that external stakeholders depend on or expect from the organization are understood and communicated",
+      "status": "active"
+    },
+    {
+      "id": "GV.OC-05",
+      "parent_id": "GV.OC",
+      "function_id": "GV",
+      "statement": "Outcomes, capabilities, and services that the organization depends on are understood and communicated",
+      "status": "active"
+    },
+    {
+      "id": "GV.OV-01",
+      "parent_id": "GV.OV",
+      "function_id": "GV",
+      "statement": "Cybersecurity risk management strategy outcomes are reviewed to inform and adjust strategy and direction",
+      "status": "active"
+    },
+    {
+      "id": "GV.OV-02",
+      "parent_id": "GV.OV",
+      "function_id": "GV",
+      "statement": "The cybersecurity risk management strategy is reviewed and adjusted to ensure coverage of organizational requirements and risks",
+      "status": "active"
+    },
+    {
+      "id": "GV.OV-03",
+      "parent_id": "GV.OV",
+      "function_id": "GV",
+      "statement": "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments needed",
+      "status": "active"
+    },
+    {
+      "id": "GV.PO-01",
+      "parent_id": "GV.PO",
+      "function_id": "GV",
+      "statement": "Policy for managing cybersecurity risks is established based on organizational context, cybersecurity strategy, and priorities and is communicated and enforced",
+      "status": "active"
+    },
+    {
+      "id": "GV.PO-02",
+      "parent_id": "GV.PO",
+      "function_id": "GV",
+      "statement": "Policy for managing cybersecurity risks is reviewed, updated, communicated, and enforced to reflect changes in requirements, threats, technology, and organizational mission",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-01",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Risk management objectives are established and agreed to by organizational stakeholders",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-02",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Risk appetite and risk tolerance statements are established, communicated, and maintained",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-03",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Cybersecurity risk management activities and outcomes are included in enterprise risk management processes",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-04",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Strategic direction that describes appropriate risk response options is established and communicated",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-05",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-06",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "A standardized method for calculating, documenting, categorizing, and prioritizing cybersecurity risks is established and communicated",
+      "status": "active"
+    },
+    {
+      "id": "GV.RM-07",
+      "parent_id": "GV.RM",
+      "function_id": "GV",
+      "statement": "Strategic opportunities (i.e., positive risks) are characterized and are included in organizational cybersecurity risk discussions",
+      "status": "active"
+    },
+    {
+      "id": "GV.RR-01",
+      "parent_id": "GV.RR",
+      "function_id": "GV",
+      "statement": "Organizational leadership is responsible and accountable for cybersecurity risk and fosters a culture that is risk-aware, ethical, and continually improving",
+      "status": "active"
+    },
+    {
+      "id": "GV.RR-02",
+      "parent_id": "GV.RR",
+      "function_id": "GV",
+      "statement": "Roles, responsibilities, and authorities related to cybersecurity risk management are established, communicated, understood, and enforced",
+      "status": "active"
+    },
+    {
+      "id": "GV.RR-03",
+      "parent_id": "GV.RR",
+      "function_id": "GV",
+      "statement": "Adequate resources are allocated commensurate with the cybersecurity risk strategy, roles, responsibilities, and policies",
+      "status": "active"
+    },
+    {
+      "id": "GV.RR-04",
+      "parent_id": "GV.RR",
+      "function_id": "GV",
+      "statement": "Cybersecurity is included in human resources practices",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-01",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "A cybersecurity supply chain risk management program, strategy, objectives, policies, and processes are established and agreed to by organizational stakeholders",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-02",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Cybersecurity roles and responsibilities for suppliers, customers, and partners are established, communicated, and coordinated internally and externally",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-03",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Cybersecurity supply chain risk management is integrated into cybersecurity and enterprise risk management, risk assessment, and improvement processes",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-04",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Suppliers are known and prioritized by criticality",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-05",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Requirements to address cybersecurity risks in supply chains are established, prioritized, and integrated into contracts and other types of agreements with suppliers and other relevant third parties",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-06",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Planning and due diligence are performed to reduce risks before entering into formal supplier or other third-party relationships",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-07",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-08",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Relevant suppliers and other third parties are included in incident planning, response, and recovery activities",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-09",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Supply chain security practices are integrated into cybersecurity and enterprise risk management programs, and their performance is monitored throughout the technology product and service life cycle",
+      "status": "active"
+    },
+    {
+      "id": "GV.SC-10",
+      "parent_id": "GV.SC",
+      "function_id": "GV",
+      "statement": "Cybersecurity supply chain risk management plans include provisions for activities that occur after the conclusion of a partnership or service agreement",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-01",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Inventories of hardware managed by the organization are maintained",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-02",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Inventories of software, services, and systems managed by the organization are maintained",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-03",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Representations of the organization's authorized network communication and internal and external network data flows are maintained",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-04",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Inventories of services provided by suppliers are maintained",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-05",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Assets are prioritized based on classification, criticality, resources, and impact on the mission",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-06",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Cybersecurity roles and responsibilities for the entire workforce and third-party stakeholders (e.g., suppliers, customers, partners) are established",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.AM-07",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Inventories of data and corresponding metadata for designated data types are maintained",
+      "status": "active"
+    },
+    {
+      "id": "ID.AM-08",
+      "parent_id": "ID.AM",
+      "function_id": "ID",
+      "statement": "Systems, hardware, software, services, and data are managed throughout their life cycles",
+      "status": "active"
+    },
+    {
+      "id": "ID.BE-01",
+      "parent_id": "ID.BE",
+      "function_id": "ID",
+      "statement": "The organization’s role in the supply chain is identified and communicated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.BE-02",
+      "parent_id": "ID.BE",
+      "function_id": "ID",
+      "statement": "The organization’s place in critical infrastructure and its industry sector is identified and communicated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.BE-03",
+      "parent_id": "ID.BE",
+      "function_id": "ID",
+      "statement": "Priorities for organizational mission, objectives, and activities are established and communicated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.BE-04",
+      "parent_id": "ID.BE",
+      "function_id": "ID",
+      "statement": "Dependencies and critical functions for delivery of critical services are established",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.BE-05",
+      "parent_id": "ID.BE",
+      "function_id": "ID",
+      "statement": "Resilience requirements to support delivery of critical services are established for all operating states (e.g. under duress/attack, during recovery, normal operations)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.GV-01",
+      "parent_id": "ID.GV",
+      "function_id": "ID",
+      "statement": "Organizational cybersecurity policy is established and communicated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.GV-02",
+      "parent_id": "ID.GV",
+      "function_id": "ID",
+      "statement": "Cybersecurity roles and responsibilities are coordinated and aligned with internal roles and external partners",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.GV-03",
+      "parent_id": "ID.GV",
+      "function_id": "ID",
+      "statement": "Legal and regulatory requirements regarding cybersecurity, including privacy and civil liberties obligations, are understood and managed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.GV-04",
+      "parent_id": "ID.GV",
+      "function_id": "ID",
+      "statement": "Governance and risk management processes address cybersecurity risks",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.IM-01",
+      "parent_id": "ID.IM",
+      "function_id": "ID",
+      "statement": "Improvements are identified from evaluations",
+      "status": "active"
+    },
+    {
+      "id": "ID.IM-02",
+      "parent_id": "ID.IM",
+      "function_id": "ID",
+      "statement": "Improvements are identified from security tests and exercises, including those done in coordination with suppliers and relevant third parties",
+      "status": "active"
+    },
+    {
+      "id": "ID.IM-03",
+      "parent_id": "ID.IM",
+      "function_id": "ID",
+      "statement": "Improvements are identified from execution of operational processes, procedures, and activities",
+      "status": "active"
+    },
+    {
+      "id": "ID.IM-04",
+      "parent_id": "ID.IM",
+      "function_id": "ID",
+      "statement": "Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-01",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Vulnerabilities in assets are identified, validated, and recorded",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-02",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Cyber threat intelligence is received from information sharing forums and sources",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-03",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Internal and external threats to the organization are identified and recorded",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-04",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Potential impacts and likelihoods of threats exploiting vulnerabilities are identified and recorded",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-05",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk and inform risk response prioritization",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-06",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Risk responses are chosen, prioritized, planned, tracked, and communicated",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-07",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Changes and exceptions are managed, assessed for risk impact, recorded, and tracked",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-08",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Processes for receiving, analyzing, and responding to vulnerability disclosures are established",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-09",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "The authenticity and integrity of hardware and software are assessed prior to acquisition and use",
+      "status": "active"
+    },
+    {
+      "id": "ID.RA-10",
+      "parent_id": "ID.RA",
+      "function_id": "ID",
+      "statement": "Critical suppliers are assessed prior to acquisition",
+      "status": "active"
+    },
+    {
+      "id": "ID.RM-01",
+      "parent_id": "ID.RM",
+      "function_id": "ID",
+      "statement": "Risk management processes are established, managed, and agreed to by organizational stakeholders",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.RM-02",
+      "parent_id": "ID.RM",
+      "function_id": "ID",
+      "statement": "Organizational risk tolerance is determined and clearly expressed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.RM-03",
+      "parent_id": "ID.RM",
+      "function_id": "ID",
+      "statement": "The organization’s determination of risk tolerance is informed by its role in critical infrastructure and sector specific risk analysis",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.SC-01",
+      "parent_id": "ID.SC",
+      "function_id": "ID",
+      "statement": "Cyber supply chain risk management processes are identified, established, assessed, managed, and agreed to by organizational stakeholders",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.SC-02",
+      "parent_id": "ID.SC",
+      "function_id": "ID",
+      "statement": "Suppliers and third party partners of information systems, components, and services are identified, prioritized, and assessed using a cyber supply chain risk assessment process",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.SC-03",
+      "parent_id": "ID.SC",
+      "function_id": "ID",
+      "statement": "Contracts with suppliers and third-party partners are used to implement appropriate measures designed to meet the objectives of an organization’s cybersecurity program and Cyber Supply Chain Risk Management Plan.",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.SC-04",
+      "parent_id": "ID.SC",
+      "function_id": "ID",
+      "statement": "Suppliers and third-party partners are routinely assessed using audits, test results, or other forms of evaluations to confirm they are meeting their contractual obligations.",
+      "status": "withdrawn"
+    },
+    {
+      "id": "ID.SC-05",
+      "parent_id": "ID.SC",
+      "function_id": "ID",
+      "statement": "Response and recovery planning and testing are conducted with suppliers and third-party providers",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AA-01",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Identities and credentials for authorized users, services, and hardware are managed by the organization",
+      "status": "active"
+    },
+    {
+      "id": "PR.AA-02",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Identities are proofed and bound to credentials based on the context of interactions",
+      "status": "active"
+    },
+    {
+      "id": "PR.AA-03",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Users, services, and hardware are authenticated",
+      "status": "active"
+    },
+    {
+      "id": "PR.AA-04",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Identity assertions are protected, conveyed, and verified",
+      "status": "active"
+    },
+    {
+      "id": "PR.AA-05",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties",
+      "status": "active"
+    },
+    {
+      "id": "PR.AA-06",
+      "parent_id": "PR.AA",
+      "function_id": "PR",
+      "statement": "Physical access to assets is managed, monitored, and enforced commensurate with risk",
+      "status": "active"
+    },
+    {
+      "id": "PR.AC-01",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Identities and credentials are issued, managed, verified, revoked, and audited for authorized devices, users and processes",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-02",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Physical access to assets is managed and protected",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-03",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Remote access is managed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-04",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Access permissions and authorizations are managed, incorporating the principles of least privilege and separation of duties",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-05",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Network integrity is protected (e.g., network segregation, network segmentation)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-06",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Identities are proofed and bound to credentials and asserted in interactions",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AC-07",
+      "parent_id": "PR.AC",
+      "function_id": "PR",
+      "statement": "Users, devices, and other assets are authenticated (e.g., single-factor, multi-factor) commensurate with the risk of the transaction (e.g., individuals’ security and privacy risks and other organizational risks)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AT-01",
+      "parent_id": "PR.AT",
+      "function_id": "PR",
+      "statement": "Personnel are provided with awareness and training so that they possess the knowledge and skills to perform general tasks with cybersecurity risks in mind",
+      "status": "active"
+    },
+    {
+      "id": "PR.AT-02",
+      "parent_id": "PR.AT",
+      "function_id": "PR",
+      "statement": "Individuals in specialized roles are provided with awareness and training so that they possess the knowledge and skills to perform relevant tasks with cybersecurity risks in mind",
+      "status": "active"
+    },
+    {
+      "id": "PR.AT-03",
+      "parent_id": "PR.AT",
+      "function_id": "PR",
+      "statement": "Third-party stakeholders (e.g., suppliers, customers, partners) understand their roles and responsibilities",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AT-04",
+      "parent_id": "PR.AT",
+      "function_id": "PR",
+      "statement": "Senior executives understand their roles and responsibilities",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.AT-05",
+      "parent_id": "PR.AT",
+      "function_id": "PR",
+      "statement": "Physical and cybersecurity personnel understand their roles and responsibilities",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-01",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "The confidentiality, integrity, and availability of data-at-rest are protected",
+      "status": "active"
+    },
+    {
+      "id": "PR.DS-02",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "The confidentiality, integrity, and availability of data-in-transit are protected",
+      "status": "active"
+    },
+    {
+      "id": "PR.DS-03",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Assets are formally managed throughout removal, transfers, and disposition",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-04",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Adequate capacity to ensure availability is maintained",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-05",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Protections against data leaks are implemented",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-06",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Integrity checking mechanisms are used to verify software, firmware, and information integrity",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-07",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "The development and testing environment(s) are separate from the production environment",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-08",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Integrity checking mechanisms are used to verify hardware integrity",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.DS-10",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "The confidentiality, integrity, and availability of data-in-use are protected",
+      "status": "active"
+    },
+    {
+      "id": "PR.DS-11",
+      "parent_id": "PR.DS",
+      "function_id": "PR",
+      "statement": "Backups of data are created, protected, maintained, and tested",
+      "status": "active"
+    },
+    {
+      "id": "PR.IP-01",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "A baseline configuration of information technology/industrial control systems is created and maintained incorporating security principles (e.g. concept of least functionality)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-02",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "A System Development Life Cycle to manage systems is implemented",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-03",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Configuration change control processes are in place",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-04",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Backups of information are conducted, maintained, and tested",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-05",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Policy and regulations regarding the physical operating environment for organizational assets are met",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-06",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Data is destroyed according to policy",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-07",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Protection processes are improved",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-08",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Effectiveness of protection technologies is shared",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-09",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Response plans (Incident Response and Business Continuity) and recovery plans (Incident Recovery and Disaster Recovery) are in place and managed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-10",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Response and recovery plans are tested",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-11",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "Cybersecurity is included in human resources practices (e.g., deprovisioning, personnel screening)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IP-12",
+      "parent_id": "PR.IP",
+      "function_id": "PR",
+      "statement": "A vulnerability management plan is developed and implemented",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.IR-01",
+      "parent_id": "PR.IR",
+      "function_id": "PR",
+      "statement": "Networks and environments are protected from unauthorized logical access and usage",
+      "status": "active"
+    },
+    {
+      "id": "PR.IR-02",
+      "parent_id": "PR.IR",
+      "function_id": "PR",
+      "statement": "The organization's technology assets are protected from environmental threats",
+      "status": "active"
+    },
+    {
+      "id": "PR.IR-03",
+      "parent_id": "PR.IR",
+      "function_id": "PR",
+      "statement": "Mechanisms are implemented to achieve resilience requirements in normal and adverse situations",
+      "status": "active"
+    },
+    {
+      "id": "PR.IR-04",
+      "parent_id": "PR.IR",
+      "function_id": "PR",
+      "statement": "Adequate resource capacity to ensure availability is maintained",
+      "status": "active"
+    },
+    {
+      "id": "PR.MA-01",
+      "parent_id": "PR.MA",
+      "function_id": "PR",
+      "statement": "Maintenance and repair of organizational assets are performed and logged, with approved and controlled tools",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.MA-02",
+      "parent_id": "PR.MA",
+      "function_id": "PR",
+      "statement": "Remote maintenance of organizational assets is approved, logged, and performed in a manner that prevents unauthorized access",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.PS-01",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Configuration management practices are established and applied",
+      "status": "active"
+    },
+    {
+      "id": "PR.PS-02",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Software is maintained, replaced, and removed commensurate with risk",
+      "status": "active"
+    },
+    {
+      "id": "PR.PS-03",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Hardware is maintained, replaced, and removed commensurate with risk",
+      "status": "active"
+    },
+    {
+      "id": "PR.PS-04",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Log records are generated and made available for continuous monitoring",
+      "status": "active"
+    },
+    {
+      "id": "PR.PS-05",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Installation and execution of unauthorized software are prevented",
+      "status": "active"
+    },
+    {
+      "id": "PR.PS-06",
+      "parent_id": "PR.PS",
+      "function_id": "PR",
+      "statement": "Secure software development practices are integrated, and their performance is monitored throughout the software development life cycle",
+      "status": "active"
+    },
+    {
+      "id": "PR.PT-01",
+      "parent_id": "PR.PT",
+      "function_id": "PR",
+      "statement": "Audit/log records are determined, documented, implemented, and reviewed in accordance with policy",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.PT-02",
+      "parent_id": "PR.PT",
+      "function_id": "PR",
+      "statement": "Removable media is protected and its use restricted according to policy",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.PT-03",
+      "parent_id": "PR.PT",
+      "function_id": "PR",
+      "statement": "The principle of least functionality is incorporated by configuring systems to provide only essential capabilities",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.PT-04",
+      "parent_id": "PR.PT",
+      "function_id": "PR",
+      "statement": "Communications and control networks are protected",
+      "status": "withdrawn"
+    },
+    {
+      "id": "PR.PT-05",
+      "parent_id": "PR.PT",
+      "function_id": "PR",
+      "statement": "Mechanisms (e.g., failsafe, load balancing, hot swap) are implemented to achieve resilience requirements in normal and adverse situations",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RC.CO-01",
+      "parent_id": "RC.CO",
+      "function_id": "RC",
+      "statement": "Public relations are managed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RC.CO-02",
+      "parent_id": "RC.CO",
+      "function_id": "RC",
+      "statement": "Reputation is repaired after an incident",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RC.CO-03",
+      "parent_id": "RC.CO",
+      "function_id": "RC",
+      "statement": "Recovery activities and progress in restoring operational capabilities are communicated to designated internal and external stakeholders",
+      "status": "active"
+    },
+    {
+      "id": "RC.CO-04",
+      "parent_id": "RC.CO",
+      "function_id": "RC",
+      "statement": "Public updates on incident recovery are shared using approved methods and messaging",
+      "status": "active"
+    },
+    {
+      "id": "RC.IM-01",
+      "parent_id": "RC.IM",
+      "function_id": "RC",
+      "statement": "Recovery plans incorporate lessons learned",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RC.IM-02",
+      "parent_id": "RC.IM",
+      "function_id": "RC",
+      "statement": "Recovery strategies are updated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RC.RP-01",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "The recovery portion of the incident response plan is executed once initiated from the incident response process",
+      "status": "active"
+    },
+    {
+      "id": "RC.RP-02",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "Recovery actions are selected, scoped, prioritized, and performed",
+      "status": "active"
+    },
+    {
+      "id": "RC.RP-03",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "The integrity of backups and other restoration assets is verified before using them for restoration",
+      "status": "active"
+    },
+    {
+      "id": "RC.RP-04",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms",
+      "status": "active"
+    },
+    {
+      "id": "RC.RP-05",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed",
+      "status": "active"
+    },
+    {
+      "id": "RC.RP-06",
+      "parent_id": "RC.RP",
+      "function_id": "RC",
+      "statement": "The end of incident recovery is declared based on criteria, and incident-related documentation is completed",
+      "status": "active"
+    },
+    {
+      "id": "RS.AN-01",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Notifications from detection systems are investigated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.AN-02",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "The impact of the incident is understood",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.AN-03",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Analysis is performed to establish what has taken place during an incident and the root cause of the incident",
+      "status": "active"
+    },
+    {
+      "id": "RS.AN-04",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Incidents are categorized consistent with response plans",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.AN-05",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Processes are established to receive, analyze and respond to vulnerabilities disclosed to the organization from internal and external sources (e.g. internal testing, security bulletins, or security researchers)",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.AN-06",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Actions performed during an investigation are recorded, and the records' integrity and provenance are preserved",
+      "status": "active"
+    },
+    {
+      "id": "RS.AN-07",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "Incident data and metadata are collected, and their integrity and provenance are preserved",
+      "status": "active"
+    },
+    {
+      "id": "RS.AN-08",
+      "parent_id": "RS.AN",
+      "function_id": "RS",
+      "statement": "An incident's magnitude is estimated and validated",
+      "status": "active"
+    },
+    {
+      "id": "RS.CO-01",
+      "parent_id": "RS.CO",
+      "function_id": "RS",
+      "statement": "Personnel know their roles and order of operations when a response is needed",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.CO-02",
+      "parent_id": "RS.CO",
+      "function_id": "RS",
+      "statement": "Internal and external stakeholders are notified of incidents",
+      "status": "active"
+    },
+    {
+      "id": "RS.CO-03",
+      "parent_id": "RS.CO",
+      "function_id": "RS",
+      "statement": "Information is shared with designated internal and external stakeholders",
+      "status": "active"
+    },
+    {
+      "id": "RS.CO-04",
+      "parent_id": "RS.CO",
+      "function_id": "RS",
+      "statement": "Coordination with stakeholders occurs consistent with response plans",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.CO-05",
+      "parent_id": "RS.CO",
+      "function_id": "RS",
+      "statement": "Voluntary information sharing occurs with external stakeholders to achieve broader cybersecurity situational awareness",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.IM-01",
+      "parent_id": "RS.IM",
+      "function_id": "RS",
+      "statement": "Response plans incorporate lessons learned",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.IM-02",
+      "parent_id": "RS.IM",
+      "function_id": "RS",
+      "statement": "Response strategies are updated",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.MA-01",
+      "parent_id": "RS.MA",
+      "function_id": "RS",
+      "statement": "The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+      "status": "active"
+    },
+    {
+      "id": "RS.MA-02",
+      "parent_id": "RS.MA",
+      "function_id": "RS",
+      "statement": "Incident reports are triaged and validated",
+      "status": "active"
+    },
+    {
+      "id": "RS.MA-03",
+      "parent_id": "RS.MA",
+      "function_id": "RS",
+      "statement": "Incidents are categorized and prioritized",
+      "status": "active"
+    },
+    {
+      "id": "RS.MA-04",
+      "parent_id": "RS.MA",
+      "function_id": "RS",
+      "statement": "Incidents are escalated or elevated as needed",
+      "status": "active"
+    },
+    {
+      "id": "RS.MA-05",
+      "parent_id": "RS.MA",
+      "function_id": "RS",
+      "statement": "The criteria for initiating incident recovery are applied",
+      "status": "active"
+    },
+    {
+      "id": "RS.MI-01",
+      "parent_id": "RS.MI",
+      "function_id": "RS",
+      "statement": "Incidents are contained",
+      "status": "active"
+    },
+    {
+      "id": "RS.MI-02",
+      "parent_id": "RS.MI",
+      "function_id": "RS",
+      "statement": "Incidents are eradicated",
+      "status": "active"
+    },
+    {
+      "id": "RS.MI-03",
+      "parent_id": "RS.MI",
+      "function_id": "RS",
+      "statement": "Newly identified vulnerabilities are mitigated or documented as accepted risks",
+      "status": "withdrawn"
+    },
+    {
+      "id": "RS.RP-01",
+      "parent_id": "RS.RP",
+      "function_id": "RS",
+      "statement": "Response plan is executed during or after an incident",
+      "status": "withdrawn"
+    }
+  ]
+}

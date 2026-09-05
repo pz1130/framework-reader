@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SR-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the false sense of security that comes from relying on a single
+      supplier or a single source of supply for critical components, without verifying
+      whether that supplier can actually meet your needs in a crisis.
+    basis: inferred
+  plain_zh:
+    value: You must make sure you can actually get the critical supplies you need,
+      even if your primary supplier fails, and that your assumptions about supply
+      availability are tested, not just assumed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which supplies are critical and document your current sourcing
+        for each.
+      '2': Assess the risk of each critical supply (e.g., single supplier, geographic
+        concentration, market volatility) and document your contingency approach (e.g.,
+        alternative suppliers, safety stock, contracts with backup vendors).
+      '3': Validate your contingency approach periodically, e.g., by testing the ability
+        of backup suppliers to deliver on time, and update plans when suppliers or
+        market conditions change.
+    basis: inferred
+  evidence:
+    value: A list of critical supplies, a documented supply risk assessment for each,
+      a contingency plan with specific backup sources or stock levels, and records
+      of periodic testing or review of those arrangements.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a purchase order with a second supplier in the file
+      system means your supply is adequate—without checking whether that supplier
+      can actually meet your required volume, quality, and timeline under a real disruption.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For your most critical supplier, what is the specific alternative source if
+      they go out of business tomorrow?
+    - How do you know that your backup supplier can meet your required delivery time
+      and quantity, and when did you last verify that?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.187749Z'
+  signed_digest: 542646a727d8a7ade438503f2ba9ee0a61e743d77db5d3f5a936fdd103b7e974
+  interview_seconds: null
+  inherited_from: null

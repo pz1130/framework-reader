@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:IR-4.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure to detect multi-stage or coordinated incidents
+      because the organization only sees its own logs. Attackers chain actions across
+      ISPs, CERTs, sector peers, vendors, and law-enforcement notifications; without
+      an explicit correlation channel, an intrusion that is one event to you is a
+      fragment to the defender, and a fragment to the partner is invisible to both.
+    basis: inferred
+  plain_zh:
+    value: Make sure your incident-handling process formally receives and correlates
+      information from outside the organization—ISPs, vendors, peers, ISACs, CSIRTs,
+      regulators—so external indicators are merged with what you see internally rather
+      than landing in someone's inbox unread.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate who in the IR team is allowed to talk to which external parties
+        and through which channel; have a published email/phone for receiving external
+        tips; staff know they must forward anything that smells like an incident into
+        the IR queue.
+      '2': Maintain a current list of external contacts (ISP abuse desks, vendor PSIRT,
+        sector ISAC, national CERT, law-enforcement liaison) with ownership and last-verified
+        date; document a correlation step that matches inbound external indicators
+        against internal logs and tickets; keep the result on the incident record.
+      '3': Automate ingestion of trusted external feeds (ISAC bulletins, vendor advisories,
+        abuse reports) into your detection and TIP stack with timestamps preserved;
+        routinely review correlation outcomes to refine which external sources actually
+        shorten time-to-detect; participate in cross-org exercises that validate the
+        bi-directional flow.
+    basis: inferred
+  evidence:
+    value: Documented external-contact list with verification dates, IR procedure
+      section showing correlation of inbound external information, sample incident
+      records where an external tip was matched against internal telemetry, evidence
+      of feed ingestion (TIP/SIEM correlation rules), and any post-incident or exercise
+      findings on the value of each external source.
+    basis: inferred
+  common_myth:
+    value: Treating membership in an ISAC or a signed NDA with a peer as sufficient.
+      The control is about whether external indicators actually change your detection
+      and response—an unread mailing-list digest, an MOU with no exercise ever run,
+      and a vendor PSIRT email that bounces do not satisfy it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one recent incident where external information changed what your responders
+      did—what came in, who received it, and how it was correlated with your own logs.
+    - How do you know your external contact list still works, and when did someone
+      last call one of those numbers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.330582Z'
+  signed_digest: e4eee9f4e6cba465a594849c403589a5c07e4a3510cd2e54c9d12083d90b242a
+  interview_seconds: null
+  inherited_from: null

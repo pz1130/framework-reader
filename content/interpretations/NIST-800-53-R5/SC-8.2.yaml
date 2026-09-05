@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops plaintext or weakly-protected payload from being exposed at the network
+      edges where transmissions begin and end - even if the in-flight link is encrypted,
+      data often leaks at the point of origin (browsers, mail clients, copy-paste,
+      logs) and the point of arrival (intermediate stores, mailboxes, CDN edges).
+      Without controlled handling at both ends, the encryption on the wire protects
+      a channel that is no longer where the data actually is.
+    basis: inferred
+  plain_zh:
+    value: Encrypt data before it leaves the sender and keep it protected after it
+      arrives at the receiver - do not rely on the network link alone, because exposure
+      happens at the endpoints, not in the middle.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive data is sent only over authenticated, encrypted channels (TLS,
+        signed/encrypted email or file transfer); recipients know what they may and
+        may not do with the payload (no forwarding to plaintext, no local decryption
+        to unprotected storage).
+      '2': Pre-transmission checks confirm the right payload, recipient and protection
+        level; post-transmission handling covers secure storage at rest on the receiving
+        side, logging of receipt, and rules for retention, sharing and destruction.
+        Procedures are written and referenced from the transmission policy.
+      '3': Endpoint controls enforce encryption before send (managed mail/file clients,
+        DLP on egress, signed envelopes) and after receive (mail/file server policy,
+        CASB, downstream DLP); deviations are detected and blocked, not just documented;
+        handling rules are tested in red-team or tabletop exercises involving real
+        endpoints.
+    basis: inferred
+  evidence:
+    value: Transmission handling policy covering pre- and post-transmission steps,
+      endpoint configuration showing encryption/signing enforced on send, receiving-side
+      storage protection and retention rules, sample transmissions with logs from
+      both ends, incident records where handling failed.
+    basis: inferred
+  common_myth:
+    value: Believing TLS in transit is enough because the network path is encrypted.
+      Encryption on the wire does nothing for an email sitting in a recipient's inbox,
+      a file dropped on an unmanaged laptop, or a payload copied into a plaintext
+      chat - the channel was never the weak point, the endpoints were.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent sensitive transmission: what was applied to the data before it
+      left the sender and after it landed at the receiver, and where is that recorded?'
+    - What stops a user from decrypting an incoming payload and re-saving it unprotected
+      on a local device or shared drive?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.778020Z'
+  signed_digest: 62c3c7cb9a8c4f81c8719451c9b0381bfbeb2f554da8312b0c185dd5de6bbbba
+  interview_seconds: null
+  inherited_from: null

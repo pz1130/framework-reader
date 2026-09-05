@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.8.17
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is untrustworthy log timestamps—if timestamps in audit records come from unsynchronized
+      system clocks, it becomes impossible to piece together logs from different systems, time zones,
+      and devices into an accurate event reconstruction during incidents. Legal forensics, accountability
+      determination, and anomaly analysis would all lose a reliable time reference.
+    basis: inferred
+  plain_zh:
+    value: Ensure that the internal clocks used by all systems for logging and timestamps are aligned—either
+      through a unified time source or a consistent UTC offset; if clock skew is significant, either synchronize
+      automatically or clearly record the offset in logs, and demonstrate that the clock has been maintained
+      and has not jumped erratically.
+    basis: inferred
+  practice:
+    value:
+      '1': Enable time synchronization services on servers and workstations, pointing to internal enterprise
+        time servers or public time sources; critical system timestamps include date and time.
+      '2': Configure all log-related systems with a unified UTC or a fixed local time zone offset; time
+        synchronization services have configuration records and monitoring alerts; timestamp field formats
+        are uniform and unambiguous.
+      '3': The time synchronization chain traces back to an authoritative time source, with automatic
+        correction and skew alerts; log timestamps are periodically sampled and compared against expected
+        standard clocks; when synchronization is interrupted or skew exceeds thresholds, incident response
+        can trace the affected log scope and provide supplementary explanations.
+    basis: inferred
+  evidence:
+    value: Time synchronization configurations (e.g., configuration files or group policies), time synchronization
+      status and skew reports, monitoring alerts and handling records, test results comparing sampled
+      log timestamps against standard clocks, and clock maintenance and change records.
+    basis: inferred
+  common_myth:
+    value: Assuming that merely enabling NTP synchronization fulfills this requirement—many machines fail
+      to synchronize silently, skew accumulates for minutes before detection, or local clock parameters
+      lack time zone offset settings, causing log timestamps to mismatch other systems. Enabling synchronization
+      does not mean skew is controlled, monitored, and provable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If a server's clock synchronization fails, how would you know? What is the alert sensitivity?
+    - Where is the source and field format of log timestamps defined? Have you ever sampled and checked
+      for skew?
+    basis: inferred
+  regional_note:
+    value: In Europe, under GDPR and the Cyber Resilience Act, auditors emphasize log accuracy as legal
+      evidence, and timestamp reliability is often directly questioned; in the US, auditors focus more
+      on adherence to standard UTC or local offset conventions and the existence of skew handling procedures.
+      The strictness regarding clock synchronization itself is similar, but Europe is more detailed on
+      the completeness of the traceability chain.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.382826Z'
+  signed_digest: ec26253aa510b81bae67a3c4a53859239e4550044d87c88677e70fb70fd174e3
+  interview_seconds: null
+  inherited_from: null

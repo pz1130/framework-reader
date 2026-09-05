@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-18.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against mobile code and other untrusted executable content detonating
+      on general-purpose user workstations or production servers, where it can pivot,
+      persist, or exfiltrate. The confinement requirement forces execution into a
+      sandbox where blast radius is bounded and the host environment cannot be trusted
+      with arbitrary code from the network.
+    basis: inferred
+  plain_zh:
+    value: If you must allow mobile code, scripts, macros, or other executable content
+      to run, only let it run inside a confined environment (sandbox, container, isolated
+      VM) - never directly on the user's normal workstation or production system.
+      Decide what counts as mobile code, where it is allowed to run, and how the confinement
+      is enforced.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify what is treated as mobile code (scripts, macros, ActiveX, Java
+        applets, Office macros, HTA, etc.); block or confine it by default on user
+        endpoints; allow execution only in a designated sandbox or isolated VM.
+      '2': Document which environments are approved for mobile-code execution, with
+        technical controls enforcing confinement (separate user profile, no network
+        access to internal segments, no access to local credentials); track exceptions
+        with expiry dates.
+      '3': Confinement is enforced at the platform layer (e.g., application allow-listing,
+        OS sandboxing, container isolation), tested periodically, and tied to a mobile-code
+        policy reviewed at least annually; deviations generate alerts and are remediated
+        on a known timeline.
+    basis: inferred
+  evidence:
+    value: Mobile code / executable content policy listing in-scope formats, approved
+      confined environments and their isolation configuration, block-by-default configuration
+      evidence, exception register with justification and expiry, and test or audit
+      records showing confinement actually contains execution.
+    basis: inferred
+  common_myth:
+    value: Assuming that running an unknown attachment in a regular browser tab or
+      Office with macro security set to 'disable with notification' qualifies as confinement.
+      Those settings still execute content in the user's full session with access
+      to credentials, mapped drives, and internal network - that is not a confined
+      environment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one approved confined environment and what is specifically isolated
+      inside it (network, filesystem, credentials).
+    - What mobile code formats are blocked outright versus allowed only in the sandbox,
+      and where is that enforced?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.438877Z'
+  signed_digest: 0cdbb7d22976447069d8ff35bed20083a92d4001efe89f1634cd1dca71c1f08f
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:DE.AE-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that monitoring alerts exist only in the SIEM, with no one actually reading
+      or using them—if event signals are not delivered to response personnel in a timely manner, detection
+      capabilities are rendered ineffective, and threats continue to cause impact during the window while
+      waiting for manual queries.
+    basis: inferred
+  plain_zh:
+    value: When a security incident occurs, event information should be sent to the appropriate people
+      and systems according to rules, ensuring someone responds and tools are available to handle it,
+      rather than relying solely on dashboards or people's curiosity.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a notification flow for security events, knowing who to report to; alerts can be sent
+        to an on-duty group or ticketing system, with at least someone registering them.
+      '2': A notification matrix based on event severity and affected systems is defined; key events have
+        human intervention, response actions are logged; tools and personnel lists are regularly verified.
+      '3': Alert triage is automated, directly routing to corresponding roles and tool chains based on
+        rules; notification paths are linked to personnel changes; there is a fallback mechanism for 'escalation
+        if not delivered or not handled'.
+    basis: inferred
+  evidence:
+    value: Event notification matrix or escalation process documents, distribution records in alert/ticketing
+      systems, shift handover records, follow-up or escalation logs for unread or unacknowledged alerts,
+      and records of personnel permission verification.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'adding an alert and creating a group chat counts as reporting'—messages scroll
+      by in the group without confirmation, and without an escalation chain and trigger rules, you are
+      leaving the outcome to the on-duty person's mood that day.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the standard time limit from a P1 alert being generated to the first effective response
+      action? Who is contacted if it times out?
+    - When was the personnel list in the notification matrix last verified? Who updates it after personnel
+      changes?
+    - Which tools can receive event data? Are there any tools that have not received alerts for a long
+      time?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.439455Z'
+  signed_digest: 41b0e042eda206a2c886338e0a89c0bd2a17b479d0708c72262b737fcf86b7c4
+  interview_seconds: null
+  inherited_from: null

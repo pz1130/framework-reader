@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:RC.RP-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'response plans get stuck at the recovery stage' — business continuity
+      and disaster recovery plans are extensive, but once the incident response process is triggered,
+      the recovery plan has never actually been activated, and recovery actions are improvised on the
+      spot.
+    basis: inferred
+  plain_zh:
+    value: Once the incident response process is triggered, the recovery plan must be able to truly take
+      over and run — not just remain in documentation, but have someone responsible for activating it,
+      executing it step by step, and verifying the recovery effectiveness.
+    basis: inferred
+  practice:
+    value:
+      '1': Recovery plan documentation exists; the incident response process includes a clear recovery
+        activation point; when an incident occurs, someone knows to refer to this documentation.
+      '2': Roles, steps, and dependencies in the recovery plan are clearly linked to the incident response
+        process; at least one recovery tabletop exercise or partial recovery drill is conducted annually,
+        with records.
+      '3': The recovery plan and incident response process are integrated at the tool level — incident
+        tickets can directly trigger the recovery process; recovery drills cover critical systems and
+        verify business function recovery; drill results feed back into plan revisions.
+    basis: inferred
+  evidence:
+    value: Recovery plan documentation, recovery trigger conditions and responsible persons defined in
+      the incident response process, sign-in sheets and records of recovery tabletop exercises or technical
+      drills, tracking of post-drill action items, and revision history of the recovery plan.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a disaster recovery plan and conducting an annual drill'
+      is sufficient. The focus of this control is not the plan itself, but the 'handover from incident
+      response to recovery' — many teams have well-written plans, but the incident management process
+      does not define who, under what conditions, and with which action activates the recovery plan, resulting
+      in the recovery documentation being ignored when an actual incident occurs.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which step in the incident response process is responsible for activating the recovery plan? Who
+      is the trigger person?
+    - Was the most recent recovery drill a tabletop exercise or a real recovery? Which system was recovered?
+      What was verified?
+    - Have the issues found in the drill been entered into the action item list? When was the last review?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.610616Z'
+  signed_digest: 7734bbffc5f24ec5cfdb2b9be3f8b726a648f334df5351214bb3df31787fbee0
+  interview_seconds: null
+  inherited_from: null

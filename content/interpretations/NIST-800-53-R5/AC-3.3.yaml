@@ -1,0 +1,82 @@
+control_id: NIST-800-53-R5:AC-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the failure mode where role-based or discretionary controls
+      are quietly bypassed by someone with high privileges or by a process that the
+      system cannot structurally stop — e.g., a sysadmin copying sensitive data outside
+      their need-to-know, or a service account being granted a permission 'just for
+      testing' that then becomes permanent. Mandatory access control enforces policy
+      decisions at the enforcement point based on labels or attributes the user cannot
+      change, so privilege alone is not enough to escalate.
+    basis: inferred
+  plain_zh:
+    value: 'For systems that handle sensitive data or must enforce need-to-know separation,
+      apply mandatory access control: access decisions are made by policy tied to
+      labels or attributes on subjects and objects, enforced by the system itself,
+      and not left to the discretion of an administrator or the file owner. Discretionary
+      controls (DAC) let the owner grant access; mandatory controls do not.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems or data classes where DAC is demonstrably insufficient
+        (classified/sensitive data, multi-tenant platforms, regulated workloads).
+        Document a decision to use MAC and which mechanism (SELinux, AppArmor, Windows
+        WDAC, labels, MLS) applies.
+      '2': Define the label or attribute model (e.g., sensitivity levels + compartments,
+        or attribute-based rules), bind subjects and objects to those labels, and
+        have the OS or enforcement layer actually refuse disallowed operations — verified
+        by a failed-access test, not just a policy file on disk.
+      '3': 'Treat the label schema as a managed artifact: changes to labels, role-to-label
+        mappings, and policy modules go through change control, are tested, and are
+        audited. Exceptions are temporary, time-bounded, and removed automatically.
+        Regular attestations confirm no subject retains a label broader than its function
+        requires.'
+    basis: inferred
+  evidence:
+    value: System security plan section identifying MAC-applicable systems, the MAC
+      policy or label schema, configuration exports of the enforcement mechanism,
+      change records for label/policy modifications, denied-access test results, and
+      exception tickets showing expiry and removal.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the OS supports MAC (e.g., SELinux is installed)
+      or because an RBAC matrix exists, MAC is in effect. MAC requires that policy
+      is loaded in enforcing mode, labels are actually populated on objects, and that
+      even root cannot bypass the rules — teams frequently run SELinux in permissive
+      mode 'because things break' and never return to enforcing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a transaction on a MAC-protected system where the policy denied an action
+      that would have been allowed under DAC — when did that last happen?
+    - Is the MAC enforcement mechanism in enforcing or permissive mode, and who can
+      switch it?
+    - How are label assignments and policy changes approved, and where is the change
+      record?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors (particularly in federal and defense-adjacent environments,
+      or where NIST RMF is the audit basis) routinely probe whether MAC is actually
+      enforced versus merely available. EU audits under ISO 27001 or sector schemes
+      less often invoke the AC-3.3 language directly, but reach comparable outcomes
+      through control of privileged access and segregation enforcement — the framing
+      differs, the expectation that high privilege alone cannot override policy is
+      similar.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.230212Z'
+  signed_digest: c6a1a47772b9b201d67c49d9d4543a4f90846e841913b9d53218147a85a1a55b
+  interview_seconds: null
+  inherited_from: null

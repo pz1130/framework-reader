@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents incident response from being bottlenecked by manual triage, where
+      alerts queue up while on-call staff sleep, severity is guessed by whoever sees
+      the alert first, and containment actions that should fire in minutes wait for
+      a human to type a command. Without automation, detection-to-containment latency
+      rises to the point where a containable event becomes a reportable breach.
+    basis: inferred
+  plain_zh:
+    value: Use automated mechanisms to support the incident handling process - so
+      that events are triaged, escalated, and contained without waiting on a human
+      to push every button, and so the workflow itself is enforced consistently instead
+      of improvised per shift.
+    basis: inferred
+  practice:
+    value:
+      '1': An incident handling runbook exists with defined severities and response
+        steps; some basic automation (alert routing, ticket creation, paging) is in
+        place so events reach a human queue without manual copy-paste.
+      '2': Triage, severity assignment, escalation, and at least some containment
+        actions (host isolation, account disable, blocklist push) are triggered automatically
+        based on detection signals; actions and overrides are logged.
+      '3': The full pipeline - detect -> triage -> escalate -> contain -> notify -
+        runs without manual handoff for common event types, is tested regularly with
+        simulated events, and metrics (time-to-triage, time-to-contain) are tracked
+        against targets.
+    basis: inferred
+  evidence:
+    value: Incident handling runbook with automation hooks, configuration of the SOAR
+      or workflow tool showing automated triage/escalation/containment rules, logs
+      of automated actions taken on real or simulated events, and metrics on handling
+      latency.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a SIEM and a ticketing system' as evidence of automated
+      incident handling. The control is about whether the workflow between detection
+      and response runs without human babysitting - having two disconnected tools
+      that an analyst manually bridges does not meet it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent incident where containment was triggered automatically - which
+      detection fired it and what action ran without human input?
+    - What happens when no analyst acknowledges an alert within the on-call window
+      - is escalation automatic or does it stall?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.279085Z'
+  signed_digest: e4d261201a882c534c327598d0dfdb2071051c1912f11dd9cb37f1ccd018a010
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: ISO-27002-2022:A.8.13
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that data exists in only one copy, and if the hard disk fails, ransomware encrypts
+      it, or it is accidentally deleted, everything is lost. Backup is not archiving; it is the last physical
+      line of defense for recovery. Without verifiable recovery capability, backup is just dead data occupying
+      storage space.
+    basis: inferred
+  plain_zh:
+    value: Back up user data, system configurations, software and licenses, and security-related documents
+      according to policy; the backup itself must be protected against tampering and leakage, and regular
+      drills must confirm that recovery is actually possible, rather than merely performing the 'backup
+      act' itself.
+    basis: inferred
+  practice:
+    value:
+      '1': Backup tasks are running for critical systems and user data; backup media are physically isolated
+        from the production environment; at least one recovery test has been performed with records.
+      '2': Backup scope covers system images, configurations, applications, and security documents; backups
+        have retention periods and encryption; recovery tests have a defined frequency (e.g., quarterly)
+        with documented results.
+      '3': Backup and recovery are integrated into change management—mandatory snapshots before major
+        changes; recovery tests have quantitative metrics (e.g., RTO/RPO) and are regularly reported to
+        management; backup integrity is verified via checksums or digital signatures to prevent silent
+        corruption.
+    basis: inferred
+  evidence:
+    value: Backup policy and scope list; backup task execution logs; backup media storage location and
+      access control records; encryption and integrity verification configuration; regular recovery drill
+      reports (including recovery duration, data loss amount, failures, and remediation).
+    basis: inferred
+  common_myth:
+    value: Assuming that 'backup tasks are green and storage space is sufficient' counts as secure. The
+      most typical failure is that the backup script keeps running, but recovery testing reveals that
+      the backup is of an old application version or database files were not backed up along with transaction
+      logs—so the recovery result is broken. Another common fatal flaw is that backup media are in the
+      same data center and network segment as production, so ransomware scans laterally and encrypts the
+      backups as well.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What was the date of the last full recovery test? Which system was recovered? How long did it take?
+      Who signed off on the results?
+    - How are backup media physically and network-isolated from the production environment? Can backups
+      survive a ransomware intrusion?
+    - Where are the encryption keys for the backup data stored? Are they the same as the production system
+      keys?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.374433Z'
+  signed_digest: b11477a1d81fb131df6a41bdc7c458087c7b862a4b959e864c1cbaeacef165b0
+  interview_seconds: null
+  inherited_from: null

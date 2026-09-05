@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-21.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where users granted broad access rights
+      can still quietly enumerate and pull data outside their need-to-know just because
+      the system exposes a search or query interface — without those searches being
+      constrained, logged, or reviewed. The risk is that an authorized user becomes
+      an unauthorized exfiltration channel through queries.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when users use search, query, or retrieval functions on
+      information they can technically reach, the system limits what they can actually
+      pull based on their authorization, not just based on what folders or screens
+      are visible, and that those retrievals are visible enough to be audited.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems that expose user-driven search or retrieval across
+        stores the user does not own or is not individually granted into; document
+        that access to those stores is restricted to authorized users only.
+      '2': Apply authorization filters or row-/field-level controls at the search
+        layer so queries cannot return content outside the requester's access scope;
+        log retrieval events with user, query scope, and result count for reviewable
+        records.
+      '3': Test that search and retrieval paths enforce the same authorization decisions
+        as direct access; alert on anomalous query volume, broad cross-tenant searches,
+        or retrievals that bypass normal access paths; include search-layer enforcement
+        in periodic access reviews.
+    basis: inferred
+  evidence:
+    value: Architecture or design notes showing where search/retrieval interfaces
+      sit relative to the access control layer, configuration of authorization filters
+      or query scoping, sample retrieval logs, and the access-review or monitoring
+      record that covers search paths.
+    basis: inferred
+  common_myth:
+    value: Believing that because a user has some legitimate access to a system, any
+      data they can reach through search is therefore 'implicitly authorized.' Search
+      interfaces frequently aggregate data across stores the user has no individual
+      right to, and that is exactly the gap AC-21(.02) targets.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one system with a user-facing search. Show me how a query that would be
+      denied through normal navigation is also denied through search.
+    - Where are retrieval events from that search logged, and who reviews them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.177520Z'
+  signed_digest: e6185c3fa49f47e467fbffc9b665451f64b2e3c70be063775040ee1a43af6634
+  interview_seconds: null
+  inherited_from: null

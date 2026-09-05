@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers (or compromised insiders) silently probing or
+      hammering logins to find a valid path in, and against legitimate users never
+      knowing their accounts are being attacked. Without logging both successes and
+      failures, brute-force, password-spray, and credential-stuffing attempts leave
+      no trail, and account takeover is usually discovered only after damage is done.
+    basis: inferred
+  plain_zh:
+    value: Record both successful and failed logins, and make those records usable
+      for detection, alerting, and after-the-fact investigation — not just stored.
+    basis: inferred
+  practice:
+    value:
+      '1': Systems and applications log logon attempts, indicating success vs. failure,
+        with user identifier, source, time, and the system involved. Logs are kept
+        for some defined retention period.
+      '2': Logs feed a centralized collection point; thresholds on failed logons trigger
+        alerts; account-lockout events are tracked; analysts can pull a user's recent
+        logon history on demand.
+      '3': Detection rules specifically catch brute-force, password-spray, and impossible-travel
+        patterns; alerts are tuned to reduce noise; logon events are correlated with
+        identity provider and privileged-access systems; the team periodically reviews
+        whether the signal would actually surface an active attack.
+    basis: inferred
+  evidence:
+    value: Sample logon log entries showing success/failure distinction, centralized
+      log repository configuration, alerting rules on failed-logon thresholds, recent
+      alert tickets or investigation notes triggered by logon anomalies, retention
+      configuration.
+    basis: inferred
+  common_myth:
+    value: Treating any logon record as sufficient compliance — recording only failures
+      (or only successes), or logging 'logon occurred' with no success/failure flag,
+      so that no one can actually tell which attempts succeeded and which were denied.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a log entry from last week where a legitimate user logged in successfully
+      — what fields are present?
+    - Show me a log entry from last week where a login failed — how would an analyst
+      be notified if the same source failed many times in an hour?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.431787Z'
+  signed_digest: 56a0270a81954a72c59a0643eef85ed4b711ab205b9c560cf4dc7a634ff917b7
+  interview_seconds: null
+  inherited_from: null

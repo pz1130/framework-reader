@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-4.20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against a flow-control policy that exists on paper but lets sensitive
+      data walk out through an 'approved solution' the security team never reviewed
+      — e.g., a sanctioned file-transfer tool that quietly bypasses DLP, encryption,
+      or egress logging because it carries an internal product badge rather than a
+      vetted one.
+    basis: inferred
+  plain_zh:
+    value: When information flows across system boundaries, only pre-approved, vetted
+      solutions may be used. Anything else handling cross-boundary data must be reviewed,
+      or the policy itself does not work.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as an 'approved solution' for cross-boundary flows (vendor,
+        version, deployment location); publish a short list that staff and architects
+        can reference.
+      '2': Require a documented review (security and data-handling checks) before
+        any new tool is added to the approved list; block or quarantine unlisted tools
+        at the boundary; keep the approval record.
+      '3': Maintain the approved list as a living register with periodic re-validation,
+        coverage gaps surfaced, exceptions time-bound, and integration with the architecture/SDLC
+        review so new cross-boundary flows cannot be designed around the control.
+    basis: inferred
+  evidence:
+    value: Approved cross-boundary solutions register, review and approval records
+      for each listed tool, evidence that unlisted tools are blocked or escalated
+      at the boundary, exception register with expiry dates, periodic re-validation
+      log.
+    basis: inferred
+  common_myth:
+    value: Believing an internal tickbox that says 'use approved file transfer' on
+      a diagram or in a policy is enough — without an actual list, a review gate,
+      and boundary enforcement, any tool someone installs tomorrow moves data across
+      the boundary uncontrolled.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current list of approved solutions for moving data across your system
+      boundary and the review record for the last one added.
+    - How does an unapproved solution get caught or blocked today — and what was the
+      most recent exception granted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.292387Z'
+  signed_digest: ec4e47b820c814e94b7d33b8a7b41168e9738630cd243f4cb177894fd629f1f7
+  interview_seconds: null
+  inherited_from: null

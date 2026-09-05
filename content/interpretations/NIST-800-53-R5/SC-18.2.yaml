@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-18.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents mobile code (Java, ActiveX, scripts, macros, etc.) from being
+      an uncontrolled execution path onto user systems - where an attacker slips weaponized
+      code past perimeter controls by piggybacking on software users routinely accept,
+      and the organization has no idea what ran, where it came from, or whether it
+      should have been blocked.
+    basis: inferred
+  plain_zh:
+    value: Define and enforce rules for what mobile code is allowed to execute, where
+      it may come from, and under what conditions - rather than letting browsers,
+      email clients, and office apps silently run whatever code the network serves
+      up.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written list of which mobile code categories are allowed or denied
+        (e.g., JavaScript yes, unsigned Java no, macros on by default no), and a default-deny
+        stance for unsigned/unknown sources.
+      '2': Browser, mail client, and office-suite settings hardened to match the policy;
+        a documented review process for code sources; exceptions time-bounded and
+        approved.
+      '3': Policy expressed as enforceable configuration baselines (AppLocker, browser
+        extension allowlists, signed-macro-only, sandboxing/CSP), periodically scanned
+        for drift, with deviations flagged and remediated.
+    basis: inferred
+  evidence:
+    value: Mobile code usage policy, approved exceptions list, configuration baselines
+      and the most recent drift/audit scan showing endpoint conformance, change records
+      for any rule adjustments.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have endpoint protection' or 'we block Java in the browser'
+      as fulfillment - those are individual tactics, not the policy that ties mobile
+      code rules to allowed sources, code-signing requirements, and review of exceptions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a workstation or browser whose mobile code settings do not match the
+      policy - how did the gap happen and what closed it?
+    - Where is the approved list of mobile code sources and categories, and when was
+      it last reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.427845Z'
+  signed_digest: 1c50be209f4e41045f987603e83bb86b17b77273becaad12787d770fd8badecd
+  interview_seconds: null
+  inherited_from: null

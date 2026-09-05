@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent unprivileged users from being able to silently affect privileged
+      functions through the same interface used for everyday work — a hidden path
+      where a normal user action escalates because the system fails to separate the
+      two surfaces.
+    basis: inferred
+  plain_zh:
+    value: Make sure the screens and APIs normal users see do not expose or enable
+      privileged actions; if both surfaces coexist on one interface, privilege escalation
+      must be impossible by design.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the interfaces regular users touch; confirm they show no privileged
+        controls, or that any privileged options are hidden behind explicit, separately
+        authenticated entry points.
+      '2': Document which interfaces are non-privileged vs. privileged, who reviews
+        that split, and how the design enforces it; record review results and any
+        exceptions.
+      '3': Test regularly that a logged-in non-privileged user cannot reach privileged
+        functions through the user-facing interface — automated checks or targeted
+        tests with evidence kept; track deviations and fixes to closure.
+    basis: inferred
+  evidence:
+    value: Interface inventory with privilege classification, design or architecture
+      artifacts showing the user/privileged boundary, review and exception records,
+      and test results demonstrating non-privileged users cannot invoke privileged
+      functions.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a user has no admin role they cannot reach privileged
+      menus — privilege is often exposed through hidden URLs, debug endpoints, or
+      shared service accounts that the same UI can reach regardless of who's logged
+      in.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one production application: log in as a standard user and show whether
+      any privileged menu, button, or API call is reachable.'
+    - Where the user and admin interfaces are the same surface, what stops a non-privileged
+      session from invoking privileged actions server-side?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.442667Z'
+  signed_digest: 573dc316507248909c37f59283fe9ac4d111a79f01296cd48eb277abc44ab9c0
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,1154 @@
+{
+  "catalog": {
+    "uuid": "720a010b-253c-4a94-bb65-cb58400966f5",
+    "metadata": {
+      "title": "Electronic Version of NIST Cybersecurity Framework 2.0",
+      "published": "2026-05-13T12:30:00-00:00",
+      "last-modified": "2026-05-11T16:01:09.00000-00:00",
+      "version": "1.2.0",
+      "oscal-version": "v1.2.2",
+      "revisions": [
+        {
+          "title": "NIST Cybersecurity Framework 2.0",
+          "last-modified": "2025-05-14T12:08:20.050176-05:00",
+          "version": "1.0.0",
+          "oscal-version": "v1.1.3",
+          "links": [
+            {
+              "href": "720a010b-253c-4a94-bb65-cb58400966f5",
+              "rel": "version-history"
+            }
+          ],
+          "remarks": "OSCAL v1.2.2 representation of the NIST Cybersecurity Framework 2.0 with bug fixes for withdrawn categories and subcategories."
+        }
+      ],
+      "props": [
+        {
+          "name": "framework-identifier",
+          "ns": "https://csrc.nist.gov/ns/cprt",
+          "value": "CSF"
+        },
+        {
+          "name": "framework-version-identifier",
+          "ns": "https://csrc.nist.gov/ns/cprt",
+          "value": "CSF_2_0_0"
+        },
+        {
+          "name": "generated-by",
+          "ns": "https://csrc.nist.gov/ns/cprt",
+          "value": "Cybersecurity And Privacy Open Reference Datasets In OSCAL (CAPORDINO)"
+        },
+        {
+          "name": "publication-status",
+          "ns": "https://csrc.nist.gov/ns/cprt",
+          "value": "Final"
+        },
+        {
+          "name": "keywords",
+          "value": "Critical infrastructure, cybersecurity, information security, information system, OSCAL, Open Security Controls Assessment Language, security functions, security requirements, system, system security"
+        }
+      ],
+      "links": [
+        {
+          "href": "#3ab41d8a-66e3-4732-ae28-07405dad5127",
+          "rel": "alternate"
+        },
+        {
+          "href": "#a7f54afa-16cf-4200-a043-85aa554b93e4",
+          "rel": "alternate"
+        },
+        {
+          "href": "#0451580b-8ef9-4f52-9182-bc887d6cf369",
+          "rel": "canonical"
+        }
+      ],
+      "roles": [
+        {
+          "id": "publisher",
+          "title": "Document converter to OSCAL"
+        },
+        {
+          "id": "contact",
+          "title": "Contact"
+        },
+        {
+          "id": "author",
+          "title": "Document content author"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "8238c306-4ee0-4321-a4fb-503adda3d8c1",
+          "type": "organization",
+          "name": "National Institute of Standards and Technology",
+          "short-name": "NIST",
+          "email-addresses": [
+            "capordino@nist.gov"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "National Institute of Standards and Technology",
+                "Attn: Computer Security Division",
+                "Information Technology Laboratory",
+                "100 Bureau Drive (Mail Stop 2000)"
+              ],
+              "city": "Gaithersburg",
+              "state": "MD",
+              "postal-code": "20899-2000"
+            }
+          ]
+        },
+        {
+          "uuid": "49e0888a-e68c-43f1-a26d-7c88fb076e0e",
+          "type": "organization",
+          "name": "National Institute of Standards and Technology",
+          "short-name": "NIST",
+          "email-addresses": [
+            "cyberframework@nist.gov"
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "National Institute of Standards and Technology",
+                "Attn: Applied Cybersecurity Division",
+                "Information Technology Laboratory",
+                "100 Bureau Drive (Mail Stop 2000)"
+              ],
+              "city": "Gaithersburg",
+              "state": "MD",
+              "postal-code": "20899-2000"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "8238c306-4ee0-4321-a4fb-503adda3d8c1"
+          ]
+        },
+        {
+          "role-id": "contact",
+          "party-uuids": [
+            "8238c306-4ee0-4321-a4fb-503adda3d8c1"
+          ]
+        },
+        {
+          "role-id": "author",
+          "party-uuids": [
+            "49e0888a-e68c-43f1-a26d-7c88fb076e0e"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "DE",
+        "class": "function",
+        "title": "DETECT",
+        "props": [
+          {
+            "name": "sort-id",
+            "value": "00004"
+          },
+          {
+            "name": "label",
+            "value": "DETECT (DE)"
+          }
+        ],
+        "parts": [
+          {
+            "id": "DE_overview",
+            "name": "overview",
+            "prose": "Possible cybersecurity attacks and compromises are found and analyzed"
+          }
+        ],
+        "controls": [
+          {
+            "id": "DE.AE",
+            "class": "category",
+            "title": "Adverse Event Analysis",
+            "props": [
+              {
+                "name": "sort-id",
+                "value": "00004.00001"
+              },
+              {
+                "name": "label",
+                "value": "Adverse Event Analysis (DE.AE)"
+              }
+            ],
+            "parts": [
+              {
+                "id": "DE.AE_statement",
+                "name": "statement",
+                "prose": "Anomalies, indicators of compromise, and other potentially adverse events are analyzed to characterize the events and detect cybersecurity incidents"
+              }
+            ],
+            "controls": [
+              {
+                "id": "DE.AE-01",
+                "class": "subcategory",
+                "title": "DE.AE-01",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00001"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-01"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "ID.AM-03",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-01_statement",
+                    "name": "statement",
+                    "prose": "A baseline of network operations and expected data flows for users and systems is established and managed"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-02",
+                "class": "subcategory",
+                "title": "DE.AE-02",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00002"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-02"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-02_statement",
+                    "name": "statement",
+                    "prose": "Potentially adverse events are analyzed to better understand associated activities"
+                  },
+                  {
+                    "id": "DE.AE-02.290",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use security information and event management (SIEM) or other tools to continuously monitor log events for known malicious and suspicious activity"
+                  },
+                  {
+                    "id": "DE.AE-02.291",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Utilize up-to-date cyber threat intelligence in log analysis tools to improve detection accuracy and characterize threat actors, their methods, and indicators of compromise"
+                  },
+                  {
+                    "id": "DE.AE-02.292",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Regularly conduct manual reviews of log events for technologies that cannot be sufficiently monitored through automation"
+                  },
+                  {
+                    "id": "DE.AE-02.293",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use log analysis tools to generate reports on their findings"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-03",
+                "class": "subcategory",
+                "title": "DE.AE-03",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00003"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-03"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-03_statement",
+                    "name": "statement",
+                    "prose": "Information is correlated from multiple sources"
+                  },
+                  {
+                    "id": "DE.AE-03.294",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Constantly transfer log data generated by other sources to a relatively small number of log servers"
+                  },
+                  {
+                    "id": "DE.AE-03.295",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use event correlation technology (e.g., SIEM) to collect information captured by multiple sources"
+                  },
+                  {
+                    "id": "DE.AE-03.296",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Utilize cyber threat intelligence to help correlate events among log sources"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-04",
+                "class": "subcategory",
+                "title": "DE.AE-04",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00004"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-04"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-04_statement",
+                    "name": "statement",
+                    "prose": "The estimated impact and scope of adverse events are understood"
+                  },
+                  {
+                    "id": "DE.AE-04.297",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use SIEMs or other tools to estimate impact and scope, and review and refine the estimates"
+                  },
+                  {
+                    "id": "DE.AE-04.298",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "A person creates their own estimates of impact and scope"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-05",
+                "class": "subcategory",
+                "title": "DE.AE-05",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00005"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-05"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.AE-08",
+                    "rel": "moved_to"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-05_statement",
+                    "name": "statement",
+                    "prose": "Incident alert thresholds are established"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-06",
+                "class": "subcategory",
+                "title": "DE.AE-06",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00006"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-06"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-06_statement",
+                    "name": "statement",
+                    "prose": "Information on adverse events is provided to authorized staff and tools"
+                  },
+                  {
+                    "id": "DE.AE-06.299",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use cybersecurity software to generate alerts and provide them to the security operations center (SOC), incident responders, and incident response tools"
+                  },
+                  {
+                    "id": "DE.AE-06.300",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Incident responders and other authorized personnel can access log analysis findings at all times"
+                  },
+                  {
+                    "id": "DE.AE-06.301",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Automatically create and assign tickets in the organization's ticketing system when certain types of alerts occur"
+                  },
+                  {
+                    "id": "DE.AE-06.302",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Manually create and assign tickets in the organization's ticketing system when technical staff discover indicators of compromise"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-07",
+                "class": "subcategory",
+                "title": "DE.AE-07",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00007"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-07"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-07_statement",
+                    "name": "statement",
+                    "prose": "Cyber threat intelligence and other contextual information are integrated into the analysis"
+                  },
+                  {
+                    "id": "DE.AE-07.303",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Securely provide cyber threat intelligence feeds to detection technologies, processes, and personnel"
+                  },
+                  {
+                    "id": "DE.AE-07.304",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Securely provide information from asset inventories to detection technologies, processes, and personnel"
+                  },
+                  {
+                    "id": "DE.AE-07.305",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Rapidly acquire and analyze vulnerability disclosures for the organization's technologies from suppliers, vendors, and third-party security advisories"
+                  }
+                ]
+              },
+              {
+                "id": "DE.AE-08",
+                "class": "subcategory",
+                "title": "DE.AE-08",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00001.00008"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.AE-08"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.AE-08_statement",
+                    "name": "statement",
+                    "prose": "Incidents are declared when adverse events meet the defined incident criteria"
+                  },
+                  {
+                    "id": "DE.AE-08.306",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Apply incident criteria to known and assumed characteristics of activity in order to determine whether an incident should be declared"
+                  },
+                  {
+                    "id": "DE.AE-08.307",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Take known false positives into account when applying incident criteria"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "DE.CM",
+            "class": "category",
+            "title": "Continuous Monitoring",
+            "props": [
+              {
+                "name": "sort-id",
+                "value": "00004.00002"
+              },
+              {
+                "name": "label",
+                "value": "Continuous Monitoring (DE.CM)"
+              }
+            ],
+            "parts": [
+              {
+                "id": "DE.CM_statement",
+                "name": "statement",
+                "prose": "Assets are monitored to find anomalies, indicators of compromise, and other potentially adverse events"
+              }
+            ],
+            "controls": [
+              {
+                "id": "DE.CM-01",
+                "class": "subcategory",
+                "title": "DE.CM-01",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00001"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-01"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-01_statement",
+                    "name": "statement",
+                    "prose": "Networks and network services are monitored to find potentially adverse events"
+                  },
+                  {
+                    "id": "DE.CM-01.271",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor DNS, BGP, and other network services for adverse events"
+                  },
+                  {
+                    "id": "DE.CM-01.272",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor wired and wireless networks for connections from unauthorized endpoints"
+                  },
+                  {
+                    "id": "DE.CM-01.273",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor facilities for unauthorized or rogue wireless networks"
+                  },
+                  {
+                    "id": "DE.CM-01.274",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Compare actual network flows against baselines to detect deviations"
+                  },
+                  {
+                    "id": "DE.CM-01.275",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor network communications to identify changes in security postures for zero trust purposes"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-02",
+                "class": "subcategory",
+                "title": "DE.CM-02",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00002"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-02"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-02_statement",
+                    "name": "statement",
+                    "prose": "The physical environment is monitored to find potentially adverse events"
+                  },
+                  {
+                    "id": "DE.CM-02.276",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor logs from physical access control systems (e.g., badge readers) to find unusual access patterns (e.g., deviations from the norm) and failed access attempts"
+                  },
+                  {
+                    "id": "DE.CM-02.277",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Review and monitor physical access records (e.g., from visitor registration, sign-in sheets)"
+                  },
+                  {
+                    "id": "DE.CM-02.278",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor physical access controls (e.g., locks, latches, hinge pins, alarms) for signs of tampering"
+                  },
+                  {
+                    "id": "DE.CM-02.279",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor the physical environment using alarm systems, cameras, and security guards"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-03",
+                "class": "subcategory",
+                "title": "DE.CM-03",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00003"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-03"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-03_statement",
+                    "name": "statement",
+                    "prose": "Personnel activity and technology usage are monitored to find potentially adverse events"
+                  },
+                  {
+                    "id": "DE.CM-03.280",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use behavior analytics software to detect anomalous user activity to mitigate insider threats"
+                  },
+                  {
+                    "id": "DE.CM-03.281",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor logs from logical access control systems to find unusual access patterns and failed access attempts"
+                  },
+                  {
+                    "id": "DE.CM-03.282",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Continuously monitor deception technology, including user accounts, for any usage"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-04",
+                "class": "subcategory",
+                "title": "DE.CM-04",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00004"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-04"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.CM-01",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "DE.CM-09",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-04_statement",
+                    "name": "statement",
+                    "prose": "Malicious code is detected"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-05",
+                "class": "subcategory",
+                "title": "DE.CM-05",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00005"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-05"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.CM-01",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "DE.CM-09",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-05_statement",
+                    "name": "statement",
+                    "prose": "Unauthorized mobile code is detected"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-06",
+                "class": "subcategory",
+                "title": "DE.CM-06",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "3rd",
+                    "remarks": "3rd Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00006"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-06"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-06_statement",
+                    "name": "statement",
+                    "prose": "External service provider activities and services are monitored to find potentially adverse events"
+                  },
+                  {
+                    "id": "DE.CM-06.283",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor remote and onsite administration and maintenance activities that external providers perform on organizational systems"
+                  },
+                  {
+                    "id": "DE.CM-06.284",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor activity from cloud-based services, internet service providers, and other service providers for deviations from expected behavior"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-07",
+                "class": "subcategory",
+                "title": "DE.CM-07",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00007"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-07"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.CM-01",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "DE.CM-03",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "DE.CM-06",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "DE.CM-09",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-07_statement",
+                    "name": "statement",
+                    "prose": "Monitoring for unauthorized personnel, connections, devices, and software is performed"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-08",
+                "class": "subcategory",
+                "title": "DE.CM-08",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00008"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-08"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "ID.RA-01",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-08_statement",
+                    "name": "statement",
+                    "prose": "Vulnerability scans are performed"
+                  }
+                ]
+              },
+              {
+                "id": "DE.CM-09",
+                "class": "subcategory",
+                "title": "DE.CM-09",
+                "props": [
+                  {
+                    "name": "risk-party",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "value": "1st",
+                    "remarks": "1st Party Risk"
+                  },
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00002.00009"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.CM-09"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.CM-09_statement",
+                    "name": "statement",
+                    "prose": "Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events"
+                  },
+                  {
+                    "id": "DE.CM-09.285",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor email, web, file sharing, collaboration services, and other common attack vectors to detect malware, phishing, data leaks and exfiltration, and other adverse events"
+                  },
+                  {
+                    "id": "DE.CM-09.286",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor authentication attempts to identify attacks against credentials and unauthorized credential reuse"
+                  },
+                  {
+                    "id": "DE.CM-09.287",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor software configurations for deviations from security baselines"
+                  },
+                  {
+                    "id": "DE.CM-09.288",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Monitor hardware and software for signs of tampering"
+                  },
+                  {
+                    "id": "DE.CM-09.289",
+                    "name": "example",
+                    "ns": "https://csrc.nist.gov/ns/csf",
+                    "prose": "Use technologies with a presence on endpoints to detect cyber health issues (e.g., missing patches, malware infections, unauthorized software), and redirect the endpoints to a remediation environment before access is authorized"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "DE.DP",
+            "class": "category",
+            "title": "Detection Processes",
+            "props": [
+              {
+                "name": "sort-id",
+                "value": "00004.00003"
+              },
+              {
+                "name": "label",
+                "value": "Detection Processes (DE.DP)"
+              },
+              {
+                "name": "status",
+                "value": "withdrawn"
+              }
+            ],
+            "parts": [
+              {
+                "id": "DE.DP_statement",
+                "name": "statement"
+              }
+            ],
+            "controls": [
+              {
+                "id": "DE.DP-01",
+                "class": "subcategory",
+                "title": "DE.DP-01",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00003.00001"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.DP-01"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "GV.RR-02",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.DP-01_statement",
+                    "name": "statement",
+                    "prose": "Roles and responsibilities for detection are well defined to ensure accountability"
+                  }
+                ]
+              },
+              {
+                "id": "DE.DP-02",
+                "class": "subcategory",
+                "title": "DE.DP-02",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00003.00002"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.DP-02"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.AE",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.DP-02_statement",
+                    "name": "statement",
+                    "prose": "Detection activities comply with all applicable requirements"
+                  }
+                ]
+              },
+              {
+                "id": "DE.DP-03",
+                "class": "subcategory",
+                "title": "DE.DP-03",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00003.00003"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.DP-03"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "ID.IM-02",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.DP-03_statement",
+                    "name": "statement",
+                    "prose": "Detection processes are tested"
+                  }
+                ]
+              },
+              {
+                "id": "DE.DP-04",
+                "class": "subcategory",
+                "title": "DE.DP-04",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00003.00004"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.DP-04"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "DE.AE-06",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.DP-04_statement",
+                    "name": "statement",
+                    "prose": "Event detection information is communicated"
+                  }
+                ]
+              },
+              {
+                "id": "DE.DP-05",
+                "class": "subcategory",
+                "title": "DE.DP-05",
+                "props": [
+                  {
+                    "name": "sort-id",
+                    "value": "00004.00003.00005"
+                  },
+                  {
+                    "name": "label",
+                    "value": "DE.DP-05"
+                  },
+                  {
+                    "name": "status",
+                    "value": "withdrawn"
+                  }
+                ],
+                "links": [
+                  {
+                    "href": "ID.IM",
+                    "rel": "incorporated_into"
+                  },
+                  {
+                    "href": "ID.IM-03",
+                    "rel": "incorporated_into"
+                  }
+                ],
+                "parts": [
+                  {
+                    "id": "DE.DP-05_statement",
+                    "name": "statement",
+                    "prose": "Detection processes are continuously improved"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

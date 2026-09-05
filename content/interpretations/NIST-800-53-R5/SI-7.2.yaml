@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SI-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against integrity compromise that sits undetected in firmware,
+      boot loaders, or software components while the system keeps running normally.
+      Without automated, out-of-band notification when the integrity tool flags a
+      mismatch, an attacker who already holds privileged access can quietly disable,
+      modify, or ignore the integrity check itself, and the defender learns about
+      the breach only after damage is done or never.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when any integrity check (software, firmware, information,
+      boot, etc.) detects an unauthorized change, it does not just log to a place
+      the attacker can also touch - it actively alerts designated people or systems
+      so the violation gets investigated.
+    basis: inferred
+  practice:
+    value:
+      '1': Integrity tools (file integrity monitors, secure boot / TPM measurements,
+        HIDS) are configured to emit an alert - not only a log entry - when a mismatch
+        is detected, and at least one human or system owner is named to receive it.
+      '2': Alerts are routed through a channel the integrity subject cannot write
+        to (separate log server, SIEM, email/ITSM to a role account) and contain enough
+        detail (what changed, where, when) for first-line triage; on-call rotation
+        covers them.
+      '3': Notifications are tested end-to-end on a schedule and after configuration
+        changes; suppression or 'ack without action' patterns are detected and reported;
+        integrity-alert response is tied into incident playbooks with defined time-to-acknowledge
+        and escalation thresholds.
+    basis: inferred
+  evidence:
+    value: Integrity tool configuration showing alert (not just log) actions, alert
+      routing destination and recipient role, sample alert payloads with the fields
+      they carry, test or fire-drill records proving a real notification reached a
+      human, and incident tickets opened in response to past alerts.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the FIM/secure-boot/TPM tool is 'logging' integrity
+      violations, the control is satisfied. The check tool itself often runs with
+      the privileges of the attacker it is meant to detect, so a log file on the same
+      host that the attacker can edit, truncate, or exclude from shipping is not a
+      notification - it is a place to hide.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent integrity violation alert. Who received it, on what channel,
+      and how long before a human acted on it?
+    - Can the account that owns the integrity-protected system also stop, reconfigure,
+      or delete the integrity alerts? Walk me through the separation.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.098910Z'
+  signed_digest: f281937938261729d0b773dd460c23900611536a294daa2f94154c72ae2ad87d
+  interview_seconds: null
+  inherited_from: null

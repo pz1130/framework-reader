@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:PE-23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against facilities being sited in locations where a single plausible
+      event (flood, industrial accident, civil unrest, neighboring hazard) can take
+      the site and everything in it offline at once - the control forces that exposure
+      to be picked deliberately, not inherited by default from whoever signed the
+      lease.
+    basis: inferred
+  plain_zh:
+    value: When choosing or keeping a facility, look at where it actually sits and
+      what could realistically happen around it (natural hazards, neighboring infrastructure,
+      shared risks), and let that drive site selection, hardening, or mitigation -
+      rather than discovering the exposure after an incident.
+    basis: inferred
+  practice:
+    value:
+      '1': When picking a site, someone looks at the surrounding area - flood zone,
+        adjacent industrial or transport hazards, shared utility feeds - and the result
+        is written down somewhere.
+      '2': Site selection criteria are documented and include the surrounding-hazard
+        assessment; existing sites have been reviewed against those criteria and any
+        unacceptable exposures have a mitigation plan with an owner and a date.
+      '3': The site risk view is revisited on a set cadence and after relevant local
+        changes (new construction nearby, flood map revisions, infrastructure incidents);
+        mitigation actions are tracked to closure and feed into business continuity
+        and facility hardening decisions.
+    basis: inferred
+  evidence:
+    value: Site selection criteria with surrounding-hazard factors, per-site assessment
+      records (maps, hazard overlays, neighboring-facility notes), mitigation plans
+      for sites that fail the criteria, and review history showing reassessment after
+      changes in the surrounding environment.
+    basis: inferred
+  common_myth:
+    value: Treating site selection as a real-estate decision and assuming a building's
+      physical security controls (walls, guards, cameras) cover for a bad location
+      - perimeter controls do not stop a flood, a chemical release, or a regional
+      power failure caused by what is next door or upstream.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the assessment that was done when this site's location was last reviewed
+      - what surrounding hazards were considered?
+    - Which of your facilities sit in a flood zone or next to a hazard, and what is
+      the documented mitigation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.589430Z'
+  signed_digest: d57133f73769d9ed2dc10c2b36a9cfa22d50c6a5a5bbb887823b575d1c4df448
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:AC-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single account from being used to do too much at once, which
+      hides what is really happening, makes incident reconstruction impossible, and
+      lets one stolen credential quietly touch many systems before anyone notices.
+    basis: inferred
+  plain_zh:
+    value: Limit the number of concurrent sessions any one account can hold, so an
+      account cannot be in many places at once and so abnormal parallelism becomes
+      visible.
+    basis: inferred
+  practice:
+    value:
+      '1': A documented per-account or per-role limit on concurrent sessions exists
+        in policy; high-risk roles (admins, service accounts) get tighter limits than
+        ordinary users.
+      '2': Limits are enforced in the actual systems (identity provider, VPN, applications),
+        not only stated in a document; exceptions are recorded with approver and reason.
+      '3': Limits are monitored, alerts fire when they are hit, and the design choice
+        (or exception) is revisited against real usage patterns and incident scenarios.
+    basis: inferred
+  evidence:
+    value: Policy stating concurrent-session limits, configuration showing the limit
+      enforced in the relevant systems, a list of approved exceptions with approver
+      and justification, and monitoring or alert records for limit breaches.
+    basis: inferred
+  common_myth:
+    value: Treating this as a checkbox set to '1' in a directory setting and assuming
+      that covers it — the control fails if the limit is never enforced in the systems
+      users actually log into, or if service accounts and admin paths are carved out
+      without justification.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems apply a concurrent-session limit today, and which commonly used
+      systems do not?
+    - Show me the exceptions to the limit and who approved each one.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:51.992382Z'
+  signed_digest: 5424511e07d50ccab73af58dcec5d5d1452fe92f4a9fff922b4b8a4da458111e
+  interview_seconds: null
+  inherited_from: null

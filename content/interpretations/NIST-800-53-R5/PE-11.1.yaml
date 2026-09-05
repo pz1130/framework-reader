@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PE-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where utility power is lost and the backup
+      source cannot keep the facility's must-run security and safety systems alive
+      long enough for orderly recovery — surveillance, access control, fire detection,
+      comms, and the infrastructure that hosts them all go dark together. The risk
+      is not 'we have a generator' but 'we assumed it covers what it actually doesn't,
+      and the things that protect people and evidence die first'.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when normal power fails, an alternate supply keeps the minimum
+      set of systems needed to keep the site safe, accountable, and recoverable running
+      — not just the servers.
+    basis: inferred
+  practice:
+    value:
+      '1': List the systems required for minimal operations (e.g. badge readers, CCTV,
+        fire panel, emergency lighting, comms, core servers, cooling for that core)
+        and confirm an alternate power source exists and is exercised under load.
+      '2': Document which outlets, panels, or UPS circuits feed the minimal-ops load;
+        test transfer to alternate power on a schedule and keep the test records;
+        maintain fuel or battery contracts.
+      '3': Verify under realistic failure that the listed load actually rides through
+        — measure runtime, validate that HVAC for the protected core does not drop
+        out, and re-test after any electrical or room change.
+    basis: inferred
+  evidence:
+    value: List of systems designated for minimal operational capability, the alternate-power
+      feed diagram or circuit map, transfer and load-test records, fuel/battery maintenance
+      logs, and post-test runtime measurements.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a UPS and a generator' as the answer without naming which
+      loads they cover. A facility can have abundant backup power and still fail this
+      control because the CCTV, access control, or fire panel was never put on a protected
+      circuit — the generator runs while the evidence-gathering and life-safety systems
+      sit dark.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of systems you require to run when utility power fails and
+      the panel or circuit that feeds each one from the alternate supply.
+    - When did you last test a transfer under load, and how long did the protected
+      systems actually stay up?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.520409Z'
+  signed_digest: db12460b05643b66e829ab8d1a77c50f4354bcb3a285616fb725bd5c9c95bd85
+  interview_seconds: null
+  inherited_from: null

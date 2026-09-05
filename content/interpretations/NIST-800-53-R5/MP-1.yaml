@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MP-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where media protection exists only as
+      ad-hoc practice or scattered configuration — without a written, endorsed rule,
+      there is no consistent baseline for sanitization, storage, transport, and disposal,
+      so one missing step becomes a data exposure incident.
+    basis: inferred
+  plain_zh:
+    value: Write down, approve, publish, and maintain a media protection policy and
+      the procedures that support it, so everyone handling digital or physical media
+      follows the same rules on marking, storage, transport, sanitization, and disposal.
+    basis: inferred
+  practice:
+    value:
+      '1': A media protection policy exists, is signed by a responsible official,
+        and covers the basic topics (marking, storage, transport, sanitization, disposal).
+        Staff can be pointed to it.
+      '2': Procedures exist for each life-cycle stage (receiving, labeling, storing,
+        transporting, sanitizing, disposing); owners are named; staff handling media
+        are aware; the policy is reviewed on a fixed cadence.
+      '3': Policy and procedures are version-controlled, aligned with current threats
+        and regulations, deviations and exceptions are tracked, training and internal
+        audits reference the current version, and outdated versions are removed from
+        circulation.
+    basis: inferred
+  evidence:
+    value: Approved media protection policy and supporting procedures (current and
+      prior versions), evidence of publication and communication (intranet posting,
+      training records, attestation), review/approval log with dates and signers,
+      and a sample of how the policy is used in real sanitization, transport, or disposal
+      decisions.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a media sanitization standard' as proof of MP-1. MP-1
+      is about the governing policy and the procedures attached to it being current,
+      endorsed, and actually used — a sanitization SOP on its own, without an umbrella
+      policy that ties marking, storage, transport, and disposal together and is reviewed
+      on schedule, does not satisfy the control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the media protection policy last reviewed and who approved the current
+      version?
+    - Show me how a handler uses the procedures to decide what to do with a failed
+      drive from a classified system.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.463708Z'
+  signed_digest: 8839de12556eee2ec7b897ea9db3b521a3abcbb8919bf90fda7ab69cc150eb5a
+  interview_seconds: null
+  inherited_from: null

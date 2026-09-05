@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-10.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where audit evidence is challenged or thrown
+      out because nobody can prove who handled the log, when, or in what state - making
+      incident attribution, insider misuse, and forensic conclusions non-defensible
+      in court or to regulators.
+    basis: inferred
+  plain_zh:
+    value: When audit records are exported, shared, or handed over for review, the
+      chain of who touched them, when, and what they did must be tracked and verifiable
+      from origin to current location.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Maintain a paper or digital handoff log for any audit record leaving its
+        original store: who took it, when, why, what was handed over, and when it
+        was returned or destroyed.'
+      '2': Use tamper-evident packaging or hashing on exports; record every transfer
+        between custodians with timestamps and signatures; restrict who can receive
+        copies.
+      '3': Cryptographically sign log exports, log all access to evidence stores,
+        verify hashes at each transfer point, and reconcile the chain end-to-end at
+        case close.
+    basis: inferred
+  evidence:
+    value: Custody handoff logs, hash/signature values for each export, access logs
+      to evidence repositories, signed transfer receipts, and end-to-end reconciliation
+      records.
+    basis: inferred
+  common_myth:
+    value: Treating chain of custody as a legal-team concern that only matters after
+      litigation starts. By the time a case opens, gaps in who handled the logs from
+      collection onward are already unrecoverable - the controls must run during normal
+      operations, not just when an incident is escalated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick the most recent exported log set - show me the chain of who handled it
+      from generation to today.
+    - How do you detect or prevent alteration of an audit record between its original
+      store and the analyst who used it for an investigation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.508168Z'
+  signed_digest: 410076c1b2db60274641848db23b6b9142ec8e7a1f7462b54f51691472ea975f
+  interview_seconds: null
+  inherited_from: null

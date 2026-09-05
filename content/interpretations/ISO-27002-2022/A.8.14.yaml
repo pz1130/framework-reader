@@ -1,0 +1,72 @@
+control_id: ISO-27002-2022:A.8.14
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that if the primary site goes down, the entire business stops. If any link in
+      the chain—facilities, power, network, or computing capacity—fails, and there is no alternate path
+      or switchable fallback, recovery time depends on luck, and no verifiable commitment can be provided
+      during an audit.
+    basis: inferred
+  plain_zh:
+    value: Critical business operations must be able to run elsewhere or recover quickly when primary
+      facilities are unavailable. There must be geographically separate or switchable storage and computing
+      resources, and the security controls at these backup facilities must not be weaker than those at
+      the primary site.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical systems have been backed up, and backup media are stored at a different physical location;
+        the approximate recovery time in the event of a power or network outage at the primary data center
+        is known.
+      '2': A written alternate site agreement or cloud failover configuration exists; clear recovery time
+        objectives and recovery point objectives are defined; testing of the alternate environment has
+        been conducted and documented.
+      '3': The alternate site or architecture is geographically dispersed from the primary site and can
+        independently support critical business operations; security controls at the alternate site are
+        equivalent to those at the primary site and are included in routine monitoring and exercises;
+        failover can be completed automatically or quickly according to predefined procedures, with evidence.
+    basis: inferred
+  evidence:
+    value: Agreements for alternate sites or cloud availability zones, written definitions of recovery
+      objectives (RTO/RPO), failover or recovery exercise reports with dates, and records of security
+      configuration checks at the alternate site.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having offsite data backups equates to business recovery. Being able
+      to restore data does not mean that computing capacity, network, and adequate security controls will
+      be available to run the business after the primary site is lost—backup is a necessary condition
+      for redundancy, not a sufficient one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the physical distance between the alternate site or cloud availability zone and the primary
+      site? What is that distance based on?
+    - When was the last full failover exercise? Which objectives were not met in the exercise results?
+    - Are access controls, encryption, and monitoring at the alternate site exactly the same as at the
+      primary site?
+    - If the primary site is completely unavailable, what is the specific RTO in hours?
+    - Has backup data been tested for recovery at the alternate site? When was the last test?
+    basis: inferred
+  regional_note:
+    value: European auditors, influenced by DORA, are more demanding regarding critical business resilience
+      and often probe specific recovery objective values and the credibility of alternate sites under
+      regulatory review; US auditors rely more on SaaS/cloud load availability SLAs and architecture diagrams
+      to make judgments, sometimes accepting multi-cloud or multi-availability-zone as equivalent redundancy
+      evidence.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.376384Z'
+  signed_digest: 3118bb414a8439482b38fc0c5f078c625537b397d44bdbb4c54dbc824c6f382f
+  interview_seconds: null
+  inherited_from: null

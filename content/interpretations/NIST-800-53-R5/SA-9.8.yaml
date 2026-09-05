@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SA-9.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the situation where an organization believes its data
+      is protected by U.S. law but, through its supply chain, that data is actually
+      being processed or stored in jurisdictions where U.S. legal remedies, lawful-access
+      rules, or contractual recourse cannot reach it — exposing regulated, classified,
+      or otherwise sensitive data to foreign legal regimes without the customer knowing.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when a system component is supposed to be under U.S. legal
+      jurisdiction, the processing and storage actually stay inside that jurisdiction
+      — including anywhere an external provider touches the data — and that this is
+      documented and enforceable, not assumed from where the provider is headquartered.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems/components that must remain under U.S. jurisdiction;
+        ask each external provider in writing where (country and region) they process
+        and store the data, and capture the answer in the contract or an addendum.
+      '2': Bind providers contractually to keep the specified processing/storage in
+        named U.S. locations; require notice and customer approval before any change
+        of location; require the same restriction to flow down to any sub-processor
+        handling that data.
+      '3': Independently verify location claims (e.g., provider published maps, attestation
+        reports, periodic declarations); monitor for change; have an exit/relocation
+        path tested; tie this requirement into the broader supplier risk and location-of-data
+        inventory so it is reviewed on a schedule, not only at onboarding.
+    basis: inferred
+  evidence:
+    value: Inventory of components requiring U.S. jurisdiction, written provider responses
+      on processing/storage locations, contract clauses restricting location and requiring
+      notice of change, sub-processor flow-down evidence, periodic verification (attestations
+      or declarations) and records of any approved relocation.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a cloud provider is a U.S. company headquartered
+      domestically, the data is automatically under U.S. jurisdiction — in reality,
+      the provider may process or store the data in regions outside the U.S., and
+      the customer's regulated data can end up under a foreign legal regime without
+      that ever being written down.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For each provider that handles data you consider to be under U.S. jurisdiction,
+      where exactly do they process and store it, and how do you know that is still
+      true today?
+    - What happens if the provider wants to move that workload to another country
+      — who has to approve it, and where is that documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.367688Z'
+  signed_digest: 933be46946e5f1390e676710289cc30273100c5a5b6737fe1d33150ba7d32ea7
+  interview_seconds: null
+  inherited_from: null

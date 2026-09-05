@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SR-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where procurement, software, or hardware
+      is accepted on the vendor's word alone — counterfeit, tampered, or repackaged
+      components enter the supply chain and silently weaken confidentiality, integrity,
+      or availability long after delivery.
+    basis: inferred
+  plain_zh:
+    value: Verify that what arrives from the supply chain (software, firmware, hardware,
+      components) is genuine and has not been altered between the point of origin
+      and the point of use, before it is put into operation.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Confirm authenticity at receipt using basic checks: sealed packaging,
+        vendor labels, hashes or signatures the vendor publishes, visible tampering
+        indicators; reject and report items that fail these checks.'
+      '2': Documented intake procedure specifying what is checked for each category
+        of supply (software, firmware, hardware, parts); checks are performed by named
+        roles; failures are logged and dispositioned; high-risk categories require
+        cryptographic signature or hash verification against a trusted source.
+      '3': Verification is automated where feasible (signature/checksum comparison
+        against a vendor-issued or trusted third-party manifest), applied across the
+        full chain from staging through deployment, with results captured as auditable
+        records and anomalies triggering containment rather than silent acceptance.
+    basis: inferred
+  evidence:
+    value: Intake verification procedures, records of authenticity and integrity checks
+      performed on received items (with hashes or signatures compared), logs of items
+      rejected for failing verification, and chain-of-custody documentation from origin
+      to deployment.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying from an authorized reseller or seeing a brand logo
+      on the box means the item is genuine and untampered — counterfeits routinely
+      pass through legitimate channels and packaging alone proves nothing without
+      a verifiable integrity check against the vendor's published artifact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the record from the last time a received software, firmware, or hardware
+      item failed authenticity or integrity verification — what happened to it?
+    - For a critical component received last quarter, how was its integrity verified
+      against a trusted source, and who signed off?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.180554Z'
+  signed_digest: 95dc8949911e1dbee85b5bbb7db2512480eb768032a418b42d948e09b16456f6
+  interview_seconds: null
+  inherited_from: null

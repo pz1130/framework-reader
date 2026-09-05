@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-3.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents accidental or malicious release of information to systems or individuals
+      that should never have received it — the failure mode where an authorized user
+      with access to sensitive data pushes or shares it to a less-trusted environment,
+      where the original access controls do not apply.
+    basis: inferred
+  plain_zh:
+    value: When information is released to another system or to people outside the
+      originating security boundary, enforce the same or equivalent access controls
+      on the receiving side so the data does not end up in a less-protected place
+      just because it crossed a boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the destinations (systems, partners, cloud storage, contractors,
+        external collaborators) where sensitive data is regularly released; document
+        which access controls apply at each destination.
+      '2': Define release rules per information type — who can release what, to which
+        approved destinations, under what conditions — and require approval before
+        non-routine releases; retain records of releases and approvals.
+      '3': Implement technical enforcement at egress points (DLP, policy tags, destination
+        allow-lists, re-encryption tied to destination identity) so releases without
+        matching controls are blocked or flagged; periodically audit destinations
+        to confirm the controls on the receiving side still exist and still meet the
+        originating classification.
+    basis: inferred
+  evidence:
+    value: Documented information release policy, list of approved destinations and
+      the controls attested for each, records of release decisions and approvals,
+      technical enforcement configuration and logs at egress points, audit results
+      confirming receiving-side controls remain in place.
+    basis: inferred
+  common_myth:
+    value: Treating a signed NDA or a data-sharing agreement as proof that the receiving
+      system enforces the same access controls — the agreement governs intent, not
+      the technical state of the destination, which can drift months later as the
+      partner reorganizes, migrates to a new vendor, or reuses the data in a less-controlled
+      store.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent release of sensitive data to an external system: what controls
+      are enforced on the receiving side, and how did you verify them at release time
+      and since?'
+    - If a partner reorganizes or migrates the data to a new environment without telling
+      you, how would you find out?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.250156Z'
+  signed_digest: 974c192196f717030c1ca66f2cd4457d929c3f4f92676803caf0812a4901e242
+  interview_seconds: null
+  inherited_from: null

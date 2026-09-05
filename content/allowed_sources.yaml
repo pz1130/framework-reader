@@ -1,0 +1,74 @@
+# 映射与语料来源白名单。spec §4.3、§10.A
+#
+# 规则：以「NIST 署名文件」为单位登记，不以站点为单位。
+# csrc.nist.gov 域名本身不构成允许理由——第三方提交的 OLIR 也托管在该域名下。
+#
+# R1d：本周未导入的框架官方附录可引用性为 N/A；仅实际取回的 NIST 文件有当前 checked_on。
+#
+# 每次发布内容包前重新核对本表，并把 checked_on 更新进 manifest。
+allowed:
+  - id: NIST-OSCAL-sp800-53r5-catalog
+    license: US Government work, public domain
+    url: https://github.com/usnistgov/oscal-content
+    checked_on: 2026-08-19
+    note: NIST 署名的 OSCAL catalog
+
+  - id: NIST-CPRT-csf-2.0
+    license: US Government work, public domain
+    url: https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/CSF/v2.0/json/NIST_CSF_v2.0_catalog.json
+    checked_on: 2026-08-19
+    note: CSF 2.0 结构，NIST 署名 OSCAL catalog（CPRT 导出 JSON 端点 404；CPRT 页仍列出 OSCAL）
+
+  - id: NIST-CPRT-csf-pf-to-sp800-53r5
+    license: US Government work, public domain
+    url: https://csrc.nist.gov/files/pubs/sp/800/53/r5/upd1/final/docs/csf-pf-to-sp800-53r5-mappings.xlsx
+    checked_on: 2026-08-19
+    note: 发布页随附 xlsx；打开后为 CSF 1.1 + Privacy Framework ↔ 800-53 Rev5，NIST 署名（非 CSF 2.0）
+
+  - id: NIST-OLIR-csf-2.0-to-sp800-53r5
+    license: US Government work, public domain
+    url: https://csrc.nist.gov/csrc/media/projects/olir/documents/submissions/Cybersecurity_Framework_v2-0_Concept_Crosswalk_800-53_5_2_0_draft.xlsx
+    checked_on: 2026-08-19
+    note: CSF 2.0 ↔ 800-53 Rev 5.2.0，NIST 署名 OLIR #186（developer=NIST, Owner, Final）
+
+  - id: NIST-SP800-53r5-to-iso-27001
+    license: US Government work, public domain
+    url: https://csrc.nist.gov/csrc/media/Projects/olir/documents/submissions/sp800-53r5-to-iso-27001-mapping-2022-OLIR-2023-10-12-UPDATED.xlsx
+    checked_on: 2026-08-19
+    note: 800-53 Rev5 ↔ ISO/IEC 27001:2022，NIST 署名 OLIR #155（developer=NIST；原随附 docx 已 404）
+
+  - id: authored:framework-reader
+    license: proprietary (本产品自有)
+    url: ""
+    checked_on: 2026-08-19
+    note: 自写 label、自写解读、人工确认的边
+
+  - id: derived:two-hop
+    license: n/a (推导产物，非外部语料)
+    url: ""
+    checked_on: 2026-08-19
+    note: 由两条 L1 边传递推导；产出标 L2_DERIVED，不可导出
+
+  - id: ai:claude-opus-5
+    license: n/a (模型产出，非外部语料)
+    url: ""
+    checked_on: 2026-08-19
+    note: AI 初稿；产出标 L4_AI，不可导出
+
+# 明确禁止的来源。列在此处是为了让拒绝理由可追溯，不只是"不在白名单里"。
+denied:
+  - id: SCF
+    reason: CC BY-ND 4.0，禁止演绎；明确点名禁止用 AI 基于其内容生成衍生内容
+    checked_on: 2026-08-19
+  - id: CIS-Controls
+    reason: CC BY-NC-ND，禁止商用且禁止演绎
+    checked_on: 2026-08-19
+  - id: PCI-DSS
+    reason: PCI SSC 条款禁止未经书面许可的发布、分发、复制、衍生与非个人用途使用
+    checked_on: 2026-08-19
+  - id: CSA-CCM
+    reason: 内部评估免费；商用/再分发/衍生需 CSA 授权，尚未取得
+    checked_on: 2026-08-19
+  - id: OLIR-third-party
+    reason: NIST OLIR 目录中第三方提交件无统一授权，由提交方自行负责；SCF 亦为提交方
+    checked_on: 2026-08-19

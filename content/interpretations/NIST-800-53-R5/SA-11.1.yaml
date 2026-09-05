@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shipping code in which known flaw patterns (injection sinks, weak
+      crypto, unsafe deserialization, hard-coded secrets) reach production because
+      nobody ran a machine check before release. The risk is not 'we forgot to write
+      a policy' — it is exploitable defects that a linter would have flagged but no
+      one ran, or ran but never acted on.
+    basis: inferred
+  plain_zh:
+    value: Require static code analysis on the code you develop or buy, use tools
+      that actually look for security defects, act on what they find, and keep the
+      trail so an auditor can see it happened.
+    basis: inferred
+  practice:
+    value:
+      '1': Run a static analysis tool against the application before each release
+        and against any third-party code you integrate; someone reviews the report
+        before merge or release.
+      '2': Analysis runs in CI on every change; severity-based gating blocks merges
+        on critical/high findings; findings are tracked as defects with owners and
+        due dates; tool configuration is checked into version control.
+      '3': Multiple complementary engines (SAST, secret scanning, SCA/lockfile parsing)
+        run automatically; results feed a defect backlog with SLAs; trends are reviewed;
+        new code is gated while legacy findings are tracked down by risk; coverage
+        gaps (unsupported languages, generated code) are explicitly accepted or excluded
+        with justification.
+    basis: inferred
+  evidence:
+    value: Static analysis tool configurations in source control, CI pipeline logs
+      showing scans on each build, scan reports tied to builds/releases, defect tickets
+      for findings with severity, owner, and remediation status, evidence that critical/high
+      findings actually blocked release.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a SonarQube server' or 'the scanner runs nightly' as
+      the control. Running the tool is not the control — gating releases on the findings,
+      remediating them, and showing the loop closed is. A green dashboard with thousands
+      of un-triaged 'info' findings passes nothing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last release that was blocked, or should have been blocked, because
+      of a static analysis finding — what was it and what happened.
+    - How are findings from third-party and open-source components handled differently
+      from first-party code, and where is that documented?
+    - Which parts of your codebase are excluded from the scan, and what is the justification
+      for each exclusion?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.025555Z'
+  signed_digest: 01dcff8a894ede32ee24e5288b5c100e1f5c1942579acedd79bc3048effe43f4
+  interview_seconds: null
+  inherited_from: null

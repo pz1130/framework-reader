@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:RS.MA-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'deciding whether to recover only after the fact' — when an incident occurs,
+      no one on site can make an immediate decision to enter recovery, or the trigger for recovery actions
+      is based entirely on personal judgment, causing incidents that should be recovered to drag into
+      disasters, and those that should not be recovered to be hastily restarted, compromising forensics
+      and causing secondary losses.
+    basis: inferred
+  plain_zh:
+    value: Clearly define in advance the criteria for 'when an incident is considered over and when recovery
+      should begin,' and enable the executing personnel to follow these criteria when actual triggers
+      occur, rather than holding impromptu meetings to negotiate.
+    basis: inferred
+  practice:
+    value:
+      '1': In the emergency plan or incident response process, there is a statement specifying who, based
+        on what conditions, approves entry into the recovery phase after an information security incident.
+      '2': Recovery trigger conditions are clearly written by incident category or severity (e.g., core
+        business interruption duration, data impact scope, forensics completion markers); when triggered,
+        approval records are left; during incident reviews, the appropriateness of the trigger is revisited.
+      '3': Recovery entry conditions are quantified and validated through exercises in plans and playbooks;
+        triggers and approvals are auditable and logged in ticketing systems or platforms; when actual
+        triggers deviate from conditions, the incident owner must document the reasons and escalate; recovery
+        conditions are linked to business continuity plans and automatically notify relevant decision-makers.
+    basis: inferred
+  evidence:
+    value: Sections in the emergency plan or incident response manual covering recovery trigger conditions,
+      approval actions for the recovery phase in incident records (approver, time, basis conditions),
+      scripts and minutes from exercises simulating recovery triggers, and analysis in incident review
+      reports on whether the recovery timing was appropriate.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having recovery steps written in the incident response process' equates to having
+      trigger criteria. Many teams only write 'restore services after confirming the incident is resolved'
+      — this does not constitute a standard because there are no measurable indicators; auditors immediately
+      expose this when asking 'Who confirms? What is confirmed? Based on what evidence?'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pull up the most recent real incident record and tell me who approved entry into the recovery phase
+      and at what time?
+    - Is there a gap between the trigger conditions specified in the plan and the actual trigger? How
+      was the gap addressed in the review?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.642287Z'
+  signed_digest: cc0ab49a3fca3b1c46ecb0d094ce034e5877ed00bd9df3d0486b98386d27e730
+  interview_seconds: null
+  inherited_from: null

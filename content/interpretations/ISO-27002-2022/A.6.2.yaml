@@ -1,0 +1,60 @@
+control_id: ISO-27002-2022:A.6.2
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that people may enter the organization without their responsibilities being
+      formally established—employees or contractors verbally agree to comply with security rules at onboarding,
+      but when an incident occurs, they claim no one informed them of the boundaries; without written
+      acknowledgment, disciplinary actions and accountability lack a basis.
+    basis: inferred
+  plain_zh:
+    value: Before or at the start of the employment relationship, document security responsibilities,
+      acceptable use, confidentiality, and conflict-of-interest constraints in written terms, have the
+      individual read, understand, and sign to confirm, and only then grant system access.
+    basis: inferred
+  practice:
+    value:
+      '1': Employment contracts or onboarding documents include a security clause section; employees sign
+        at onboarding; the clause covers basic confidentiality and acceptable use requirements.
+      '2': Security clauses form a standalone section, covering confidentiality, data classification,
+        acceptable use, and conflict of interest; obligations are reaffirmed at offboarding; signed copies
+        are archived and retrievable.
+      '3': Clauses are tied to the onboarding process—no signature, no account creation; when clauses
+        are updated, all employees re-sign; the system records acknowledgment status, with automatic reminders
+        or even access revocation for overdue unsigned acknowledgments.
+    basis: inferred
+  evidence:
+    value: Signed scans or electronic acknowledgment records, clause versions and update logs, evidence
+      of the sequence between acknowledgment and account activation in the onboarding process, and spot
+      checks on completeness of offboarding employees' acknowledgment records.
+    basis: inferred
+  common_myth:
+    value: Assuming that embedding security clauses in the final pages of an employment contract counts
+      as acknowledgment. Auditors will ask whether employees signed specifically for the security clauses,
+      not just the general contract—the two have different legal effects and evidentiary weight.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'For new employees, which comes first: security clause acknowledgment or account activation? Provide
+      process evidence.'
+    - After clause updates, which employees need to re-sign? How does the system know who hasn't signed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.325099Z'
+  signed_digest: c43472802339c106d8e00b6a76a356f34dd83966e33852095f31c78e7192cf82
+  interview_seconds: null
+  inherited_from: null

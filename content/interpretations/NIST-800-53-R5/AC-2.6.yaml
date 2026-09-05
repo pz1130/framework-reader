@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops dormant or stale privileged accounts from accumulating and turning
+      into the long-lived backdoors that drive major breaches. Without dynamic privilege
+      management, the same high-rights identity gets reused, never re-justified, and
+      outlives the people, contractors, and automated jobs it was issued for.
+    basis: inferred
+  plain_zh:
+    value: Define who can grant privileged access, monitor how those privileges are
+      used in real time, and automatically shrink or revoke access when conditions
+      change (user role, risk score, session behaviour, time of day, dormant period).
+      Privileges should not sit assigned forever just because nobody revoked them.
+    basis: inferred
+  practice:
+    value:
+      '1': Document who is allowed to issue privileged access and on what basis; identify
+        the privileged accounts; require a justification at grant time; rotate passwords/keys
+        on a defined schedule.
+      '2': Privileges are issued and revoked through a PAM tool or gateway with workflow
+        logs; sessions or actions of privileged accounts are logged and reviewed;
+        dormant privileged accounts are detected and disabled after a defined idle
+        period.
+      '3': Access is dynamically scoped by context (role, risk score, geo, task, time
+        window), auto-revoked or step-up authenticated when the context shifts, and
+        continuous usage analytics surface anomalies. Privileged grants are short-lived
+        by default and reviewed against actual use, not just ticket approvals.
+    basis: inferred
+  evidence:
+    value: Privileged-account inventory, PAM tool configuration and access logs, dormant-account
+      reports, ticket-to-grant correlation, sample session recordings or command logs,
+      evidence of automatic revocation or step-up on risk change.
+    basis: inferred
+  common_myth:
+    value: Treating dynamic privilege management as "we rotate the service account
+      password every 90 days." Rotation alone is not dynamic management; the same
+      standing privileges remain in place between rotations, so a compromised credential
+      still has unlimited reach until the next cycle. Dynamic management means privileges
+      shrink, escalate, or expire based on who is using them and how.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the privileged accounts that have not been used in the last 60 days
+      and what happened to them.
+    - When a user's risk profile changed (e.g., moved to a sensitive project or off-boarded
+      a contractor), which of their standing privileged entitlements were revoked
+      automatically and which required a ticket?
+    - Pull a random privileged session from last month - can you show the grant justification,
+      the scope of access actually used, and the revocation timestamp?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.139087Z'
+  signed_digest: f04c770b1769e2b52f5c113b20542ae3a64d9f580d161428ca7889e9899c48a4
+  interview_seconds: null
+  inherited_from: null

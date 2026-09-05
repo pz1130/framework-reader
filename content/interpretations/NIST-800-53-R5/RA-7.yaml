@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:RA-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the org from treating risk assessment as the end of the process —
+      without a documented response, identified risks float, no one owns remediation,
+      and the same findings reappear on the next cycle or get accepted silently.
+    basis: inferred
+  plain_zh:
+    value: Once a risk is identified, decide what to do with it (mitigate, transfer,
+      accept, avoid), assign an owner, set a timeline, and track it to closure — and
+      revisit when the risk changes or isn't actually being driven down.
+    basis: inferred
+  practice:
+    value:
+      '1': Each identified risk has a chosen response, a named owner, and a target
+        date; responses are recorded even when the decision is 'accept'.
+      '2': Responses are prioritized against risk tolerance; progress is reviewed
+        on a fixed cadence; acceptance decisions show who signed off and against which
+        threshold.
+      '3': 'Risk response is a living register: status updates tie back to control
+        changes or treatment actions, exceptions expire or get re-justified, and accepted
+        risks are re-evaluated when the threat, asset value, or business context shifts.'
+    basis: inferred
+  evidence:
+    value: Risk register entries showing response choice, owner, target date, and
+      current status; acceptance records with approver and rationale; review minutes
+      or tickets demonstrating follow-through; closure evidence for completed treatments.
+    basis: inferred
+  common_myth:
+    value: Treating the risk assessment report as the deliverable — assuming finding
+      the risk is the same as handling it, so nothing changes between report delivery
+      and the next assessment cycle.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a risk rated high on your last assessment: what was the chosen response,
+      who owns it, and is it closed?'
+    - Show me a risk the business chose to accept instead of treating — who signed
+      the acceptance and against what threshold?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.983015Z'
+  signed_digest: eb20d0a960db3888911dc99b7ee83e51c8fd707fce2dba96b4b359b791c5de70
+  interview_seconds: null
+  inherited_from: null

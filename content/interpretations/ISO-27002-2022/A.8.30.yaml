@@ -1,0 +1,72 @@
+control_id: ISO-27002-2022:A.8.30
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'the outsourced party delivers code, we pay and accept it, and that's the
+      end of it' — no one monitors whether the development process, testing, and defect remediation are
+      adequate, so the software received may contain backdoors or many unpatched vulnerabilities, and
+      later problems become our own responsibility.
+    basis: inferred
+  plain_zh:
+    value: For outsourced development, clear security requirements must be set, covering everything from
+      contract terms to day-to-day management, including the development process, testing and defect remediation,
+      and whether the deliverables are authentic and complete — not just checking that functions work
+      before accepting.
+    basis: inferred
+  practice:
+    value:
+      '1': Include security requirements in the procurement contract (e.g., vulnerability remediation
+        obligations, testing requirements); upon delivery, confirm that the functionality was completed
+        by the other party as agreed; maintain acceptance test records for critical outsourced projects.
+      '2': Have a written development and testing plan for outsourced projects; require the other party
+        to provide evidence of testing and vulnerability remediation; the contract lists responsibilities
+        and timelines for fixing security vulnerabilities; perform necessary security testing on delivered
+        software (e.g., vulnerability scanning, code review).
+      '3': For high-risk outsourcing, insist on on-site review or spot checks of critical phases (e.g.,
+        architecture review, code review); use real data in the test environment for pre-production security
+        validation; track changes and defect remediation during the development process, with traceability
+        to specific commits; incorporate outsourced test results as a formal section in our own test report.
+    basis: inferred
+  evidence:
+    value: Security clauses in the outsourcing contract, the outsourced party's security test plan and
+      methodology description, development process documentation (development standards and tool lists),
+      vulnerability remediation records, acceptance test reports (including security items), evidence
+      of code review or penetration testing, and delivery lists with version records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'the outsourced party said they tested and provided a test report' counts as
+      evidence. The report may be functional testing or self-serving claims — what is needed is verifiable
+      evidence (execution records, defect tickets, before-and-after remediation comparisons), and for
+      critical outsourced projects, there should be independent security spot checks by our side; otherwise,
+      we are betting security on the other party's conscientiousness.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Does the contract specify how quickly vulnerabilities must be fixed? What were the exact deliverables
+      from the last outsourced delivery?
+    - How do you verify that the outsourced party's claim of 'tested' is not empty talk? Who performed
+      the last security test and against what standards?
+    basis: inferred
+  regional_note:
+    value: Auditors in Europe and the US both value contractual binding force and verifiable evidence.
+      In Europe, due to supply chain attack cases, they more often probe whether you required the outsourced
+      party to follow agreed processes when subcontracting or upgrading components; in the US, the focus
+      is more on procurement processes and specific acceptance test records. The differences in approach
+      are not significant, but sampling depth may vary.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.412348Z'
+  signed_digest: bfe2f98e507876b0c44e937c1a3ef033044e89a35c28b726994f9028530aaae7
+  interview_seconds: null
+  inherited_from: null

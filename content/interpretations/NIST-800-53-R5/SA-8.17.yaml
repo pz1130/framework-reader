@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-8.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the classic failure of secure components chained together creating
+      an insecure whole - trusted internal links, missing end-to-end authentication,
+      replay or tampering between modules, and a false sense of safety because each
+      piece was reviewed in isolation.
+    basis: inferred
+  plain_zh:
+    value: 'Treat the system as a composition of distributed parts, not as independent
+      silos: define trust between components, protect the interfaces that link them,
+      and verify that the end-to-end flow actually preserves confidentiality, integrity,
+      and authenticity across every hop.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components communicate across trust or process boundaries;
+        document the trust assumptions between them (who authenticates whom, what
+        data crosses, which boundary it crosses).
+      '2': Apply interface protections at every cross-component hop - mutual authentication,
+        integrity protection, replay protection, and least-privilege channels; record
+        the design decisions and threat assumptions in design artifacts.
+      '3': 'Verify end-to-end behavior, not just per-component behavior: test that
+        a request traversing multiple components cannot be tampered with, replayed,
+        or escalated at the seams; review composition whenever components, versions,
+        or trust boundaries change.'
+    basis: inferred
+  evidence:
+    value: Design documents showing trust boundaries between distributed components,
+      interface protection decisions (authentication, integrity, replay defenses)
+      per hop, threat model or assumptions for cross-component flows, and end-to-end
+      test or review records covering composition scenarios.
+    basis: inferred
+  common_myth:
+    value: Assuming that because each component is secure and each link uses TLS,
+      the composed system is secure - forgetting that trust between components, identity
+      propagation across hops, and end-to-end authorization are separate problems
+      that must be designed and tested at the composition layer.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where the trust boundary between component A and component B is documented
+      and what assumption it makes about the link.
+    - How do you verify that a multi-component transaction cannot be tampered with,
+      replayed, or have its identity swapped mid-flow?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.241143Z'
+  signed_digest: 58c5cb4730d74399d529621e366b2b975f759ea5cd7cc4289da6b6ce24e3e861
+  interview_seconds: null
+  inherited_from: null

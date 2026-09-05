@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:GV.SC-09
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that supply chain security is siloed within procurement or security departments,
+      disconnected from the company's overall risk governance—when a supplier incident affects business
+      continuity or compliance, no one incorporates it into enterprise-level risk decisions, and no one
+      continuously monitors supplier performance until product end-of-life.
+    basis: inferred
+  plain_zh:
+    value: Integrate supply chain security practices into the enterprise cybersecurity and risk management
+      system, and monitor supplier performance throughout the entire lifecycle from selection, procurement,
+      and use to end-of-life; do not stop after signing the contract.
+    basis: inferred
+  practice:
+    value:
+      '1': There are supply chain security requirements and a supplier list; basic security clauses are
+        included in the procurement process; it is clear who is responsible for supplier risk.
+      '2': Supplier risks are classified and entered into the enterprise risk register; there are periodic
+        supplier performance reviews and security reassessments; there is an escalation path and handling
+        records for issues.
+      '3': Supply chain security metrics are included in enterprise-level risk reports; critical suppliers
+        have full lifecycle monitoring and exit plans; supplier changes (e.g., subcontracting, product
+        discontinuation) trigger reassessment.
+    basis: inferred
+  evidence:
+    value: Supplier risk register and enterprise risk reports, supply chain security policy, security
+      clauses in procurement contracts and supplier performance review records, supplier lifecycle management
+      process documents, and minutes of drills for critical supplier exit or switch.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'once the security questionnaire is completed and contract clauses
+      are signed, this control is done'—questionnaires and clauses are just entry thresholds. Auditors
+      really look at whether supplier risk has entered the enterprise risk register, whether supplier
+      performance is continuously reviewed, and whether product discontinuation or supplier subcontracting
+      triggers reassessment. A one-time assessment does not count as 'integrated'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the risk level of your critical suppliers last discussed at an enterprise risk committee
+      meeting? Where are the records?
+    - How is your assessment process triggered when a supplier announces product discontinuation or subcontracts
+      core components?
+    - Please identify which role follows up on supplier risk from contract signing to product end-of-life,
+      at what frequency, and based on which document.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.514688Z'
+  signed_digest: 54d8b2af37bff51bb09215c051fb0c7d9782b79bf4d916154289762cd71fca37
+  interview_seconds: null
+  inherited_from: null

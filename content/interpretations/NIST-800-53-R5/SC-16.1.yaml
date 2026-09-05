@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-16.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against tampering or silent corruption of transmitted information:
+      if integrity verification is only performed at endpoints or manually on demand,
+      altered data can be accepted by downstream systems and propagate unnoticed until
+      a failure or an adversarial outcome occurs.'
+    basis: inferred
+  plain_zh:
+    value: Requires you to verify that data you transmit hasn’t been modified in transit
+      before it is used by the receiver — and to do that verification in an automated,
+      systematic way rather than trusting the channel alone or checking occasionally
+      by hand.
+    basis: inferred
+  practice:
+    value:
+      '1': For at least the most critical data flows, use a standard integrity mechanism
+        (checksum, hash, signature) at the sending or receiving end, and document
+        where it is applied.
+      '2': Integrity verification is applied to all traffic on defined segments or
+        to all files in defined repositories; verification failures are logged with
+        a defined response path.
+      '3': Integrity verification is built into ingestion or consumption logic itself
+        (not a separate manual check), alarms on failure, and can prove that a failure
+        was acted on — including automated quarantine or re-fetch of data.
+    basis: inferred
+  evidence:
+    value: List of data flows or system pairs covered by integrity verification; configuration
+      settings or code snippets showing a hashing or certificate verification step
+      before data use; logs or SIEM entries for integrity-check failures and the associated
+      alert or incident tickets; results of a red-team or penetration test that attempted
+      to alter traffic in a way the control caught.
+    basis: inferred
+  common_myth:
+    value: Assuming that using TLS at the transport layer satisfies integrity verification
+      for the data itself — TLS only protects the channel while data is in motion,
+      not the content after it crosses a boundary such as an API gateway, a message
+      queue, or a file share, and it does not protect against an attacker who has
+      already gained access to one endpoint.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When a hash check or signature verification fails, exactly what happens to the
+      data and what alert is generated?
+    - Show me a real example of an integrity verification failure from your logs or
+      SIEM and what you did about it.
+    - Which of your data flows or file transfers are not covered by any integrity
+      check, and why is that acceptable?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.409083Z'
+  signed_digest: 748e7611a4c1460edc5fcd1f128851ce1375a2149c0f1eabca2e448cf90015d5
+  interview_seconds: null
+  inherited_from: null

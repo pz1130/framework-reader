@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-20.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data exfiltration and malware introduction via removable
+      media (USB sticks, SD cards, portable HDDs, optical discs, etc.) that bypass
+      network controls, endpoint EDR visibility, and DLP inspection, where a single
+      unattended device can carry terabytes out or seed ransomware/air-gapped network
+      compromise in.
+    basis: inferred
+  plain_zh:
+    value: Restrict or ban the use of portable/removable storage devices so untrusted
+      media cannot be plugged into your systems and silently move data in or out.
+    basis: inferred
+  practice:
+    value:
+      '1': Written rule that prohibits or strictly limits portable storage use, with
+        an exception/approval path; basic awareness given to staff.
+      '2': Technical enforcement at the OS/laptop level (device-class blocking, whitelist
+        of approved device IDs), centrally managed; endpoint logs of mount/insert
+        events retained; exception tickets logged.
+      '3': Default-deny across endpoints and servers, including kiosks and OT/SCADA
+        hosts where applicable; tamper-resistant enforcement (users cannot easily
+        disable); integration with DLP and EDR so attempted use alerts; periodic audit
+        of blocked events and exceptions; policy covers contractors, BYOD, and lab/loaner
+        devices.
+    basis: inferred
+  evidence:
+    value: Portable storage use policy, endpoint configuration baselines showing device-class
+      blocking, exception/approval records, mount-event logs from managed endpoints,
+      sample investigation of a blocked event.
+    basis: inferred
+  common_myth:
+    value: Treating a Group Policy or MDM setting as proof the control is met, while
+      laptops in the field are not enrolled, contractors plug in freely, and no one
+      reviews the blocked-event logs. The setting exists; the enforcement does not.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time a portable storage device was plugged into a managed endpoint
+      — was it blocked, and who reviewed it?
+    - Which endpoint populations (contractors, BYOD, OT, lab, kiosk) are not covered
+      by this enforcement, and what stops media use there?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.169635Z'
+  signed_digest: c7f7ce8d8a08ac2a4bcfbdcb777345f9d2cc50655566aaa9d74d8d1f9e364a45
+  interview_seconds: null
+  inherited_from: null

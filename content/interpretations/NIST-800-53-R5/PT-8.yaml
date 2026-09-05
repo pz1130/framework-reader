@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:PT-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the privacy failure of mixing data across systems for matching
+      purposes without legal authority, notice, or safeguards—where agencies silently
+      compare records (e.g., benefits, law enforcement, employment) and produce adverse
+      actions against people who never consented to that linkage, leading to unlawful
+      harm, legal liability, and erosion of public trust.
+    basis: inferred
+  plain_zh:
+    value: When the organization uses computer programs to match records about people
+      across different systems to make decisions affecting them, do it only under
+      a documented legal agreement, with published notice, stated purpose, and protections
+      for the individuals being matched; do not do ad-hoc matching on the side.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify any programs where records about individuals are matched across
+        systems to determine eligibility, benefits, employment, debt, or law-enforcement
+        actions. Confirm each one operates under a written matching agreement with
+        the data source agency.
+      '2': 'Maintain a registry of all matching programs with: legal authority cited,
+        purpose, data elements exchanged, recipients, retention, and the notice published.
+        Conduct periodic compliance reviews of each agreement.'
+      '3': 'Embed the matching requirements into the privacy program: technical and
+        organizational controls prevent ad-hoc or one-off matching that bypasses the
+        agreement process; individual rights (access, correction) are operationalized;
+        program performance, costs, and match results are reported to oversight bodies
+        and the public as required.'
+    basis: inferred
+  evidence:
+    value: A registry of computer matching programs, signed matching agreements (or
+      documented determination that none exist), published Federal Register-style
+      notices, documented purpose statements, data-exchange inventories, individual-rights
+      procedures for matched subjects, and periodic compliance or oversight reports.
+    basis: inferred
+  common_myth:
+    value: Assuming this control is irrelevant because 'we don't do federal benefits
+      matching'—then quietly building a cross-system lookup for fraud, marketing,
+      employment screening, or identity verification without any matching agreement
+      or notice, and treating it as just another data integration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - List every program where records about individuals are retrieved from more than
+      one system and used to make a decision about that person. Which of these are
+      covered by a matching agreement, and on what authority?
+    - Show the most recent matching agreement and the notice that was published for
+      it. How is the source agency informed when records are used or disputed?
+    basis: inferred
+  regional_note:
+    value: Computer matching as a formal regulated activity is largely a U.S. federal
+      construct (the Privacy Act and Computer Matching and Privacy Protection Act
+      framework). In the EU the closest analogue is GDPR Art. 6/22 lawful basis for
+      automated decision-making and DPIA for large-scale profiling—strict but structured
+      differently; auditors in Europe will ask about profiling, automated decisions,
+      and transparency rather than a matching agreement.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.917695Z'
+  signed_digest: ed4d5ee93c35c710ff7d8169ec3e9b4951e5d280890a43f7c1e6d583d5c2f7be
+  interview_seconds: null
+  inherited_from: null

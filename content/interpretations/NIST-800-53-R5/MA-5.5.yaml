@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:MA-5.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk that maintenance performed by non-system personnel
+      (e.g., external contractors, vendor technicians, or internal non-IT staff) goes
+      unvetted and unmonitored, potentially introducing malware, leaking sensitive
+      data, or making unauthorized changes that bypass security controls.
+    basis: inferred
+  plain_zh:
+    value: When someone who is not part of your system administration team touches
+      your systems for maintenance, you need to know who they are, why they are there,
+      what they are allowed to do, and have a way to supervise or log their actions.
+      This control is about not giving outsiders or non-IT staff free rein over your
+      critical systems without oversight.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as 'non-system maintenance' in your environment. Identify
+        the types of personnel who perform it (contractors, vendors, internal non-IT
+        staff) and establish a process for approving and scheduling such maintenance,
+        including requiring a point of contact for supervision.
+      '2': Implement a formal authorization process for non-system maintenance, including
+        documented roles and responsibilities, a checklist of permitted actions, and
+        a requirement for a system administrator to be present or to review logs after
+        the fact. Keep records of who did what, when, and why.
+      '3': Integrate non-system maintenance into your change management and monitoring
+        systems. Use technical controls (e.g., temporary credentials, restricted network
+        access, video surveillance in server rooms) to enforce boundaries. Conduct
+        periodic audits of maintenance activities and verify that no unauthorized
+        changes were made.
+    basis: inferred
+  evidence:
+    value: A documented policy defining non-system maintenance, an approval workflow
+      with named approvers and supervisors, records of maintenance activities (who,
+      what, when, why), and logs of any system interactions or changes during maintenance
+      windows.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the maintenance is done by a 'trusted' vendor or
+      internal non-IT staff, no monitoring or supervision is needed - but even trusted
+      personnel can make mistakes or have compromised credentials, and without oversight
+      you won't know until it's too late.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an example of a non-system maintenance event and the approval trail
+      for it.
+    - How do you ensure that a contractor performing maintenance has no more access
+      than what's needed, and who is responsible for supervising them on-site?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.444009Z'
+  signed_digest: 3616d60504fdd5fa6246e1656b00d23ea8789a28d74f20c73455e1293521bc28
+  interview_seconds: null
+  inherited_from: null

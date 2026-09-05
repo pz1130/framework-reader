@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:IA-12.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against trusting identity assertions that the organization never
+      validated itself—where a user, contractor, or partner is admitted because an
+      external party vouched for them, but no one inside can explain how that identity
+      was actually proven, when, or against what evidence. The failure mode is inherited
+      fraud: a forged or borrowed credential upstream becomes a trusted insider downstream,
+      and the receiving organization has no chain of custody to detect or revoke it.'
+    basis: inferred
+  plain_zh:
+    value: When you let someone log in based on an identity that was proved by another
+      organization (a partner, a government eID, a federated IdP), you must document
+      who proved it, to what level of assurance, and accept only those that meet your
+      own standard—rather than rubber-stamping any identity the external party chose
+      to issue.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a short, written list of which external identity sources (partner
+        federations, government eID schemes, PIV/IAM providers) you accept, and state
+        the minimum assurance level each must meet before its identities may log in.
+      '2': Record, per login or per provisioning event, which external source asserted
+        the identity, the assurance level claimed, and which attribute (email, employee
+        ID, affiliation) was used to map it to an internal account; keep the agreement
+        with the external provider that defines their proofing obligations.
+      '3': Re-validate the external provider's proofing process on a defined cadence
+        (or when their scheme changes), revoke acceptance from sources whose assurance
+        drops, and treat any externally-proofed identity under the same lifecycle
+        rules (re-proofing, deprovisioning) as directly-proofed ones.
+    basis: inferred
+  evidence:
+    value: Acceptance list of external identity providers with stated assurance levels,
+      written agreements defining the provider's proofing obligations, sample mappings
+      showing which external attributes bound to which internal accounts, and re-validation
+      records confirming the external proofing still meets the bar.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the external party is reputable or because federation
+      'just works' technically, the control is satisfied. The control is about whether
+      your organization made an acceptance decision and can defend it—not whether
+      the SSO connection lights up green.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which external identity sources do you accept, and what assurance level did
+      you require each one to meet?
+    - Show me a user account that was created from an externally-proofed identity—walk
+      me through how that mapping was approved and what attribute bound them.
+    - When was the last time you re-checked that an external provider's identity-proofing
+      still meets your standard?
+    basis: inferred
+  regional_note:
+    value: European auditors tend to press harder on the eIDAS assurance levels and
+      on whether the mapping from an external identity to an internal account is itself
+      documented, because GDPR linkage rules apply. US audits under 800-53 lean on
+      PIV and federal identity assurance language but rarely probe cross-border federation
+      with the same depth.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.088414Z'
+  signed_digest: 3807f7c03030cc6c5ee53a35385f43f2bf9913c4b5d1e66fc6d1a73ad63e819e
+  interview_seconds: null
+  inherited_from: null

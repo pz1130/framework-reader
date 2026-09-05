@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AT-6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against training that nobody measures — if the organization never
+      asks learners whether the training landed and never checks whether it changed
+      behavior, security awareness turns into a compliance checkbox where every seat
+      is 'filled' but incidents keep happening from the same mistakes.
+    basis: inferred
+  plain_zh:
+    value: After delivering security training, gather feedback from learners and supervisors
+      on how well it worked, feed that input back into improving the program, and
+      keep records so the cycle is visible.
+    basis: inferred
+  practice:
+    value:
+      '1': After each training session or campaign, collect basic learner feedback
+        (e.g., a short survey) and keep the results somewhere reviewable.
+      '2': Feedback is reviewed by the person running the program; specific gaps (misunderstood
+        topics, low engagement groups) trigger content or delivery changes; changes
+        are documented.
+      '3': Feedback loops cover learners, supervisors, and post-incident indicators
+        (e.g., phishing report rates, repeat findings); updates to the program are
+        tracked to closure; effectiveness is reviewed at least annually against measurable
+        goals.
+    basis: inferred
+  evidence:
+    value: Training feedback forms or survey results, review notes showing how feedback
+      drove program changes, before/after metrics on awareness behaviors, and an annual
+      training-effectiveness summary that ties feedback to concrete updates.
+    basis: inferred
+  common_myth:
+    value: Assuming that completing the survey itself is the control — collecting
+      feedback that nobody reads or that never changes a slide, a delivery channel,
+      or a topic priority means the loop is open and the control is not met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last two training feedback summaries and what changed in the program
+      as a result.
+    - Which audience segments gave the lowest scores or engagement, and what did you
+      do about them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.492618Z'
+  signed_digest: b44b4422cad9e2aea0e377e830150a88c07b3d6f60aaf697058e6a030cd656f4
+  interview_seconds: null
+  inherited_from: null

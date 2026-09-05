@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops users from being able to grant access that they themselves do not
+      own - without that constraint, anyone with a file or object can hand out rights
+      to anyone else, and a stolen low-privilege account becomes a path straight to
+      sensitive data the legitimate owner never intended to share.
+    basis: inferred
+  plain_zh:
+    value: Only the resource owner (or someone explicitly delegated by policy) can
+      decide who gets access to it, and the system must enforce that - users cannot
+      hand out rights they do not themselves hold, especially 'access-by-access' grants
+      like read or write.
+    basis: inferred
+  practice:
+    value:
+      '1': Filesystems, shares, and object stores are configured so access rights
+        flow from a defined owner; public-by-default shares (e.g. open Windows shares,
+        world-readable buckets) are identified and closed down; basic ACL audits exist.
+      '2': A written ownership model defines who is the owner, how delegation works,
+        and that 'no propagation of rights you do not hold' is a rule; management
+        tooling scans for and reports permissive ACLs; deviations require approval.
+      '3': Systems technically enforce that a user cannot grant rights they do not
+        possess (no 'I can share it, so you can share it' chains); rights grants are
+        logged with granter identity, owner, and justification; non-owner grants produce
+        alerts; the model holds across cloud object stores, repositories, and SaaS.
+    basis: inferred
+  evidence:
+    value: ACL/permission configuration baselines, owner-to-asset mapping, scan reports
+      showing non-owner grants and over-permissive ACLs, change logs of rights grants
+      with granter and recipient, samples of incidents where unauthorized sharing
+      was detected and rolled back.
+    basis: inferred
+  common_myth:
+    value: Believing that DAC is satisfied simply because users 'could' be made owners
+      and 'could' set permissions - the control's point is the opposite, that ordinary
+      users must NOT be able to hand out rights they don't have; if an account with
+      read-only to a folder can grant read to anyone, DAC is broken.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a resource where the owner and the person who granted current permissions
+      are different - how did the second person get that authority?
+    - Can a user with read-only access share that document with an external account
+      without the owner's approval? Demonstrate it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.234456Z'
+  signed_digest: 5859fef9df7df048d84b47655200d564994a1afd8a610b48dd4262c8ae4bc4e6
+  interview_seconds: null
+  inherited_from: null

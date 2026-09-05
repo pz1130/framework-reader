@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:IR-4.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an incident that keeps its foothold because a known-bad
+      capability stays enabled after it should have been cut. The risk is that a compromised
+      account, service, debug port, or remote-access channel continues to work during
+      containment simply because nobody pulled the plug automatically - the attacker
+      keeps moving, keeps exfiltrating, or keeps talking to C2 while humans debate
+      who has the authority to disable what.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when something looks compromised or out of bounds, the system
+      (not just a person) can shut the offending component off on its own, on a defined
+      trigger and within a defined time, so containment does not wait for someone
+      to notice and click.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the handful of high-blast-radius capabilities (remote admin, service
+        accounts, debug interfaces, network egress paths) where automatic disable
+        is realistic; pick one and wire a manual-or-time-based kill switch so it can
+        be cut in minutes, not hours.
+      '2': Define the specific triggers (anomaly score threshold, IOC match, failed-auth
+        burst, exfiltration alert, watchlist hit) and the timeout after which each
+        capability auto-disables; document who decides which triggers are armed and
+        how disabling is logged.
+      '3': Capabilities that should not exist at all (default-enabled debug shells,
+        vendor backdoors) are removed by default; remaining ones auto-disable on trigger
+        with cryptographically signed audit evidence, are tested in tabletop exercises,
+        and disablement is integrated with the IR playbook so containment, not just
+        detection, is automated end-to-end.
+    basis: inferred
+  evidence:
+    value: List of in-scope capabilities and their configured auto-disable rules,
+      trigger thresholds and timeouts, IR/IR-4 runbook excerpts referencing automatic
+      disablement, test or tabletop records showing a capability actually went dark
+      on trigger, and audit log samples of past auto-disable events with who/what/when.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a 'disable account' button or a documented kill-switch
+      procedure counts as automatic disabling. The button exists, the runbook is on
+      paper, and during the real incident nobody pressed it for two hours while the
+      attacker moved laterally - that is exactly what this control is meant to prevent,
+      and auditors know the difference between a documented procedure and a tested,
+      system-enforced one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a capability you say auto-disables: show me the last time it actually
+      triggered, the log entry, and how long from trigger to fully disabled.'
+    - Which capabilities are still manual-only, and what is the documented reason
+      they cannot be auto-disabled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.317962Z'
+  signed_digest: 2334247df43cff088b3aa0bc1160b6ac3ee77f4419ebc8954a8bee4931c235bd
+  interview_seconds: null
+  inherited_from: null

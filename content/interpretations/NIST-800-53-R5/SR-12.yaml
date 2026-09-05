@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:SR-12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data and credentials leaking out via hardware and media
+      that the organization thinks it has 'gotten rid of' — disks reappearing on secondary
+      markets, SSDs retaining blocks after a quick format, decommissioned network
+      gear still authenticated to the cloud, printers and IoT devices holding keys
+      or configs in flash. The failure mode is treating disposal as a logistics event
+      (trash picked up, asset off the books) instead of a security event (the bytes
+      and credentials on it are gone or unusable).
+    basis: inferred
+  plain_zh:
+    value: Before components leave the organization — sold, returned, recycled, donated,
+      or trashed — make sure the data, keys, configs, and firmware-level state on
+      them cannot be recovered or misused. Cover every category of component that
+      stores or processes data, not just laptops and servers.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a written disposal procedure that names what gets sanitized and how;
+        maintain a chain-of-custody record from removal to final disposition; know
+        which vendor or recycler receives the equipment.
+      '2': Sanitization method is chosen per media type (e.g., secure erase for SSDs,
+        degauss or shred for magnetic media, reset/wipe for mobile and IoT); records
+        show method used, who performed it, and when; reuse, resale, and donation
+        paths are explicitly handled, not just disposal.
+      '3': Methods follow a published standard (NIST SP 800-88 or equivalent); verification
+        or sampling proves sanitization actually worked on representative devices;
+        cloud and network-attached gear (load balancers, firewalls, storage controllers,
+        smart NICs) have documented credential and config removal; failed or in-warranty
+        returns are treated with the same rigor because the device is leaving the
+        boundary.
+    basis: inferred
+  evidence:
+    value: Written disposal and media-sanitization procedure, asset-to-disposition
+      records showing chain of custody, sanitization logs keyed to individual devices
+      and media types, certificates of destruction or sanitization from downstream
+      vendors, and evidence of verification (sampling, tool output, or audit of returned
+      assets).
+    basis: inferred
+  common_myth:
+    value: Believing a quick format, factory reset, or 'we wiped the drive' satisfies
+      the control. On modern SSDs and self-encrypting drives, those actions often
+      leave user data recoverable; on network and cloud-provisioned gear, the real
+      risk is admin credentials and device certificates still working after the hardware
+      is gone — none of which a laptop reimage touches.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three devices disposed of in the last six months — show me the sanitization
+      record, the method used, and proof the method was appropriate for that media
+      type.
+    - When a device is returned under warranty or sold to a reseller, what specifically
+      happens to the admin credentials, certificates, and cloud registrations on it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.152590Z'
+  signed_digest: 719ffc6babce86cf7de8af641bfcd9f5da0ba3be4921ea058b78222b2c419e04
+  interview_seconds: null
+  inherited_from: null

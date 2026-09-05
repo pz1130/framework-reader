@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-8.27
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against security mechanisms that are technically sound but unusable
+      in practice — strong passwords no one can remember, MFA flows employees bypass,
+      warnings no one reads — because the design ignored how humans actually behave
+      under pressure, fatigue, and habit.
+    basis: inferred
+  plain_zh:
+    value: When designing, building, or acquiring systems, explicitly account for
+      human limitations and likely behavior so that security functions are usable
+      under real conditions and do not get worked around or abandoned.
+    basis: inferred
+  practice:
+    value:
+      '1': In design reviews, ask whether the security interaction is realistic for
+        the user (e.g., can the password policy be remembered, is the MFA prompt clear);
+        drop features people will obviously bypass; record the reasoning.
+      '2': Define a small set of human-factor principles (cognitive load, error tolerance,
+        predictable defaults) and apply them at requirement and design time; keep
+        a record showing each security control was checked against them before release.
+      '3': Test usability of security-critical flows (login, MFA, warnings, reporting
+        buttons) with representative users in realistic conditions; track workarounds
+        and shadow processes after release; feed findings back into design and procurement
+        standards.
+    basis: inferred
+  evidence:
+    value: Design and procurement standards referencing human factors, design-review
+      records that document usability considerations, usability test reports for security-critical
+      flows, and post-release evidence (logs, tickets, observed workarounds) showing
+      the design actually works in practice.
+    basis: inferred
+  common_myth:
+    value: Assuming 'users will follow the policy if we train them enough' is enough,
+      so security features can be bolted on at the end. Training does not fix a login
+      flow that is unfriendly enough that people write passwords on monitors — the
+      design has to be human-factored first.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one security control you shipped in the last year and the human-factor
+      analysis done before it went live.
+    - How do you find out that users are bypassing a security mechanism, and what
+      is the most recent example you acted on?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.284072Z'
+  signed_digest: 1d7d8353842bb02245e4f82616a8918fa7e612dd3865997b7cf66d2481f41a8a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:PR.AA-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "once permissions are granted, no one manages them" — permissions are not
+      revoked when employees transfer, leave, or when external contractors' engagements end, and a single
+      account retains superuser privileges indefinitely, leading to data breaches or insider misuse that
+      cannot be blocked or traced.
+    basis: inferred
+  plain_zh:
+    value: Establish clear policies defining "who can access which systems, what they can view, and what
+      they can modify," and manage the allocation, enforcement, and periodic review of permissions to
+      ensure each individual has only the minimum access needed for their role, with critical operations
+      requiring segregation of duties.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a documented process for permission requests and approvals; new employees are provisioned
+        based on role templates; someone is responsible for revoking permissions upon termination or transfer
+        (even if just via email notification).
+      '2': Records exist for permission requests, approvals, changes, and deletions; periodic (e.g., quarterly)
+        manual or tool-assisted reconciliation of system permissions against actual needs; administrator
+        accounts have additional controls (e.g., dual approval).
+      '3': Permission provisioning and revocation are automatically triggered in integration with HR/ITSM
+        systems; critical system permissions undergo regular automated reviews with discrepancy reports
+        pushed out; bulk changes to sensitive permissions require secondary approval; privileged accounts
+        have periodic password changes and audit trails.
+    basis: inferred
+  evidence:
+    value: Permission management policy document (stating least privilege and segregation of duties principles),
+      role-permission matrix, approval forms for permission requests/changes/revocations (including HCM/ITSM
+      ticket numbers), periodic permission review records (e.g., quarterly checklist of active user accounts),
+      and administrator account grant and review records.
+    basis: inferred
+  common_myth:
+    value: Assuming that implementing an IAM/identity management platform automatically achieves least
+      privilege and segregation of duties. Tools are just conduits; if policies do not strictly define
+      "what permissions are assigned to which roles," approval chains are not assigned to individuals,
+      and reviews are not executed, permissions will still expand unchecked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last full permission review conducted? Against which organizational structure snapshot?
+    - For transferring employees, what is the average time from HR change to permission revocation in
+      legacy systems? Who is responsible for monitoring this timeframe?
+    - How many accounts in business systems have "never logged in for 12 months since creation"? When
+      will they be cleaned up?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.569163Z'
+  signed_digest: 497696f0e30af9b80699a0c24678bebc4148a1de03b2eaf3a6d6d35ca9e1e916
+  interview_seconds: null
+  inherited_from: null

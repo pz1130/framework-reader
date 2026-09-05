@@ -1,0 +1,71 @@
+control_id: NIST-CSF-2.0:GV.OC-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that legal, compliance, and security departments each speak their own language—data
+      privacy, industry regulations, and security clauses in contracts, if they cannot be consolidated
+      into a unified list with someone continuously tracking changes, then when an incident occurs, it
+      is discovered that new regulations were not followed or contractual commitments were not met, and
+      fines and penalties become part of the incident.
+    basis: inferred
+  plain_zh:
+    value: Compile all cybersecurity-related legal obligations, regulatory requirements, and customer
+      contract clauses into a single list, clarifying which requirements apply, who is responsible for
+      follow-up, and what to do when changes occur, so that these obligations are not scattered across
+      departmental silos.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a list identifying major applicable laws, regulatory requirements, and security clauses
+        in important contracts; at least one person or department is designated to monitor regulatory
+        changes and update the list.
+      '2': The list has clear applicability determinations and responsible parties; new projects or contract
+        signings are checked against the list for new obligations; formal notification and update processes
+        with records exist for regulatory changes.
+      '3': The list serves as a formal input to enterprise risk management, linked with supplier contract
+        terms and internal policies; systems or tools track regulatory changes and automatically assess
+        impact; closed-loop remediation tracking exists for unmet legal obligations.
+    basis: inferred
+  evidence:
+    value: List of legal and regulatory requirements with responsible parties, regulatory update tracking
+      records, compliance review records for new contracts or projects, annual compliance assessment reports,
+      and obligation fulfillment status tracking tables.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having a contract ledger in the legal department and a regulatory
+      list in the compliance department is sufficient. A ledger only answers 'what exists,' not 'which
+      apply to us, who executes them, and when to review.' Auditors look for evidence that scattered legal
+      obligations are aligned with specific systems and processes—for example, whether a regulatory data
+      retention requirement is reflected in the corresponding backup policy and deletion process.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was this regulatory list last updated? Who is responsible? What triggered the update?
+    - Pick one data protection obligation from your list and tell me which system or process it maps to.
+    - In contracts signed last year, did any impose new obligations on the security team not on the list?
+    - How do you identify new applicable regulations? Have you ever seen issues caused by missed legal
+      obligations?
+    basis: inferred
+  regional_note:
+    value: EU auditors will cross-check your obligation list and evidence against specific GDPR and NIS2
+      provisions, probing details on data transfers and notification duties; US auditors more often focus
+      on contractual commitments and industry regulatory requirements (e.g., financial, healthcare). Both
+      view 'unfulfilled contractual obligations' as a serious finding, but the EU tends to emphasize privacy
+      and civil rights as the main thread.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.459441Z'
+  signed_digest: e364ce893d28e65e1f0d38ddafb59b5b36a16447be7a92a2d4de6ec97f49e958
+  interview_seconds: null
+  inherited_from: null

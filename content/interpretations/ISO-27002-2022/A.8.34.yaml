@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.8.34
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is preventing 'audits from being treated as one-off fault-finding'—where systems
+      are left unprotected in normal operations, temporarily hardened for audits, and then relaxed again
+      afterward. This control requires that the level of protection applied to systems during audit testing
+      is consistent with normal operations; there should be no pretense of compliance just to pass the
+      audit, and the audit process itself must not become a new attack surface.
+    basis: inferred
+  plain_zh:
+    value: It requires that during audit testing, the protective measures applied to systems are not degraded
+      or altered; audit tools, accounts, and data access must also be managed, and no gaps should be opened
+      because of the audit.
+    basis: inferred
+  practice:
+    value:
+      '1': Do not disable existing protections during audits; audit accounts are separately requested
+        with limited validity; know who is auditing what.
+      '2': Audit testing has a written plan and authorization; operations on production systems follow
+        the change process; after the audit, revoke permissions and check system status.
+      '3': The audit environment is isolated from production or has equivalent protection; audit activities
+        are logged and integrated with routine monitoring; file and transmission integrity checks are
+        performed for audit tools.
+    basis: inferred
+  evidence:
+    value: Audit test plan and authorization documents, records of provisioning and revocation of dedicated
+      audit accounts, change tickets or approval records, security device logs during the audit period
+      (especially alerts and handling records aligned with the audit time window).
+    basis: inferred
+  common_myth:
+    value: The misconception is that during an audit, you can temporarily disable the WAF, stop alerts,
+      or grant auditors high-privilege accounts to facilitate testing—interpreting 'cooperating with the
+      audit' as 'the auditor is in charge.' In reality, auditors most dislike when you alter the system's
+      true state just to let them pass, as this undermines evidence validity and expands the attack surface.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who were the accounts used for this audit test assigned to? When were they revoked? Where is the
+      revocation evidence?
+    - Were any security controls disabled or bypassed during the audit? Who approved it and for what reason?
+    - Where is the audit tool data stored? How is it encrypted when transmitted back to your side?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.420054Z'
+  signed_digest: 56f870a8e5dd45986f92800c4678919815d78dea9c28b93c73b328dbb10975a0
+  interview_seconds: null
+  inherited_from: null

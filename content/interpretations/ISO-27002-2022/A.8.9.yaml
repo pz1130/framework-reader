@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.8.9
+locale: en
+state: draft
+fields:
+  intent:
+    value: This addresses the risk of "system configuration being unmanaged, modifiable by anyone, and
+      changes being undocumented"—thereby introducing risks of unauthorized changes, configuration drift,
+      and inability to roll back.
+    basis: inferred
+  plain_zh:
+    value: Establish a formal "baseline" (default settings) for systems; any change to the production
+      environment must go through a process of request, approval, recording, and implementation, and must
+      be able to revert to previous versions.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical servers have configuration baseline documentation; changes require at least verbal
+        approval before implementation, and the change details can be articulated.
+      '2': Baselines and change processes are formalized in written procedures; change tickets record
+        request, assessment, approval, and implementer, with an independent change review board.
+      '3': Configuration management tools automatically compare actual configurations against baselines;
+        unauthorized changes trigger alerts; change approval is integrated with the ticketing system;
+        configuration drift is automatically detected and blocked; historical versions are retained for
+        one-click rollback.
+    basis: inferred
+  evidence:
+    value: Configuration baseline documentation (including hardware, software, and configuration item
+      lists), configuration change approval forms or ticket records, change review meeting minutes, configuration
+      drift check/alert records, and rollback drill records.
+    basis: inferred
+  common_myth:
+    value: Assuming that manual server changes by operations staff are routine and that supplementing
+      change records during audits suffices—auditors will cross-check change records against actual system
+      configurations, and spot checks based on your change records will immediately reveal discrepancies;
+      moreover, routine ad-hoc changes never went through the review process, and retrospective documentation
+      cannot fully cover them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a core server: does its current configuration match the baseline? When was the last configuration
+      drift, and how was it discovered?'
+    - Can you demonstrate the complete chain from change submission to approval to rollback?
+    - How many changes occurred last quarter? How many of those have a corresponding approver in the change
+      tickets?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.431532Z'
+  signed_digest: 5057c5ed9c1a06728d95ce96ecf4b307a305f1dc97edc0aa0a9a162ccc1824c1
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AU-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where audit records become worthless the
+      moment they are needed - because they live on the same system that was compromised,
+      tampered with, or accidentally wiped. If an attacker can reach the host, they
+      can also reach the log trail, and the evidence of the breach disappears with
+      the breach.
+    basis: inferred
+  plain_zh:
+    value: Audit and audit-related records (reports, tools, source code, backups of
+      logs) must be stored somewhere physically or logically separated from the system
+      that produced them, and protected so a compromise of the source system does
+      not also destroy the evidence.
+    basis: inferred
+  practice:
+    value:
+      '1': Audit logs are written to or copied to a separate host, appliance, or write-once
+        store that the production system cannot modify or delete.
+      '2': A documented architecture and policy identifies which physical systems
+        or components hold audit data, who administers them, and how integrity is
+        protected; segregation is reviewed when systems are moved or rebuilt.
+      '3': Storage enforces tamper-resistance (append-only, signed, or off-host with
+        restricted access), segregation is tested by attempting to alter or purge
+        the audit store from a compromised source, and the design tolerates the loss
+        or compromise of any single source system without losing its audit trail.
+    basis: inferred
+  evidence:
+    value: Architecture diagram or inventory showing the audit store on a physically
+      or logically separate system, configuration proving the source system lacks
+      modify/delete rights on that store, and integrity controls (append-only, hashing,
+      restricted admin access) on the audit store.
+    basis: inferred
+  common_myth:
+    value: Equating centralized logging with separation. Shipping logs to a SIEM that
+      still shares admin credentials, OS images, backup media, or filesystem with
+      the source host is not separation - one root-level compromise on either side
+      reaches both.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a critical source system and show me the audit store it writes to - can
+      an admin on the source modify or delete records there?
+    - Who has write access to the audit store, and how is that admin path separated
+      from administrators of the source systems being logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.636222Z'
+  signed_digest: 86d25cda5817b52a912c0221793f8f0fed2b87c85e654151a2bebfc2e4779814
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:AU-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents loss of audit visibility when log storage silently fills up -
+      the failure mode is audit records getting overwritten, dropped, or skipped because
+      nobody noticed the disk was full, so the very events you needed to investigate
+      are gone when an incident happens.
+    basis: inferred
+  plain_zh:
+    value: Make sure the audit log storage can warn before it runs out, and make sure
+      real people (not just the console) hear about it in time to fix it.
+    basis: inferred
+  practice:
+    value:
+      '1': Set a fill-level alert on every audit log destination (threshold e.g. ~80%)
+        and assign a named recipient who is expected to act.
+      '2': Track capacity trends over time; have a documented runbook for who gets
+        paged, how storage is expanded, and how archival is handled when limits are
+        approached.
+      '3': Capacity is monitored centrally across all log sources; alerts route to
+        an on-call channel with response SLO; missing-alert scenarios are tested;
+        overflow or ship-to-secondary-storage behaviour is defined so the audit pipeline
+        does not silently truncate.
+    basis: inferred
+  evidence:
+    value: Capacity monitoring dashboards/alerts, alert routing and on-call assignment,
+      runbook for capacity events, sample alert-to-resolution records showing a real
+      warning reached a person and was acted on.
+    basis: inferred
+  common_myth:
+    value: Assuming the default syslog or SIEM disk warning is good enough - the threshold
+      is usually set so low that nobody treats it as urgent, or the alert only goes
+      to the log server's local console where nobody watches.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What capacity threshold triggers a warning on each audit log store, and to whom
+      is that notification sent?
+    - Show me the last time a capacity warning actually fired - what did the on-call
+      do?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.579580Z'
+  signed_digest: 57ca4a4bb3df73d321c534948f7a1ba2bcaff3c8356ab1d1ffe8add1b646758f
+  interview_seconds: null
+  inherited_from: null

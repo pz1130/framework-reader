@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:CP-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single carrier or single geographic failure wiping out
+      your communications — primary and alternate telecom paths must come from genuinely
+      independent providers, so that one outage, one cable cut, or one provider compromise
+      does not simultaneously kill both routes.
+    basis: inferred
+  plain_zh:
+    value: Make sure the backup communications path is not just a different account
+      on the same provider or the same physical fiber. Primary and alternate providers
+      must be truly separate so that one failure cannot take both down at once.
+    basis: inferred
+  practice:
+    value:
+      '1': Document at least one alternate communications path for each critical site/system,
+        and identify which provider supplies it.
+      '2': Verify in writing or by physical-path review that the alternate provider
+        does not share last-mile infrastructure, backhaul, or upstream exchange with
+        the primary; record the evidence (carrier letters, route diversity diagrams,
+        POI lists).
+      '3': Periodically test failover between providers and measure whether both paths
+        actually fail independently (e.g., simulated provider outage, not just interface
+        bounce); track diversity attestations and refresh them when providers re-route.
+    basis: inferred
+  evidence:
+    value: Provider diversity assessment showing primary vs. alternate carriers, supporting
+      evidence of physical/path separation (carrier diversity attestations, route
+      diagrams, POI maps), and failover test results demonstrating independent failure.
+    basis: inferred
+  common_myth:
+    value: Treating 'two ISPs' as automatic diversity — both circuits often ride the
+      same conduit, same central office, or the same upstream carrier's backbone,
+      so a single backhoe cut or single provider peering failure knocks out both.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the evidence that your alternate provider does not share physical path
+      or upstream carrier with the primary.
+    - When did you last failover between providers, and what did the test prove about
+      independence?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.017382Z'
+  signed_digest: 0955994d16b63701888df989064ea64d9a4d28c016f45e6265e9bce5ab85b85f
+  interview_seconds: null
+  inherited_from: null

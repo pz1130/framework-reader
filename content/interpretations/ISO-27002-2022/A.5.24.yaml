@@ -1,0 +1,61 @@
+control_id: ISO-27002-2022:A.5.24
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'scrambling only after an incident occurs'—without a pre-written plan,
+      relying on ad hoc assembly during an event leads to chaotic decision-making chains, delayed response,
+      failure to escalate as required, and an inability to clarify who should have done what afterward.
+    basis: inferred
+  plain_zh:
+    value: Prepare a written security incident plan in advance, specifying how the organization will organize
+      incident response, what each role will do, which incidents must be reported, what metrics will be
+      used to measure response effectiveness, and maintain it continuously.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an incident response plan document that defines incident severity levels and escalation
+        paths, with a list of key roles (command, technical handling, external communication).
+      '2': The plan describes the complete incident response lifecycle, including escalation metrics,
+        decision-making processes, and business continuity integration; at least one tabletop exercise
+        is conducted annually with records.
+      '3': The plan is regularly revised in line with business, system architecture, and team changes;
+        exercises cover realistic scenarios and form a closed loop for improvement items; response processes
+        align with external regulatory reporting deadlines.
+    basis: inferred
+  evidence:
+    value: Incident response plan document and version history, incident severity definitions, escalation
+      flowchart or list, exercise planning and summary records, and a tracking table for exercise improvement
+      items.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'having an incident response plan document' is enough—but if the plan only contains
+      processes without specific contacts, escalation time limits, or external communication guidelines,
+      chaos will still ensue during an incident. The plan must answer concrete questions like 'Who is
+      the first call after an incident?' and 'To what level must it be escalated within how many minutes?'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last incident response exercise? Which improvement items from the exercise have been
+      closed out?
+    - If core business goes down at 3 AM, which document does the first responder use to contact whom,
+      and within what time must it be escalated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.282823Z'
+  signed_digest: f94567b260bd1103e30b174f67c89efaa577fdd60a175bc8e299f2ae236e9338
+  interview_seconds: null
+  inherited_from: null

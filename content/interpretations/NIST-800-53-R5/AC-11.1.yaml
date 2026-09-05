@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against shoulder-surfing and over-the-shoulder capture of sensitive
+      data on screens left unattended in offices, airports, lounges, and shared workspaces,
+      where someone walking past or pointing a camera can read content the user assumed
+      was private.
+    basis: inferred
+  plain_zh:
+    value: Make screens unreadable to someone looking from the side or behind, so
+      passers-by and cameras cannot read sensitive information, and apply this where
+      the risk warrants it.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule that users must lock the screen when stepping away; operating-system
+        idle-lock policy enabled; users briefed on the rule.
+      '2': Identify workstations, laptops and screens that handle sensitive data (admin
+        consoles, financial, HR, health, customer records) and deploy privacy filters
+        or built-in privacy modes on those screens as a standard requirement.
+      '3': Privacy-filter/privacy-mode enforcement checked at procurement and refresh;
+        audits or spot checks verify that screens in sensitive areas actually have
+        working privacy protection, not just shipped paperwork; the exception list
+        for non-protected screens is owned, minimal, and reviewed.
+    basis: inferred
+  evidence:
+    value: Policy requiring screen privacy (locks and/or privacy filters), procurement
+      standard that specifies privacy filter/privacy mode for sensitive-role devices,
+      deployment records or asset tags showing which screens are covered, spot-check
+      or audit results, list of approved exceptions.
+    basis: inferred
+  common_myth:
+    value: Treating screen privacy as already solved by the screen-saver lock policy,
+      because locking blanks the screen to the user but not to the person walking
+      past it with a phone camera; a lock does nothing about line-of-sight capture,
+      which is what this control actually addresses.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which physical screens in this room (or on this list of sensitive users)
+      have a privacy filter attached or a privacy display mode enabled, and which
+      do not.
+    - For a screen not covered by a filter, what is the documented exception and who
+      signed it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:51.996252Z'
+  signed_digest: a20433d9729fbc7469defb99344d979fa086b131efd1bf23e4dd1d44b4ff32a0
+  interview_seconds: null
+  inherited_from: null

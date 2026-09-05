@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:PR.AA-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent anonymous access or weak authentication—if users, services, or hardware
+      lack reliable authentication mechanisms, attackers can impersonate legitimate entities to enter
+      the system, leading to data breaches and lateral movement.
+    basis: inferred
+  plain_zh:
+    value: All entities accessing the system—people, software services, hardware devices—must first verify
+      their identity, and the verification method must be strong, not relying solely on usernames and
+      passwords.
+    basis: inferred
+  practice:
+    value:
+      '1': All user logins require passwords; all service accounts have independent passwords; all devices
+        connected to the network have registration and identification mechanisms.
+      '2': Multi-factor authentication is enabled for critical systems; service account credentials are
+        rotated periodically; hardware devices have certificates or MAC whitelists with change logging.
+      '3': MFA is mandatory for high-risk systems; service accounts implement automated credential rotation
+        and cannot be used for interactive login; hardware authentication uses strong identities such
+        as certificates or TPM, with device verification upon connection and isolation upon anomaly.
+    basis: inferred
+  evidence:
+    value: Authentication policy documents, MFA enablement scope and coverage reports, service account
+      credential rotation records, device registration lists and access audit logs, authentication failure
+      alert records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a username and password counts as authentication'—for service
+      accounts and hardware devices, passwords are either shared or hardcoded in scripts, which is equivalent
+      to no authentication. True authentication requires that each entity has an independent and reliable
+      identity credential.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many service accounts have MFA enabled? For those that cannot, what are the reasons?
+    - What is used to identify servers, printers, and IoT devices when they connect to the network?
+    - When was the last service account password rotation? Where is the process documented?
+    basis: inferred
+  regional_note:
+    value: In Europe, after NIS2 implementation, MFA and strong authentication requirements are more stringent,
+      especially for administrator access to critical infrastructure; U.S. auditors focus more on evidence
+      for IA controls mapped to NIST 800-53, with more detailed sampling of device authentication.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.565161Z'
+  signed_digest: f0a03782c90dff23d51643382fae8da3115165b51d7658d31c46c8e0e6805976
+  interview_seconds: null
+  inherited_from: null

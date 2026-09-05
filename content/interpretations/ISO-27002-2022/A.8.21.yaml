@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.8.21
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'network connectivity being established without agreements'—once a system
+      connects to an external network, boundaries blur; without written agreements, interface characteristics,
+      security requirements, and responsibilities are all verbal understandings, leading to blame-shifting
+      when issues arise, and audits cannot trace accountability.
+    basis: inferred
+  plain_zh:
+    value: 'For any network connection between you and external systems—dedicated lines, VPNs, interfaces
+      with other enterprises—there must be a formal agreement specifying: sufficient bandwidth, protocols
+      used, sensitivity level of data transmitted, responsibility in case of incidents, and how often
+      to review whether the connection remains compliant.'
+    basis: inferred
+  practice:
+    value:
+      '1': All external network connections are documented in a register; each connection has an owner;
+        it is known who is connected and what data is transmitted.
+      '2': Each type of connection has a written exchange agreement (interface characteristics, security
+        requirements, responsibilities of both parties, data sensitivity level); connection changes go
+        through approval; agreement reviews are periodically conducted and recorded.
+      '3': Agreement templates are standardized and integrated into contract and procurement processes;
+        the connection register is linked with the asset inventory, and new connections cannot proceed
+        without approval; periodic connection-level risk assessments are conducted, and deviations between
+        agreement terms and actual configurations are tracked.
+    basis: inferred
+  evidence:
+    value: Register of external connections and connection topology diagrams, information exchange agreement
+      documents (including interface characteristics, responsibilities of both parties, data classification),
+      approval forms for connection establishment and changes, agreement review records, and technical
+      verification results of connection configurations.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'the network is managed by the network team, and security only needs
+      some firewall policies.' An agreement is not a network configuration—if you omit data sensitivity
+      levels and responsibilities of both parties, during an audit, firewall policies cannot demonstrate
+      whether service agreements are documented and whether someone periodically reviews if connections
+      are still necessary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who approved the dedicated line between you and AWS / that supplier? In which section of which agreement
+      is the data level specified?
+    - When was the last agreement review? If the connection's purpose changed but the agreement wasn't
+      updated, how would you detect that?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.392677Z'
+  signed_digest: b7b8e8066378fc9f95b524be609c57572ccb92d701342a402e2bbcb6eb9d5b05
+  interview_seconds: null
+  inherited_from: null

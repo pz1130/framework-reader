@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-10.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against information disclosure and silent logic corruption that
+      happens when user input is rejected or sanitized but the underlying flaw is
+      never traced back, fixed, or learned from — the same vulnerable code path keeps
+      shipping while the visible error to the user looks 'handled'.
+    basis: inferred
+  plain_zh:
+    value: When the system detects, rejects, or corrects bad input, don't stop at
+      showing an error message. Someone has to look at the error, figure out where
+      it came from, decide what to do about it, and actually do it — so the root cause
+      gets fixed and the same class of input keeps being caught.
+    basis: inferred
+  practice:
+    value:
+      '1': Applications log input-validation failures with enough context (source,
+        payload class, rule triggered) to identify patterns; an owner exists for triaging
+        them.
+      '2': Validation errors feed a defined review queue with timelines; root causes
+        are documented; recurring triggers (same endpoint, same rule, same source)
+        drive code or rule changes that are tracked to closure.
+      '3': Input-validation errors are correlated with threat intel, abuse, and change-management
+        signals; systemic issues trigger redesign of the validation or the upstream
+        source; resolution effectiveness is measured (recurrence rate, time-to-fix,
+        residual risk acceptance) and reported upward.
+    basis: inferred
+  evidence:
+    value: Error and validation-failure logs, review/triage records with owners and
+      timelines, root-cause analyses, change tickets or code commits closing the underlying
+      flaw, recurrence and time-to-fix metrics.
+    basis: inferred
+  common_myth:
+    value: Assuming that returning a generic 400/422 to the user counts as 'handling'
+      the error — the user is blocked, but nothing forces anyone to investigate why
+      the bad input arrived, so the same vulnerable parser, regex, or business-logic
+      gap keeps running on the next request.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one validation error from the last quarter that led to a code or rule
+      change — what was the trigger, who reviewed it, and where is the fix?
+    - How do you tell whether a validation error is a one-off client mistake versus
+      an attack or a systemic flaw in your own input handling?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.802306Z'
+  signed_digest: 4217a98c62ee5b60854338315bffe58e38e1a28823298977b7c2f19fc0e6568a
+  interview_seconds: null
+  inherited_from: null

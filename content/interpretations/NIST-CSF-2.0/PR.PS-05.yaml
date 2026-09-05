@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:PR.PS-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is the loss of attack surface control caused by employees installing software on
+      their own without anyone knowing—unapproved software may carry vulnerabilities, bundled backdoors,
+      or conflict with existing systems for privileges, and when issues arise, no one can be held accountable.
+      This requirement blocks the path at the installation action itself, rather than relying on post-hoc
+      antivirus scans to clean up.
+    basis: inferred
+  plain_zh:
+    value: Manage the question of 'whether software can be installed, what software can be installed,
+      and who installs it'—technically restrict unauthorized installations, procedurally define what constitutes
+      authorized software, and record who installed what and when.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a software installation policy; servers and endpoints prohibit users from installing
+        software by default; production environments have change management processes for installations;
+        basic technical controls are in place (e.g., regular users lack administrator privileges).
+      '2': There is a software whitelist or blacklist policy; installations require approval processes
+        with ticket trails; regular comparisons are made between installed software and the whitelist;
+        exception installations have time-limited approvals.
+      '3': Critical systems operate under a default-deny policy, allowing only whitelisted executables;
+        installation is integrated with change management, with full traceability from request to deployment;
+        alerts are generated for bypass attempts; software sources are signature-verified and cannot be
+        disabled by regular users.
+    basis: inferred
+  evidence:
+    value: Software installation policy documents, screenshots of endpoint/server tamper-proof configurations
+      (e.g., AppLocker / SELinux / whitelisting tool policies), installation approval tickets, results
+      of comparing software asset inventory against the whitelist, and security alerts for bypass attempts.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'removing administrator privileges' equals prohibiting installation.
+      In reality, many teams lack executable whitelisting, and regular users can still extract a portable
+      software package in their user directory and run it directly; privileges only lower the barrier,
+      but what truly blocks is 'anything not on the whitelist simply cannot start'—the difference between
+      the two is vast.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Is your whitelist a blacklist or default-deny? What process do new software deployments follow,
+      and who approves them?
+    - Can you spot-check a machine with recent software installation records and trace the corresponding
+      installation ticket?
+    - Are there alerts for whitelist bypass attempts? When was the last bypass attempt, and how was it
+      handled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.602568Z'
+  signed_digest: 9496ae98be4a129e1310c8a4676b8813cdd17178e2eeecba949dfa1388a18dfd
+  interview_seconds: null
+  inherited_from: null

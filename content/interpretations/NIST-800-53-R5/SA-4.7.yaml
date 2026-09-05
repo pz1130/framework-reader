@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-4.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Procure a product that has not been independently vetted against a recognized
+      security baseline, leaving the organization to absorb whatever vulnerabilities,
+      hidden interfaces, or undocumented behaviors the vendor chose to ship — and
+      to discover them only after the system is in production.
+    basis: inferred
+  plain_zh:
+    value: When buying, acquiring, or outsourcing systems, components, or services
+      that are supposed to meet a published Protection Profile, restrict the selection
+      to items that have actually been evaluated and validated against that profile
+      — and keep that constraint visible across the procurement, contract, and acceptance
+      stages.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a short list of which Protection Profiles apply to which categories
+        of purchase; reference it in procurement requests so buyers know to ask for
+        NIAP validation up front.
+      '2': Make NIAP-approved Protection Profile compliance a written requirement
+        in solicitations and contracts; require vendors to name the evaluated product/version
+        and the validation report; verify before acceptance.
+      '3': Track NIAP validation status across the asset inventory; flag items whose
+        validation has expired, been withdrawn, or never matched the deployed version;
+        exclude unvalidated or mismatched items from sensitive deployments.
+    basis: inferred
+  evidence:
+    value: Procurement policy excerpts that cite Protection Profile requirements,
+      solicitation and contract clauses, vendor-supplied validation reports or certificates
+      tied to specific product versions, and acceptance records that confirm the deployed
+      item matches the evaluated one.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a vendor says its product is 'Common Criteria certified'
+      the requirement is satisfied — certifications against the wrong profile, evaluations
+      that are no longer current, or validated versions that differ from the version
+      actually shipped all fail the control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the last system bought under this rule, which Protection Profile did it
+      claim, and where is the validation report?
+    - Does the version currently running in production match the version named in
+      the validation report?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.200154Z'
+  signed_digest: 7a4d302178eb820ef19ad0e61d73bb5b055f30fe68fbd3424c2db0a4fdbb3750
+  interview_seconds: null
+  inherited_from: null

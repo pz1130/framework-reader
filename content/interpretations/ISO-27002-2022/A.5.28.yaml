@@ -1,0 +1,60 @@
+control_id: ISO-27002-2022:A.5.28
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'logs exist, but the chain breaks during post-incident tracing' — after
+      an event, evidence must be linked together to clearly state who handled what data, at what time,
+      and for what purpose; otherwise, during audits and judicial forensics, a broken evidence chain leads
+      to conclusions not being accepted, and the complete path of internal leaks or external intrusions
+      cannot be traced.
+    basis: inferred
+  plain_zh:
+    value: Collect and store logs and evidence properly and for a sufficient duration, and record every
+      instance of viewing, copying, transfer, or analysis, including the person and time, ensuring the
+      entire chain from collection to case closure is traceable without gaps.
+    basis: inferred
+  practice:
+    value:
+      '1': Centralized log collection and storage; set basic retention periods; have a designated person
+        responsible for log archiving.
+      '2': Establish a handover registration form for key evidence (who, when, for what purpose handled
+        it); document log retention periods in a written policy; regularly check log integrity.
+      '3': Fully automate the recording of access and handling actions throughout evidence storage, and
+        integrate with the incident management process; set retention periods by category based on legal
+        and business needs; forensic operations have an independent audit trail that is tamper-proof.
+    basis: inferred
+  evidence:
+    value: Centralized log storage and backup configurations, retention period policy documents, handover
+      registration forms or system access audit records, integrity verification records (e.g., hashes),
+      and chain-of-custody records from forensic exercises or real incidents.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'all logs are in the SIEM' equals a complete evidence chain — SIEM only handles
+      collection; if there is no trace of who queried these logs, what they did after querying, and who
+      they exported them to, it still cannot be clarified afterward.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the most recent security incident, who accessed the raw logs and at what time? Is there a record?
+    - Which policy defines the log retention period? Is there an approval process for deletion beyond
+      the retention period?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.290260Z'
+  signed_digest: 9e4232cf280641c2e7c14d0e75803e4a79e5531f0328f2835900b5b240c8b645
+  interview_seconds: null
+  inherited_from: null

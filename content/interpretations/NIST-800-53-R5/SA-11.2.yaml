@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-11.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where system design and code are assumed
+      safe because someone ran a scanner or wrote a test plan, while structural flaws,
+      trust-boundary mistakes, and reachable vulnerabilities remain hidden until an
+      attacker finds them. Without developer-side threat modeling and targeted vulnerability
+      analysis, weak design choices ship into production and surface as incidents.
+    basis: inferred
+  plain_zh:
+    value: 'Ask the developers to think like an attacker while they are still designing
+      and building the system: identify what could go wrong structurally, where trust
+      crosses boundaries, and which weaknesses are actually exploitable, then use
+      those findings to drive tests and fixes rather than treating them as paperwork.'
+    basis: inferred
+  practice:
+    value:
+      '1': Each new or changed system has a short, named threat model produced by
+        the development team before release; a basic vulnerability scan is run on
+        the build.
+      '2': Threat modeling is repeated on significant changes; the resulting threats
+        drive specific test cases and design reviews; vulnerability analysis covers
+        components, dependencies, and known weakness lists, with results fed back
+        into fixes.
+      '3': Threat models and vulnerability analyses are tied to architecture diagrams
+        and abuse cases, reviewed at defined milestones, tracked as defects with owners
+        and due dates, and re-run when the threat landscape or major dependencies
+        change.
+    basis: inferred
+  evidence:
+    value: Threat model documents with identified threats, mitigations and residual
+      risk; developer test plans that reference specific threats; vulnerability and
+      weakness analysis reports for system components and third-party dependencies;
+      defect or remediation tickets showing findings were tracked to closure.
+    basis: inferred
+  common_myth:
+    value: Believing that running a commercial vulnerability scanner on the finished
+      application satisfies this control. Scanning is only one piece; the core requirement
+      is structural threat modeling during design and targeted vulnerability analysis
+      that drives developer-level fixes, not just a report filed by an external tester.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the threat model for the system I just selected, and tell me which threats
+      drove specific tests or design changes.
+    - When was the last time the threat model was revisited, and what triggered that
+      update?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.029449Z'
+  signed_digest: ba27c9b2911f6087438cb45a026da1805dfc03fff03a3cf9d23abf3fc71e6117
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PE-6.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against unmonitored physical access to the facility assets that
+      house or connect to systems — the exact path an attacker uses to bypass every
+      logical control by plugging in, powering off, or walking out with equipment.
+      If you cannot show who is at the rack, you cannot prove the system was not touched.
+    basis: inferred
+  plain_zh:
+    value: Watch and record who enters and leaves the spaces where information systems
+      physically sit (server rooms, wiring closets, media storage, network closets),
+      and keep the records long enough to investigate.
+    basis: inferred
+  practice:
+    value:
+      '1': There are designated system-containing spaces; entry is restricted; some
+        form of entry log exists (visitor book or badge system); the spaces are not
+        freely walkable from public areas.
+      '2': Access to system spaces is logged with a time and identity; logs are retained;
+        a baseline of who is authorized exists; anomalies (after-hours entry, failed
+        tailgates) are noted and reviewed.
+      '3': Entry/exit events are correlated with badge systems or video; logs are
+        tamper-resistant and retained on a defined schedule; alarm or guard response
+        is triggered on unauthorized entry; reviews produce corrective actions tied
+        to incidents.
+    basis: inferred
+  evidence:
+    value: List of physically protected system spaces, entry authorization lists,
+      badge or visitor logs with timestamps, retention schedule for logs, sample of
+      recent entries with corresponding work orders or tickets, video coverage map
+      for those spaces.
+    basis: inferred
+  common_myth:
+    value: Assuming the badge-controlled front door covers everything — attackers
+      go to the side door, the loading dock, the under-desk wiring closet, or the
+      colo cage door, none of which generate an audit trail because they were not
+      in scope when the system was installed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three entries to the server room — who, when, and what change
+      ticket authorized them.
+    - Which physical spaces containing systems are not covered by your access logging,
+      and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.637680Z'
+  signed_digest: edcf155b8b1bddf55daa82ac3eb46a7185d28de98d5a19e091fa5560b93c3796
+  interview_seconds: null
+  inherited_from: null

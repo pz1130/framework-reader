@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PM-23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents data risk from being everyone''s job and therefore no one''s:
+      when ownership of data quality, classification, and lifecycle is diffuse, sensitive
+      records get misused, retained beyond need, or silently lost, and there is no
+      one accountable when regulators ask.'
+    basis: inferred
+  plain_zh:
+    value: Designate a body (a council, committee, or named function) that is responsible
+      for governing data across its lifecycle - classification, quality, access, retention,
+      and disposal - and give it the authority to make and enforce those rules.
+    basis: inferred
+  practice:
+    value:
+      '1': A named group or role exists on paper as the data governance body; charter
+        or terms of reference define scope; meetings happen on a fixed cadence with
+        minutes kept.
+      '2': The body sets and maintains data classification, retention, and quality
+        standards; decisions are documented and propagated to data owners and stewards
+        across business units; exceptions are logged.
+      '3': 'The body''s authority is operational, not ceremonial: data classification
+        and lifecycle rules are enforced in systems and workflows, exceptions require
+        its approval, and its decisions are reviewed against incidents and audit findings
+        to show the loop closes.'
+    basis: inferred
+  evidence:
+    value: Charter or terms of reference for the data governance body, meeting minutes
+      and attendance, approved data classification and retention standards, records
+      of decisions and exception handling, evidence that decisions flow into data-handling
+      processes and are revisited when issues arise.
+    basis: inferred
+  common_myth:
+    value: Treating a Data Governance Body as a once-a-quarter forum that reviews
+      slides. The control is about a body with teeth - it must own classification,
+      retention, and access rules and have a documented track record of enforcing
+      or revising them, not just discussing them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which body or role is accountable for data governance, and where is that written
+      down?
+    - Show the last three decisions this body made that changed a data rule, classification,
+      or retention period.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.745322Z'
+  signed_digest: e133a8c12e2ca4203fef20d8d1ec86d623b6201834f6d958b100bca078a1ab44
+  interview_seconds: null
+  inherited_from: null

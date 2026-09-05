@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:ID.RA-09
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'buy and use without verification' - hardware firmware, software installation
+      packages, or cloud images are not checked for signatures and hashes before entering the environment.
+      If packages are swapped or backdoors are implanted in the supply chain, it may be too late once
+      they go live.
+    basis: inferred
+  plain_zh:
+    value: Before procuring and deploying hardware and software, verify that the source is authentic and
+      content has not been altered; the basis for judgment is official signatures, trusted hashes, or
+      trusted delivery chains, not relying on the vendor's good reputation.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical hardware and software have procurement approval processes; before installation, require
+        suppliers to provide official hashes or signatures and compare them; have invoices or purchase
+        orders to trace the source.
+      '2': For every software and firmware to be installed in the internal environment, perform signature
+        or hash verification, and record the verification results; re-verify when suppliers or versions
+        change; have awareness of Software Bill of Materials (SBOM).
+      '3': Automate verification integrated into build pipelines or device intake processes; comparison
+        baselines come from trusted sources and are protected; verification failures automatically block
+        deployment; periodically sample hardware serial numbers and firmware hashes to check consistency
+        with supplier factory records.
+    basis: inferred
+  evidence:
+    value: Procurement and acceptance records, software or firmware signature and hash verification reports,
+      baseline source descriptions, SBOM lists, disposition records for discrepancies, and logs or blocking
+      records of automated verification.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having a legitimate license and downloading from the official website' equals
+      verifying authenticity. Downloading from the official website does not mean the installation package
+      has not been tampered with during delivery - only actual comparison of signatures or hashes counts;
+      many teams verify during deployment, but the hashes used for verification are also obtained from
+      the same insecure download channel, which is equivalent to not verifying.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the last deployed software package, from which channel was the hash value obtained? Is it the
+      same server as the installation package?
+    - Has there been any case where verification failed but installation was still forced? How was it
+      handled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.557254Z'
+  signed_digest: 1a1f733cbacfec07812a36d0ce50b5f8a7ca97242575e4791106ee8fc4e4460e
+  interview_seconds: null
+  inherited_from: null

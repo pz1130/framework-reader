@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:RS.AN-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: This control addresses the risk of incident reviews relying on memory and chat logs. If incident
+      data is not collected in a structured manner, its integrity is not trustworthy, and its source cannot
+      be traced, investigation conclusions are untenable, potentially leading to misjudgments being treated
+      as definitive findings and malicious activities being mistaken for errors.
+    basis: inferred
+  plain_zh:
+    value: Collect and centrally store incident-related logs, samples, timelines, and operational records
+      in a timely manner, ensuring that this data has not been tampered with, its origin is known, and
+      it can be proven to be original data.
+    basis: inferred
+  practice:
+    value:
+      '1': Capture logs and snapshots when incidents occur; collected data has timestamps and source identifiers;
+        storage locations have basic access controls.
+      '2': Define an incident data collection checklist and process; use hashing or signature verification
+        to ensure data integrity; have centralized storage and archiving, with collection processes documented.
+      '3': Automate incident data collection by integrating with monitoring and endpoint tools; incorporate
+        integrity checks into routine verification; maintain a fully traceable data source chain; enable
+        direct citation of data without doubt during investigations.
+    basis: inferred
+  evidence:
+    value: Incident data collection checklists and scripts, log storage and archiving configurations,
+      hash or digital signature verification records, data source marking standards, and screenshots or
+      exports of original data cited in incident investigations.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'if logs are in the SIEM, data integrity is assured'—but SIEMs often
+      only receive a subset of fields, and timestamps are frequently rewritten by upstream devices; without
+      integrity checks, no one can substantiate claims of 'this is the original log'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Select a key piece of evidence from an incident report: where is the original data stored, what
+      is its hash value, and who verified it?'
+    - Which points in the collection chain could alter timestamps or truncate fields? How do you prove
+      they haven't?
+    basis: inferred
+  regional_note:
+    value: European auditors are more concerned about whether data collection complies with privacy and
+      minimization principles (under GDPR, being able to explain 'what was collected and how long it was
+      retained'), while American auditors focus more on evidence chain integrity and forensic usability.
+      The perspectives differ, but both require that 'if data is collected, you must be able to prove
+      it hasn't been tampered with'.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.626785Z'
+  signed_digest: 3a861a27132a824cff6430d28254d467a773b78e749eef1141a56ef3aca58ad8
+  interview_seconds: null
+  inherited_from: null

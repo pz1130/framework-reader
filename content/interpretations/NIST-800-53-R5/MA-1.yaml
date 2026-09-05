@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:MA-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops maintenance work from drifting into ad-hoc, undocumented habits —
+      without a current, approved policy and procedures, teams improvise patching
+      schedules, skip accountability, and lose the chain of custody that proves critical
+      systems were actually maintained as required.
+    basis: inferred
+  plain_zh:
+    value: Maintain a written, current, management-approved maintenance policy and
+      the procedures that operationalize it, and make sure the organization actually
+      follows them.
+    basis: inferred
+  practice:
+    value:
+      '1': A maintenance policy exists, is signed by a designated official, covers
+        purpose, scope, roles, and compliance references; staff know it exists and
+        where to find it.
+      '2': Procedures are mapped to the policy's topics, assigned to owning roles,
+        and reviewed on a defined cadence; deviations are logged with a reason.
+      '3': Policy and procedures are version-controlled, the review cycle is triggered
+        by events (major incidents, threat changes, reorgs), and compliance with the
+        procedures is itself checked and reported.
+    basis: inferred
+  evidence:
+    value: Current policy and procedure documents with version history, management
+      approval signatures, review cadence records, and evidence of staff awareness
+      (acknowledgements or training records).
+    basis: inferred
+  common_myth:
+    value: Treating a single combined 'IT policy' document with a maintenance paragraph
+      as satisfying the control. The control requires a discrete, identifiable maintenance
+      policy and its own procedures — not a bullet inside a generic security policy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the maintenance policy, its approval date, and the last review record.
+    - Where are the procedures that implement this policy, and who owns each section?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.375062Z'
+  signed_digest: 450fd31ac7e066da0518a3617489a76bbb5ec44a42b670796ff296f6a2018aea
+  interview_seconds: null
+  inherited_from: null

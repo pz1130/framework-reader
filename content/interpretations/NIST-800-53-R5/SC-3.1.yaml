@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents one workload from being able to reach or tamper with another because
+      they share physical hardware resources - without isolation at the hardware/firmware
+      boundary, software-only separation can be bypassed by a kernel-level attacker,
+      a malicious hypervisor, or a compromised firmware update, collapsing the trust
+      boundary that everything else assumes.
+    basis: inferred
+  plain_zh:
+    value: Where the security plan calls for hardware-level isolation between systems,
+      the underlying hardware and firmware must actually enforce that separation -
+      not just pretend to via OS or hypervisor settings - so that a failure or compromise
+      in one domain cannot reach across into another.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which systems require hardware separation and why; confirm the
+        physical servers, blades, or chassis assigned to each domain are physically
+        distinct (separate compute, memory, and management paths).
+      '2': Configure firmware/BIOS to disable cross-domain features (shared memory
+        regions, management interfaces, debug ports) that could bridge the domains;
+        record the baseline configuration per device.
+      '3': Periodically verify the hardware/firmware settings still match the documented
+        separation policy (config drift checks, change-control on firmware, alerts
+        if a shared resource is re-enabled), and re-validate after any hardware refresh.
+    basis: inferred
+  evidence:
+    value: Security plan section naming the domains that require hardware separation;
+      inventory or topology showing distinct physical assets per domain; firmware/BIOS
+      configuration baselines and change records; periodic verification results confirming
+      the separation settings are still in place.
+    basis: inferred
+  common_myth:
+    value: Assuming that running workloads on different VMs or containers on the same
+      physical host satisfies 'hardware separation' - virtual separation is software-enforced
+      and exactly what SC-3.1 is asking you to go beyond.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me two systems that are supposed to be hardware-separated - are they on
+      the same physical host, chassis, or management plane?
+    - What firmware or hardware setting actually enforces the boundary, and when was
+      it last verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.497186Z'
+  signed_digest: 98467c1de920680e21bb476f301f9a2f01dbb6054d72aef06b2d4ed5f424cf92
+  interview_seconds: null
+  inherited_from: null

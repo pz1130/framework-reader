@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.5.25
+locale: en
+state: draft
+fields:
+  intent:
+    value: 'The concern is that ''logs are being collected and alerts are sounding, but no one actually
+      sits down to make sense of the situation'' — the security team becomes an alert forwarding machine:
+      upon seeing anomalies, they don''t understand the impact scope, don''t judge authenticity, don''t
+      escalate, and leave no analysis trail, so when a real incident occurs, they can neither explain
+      the process nor conduct a review.'
+    basis: inferred
+  plain_zh:
+    value: 'Turning logs and alerts into meaningful judgments: someone regularly reviews them, analyzes
+      whether anomalies are valid, assesses potential impact, reports to the appropriate people, and adjusts
+      the frequency and depth of audits based on changing circumstances. At the same time, learn from
+      each incident and improve the response process.'
+    basis: inferred
+  practice:
+    value:
+      '1': Logs are retained and basic alerts exist; personnel are assigned to monitor alerts; major anomalies
+        are verbally reported to a designated person.
+      '2': 'A documented incident analysis process exists: who analyzes which alerts within what timeframe,
+        and by what criteria escalation occurs; each analysis is recorded; after an incident, a review
+        is conducted and the process is updated.'
+      '3': The analysis cadence is dynamically linked to risk (e.g., proactively increasing frequency
+        and depth when threat intelligence changes or new vulnerabilities emerge); alert deduplication
+        and correlation analysis are systematized; review conclusions directly drive updates to playbooks,
+        training, and tool rules.
+    basis: inferred
+  evidence:
+    value: Alert handling records or tickets, analysis screenshots or documents, escalation records with
+      timestamps, analysis duty rosters, incident review minutes, and change records to processes/rules/playbooks
+      after reviews.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'setting up a bunch of alerts and creating a work group' constitutes
+      analysis — in reality, alerts go unmonitored, responses are not recorded, records are not acted
+      upon, and auditors quickly expose gaps when asking who analyzed a specific alert and what the conclusion
+      was. The value of analysis lies in the analytical action itself, not in the number of alerts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who analyzed last week's medium-severity alert? Where is the conclusion recorded? What was the basis
+      for escalation?
+    - What process or rule changes resulted from the most recent incident review? What behavioral differences
+      exist before and after the change?
+    - When new attack techniques appear in threat intelligence, how do you adjust the focus or frequency
+      of your analysis?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.284782Z'
+  signed_digest: aa6824dd0d65e1b5abf325983afff1af70020dd08ebe8be3f73b6d6fef4f830a
+  interview_seconds: null
+  inherited_from: null

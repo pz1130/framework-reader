@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against malicious or faulty code being pushed silently into production
+      via system-provided mechanisms (spam filters, endpoint agents, anti-malware,
+      firmware, etc.). If the update channel itself isn't authenticated and integrity-checked,
+      an attacker who can MITM, poison a mirror, or compromise a vendor's CDN gets
+      code execution on every host that 'auto-updates' — the defender's own convenience
+      becomes the attacker's delivery mechanism.
+    basis: inferred
+  plain_zh:
+    value: When systems, products, or services fetch updates on their own, the updates
+      must be verified as authentic and untampered before they are applied. 'Automatic'
+      must not mean 'trust whatever arrives.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components auto-update (agents, AV/EDR signatures, OS patches,
+        network devices, firmware). For each, confirm the vendor uses signed updates
+        and that the receiving system verifies the signature before installing.
+      '2': Document which signature mechanisms are used (vendor code signing, hash
+        pinning, TLS to a known repository) and keep an inventory. Disable auto-update
+        only as a documented exception with a manual equivalent.
+      '3': Continuously validate that the verification path still works end-to-end
+        (signature not stripped, cert not expired, mirror not substituted); alert
+        on update-fetch failures and on signature-verification failures; block application
+        of updates whose integrity cannot be confirmed.
+    basis: inferred
+  evidence:
+    value: Inventory of auto-updating components with the verification mechanism recorded
+      for each, vendor references confirming signed updates, configuration samples
+      showing signature/hash checks enforced, logs or alerts from at least one simulated
+      or real verification failure.
+    basis: inferred
+  common_myth:
+    value: Equating 'auto-update is enabled and current' with this control being met.
+      The control is about how the update arrives and what the system does with it
+      before applying — not whether the patch level looks green.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one auto-updating component: how does the receiving host know the update
+      really came from the vendor and was not altered in transit?'
+    - Show me what happens when an update's signature fails to verify — is installation
+      blocked, and is that event visible somewhere?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.125204Z'
+  signed_digest: ce017b855e138c792531cf9381924cae138721e47f354b46ee29f9df9c68cd91
+  interview_seconds: null
+  inherited_from: null

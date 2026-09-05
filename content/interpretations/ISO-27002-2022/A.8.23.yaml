@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.8.23
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'internal users directly accessing the external network with internal
+      trust' — uncontrolled web access is a phishing entry point, malware landing site, and data exfiltration
+      channel; without filtering, the perimeter firewall is virtually useless.
+    basis: inferred
+  plain_zh:
+    value: All outbound web access must go through a managed entry point (proxy/gateway/firewall), with
+      interception and allowance based on enterprise policy, and users must not be able to bypass it to
+      directly connect to the external network.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a proxy or gateway device for outbound access, configured with basic interception
+        rules (e.g., malicious domains, known phishing sites); can point out to auditors where the device
+        is.
+      '2': All outbound traffic from users and systems is forced through the proxy, with auditable access
+        logs; interception rules are updated regularly based on threat intelligence and business needs;
+        there is bypass monitoring.
+      '3': The proxy applies differentiated policies based on user/device identity (e.g., R&D vs. administration);
+        fine-grained control over high-risk categories (e.g., unknown file downloads, anonymous proxies);
+        proxy logs are integrated with threat detection, and abnormal access can trigger alerts and blocking.
+    basis: inferred
+  evidence:
+    value: Proxy/gateway deployment architecture diagram, access control policy configuration, list of
+      interception and allowance rules, access logs (including source IP, destination URL, action), rule
+      update records, bypass detection reports.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'installing an internet behavior management device' equals web filtering — the
+      device itself solves nothing; the truth is that if the device is not forced through a proxy, has
+      no classification policy, and logs are not retained, auditors will find out; a common mistake is
+      using a 'bypass deployment' box that can only see traffic but cannot block it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - List three network paths that bypass the proxy to directly connect to the external network (e.g.,
+      VPN tunnels, dual NICs, dial-up)?
+    - How long are proxy logs retained? When was the last time a malicious download was identified from
+      the logs?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.396480Z'
+  signed_digest: 3c7aac03122c5d0bfcac18abfe7a2df2394d6274f21ed6d2efaeaeea2b1fd7a2
+  interview_seconds: null
+  inherited_from: null

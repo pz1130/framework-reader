@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PS-2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Failure to assign risk designations to positions before onboarding means
+      the organization cannot defensibly determine who needs a background investigation,
+      who handles sensitive data, or who can be trusted with elevated system access,
+      so people end up in roles the wrong screening depth was used for.
+    basis: inferred
+  plain_zh:
+    value: Classify every job position by the risk it carries to the organization
+      before filling it, so that the depth of screening, the access granted, and the
+      ongoing oversight applied to that role are tied to an explicit risk designation
+      rather than left to the hiring manager's gut feel.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of position categories (e.g., low / moderate / high risk)
+        tied to the type of harm the role could cause; assign a designation to each
+        role the organization actually hires for.
+      '2': Document the criteria and decision rationale behind each designation; have
+        HR and the responsible function review and approve designations when positions
+        are created or materially changed.
+      '3': Re-evaluate designations on a defined cadence and after reorganizations,
+        incidents, or scope changes; tie the designation directly to screening depth,
+        access provisioning, and supervisory controls so changing one forces consideration
+        of the others.
+    basis: inferred
+  evidence:
+    value: Position risk designation list with categories, criteria used to assign
+      risk levels, approval records for designations, and traceability showing that
+      screening and access decisions for sampled positions match the assigned risk
+      level.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by having HR run a standard background
+      check on every new hire without distinguishing position risk, so everyone gets
+      the same depth regardless of role and screening effort has no relationship to
+      the harm the position could cause.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the risk designation for these three sampled positions and the criteria
+      used to set each one.
+    - When was the last time a designation was revised, and what triggered the change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.813319Z'
+  signed_digest: d60d103ed46f3df462972325927c4e258bd60efa7e79d89d49a2449454585cc9
+  interview_seconds: null
+  inherited_from: null

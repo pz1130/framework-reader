@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-39.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against one compromised thread being able to reach into the address
+      space, registers, or kernel state of another thread or process — so a memory-safety
+      bug, parser flaw, or supply-chain implant in one workload cannot silently pivot
+      to a sibling workload on the same OS instance.
+    basis: inferred
+  plain_zh:
+    value: Make sure that each execution thread (and, where feasible, each process)
+      runs in its own separated execution domain — its own virtual address space,
+      register context, and ideally its own kernel context — so that a fault or compromise
+      in one thread cannot directly read or alter the state of another.
+    basis: inferred
+  practice:
+    value:
+      '1': Run multi-tenant or externally reachable workloads as separate OS processes
+        (not threads of a long-lived parent) and rely on standard process isolation
+        provided by the OS; document which workloads must not share an address space.
+      '2': For higher-risk components, use OS-level process isolation with distinct
+        user contexts, container or sandbox boundaries, and disable shared writable
+        memory regions; define which software is required to ship as separate processes
+        (e.g., parsers, renderers, network listeners) and record exceptions.
+      '3': For highest-risk components, use hardware- or microkernel-backed isolation
+        (separate VM, unikernel, or formally separated execution domain per thread)
+        with explicit attestation that the runtime enforces per-thread separation
+        at the kernel/Hypervisor layer; verify through code review and test that no
+        shared mutable state crosses domain boundaries without an explicit, audited
+        interface.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing process boundaries, configuration of the
+      runtime/OS proving per-thread address spaces are enforced, code-review or design
+      records for any shared-memory use, sandbox or container policy files, and attestation
+      or test results demonstrating isolation between threads/processes.
+    basis: inferred
+  common_myth:
+    value: Treating 'the OS gives each thread its own stack' as sufficient — register
+      and stack isolation is not the same as address-space isolation, and threads
+      of the same process still share heap, globals, file descriptors, and signal
+      handlers, so a single memory bug compromises the whole process.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which components in your environment still run as threads inside a single process,
+      and what is the documented justification for not splitting them?
+    - Show where shared memory or other cross-thread state is used and the review
+      that approved it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.577138Z'
+  signed_digest: 86dcc999db419f28a780efa7900c5da627f29d64cec9abb9983ee37c1169f944
+  interview_seconds: null
+  inherited_from: null

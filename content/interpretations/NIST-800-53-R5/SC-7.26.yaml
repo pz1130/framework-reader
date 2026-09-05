@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-7.26
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against the assumption that putting an air gap, a firewall, or
+      a 'classified-only' label badge on a connection means classified national security
+      system (CNSS) traffic is actually isolated — in practice, the failure modes
+      are covert channels, inadvertent bridging via shared infrastructure, mobile
+      code crossing the boundary, and 'one-off' connections that nobody re-examines
+      once deployed.
+    basis: inferred
+  plain_zh:
+    value: For any connection that touches a classified national security system,
+      make the boundary explicit, control what crosses it (one direction at a time
+      if needed), and keep re-examining the architecture instead of trusting an old
+      diagram.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory every physical and logical connection that touches a CNSS; assign
+        an owner; mark each as one-way or bidirectional; restrict to documented mission
+        need.
+      '2': Enforce directional flow at the boundary device, not just by policy on
+        paper; prohibit mobile code and active content from crossing into the classified
+        enclave; document cross-domain solutions used.
+      '3': Periodically re-validate the architecture against the current connection
+        list, including exceptions and temporary bridges; treat any covert-channel
+        or shared-infrastructure path found during review as an incident, not a paperwork
+        issue.
+    basis: inferred
+  evidence:
+    value: Connection inventory with owners and directionality, boundary device configurations
+      showing enforced one-way flow, cross-domain solution documentation, and dated
+      reviews confirming the as-built topology matches the documented boundary.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a firewall between the classified and unclassified networks'
+      as the whole control — the firewall is one piece; auditors want to see that
+      flow direction is actually enforced, mobile code is blocked at the boundary,
+      and the connection list is re-checked after every change rather than frozen
+      on an old diagram.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current list of connections to any classified national security
+      system and the owner of each.
+    - How does the boundary device enforce one-way flow, and where is that tested?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.736547Z'
+  signed_digest: 0820e1c101f1eea4762f1955555f11446ebdd4dca2449f6d9e2c7271464722dd
+  interview_seconds: null
+  inherited_from: null

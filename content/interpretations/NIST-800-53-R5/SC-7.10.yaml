@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-7.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against authorized users or compromised insiders quietly moving
+      sensitive data out of the boundary through channels that look routine - email,
+      web uploads, DNS, cloud sync, removable media - so that exfiltration completes
+      before anyone notices it is happening, not against perimeter intrusions themselves.
+    basis: inferred
+  plain_zh:
+    value: Apply mechanisms at the system or network edge that stop authorized and
+      unauthorized data from leaving your environment, so people cannot walk or smuggle
+      sensitive data out through normal-looking channels.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Identify the few systems that hold the most sensitive data and put a basic
+        egress filter in front of them: block known-bad destinations, restrict outbound
+        protocols to what is needed, and log the rest for review.'
+      '2': Layer controls by data class - DLP on mail and web uploads, restricted
+        removable media, DNS filtering, egress proxying for cloud storage - and tie
+        exceptions to a documented approval with an owner and an expiry date.
+      '3': Tie exfiltration prevention to data inventory and labeling, monitor outbound
+        traffic for anomalies (volume, destination, time, encoded payloads), test
+        the controls with simulated exfiltration, and revise the rule set when the
+        data or threat picture changes.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing where egress controls sit, the policy and
+      rule set governing outbound traffic, DLP and proxy configurations, exception
+      register with approvals and expiries, logs and alert outcomes from monitored
+      egress, and results of exfiltration simulation tests.
+    basis: inferred
+  common_myth:
+    value: Assuming that an IDS or a firewall on the perimeter already satisfies this
+      control. SC-7.10 is about the data leaving, not threats coming in, so perimeter-only
+      IDS and a stateful firewall miss insiders, approved cloud services, and protocol
+      tunneling that look like normal traffic.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time an outbound transfer was blocked or alerted on - what
+      data, what destination, who tried to send it, and what happened next.
+    - Which sensitive data stores are not covered by any egress control, and why are
+      they excluded?
+    basis: inferred
+  regional_note:
+    value: European regulators under GDPR tend to push harder on demonstrating that
+      personal data in particular cannot leave the controlled environment unchecked;
+      US audits more often focus on technical configuration of the egress path without
+      tying it back to a specific data category.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.674294Z'
+  signed_digest: a2998b6e5e69ce3768cb158d0f196fe518a5e42aac3e96fc991cc20ad5ba13cb
+  interview_seconds: null
+  inherited_from: null

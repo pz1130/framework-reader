@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a bad change gets rolled into production
+      and you cannot prove what the system looked like before, nor roll back to a
+      known-good state. Without retained baselines, post-incident analysis is guesswork
+      and recovery becomes a re-engineering exercise rather than a restore.
+    basis: inferred
+  plain_zh:
+    value: Keep the prior configuration of systems, devices, and software so you can
+      compare what changed, restore a known-good state, and prove what was running
+      at the time of an incident. Retention has to actually exist on durable storage,
+      not just in someone's head or a terminal scrollback.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify baseline components (OS images, device configs, application configs,
+        firmware versions) and store the most recent prior version somewhere outside
+        the live system, with a timestamp and the change that triggered it.
+      '2': Define how many prior versions to keep and for how long; integrate baseline
+        capture into the change-management workflow so every approved change snapshots
+        the before-state; record who approved retention or destruction.
+      '3': Automate baseline capture as part of the change pipeline; test restore-from-baseline
+        periodically; link baselines to change tickets and incident timelines so a
+        given incident can pull up exactly the configuration in force at that moment.
+    basis: inferred
+  evidence:
+    value: Baseline repository with versioned prior configurations, retention policy
+      and schedule, change tickets showing before/after snapshots, restore-from-baseline
+      test records, and samples demonstrating that a chosen past configuration can
+      be retrieved on demand.
+    basis: inferred
+  common_myth:
+    value: Assuming the backup of the running system is the same as retaining a prior
+      configuration. A current backup of a bad config proves nothing about what it
+      looked like yesterday; restore gives you today, not last Tuesday.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a change from the last 90 days and show me the configuration that was live
+      immediately before it.
+    - How long after a change do you retain the prior configuration, and where is
+      that period defined?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.759211Z'
+  signed_digest: bee339e1d29d04f205ffb5ce1e99427971a51af873a183517f8cfdbc7ea558e4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.8.16
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'logs being recorded but no one reviewing them'—if activity monitoring
+      only stays at the technical level of collection without correlating user behavior, physical access,
+      and remote operations scenarios, abnormal actions during an attacker's dwell time will not be detected
+      in a timely manner, and during audits, there will be no evidence that 'we were indeed watching.'
+    basis: inferred
+  plain_zh:
+    value: Key activities involving personnel, equipment, networks, and physical environments should be
+      logged, and someone should regularly review these records to identify anomalies—it is not enough
+      to simply store logs; they must be reviewed, analyzed, and responded to.
+    basis: inferred
+  practice:
+    value:
+      '1': Core systems and network devices have logging enabled; log retention meets basic requirements;
+        major events can be traced back after they occur.
+      '2': A list of key audit events is defined; logs are centrally collected; designated personnel perform
+        anomaly analysis on a fixed schedule and leave records; anomalies can trigger alerts or tickets.
+      '3': Monitoring covers all scenarios including users, operations, physical access, and remote sessions;
+        abnormal behavior can be correlated to identify attack chains; monitoring rules are regularly
+        updated with threat intelligence and business changes, with an owner assigned.
+    basis: inferred
+  evidence:
+    value: Audit log configurations for critical systems, screenshots or access records of the centralized
+      log platform, anomaly analysis reports or ticket records, change history of monitoring rules, and
+      personnel duty and review sign-in records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'all logs are in the SIEM' counts as activity monitoring—the SIEM only handles
+      collection and alerting; if rules are coarse, no one reviews high-priority alerts daily, and tuning
+      is not followed up, alerts will remain in the queue forever, and real issues will still go undetected.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the past month, have there been any successful logins outside working hours or from non-work
+      locations? How were they discovered?
+    - What content is recorded for remote operations sessions? Can host-side logs and bastion host logs
+      be correlated?
+    - What is the update cycle for monitoring rules? When was the last time rules were adjusted due to
+      new threats or business changes?
+    basis: inferred
+  regional_note:
+    value: European auditors, in the context of GDPR, pay special attention to whether activity monitoring
+      has undergone a privacy impact assessment and whether data retention is limited to what is necessary;
+      American auditors focus more on whether monitoring covers privileged accounts and remote access
+      points, and whether it is integrated with incident response processes.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.380599Z'
+  signed_digest: 44513ee70d3207600abbf53fd1536af3d882ee58b4bc7fef6574bc382d675901
+  interview_seconds: null
+  inherited_from: null

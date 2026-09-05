@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data leaking out of, or untrusted commands leaking into,
+      a security domain because information flows across boundaries in whatever shape
+      the sender chose. If the receiving system has to accept whatever format arrives,
+      it has to parse and trust attacker-controlled structures, and that is how cross-domain
+      pivots and exfiltration happen.
+    basis: inferred
+  plain_zh:
+    value: When data crosses a security domain boundary, require it to be converted
+      into a normalized internal format on the way in and out, so the receiving side
+      never has to parse arbitrary external structures and policy decisions happen
+      on a known shape.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the cross-domain transfer points (e.g., low-to-high, high-to-low,
+        between enclaves) and document which ones pass structured data between systems
+        that do not share a common schema.
+      '2': Define an internal normalized format or data model for each cross-domain
+        path; require boundary components to translate inbound and outbound payloads
+        into that format before forwarding, with the policy enforcement point sitting
+        on the normalized representation.
+      '3': Build the translation and policy enforcement into the cross-domain solution
+        itself; reject any payload that fails normalization; log and alert on un-translatable
+        inputs; verify in periodic testing that no path bypasses normalization.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams of cross-domain transfer points, the documented internal
+      normalized data model, configuration of the cross-domain guard or transfer appliance
+      showing format translation and policy enforcement, test results demonstrating
+      that malformed or non-normalizable payloads are rejected, and logs of translation
+      failures.
+    basis: inferred
+  common_myth:
+    value: Assuming that a guard or diode at the boundary is enough on its own. Without
+      an enforced internal normalized format, the guard ends up inspecting one schema
+      while the downstream system parses a different one, and attackers exploit the
+      gap between the two parsers.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the cross-domain transfer points and which data model each one translates
+      into before policy is applied.
+    - What happens to a payload that cannot be parsed into the normalized format —
+      is it dropped, is it logged, who sees the alert?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.308291Z'
+  signed_digest: 94b2c79dfd6a0366001957305ebb4cb58d39613c81baa15aac5383f8d9486585
+  interview_seconds: null
+  inherited_from: null

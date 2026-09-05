@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.8.32
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'changes that cause problems' — if no one reviews, tests, or records changes,
+      then after a code or configuration change leads to business disruption or system compromise, you
+      cannot trace who changed what, why, or roll back.
+    basis: inferred
+  plain_zh:
+    value: 'All changes affecting systems (code, configuration, equipment, processes) must follow a unified
+      process: first submit a request, conduct an impact assessment, and obtain approval before making
+      the change; after the change, there must be records, and follow-up monitoring for issues.'
+    basis: inferred
+  practice:
+    value:
+      '1': Major changes (e.g., deploying new systems, modifying core configurations) at least require
+        verbal approval and basic backup records; know 'who approved what and when'.
+      '2': A documented change management process is in place and followed by all staff; changes to the
+        production environment must be submitted via a change request form, undergo technical review and
+        approval by the responsible person before implementation, and be completed within the change window
+        with results recorded.
+      '3': Change and configuration management are integrated, automatically recording actual production
+        environment changes and verifying them against approval forms; emergency changes still follow
+        the process with post-hoc documentation; each change can be traced to the corresponding development
+        requirement, defect fix, or security patch; rollback plans and drills are in place.
+    basis: inferred
+  evidence:
+    value: Change request approval forms (including impact analysis, rollback plan), change implementation
+      records and deliverables (release records, configuration change logs), monitoring and verification
+      records during the change window (test reports, post-release checklists), and materials for the
+      post-hoc documentation process of emergency changes.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a bastion host recording all commands in the production environment'
+      equals change management. Recording is for post-incident investigation; change management is about
+      preventing unauthorized changes before they happen, assessing risks, and knowing why changes are
+      made. Without approval forms for comparison, bastion host logs can only answer 'what was changed',
+      not 'who approved it and why'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pull the last five production change approval forms and match them to implementation records and
+      verification results — are there any changes made without approval?
+    - What is the process for emergency changes (hotfixes)? Where are the post-hoc approval and effectiveness
+      verification records for the last emergency change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.416332Z'
+  signed_digest: b8dda1e8d02e9803e93684baf4f52fa62326cf976eaabde77f89a3a91925c49d
+  interview_seconds: null
+  inherited_from: null

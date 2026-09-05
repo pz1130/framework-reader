@@ -1,0 +1,74 @@
+control_id: ISO-27002-2022:A.8.2
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that once a high-privilege account is abused, it can directly bypass all lower-level
+      controls—backups, logs, and EDR protections can all be disabled in the face of an attacker with
+      administrator rights. A domain admin account compromised via phishing or an insider threat is equivalent
+      to a total breach. Without dedicated monitoring of high-privilege usage, it's like leaving the building
+      keys in the front desk drawer and telling everyone.
+    basis: inferred
+  plain_zh:
+    value: 'Accounts with the highest system, domain, or application privileges must be managed an order
+      of magnitude more strictly than ordinary accounts: you need to know who holds them, how they are
+      used, and whether each use aligns with job responsibilities. These uses must be traceable, alertable,
+      and blockable, not just reviewed via permission approval forms.'
+    basis: inferred
+  practice:
+    value:
+      '1': A list of high-privilege accounts exists with an assigned owner; activation requires separate
+        approval; accounts are not left active when unused; at least a paper or ticket record is kept
+        for the activation process.
+      '2': High-privilege operations go through a bastion host or dedicated jump host as a unified entry
+        point, with all sessions recorded via screen capture or keystroke logs; at least weekly spot checks
+        for logins unrelated to work; upon termination or role change, high privileges are revoked the
+        same day with proof of revocation.
+      '3': High-privilege accounts are not tied to identity (no fixed passwords or credentials issued
+        on-demand as temporary); all privileged actions are correlated and auto-alerted in the log platform,
+        with triggers such as off-hours logins, bulk queries, or creation of other high-privilege accounts;
+        an independent party (e.g., security team rather than self-review by operations) conducts periodic
+        privileged account usage reviews, with review conclusions fed back as permission change actions.
+    basis: inferred
+  evidence:
+    value: List of high-privilege accounts and owners; approval tickets for provisioning/revocation of
+      privileged accounts; bastion host session recordings or keystroke audit logs; screenshots from spot
+      checks showing a specific privileged operation traced to a specific person and session during incident
+      reconstruction; minutes of privileged usage reviews or automated analysis reports; login and operation
+      logs by user (not just by server).
+    basis: inferred
+  common_myth:
+    value: Assuming that 'installing a bastion host' completes high-privilege control, but all operations
+      seen from the bastion host can still be legitimate—auditors care more about whether someone can
+      spot the chain of 'a high-privilege account logged into the database at 3 AM and deleted tables
+      cleanly' rather than how many hours of screen you recorded. Screen recordings keep running, but
+      if no one watches them and no rules trigger on them, it's just leaving a CCTV camera at the incident
+      scene.
+    basis: inferred
+  auditor_asks:
+    value:
+    - List all accounts that have ever had domain admin rights—which of them have actually logged in during
+      the past 90 days, and why?
+    - When was a particular high-privilege account last used, from what IP, and what did it do—can you
+      produce evidence within five minutes?
+    - How do you distinguish between 'this high-privilege action was done by a specific person' and 'anyone
+      could have done it using this shared account'?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.388907Z'
+  signed_digest: dc2d887dd91c5698a04974897240177d70630118d8b5e18c56f889a9c636bd7f
+  interview_seconds: null
+  inherited_from: null

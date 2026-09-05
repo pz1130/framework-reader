@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PM-8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against treating critical infrastructure as an abstract compliance
+      label rather than a finite, named set of systems and services. If you do not
+      enumerate what actually counts as critical, every downstream control — contingency
+      planning, incident response, SCRM, resilience — is built on guesswork, and the
+      loss of one unlisted asset can halt the mission.
+    basis: inferred
+  plain_zh:
+    value: Identify and explicitly list the information systems, services, and the
+      assets that support them that are critical to the organization's mission, document
+      that list, get it approved, and keep it current as systems, threats, and dependencies
+      change.
+    basis: inferred
+  practice:
+    value:
+      '1': Produce a written list of critical systems and services with a stated definition
+        of 'critical'; have it approved by leadership; review it after major changes.
+      '2': Tie each item on the list to a business process and a dependency map; define
+        roles for owners and reviewers; schedule periodic review (at least annually
+        and after significant events).
+      '3': Make the critical systems list the single source of truth feeding contingency
+        plans, incident response playbooks, SCRM, and resilience exercises; track
+        changes with versioning; validate against actual outages and near-misses;
+        escalate additions/removals through governance.
+    basis: inferred
+  evidence:
+    value: Approved critical systems and services inventory with definitions, owner
+      assignments, dependency notes, version history, and linkage to contingency/IR/SCRM
+      artifacts; minutes or sign-offs showing governance review.
+    basis: inferred
+  common_myth:
+    value: Assuming that any system tagged 'critical' in a CMDB or marked 'high availability'
+      already satisfies this control. The control is not about asset management accuracy
+      — it is about a leadership-approved subset selected on the basis of mission
+      impact, with ownership and review, otherwise every important system is treated
+      as critical and the list becomes meaningless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current approved list of critical systems and the criteria used
+      to decide what is on it.
+    - When a new system goes live or a key dependency changes, how does it get evaluated
+      for addition to or removal from the critical list, and who signs off?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.802681Z'
+  signed_digest: 1a23ad7015949ddaafd0273d1cf7ef4de43fa9a24a874e66121f40acf09b5563
+  interview_seconds: null
+  inherited_from: null

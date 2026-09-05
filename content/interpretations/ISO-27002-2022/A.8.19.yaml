@@ -1,0 +1,69 @@
+control_id: ISO-27002-2022:A.8.19
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'software in production environments is unmanaged, and anything can be
+      installed and run'—no one knows what software exists in production, what can be installed, and what
+      is not allowed, allowing attackers or accidental actions to install and run malicious software;
+      additionally, without an approval chain, someone might bypass the change process and directly install
+      software on production machines, undermining stability or introducing backdoors.
+    basis: inferred
+  plain_zh:
+    value: Manage software installation on production systems—what can be installed, what cannot, who
+      can install, and what process must be followed—all must be clearly specified and technically enforced,
+      with regular checks to ensure actual installations align with the rules.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written policy for software installation in production; ordinary users are not allowed
+        to install software on production machines without at least administrator privileges; installation
+        requires verbal or email approval beforehand.
+      '2': There is a clear software whitelist/blacklist; installation follows a change approval process
+        with records; system configuration or management tools restrict user execution of installations;
+        periodic spot checks compare installed software on production machines against approval records.
+      '3': Production environments default to deny-all and allow only whitelisted software; unapproved
+        software cannot execute; software inventory is automatically linked to installation authorizations,
+        and installation is only permitted after change approval; whitelists are regularly reviewed and
+        outdated items removed, with alerts for anomalous installation attempts.
+    basis: inferred
+  evidence:
+    value: Production software installation policy documents, change approval tickets (software installation
+      type), software whitelist/blacklist lists and review records, periodic spot-check comparison results
+      (actual server software inventory vs. authorized list), and technical control screenshots (e.g.,
+      group policy, EDR whitelist, configuration management platform).
+    basis: inferred
+  common_myth:
+    value: Assuming that 'only administrators can install software on production machines' is sufficient,
+      but no one approves or records what administrators install, so misinstallations or problematic software
+      go unnoticed; more commonly, a bunch of supporting tools, scripts, and agents are installed, and
+      eventually no one remembers who approved them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pointing to a production server, tell me what software is installed on it and where is the inventory?
+    - Did anyone install software on production machines last quarter? What was installed, who approved
+      it, and under which ticket number?
+    - Can unlisted executable files be run on production machines? What mechanism blocks them?
+    basis: inferred
+  regional_note:
+    value: European audits typically focus more directly on whether anomalous installation attempts were
+      actually blocked and logged, caring about the real-world effectiveness of technical controls; U.S.
+      audits often focus more on whether the whitelist is complete and regularly updated and reviewed.
+      Overall differences are minor; can be written as null.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.386939Z'
+  signed_digest: 1c060fac032e6107e641e57d64447fd762decad81a1492e091e09460367505f3
+  interview_seconds: null
+  inherited_from: null

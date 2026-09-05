@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:IR-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against incident response plans going stale the moment the environment
+      changes - if a new subnet, cloud region, service mesh segment, or contractor-owned
+      enclave is added during normal operations or mid-incident, the IR team cannot
+      reach it, isolate it, or pull evidence from it because routing, ACLs, jump hosts,
+      and sensor coverage were not adjusted to match. The control defends the assumption
+      that the response path you rehearsed will still be there when an attacker triggers
+      a real event.
+    basis: inferred
+  plain_zh:
+    value: Make sure the network and system components the incident response team
+      relies on - sensors, jump hosts, out-of-band paths, isolation controls, evidence
+      collection endpoints - can be reconfigured quickly when the environment changes,
+      and that IR plans assume the network is not static. Plan components must not
+      break because someone added a segment, a cloud account, or a third-party enclave.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the network segments, cloud accounts, and enclaves IR needs to
+        reach; document the jump-host, sensor, and isolation paths for each; identify
+        the most likely change events (new VPC, new branch, M&A integration) that
+        would break those paths.
+      '2': 'Define a reconfiguration procedure tied to change events: which IR assets
+        must move with the change, who approves, what gets re-tested; capture before/after
+        topology diagrams for IR-relevant segments; record changes that affected IR
+        reachability.'
+      '3': Automate the detection of new segments or accounts missing IR sensor coverage;
+        pre-stage isolation controls (NAC, cloud security groups, break-glass admin
+        paths) in templates so they attach by default; rehearse reconfiguration during
+        tabletop or purple-team exercises; track time-to-cover for newly added assets
+        as a metric.
+    basis: inferred
+  evidence:
+    value: IR-relevant network and cloud inventory, change-triggered reconfiguration
+      records and topology deltas, pre-approved templates for sensor and isolation
+      control deployment, exercise after-action reports covering reconfiguration,
+      and metrics on coverage lag for new segments.
+    basis: inferred
+  common_myth:
+    value: Treating the IR plan as a static document refreshed once a year and assuming
+      'the network team will add us when they add a segment.' Reachability is not
+      automatic; when a new segment goes live without IR sensors, jump hosts, or isolation
+      hooks, the response team discovers the gap during the incident - usually while
+      the attacker is still active in that segment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last network or cloud change that added a new segment or account
+      - how was IR coverage added, and how long did it take?
+    - Walk me through how an analyst would isolate a host in a brand-new VPC that
+      did not exist when the IR plan was written.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.305941Z'
+  signed_digest: 97ef593bfe8f1384b45f00f3f74603b20020dc0071c108e2f828523ed30b420a
+  interview_seconds: null
+  inherited_from: null

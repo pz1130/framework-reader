@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-4.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from buying, building, or acquiring systems without
+      knowing — or being able to evidence — what records of personally identifiable
+      or regulated data the system actually holds, which would defeat privacy impact
+      assessments, FOIA/Privacy Act response, breach scoping, and lawful data minimization.
+    basis: inferred
+  plain_zh:
+    value: Before you acquire, modify, or replace a system, make sure its design lets
+      you identify and pull out the records it contains, and that the resulting inventory
+      is fed back into privacy, breach-response, and minimization decisions.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Acquisition checklists ask the vendor/team: what categories of records
+        live in this system, where, and can you export them.'
+      '2': Procurement and SDLC gates require a written record inventory (data elements,
+        retention, owner) for every system touching PII or regulated data before it
+        goes live.
+      '3': Record inventory is wired into privacy impact assessment, breach-response
+        scoping, retention/disposition, and periodic re-baselining when the system
+        is upgraded or replaced.
+    basis: inferred
+  evidence:
+    value: Procurement/SDLC gate records showing a record inventory was produced for
+      each covered system, the inventory itself (data elements, retention, system
+      owner), and proof it is used by downstream privacy, breach-response, and retention
+      processes.
+    basis: inferred
+  common_myth:
+    value: Treating this as a Privacy Act notice exercise — believing that publishing
+      a system-of-records notice in the Federal Register (or the equivalent corporate
+      privacy notice) substitutes for actually knowing, system by system, what records
+      sit inside it. The notice is downstream of the inventory; without an inventory
+      the notice is guesswork and breach scoping becomes blind.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system that processes PII: show me the record inventory produced before
+      it went live and what it lists.'
+    - When that system was last upgraded or replaced, how were the records re-identified
+      and how did the inventory get refreshed?
+    basis: inferred
+  regional_note:
+    value: US auditors tied to federal Privacy Act programs push hardest on this control;
+      private-sector US audits often accept a privacy notice plus data map as equivalent.
+      EU auditors lean on the records inventory through GDPR records-of-processing,
+      DPIA, and breach-notification scoping rather than naming it SA-4(11).
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.177249Z'
+  signed_digest: d6047ccf54b88c3608a9dfa300657729388d95c1306cd04c9a0b2322d84903a6
+  interview_seconds: null
+  inherited_from: null

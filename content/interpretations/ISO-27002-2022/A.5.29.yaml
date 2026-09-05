@@ -1,0 +1,59 @@
+control_id: ISO-27002-2022:A.5.29
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'everything is normal in daily operations, but when an incident occurs,
+      the system cannot start or comes online with an erroneous state'—after an interruption, breach,
+      or failure, the system must be restored to a trusted known state, not merely rebooted and considered
+      done.
+    basis: inferred
+  plain_zh:
+    value: You need to have a plan in place that specifies how to restore the system to a clean, trusted
+      state after an interruption, and you must actually conduct exercises, not just write documentation.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a documented recovery plan that specifies who is responsible, the order of recovery, and
+        the target state; conduct at least one tabletop exercise.
+      '2': The plan includes recovery point and recovery time objectives; conduct regular recovery exercises
+        and record results; identified issues have a closed-loop for remediation.
+      '3': Recovery processes are linked with backup strategies, supporting rebuild from a clean baseline
+        rather than relying solely on incremental backups; exercises cover full interruption scenarios;
+        recovery operations have audit logs for traceability.
+    basis: inferred
+  evidence:
+    value: Recovery plan documents, exercise plans and attendance sheets, post-exercise reviews and remediation
+      records, backup recovery verification reports, scripts/SOPs used during recovery.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having backups and being able to recover data' equals system recovery—what
+      is missed is whether the system is in a trusted state after recovery, such as residual malware,
+      tampered configurations, or implanted backdoor accounts; if these are not cleared before going live,
+      the recovery is in vain.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last full recovery exercise? Did the exercise restore the system from backup to a clean
+      environment and verify security configurations?
+    - The recovery plan states 'restore to a known trusted state'—how is this state specifically defined,
+      and who verifies it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.292060Z'
+  signed_digest: 8b98a6e1ea6d85c623139908560826ed0df8de90322c0f78cf1a123e49d648a5
+  interview_seconds: null
+  inherited_from: null

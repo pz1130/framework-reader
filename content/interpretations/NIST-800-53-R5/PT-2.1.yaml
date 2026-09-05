@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PT-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents sensitive data from flowing through the organization unlabeled
+      and undiscoverable - if tags are not bound to the data itself, downstream systems
+      cannot enforce handling rules, and an audit cannot reconstruct who saw what,
+      where it went, or whether it was protected according to its sensitivity.
+    basis: inferred
+  plain_zh:
+    value: Tag sensitive information at the data level so that handling, storage,
+      transmission, and disposal controls can be applied based on the tag, and so
+      the organization can trace and verify how that data is being protected throughout
+      its lifecycle.
+    basis: inferred
+  practice:
+    value:
+      '1': A documented set of sensitivity tags (e.g., public, internal, confidential,
+        regulated) exists and is used to label the most sensitive data stores and
+        documents manually or by default.
+      '2': Tagging rules are applied at creation/capture points (e.g., classifiers
+        on mail, document templates, database schema columns); downstream controls
+        such as encryption, DLP, and access decisions read the tag.
+      '3': Tags travel with the data across copies, exports, and pipelines; tagging
+        accuracy is measured; missing or wrong tags on sensitive data are detected
+        and remediated; tags drive enforcement automatically, not by reviewer discretion.
+    basis: inferred
+  evidence:
+    value: Tagging taxonomy and policy, samples of correctly tagged sensitive assets,
+      records showing downstream controls reacting to tags (e.g., DLP decisions, encryption
+      applied by tag), detection reports of untagged or mis-tagged sensitive data,
+      and remediation history.
+    basis: inferred
+  common_myth:
+    value: Assuming that classifying information at the document or database level
+      (a one-time label on a folder or schema) satisfies data tagging - in practice
+      tags must persist with the data when it is copied, exported, or transformed,
+      or downstream controls cannot see them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a regulated record and show the tag that travels with it when it is exported
+      or shared outside the source system.
+    - How do you detect sensitive data that lost its tag or was never tagged, and
+      what did you do about the last instance?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.866079Z'
+  signed_digest: 956f1d7a17c0b5bf61d6b8d5b4b70173093950df9e3c85016aefefb9fd5095d0
+  interview_seconds: null
+  inherited_from: null

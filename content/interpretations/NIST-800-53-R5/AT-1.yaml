@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AT-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where awareness and training operate as
+      ad-hoc activity scattered across email templates and onboarding checklists,
+      with no one owning scope, cadence, or escalation — so when an incident traces
+      back to a user who never received relevant training, the organization cannot
+      show what program was supposed to reach them, or why it was allowed to lapse.
+    basis: inferred
+  plain_zh:
+    value: 'Establish and maintain a documented policy and supporting procedures for
+      the security awareness and training program: who owns it, what it covers, how
+      often it is reviewed, and how exceptions are handled — and make sure the policy
+      itself is reviewed on a defined cadence and updated when the threat landscape,
+      roles, or applicable rules change.'
+    basis: inferred
+  practice:
+    value:
+      '1': A written awareness/training policy exists, names an owner, and points
+        to a basic procedure (onboarding training, annual refresher, role-specific
+        add-ons). It is approved by leadership and reachable by staff.
+      '2': The policy has a fixed review cycle with version history; procedures cover
+        needs assessment, content selection, delivery, attendance capture, and exception
+        handling. Coverage gaps (e.g., contractors, third parties, privileged users)
+        are explicitly addressed.
+      '3': Reviews are tied to triggers — incidents caused by human factors, new regulations,
+        new role types, or changes in the threat picture — and result in documented
+        updates. Exception and waiver decisions are logged with the risk accepted
+        and the approver. The policy is formally re-approved on schedule, not left
+        to lapse.
+    basis: inferred
+  evidence:
+    value: Current version of the AT policy with approval signatures and version/date
+      history, the linked procedures (needs assessment, delivery, attendance, exceptions),
+      the review-and-update log showing scheduled reviews plus any trigger-driven
+      updates, and sample records demonstrating the procedures are actually followed.
+    basis: inferred
+  common_myth:
+    value: Treating AT-1 as satisfied by the existence of any training deck or annual
+      phishing simulation in production — when no one can point to a policy that defines
+      scope, ownership, review cadence, and how the program is supposed to evolve.
+      The training is output; AT-1 is the governance wrapper around it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the awareness and training policy last reviewed and re-approved, and
+      what triggered that review?
+    - Who owns the program, and how are contractors, privileged users, and role-specific
+      populations covered differently from general staff?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.444993Z'
+  signed_digest: 3f2c6b13ca87253df26967bd1ccf365b3354993496b016b1f3a04458891f7a4e
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CP-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the assumption that a written contingency plan actually
+      works. Plans that were never exercised fail the first time they are needed:
+      recovery scripts are stale, call trees are wrong, failover paths are broken,
+      people forget their roles. Automated testing forces the plan through real failure
+      paths on a schedule, so latent rot is caught before an incident exposes it.'
+    basis: inferred
+  plain_zh:
+    value: Run the contingency plan automatically on a regular cadence against representative
+      failure scenarios, and act on what the tests find. Don't rely on the document
+      alone; prove that the recovery steps actually execute end-to-end without waiting
+      for a real incident.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one critical system has a scheduled automated test (e.g., backup
+        restore to isolated environment, service failover, DR site spin-up) that completes
+        without manual orchestration; results are logged.
+      '2': Coverage extends to multiple contingency scenarios across tier-1 systems;
+        test results feed into defect or remediation tickets; failures trigger re-test
+        after fix.
+      '3': 'Automated testing is integrated into the change and resilience lifecycle:
+        scenarios are tied to RTO/RPO targets, results trend over time, exceptions
+        are time-bound with named owners, and un-tested plan elements are explicitly
+        flagged.'
+    basis: inferred
+  evidence:
+    value: Automated test plans, execution logs with pass/fail and timing, remediation
+      tickets from failed runs, trend reports comparing results over cycles, mapping
+      of test scenarios to plan sections and RTO/RPO targets.
+    basis: inferred
+  common_myth:
+    value: Treating an annual tabletop or a one-off DR drill as sufficient. A discussion-based
+      exercise validates that people have read the plan; it does not prove the automated
+      recovery paths, scripts, and integrations still work after months of code and
+      infrastructure change.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which contingency plan elements are exercised automatically versus only manually,
+      and when did each last run?
+    - Show the last failed automated test run and what changed in the plan or system
+      as a result.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.968861Z'
+  signed_digest: d0f9726a69c17b6e091df9fd69a1900e286219e4950c5c630064a53d3e01aa4c
+  interview_seconds: null
+  inherited_from: null

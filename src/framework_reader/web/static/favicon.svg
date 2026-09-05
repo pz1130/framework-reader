@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Framework Workbench">
+  <defs>
+    <linearGradient id="g-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="40%" stop-color="#9B72CB"/>
+      <stop offset="80%" stop-color="#EA4335"/>
+      <stop offset="100%" stop-color="#FBBC05"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="#121316"/>
+  <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#4285F4" stroke-width="2.2"/>
+  <rect x="13" y="13" width="14" height="14" rx="4" fill="#1a2736" stroke="#34A853" stroke-width="2.2"/>
+  <circle cx="5" cy="19" r="1.8" fill="#EA4335"/>
+  <circle cx="19" cy="5" r="1.8" fill="#FBBC05"/>
+  <path d="M16 11.5 C16 13.8 14.8 15 12.5 15 C14.8 15 16 16.2 16 18.5 C16 16.2 17.2 15 19.5 15 C17.2 15 16 13.8 16 11.5 Z" fill="url(#g-grad)"/>
+</svg>

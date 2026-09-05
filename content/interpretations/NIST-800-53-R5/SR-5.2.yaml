@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SR-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents shipping new or changed supplier components that have never been
+      independently examined for exploitable weaknesses — a known pattern for backdoored
+      libraries, inherited CVEs, and tampered updates becoming the entry vector.
+    basis: inferred
+  plain_zh:
+    value: Before you select, accept, modify, or update a supplier component, run
+      an assessment against defined security requirements and document the result,
+      so a known-bad or unvetted piece doesn't quietly land in your product.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what a supplier component is and which changes count (new vendor,
+        new version, major upgrade, local patch); require a documented check before
+        each goes into production.
+      '2': Apply a repeatable assessment checklist per change type (SBOM diff, CVE
+        scan, integrity/signature verification, license and provenance review); record
+        pass/fail and who decided.
+      '3': Gate the deployment pipeline on the assessment record; failures block promotion;
+        deviations require formal exception with expiry; assessment criteria are reviewed
+        as the threat landscape shifts.
+    basis: inferred
+  evidence:
+    value: A supplier-component change record showing the assessment run, results,
+      decision, and approver for each selection, acceptance, modification, or update
+      — tied back to the change ticket or release.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor's published clean-scan report or signed release notes
+      as the assessment — those are the vendor asserting safety of their own product;
+      the assessment has to be performed or independently verified by the acquirer
+      against your own requirements.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three supplier-component changes and the assessment record
+      for each.
+    - What happened the last time an assessment came back with findings — did the
+      change still ship, and on whose authority?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.191066Z'
+  signed_digest: ada7b775efc8c83c000c3ec46a613d6137db0b35f8f02ecaa0ee0524640375c3
+  interview_seconds: null
+  inherited_from: null

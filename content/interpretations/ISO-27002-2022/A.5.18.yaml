@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.5.18
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that no one manages the account lifecycle—when employees are onboarded, accounts
+      are created; when they change roles, permissions are added; but when they leave, no one deactivates
+      their accounts, resulting in accounts of former employees remaining active in systems a year later,
+      creating insider threats and audit failures.
+    basis: inferred
+  plain_zh:
+    value: For each type of account in the system, clearly define who can request, who can approve, and
+      under what conditions accounts are created; the entire process from account creation, modification,
+      to deactivation and deletion should be traceable, and periodically reconcile the account list with
+      actual personnel to ensure there are no redundant active accounts.
+    basis: inferred
+  practice:
+    value:
+      '1': There is documented account management process; onboarding and offboarding are executed by
+        designated personnel; system administrators know that account approvals must follow the process.
+      '2': Account types are classified and have owners; all creations, changes, and revocations have
+        approval records; a quarterly reconciliation of accounts with actual personnel is performed and
+        documented.
+      '3': Account lifecycle status is automatically synchronized with HR or personnel systems; suspicious
+        or long-unused accounts are automatically flagged or disabled; privileged accounts undergo more
+        frequent reviews and exceptional approvals.
+    basis: inferred
+  evidence:
+    value: Account management policy and process flowcharts, approval tickets for creation/modification/revocation,
+      periodic account reconciliation reports and discrepancy handling records, comparison results of
+      system account lists with active employee lists.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that 'when an employee leaves, HR gives a shout and IT deletes the
+      account' constitutes account management. The real issue is that no one records 'who was notified
+      to delete accounts in which systems'—once verbal notification breaks down, accounts become orphaned.
+      Auditors require traceable process records, not someone's memory.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the 5 employees who left last quarter, which system accounts have not been revoked? Where can
+      the list be found?
+    - For employees who changed roles, in which systems do they still retain old role permissions? How
+      often is this reviewed?
+    - Who approves accounts created by administrators themselves? How to prevent administrators from creating
+      backdoors for themselves?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.269523Z'
+  signed_digest: 79cfbcb792f04318ed72984d1df972337bbb43a3f0157caae30315d01545d323
+  interview_seconds: null
+  inherited_from: null

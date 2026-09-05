@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-15.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where development and acquisition teams
+      ship software with known exploitable weaknesses that nobody sees until a scanner
+      runs in production — or never. Automated analysis must be wired into the build,
+      not bolted on after deployment, so that a weakness is caught before the code
+      or component is accepted, not after attackers have a live target.
+    basis: inferred
+  plain_zh:
+    value: Require automated tools to scan systems, components and software being
+      developed or procured for known flaws, and make the results drive a real decision
+      — accept, fix, or reject — before the code goes live. Scanning on a schedule
+      without enforcement does not count.
+    basis: inferred
+  practice:
+    value:
+      '1': Run a recognized vulnerability scanner against systems, components and
+        software in dev/test before release; keep the raw report with the artifact.
+      '2': Scanning is tied to the build or acquisition gate; findings above a defined
+        severity threshold require documented remediation, exception, or rejection;
+        the decision is recorded alongside the scan.
+      '3': Multiple tool classes are used (SCA for dependencies, SAST/DAST for code,
+        configuration/compliance scans for images and deployed systems); results feed
+        a tracked backlog with owners and SLAs; rescans confirm closure; exceptions
+        expire and are reviewed.
+    basis: inferred
+  evidence:
+    value: Scan reports linked to build IDs or release tickets, gate decisions and
+      remediation records, exception register with expiry dates, rescans confirming
+      closure, and tool coverage showing the classes of weakness actually being checked.
+    basis: inferred
+  common_myth:
+    value: Assuming that running a quarterly vulnerability scan against production
+      means SA-15(7) is satisfied. The control is about automated analysis of what
+      is being developed or acquired, using the results to decide whether to accept
+      it — a scheduled prod scan against what is already live is a different control
+      (RA / VM family) and does not prove that weak code was ever blocked at the gate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick the last three releases or acquisitions of custom code: show the scan
+      report run before acceptance and the decision that came out of it.'
+    - Which scanner class checks dependency vulnerabilities versus first-party code
+      versus misconfigurations, and where is that mapping documented?
+    - Show an exception that was granted for a known finding — when does it expire
+      and who owns the closure?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.095249Z'
+  signed_digest: 20da6a29dddedda145e1fc7338ae67074138151c25e581025ebca861dd92ecd5
+  interview_seconds: null
+  inherited_from: null

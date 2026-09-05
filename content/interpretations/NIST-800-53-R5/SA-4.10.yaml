@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-4.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the use of unvetted or non-standard identity credentials by tying
+      personnel authentication to a government-approved Personal Identity Verification
+      (PIV) product and solution, thereby ensuring a baseline level of trust and interoperability
+      across systems and agencies.
+    basis: inferred
+  plain_zh:
+    value: It requires that you procure and use only those identity and authentication
+      products (for employees, contractors, etc.) that have been officially approved
+      under the government's PIV program, and that you document this use in your procurement
+      and system configuration.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement specifications require PIV compliance for any new identity
+        or authentication product; staff know which badge or credential standard to
+        use in daily operations.
+      '2': The organization maintains a list of approved PIV products and vendors,
+        references this list in procurement and system development life cycle processes,
+        and conducts periodic reviews to ensure deployed systems still use approved
+        products.
+      '3': Automated inventory or configuration management tracks PIV product version
+        and compliance status; deviations from approved products are flagged and corrected
+        through a change management process; evidence of approval is stored with each
+        system's asset record.
+    basis: inferred
+  evidence:
+    value: Procurement documentation showing PIV approval requirements; a maintained
+      list of approved PIV products and versions; configuration management or asset
+      inventory records linking each system to an approved product; change tickets
+      showing remediation of non-compliant products.
+    basis: inferred
+  common_myth:
+    value: Assuming that any smart card or multi-factor authentication product labeled
+      'PIV-compatible' is automatically approved – actual approval requires the product
+      to be on the government's official approved products list, and using a look-alike
+      can put you out of compliance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where is your current list of approved PIV products, and how do you ensure every
+      authentication system uses one from that list?
+    - What is your process when a vendor releases a new version – do you verify it
+      remains on the approved list before deploying it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.173423Z'
+  signed_digest: d3ac3f048c09577de4c4aed8cf4316ed0d9d9fbfa833e344cbc680a9c1d9b888
+  interview_seconds: null
+  inherited_from: null

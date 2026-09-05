@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a software/firmware component is
+      loaded or executed without anyone noticing it has been silently altered - whether
+      by a compromise in the supply chain, a malicious update, or in-flight tampering
+      - so that backdoored or tampered code runs as 'trusted' and the breach is only
+      discovered months later when damage is already done.
+    basis: inferred
+  plain_zh:
+    value: Require software, firmware, and information components to be checked for
+      unauthorized alteration before they are used, and have someone explicitly look
+      at those check results and act on failures - not just enable a setting and forget
+      it.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the components that must be integrity-checked (boot firmware,
+        OS images, critical application packages, downloaded artifacts) and run a
+        cryptographic hash or signature check before installation or first use; failures
+        block the component.
+      '2': Maintain a documented procedure naming each check, its algorithm/source,
+        who reviews the results, and the escalation path on failure; review records
+        are retained and exceptions are approved in writing.
+      '3': Checks cover the full chain (boot, OS, runtime libraries, application,
+        configuration and data where required), run continuously or at every load,
+        integrate with alerting and ticket creation, and are periodically audited
+        against the actual inventory to confirm nothing critical slipped outside the
+        checks.
+    basis: inferred
+  evidence:
+    value: List of in-scope components, the integrity-check procedure and tools used,
+      sample check logs/results with reviewer sign-off, exception records, and audit
+      evidence that all critical components are within scope of the checks.
+    basis: inferred
+  common_myth:
+    value: Assuming that enabling a vendor's built-in 'secure boot' or 'signed image'
+      toggle once means the control is met - the toggle is just the engine; without
+      an explicit component inventory, a documented review cadence, and a defined
+      response to check failures, the control is not operating and new components
+      can be loaded without ever being checked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of components covered by integrity checks and how you confirmed
+      the list is complete.
+    - Walk me through the last time an integrity check failed - what happened, who
+      was notified, and where is the record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.075501Z'
+  signed_digest: ba84ae4b4511d72af7b92153268b9290b2ced2e8677a6f0c88de16eca2348590
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CP-9.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against information that stays readable after a system crash or
+      component failure: power loss, disk fault, controller failure, or an undetected
+      bit rot in backups can silently corrupt or strip away encryption keys, leaving
+      at-rest data effectively exposed or unrecoverable. The control forces a separate,
+      key-aware recovery path so confidentiality does not collapse at the moment you
+      most need to restore.'
+    basis: inferred
+  plain_zh:
+    value: Make sure that when the backup system itself fails or loses power, the
+      cryptographic protection of the backup data still holds, and that the system
+      can be brought back to a state where keys, access controls, and confidentiality
+      still work.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which backup components (key store, KMS, backup server, storage
+        array) need power and key continuity; ensure UPS/battery covers them; verify
+        backups still decrypt after a controlled power cycle.
+      '2': 'Test restore with cryptographic verification on a defined cadence: confirm
+        ciphertext is intact, keys are reachable, decryption succeeds, and access
+        controls reattach. Keep test records.'
+      '3': Engineer for cryptographic key survivability across backup-component failures
+        (HSM/KMS redundancy, key escrow to a separate domain, automated integrity
+        checks on backup images), and rehearse a full failure-and-recovery where a
+        key store is lost and must be reconstructed without exposing plaintext.
+    basis: inferred
+  evidence:
+    value: Backup architecture diagram showing key handling, power-protection coverage,
+      cryptographic verification results from restore tests, incident records from
+      any backup-component failure, and key-recovery procedures.
+    basis: inferred
+  common_myth:
+    value: Assuming that because production data is encrypted, backups are automatically
+      protected too - many backup tools stream plaintext through a media server or
+      temporarily unwrap keys on a host that has no UPS, so the moment the backup
+      infrastructure itself fails, the cryptographic protection disappears.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent restore test where you deliberately lost power to the backup
+      server - did the restored data still decrypt and who attested to it?
+    - If your key store burned today, how would you recover encrypted backups, and
+      which step in that procedure most risks exposing plaintext?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.051559Z'
+  signed_digest: 9ef0708f06283c1edd2c70d59cbc789733c82267b0e8955b56b60fcaba26166d
+  interview_seconds: null
+  inherited_from: null

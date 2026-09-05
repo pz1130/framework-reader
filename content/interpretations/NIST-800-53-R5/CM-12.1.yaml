@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where the organization cannot actually find
+      sensitive data when an incident, breach notification, or audit demand hits —
+      meaning configuration management 'knows its systems' on paper but cannot answer
+      'where is the regulated data' in hours, not weeks.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools to actually locate and track sensitive information
+      across systems (not just list servers), so that when a breach, request, or audit
+      arrives, you can show what data lives where within a defined, short window.
+    basis: inferred
+  practice:
+    value:
+      '1': Run scheduled, automated scans across file shares, databases, email, and
+        cloud storage to discover sensitive data; tag locations by data type and system
+        owner.
+      '2': Maintain an up-to-date inventory of where regulated data resides, tied
+        to system owners and the tools that detected it; review results on a defined
+        cadence and document gaps.
+      '3': Wire automated discovery into the configuration and asset management system
+        so new stores are surfaced in near real time; enforce that high-risk findings
+        (for example, unmanaged sensitive data) trigger a remediation workflow with
+        owners and deadlines.
+    basis: inferred
+  evidence:
+    value: A working record from automated discovery tools (scan reports, dashboards,
+      or inventories) showing where sensitive data was found, which system owner is
+      responsible, when it was last scanned, and how findings were remediated or accepted.
+    basis: inferred
+  common_myth:
+    value: Assuming that an asset inventory of servers and applications already satisfies
+      this control — it does not, because the control is about discovering where the
+      *data* (especially regulated or sensitive data) actually lives, not where the
+      systems are. A list of hosts without a corresponding data-location map fails
+      the moment you need to answer 'where is the customer data'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the output of your last automated data discovery scan and which system
+      owns each result.
+    - How long does it take you to locate a specific category of data on demand, and
+      what tool produces that answer?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.744098Z'
+  signed_digest: 2f07e31b150e659d94e804e56728745bf9479126e3ea72b99670b9476a122d1e
+  interview_seconds: null
+  inherited_from: null

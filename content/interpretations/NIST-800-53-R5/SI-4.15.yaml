@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-4.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker from using the wireless network as an unmonitored
+      bridge into the wired core — once a device hops from Wi-Fi to Ethernet, monitoring
+      that ended at the access point becomes blind, so a compromised laptop or rogue
+      AP can pivot into servers and internal subnets without being seen.
+    basis: inferred
+  plain_zh:
+    value: When traffic moves from wireless to wired, you must still see it, still
+      filter it, and still enforce the same policy as if it had stayed on the LAN.
+      Wireless is not a separate trust universe.
+    basis: inferred
+  practice:
+    value:
+      '1': Treat all wireless-to-wired traffic as untrusted at the ingress point;
+        APs and controllers are placed on a separate segment that cannot directly
+        reach internal subnets without going through a gateway that logs and filters.
+      '2': Define explicitly which wireless devices or classes may bridge to specific
+        wired destinations; document the bridging path and the controls on it; review
+        the allowed list when network changes happen.
+      '3': Wire the wireless-to-wired boundary so all traffic is captured by the same
+        monitoring and policy enforcement as the wired core (IDS/IPS, NAC, segmentation
+        gateway); alert on and block bridging attempts that bypass the defined path;
+        verify periodically that no rogue or unmanaged AP has silently created its
+        own bridge.
+    basis: inferred
+  evidence:
+    value: Network architecture diagram showing the wireless-to-wired boundary, configuration
+      of the gateway or firewall enforcing the policy, logs from that enforcement
+      point, and the documented list of permitted wireless-to-wired flows with their
+      review history.
+    basis: inferred
+  common_myth:
+    value: Believing that because traffic is encrypted on Wi-Fi (WPA2/WPA3) the bridging
+      boundary is already safe, so no extra controls are needed — the encryption protects
+      the link but not what lands on the wired side, and an attacker already past
+      the encryption can walk straight into servers if the boundary is open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If a compromised laptop on Wi-Fi tried to reach an internal server, where would
+      it be stopped and what would the log show?
+    - Show me the segment where your wireless controllers live and how a packet gets
+      from an AP to a wired server — which device inspects it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.000062Z'
+  signed_digest: a6f5523e13ed8531a4847199b2874da260c259700e004398f9b3d0ae1db61d91
+  interview_seconds: null
+  inherited_from: null

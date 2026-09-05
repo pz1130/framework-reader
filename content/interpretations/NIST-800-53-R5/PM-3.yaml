@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:PM-3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the situation where security and privacy work is chronically under-funded
+      and under-staffed because nobody planned for it, so the program runs on goodwill
+      and breaks when people leave or budgets tighten.
+    basis: inferred
+  plain_zh:
+    value: Plan and budget the people, money, tools and time you need to run the security
+      and privacy program - before the program needs them - and keep that plan current.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which roles and skills the program needs; document a rough estimate
+        of budget and FTE; secure management acknowledgement that it is in scope.
+      '2': Maintain a resource plan (staffing, budget, tooling, training) tied to
+        the security and privacy strategy; review it at least annually; track gaps
+        with owners and dates.
+      '3': Resource plan is integrated with enterprise budgeting and HR planning;
+        shortfalls trigger formal escalation; changes in strategy or threat landscape
+        trigger re-planning; audit trail shows funding decisions and trade-offs.
+    basis: inferred
+  evidence:
+    value: Approved resource plan covering staff, budget, tools and training for the
+      security and privacy program; management sign-off; review and update history;
+      evidence of how gaps were escalated or resolved.
+    basis: inferred
+  common_myth:
+    value: Believing that having a security team on the org chart satisfies PM-3 -
+      the control is about planned, budgeted capacity, not just that people exist.
+      A one-person team covering a 5,000-employee organisation with no budget line
+      is a failure of PM-3, not a success.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the resource plan that backs your security and privacy program and who
+      approved it.
+    - What did you do the last time the plan showed you were short on people or budget
+      for a required control?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.772206Z'
+  signed_digest: 2f87e53f838006f5a28b18a1d746f36e280a464ee10575b525e7d824f3442da4
+  interview_seconds: null
+  inherited_from: null

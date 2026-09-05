@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:GV.RM-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that risk assessments are done in isolation—one team uses a scoring table, another
+      relies on intuition, and another only looks at vulnerability scans. As a result, risks of the same
+      level receive completely different prioritization across departments, and the numbers presented
+      to management are not comparable.
+    basis: inferred
+  plain_zh:
+    value: The entire company uses the same methodology to calculate, record, rate, and prioritize risks.
+      This methodology must be formally published and communicated to all relevant parties; departments
+      should not invent their own approaches.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a documented risk assessment methodology that specifies the dimensions used for scoring
+        (e.g., impact and likelihood), and this methodology is applied when assessing key systems.
+      '2': The methodology document undergoes formal approval and publication; assessment results are
+        recorded in a unified template for traceability; a designated person maintains the risk register,
+        and the rating criteria are communicated to relevant teams.
+      '3': The methodology supports consistent application across different levels (organizational/business/system);
+        classification and prioritization criteria are linked to risk appetite; the methodology itself
+        undergoes periodic review and version management.
+    basis: inferred
+  evidence:
+    value: Approved risk assessment methodology document, unified assessment templates, risk register
+      (including rating results), training or communication records on methodology awareness, and assessment
+      samples that can be cross-checked against register records.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that having a risk assessment template constitutes a methodology.
+      A template only specifies what to fill in, not how to calculate—without clear scoring scales and
+      judgment criteria, two teams can assign different scores to the same risk, making the numbers in
+      the register meaningless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If two different teams assess the same risk, would the results be the same? On which page of the
+      assessment methodology is this defined?
+    - What are the criteria for determining a 'high' priority in the risk register? Who can change these
+      criteria?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.486093Z'
+  signed_digest: 486ff79338606c145b6fc656204196bc00eea4cf4b381f055b95751351e11663
+  interview_seconds: null
+  inherited_from: null

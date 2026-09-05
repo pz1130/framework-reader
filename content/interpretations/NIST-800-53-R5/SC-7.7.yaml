@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-7.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a remote user's laptop becoming a bridge between an untrusted
+      network (home Wi-Fi, hotel, cafe) and the corporate enclave — so that an attacker
+      on the same coffee-shop LAN can pivot straight into internal systems through
+      the user's VPN tunnel while the user is also talking to the local printer or
+      a malicious hotspot.
+    basis: inferred
+  plain_zh:
+    value: When users work remotely, decide whether their device can reach the public
+      internet directly while the VPN tunnel to the office is up, or whether everything
+      must be funneled through the corporate gateway. Stop allowing both paths simultaneously
+      unless you have engineered and reviewed it.
+    basis: inferred
+  practice:
+    value:
+      '1': Default VPN profile forces all client traffic through the corporate tunnel
+        (full tunnel); split-tunneling is off. Exceptions are named, not blanket.
+      '2': Exceptions to split-tunneling are requested, risk-justified, time-bound,
+        and approved by security; the VPN client or gateway enforces which destinations
+        are excluded; records exist.
+      '3': The set of split-tunnel exceptions is reviewed periodically, scoped to
+        specific routes or apps, monitored for abuse, and removed when the business
+        case ends; device posture (OS patch, EDR, disk encryption) is checked before
+        any exception is granted.
+    basis: inferred
+  evidence:
+    value: VPN configuration showing split-tunneling disabled by default, a register
+      of approved split-tunnel exceptions with justification and owner, configuration
+      snapshots from the VPN gateway or MDM, and review records showing expired exceptions
+      being closed.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the VPN tunnel is 'always on', split-tunneling is
+      irrelevant. A split-tunnel config still lets traffic bypass the tunnel for specified
+      routes, and most client VPN products enable it by default for performance —
+      the tunnel being up does not mean all traffic is in it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the VPN profile that ships to a standard remote user — is split-tunneling
+      on or off by default?
+    - How many split-tunnel exceptions are currently active, who approved each one,
+      and when was the list last reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.762944Z'
+  signed_digest: 09f6860409b78c886837025b2174e4b852862eb82ff2aff5559341c15e68d7c4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-4.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure to enforce flow-control decisions because the
+      system cannot tell what kind of data is moving - rules written for 'PII' or
+      'source code' silently let traffic through when the field is unlabeled, so exfiltration
+      and cross-domain leakage slip past every downstream check.
+    basis: inferred
+  plain_zh:
+    value: Tag data flowing through the system with its type (PII, financial, source
+      code, operational, etc.) so that flow-control rules, filtering, and cross-domain
+      checks can actually act on what the data is, not just on IP/port assumptions.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a list of data types the organization cares about and tag data at
+        creation or at entry points into controlled systems so the tag survives into
+        flow-control rules.
+      '2': Enforce flow-control decisions based on the tags (e.g., block, encrypt,
+        route, redact) and document which rules depend on which tags; failures when
+        a tag is missing or unknown are logged.
+      '3': Tags are bound to data at the point of capture and propagate through transformation
+        pipelines; missing/unknown tags trigger explicit deny or quarantine rather
+        than implicit allow; coverage is measured and stale or bypassed tag sources
+        are reviewed.
+    basis: inferred
+  evidence:
+    value: Documented data-type taxonomy, tagging implementation at data origin, flow-control
+      rules that reference data types (not just addresses/ports), logs of unknown-tag
+      handling, and samples showing a tagged payload being acted on by the correct
+      rule.
+    basis: inferred
+  common_myth:
+    value: Assuming flow-control rules based on IP, port, and protocol are sufficient
+      and that 'data classification' is a documentation exercise - in practice, without
+      machine-readable tags carried with the data, classification labels only exist
+      in someone's head and the rule engine has nothing to match against.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a packet or transaction in flight and prove the data-type tag is what
+      the flow-control rule acted on.
+    - What happens when a flow arrives without a recognized data-type tag - allow,
+      deny, or quarantine?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.265071Z'
+  signed_digest: 1327d1ad957b89ed59ae1804e06deda66394da0eddcc738052ed07fb7e88ecd9
+  interview_seconds: null
+  inherited_from: null

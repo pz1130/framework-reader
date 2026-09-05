@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-15.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against covert data leakage from components in the room itself.
+      If networking, I/O, or sensing hardware remains active in a secure work area,
+      a visitor, insider, or piece of equipment can silently exfiltrate voice, screen
+      content, key presses, or network traffic without ever leaving a digital audit
+      trail, so physical security becomes a fiction.
+    basis: inferred
+  plain_zh:
+    value: In any space designated as a secure work area, every device capability
+      that could leak information - wireless radios, microphones, cameras, removable
+      media ports, external network jacks - must be disabled or physically removed
+      before classified or sensitive work happens there, not just warned against.
+    basis: inferred
+  practice:
+    value:
+      '1': A posted rule says no wireless, recording, or removable media in the secure
+        room; a basic checklist exists for what to power down before use; a visual
+        inspection confirms ports look disabled.
+      '2': Each device type taken into the room has a documented hardening configuration
+        (radio off, mic/camera covered or disabled, USB blocked); an entry/exit check
+        enforces it; exceptions are logged.
+      '3': 'Technical controls enforce the policy: radios disabled in OS, USB ports
+        blocked at the hardware or BIOS level, network jacks disabled or air-gapped,
+        RF shielding validated. Periodic checks test whether devices have re-enabled
+        radios or inserted peripherals. Deviations trigger automatic alerts.'
+    basis: inferred
+  evidence:
+    value: Documented designation of secure work areas, the disabling/removal policy
+      and per-device hardening configurations, entry and exit inspection logs, exception
+      records, and results of periodic technical checks confirming radios, ports,
+      and sensors stay disabled.
+    basis: inferred
+  common_myth:
+    value: Assuming a 'no wireless' sign on the door is sufficient. The OS can re-enable
+      Wi-Fi or Bluetooth after a reboot, a user can plug in a USB key, a phone can
+      be set to silent mode and still on - the policy must be enforced technically
+      and re-checked, not just posted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how a laptop brought into the secure area is verified to have its radios
+      off - which setting on which OS do you check, and who checks it?
+    - Walk me through what happened the last time someone was caught with an active
+      device or peripheral in the secure area.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.401744Z'
+  signed_digest: e64e86ce48e9af9544f07d594ce77e3789d0b162ac9831119cca4b395a31559e
+  interview_seconds: null
+  inherited_from: null

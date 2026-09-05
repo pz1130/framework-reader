@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.8.22
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that if one machine inside the network is compromised, the entire environment
+      is exposed—without boundaries and segmentation, attackers can move laterally with ease, and any
+      compromised device on the internal network can become a springboard for mass infection or theft
+      of core data.
+    basis: inferred
+  plain_zh:
+    value: Divide your network into several zones based on trust levels, with controlled interfaces such
+      as firewalls and routing policies between zones, allowing only business-necessary traffic. External
+      access must first land in the DMZ and cannot directly reach the internal network.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a network topology diagram; basic zones such as office, production, and DMZ are isolated
+        by firewalls or VLANs; default deny cross-zone traffic, allowing only explicitly approved ports.
+      '2': Zone boundaries have written policies stating the trust level, allowed rules, and responsible
+        persons for each zone; cross-zone access follows a change process, firewall rules are reviewed
+        and updated; high-risk protocols are not allowed between DMZ and internal network.
+      '3': Zone policies are linked to asset inventory and business dependencies; rule changes are regularly
+        reconciled and reduced; intrusion detection or traffic logging is enabled on key boundaries with
+        proactive monitoring for abnormal lateral movement; highly sensitive systems are separately encrypted
+        or physically isolated.
+    basis: inferred
+  evidence:
+    value: Network topology and zoning design diagrams, configuration snippets of boundary devices (firewalls/routers/VLANs),
+      evidence of default deny policy, cross-zone access requests and approval tickets, rule review records,
+      and traffic logs and alerts from key boundaries.
+    basis: inferred
+  common_myth:
+    value: Some think that placing a firewall between internal and external networks is sufficient isolation—lateral
+      isolation between office, production, DMZ, and partner access zones is often overlooked, allowing
+      attackers to move freely after compromising an employee's computer. Additionally, zoning cannot
+      rely solely on a single firewall rule; you must prove that rules are default deny, have change management,
+      and are regularly cleaned; otherwise, auditors will see a screen full of ACCEPT rules and deem it
+      non-compliant.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What ports are actually allowed from production to office? Who approved the rules, and when was
+      the last review?
+    - If a server in the DMZ is compromised, how many hops is the network path to the core database in
+      the internal network?
+    - How do you prove that there are no hidden ANY-ANY or obsolete old rules in the boundary rules?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.394560Z'
+  signed_digest: 77a2630262bdef7fc8266caa4d8cc6caf85c8951d55502d7c722ead41e25b2bc
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:PR.IR-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that systems are only designed for normal conditions and collapse during failures
+      or attacks—resilience requirements such as redundancy, degradation, and failover must be designed
+      into the mechanisms, not addressed reactively after incidents.
+    basis: inferred
+  plain_zh:
+    value: 'Truly implement resilience mechanisms in systems to handle both normal and abnormal conditions:
+      sufficient resources, redundancy, degradation capability, isolation, and self-healing, and these
+      must be designed in, not left to chance.'
+    basis: inferred
+  practice:
+    value:
+      '1': Critical systems have clear redundancy or backup arrangements; basic failover or restart mechanisms
+        exist; single points of failure are identified.
+      '2': Resilience requirements are documented in system design documents; critical components have
+        redundancy with periodic switchover drills; degraded operation modes exist with operational manuals.
+      '3': Resilience objectives are quantified and implemented at the architecture level; abnormal scenarios
+        (network outages, downtime, injection attacks) have automated responses and self-healing; resilience
+        testing is included in release gates.
+    basis: inferred
+  evidence:
+    value: Redundancy design in system architecture diagrams, resilience requirements and design documents,
+      failover drill records, capacity and stress test reports, degraded mode operational manuals, self-healing
+      scripts or orchestration policies.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having dual-server hot standby or database master-slave setups constitutes
+      resilience mechanisms. Dual servers only address hardware single points; whether the system can
+      degrade and self-heal under network partitions, traffic spikes, upstream dependency failures, and
+      malicious injections is what auditors will truly probe.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How would the system behave if a dependent third-party service becomes unavailable? Have degradation
+      paths been tested?
+    - How is data consistency achieved in same-city active-active or cross-region active-active setups?
+      What is the basis for RTO/RPO in failover?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.590238Z'
+  signed_digest: 9dcc3f87b18a82da60e84953c4e012e3b6a9f8e468dd3e45c8374b4fe4ce8c10
+  interview_seconds: null
+  inherited_from: null

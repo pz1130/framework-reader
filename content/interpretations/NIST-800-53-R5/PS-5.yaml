@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PS-5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against access and insider risk when people rotate internally—moving
+      a developer, ops engineer, or admin between teams/projects without re-evaluating
+      access leaves stale privileges, segregation-of-duties breaks, and project-bound
+      sensitive data exposed to people who no longer need it.
+    basis: inferred
+  plain_zh:
+    value: When employees, contractors, or third-party users transfer within the organization
+      (or out), review and adjust their access promptly so old entitlements do not
+      linger and new ones match what the new role actually needs.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as a transfer; have a checklist that triggers access
+        review, recovery, and re-issuance within a set timeframe after the move.
+      '2': Transfer events are logged in HR/ITSM and drive system-level access changes;
+        transfers involving privileged, sensitive, or cross-business-unit roles require
+        explicit approval and SoD checks.
+      '3': Transfers are tracked end-to-end with measurable time-to-revoke targets;
+        exceptions (e.g., shared accounts, project-bound access) are documented with
+        a sunset date; periodic reconciliation confirms no orphaned access from past
+        transfers.
+    basis: inferred
+  evidence:
+    value: Transfer definition and procedure document, sample transfer records showing
+      access changes with timestamps, approval evidence for transfers involving privileged/sensitive
+      roles, SoD conflict checks at transfer time, reconciliation reports comparing
+      current access against current role.
+    basis: inferred
+  common_myth:
+    value: Treating transfer the same as a fresh hire—simply creating new entitlements
+      while leaving the old ones in place because 'they still need some access from
+      the previous role.' Transfer requires explicit removal of the prior access,
+      not just addition of the new.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a sample of three internal transfers from the last six months and show
+      what access was removed and what was added, with the dates of each change.
+    - How do you detect when someone keeps access from a previous role that conflicts
+      with their new role's SoD requirements?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.839894Z'
+  signed_digest: 6da0fefbfa073071056a02cf3545aa110fe4e299e36d52646ec8f870b8c96950
+  interview_seconds: null
+  inherited_from: null

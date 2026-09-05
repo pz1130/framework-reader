@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PM-26
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defense against the assumption that filing a security complaint is a one-way
+      door with no closure: without a defined intake, triage, and resolution path,
+      vulnerabilities, policy violations, and privacy/security grievances surface
+      informally, get dropped, repeat, and never feed back into risk treatment—while
+      regulators keep counting them as outstanding.'
+    basis: inferred
+  plain_zh:
+    value: Set up a way for anyone (employees, users, partners, the public) to report
+      security or privacy problems; ensure each complaint is acknowledged, categorized,
+      investigated, resolved, and the patterns feed back into how the organization
+      manages risk.
+    basis: inferred
+  practice:
+    value:
+      '1': Provide at least one documented intake channel (email, web form, hotline)
+        and a named owner; acknowledge receipt and route to someone who can act.
+      '2': Define complaint categories and severity, document triage and investigation
+        steps, track every complaint to resolution or documented rejection, and produce
+        periodic summaries.
+      '3': Feed complaint trends into the risk register and corrective-action process;
+        report aggregate metrics to leadership; protect complainants from retaliation;
+        verify closure effectiveness, not just ticket closure.
+    basis: inferred
+  evidence:
+    value: Documented complaint-handling policy, intake channel(s), ticket or case
+      records from intake through resolution, category/severity taxonomy, periodic
+      management reports, and evidence that complaint themes drove corrective actions.
+    basis: inferred
+  common_myth:
+    value: 'Treating this as a help-desk workflow: closing the ticket within SLA is
+      not the same as resolving the underlying control gap, and tickets that never
+      leave the support system teach the organization nothing about systemic risk.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one complaint from the last quarter that changed a control, policy,
+      or risk rating—and what changed.
+    - How do you protect a complainant's identity, and how is non-retaliation enforced?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.756910Z'
+  signed_digest: 73e3bc48246994ea502a188834c988e327a4d20928020fff0eb8f88d8db14d89
+  interview_seconds: null
+  inherited_from: null

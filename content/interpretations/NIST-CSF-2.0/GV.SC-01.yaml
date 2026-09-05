@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:GV.SC-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'supply chain risk management' is reduced to security clauses in procurement
+      contracts, without organization-level procedures, policies, and governance cadence—so when a supplier
+      incident occurs or business strategy changes, the security department can only fight fires ad hoc,
+      and the board and executives have neither decision-making basis nor endorsement.
+    basis: inferred
+  plain_zh:
+    value: 'At the organizational level, establish a formal framework for ''how to manage supply chain
+      security risks'': define objectives, assign responsibilities, outline processes, specify reporting
+      lines, and obtain sign-off from key stakeholders such as business, procurement, legal, and security—rather
+      than being decided solely by security in isolation.'
+    basis: inferred
+  practice:
+    value:
+      '1': A supply chain security risk management procedure document exists; a lead department is designated;
+        senior management has approved it; the document is accessible on a shared drive.
+      '2': The procedure covers the full supplier lifecycle (onboarding, assessment, monitoring, offboarding);
+        meetings with business, procurement, legal, etc., have been held to confirm division of responsibilities;
+        an annual review is conducted.
+      '3': Supply chain risk objectives are explicitly linked to corporate strategy; the procedure is
+        periodically updated in response to changes in the supplier landscape and external threats; when
+        new suppliers are onboarded or significant business changes occur, the procedure automatically
+        triggers reassessment and strategy adjustment; audits can verify that the procedure genuinely
+        drives decisions.
+    basis: inferred
+  evidence:
+    value: Developed and approved supply chain security risk management procedure, policy, and objective
+      documents; organizational supplier risk charter or board/executive approval records; job responsibility
+      descriptions for relevant roles; minutes of annual procedure reviews or revisions; attendance or
+      approval records from cross-departmental coordination meetings.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'compiling supplier security questionnaires and contract clauses into a binder'
+      equates to having a supply chain risk management procedure. Questionnaires and contracts are merely
+      implementation tools; an organizational-level procedure must address objectives, responsibilities,
+      decision paths, and governance cadence—without these, disparate questionnaires lead to siloed efforts,
+      and no one takes charge when issues arise.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How is the executive's acceptable level of supply chain risk defined and communicated to business,
+      procurement, and security?
+    - When was the last procedure revision, what triggered it, and who approved it?
+    - If business insists on onboarding a high-risk supplier, according to this procedure, who can veto
+      it and based on what criteria?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.497895Z'
+  signed_digest: b19351021a498b12df33180fb97a946ab008df483063cd30e1df67f67348efad
+  interview_seconds: null
+  inherited_from: null

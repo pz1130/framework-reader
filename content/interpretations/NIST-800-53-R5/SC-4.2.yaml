@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents sensitive information from leaking across security domains on
+      a single system. If a workstation can hold both classified and unclassified
+      data at once, or run processing for multiple sensitivity levels concurrently,
+      a failure in the OS, an application bug, or a careless user can write confidential
+      data down into the wrong container - and the receiving system treats it as ordinary
+      content. The control forces a hard architectural separation so that data cannot
+      flow from high to low without a deliberate, mediated transfer.
+    basis: inferred
+  plain_zh:
+    value: Stop one machine, one OS, or one session from simultaneously handling data
+      of different sensitivity levels (or periods) in a way that lets high-side data
+      spill into low-side storage. Handle each level in an isolated system or domain,
+      with controlled one-way or mediated transfer points between them.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify any systems that hold or process data at more than one sensitivity
+        level at the same time (e.g., a workstation with both SECRET and unclassified
+        sessions, a server serving both internal-confidential and public data). For
+        those that must remain dual-use, isolate the levels with separate OS instances,
+        full-disk encryption per domain, and strict separation of users.
+      '2': Document which systems are approved for each sensitivity level and why;
+        require transfers between levels to go through a vetted, audited mechanism
+        (cross-domain solution, removable media with scan); keep transfer logs.
+      '3': 'Architect away from multilevel on general-purpose systems: dedicated hardware
+        or virtual machines per level, hardware-enforced domain separation, automated
+        data labelling that drives storage location, and continuous monitoring for
+        cross-domain writes that would otherwise violate the policy.'
+    basis: inferred
+  evidence:
+    value: Inventory of systems by authorized sensitivity level, domain-separation
+      architecture diagrams, approved cross-domain transfer procedures and logs, labelling
+      and storage-location rules, audit findings (if any) of cross-level data leakage.
+    basis: inferred
+  common_myth:
+    value: Treating this control as just 'labelling the files correctly' - assuming
+      that if every document has a sensitivity tag in its header, the control is met.
+      Labels are advisory; what the control actually requires is that the system cannot
+      process two levels concurrently without a real isolation boundary, regardless
+      of what the label says.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a system here that processes more than one sensitivity level - what
+      stops data at the higher level from being written into storage designated for
+      the lower level?
+    - Walk me through how a piece of data approved for one level is moved to a system
+      authorized for a different level, and what records that transfer leaves.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.581486Z'
+  signed_digest: d55c807fb5e55865b8c8a03e3dc9ff7a93fd6772ba2ebaaccdfd1d7643f4a67b
+  interview_seconds: null
+  inherited_from: null

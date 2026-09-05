@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-4.28
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops defenders from trusting a single coarse-grained firewall rule to
+      block every malicious payload - attackers smuggle exploits inside allowed protocols
+      and allowed session streams, so a flow must be progressively narrowed by purpose-built
+      filters at each hop before it can touch protected data.
+    basis: inferred
+  plain_zh:
+    value: Enforce information flow control so that each component in the pipeline
+      only sees, forwards, or persists the minimum data its stage requires, with filters
+      between stages stripping anything not explicitly authorized for the next stage.
+    basis: inferred
+  practice:
+    value:
+      '1': Draw the data path between security domains and mark which fields, payloads,
+        and metadata each stage is allowed to see; deny the rest at the boundary.
+      '2': Place a dedicated filter (proxy, parser, schema validator, content disarm,
+        or sanitizer) between each stage; logs and policies for the filters exist
+        and are reviewable.
+      '3': Filters are ordered so that each one only ever receives what the previous
+        stage was contractually permitted to forward; failures and rejections are
+        alarmed, and changes to a filter require review against the pipeline contract.
+    basis: inferred
+  evidence:
+    value: Pipeline diagram with per-stage data scope, filter configurations and order,
+      policy defining what each stage may forward, and logs/alerts showing rejected
+      flows between stages.
+    basis: inferred
+  common_myth:
+    value: Treating a perimeter allow/deny rule as the whole control - one rule at
+      the edge does not strip embedded payloads, malformed fields, or session-carried
+      data inside an otherwise allowed channel, so threats pass through stages that
+      were never designed to inspect them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the documented set of fields and metadata each pipeline stage is permitted
+      to forward, and what it must strip.
+    - What happens when a filter in the middle rejects a flow - where is it logged
+      and who is alerted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.324286Z'
+  signed_digest: b145637bb83a6d4ab2701964dbaec450c94ab735902243630888da16fd717d8e
+  interview_seconds: null
+  inherited_from: null

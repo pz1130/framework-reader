@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PS-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure mode where individuals with uncleared or unfavorable
+      citizenship/immigration status are granted access to federal systems or facilities,
+      creating legal exposure (violations of E.O. or statutes restricting access based
+      on citizenship) and security risk that competent HR vetting was skipped.
+    basis: inferred
+  plain_zh:
+    value: Make sure, before granting access to anyone in your personnel pool for
+      federal systems or sensitive work, that you have verified and documented their
+      citizenship or lawful status as required by the applicable rule — and that status
+      is rechecked when it could have changed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which positions require citizenship verification; collect and
+        retain the citizenship/status document (e.g., I-9, birth certificate, naturalization
+        record) before access is granted; HR flags expirable statuses.
+      '2': Verification is tied into onboarding and re-verification workflow with
+        documented evidence retained; status changes (visa expiry, naturalization,
+        departure) trigger a re-check and, if needed, access revocation.
+      '3': Periodic re-verification on a defined cadence, automated alerts on visa
+        or status changes from authoritative sources, and a clear escalation path
+        so that a person whose status no longer meets the rule has access pulled within
+        a documented timeframe.
+    basis: inferred
+  evidence:
+    value: Position-level citizenship requirement list, copies of citizenship/immigration
+      documents on file per affected individual, dated verification records, re-verification
+      log, and tickets showing status-triggered access changes.
+    basis: inferred
+  common_myth:
+    value: Treating the I-9 or onboarding paperwork as sufficient just because HR
+      filed it once — citizenship is a snapshot that can change (naturalization, visa
+      expiration, departure), and access decisions must be re-evaluated, not assumed
+      permanent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which positions in this organization are designated as requiring citizenship
+      verification, and where is that designation documented?
+    - Show me the last re-verification you performed for someone whose status was
+      time-limited (visa, etc.) and what happened to their access when it changed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.828459Z'
+  signed_digest: e008b15861bc27ddb5396178bf03819c94797a017c6219146ae088d86eeff300
+  interview_seconds: null
+  inherited_from: null

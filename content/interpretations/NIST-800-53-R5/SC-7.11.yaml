@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-7.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries reaching internal systems through services
+      that should never be reachable from outside (e.g., lateral movement, ransomware
+      initial access, exploitation of exposed management interfaces). The failure
+      mode is assuming a perimeter firewall alone blocks everything — internal systems
+      with inadvertently exposed admin ports, rogue services on user segments, or
+      split-tunnel/VPN endpoints become the entry point.
+    basis: inferred
+  plain_zh:
+    value: Only allow traffic from outside the network to reach the specific systems,
+      ports, and protocols that legitimately need it, and deny everything else by
+      default at the network boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': Default-deny inbound rules on perimeter firewalls; documented allow-list
+        of required external-facing services; basic change control for firewall rules.
+      '2': Allow-list is justified per rule (business owner, ticket, review date);
+        separation between management, user, and DMZ segments; periodic rule review
+        with cleanup of stale entries.
+      '3': Inbound restrictions enforced at multiple layers (perimeter + host firewall
+        on sensitive assets); rules tied to an authoritative inventory of public services;
+        automated detection of unexpected listening services; exceptions have expiration
+        dates and are tracked to closure.
+    basis: inferred
+  evidence:
+    value: Firewall rule sets (perimeter and relevant internal layers), documented
+      allow-list with business justification and review dates, network segmentation
+      diagrams, change tickets for rule additions/removals, results of recent rule
+      review and cleanup, exception register with expiry dates.
+    basis: inferred
+  common_myth:
+    value: Believing a firewall in place satisfies this control — without default-deny
+      and a justified allow-list, firewalls accumulate permissive 'any-any' rules
+      over years and silently permit attacker traffic.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you reviewed firewall rules and removed ones no longer
+      needed.
+    - For each current inbound allow rule, what is the business justification and
+      when was it last reviewed?
+    - How do you detect a service that becomes exposed internally without being on
+      the allow-list?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.678238Z'
+  signed_digest: 2c524df99b68435eee5470c5bff14f8fe534146d20f2d895c80e090793ab4a1d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.8.25
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security enters only at the end of the development process—no security
+      requirements are raised during the requirements phase, no architecture review occurs during design,
+      vulnerabilities are only discovered during testing, and before release, fixes are forced in through
+      overtime patches. Ultimately, security becomes an obstacle to release rather than an integral part
+      of engineering quality.
+    basis: inferred
+  plain_zh:
+    value: Ensure that every stage of the development process—from requirements, design, coding, testing,
+      to release—incorporates security and privacy requirements. This does not mean having the security
+      team sign off at each node, but rather having the process itself specify who performs what security
+      checks and when, and recording the tools used, configurations, and any changes made.
+    basis: inferred
+  practice:
+    value:
+      '1': The development process documentation includes security requirements (e.g., secure coding standards,
+        vulnerability scanning); there is a security team review entry point when new projects are initiated;
+        a security test is conducted before release.
+      '2': Each development phase (requirements/design/coding/testing/release) has defined security activities
+        and responsible persons; basic security tools (SAST/DAST/dependency scanning) are integrated into
+        the development toolchain; tool configurations are documented; security review comments have a
+        closed-loop tracking process.
+      '3': The development process and toolchain are managed configuration items—tool upgrades and rule
+        set changes go through change approval; security activities are automatically triggered and generate
+        metrics; deviations (e.g., skipping a phase check) have a traceable exception process.
+    basis: inferred
+  evidence:
+    value: Development process documentation (including security activities and job responsibilities),
+      security sections in project requirements and design documents, CI pipeline screenshots or configurations
+      (including security tools and gate conditions), security review defect tracking records, and change
+      records for tools and rule sets.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'purchasing SAST/DAST and integrating it into CI' meets this requirement. Tools
+      are only a formality—auditors will examine who configured the rule sets, who maintains them, how
+      scan results are handled, and whether anyone manages if the pipeline is bypassed. Having tools exist
+      but no one responsible for following up on results is worse than not having tools.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What conditions must SAST results meet in the pipeline before code can be merged? Who set the thresholds,
+      and how often are they adjusted?
+    - 'Select a released project: In which document are the security requirements from the design phase
+      recorded? Who wrote it? At which point in the lifecycle was the security review conducted?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.400642Z'
+  signed_digest: e123940ed9f9004002d8567201bb842e324cb38009d7b66c29a45423378cb17b
+  interview_seconds: null
+  inherited_from: null

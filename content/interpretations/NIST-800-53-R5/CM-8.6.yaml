@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CM-8.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security team from being blind to configuration drift and
+      undocumented exceptions. If you do not track which configurations were assessed
+      and which deviations were approved, an attacker can exploit a change that was
+      never reviewed, and the team cannot distinguish between a known acceptable state
+      and an unauthorized modification.
+    basis: inferred
+  plain_zh:
+    value: 'Keep a clear, accessible record of two things: exactly which system configurations
+      have been assessed against the baseline, and which deviations from that baseline
+      were formally approved, by whom, and for how long. It forces the organization
+      to make exceptions visible and time-bound instead of letting them quietly become
+      permanent.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of the assessed configurations (which systems were checked
+        against which baseline) and a separate list of approved deviations with the
+        approver's name and expiration date.
+      '2': Formalize the deviation request workflow with required fields (system ID,
+        configuration item, reason, risk assessment, approval, expiry). Track review
+        dates and include a periodic re-validation of all active deviations.
+      '3': Integrate the assessed configurations and deviations list into the change
+        management and monitoring tools, so a new deviation or a reassessment of a
+        system is automatically recorded and visible to the audit trail. Validate
+        at defined intervals that the list is complete and accurate.
+    basis: inferred
+  evidence:
+    value: The assessed configuration inventory (systems, versions, baselines, assessment
+      dates) and the approved deviation register (each with approver, justification,
+      expiry date, and review history).
+    basis: inferred
+  common_myth:
+    value: Assuming that getting the baseline scanning tool to produce a 'compliant'
+      report is enough. The control is not about the report; it is about the lifecycle
+      of the exceptions—who approved them, when they expire, and whether they were
+      re-validated. A clean report hides the unapproved deviations that were silently
+      left in place.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an active deviation that expired last month—what was the process for
+      renewing it?
+    - How do you know this system's current configuration is the same as the one you
+      assessed six months ago? Is there a gap report?
+    - Who has the authority to approve a deviation, and is that authority documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.880756Z'
+  signed_digest: 0997e98ec9b56f5ccd772476915d50abf0b95194ba4ad9e10b05874fbf5c2a19
+  interview_seconds: null
+  inherited_from: null

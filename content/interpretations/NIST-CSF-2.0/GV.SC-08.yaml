@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:GV.SC-08
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the situation where suppliers are only considered after an incident
+      occurs—suppliers are not backup for failures. If they are not incorporated into incident plans in
+      advance, when an attack happens, they won't know the procedures, who to contact, or even whether
+      they should be involved, causing the response to break at the third-party link.
+    basis: inferred
+  plain_zh:
+    value: Incorporate key suppliers and third parties into incident emergency, response, and recovery
+      plans, so they know in advance what to do and whom to contact during an incident, rather than hastily
+      setting up communication after the event.
+    basis: inferred
+  practice:
+    value:
+      '1': Key suppliers are included in the incident response contact list; contracts include basic incident
+        reporting obligations; they can be reached during an incident.
+      '2': Suppliers are included in incident plans based on risk classification; their respective response
+        roles and escalation paths are defined; major suppliers have undergone at least one tabletop exercise
+        or response drill.
+      '3': Suppliers participate in the full lifecycle of incident plans—from development to revision
+        to exercises; after exercises, results are reviewed and used to update plans and supplier contractual
+        obligations; during recovery, supplier RTO/RPO responsibilities are defined and verified.
+    basis: inferred
+  evidence:
+    value: Supplier roles and contact lists in incident response plans, emergency response agreements
+      or SLA clauses with suppliers, records and review minutes of joint exercises or tabletop drills,
+      and supplier-related changes in plan revision records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that having an incident notification obligation in the supplier contract
+      counts as incorporating them into the incident plan. Notification obligation is only the first step—do
+      suppliers know whom to contact, what procedures to trigger, and what recovery priorities are? If
+      these are not written into plans and contact lists that both parties have exercised, contractual
+      clauses are just empty words.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the past year's exercises, which key suppliers actually participated? How were those who didn't
+      participate addressed?
+    - When a supplier has a security incident in the production environment, what are the specific names
+      and backup channels of the primary contacts? How often is this information updated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.512713Z'
+  signed_digest: c3baaac5dd736c69336f2c7e923df49da6a0f45cf157b876b151b207b5bf806c
+  interview_seconds: null
+  inherited_from: null

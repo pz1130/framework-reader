@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-10.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the failure mode where input validation is correct but
+      inflexible: legitimate, time-sensitive exceptions (forensics, emergency patching,
+      malformed-but-known data, live debugging) cannot get through, so operators either
+      disable validation entirely at the application layer or build permanent back
+      doors that attackers later find. The control forces a deliberate, audited escape
+      hatch so that the safety net does not become an operational trap.'
+    basis: inferred
+  plain_zh:
+    value: Make sure input validation cannot be silently turned off or quietly bypassed.
+      Any manual override must require explicit, logged, reviewed action and be limited
+      to what is actually needed for the legitimate exception.
+    basis: inferred
+  practice:
+    value:
+      '1': Documented procedure for granting a temporary override; restricted to named
+        approvers; changes are written to a log that someone later reviews.
+      '2': Override actions are attributable to an individual, time-bounded, scoped
+        to a specific data flow or endpoint, and produce evidence that can be matched
+        against an approval ticket.
+      '3': Overrides are impossible without authentication and dual approval; automatically
+        expire; trigger alerts to a second pair of eyes; post-event review confirms
+        validation was restored and the exception has not been silently widened into
+        a permanent bypass.
+    basis: inferred
+  evidence:
+    value: Approval records for each override, the resulting log entries tying override
+      action to a specific user and ticket, expiry evidence, and post-use review notes
+      confirming validation was reinstated.
+    basis: inferred
+  common_myth:
+    value: Treating the existence of an override option as proof the control is met.
+      The risk is not that override exists - it is that override becomes a permanent,
+      unauthenticated, unreviewed hole. A button is not a control; an authenticated,
+      expiring, reviewed, evidence-generating action is.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three times an override was used, the approval behind each,
+      and proof the validation was put back.
+    - Can the override be exercised without going through the approval flow? Walk
+      me through what happens.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.798367Z'
+  signed_digest: d10b81cfad9c6f01365eda03fdf71eeeaa253ae6144966156cafe7fcdf124bea
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PE-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Without automated logs of who entered and exited a facility, an organization
+      cannot detect tailgating, after-hours intrusion, or insider misuse of physical
+      access — manual sign-in sheets get skipped, lost, or falsified, and investigations
+      hit a wall when trying to correlate physical presence with incidents.
+    basis: inferred
+  plain_zh:
+    value: Maintain automated, reviewable records of every physical access into and
+      out of the areas that matter, and look at those records regularly enough to
+      catch problems.
+    basis: inferred
+  practice:
+    value:
+      '1': Physical access to sensitive areas uses an electronic system (badge, biometric,
+        or equivalent) that writes an entry and exit record per person; logs are retained
+        where they cannot be edited by the people being logged.
+      '2': Logs are reviewed on a defined cadence (e.g., daily anomalies, weekly patterns)
+        with documented findings; failed entries, propped doors, and after-hours activity
+        are flagged for follow-up; review records are kept.
+      '3': Access logs are correlated with HR joiner/mover/leaver feeds and incident
+        tickets; anomalies (badge reuse, denied entries, off-hour patterns) trigger
+        alerts; retention and integrity of the log store are tested; gaps between
+        the access system and reality (e.g., tailgating, held doors) are periodically
+        tested and remediated.
+    basis: inferred
+  evidence:
+    value: Electronic access control system with entry/exit logs per individual, log
+      integrity controls, review schedules and review records, anomaly investigation
+      notes, and evidence that findings led to action (access removal, ticket opened,
+      badge fix).
+    basis: inferred
+  common_myth:
+    value: Treating the access control system itself as the evidence — the auditor
+      wants to see that logs are actually reviewed and acted on, not just that badges
+      open doors.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time an anomaly in the access log was investigated — who flagged
+      it and what was done.
+    - How are logs protected from being edited or deleted by the people whose access
+      is being recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.641386Z'
+  signed_digest: 1111ac04e1d4aeda0c96ff886b66135c1709a18d28976cedffeb0d5594ab0813
+  interview_seconds: null
+  inherited_from: null

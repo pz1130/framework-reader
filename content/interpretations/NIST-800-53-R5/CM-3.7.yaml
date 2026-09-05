@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CM-3.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents security-relevant system changes from bypassing review because
+      the change workflow only checks technical approval records and never verifies
+      that the deployed state still matches the approved, tested baseline. Unreviewed
+      drift can introduce vulnerabilities, break controls, or undermine the integrity
+      of production systems.
+    basis: inferred
+  plain_zh:
+    value: Require authorized personnel to determine whether configuration changes
+      need security review, and ensure the resulting system state is checked against
+      the approved change so that undocumented or rejected changes do not remain in
+      operation.
+    basis: inferred
+  practice:
+    value:
+      '1': Define when a configuration change requires security review, identify who
+        can make that decision, and verify that the live configuration matches the
+        change record before closure.
+      '2': Document the review decision, test results, approver, and resulting configuration
+        for each security-relevant change; retain the record and investigate any mismatch.
+      '3': Integrate review with the configuration and release workflow, automatically
+        compare deployed state to the approved baseline, trigger review for risky
+        or out-of-band changes, and record remediation or rollback of unauthorized
+        drift.
+    basis: inferred
+  evidence:
+    value: Configuration change requests, security-review decisions, approvals, test
+      results, baseline comparisons, and remediation or rollback records for sampled
+      changes.
+    basis: inferred
+  common_myth:
+    value: Assuming a technically approved change ticket proves the deployed system
+      is in the approved state; a later configuration comparison is still required.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which configuration changes are excluded from security review, and who documents
+      the reason?
+    - Can you show the deployed configuration compared with the approved baseline
+      for a sampled change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.792323Z'
+  signed_digest: 69bd39cb6ab2a6055cf9842d9b6cd1d93a7dac233d6428098bcde67439afee13
+  interview_seconds: null
+  inherited_from: null

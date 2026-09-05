@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-7.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers who have already phished or stolen a user's primary
+      password but would still be stopped by a second factor. The risk is real only
+      when the second factor itself is bypassable — e.g. a one-time code pushed to
+      the same compromised device, or a code delivered over an SMS channel that can
+      be intercepted or SIM-swapped. This control forces the second factor to come
+      from a separate, harder-to-intercept path so that password compromise alone
+      is not enough.
+    basis: inferred
+  plain_zh:
+    value: When a second authentication factor is used, it must come from a different
+      kind of device or channel than the first (typically the password) — not just
+      a second prompt on the same phone or a code sent over the same vulnerable path.
+      The point is to remove single-point-of-failure authentication devices and channels.
+    basis: inferred
+  practice:
+    value:
+      '1': Define in policy which authentication factors qualify as 'alternate' for
+        a given primary factor (e.g. hardware token / smart card vs. password; out-of-band
+        push to a separate device vs. password). Reject factor combinations that share
+        the same device or channel.
+      '2': Document the factor combinations in use per system, and review them against
+        the policy. Exclude combinations where both factors terminate on the same
+        device or traverse the same carrier/channel. Keep records of the review.
+      '3': 'Enforce the rule in the IdP / authentication platform itself: reject login
+        attempts where the second factor originates from the same device class or
+        channel as the first. Periodically test (e.g. try registering a soft token
+        on the same laptop used for password entry) and confirm the system blocks
+        it. Track exceptions with expiry dates.'
+    basis: inferred
+  evidence:
+    value: Authentication policy defining acceptable alternate-factor combinations,
+      IdP configuration showing factor-binding rules, list of registered factors per
+      user with device/channel separation demonstrated, test results showing same-device
+      factor rejection, exception register with justifications and expiry.
+    basis: inferred
+  common_myth:
+    value: Assuming that any second factor automatically satisfies the control — including
+      a TOTP app or push notification installed on the same phone or laptop that just
+      authenticated the password. If the attacker compromises that one device, both
+      factors fall together.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a privileged account: where is its primary factor entered, and on which
+      device does its second factor arrive? Are they different device classes or channels?'
+    - Show the IdP rule that rejects a second factor registered on the same device
+      as the primary login.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.420655Z'
+  signed_digest: 9b2ed9ccc5742ea9ad9fc5f9a322fa23549eb1e1971e17d5fb2c8fb3235644af
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-21
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers or insiders reusing previously captured or cached
+      information (screens, responses, memory dumps, retained URLs/tokens) to bypass
+      later controls — if data outlives its authorized session, the trust boundary
+      has already leaked.
+    basis: inferred
+  plain_zh:
+    value: Make sure information that was shown, returned, or stored on the client
+      side only stays valid for as long as it should, and is refreshed or wiped when
+      it expires, when a session ends, or when the context changes.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the handful of high-value places where short-lived data appears
+        (auth screens, exported reports, one-time links, kiosk/terminal displays)
+        and confirm those screens and responses are not cached beyond the session;
+        sign out or close-out wipes the visible copy.
+      '2': Document what must be refreshed or invalidated and when (session end, timeout,
+        role change, context switch) and apply it in code or in the client configuration;
+        tokens, one-time URLs, and exported files carry a real expiry, not just a
+        display note.
+      '3': Automated checks or tests verify that expired sessions, revoked tokens,
+        and out-of-context users no longer see the prior content, including from browser
+        caches, proxy caches, and client memory; failures feed back into the build.
+    basis: inferred
+  evidence:
+    value: Design notes or policy stating what information is short-lived and the
+      refresh/invalidation rules, sample code or configuration enforcing those rules,
+      and test or scan output showing expired/withdrawn content is no longer retrievable.
+    basis: inferred
+  common_myth:
+    value: Assuming a 'no-cache' header on one page means the whole app is fine —
+      caches live in browsers, proxies, mobile webviews, and application memory, and
+      one missing header anywhere in the chain re-opens the door.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a screen that returns sensitive data: walk me through exactly what a second
+      user on the same device sees after the first user logs out.'
+    - Show me what happens to a one-time export link or token 24 hours later — and
+      what the proxy between us is allowed to cache.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.949604Z'
+  signed_digest: 18cfce55b69fdafa5b4899c1676f6b82391e7210282475723ea075cb1715e98d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PT-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the organization from running awareness and training (AT) and personally
+      identifiable information processing (PT) on vibes and tribal knowledge — without
+      a written, approved, current policy, there is no baseline to train against,
+      no standard to audit against, and no way to show leadership actually owns the
+      program.
+    basis: inferred
+  plain_zh:
+    value: Develop, approve, publish, and maintain a formal policy for the PII processing
+      and awareness/training program, along with the procedures that put it into practice;
+      review it on a defined cadence and update it when something material changes.
+    basis: inferred
+  practice:
+    value:
+      '1': A single document (or small set) covering the AT/PT program exists, is
+        signed by leadership, and is shared with the people who need it.
+      '2': Procedures exist for how the policy is operationalized (roles, training
+        delivery, PII handling steps); a review cadence is defined and past reviews
+        are recorded.
+      '3': Reviews happen at a fixed interval and are triggered by specific events
+        (incidents, regulatory changes, new processing activities); changes go through
+        a versioned approval trail and the current policy is the one staff actually
+        see and use.
+    basis: inferred
+  evidence:
+    value: Signed and dated policy and procedures documents, version history, review/approval
+      records, distribution or attestation logs showing staff have access to the current
+      version, and evidence of updates following triggering events.
+    basis: inferred
+  common_myth:
+    value: Treating a one-time memo from HR or a slide deck labeled 'privacy training
+      policy' as a living policy — the policy must be the artifact training content
+      and PII handling procedures are built from, with an owner, a review date, and
+      a revision history, otherwise there is nothing for the rest of the AT/PT controls
+      to anchor to.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who owns the AT/PT policy and when was it last reviewed or revised?
+    - Show me the version history — what changed and what triggered the last update?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.862661Z'
+  signed_digest: 9b0974cfef3eb5795fcd33b1743447621f8ec37e742193f8607a4d6785563da2
+  interview_seconds: null
+  inherited_from: null

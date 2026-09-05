@@ -1,0 +1,60 @@
+control_id: ISO-27002-2022:A.7.12
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that physically cutting a cable or unplugging a connector could interrupt systems,
+      cause data leakage, or enable tampering—cabling and power facilities are entry points in the physical
+      world; without protection, even the best network-layer security cannot stop physical contact.
+    basis: inferred
+  plain_zh:
+    value: 'Apply physical protection to network and power cabling: lock wiring closets, prevent unauthorized
+      access to connectors, route cables through conduits or cable trays, and provide redundancy for backup
+      power and critical circuits.'
+    basis: inferred
+  practice:
+    value:
+      '1': Lock wiring closets and equipment rooms; route cables through cable trays or conduits; prevent
+        unauthorized personnel from physically accessing network ports and power lines.
+      '2': Maintain access logs for wiring closets and records of key/keycard management; label critical
+        circuits; seal or lock unused ports; conduct regular inspections of cabling and power equipment
+        status.
+      '3': Provide redundant paths and automatic switching for critical circuits; implement monitoring
+        and alarms for power equipment; periodically review access rights to wiring closets and coordinate
+        with employee offboarding processes.
+    basis: inferred
+  evidence:
+    value: Access control records for wiring closets and equipment rooms, key management logs, cable routing
+      diagrams and labels, inspection records, and test reports for redundant circuits and power switching.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'installing access control at the equipment room door' is sufficient for cable
+      protection—if wiring closets, weak-current shafts, or even network panels and unused ports in open
+      office areas are unmanaged, physical contact can still bypass security. Access control only proves
+      who entered, not that the cables themselves are protected.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Sample three months of access records for wiring closets and weak-current shafts—were there any
+      entries during unauthorized periods?
+    - How are unused network ports and unused cables sealed?
+    - Do critical business circuits have redundant paths? When was the last switchover test?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.345137Z'
+  signed_digest: 524a3ed307a4864f4c3697d55db616752781ed272aa2ca95ac191025a89f8023
+  interview_seconds: null
+  inherited_from: null

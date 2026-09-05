@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CA-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we run scans but never look for patterns' — without trend
+      analysis, recurring vulnerabilities, misconfigurations, or control degradations
+      stay invisible because each individual finding looks routine; what fails is
+      the ability to predict and prevent the next incident rather than respond to
+      the last one.
+    basis: inferred
+  plain_zh:
+    value: Take the output of your continuous monitoring (assessments, scans, vulnerability
+      data, control status) and analyze it over time for trends, patterns, and degradation
+      — not just point-in-time snapshots.
+    basis: inferred
+  practice:
+    value:
+      '1': Collect monitoring data in one place; periodically (e.g. monthly) eyeball
+        whether things are trending up or down; someone is assigned to look.
+      '2': Defined metrics and trend views exist (e.g. recurring CVE classes, time-to-remediate,
+        control pass rates by system); results are reviewed in a recurring meeting
+        with documented conclusions.
+      '3': 'Trend analysis feeds back into the assessment program: findings trigger
+        re-scoring of system risk, changes to scan frequency, or new control selections;
+        predictive signals (drift, slow-burn degradations) drive action before a finding
+        crosses a threshold.'
+    basis: inferred
+  evidence:
+    value: Trend reports or dashboards over multiple periods, with documented analysis
+      conclusions and the decisions/actions taken as a result (re-prioritization,
+      new scans, control changes).
+    basis: inferred
+  common_myth:
+    value: Assuming that running a monthly vulnerability scan and emailing the PDF
+      counts as trend analysis. A scan is a snapshot; without comparing snapshots
+      across time and acting on the pattern, you are just generating fresh evidence
+      that nothing is changing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one trend you identified in the last year that changed how you assess
+      or monitor a system.
+    - Who reviews it, how often, and where is the analysis (not the raw scan) recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.698308Z'
+  signed_digest: e3ac4c939b6128979ec8a3539b049162f35c58dee6eb1689649836d7049d95ce
+  interview_seconds: null
+  inherited_from: null

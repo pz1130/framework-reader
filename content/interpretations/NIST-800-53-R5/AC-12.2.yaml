@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:AC-12.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Mitigates the risk that an unattended session remains usable after a user
+      steps away, allowing anyone with physical or remote reach to inherit the active
+      authentication context and act as that user without re-authenticating.
+    basis: inferred
+  plain_zh:
+    value: When a session ends, the system must automatically display a notice confirming
+      termination so no one can mistake a still-active session for a logged-out one,
+      and so users are reminded that inactivity does not equal safety.
+    basis: inferred
+  practice:
+    value:
+      '1': Terminal screens show a clear logout/termination message after sign-off;
+        users are told in policy that walking away does not lock the session.
+      '2': The message is rendered consistently across workstation, VPN, web SSO and
+        remote access channels; helpdesk and onboarding materials reference it; logs
+        capture session-end events.
+      '3': Termination messaging is coupled to enforced session timeouts and screen-lock
+        controls; deviations are monitored; periodic tests verify the message appears
+        and that no residual session token survives.
+    basis: inferred
+  evidence:
+    value: Screenshots or recorded sessions of the termination screen across platforms,
+      session/lock policy documents, configuration baselines for timeout values, and
+      sample logs showing session-end events tied to the message.
+    basis: inferred
+  common_myth:
+    value: Equating a session timeout that blanks the screen with a proper termination
+      message — a locked or blanked screen does not tell the next person (or an auditor
+      shoulder-surfing) that the session is over, and it leaves the underlying session
+      token alive for resume.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show what a user sees on this workstation immediately after signing out.
+    - Are VPN, web portal and remote console terminations handled the same way, and
+      where is that configured?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.004179Z'
+  signed_digest: 496e53a14f1072b5095083fabcfae43d4e886c6028b824e0422af5c1d117f22b
+  interview_seconds: null
+  inherited_from: null

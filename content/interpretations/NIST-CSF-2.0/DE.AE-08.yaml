@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:DE.AE-08
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about either treating all alerts as incidents or conversely dismissing all anomalies
+      as noise—without clear incident determination criteria, frontline personnel will rely on personal
+      judgment to decide whether to initiate emergency response, leading to failures to escalate when
+      needed or unnecessary full mobilization.
+    basis: inferred
+  plain_zh:
+    value: Define clearly, in writing, and assessably what constitutes a security incident, so that frontline
+      and security teams can use the same yardstick to decide whether to formally declare an incident
+      response when alerts occur.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written incident classification standard (e.g., impact scope, data sensitivity,
+        system criticality, whether legal notification obligations are triggered), and after an alert
+        occurs, it can be compared against the standard to determine whether an incident exists.
+      '2': The standard is detailed into checkable determination conditions; alerts and incidents are
+        logged in a register; the determination process is documented, including who made the classification
+        and which criterion was used.
+      '3': The determination standard is linked with alert rules (e.g., specific rule triggers automatically
+        declare an incident); there is a review mechanism for classification deviations; the standard
+        is periodically revised in response to the threat environment and business changes, with a responsible
+        owner.
+    basis: inferred
+  evidence:
+    value: Incident classification standard documents, linkage between alert records and incident logs,
+      classifier signatures or system audit trails, minutes of classification deviation reviews, and revision
+      history of the standard.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'connecting all security device alerts to a ticketing system and having someone
+      monitor them' is sufficient. Without clear, written determination criteria, the same alert may be
+      reported as an incident one day and deleted as a false positive the next—if the standard is not
+      documented and staff are not trained, more tools are useless.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent alert record; where is the documented basis for the decision from alert to incident
+      determination?
+    - Who has the authority to modify the incident classification standard? When was the last modification
+      and for what reason?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.443127Z'
+  signed_digest: 50ba38a59c1b1240369fbd360624fd7028dc4d0e094527de4fcc844c58bc8987
+  interview_seconds: null
+  inherited_from: null

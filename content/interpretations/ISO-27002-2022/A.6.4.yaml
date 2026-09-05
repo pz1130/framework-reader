@@ -1,0 +1,60 @@
+control_id: ISO-27002-2022:A.6.4
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'violations go unpunished'—employees who knowingly or repeatedly neglect
+      security requirements face no formal accountability path, making policies toothless and security
+      compliance a matter of self-discipline rather than enforcement.
+    basis: inferred
+  plain_zh:
+    value: 'There must be a documented disciplinary process: what consequences employees face for non-compliance
+      with security policies, the procedure for handling violations, who decides, and all employees must
+      be aware of this red line.'
+    basis: inferred
+  practice:
+    value:
+      '1': The employee handbook or security policy states that violations will result in disciplinary
+        action; designated responsible parties (e.g., security manager/HR) know how to initiate the process.
+      '2': A formal violation handling process exists (investigation, classification, notification, execution
+        of discipline); records are archived; new employees are clearly informed of consequences upon
+        onboarding.
+      '3': Violation handling is linked to performance/promotion; management makes decisions per process
+        with legal involvement; cases are periodically reviewed and typical incidents used to educate
+        all staff.
+    basis: inferred
+  evidence:
+    value: Disciplinary clauses in employee handbook or security policy, violation handling process documents,
+      disciplinary notices or HR records, employee acknowledgment receipts, violation case education materials.
+    basis: inferred
+  common_myth:
+    value: Assuming 'just dismiss the offender when something happens'—without a formal process and documentation,
+      similar cases are treated differently, and auditors cannot confirm that discipline is not arbitrary
+      or that the policy is actually enforced.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many times were employee violation cases initiated in the past year? Which policy clauses were
+      cited each time?
+    - Who signed off on the disciplinary decisions? Did the employees receive written notification?
+    - How do regular employees learn about disciplinary consequences for violations? Are there acknowledgment
+      or training records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.328810Z'
+  signed_digest: 96c4a2eae0d1ac71a4ae2f3e153e557f598c56048a0366145c7e7eb434cef671
+  interview_seconds: null
+  inherited_from: null

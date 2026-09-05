@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident response muscle atrophy—teams that only train
+      on paper fail the first time a real alert fires because their hands have never
+      practiced the steps. Simulated events ensure the playbook is actually executable
+      under pressure.
+    basis: inferred
+  plain_zh:
+    value: Run simulated incident response events (tabletop, walkthrough, or full
+      exercise) that exercise the actual plan against realistic scenarios, not just
+      review the document.
+    basis: inferred
+  practice:
+    value:
+      '1': Hold an annual tabletop using a written scenario; key responders (not just
+        security) attend; someone captures who said they would do what.
+      '2': Schedule exercises on a documented cadence mixing tabletop and operational
+        drills; scenarios cover detection, containment, eradication, recovery, and
+        communications; after-action notes are written and tracked to closure.
+      '3': Exercises use realistic, current-threat scenarios with injects that surprise
+        participants; results feed corrective actions into the IR plan and training
+        program; metrics on time-to-detect / time-to-respond from exercises are tracked
+        and improve over time.
+    basis: inferred
+  evidence:
+    value: Exercise plan/schedule, scenario scripts with injects, attendance and role
+      assignment records, after-action reports with findings and corrective actions,
+      closure evidence for those actions, and any clocked detection/response times
+      from the drill.
+    basis: inferred
+  common_myth:
+    value: Treating the annual tabletop as a checkbox that only security attends—and
+      assuming a clean run means the plan works. The point is to expose the assumptions
+      that break under pressure (who actually has the on-call phone, which system
+      owner is unreachable after-hours, what the comms template is missing); a smooth
+      read-through proves nothing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last after-action report and which corrective actions from it are
+      still open.
+    - Which roles outside of security participated in the last exercise, and how did
+      you verify they understood their part?
+    - What scenario did you use, and how did you choose it relative to threats you
+      actually face?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.257005Z'
+  signed_digest: 188dbd06a5651275461e4093b60090f7415c36551a88796826572554e7620a3e
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CM-13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the gap where personal data flows into systems, processors, and
+      partners that nobody enumerated - so a 'delete this user' request becomes a
+      treasure hunt and a breach notification arrives from a vendor nobody tracked
+      as holding the data.
+    basis: inferred
+  plain_zh:
+    value: Map, in a usable form, what data the system holds, what actions it performs
+      on that data (collect, store, use, share, transform, delete), and where each
+      action lands - so that consent, retention, deletion, breach scope, and lawful-basis
+      decisions all have an actual inventory to work against.
+    basis: inferred
+  practice:
+    value:
+      '1': A short written list per in-scope system naming the personal data elements
+        processed, where they come from, where they go, and who can see them.
+      '2': Data actions tied to lawful basis and retention; the map is referenced
+        when handling data-subject requests, vendor onboarding, and incident scoping;
+        updates happen when flows change.
+      '3': The map is maintained as a living artifact (tooled or owner-assigned),
+        version-controlled, reviewed on a cadence, and cross-checked against actual
+        traffic and vendor contracts; gaps between map and reality trigger change.
+    basis: inferred
+  evidence:
+    value: Data-action map (or inventory) per system showing data elements, sources,
+      destinations, processors, retention, and lawful basis; change history; sample
+      tie-outs between the map and a live data-subject request, incident scoping,
+      or vendor review.
+    basis: inferred
+  common_myth:
+    value: Treating the privacy notice or a record-of-processing-activity as the same
+      thing as data action mapping. The notice describes what you tell the user; the
+      map describes what actually happens to the data inside and outside your perimeter
+      - and auditors will probe the second, not the first.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one personal data field for system X and walk me from collection through
+      deletion, including every external recipient in between.
+    - When was the map last updated, what triggered the update, and how do you know
+      it still reflects reality?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR routinely extend this into records of processing
+      activities and lawful-basis records; US auditors (especially outside HIPAA/state-privacy
+      contexts) more often accept a lighter data-flow inventory tied to system security
+      boundaries. In privacy-heavy EU audits expect stricter scrutiny of cross-border
+      transfers in the same map.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.747787Z'
+  signed_digest: 1561fc7350f312494d4adfef09e8f419eaf60be476d7d48e2f12f1c5c166f3b7
+  interview_seconds: null
+  inherited_from: null

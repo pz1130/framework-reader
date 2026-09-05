@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MP-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against media that 'looks unmarked' passing as benign, causing
+      CUI to be carried, mailed, or shipped outside controlled areas without anyone
+      realizing it carries sensitive content. If you do not specifically mark CUI
+      media, custodians, couriers, and recipients have no reliable signal that the
+      contents require handling controls, and spillage incidents become inevitable.
+    basis: inferred
+  plain_zh:
+    value: Identify any media (disks, drives, tapes, USBs, printed packs) that contains
+      Controlled Unclassified Information and apply visible, durable CUI markings
+      so that anyone touching it knows what is inside and how it must be handled.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which media types are in scope for CUI marking and what the marking
+        looks like (e.g., CUI banner plus identification). Have a checklist or label
+        template custodians can apply before media leaves a controlled area.
+      '2': Marking is applied at the point of creation or burn/burn-out, captured
+        on a media inventory or issuance record, and checked at hand-off. Labels survive
+        normal transport conditions (adhesive, top/bottom of the asset, not just a
+        sticky note on the case).
+      '3': Marking is enforced by the build/burn process itself so unlabelled CUI
+        media cannot be produced, the inventory records what marking was applied to
+        each asset, and disposal or declassification events update or remove markings
+        according to policy.
+    basis: inferred
+  evidence:
+    value: CUI media marking policy and label template, media inventory or issuance
+      logs showing markings applied per asset, sample of in-use and archived media
+      showing the marking is present and legible, hand-off and shipping records, and
+      any spillage or incident records showing what was missed.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the file inside is encrypted or the drive is in a
+      locked cabinet, no physical marking is required. Encryption and storage protect
+      the bitstream; CUI markings tell a human custodian, courier, or auditor that
+      controlled content is present and trigger the handling rules.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three media items from the CUI inventory and show me the actual marking
+      on the physical asset right now.
+    - When a piece of media is created or burned with CUI, who applies the marking
+      and where is that step recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.509878Z'
+  signed_digest: 71b95166a683b899dedd0b90b2f9a2681f0d88cfd1364e9f6ccad28a1fd74089
+  interview_seconds: null
+  inherited_from: null

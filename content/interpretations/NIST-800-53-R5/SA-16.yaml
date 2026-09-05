@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against components being deployed without anyone knowing how to
+      operate, integrate, or defend them - the failure where developers hand off software/ICS/IoT
+      without training the people who must run it, so configuration errors, missed
+      hardening, and unsupported integration choices pile up under operational ownership.
+    basis: inferred
+  plain_zh:
+    value: Require the developer to train the people who will install, configure,
+      operate, and maintain their component - on a known, documented curriculum -
+      before the system goes live and on continued change, so your staff can actually
+      run it and recognize when behavior is wrong.
+    basis: inferred
+  practice:
+    value:
+      '1': Contract or SLA names training as a developer obligation; onboarding includes
+        at least informal walkthroughs; staff know who to call for developer support.
+      '2': Defined training curriculum with objectives, audience, and prerequisites;
+        delivery records (rosters, attendance, materials) are kept; refresh training
+        is tied to major updates or upgrades.
+      '3': Training effectiveness is measured (assessments, observed competence, reduced
+        preventable incidents) and gaps feed back into vendor management; refused
+        or inadequate training blocks acceptance; records survive staff turnover.
+    basis: inferred
+  evidence:
+    value: Training obligation in the developer contract/SLA, curriculum and learning
+      objectives, delivery records with attendees and dates, completion or competence
+      assessment results, refresh schedule tied to product versions, evidence that
+      training shortfalls blocked acceptance.
+    basis: inferred
+  common_myth:
+    value: Treating a one-off vendor onboarding session or a stack of PDF manuals
+      as fulfilling this control - downloading documentation is not training, and
+      a single session at handover does not cover upgrades, new staff, or changed
+      interfaces.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the training plan for the most recent developer-handoff component and the
+      records that show your operators actually completed it before go-live.
+    - When the developer pushes a major upgrade, what training do they deliver and
+      how do you decide whether it is sufficient before you deploy?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.103185Z'
+  signed_digest: 1c78de7355ba0417fcaacfc8558155113415a800cc485ec98832d2059e8330ee
+  interview_seconds: null
+  inherited_from: null

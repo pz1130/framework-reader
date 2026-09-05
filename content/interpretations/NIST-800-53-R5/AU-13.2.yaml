@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:AU-13.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents organizations from treating all monitored locations as equally
+      trustworthy, leaving high-value or exposed activities invisible and allowing
+      misuse or compromise to persist without detection.
+    basis: inferred
+  plain_zh:
+    value: Identify which facilities, systems, locations, or network points need monitoring,
+      justify the coverage, and review the decision as risks and operations change.
+    basis: inferred
+  practice:
+    value:
+      '1': Create a list of sites or monitoring locations that are important because
+        of the assets, users, activities, or threats they cover, and document why
+        each should be monitored.
+      '2': Apply a documented risk-based selection and review process, retain records
+        of decisions and gaps, and reassess coverage after changes to facilities,
+        systems, operations, or threat exposure.
+      '3': Integrate monitored-site selection into the risk-management and audit-review
+        cycle, periodically test whether each location provides useful and sufficient
+        coverage, and retire or redesign locations that no longer support the monitoring
+        objective.
+    basis: inferred
+  evidence:
+    value: A monitored-site inventory, documented selection criteria and risk rationale,
+      review and approval records, changes to the monitoring plan, and evidence that
+      coverage gaps or obsolete locations were addressed.
+    basis: inferred
+  common_myth:
+    value: Assuming that a list of monitored locations is sufficient even when critical
+      facilities or systems are absent, undocumented, or no longer useful.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which sites or monitoring locations were added or removed during the last review,
+      and what risks drove those decisions?
+    - What process confirms that the most important facilities, systems, and activities
+      are covered by monitoring?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.540264Z'
+  signed_digest: 2531de9f819230d66a53ada9678ab41b1c3578cabbea4075f87b151d830dd07d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-31
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we have monitoring tools and dashboards, so we are secure'
+      complacency. Without a written strategy that ties monitoring to actual risks,
+      controls decay silently, gaps between assessment cycles widen, and executives
+      learn about control failure only after an incident exposes it.
+    basis: inferred
+  plain_zh:
+    value: Write down how the organization continuously watches its security controls
+      and operating environment, decide what to monitor and how often, define how
+      findings escalate, and keep that strategy current as the threat and technology
+      picture changes.
+    basis: inferred
+  practice:
+    value:
+      '1': A short, signed Continuous Monitoring Strategy exists; it names which control
+        families are monitored, by whom, and on what cadence; high-risk areas get
+        more frequent checks than low-risk ones.
+      '2': Findings feed into a tracked remediation workflow with owners and due dates;
+        strategy specifies escalation paths and triggers for out-of-cycle reassessment
+        (major change, incident, new threat); status is reviewed at a defined forum
+        on a set schedule.
+      '3': Monitoring coverage is mapped to current threat intel and risk register
+        entries; metrics show control effectiveness trends, not just tick-box compliance;
+        deviations automatically trigger re-evaluation; strategy itself is reviewed
+        annually or when the environment shifts materially.
+    basis: inferred
+  evidence:
+    value: Signed Continuous Monitoring Strategy document, monitoring plan with cadences
+      and owners per control area, remediation tickets and closure evidence, escalation
+      logs, periodic review meeting minutes, and evidence that the strategy has been
+      updated after material changes.
+    basis: inferred
+  common_myth:
+    value: Treating the strategy as a one-time policy artifact approved and shelved,
+      separate from the actual monitoring tooling and dashboards. The artifact must
+      drive which controls get checked, how often, what happens on failure, and how
+      findings get fixed - otherwise it documents an aspiration rather than an operating
+      rhythm.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three monitoring findings that exceeded your defined threshold
+      and what happened next.
+    - How often do you reassess controls after a major system change, and where is
+      that trigger written?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.779687Z'
+  signed_digest: 3b01da0befcc11d1b01c5762981873e6728542bb0f574d8b79c66073359bcfc4
+  interview_seconds: null
+  inherited_from: null

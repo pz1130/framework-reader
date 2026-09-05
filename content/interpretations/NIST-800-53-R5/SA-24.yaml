@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems being built in a way that fails open under attack
+      - where a single fault, compromise, or disruption cascades into a full outage
+      or takeover because the architecture has no redundancy, isolation, or graceful
+      degradation baked in. The control exists to force resilience thinking into design,
+      not to be retrofitted after an incident exposes the fragility.
+    basis: inferred
+  plain_zh:
+    value: Make sure the people building, acquiring, or modifying systems treat cyber
+      resiliency as a design goal - so the system keeps doing what matters, or fails
+      safely, even when parts are compromised, misconfigured, or destroyed.
+    basis: inferred
+  practice:
+    value:
+      '1': Designers and architects know that resilience is a requirement; critical
+        systems list basic resiliency goals (e.g., continue core function, limit blast
+        radius, recover quickly) before build or major change.
+      '2': Resiliency techniques are selected per system and documented - things like
+        segmentation, redundancy, least-privilege isolation of trust zones, graceful
+        degradation, or recoverable state - and engineers can explain why each was
+        applied.
+      '3': 'Resiliency design choices are testable: failures and compromises are exercised
+        (chaos/resilience tests, tabletop of cascading failure), findings feed back
+        into design changes, and high-risk design exceptions are formally approved
+        and time-boxed.'
+    basis: inferred
+  evidence:
+    value: Resiliency design requirements per critical system, architecture artifacts
+      showing applied techniques (segmentation, redundancy, isolation, graceful degradation,
+      recovery paths), records of resilience testing or failure-mode review, and exceptions
+      or waivers with justification and expiry.
+    basis: inferred
+  common_myth:
+    value: Assuming buying a vendor system with 'high availability' or 'fault tolerance'
+      on the brochure satisfies the control. The auditor will ask what resiliency
+      techniques you actually chose for your specific threat model and how you verified
+      them - not whether the datasheet says HA.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one critical system: which resiliency techniques were chosen during design,
+      and what failure scenario were they meant to contain?'
+    - Show evidence that a resiliency assumption was actually broken on purpose and
+      the system behaved as designed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.154341Z'
+  signed_digest: 240faa50c422c5d34d77c1c7b0520bcc667cb613cfbf749f2715e3eaca9ca4e6
+  interview_seconds: null
+  inherited_from: null

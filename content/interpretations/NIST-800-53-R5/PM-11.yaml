@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PM-11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against organizations building security and resilience controls
+      around an IT perimeter or system inventory that no longer reflects what the
+      enterprise actually does — so controls drift away from the real mission, fail
+      when the mission changes, and pass audits on paper while business-critical processes
+      quietly run unprotected or on forgotten legacy paths.
+    basis: inferred
+  plain_zh:
+    value: Identify and document the mission and the business processes that depend
+      on the systems you protect, and keep that picture current so security priorities
+      are tied to what actually matters, not to whatever systems happen to exist.
+    basis: inferred
+  practice:
+    value:
+      '1': List the organization's core mission objectives and the top business processes
+        that carry them out, in a document someone can show an auditor.
+      '2': Map each critical business process to the systems, data, people and third
+        parties it relies on, and use that map to drive risk and control scoping decisions.
+      '3': 'Treat the mission/business process definition as a living artifact: revisit
+        it when strategy, products, regulations or operating model change, and require
+        security architecture, risk register and continuity plans to trace back to
+        it.'
+    basis: inferred
+  evidence:
+    value: A documented mission and business process definition, the mapping from
+      processes to systems/data/third parties, change history showing updates when
+      the business changed, and examples of risk or control decisions that reference
+      the definition.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the CIO or CISO can recite the mission statement,
+      this control is satisfied. The mission must be broken down into the specific
+      processes that execute it, and security decisions must visibly trace back to
+      those processes — a poster in the lobby does not anchor a risk register.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the document that defines your mission and the business processes that
+      deliver it, and tell me when it was last updated.
+    - Pick a control or risk treatment decision from the last year — which business
+      process does it trace back to, and how was that mapping used?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.693562Z'
+  signed_digest: 824fa198426bcea92d4b4d10596320e1aa23dc7d98aff49208b54cc9bb978d32
+  interview_seconds: null
+  inherited_from: null

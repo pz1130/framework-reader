@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AU-6.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against privileged users performing malicious or erroneous actions
+      without detection — if every command a sysadmin or service account runs is not
+      logged, a compromise or a mistake can silently persist, and there is no record
+      to reconstruct what took place during an incident.
+    basis: inferred
+  plain_zh:
+    value: You must record and periodically review the full commands executed by privileged
+      accounts (e.g., root, administrators, service accounts) across your systems,
+      so that when something goes wrong, you can see exactly which command was typed,
+      when, and by whom.
+    basis: inferred
+  practice:
+    value:
+      '1': Enable logging of privileged command execution on key systems (e.g., auditd,
+        Windows Event Log) and store the logs in a central location.
+      '2': Define a schedule and process for reviewing privileged command logs, flagging
+        anomalies, and documenting the review outcome and any follow-up actions.
+      '3': Integrate flagged anomalies into your incident response workflow, use automated
+        alerting on pre-defined suspicious command patterns, and retain logs in a
+        tamper-resistant manner with a clear retention policy.
+    basis: inferred
+  evidence:
+    value: A central log repository or SIEM containing privileged command records;
+      documented review cadence and checklists; sample review meeting minutes or sign-off;
+      alert rules and examples of alerts triggered; evidence of log integrity and
+      retention controls.
+    basis: inferred
+  common_myth:
+    value: Assuming that merely turning on basic auditing or relying on the default
+      system logs (like bash history) satisfies the control — these often miss full
+      command arguments, are per-host without central aggregation, or are easily modified
+      by the privileged user themselves, leaving no reliable record for the auditor.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last review of privileged command logs — what was reviewed, when,
+      and by whom was it signed off?
+    - Which privileged accounts or service accounts are not covered by command logging,
+      and what is the justification?
+    - How do you detect a privileged user attempting to disable or tamper with the
+      logging itself?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.621080Z'
+  signed_digest: 279fa2d7a71172db695e55e733fd26f55ce38ac2d368ad794a26841829f6c96a
+  interview_seconds: null
+  inherited_from: null

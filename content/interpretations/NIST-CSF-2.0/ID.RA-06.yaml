@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:ID.RA-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that risk treatment remains at the level of meeting minutes and verbal commitments—measures
+      are selected but not scheduled, scheduled but not executed, executed but not tracked, and when tracking
+      is lost, not reported. Eventually, the risk register grows longer, and the security department takes
+      the blame while lacking a treatment trail.
+    basis: inferred
+  plain_zh:
+    value: 'After determining the response measures for risks, manage them like a project: who will do
+      it, when, to what extent, what progress has been made, and with whom results are synchronized. It
+      is not over once measures are selected.'
+    basis: inferred
+  practice:
+    value:
+      '1': There are records of treatment decisions for identified risks, at least specifying the risk,
+        treatment method (accept/mitigate/transfer/avoid), responsible person, and approximate completion
+        time, which can be shown to auditors.
+      '2': 'Risk treatment enters a formal process: there is a basis for prioritization, responsible persons
+        and deadlines, regular meetings (e.g., monthly or quarterly) to review progress, an escalation
+        mechanism for overdue items, and closure confirmation upon completion.'
+      '3': Risk treatment tracking is linked with the risk management platform/ticketing system, with
+        automatic status updates; the actual effectiveness of treatment measures is re-evaluated, risks
+        not completed as planned are re-assessed and priorities adjusted; management can see periodic
+        summary reports.
+    basis: inferred
+  evidence:
+    value: Risk treatment plan or register (including responsible persons, deadlines, priorities), minutes
+      of regular review meetings, overdue and escalation records, treatment progress tracking sheets,
+      verification or closure records after treatment completion, and periodic reports to management.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'recording treatment recommendations in the risk register' equals
+      completing treatment tracking. That line in the register is only a decision; without scheduling,
+      responsible persons, or progress updates afterward, auditors can easily see the register is static—the
+      save date and last update date are the same.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For this closed risk treatment item, was the actual effectiveness of the measure verified before
+      closure? Where is the verification record?
+    - What mechanism ensures risk treatment progress is not forgotten? Is it regular meetings or system
+      reminders? What was the last instance of overdue without escalation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.550949Z'
+  signed_digest: 987524af64dd5936ad6afb592b0b91b0878e5624fbb705eda4f9ba620fa2e759
+  interview_seconds: null
+  inherited_from: null

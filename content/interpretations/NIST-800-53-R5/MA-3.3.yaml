@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:MA-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops maintenance tools and field-replaceable parts from walking out the
+      door with insiders or contractors and being used to bypass production controls
+      or attack the environment after they leave.
+    basis: inferred
+  plain_zh:
+    value: Make sure no one can take maintenance equipment or components out of the
+      facility (or out of the controlled zone) without explicit verification that
+      it is authorized and safe.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a written rule that maintenance tools and removable components must
+        be checked out and checked in at a controlled point; visitors and contractors
+        cannot self-carry items in or out.
+      '2': Maintain a log of what goes in and out, tied to the maintenance ticket
+        or work order; verify the items match the approved list before release; tag
+        tools and components so they are identifiable.
+      '3': Use a checkpoint with inspection (badge-out, serial reconciliation, or
+        scanning) for every departure; investigate any missing tool or component as
+        a potential incident, not just a clerical loss; track tool custody from receipt
+        through sanitization or disposal.
+    basis: inferred
+  evidence:
+    value: Written checkout/check-in procedure, the in-and-out log tied to work orders,
+      asset tags or serial records for tools and components, and incident records
+      for any missing or unauthorized removal attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming a reception desk or a 'no tools' sign at the door satisfies this
+      control. Without an enforced, item-by-item reconciliation tied to authorized
+      work, tools and parts leave freely and nobody can prove what left or with whom.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the log for the last time a contractor left the building with maintenance
+      equipment - what was on the approved list versus what was scanned out?
+    - When a tool or component is not returned, what is the process and who decides
+      whether it is a clerical issue or a security incident?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.389437Z'
+  signed_digest: cae96c4439de291f86578c82277044c8afe0af4f3057842f9ae12757e8165ad6
+  interview_seconds: null
+  inherited_from: null

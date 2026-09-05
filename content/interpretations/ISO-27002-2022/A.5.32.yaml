@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.5.32
+locale: en
+state: draft
+fields:
+  intent:
+    value: To prevent legal and compliance risks arising from arbitrary software installation, code copying,
+      and document transmission—unauthorized use, reproduction, or distribution of copyrighted materials
+      can lead to lawsuits and fines, and in severe cases, revocation of the entire supply chain's licensing
+      qualifications.
+    basis: inferred
+  plain_zh:
+    value: 'Ensure that the use of knowledge assets such as software, code, and documents complies with
+      contracts and copyright law: purchase licenses where required, restrict the number of copies as
+      necessary, and manage prohibited piracy and unauthorized distribution.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain an inventory of licensed software; procure through official channels; prohibit employees
+        from installing unauthorized software; remove pirated software when discovered.
+      '2': Maintain a software asset register that reconciles with procurement records; restrict the number
+        of copies and distribution scope of volume licenses; have usage policies for file sharing and
+        P2P tools with traceability.
+      '3': Automatically inventory software usage and licenses with anomaly alerts; implement intellectual
+        property review processes for externally released and outsourced code and documents; have clear
+        agreements and retrieval records for knowledge asset handover when employees leave.
+    basis: inferred
+  evidence:
+    value: Software asset register, procurement contracts and licenses, software usage monitoring or audit
+      logs, P2P/file sharing usage policies and blocking records, intellectual property clauses (including
+      employee agreements and supplier contracts), and violation handling records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'purchasing a software license is sufficient'—many licenses are limited by device
+      or user count, and exceeding installation or distribution still constitutes a breach. Additionally,
+      some teams focus on preventing external theft but overlook internal employees uploading code and
+      documents to personal cloud drives or public repositories.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the actual number of installations for volume-licensed software? What is the licensed number?
+      How is compliance proven?
+    - When employees leave, how is their code and documentation handed over, and what is allowed to be
+      taken? What is the basis?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.300258Z'
+  signed_digest: 5436c32b183f06827c1c1e0ed4238aecb3d4a370d974822f2039550989295ffb
+  interview_seconds: null
+  inherited_from: null

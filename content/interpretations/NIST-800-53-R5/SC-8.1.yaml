@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against in-transit data being silently read or tampered with by
+      an attacker sitting on the path between sender and receiver — without strong,
+      properly validated cryptography at the transport or message layer, 'encrypted'
+      channels can be downgraded, impersonated, or terminated at a hostile endpoint
+      and the organization never knows.
+    basis: inferred
+  plain_zh:
+    value: Wherever sensitive data crosses a network boundary or an untrusted segment,
+      protect its confidentiality and integrity with cryptography — and make sure
+      that cryptography is actually the one negotiated, with valid endpoints, not
+      just 'a TLS box' in the path.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the data flows that leave a trusted boundary and the protocols
+        that carry them; require a recognized cryptographic protocol (TLS, IPsec,
+        SSH, etc.) for any flow carrying sensitive data, and forbid plaintext for
+        those flows.
+      '2': Pin minimum protocol/cipher versions in a written standard, configure servers
+        and clients to enforce them, and run periodic scans or config checks to catch
+        weak ciphers, self-signed or expired certs, and silent downgrades.
+      '3': Continuously monitor the negotiated handshake (protocol version, certificate
+        validity, cipher strength) across production traffic, alert on deviations,
+        and feed findings back into the crypto standard so weak endpoints get remediated
+        before they are exploited.
+    basis: inferred
+  evidence:
+    value: Data-flow diagram marking sensitive flows, the cryptographic standard (minimum
+      protocols/ciphers/cert requirements), configuration baselines and scan reports
+      showing enforcement, and monitoring output demonstrating that weak or downgraded
+      sessions are detected.
+    basis: inferred
+  common_myth:
+    value: Assuming that having 'TLS in the stack' or a load balancer that terminates
+      TLS satisfies the control — termination only protects the segment the box sits
+      on, and the back-end leg, inter-service hops, and client-to-edge link are each
+      a separate decision that can quietly become plaintext.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the data-flow diagram and point to which flows carry sensitive data and
+      which protocol protects each one.
+    - What is the minimum TLS/cipher version your standard requires, and when did
+      you last find a system that did not meet it?
+    - How do you detect a session that was downgraded or routed through a self-signed/expired-cert
+      endpoint?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.774099Z'
+  signed_digest: f59853a89850b5a69cee086fcd49f542772c7f5ade4e723045064f76ce6c79d5
+  interview_seconds: null
+  inherited_from: null

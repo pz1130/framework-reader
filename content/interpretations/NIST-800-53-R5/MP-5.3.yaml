@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:MP-5.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against media being mishandled by people without accountability
+      - if anyone in the building can grab a tape, USB, or backup drive and walk out,
+      the sanitization, transport, and destruction controls on the rest of MP-5 become
+      theater. The risk is untracked custody of media containing sensitive data.
+    basis: inferred
+  plain_zh:
+    value: Identify who is authorized to hold, check out, and return organizational
+      media (digital and non-digital), and hold them responsible for it from issuance
+      to disposal.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate a small list of media custodians by role or name; anyone else
+        handling media does so with one of them accountable.
+      '2': Maintain a checkout log (who took what, when, expected return); require
+        sign-in/sign-out for portable media leaving controlled areas; verify return.
+      '3': Tie custody records to the media inventory and sanitization records so
+        each item is traceable from receipt to destruction, with periodic reconciliation
+        between what was issued and what came back.
+    basis: inferred
+  evidence:
+    value: Designated custodian list (role- or person-based), media checkout/return
+      log entries, reconciliation of issued vs. returned media, audit of unreturned
+      items.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a media policy' as satisfying this control - without
+      a named, accountable custodian and a check-out record, no one owns a missing
+      drive and MP-5's sanitization and destruction steps cannot be proven to have
+      happened to the right item.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the log of who checked out portable media in the last 90 days and confirm
+      each item was returned or accounted for.
+    - If a backup tape is missing today, how would you trace which custodian last
+      had it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.475497Z'
+  signed_digest: cb23ee1a25005f259b4b959c95b997ded392d1111dc895796d3ae55ef79bab51
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents error messages and stack traces from becoming an attacker's reconnaissance
+      tool — verbose debug output, unhandled exception dumps, and database error strings
+      routinely leak file paths, schema details, internal hostnames, framework versions,
+      and session tokens that turn a probing attempt into a confirmed exploit path.
+    basis: inferred
+  plain_zh:
+    value: Make sure applications, services, and APIs never reveal internal error
+      details (stack traces, SQL errors, debug info, tokens) to end users or unauthenticated
+      callers, and that real errors are still captured for the people who need to
+      fix them.
+    basis: inferred
+  practice:
+    value:
+      '1': Production code paths do not return raw exception text to the browser or
+        API caller; developers have been told what a safe error page looks like.
+      '2': Centralized error-handling middleware or framework patterns enforce generic
+        user-facing messages and route detailed traces to logs; reviews or tests catch
+        regressions before release.
+      '3': Generic error responses are verified by automated tests across known failure
+        inputs; log capture and alerting on spikes of 5xx / unhandled exceptions is
+        in place; the response surface is periodically scanned (e.g., fuzzing, manual
+        fault injection) to confirm no internal detail leaks.
+    basis: inferred
+  evidence:
+    value: Sample of error responses from production endpoints showing only generic
+      messages, the corresponding detailed entries in application logs, the error-handling
+      configuration or framework code that enforces it, and any automated or manual
+      test results that checked for information leakage.
+    basis: inferred
+  common_myth:
+    value: Treating 'set debug=false in production' as the whole control — configuration
+      flags do nothing for exceptions thrown by business logic, third-party libraries,
+      or database drivers, which are the paths that actually leak schema names, file
+      paths, and internal IPs.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a 500 response from this service right now — what does it actually return?
+    - Where do the full stack traces and database errors go, and who gets alerted
+      when their volume spikes?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.821003Z'
+  signed_digest: b2966fab2506a80b8cced188fab2f152cc7e1d0d24f3bac0180fa4630f7273c6
+  interview_seconds: null
+  inherited_from: null

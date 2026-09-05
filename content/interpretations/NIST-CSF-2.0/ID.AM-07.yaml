@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:ID.AM-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that no one can clearly state where data is, what it is, who is responsible
+      for it, and how long it is retained—if asked about the storage location, classification level, or
+      retention period of a specific dataset, the entire team cannot answer, making audits and data breach
+      investigations impossible.
+    basis: inferred
+  plain_zh:
+    value: Compile an inventory of data of specified types and their metadata (such as classification,
+      responsible party, location, retention period), and continuously maintain and update it, making
+      the status of data assets queryable and traceable.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a data inventory file that records the names, locations, responsible parties, and
+        classification levels of major datasets; it is known which file serves as the inventory.
+      '2': The inventory is updated quarterly or on an event-driven basis, recording data flow and change
+        history; there are clear data type definitions and responsible parties; the inventory corresponds
+        to actual data storage.
+      '3': Automated tools are used to scan network storage and cloud locations, regularly compare with
+        the inventory, and automatically discover unregistered data; each item in the inventory is supported
+        by system-level metadata, making it queryable and traceable.
+    basis: inferred
+  evidence:
+    value: Data inventory or data asset registry, metadata field definition documents, update records
+      and responsible party sign-in sheets, automated scan reports or comparison results, examples of
+      data classification and retention period annotations.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'drawing a network topology diagram and a data catalog and saving
+      them to a wiki counts as an inventory.' Without responsible parties and update mechanisms, the topology
+      diagram remains unchanged for six months, and the catalog becomes disconnected from actual storage;
+      an audit spot-check will reveal that the information is fabricated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - List all storage locations containing customer personal data; which page in the inventory corresponds
+      to each?
+    - When was the data inventory last updated? Who is responsible for updates, and what are the trigger
+      conditions?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.528404Z'
+  signed_digest: c84efd20ff1d10818436477c27cc0bca4b420eafb63642e097efd19e90bdbec2
+  interview_seconds: null
+  inherited_from: null

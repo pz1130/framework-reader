@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:IA-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single stolen or guessed credential from silently taking over
+      the keys to the kingdom — admin, root, service, and other privileged identities
+      must require a second factor, so that password reuse, phishing, or credential
+      dumps on a regular user account do not cascade into domain or system control.
+    basis: inferred
+  plain_zh:
+    value: All privileged accounts must use multi-factor authentication on every access,
+      not just remote or not just 'sensitive' systems, and the second factor must
+      actually be a separate factor, not a longer password.
+    basis: inferred
+  practice:
+    value:
+      '1': Privileged accounts (domain admins, local administrators, root, service
+        accounts where feasible, cloud admin roles) require MFA at every login; the
+        second factor is not a password derivative.
+      '2': An authoritative list of privileged accounts exists; MFA coverage is measured
+        against that list; break-glass accounts are documented and monitored; new
+        privileged grants trigger MFA automatically.
+      '3': Coverage is verified continuously (not annual self-attest); service and
+        machine identities use certificate- or key-based second factors; privileged
+        sessions are bound to the authenticated identity; gaps produce alerts, not
+        tickets.
+    basis: inferred
+  evidence:
+    value: Inventory of privileged accounts with MFA enrollment status, MFA policy
+      applied to those accounts, break-glass account handling and monitoring, sample
+      login logs showing MFA challenge on privileged sessions, gap reports or exception
+      register with time-bound remediation.
+    basis: inferred
+  common_myth:
+    value: Believing that MFA on the VPN or email console covers IA-2(1) for privileged
+      accounts — the control is about the privileged identity itself, so admins logging
+      directly into servers, cloud consoles, or workstations with local admin rights
+      still need a second factor on those paths.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your list of privileged accounts and tell me which ones are not enrolled
+      in MFA.
+    - How do you handle MFA for service or machine accounts that cannot use a phone
+      or token, and how do you detect compromise of those accounts?
+    basis: inferred
+  regional_note:
+    value: EU auditors under DORA and NIS2 increasingly press on consistent MFA for
+      all privileged ICT access including cloud and third-party-administered consoles;
+      US FedRAMP/CMMC audits press hardest on local and network administrator accounts.
+      The technical ask is similar, but EU reviews more often extend the question
+      to outsourced administration paths.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.104542Z'
+  signed_digest: ccc873a13fc7ba7f78b026c6472f348f4f2a1bd66a3f827fd5c3fb3bbae8a73f
+  interview_seconds: null
+  inherited_from: null

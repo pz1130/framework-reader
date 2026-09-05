@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a compromised application or upstream component silently
+      smuggling hostile content (SQL, shell metacharacters, path traversal, script
+      injection, oversized payloads) into the data stream that downstream systems,
+      parsers, or humans will trust and act on. If you do not filter at the boundary
+      where information crosses between trust zones, a single unsanitized output from
+      one service becomes a foothold for the next.
+    basis: inferred
+  plain_zh:
+    value: Check the data leaving any application or system component and reject,
+      sanitize, or reshape it before it reaches another trust boundary, so malicious
+      or malformed content cannot ride downstream into parsers, databases, or operators.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the trust boundaries where your software emits data to other systems
+        or users, and apply at least allow-list filtering on the known-safe fields/patterns
+        at those boundaries.
+      '2': Maintain documented filter rules per boundary, keep them in version control,
+        and review them when the producer or consumer changes; record validation failures
+        as security-relevant events.
+      '3': Filter structurally (schema/grammar validation, length/charset limits,
+        canonicalization before checking) rather than by substring matching; cover
+        both content and metadata; block, alert, and quarantine on rejection; continuously
+        test filters against current attacker payloads and regressions.
+    basis: inferred
+  evidence:
+    value: Boundary inventory, filter specifications per data flow, code or configuration
+      showing the filtering logic, logs or telemetry of rejected outputs, and test
+      results demonstrating filters catch known-bad inputs.
+    basis: inferred
+  common_myth:
+    value: Treating input validation and output filtering as the same control implemented
+      once at the front door. Output filtering must be re-applied at every egress
+      point because each downstream consumer trusts data differently and any producer
+      in the chain can be compromised.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one data flow from this list of boundaries - what exactly gets filtered,
+      and which fields are allow-listed versus block-listed?
+    - Show me a recent log entry where the output filter rejected content, and tell
+      me what happened to the source component afterward.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.863500Z'
+  signed_digest: a028cac5974a4e43505c8d71f0661ea3ba717f408a5c54fd61e24acf7e608539
+  interview_seconds: null
+  inherited_from: null

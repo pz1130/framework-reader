@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-18.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a system silently siphoning sensitive data to an attacker-controlled
+      destination that mimics legitimate traffic—mobile code, scripts, and applets
+      often phone home or exfiltrate before anyone notices, so the control forces
+      you to control where they send what they collect.
+    basis: inferred
+  plain_zh:
+    value: Make sure that any mobile code running in your environment only sends the
+      data it collects to destinations you have explicitly authorized, and block or
+      alert on anything going elsewhere.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the categories of mobile code allowed in the environment (e.g.,
+        JavaScript, Java applets, Flash if still relevant, ActiveX); define an initial
+        allow-list of acceptable collection destinations for each category.
+      '2': Enforce egress filtering or proxy controls that restrict mobile code connections
+        to authorized destinations only, with logging of attempted and successful
+        connections; periodically review the allow-list against observed traffic.
+      '3': Automate detection of mobile code attempting to reach non-allow-listed
+        endpoints (DNS sinkhole, egress proxy alerts, browser/EDR telemetry); tie
+        findings into incident response with documented actions when a violation is
+        detected, and re-validate the allow-list after any architecture or vendor
+        change.
+    basis: inferred
+  evidence:
+    value: Allow-list of mobile code collection destinations, egress filtering/proxy
+      configuration restricting mobile code traffic, logs of mobile code connection
+      attempts (allowed and blocked), review records comparing observed destinations
+      against the allow-list, and incident records for any unauthorized collection
+      events.
+    basis: inferred
+  common_myth:
+    value: Assuming that banning executable downloads at the gateway covers mobile
+      code collection—browsers and runtimes happily execute scripts and applets that
+      arrive over allowed HTTPS to approved hosts, and those scripts can POST data
+      anywhere their sandbox allows. Egress controls on the script's outbound traffic,
+      not just on inbound file downloads, are what actually addresses SI-18.3.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which mobile code categories are permitted in your environment, and where is
+      that list documented?
+    - Show me a recent log entry where mobile code was blocked from sending data to
+      a destination not on the allow-list—what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.882902Z'
+  signed_digest: 464465d6c80bc0449c3e6146b049ce22fdcdf241d5909d5478c9f65bbaf64201
+  interview_seconds: null
+  inherited_from: null

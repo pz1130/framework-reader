@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PS-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where employees handling classified or
+      otherwise specially-protected information are vetted, trained and briefed once
+      at hire and then never re-checked — so that their clearance, suitability or
+      access privileges drift out of date relative to changing roles, threats, or
+      personal circumstances, and an unqualified person keeps a sensitive handle for
+      months.
+    basis: inferred
+  plain_zh:
+    value: Make sure people who can reach classified or specially-protected information
+      are screened, briefed and re-checked before and during access, not just at hiring,
+      and that their access is tied to a current, valid status.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which roles touch classified or specially-protected data; run
+        the required background screening before access is granted; have each person
+        sign the relevant NDA/classified-info acknowledgement.
+      '2': Track clearance or access-grant expiry dates per individual; trigger re-screening
+        or re-briefing on a defined cadence and on role change; revoke access promptly
+        when status lapses or is denied.
+      '3': Maintain a system of record linking each person to current clearance level,
+        briefing status and the systems/data they may reach; alert on expiring clearances;
+        audit that no account or badge is active beyond an expired status.
+    basis: inferred
+  evidence:
+    value: Screening records, signed access/classified-info acknowledgements, per-individual
+      clearance-and-briefing status register, re-scheduling cadence and completed
+      re-screenings, revocation tickets on status change or expiry, audit sample showing
+      no active access for lapsed personnel.
+    basis: inferred
+  common_myth:
+    value: Treating the initial background check at hire as the whole control — assuming
+      that because someone was cleared on day one, their continued access is automatically
+      valid, with no re-check, no re-briefing, and no link between the screening system
+      and the access-control system.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me three people with classified access: when were they last re-screened
+      or re-briefed, and how does the system know their status is still current?'
+    - Pull the list of accounts or badges active for classified material today — are
+      any tied to a clearance or briefing that has expired?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.816969Z'
+  signed_digest: 6ae4340483086c6e5d526ecb084d11bdee7f6f9fe878f70060cdd3080c072fca
+  interview_seconds: null
+  inherited_from: null

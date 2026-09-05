@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:CM-3.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against unauthorized or accidental configuration drift on components
+      that are foundational to security posture (network gear, identity providers,
+      cert infrastructure, jump hosts, EDR servers, etc.). If anyone with admin reach
+      can change ACLs, routing, certificate trust, or agent policies on the fly, baseline
+      hardening and change control stop being true, and an attacker who lands one
+      privileged account can quietly dismantle the controls meant to catch them.
+    basis: inferred
+  plain_zh:
+    value: Identify the configuration items whose changes would most damage security
+      posture, then lock them down so only approved, vetted, and recorded changes
+      are possible. Restrict or block anything else.
+    basis: inferred
+  practice:
+    value:
+      '1': List the components whose configuration is security-critical (firewalls,
+        routers, identity providers, PKI, EDR/AV servers, jump hosts, domain controllers,
+        MDM). Assign each to an owner. State in writing that non-emergency changes
+        go through change control.
+      '2': Restrict who can edit these configurations in the management plane (separate
+        admin accounts, JIT elevation, named approvers). Use automated tools or vendor
+        features to enforce approved baselines. Log every change with before/after
+        values and approver identity.
+      '3': Block or actively deny unapproved changes at the enforcement layer (deny-by-default
+        rule sets, signed config pushes, file-integrity or config-monitoring agents).
+        Each exception requires a ticket, a time-bounded window, and a post-change
+        review against the approved baseline. Detected drift raises an alert tied
+        to the same change-control process.
+    basis: inferred
+  evidence:
+    value: Designation list of security-critical configuration items with owners;
+      access controls on their management interfaces; approved baseline definitions;
+      change tickets with approver and before/after values; logs of attempted or blocked
+      unauthorized changes; drift alerts and their disposition.
+    basis: inferred
+  common_myth:
+    value: Treating this as a paperwork control satisfied by a change-management ticket
+      on the firewall. Tickets describe changes after the fact; the control demands
+      that unapproved changes be prevented or restricted at the system itself, not
+      merely documented afterwards.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which components are formally designated as security-critical and whose names
+      appear on that list?
+    - Show me a recent configuration change attempt that was blocked or required a
+      ticket before it landed - can you produce the alert or denial?
+    - Who holds standing admin rights to these management interfaces, and how are
+      those rights reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.796200Z'
+  signed_digest: 3e17ba116cb84344a72fb6f59d9eacb5bbf88de8dea6654b9d464dab45872bc4
+  interview_seconds: null
+  inherited_from: null

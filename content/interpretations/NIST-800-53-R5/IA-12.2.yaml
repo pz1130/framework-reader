@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IA-12.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers enrolling as someone they are not by exploiting
+      weak or stolen identity proofing at the point of account creation — when the
+      only 'identity check' is a self-asserted email or a photo of an ID that no one
+      actually inspects, the resulting credential is binding the wrong person to a
+      long-lived account that will later be trusted by everything downstream.
+    basis: inferred
+  plain_zh:
+    value: When issuing credentials, verify that the person presenting the identity
+      evidence is actually that person, that the evidence itself is genuine and bound
+      to a real-life identity, and that the validation is performed by a competent
+      party before the account is created.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written rule that identity must be verified before a credential
+        is issued; new accounts are not created solely on self-asserted data; identity
+        documents, when collected, are at least visually inspected.
+      '2': Identity proofing is mapped to a defined level (e.g., how strong the evidence
+        and verification must be) tied to the risk of the credential; the party performing
+        verification is named and trained; records of who verified whom, when, and
+        against what evidence are kept.
+      '3': Proofing strength is chosen by risk, with stronger methods (in-person,
+        remote with cryptographic binding to a verified document, or reliance on an
+        already-trusted assertion) for high-risk credentials; failed or rejected verifications
+        are logged and reviewed; re-proofing triggers (lost device, expired credential,
+        suspicious activity) are defined and exercised.
+    basis: inferred
+  evidence:
+    value: Identity proofing policy and strength matrix, sample proofing records showing
+      applicant, verifier, evidence type, and decision, training records for personnel
+      performing proofing, records of rejected attempts and re-proofing events.
+    basis: inferred
+  common_myth:
+    value: Treating identity evidence as 'just a copy of the passport in the HR folder'
+      — the document may exist, but no one confirmed it is real, that it belongs to
+      the person standing in front of the camera, or that the verifier was competent.
+      Storage of evidence is not the same as proofing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three recently issued credentials: who verified the identity, against
+      what evidence, and what level of proofing was applied for that risk tier?'
+    - Show me a proofing attempt that was rejected or escalated — what triggered it
+      and what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.070922Z'
+  signed_digest: 72f17220c8a90cff3e86273099c81d629678f9dcbd1b87b7dfd35c0c7ea987cb
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-4.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops flat, blanket allow/deny rules from becoming the only guard between
+      untrusted traffic and sensitive assets. If you do not break a system or flow
+      into its security-relevant sub-parts, you cannot enforce anything finer than
+      'whole traffic goes, whole traffic stops' — which is exactly where data exfiltration,
+      lateral movement, and unauthorized cross-domain reads slip through.
+    basis: inferred
+  plain_zh:
+    value: For each system or information flow you control, identify the security-relevant
+      pieces (subcomponents, sub-flows, protocol layers, data fields) and enforce
+      policy at that finer level instead of only at the whole-object level.
+    basis: inferred
+  practice:
+    value:
+      '1': List the systems and flows in scope; mark which ones carry sensitive data
+        or cross trust boundaries; pick at least one obvious subcomponent (e.g., HTTP
+        method, file type, header) to filter on as proof of concept.
+      '2': 'Document decomposition rules per flow: which subcomponent is checked,
+        what policy applies, where the check happens; route exceptions through approval;
+        keep the decomposition map current with design changes.'
+      '3': Decomposition is driven by data sensitivity and threat model, not by what
+        the vendor product happens to inspect; subcomponent policy changes are tested
+        and versioned; gaps between documented decomposition and actual enforcement
+        surface as findings.
+    basis: inferred
+  evidence:
+    value: Decomposition map per protected system/flow (subcomponents, fields, layers
+      identified), policy rules tied to each subcomponent, change log showing updates
+      after design changes, and sample enforcement traces proving the subcomponent
+      rule actually fired.
+    basis: inferred
+  common_myth:
+    value: Assuming 'deep packet inspection' or 'next-gen firewall' on the box means
+      AC-4(13) is met. The control is about how the organization reasons about and
+      defines policy-relevant subcomponents — buying a tool that can inspect payloads
+      does not mean anyone decided which subcomponents of which flows matter or that
+      policy is written at that granularity.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one sensitive flow crossing a trust boundary: show me the decomposition
+      document and the specific subcomponent rule that blocks the unauthorized case.'
+    - When the underlying system changed (new module, new protocol, new data field),
+      how was the decomposition map updated and who signed off?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.268879Z'
+  signed_digest: e2c375a34b3e9fa28821077dbd0c8657da35e62baff0e7fcac614cea2ff1f507
+  interview_seconds: null
+  inherited_from: null

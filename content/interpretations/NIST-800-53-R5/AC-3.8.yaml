@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-3.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against stale or compromised access surviving long after the person
+      or system that needed it no longer does — termination, role change, contract
+      end, or detected misuse — because nobody closes the door fast enough or in the
+      right order, leaving ex-staff, ex-contractors, ex-services, and abandoned service
+      accounts as live attack paths.
+    basis: inferred
+  plain_zh:
+    value: Make sure access can actually be revoked promptly when it is no longer
+      needed (termination, role change, contract end, suspected compromise), across
+      all systems, and that the revocation itself is auditable.
+    basis: inferred
+  practice:
+    value:
+      '1': Termination, role-change, and contract-end checklists exist and include
+        disabling accounts; offboarding disables core credentials within the day;
+        a contact list knows who owns each system.
+      '2': Revocation is time-bound and tracked per system (e.g., within hours for
+        high-risk departures), with documented exceptions and a record of who triggered
+        and who executed the change; service and admin accounts are included.
+      '3': Revocation runs on triggers not on manual memory (HR feeds, IAM lifecycle
+        rules, contract milestones), covers federated and downstream systems, and
+        is verified — spot-checks confirm that disabled accounts cannot authenticate
+        or that a compromised credential cannot be reused.
+    basis: inferred
+  evidence:
+    value: Termination/offboarding runbooks with timestamps, IAM or HR-system lifecycle
+      logs showing disable/delete actions, per-system revocation confirmation (not
+      just the central IdP), exception register for cases that exceeded target time,
+      recent spot-check or audit trail verifying a sampled former user or contractor
+      cannot access anything.
+    basis: inferred
+  common_myth:
+    value: Assuming the central IdP disable is enough — downstream systems, SaaS apps,
+      shared service accounts, API keys, tokens, and federated tenants are often untouched,
+      so the person still authenticates elsewhere for weeks after the main account
+      is shut off.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a former employee or contractor from the last quarter: show the timestamp
+      each system revoked access, and explain any gap wider than your stated target.'
+    - How is revocation triggered for non-employees (vendors, partners, service accounts)
+      and for HR events that don't involve leaving — like a long-term rotation or
+      department transfer?
+    basis: inferred
+  regional_note:
+    value: European auditors tend to press harder on how quickly ex-staff are cut
+      off from personal-data systems (linked to GDPR accountability and data-access
+      hygiene); U.S. audits under SOX or FedRAMP focus more on privileged and shared
+      service accounts. Both regions chase the same idea, but the sampling leans differently.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.245945Z'
+  signed_digest: 35ec4f4068064adc2fb1b1f4527c5fef2a0461671e31873a2ae2f67efb25cb35
+  interview_seconds: null
+  inherited_from: null

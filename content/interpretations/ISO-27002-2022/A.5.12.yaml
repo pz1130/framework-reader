@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.5.12
+locale: en
+state: draft
+fields:
+  intent:
+    value: It prevents treating all data equally—without distinguishing sensitivity levels, using the
+      same protection for everything results in either over-investing in ordinary data or under-protecting
+      core data, and when an incident occurs, it is unclear which file is worth how much and which should
+      be prioritized for rescue.
+    basis: inferred
+  plain_zh:
+    value: Classify information into tiers based on sensitivity and impact (e.g., public, internal, confidential,
+      top secret), define for each tier who can access it, where it can be stored, and how it can be transmitted,
+      and document the classification results and rationale for review.
+    basis: inferred
+  practice:
+    value:
+      '1': There is documentation specifying the number of information tiers and the criteria for each;
+        a classification is performed when a new system goes live.
+      '2': Classification results are recorded in system documentation and approved by someone; data flow,
+        storage, and destruction follow the classification; periodic reviews confirm whether classifications
+        remain valid.
+      '3': Classification is linked to asset inventory, access control, and encryption policies; sensitive
+        data is automatically identified and labeled; classification changes are traceable, with systematic
+        enforcement checks.
+    basis: inferred
+  evidence:
+    value: Information classification and grading policy, system classification tables (including rationale),
+      classification approval records, evidence of access and storage configurations implemented according
+      to classification, and logs of anomalous data flow interceptions.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that 'posting a classification table on the wall' meets the requirement.
+      What really matters is whether classification drives actual controls—for example, whether confidential
+      files are truly accessible only to those with confidential clearance, and whether transmission channels
+      truly prohibit plaintext. The table is just input; execution is what counts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the highest classification of data stored in this system? What is your conclusion based
+      on?
+    - For data classified as confidential, where does it come from, where is it stored, and who can access
+      it? Show me the actual configuration.
+    - How often are classifications reviewed? If business changes or data nature changes, who updates
+      them and how?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.257378Z'
+  signed_digest: 99f8768997ea774f44935fccbf04a2dc407fc9585b0d139969cd8cf719e3bd2f
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:IA-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where software is shipped or accepted
+      on the basis of a vendor's word or a product brochure — that the cryptography
+      actually inside the module is what was promised, was built by a vendor that
+      has been independently vetted, and still works as specified. Without this control,
+      an organization cannot distinguish a real cryptographic module from one that
+      just looks like one.
+    basis: inferred
+  plain_zh:
+    value: When the organization relies on cryptography to protect data (at rest,
+      in transit, in use), the modules doing that work must be authenticated to a
+      recognized standard — meaning they have been independently tested and validated,
+      not self-declared by the vendor.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems whose protection depends on cryptography; require,
+        in policy and in procurement language, that any cryptographic module used
+        to protect those systems is validated to a recognized standard.
+      '2': Maintain a list of the cryptographic modules in use and the validation
+        status of each; include the requirement in vendor assessments and in contracts
+        so it is checked before purchase and before acceptance.
+      '3': Re-verify module status on a defined cadence and after major changes (firmware
+        updates, vendor swaps, end-of-life transitions); keep evidence that the validation
+        certificate number and scope match the way the module is actually deployed,
+        and block procurement or deployment of unvalidated modules for protection-relevant
+        use.
+    basis: inferred
+  evidence:
+    value: Inventory of cryptographic modules with their validation certificates and
+      scope, procurement and vendor-assessment records showing the requirement was
+      checked before purchase, contracts containing the requirement, and re-verification
+      logs after updates or vendor changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a product is from a well-known vendor, or carries
+      a logo or marketing claim of 'FIPS-compliant', the cryptography is actually
+      validated for the way the product is deployed. Certification covers specific
+      module versions in specific configurations — misconfiguration, custom firmware,
+      or a version drift can put the system outside the validated scope.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which cryptographic modules protect your most sensitive data, and which validation
+      certificate covers each one?
+    - Show me the last time you re-checked a module's validation status after an update
+      or vendor change.
+    - How do you stop an unvalidated module from being deployed where validated cryptography
+      is required?
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors (and contractors handling U.S. federal data) routinely
+      enforce FIPS 140 validation as a hard requirement and trace it to specific certificate
+      numbers. Outside the U.S., the requirement is usually satisfied by validated
+      modules when present, but equivalent national schemes are often accepted in
+      practice.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.230535Z'
+  signed_digest: 9bb6b1bc625bc07da882cedac73dc8aa7a577dfd3a102a283b01720a47645bf1
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a critical system being built on someone else's black-box
+      code that nobody on your side understands, can modify, or can fix under pressure.
+      If a key component is outsourced and not customized to your threat model, you
+      inherit hidden assumptions, undisclosed backdoors, and a vendor's incident response
+      clock instead of your own.
+    basis: inferred
+  plain_zh:
+    value: For critical components that you buy rather than build, require the developer
+      to harden, configure, and tailor the code to your specific security and operational
+      needs, then verify they actually did it before you rely on it.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which components qualify as critical; document that customization
+        requirements exist for those components; ask the vendor in writing for their
+        hardening and tailoring practices.
+      '2': Contractually require threat-model-driven customization, secure coding
+        standards, and configuration baselines; review developer artifacts (design
+        docs, test results, hardening guides) before acceptance.
+      '3': Independently verify the customization through code review, penetration
+        testing against your threat model, and supply-chain attestation; track deviations
+        through remediation; reassess when the component or threat landscape changes.
+    basis: inferred
+  evidence:
+    value: Critical component list, contracts and SLAs specifying customization requirements,
+      developer threat models and hardening documentation, independent test or code
+      review reports, acceptance records, and remediation logs for identified gaps.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor's commercial-off-the-shelf product as already customized
+      because it passed their own QA. The vendor hardened it for their reference customer,
+      not for your architecture, threat model, or integration points — your environment
+      is the gap.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which components on this system are designated critical, and what makes them
+      critical?
+    - Show me the customization requirements you imposed on the developer and the
+      evidence they were actually implemented.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.146128Z'
+  signed_digest: ef7406116fc073e25ab60bad2485d3b323bc16db25de8cbb360ec36b4e20d7a5
+  interview_seconds: null
+  inherited_from: null

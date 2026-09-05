@@ -1,0 +1,58 @@
+control_id: NIST-CSF-2.0:RC.CO-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that a single external statement right after an incident is stabilized could
+      ignite public opinion. Even if incident response is handled well, inconsistent or unapproved messaging
+      to customers, regulators, and the public can cause secondary damage to trust and lead to compliance
+      accountability.
+    basis: inferred
+  plain_zh:
+    value: When communicating recovery progress externally, you must use approved channels and approved
+      wording. Departments cannot speak independently, nor can they directly release impromptu statements.
+    basis: inferred
+  practice:
+    value:
+      '1': A designated external spokesperson is identified; any external communication during recovery
+        requires verbal or email approval before release.
+      '2': A written communication plan exists, listing approved channels and standard templates; each
+        external release is documented, including approver and release time.
+      '3': Messaging and channels are pre-defined and rehearsed in the incident response process; approval
+        actions are systematically logged; released content is automatically synchronized with recovery
+        status to avoid outdated messaging.
+    basis: inferred
+  evidence:
+    value: Incident communication plan, spokesperson designation documents, draft external announcements
+      with approval chain records (email or workflow), and simulated release scripts from exercises.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a spokesperson is enough,' but the spokesperson does not
+      decide what to say; the external messaging must be approved first. A common mistake is that legal,
+      PR, and technical teams each release their own statements, and technical staff directly share details
+      with customers without any oversight.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who approved the external announcement for this incident? Where are the approval records?
+    - When customers ask about recovery time, do you have a standard response? Who develops it, who approves
+      it, and in which system is it logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.608693Z'
+  signed_digest: 5fab077d67fe16492dc3838d1558d98be60925d38d23cf1c0b25cb181f035921
+  interview_seconds: null
+  inherited_from: null

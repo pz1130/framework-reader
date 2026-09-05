@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SI-7.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against tampering with software in flight — between author and
+      execution, or between build and runtime. Without authenticated code, an attacker
+      who can intercept, replace, or inject a binary (supply chain compromise, MITM
+      on an update server, malicious insider in the build pipeline) gets their code
+      running under your trust boundary, and your EDR, allow-listing, and patching
+      controls all approve it because it looks legitimate on the inside.
+    basis: inferred
+  plain_zh:
+    value: Make sure the software you actually run — boot images, firmware, middleware,
+      application code, updates — is verifiably the software your organization built
+      or approved, and that tampering is detected, not silently trusted.
+    basis: inferred
+  practice:
+    value:
+      '1': All production software (OS, middleware, app, updates) is signed; deployment
+        pipelines refuse to install code that lacks a valid signature from an authorized
+        source.
+      '2': Signatures are tied to identity, not just a single key — code signing uses
+        certificates anchored to an internal PKI with revocation; signature verification
+        happens at install, at boot, and at load time where relevant; key custody
+        is documented and restricted.
+      '3': 'End-to-end provenance: code is signed by the build system at creation,
+        the chain is validated at every step from artifact to running process, anomalies
+        trip a containment response, and integrity is rechecked periodically (not
+        just at first install) because signing keys and trust anchors age out.'
+    basis: inferred
+  evidence:
+    value: Code signing policy and PKI hierarchy, signing key custody and rotation
+      records, sample build pipeline showing signature creation and verification at
+      deploy, signature/revocation check logs, incident response runbook entries for
+      failed signature checks or suspected tampering.
+    basis: inferred
+  common_myth:
+    value: Treating this as satisfied by the mere presence of a signing tool — the
+      team buys a code-signing platform, an admin holds the key, and nobody enforces
+      that unsigned code is actually rejected in production. The control only works
+      if the verification gate is wired into pipelines and boot loaders, and if keys
+      are tightly held with revocation in place; a signing tool left unattended is
+      worse than nothing because it gives a false sense of trust.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a code path where an unsigned or signature-failing artifact reached
+      production — how was it caught, or was it ever caught?
+    - Who can produce a code signature for <critical application or firmware>, and
+      how is that authority revoked when someone leaves or a key is compromised?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.087219Z'
+  signed_digest: 6d3bd050902523194de88d96e9060aa7bbdc517e96fc2771db01baa8442bc365
+  interview_seconds: null
+  inherited_from: null

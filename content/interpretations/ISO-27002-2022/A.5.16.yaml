@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.5.16
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that accounts may not be managed from creation to deactivation—when people leave,
+      change roles, or contractor contracts expire, accounts remain active in the system, becoming latent
+      access channels; also, if identifiers are not unique, it may be impossible to determine who performed
+      an action in the event of an incident.
+    basis: inferred
+  plain_zh:
+    value: 'The entire lifecycle of accounts must be managed: account creation requires approval, unique
+      identifiers are used to identify individuals, credentials such as passwords are securely distributed
+      and periodically changed, accounts are promptly deactivated or revoked when people leave or change
+      roles, and all of this must be recorded and auditable.'
+    basis: inferred
+  practice:
+    value:
+      '1': There is an approval process for account creation; each employee has a unique account, and
+        shared accounts are not used; when someone leaves, a designated person is responsible for deleting
+        or disabling the account.
+      '2': Account types are clearly defined and documented in a register; role changes or contract expirations
+        trigger the permission change process; periodic checks ensure that accounts match the list of
+        current employees; there are basic records of credential changes and revocations.
+      '3': The account lifecycle is integrated with HR or procurement systems, with automatic revocation
+        upon departure; credential management has strength policies and regular forced rotation; shared
+        accounts are used only when there is a strong justification and they are subject to monitoring;
+        the revocation process includes verification steps.
+    basis: inferred
+  evidence:
+    value: Account registration register, application and approval records for creation/change/revocation,
+      reconciliation results with HR or procurement data, execution records or system screenshots of account
+      revocation after departure, and credential change records.
+    basis: inferred
+  common_myth:
+    value: It is assumed that having a process for account creation upon onboarding and submitting a notification
+      upon departure is sufficient—the most common failure points are role changes and contractors, where
+      contract expiration does not trigger revocation, leaving accounts dormant in the system for six
+      months.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Can you pull a list of employees who left last quarter and reconcile it with your account revocation
+      records?
+    - When a contractor's contract expires, who is responsible for triggering account deactivation? What
+      happens if that person is unavailable?
+    - In your account register, what is the basis for marking an account as deactivated? How often is
+      it reconciled?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.265532Z'
+  signed_digest: dddb2192b23cf011cb3a2439301946129b58f61606f35121a3e4606e22ddb92d
+  interview_seconds: null
+  inherited_from: null

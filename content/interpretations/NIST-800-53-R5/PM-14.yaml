@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PM-14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a security program looks complete
+      on paper but no one can prove it actually works — controls untested, staff unable
+      to execute under pressure, and drift between documented policy and operational
+      reality going unnoticed until an incident exposes the gap.
+    basis: inferred
+  plain_zh:
+    value: Make sure the security program is tested, people can do their job under
+      real conditions, and ongoing monitoring catches when things stop working — not
+      just on day one, but continuously.
+    basis: inferred
+  practice:
+    value:
+      '1': Run occasional vulnerability scans and ad-hoc phishing tests; provide onboarding
+        security awareness; review logs when something breaks.
+      '2': A documented testing plan exists (scans, pen tests, exercises) on a defined
+        cadence; role-based training with records; continuous monitoring of key controls
+        with thresholds.
+      '3': Tests are scoped against current threats and prior findings, with tracked
+        remediation; exercises (tabletop or red team) measure response capability,
+        not just policy existence; monitoring feeds a defined review cycle that closes
+        the loop back to risk decisions.
+    basis: inferred
+  evidence:
+    value: Testing plan and cadence with results and remediation tracking, training
+      records by role, exercise after-action reports, monitoring dashboards and review
+      minutes showing corrective actions taken.
+    basis: inferred
+  common_myth:
+    value: Treating annual penetration tests and a once-a-year awareness course as
+      proof the program is tested and people are trained — when the real ask is whether
+      controls hold under realistic conditions, whether staff can actually execute
+      incident response or other critical tasks, and whether monitoring catches drift
+      between scans/exercises rather than producing dashboards no one acts on.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the most recent exercise or test that was not a routine scan — what
+      did it reveal and what changed because of it?
+    - How do monitoring findings flow back into risk decisions or control changes,
+      not just into a report that sits unread?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.705203Z'
+  signed_digest: 67c871fcab6816f4ae8ec0e06c753c9dac52674dc947f36f37348a9ea5cd7e4d
+  interview_seconds: null
+  inherited_from: null

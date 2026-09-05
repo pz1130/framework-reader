@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.8.15
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'if something happens, nothing can be traced'—logging is either not enabled,
+      incomplete, or not retained long enough. This control ensures that systems record key events according
+      to a unified standard and retain them for a sufficient period, so that post-incident investigations,
+      forensics, and compliance responses have a reliable basis.
+    basis: inferred
+  plain_zh:
+    value: Record events that should be logged (e.g., logins, permission changes, system operations),
+      including time, who, what was done, and whether it succeeded, and set a retention period for future
+      reference.
+    basis: inferred
+  practice:
+    value:
+      '1': Enable logging on core systems; cover login success/failure, account permission changes, and
+        critical business operations; logs have a unified time source; ordinary users are not allowed
+        to delete logs themselves.
+      '2': Create a written list of event types with justifications; synchronize clocks; log content includes
+        event type, time, subject identity, and result; have a clear retention period and enforce it.
+      '3': Log generation covers all systems in production (including containers, cloud services, network
+        devices); archive automatically on schedule; deletion permissions are controlled and fully audited;
+        dashboards provide automatic alerts for anomalies.
+    basis: inferred
+  evidence:
+    value: Written list of event types and retention periods, screenshots or configuration samples of
+      log generation, results of spot checks on log retention policy enforcement, clock synchronization
+      configuration, separation of duties (operators cannot delete their own logs), log capacity monitoring
+      or alert records.
+    basis: inferred
+  common_myth:
+    value: The misconception is 'just keeping logs is enough'—many teams enable logging but never review
+      it, fail to add new events when systems change, and deletion permissions are held by operations
+      staff without review; more commonly, logs are retained for only a few days, and when an incident
+      occurs, IT asks 'why are they gone?' only then realizing retention was never set.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pull last month's privileged account login logs and show me a complete record—what fields does it
+      contain?
+    - How many days are logs retained? Who has deletion permission? Can anyone delete logs alone?
+    - How are newly deployed systems added to log collection? Who is responsible and what is the process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.378471Z'
+  signed_digest: f7fa0dda9f4c787bee544bd3e7613959828aaf17f81bf1b778b17ac6cf143f96
+  interview_seconds: null
+  inherited_from: null

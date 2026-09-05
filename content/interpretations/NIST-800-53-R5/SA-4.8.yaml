@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-4.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where acquisition decisions lock the organization
+      into systems, components, or services that cannot be effectively monitored in
+      operation - so security controls degrade silently because the monitoring plan
+      existed only on paper or was never designed into what was actually bought.
+    basis: inferred
+  plain_zh:
+    value: When acquiring systems, components, services, or contractors, require a
+      plan describing how the security controls in those things will be continuously
+      monitored after delivery - and make that plan part of what you are buying, not
+      an afterthought.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement templates and contract clauses require the vendor or delivery
+        team to describe how each relevant control will be monitored in operation
+        (what is checked, how often, by whom, with what evidence).
+      '2': The monitoring plan is reviewed and accepted before go-live; roles for
+        ongoing monitoring are assigned; gaps between vendor-provided monitoring and
+        internal monitoring are documented.
+      '3': Plans are tied to specific control objectives and metrics, revisited on
+        major change or contract renewal, and integrated with the organization's own
+        continuous monitoring program so that externally provided components feed
+        the same reporting cadence.
+    basis: inferred
+  evidence:
+    value: Acquisition records showing the monitoring plan as a contract artifact,
+      pre-go-live acceptance of the plan, assignment of monitoring responsibilities,
+      and evidence that the plan is actually executed (sample monitoring outputs tied
+      back to a recent acquisition).
+    basis: inferred
+  common_myth:
+    value: Assuming that because the vendor hands over a SOC report or a logging dashboard
+      at delivery, the control is satisfied - a static report handed over once is
+      not a continuous monitoring plan, and the buyer still has to decide what gets
+      watched, how often, and by whom across the life of the contract.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent acquisition: show the monitoring plan that was part of the contract
+      and the most recent output produced from it.'
+    - When the vendor's monitoring falls short, who owns the gap and where is that
+      documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.203799Z'
+  signed_digest: 351ae2231f9ded09e178e1e3a378f1e718d273786f25ee5d15dc2a470b7de072
+  interview_seconds: null
+  inherited_from: null

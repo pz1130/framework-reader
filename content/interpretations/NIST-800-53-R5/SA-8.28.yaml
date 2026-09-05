@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-8.28
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems being designed to 'be defensible' on paper while
+      still being unsafe in use—i.e., the control prevents the failure where developers
+      mark security as accepted only because the design looks compliant, when the
+      system actually permits operations, data flows, or configurations the organization
+      would never knowingly accept. If you skip this, security becomes a checkbox
+      the engineering team can hit without ever having to defend a real decision.
+    basis: inferred
+  plain_zh:
+    value: Engineers must be able to name and defend every place in a system's design
+      where a known insecurity is deliberately accepted, and the organization must
+      actually review and sign off on those acceptances—not just write them down.
+    basis: inferred
+  practice:
+    value:
+      '1': Developers keep a list of accepted insecurities per system, with a short
+        justification and the person who accepted each one.
+      '2': Each acceptance has an expiration or trigger for re-review, an owner, and
+        goes through a review gate (e.g., security architecture or risk acceptance)
+        before the system ships or changes.
+      '3': Acceptances are tracked with the same rigor as defects, surface in change
+        management when design shifts, and are revisited when threats or environment
+        change; the absence of unexplained gaps is itself auditable.
+    basis: inferred
+  evidence:
+    value: Per-system register of accepted design insecurities with justification,
+      owner, approval, and re-review dates; design review records and change-control
+      entries referencing the register; sample of acceptances traced back to a named
+      sign-off.
+    basis: inferred
+  common_myth:
+    value: Treating 'acceptable security' as a one-time risk acceptance form signed
+      at design freeze. Acceptances rot—assumptions about threat, compensating controls,
+      and dependencies change—so a stamped form without a re-review hook is not the
+      control, it's a relic.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a recent system: show the accepted insecurities list and pick one—why
+      is it still acceptable and who re-confirmed it last?'
+    - When a design change or new threat hits one of your accepted items, how was
+      that caught and routed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.288037Z'
+  signed_digest: b49c32a21ea51ae02777151facb40afb18601a579d033b29544c381cef400a47
+  interview_seconds: null
+  inherited_from: null

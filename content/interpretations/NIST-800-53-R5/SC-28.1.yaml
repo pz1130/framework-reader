@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:SC-28.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops plaintext data from being readable if storage media leaves your control
+      — stolen laptops, decommissioned disks, misplaced backups, cloud snapshots someone
+      walks away with. The failure mode is treating encryption as a deployment checkbox
+      while keys, scope, or key handling quietly leave the data exposed anyway.
+    basis: inferred
+  plain_zh:
+    value: Use cryptography to protect the confidentiality and integrity of data at
+      rest wherever it lives, under documented key management.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive data at rest is encrypted with a vetted algorithm and mode; keys
+        are not stored alongside the data they protect in plaintext.
+      '2': Policy defines what classes of data must be encrypted, which algorithms/modes
+        are acceptable, and where keys live; key management has documented procedures.
+      '3': 'Coverage is measured (not assumed): databases, file shares, object storage,
+        backups, laptops, mobile devices, cloud-managed keys; key rotation, separation
+        of duties, and key escrow are enforced and auditable; integrity protection
+        is applied where the control requires it.'
+    basis: inferred
+  evidence:
+    value: Scope inventory of data stores and their encryption status, key management
+      policy and procedures, key custodian records, rotation logs, configuration evidence
+      for storage platforms, decommissioning/erasure records for media.
+    basis: inferred
+  common_myth:
+    value: Checking the 'encryption at rest' box on the cloud console and assuming
+      the control is met — without verifying the scope (which stores, which fields),
+      the key location (cloud-managed vs. customer-managed vs. plaintext sidecar),
+      or that backups, snapshots, and replicas inherit the same protection.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your data store inventory and which ones are encrypted versus not, including
+      replicas and backups.
+    - Where are the keys stored, who can access them, and how often are they rotated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.481288Z'
+  signed_digest: 2a44d018c5286cf3e62b52ddcbe368fb571205d0c0b89b383f334783b34a24d0
+  interview_seconds: null
+  inherited_from: null

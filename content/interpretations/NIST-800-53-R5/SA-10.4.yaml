@@ -1,0 +1,78 @@
+control_id: NIST-800-53-R5:SA-10.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers slipping backdoors, trojaned modules, or tampered
+      components into systems during the development/build pipeline, and against the
+      equally common failure where integrity is 'assumed' because a vendor logo is
+      on the box. The control forces the organization to demand and verify that what
+      gets built, delivered, and installed is exactly what the developer signed off
+      on.
+    basis: inferred
+  plain_zh:
+    value: Require that the system components and the tools/builds that produce them
+      are generated under controlled, verifiable conditions so that what you receive
+      can be cryptographically tied back to its origin and is not silently swapped
+      or altered in transit or during build.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which critical components must come from trusted sources and document
+        the integrity check you apply (hash verification, vendor signature, build
+        provenance) before installation.
+      '2': Apply cryptographic integrity verification (signed packages, hash comparison,
+        attestations) at intake of components and at key build stages; reject or quarantine
+        items that fail verification; keep the verification logs.
+      '3': Use reproducible builds or signed build provenance (e.g. SLSA-style attestations)
+        so that every artifact can be traced back to the exact source commit, builder,
+        and toolchain; integrate verification into CI/CD gates and deploy pipelines
+        rather than manual spot checks; respond to integrity failures with automated
+        quarantine and an incident path.
+    basis: inferred
+  evidence:
+    value: List of components and tools subject to trusted-generation requirements,
+      the cryptographic verification mechanism used (signatures, hashes, attestations),
+      verification logs tied to specific builds/releases, provenance records linking
+      artifacts to source and build environment, and incident records for any integrity
+      failures.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's published SHA-256 on a public download page as 'trusted
+      generation' because it is a hash. A hash posted by the same party who built
+      the artifact proves nothing on its own; trust requires an out-of-band signature
+      from a controlled key, reproducible builds, or attestations from an independent
+      build system, plus a process that actually fails closed when verification does
+      not match.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent component or build that failed integrity verification and what
+      happened to it.
+    - Which build tools and toolchains are in scope for trusted generation, and how
+      is their integrity established before they build anything else?
+    basis: inferred
+  regional_note:
+    value: EU auditors operating under supply-chain-focused regimes (e.g. NIS2 supply
+      chain obligations and sectoral guidance) tend to push harder on provenance of
+      software components and on the integrity of the build toolchain itself. US auditors,
+      particularly in federal contexts, weight NIST SSDF and C-SCRM guidance but often
+      focus on signature/hash verification at delivery rather than full provenance.
+      Both regions, however, will fail you if integrity checks exist on paper but
+      are not enforced by the pipeline.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.010168Z'
+  signed_digest: ba62eb743c1a8ed114e1b242f90960bc2271ffac258f16d46ee5519df4037fd0
+  interview_seconds: null
+  inherited_from: null

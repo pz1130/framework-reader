@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents automated change pipelines from pushing unverified, undocumented,
+      or out-of-scope modifications into production — the risk being that automation
+      speeds up delivery but also speeds up silent misconfigurations, privilege escalations,
+      or backdoors if the automation itself is not governed like a change.
+    basis: inferred
+  plain_zh:
+    value: When changes are applied automatically (scripts, CI/CD, config management,
+      infrastructure-as-code), they must still be tested, authorized, and logged before
+      going live, and someone must be able to stop or roll them back. Automation is
+      a delivery mechanism, not a replacement for review.
+    basis: inferred
+  practice:
+    value:
+      '1': Automated changes use the same approval tickets and change records as manual
+        ones; production pushes require a documented authorizer; failures halt the
+        pipeline rather than silently succeeding.
+      '2': Automation is governed by a documented process (which systems, which change
+        types, which guardrails); post-change verification steps are defined and executed;
+        emergency stop / rollback is tested.
+      '3': Pipeline enforces policy-as-code before deploy (segregation of duties,
+        prohibited config, signed artifacts); every automated change produces an immutable
+        audit trail tied back to the approved request; metrics on change success /
+        rollback / unauthorized drift are reviewed.
+    basis: inferred
+  evidence:
+    value: Approved change records with automated-execution evidence, pipeline configuration
+      showing the gates that block unauthorized changes, post-change verification
+      logs, rollback / kill-switch test results, sample audit trail tying a production
+      change to its originating ticket and authorizer.
+    basis: inferred
+  common_myth:
+    value: Treating 'we use CI/CD' as sufficient. A pipeline that can deploy anything
+      committed by any developer, with no policy gate, no segregation between author
+      and approver, and no rollback runbook, is automation without change control
+      — it concentrates risk rather than reducing it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a recent production change that was applied automatically — who authorized
+      it before the pipeline ran, and where is that link in your audit trail?
+    - If an automated change starts causing damage at 2 a.m., what stops it and how
+      was that tested?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.777702Z'
+  signed_digest: 26c02d72748a0ce44b9d19d9ec65122613f2529120644ca017c418683d92ceb0
+  interview_seconds: null
+  inherited_from: null

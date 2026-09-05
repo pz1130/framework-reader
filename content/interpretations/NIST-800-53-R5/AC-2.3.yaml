@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents dormant or terminated accounts from becoming a stealth foothold:
+      accounts that no longer have a legitimate user (departed employees, expired
+      contractors, abandoned service IDs) keep valid credentials and active sessions
+      long after the business relationship ends, so an attacker who steals or guesses
+      those credentials can log in unchallenged and blend into old activity.'
+    basis: inferred
+  plain_zh:
+    value: Establish automatic, time-bound rules and triggers that disable accounts
+      when they are no longer in use — covering inactivity, employment or contract
+      termination, and known risk events — and verify the disable actually took effect
+      across every system.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Have a written rule for when accounts get disabled: on termination, on
+        contract end, and after a defined period of inactivity. Disable is performed
+        manually by IT on a ticket.'
+      '2': Automated inactivity lock kicks in after the configured window; termination
+        feeds (HR, contractor management) trigger disable on the day of separation;
+        high-risk events (dismissal for cause, suspicious activity, role loss) trigger
+        immediate disable; the disable is recorded per account.
+      '3': Disable is enforced by centralized identity management and propagates to
+        every dependent system, including local accounts, service accounts, and VPNs;
+        sessions and tokens are invalidated, not just the password; exceptions have
+        an expiry and a justification; periodic audits confirm no long-disabled accounts
+        have come back, and orphan service IDs are tracked down to an owner or removed.
+    basis: inferred
+  evidence:
+    value: Disable policy with the inactivity threshold and trigger events written
+      out, identity management or directory rules showing automatic disable, HR/contractor
+      feed integration into the disable workflow, per-account disable records with
+      timestamp and reason, evidence of session and token revocation, and audit reports
+      listing disabled accounts and any exceptions with expiry dates.
+    basis: inferred
+  common_myth:
+    value: Believing that disabling an account in the central directory is sufficient
+      — local accounts on workstations, service principals, API keys, and existing
+      sessions often remain valid because they were never federated, so the attacker
+      walks in through a non-managed surface that the audit never touched.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an account that should have been disabled in the last month — was it
+      actually disabled on every system, or only in the directory?
+    - What is your inactivity threshold, and which systems honor it? Pick a sample
+      system and prove a stale account on it is disabled.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.127578Z'
+  signed_digest: 00c22dd19d0545bd92908089b5882435a63abe2bd16aadbbb5b646015d4da8da
+  interview_seconds: null
+  inherited_from: null

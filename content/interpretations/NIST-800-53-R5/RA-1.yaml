@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:RA-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where risk-assessment activities drift, get
+      done inconsistently across teams, or stop when the original champion leaves—because
+      there is no single, current, authoritative statement of how risk assessment
+      must be run, by whom, and on what cadence. Without this, every other RA control
+      becomes tribal knowledge that decays.
+    basis: inferred
+  plain_zh:
+    value: Write, approve, publish, and maintain a risk assessment policy and supporting
+      procedures that tell people across the organization what the risk assessment
+      program is, who is responsible, how it is done, and how it is reviewed and updated.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a documented risk assessment policy that names a role owner, defines
+        scope, and is acknowledged by leadership. Procedures exist at least as checklists
+        for the most common assessment tasks.
+      '2': 'Policy and procedures cover the full lifecycle: identify assets and threats,
+        analyze likelihood and impact, determine risk, document, respond, and monitor.
+        Roles, review cadence, and exception handling are explicit. Staff can point
+        to the documents.'
+      '3': Policy and procedures are version-controlled, reviewed on a fixed cadence
+        and triggered by material change (new system class, major incident, new regulation).
+        Compliance with the procedures is measured; deviations are tracked and remediated.
+        The documents are referenced from onboarding and from related programs (supply
+        chain, authorization, incident response).
+    basis: inferred
+  evidence:
+    value: Current, approved risk assessment policy and procedures; version history
+      showing review on a defined cadence or after triggering events; assignment of
+      an accountable role; staff acknowledgement or training records; sample of completed
+      assessments that follow the documented procedures.
+    basis: inferred
+  common_myth:
+    value: Assuming a one-page policy filed under 'security docs' satisfies RA-1 because
+      it says 'we do risk assessments.' The control fails when procedures don't actually
+      prescribe how assessments are performed and reviewed, and when no one is accountable
+      for keeping the documents alive.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the risk assessment policy last reviewed and approved, and what triggered
+      that review?
+    - Who is named as the owner of the risk assessment program, and how do they verify
+      procedures are being followed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.921855Z'
+  signed_digest: 98311144af97b26f4fc30ca1ce107108208084998c150a9df43a06038fd6e304
+  interview_seconds: null
+  inherited_from: null

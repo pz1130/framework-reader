@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SR-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the common failure where security requirements are defined once
+      for the prime supplier but never flow down to sub-tier suppliers (subcontractors,
+      vendors deeper in the chain), leaving the actual build or service delivery conducted
+      under unknown or weaker security controls. Without this, a vulnerability introduced
+      at a second-tier vendor becomes an unmanaged gap in your supply chain risk posture.
+    basis: inferred
+  plain_zh:
+    value: Ensure that the security and supply chain requirements you impose on your
+      direct suppliers are contractually and operationally passed down to their subcontractors
+      and sub-tier suppliers, with a verifiable mechanism to confirm they actually
+      accept and implement these requirements.
+    basis: inferred
+  practice:
+    value:
+      '1': The procurement contract with your direct supplier includes a clause obligating
+        them to flow down your security requirements to their own sub-tier suppliers.
+      '2': You have a documented process for how the flow-down is communicated, tracked,
+        and confirmed; for higher-risk or critical components, you obtain evidence
+        (e.g., attestations or contract references) that sub-tier suppliers have accepted
+        the terms.
+      '3': Your vendor risk management process systematically identifies sub-tier
+        dependencies (e.g., via bills of materials or supply chain mapping), verifies
+        flow-down for all critical items, and periodically audits or samples sub-tier
+        supplier contract language and security posture, with corrective action when
+        gaps are found.
+    basis: inferred
+  evidence:
+    value: Template contract language including the flow-down clause; a register or
+      mapping of critical sub-tier suppliers; attestations or confirmation emails
+      from direct suppliers that flow-down occurred; sample sub-tier contracts or
+      purchase orders showing security requirements included; audit findings and remediation
+      records for sub-tier compliance gaps.
+    basis: inferred
+  common_myth:
+    value: Assuming that putting a flow-down clause in your direct contract is enough.
+      The clause is only the start—without a process to verify that sub-tier suppliers
+      actually receive and agree to the terms, especially for critical components,
+      the requirement is hollow and the actual risk remains hidden.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a specific critical component, how do you know the second-tier subcontractor
+      was actually bound by your security clauses? What evidence do you hold?
+    - Which of your direct suppliers have contractual obligations to flow down requirements,
+      and how do you track that they have done so?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.168196Z'
+  signed_digest: 3abc195316f9471716c22a375d8e086cf4ecd4b47187b981978ec380201daa5e
+  interview_seconds: null
+  inherited_from: null

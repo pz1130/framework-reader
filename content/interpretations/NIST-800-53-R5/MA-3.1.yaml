@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:MA-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Reduce the risk that maintenance equipment is damaged, contaminated, unsafe,
+      or used incorrectly when it is brought into or returned from service. Inspection
+      catches defects and contamination before they can affect systems, personnel,
+      or maintenance results.
+    basis: inferred
+  plain_zh:
+    value: Before maintenance tools enter service and when they return, check their
+      condition and cleanliness; remove unsafe or contaminated tools from use until
+      they are repaired, cleaned, or properly approved.
+    basis: inferred
+  practice:
+    value:
+      '1': Define the basic conditions that make a tool unsafe or unsuitable, and
+        have the user inspect it before use and after it is returned.
+      '2': Keep inspection records appropriate to the tool and environment, including
+        inspection results, defects found, actions taken, and authorization to return
+        a repaired or cleaned tool to service.
+      '3': Use documented inspection procedures and trained personnel, segregate failed
+        or contaminated tools, verify corrective actions before release, track inspection
+        history, and periodically confirm that procedures are being followed.
+    basis: inferred
+  evidence:
+    value: Documented tool-inspection procedure, maintenance-tool inventory or custody
+      records, inspection checklists or logs, records of defects and corrective actions,
+      and evidence that unsafe or contaminated tools were removed from service before
+      reuse.
+    basis: inferred
+  common_myth:
+    value: Assuming that purchasing high-quality tools automatically means they are
+      safe to use, with no pre-use or post-maintenance inspection.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What specific conditions cause a tool to be removed from service before inspection
+      is complete?
+    - Can you show a recent record of a tool found defective or contaminated and the
+      action taken before it was reused?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.382251Z'
+  signed_digest: 295b60dfc176185d86f298e492840f456829afbff50de20e9ec9de324ba978c9
+  interview_seconds: null
+  inherited_from: null

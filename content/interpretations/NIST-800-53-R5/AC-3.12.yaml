@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-3.12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents applications themselves from becoming a backdoor into data—user-to-application
+      access controls are useless if the application can read or export data it never
+      legitimately needs. If you skip this, a compromised or buggy app silently bypasses
+      every boundary you built around the user.
+    basis: inferred
+  plain_zh:
+    value: Make applications themselves enforce access rules on the data they hold,
+      not just rely on who is logged in. Apps must check and enforce what each caller
+      (user, service, other app) is allowed to read, write, or export.
+    basis: inferred
+  practice:
+    value:
+      '1': Each app has documented rules for which data/resources it serves to whom;
+        least privilege is the default; service accounts have only what they need.
+      '2': Access enforcement is coded into the app (authz checks at every entry point,
+        not just at login); exceptions require approval and are tracked; reviews happen
+        when features change.
+      '3': Enforcement is consistent across UI, APIs, batch jobs, and export functions;
+        tested for bypass (direct API calls, parameter tampering); app-layer access
+        decisions logged and auditable; failures fail closed.
+    basis: inferred
+  evidence:
+    value: App-level authorization design docs, code or config showing enforcement
+      at request level, test results for bypass attempts, access logs, exception/approval
+      records.
+    basis: inferred
+  common_myth:
+    value: Assuming that logging a user in equals controlling what they can do—teams
+      treat 'authentication only' apps as compliant because there is a login screen,
+      while the app's own code freely reads, joins, and exports any record regardless
+      of caller.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If I call your app's internal API directly with a normal user token but pass
+      an object ID I shouldn't own, what happens—and where is that enforced?
+    - Show me the last time an app-level access exception was granted, who approved
+      it, and when it was reviewed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.209716Z'
+  signed_digest: 6004db896d5dbe76cffaa4ef223b1c743c88ef82f950fe735aa03e593e87b838
+  interview_seconds: null
+  inherited_from: null

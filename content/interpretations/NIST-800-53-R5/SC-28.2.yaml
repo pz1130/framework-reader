@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-28.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against cryptographic keys and other sensitive cryptographic material
+      being exposed while a device or storage volume is at rest, powered off, or physically
+      removed from the system—because once an attacker has the disk in hand, ordinary
+      OS-level protections and access controls are bypassed.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when sensitive data sits on storage outside of normal operation
+      (powered down, disconnected, or in cold backup), it is still protected by some
+      key-strength mechanism so that stealing the medium does not equal stealing the
+      data.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which data and which keys are classified as needing offline-storage
+        protection; use whole-disk or volume encryption that is actually engaged on
+        laptops, mobile devices, and backup media containing that data.
+      '2': Have a written policy specifying the approved cryptographic mechanism for
+        offline protection; verify it is consistently applied across endpoints, removable
+        media, and backup sets; track exceptions.
+      '3': Cryptographic keys for offline storage are managed separately from the
+        data they protect (so seizing the disk does not yield the key); coverage is
+        periodically audited; new device classes and new backup targets are added
+        to the inventory automatically.
+    basis: inferred
+  evidence:
+    value: Policy naming which data classes require offline-storage cryptographic
+      protection, the approved algorithms and key-management approach, an inventory
+      of devices/media covered, encryption-status reports or audit outputs, and evidence
+      that decryption keys are not stored alongside the protected media.
+    basis: inferred
+  common_myth:
+    value: Assuming that enabling BitLocker/FileVault or any full-disk encryption
+      on a laptop automatically satisfies the control, even when the recovery key
+      escrow lives on the same laptop or on a domain account an attacker can pivot
+      to once they have the machine's credentials.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three backup tapes or removable media from the last quarter and the
+      cryptographic mechanism protecting them, plus where the decryption key is stored.
+    - If I walked out of the data center with a powered-off server containing regulated
+      data right now, what stops me from reading its disks?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.485117Z'
+  signed_digest: 96588987077ca1322c6c6148ad5ba997075d6b0cc304333bf50a090167ea8962
+  interview_seconds: null
+  inherited_from: null

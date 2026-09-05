@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:MP-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against situations where media sanitization, reclassification,
+      or forensic analysis destroys the very evidence you need later — investigations,
+      legal holds, regulatory inquiries, or warranty disputes all break when the only
+      copy of the media is wiped to satisfy a sanitization rule. The control forces
+      a non-destructive path to exist so that compliance with sanitization does not
+      silently erase auditable artifacts.
+    basis: inferred
+  plain_zh:
+    value: When you need to test, sample, or validate sanitization, or when media
+      must be preserved for an investigation, use techniques that do not destroy the
+      data on the original media. Destroying the evidence to prove you sanitized it
+      is not compliance.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the cases where media cannot simply be wiped or destroyed (legal
+        hold, forensic need, validation testing) and have at least one documented
+        non-destructive technique available, such as read-only hardware write-blockers
+        or forensic imaging.
+      '2': Maintain a written procedure that names the approved non-destructive tools,
+        who is authorized to use them, and how chain of custody is preserved; staff
+        handling sanitization can point to it when an exception applies.
+      '3': 'Non-destructive sanitization is integrated into the media-handling lifecycle:
+        tools are tested and version-controlled, operators are trained and recertified,
+        every exception is logged with justification and evidentiary output (image
+        hashes, custody records), and the procedure is reviewed after incidents.'
+    basis: inferred
+  evidence:
+    value: Procedure document listing approved non-destructive tools and authorized
+      personnel, training/competency records, exception logs with case justification,
+      forensic or validation images with hashes, chain-of-custody records, and post-incident
+      reviews of the procedure.
+    basis: inferred
+  common_myth:
+    value: Believing that purchasing a degausser or shredder automatically satisfies
+      sanitization requirements, and therefore any media in scope must be destroyed
+      on schedule, even when a legal hold, audit sample, or forensic question requires
+      the original. Destruction and sanitization are not synonyms, and treating them
+      as one is how evidence disappears.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time media subject to a legal hold or investigation was handled
+      — what non-destructive technique was used and where is the chain of custody?
+    - Who is authorized to apply non-destructive sanitization, how were they trained,
+      and how do you verify the tool worked without destroying the media?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.486142Z'
+  signed_digest: fd60aa475fe2630786cfd963d6b1dbaf4781d97af1e4a90272be2fc8b70c5afa
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.5.22
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that after outsourcing systems or services, no one internally keeps continuous
+      oversight—supplier changes, upgrades, decommissioning, or personnel changes can silently alter your
+      attack surface, and once the contract is signed, no one manages it further, effectively handing
+      security blind spots to external parties.
+    basis: inferred
+  plain_zh:
+    value: Requires you to continuously monitor whether services provided by external suppliers are operating
+      as agreed—including their own changes, version upgrades, configuration changes, and operational
+      actions—all must have records, trigger mechanisms, and reassessment, rather than only a one-time
+      acceptance before go-live.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an inventory of critical external services; suppliers have a contractual obligation
+        to notify changes; upon notification, impact assessments are conducted and recorded.
+      '2': Define what constitutes a 'significant change' (e.g., major version upgrades, architectural
+        adjustments, changes in operational personnel); changes must receive your approval beforehand;
+        there are periodic (e.g., quarterly) supplier service review meetings with minutes.
+      '3': Continuously monitor supplier service changes through technical means (e.g., configuration
+        drift detection, API version monitoring); supplier changes are linked to the internal risk register;
+        there are clear escalation and handling procedures when deviations from agreements occur.
+    basis: inferred
+  evidence:
+    value: External service inventory and contract change clauses, supplier change notification records,
+      impact assessment and approval forms, periodic service review minutes, technical monitoring alert
+      logs or screenshots.
+    basis: inferred
+  common_myth:
+    value: Assuming that having 'suppliers must notify us in advance of significant changes' in the contract
+      is sufficient—without defining what constitutes significant, specifying the assessment process after
+      notification, or tracking whether suppliers actually notify in advance, this becomes an empty statement.
+      Auditors will expose this when they ask, 'When was the last time a supplier notified you?'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which contract clause specifies the timeframe and trigger conditions for supplier change notifications?
+    - In the past year, which supplier changes triggered your risk reassessment? Who approved the reassessment
+      conclusions?
+    - How do you verify that suppliers actually notified you in advance rather than providing retroactive
+      notifications?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.279165Z'
+  signed_digest: 1dcd32b56ef2336a40031019b5802c986aaabae728183619809c248e3809c8bd
+  interview_seconds: null
+  inherited_from: null

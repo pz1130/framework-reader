@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:ID.RA-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'changes without oversight and exceptions without accountability'—when
+      security configurations and system environments change, risk changes accordingly; if changes and
+      exceptions cannot be clearly accounted for, in the event of an incident, you cannot trace what was
+      modified or who approved it.
+    basis: inferred
+  plain_zh:
+    value: 'All changes involving systems, configurations, or security policies, as well as exceptions
+      that deviate from standards, must follow a process: first assess potential risks, implement only
+      after approval, maintain records after changes, and continuously track post-implementation.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a change and exception log (even a shared spreadsheet); major changes receive verbal
+        approval; records can trace 'who changed what and when'.
+      '2': Changes have a formal written request and approval process; security impact assessment is mandatory;
+        exceptions have validity periods and review mechanisms; change and exception registers are complete
+        and auditable.
+      '3': Changes trigger automated risk assessment and testing gates (e.g., pre-release scanning, configuration
+        drift detection); exceptions have automatic expiration reminders, and overdue reviews are escalated;
+        change outcomes are verified against expectations, with linkage to problem management.
+    basis: inferred
+  evidence:
+    value: Change request and approval tickets, security impact assessment forms (including risk level
+      determination), exception approval documents, periodic exception review records, post-implementation
+      verification or test reports, change registers or CMDB audit history.
+    basis: inferred
+  common_myth:
+    value: 'Assuming that having a ''security assessment checkbox'' on a change form constitutes a completed
+      risk assessment—auditors will examine what the assessment actually contains and whether an independent
+      second person reviewed it, not just a checkbox. Another common misconception is that exceptions,
+      once approved, are permanent: without expiration dates or review mechanisms, exceptions become indefinite
+      waivers.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many changes in the past quarter actually indicated a 'security impact assessment'? Of those,
+      how many were independently reviewed by the security team?
+    - What is the most recent overdue item on your current exception list? Is there an automatic reminder?
+    - When emergency changes (hotfixes) follow a streamlined process, are risk assessments and records
+      completed afterward?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.553109Z'
+  signed_digest: d9c71f11c5813dcfccfa062ed96d587dc53dfe21c6bc60b4c835d00f1a345105
+  interview_seconds: null
+  inherited_from: null

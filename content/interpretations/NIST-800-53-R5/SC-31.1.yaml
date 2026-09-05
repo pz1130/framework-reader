@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-31.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the false reassurance that 'a covert channel exists only
+      in theory' — unmeasured, unexercised channels turn into real exfiltration paths
+      the day an adversary (or insider) notices them, often carrying data right past
+      DLP, encryption, and monitoring because the channel was never modeled as a data
+      path.
+    basis: inferred
+  plain_zh:
+    value: Identify any covert channels in the system, then actually try to exploit
+      them (or have someone credible try) to confirm they are real, measurable, and
+      exploitable at a meaningful bandwidth — not just theoretical.
+    basis: inferred
+  practice:
+    value:
+      '1': List known or suspected covert channels in the system (timing, storage,
+        side-channel); document where they are; restrict or monitor the most obvious
+        ones.
+      '2': Run structured tests against the identified channels with a defined methodology,
+        capturing bandwidth, detectability, and data types that can leak; record results
+        in a test report.
+      '3': Test covert channels on a recurring schedule and after significant design
+        changes; use independent testers; feed results back into design changes, capacity
+        limits, or detection rules that demonstrably reduce or contain the channel.
+    basis: inferred
+  evidence:
+    value: Covert channel inventory, documented test plan and methodology, test reports
+      with measured bandwidth and exploitability, design or configuration changes
+      traced back to findings, and recurring re-test records.
+    basis: inferred
+  common_myth:
+    value: Treating the SC-31 family as satisfied by quoting 'no covert channels were
+      found' without ever instrumenting the system or running a deliberate test —
+      finding nothing in a passive review proves only that nobody looked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the inventory of covert channels you considered for this system and how
+      each was tested, not just the ones found.
+    - What bandwidth or signal rate did the last covert channel test measure, and
+      what design or monitoring change followed from it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.530962Z'
+  signed_digest: c09cb8c4d9915ed8779d7470c13f563906217f6e363052dc8750e7174ff0bec1
+  interview_seconds: null
+  inherited_from: null

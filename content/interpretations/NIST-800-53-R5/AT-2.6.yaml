@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AT-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a workforce that has been trained on generic security awareness
+      but cannot recognize or respond to the actual threat actors, tools, and campaigns
+      currently targeting the organization — meaning phishing, social engineering,
+      and early-stage intrusion indicators slip past employees who technically completed
+      training.
+    basis: inferred
+  plain_zh:
+    value: Make sure security literacy training reflects the real threats your organization
+      faces — the specific adversary types, their tactics, and the trending attack
+      patterns — not just generic best practices, so people can spot what is actually
+      aimed at them.
+    basis: inferred
+  practice:
+    value:
+      '1': Training materials cite current threat actors and campaigns relevant to
+        your sector and geography; at least annual refresh pulls from open threat
+        intel sources.
+      '2': Threat intel feeds (commercial or open-source) drive periodic content updates;
+        training scenarios reference recent real-world TTPs seen in your industry;
+        completion and comprehension are tracked.
+      '3': Threat-informed training is integrated into the intel-to-detection-to-training
+        loop; phishing and exercise scenarios are derived from current campaigns;
+        staff reporting rates and detection times feed back into content updates.
+    basis: inferred
+  evidence:
+    value: Threat intelligence reports or feeds used as input, training curriculum
+      showing threat-environment references, update history with dated revisions,
+      phishing/exercise scenarios tied to recent campaigns, metrics on staff recognition
+      and reporting.
+    basis: inferred
+  common_myth:
+    value: Assuming that an annual awareness module from a vendor library satisfies
+      this — vendor content is generic and rarely updated with the threat actors actually
+      targeting your organization, so staff trained only on it cannot recognize a
+      sector-specific lure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the threat intelligence sources your training content is built from,
+      and how often it is refreshed.
+    - Which specific adversary groups or campaigns relevant to our sector are reflected
+      in the current training, and when were they added?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.468839Z'
+  signed_digest: 4e5c3fcb24e9b4812d0f4ecd1ca583e78013d7b1cacfd561d59e6803dbfb072c
+  interview_seconds: null
+  inherited_from: null

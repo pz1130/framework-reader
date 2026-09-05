@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:ID.IM-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the emergency response plan may sit unused in a document repository—written
+      but not communicated, updated, or aligned with other operational plans. When an actual incident
+      occurs, everyone acts independently, and response actions are disconnected from daily operations.
+    basis: inferred
+  plain_zh:
+    value: Emergency response plans and other cybersecurity plans that affect operations must not be pulled
+      out only when an incident occurs—they need to be established, communicated, maintained in response
+      to changes, and continuously improved through exercises or after-action reviews.
+    basis: inferred
+  practice:
+    value:
+      '1': An emergency response plan document exists, defining roles and procedures; relevant personnel
+        know where the document is; the plan has a version number and approval records.
+      '2': The plan is reviewed and updated on a periodic basis (e.g., annually or upon significant changes);
+        new employees or those transferring roles are shown the plan during onboarding; changes are documented.
+      '3': The plan cross-references and is consistent with other operational plans such as business continuity
+        and disaster recovery; improvement items from exercises or real incidents have a tracking loop
+        for closure; the plan is accessible at all times and supports offline use.
+    basis: inferred
+  evidence:
+    value: Current version of the emergency response plan (including approval signature page), plan distribution
+      and acknowledgment records, review/revision history, exercise reports and improvement item tracking
+      sheets, and cross-reference diagrams with other plans (e.g., BCP/DR).
+    basis: inferred
+  common_myth:
+    value: 'Assuming that ''having an emergency response plan'' equates to ''this requirement is met''—if
+      the plan was written two years ago, only seen by the security team, and improvement items from exercises
+      have not been followed up, the plan is effectively useless. What needs to be demonstrated is that
+      the plan is alive: it has been read, updated, and validated.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last revision of the plan? What event or input triggered that revision?
+    - When new employees in IT operations and customer service join, where do they access the emergency
+      response plan? Is there an acknowledgment signature?
+    - What issues were identified in the last exercise? What is the current status of each issue—open
+      or closed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.538196Z'
+  signed_digest: 3e52515ca229c898348ad0b64f320a88d6a7c827938774fbe04ae6d8276fe168
+  interview_seconds: null
+  inherited_from: null

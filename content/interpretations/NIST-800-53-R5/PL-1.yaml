@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:PL-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a security policy from being a decorative document—if no one owns,
+      reviews, or enforces it, the policy drifts from reality, and auditors or incident
+      responders find that what is written no longer matches what is done.
+    basis: inferred
+  plain_zh:
+    value: You need to have a written security policy and the procedures to support
+      it, assign an owner to keep it current, review it periodically, and get leadership
+      approval—so the policy is a living control, not a binder on a shelf.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a security policy document in place, someone officially owns it, and
+        it is approved by the appropriate level of management.
+      '2': Policies are reviewed on a defined cycle, updated when significant changes
+        occur, and the revision history records who changed what and when.
+      '3': Policy updates are linked to actual risk and compliance triggers, reviews
+        are scheduled and tracked as tasks, and the policy is accessible to all relevant
+        staff with awareness confirmation.
+    basis: inferred
+  evidence:
+    value: A copy of the security policy with approval sign-off, a version history
+      or change log, evidence of the review cycle (e.g., meeting minutes, scheduled
+      review records), and communication of policy updates to employees.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a security policy document is enough—even if it was
+      written years ago, no one reviews it, and it is not communicated. A policy without
+      an owner, a review date, or a distribution mechanism is just a file.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who approved the current version of the security policy, and when was it last
+      reviewed?
+    - What triggered the last policy revision, and what was the process for updating
+      it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.656693Z'
+  signed_digest: 515bf3b702b5d75fa9ff02d0c0df6cb870706aa7070b6d79c0f4e07efe126723
+  interview_seconds: null
+  inherited_from: null

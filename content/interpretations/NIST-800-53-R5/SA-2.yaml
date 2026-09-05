@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where security is treated as a cost center
+      with no dedicated budget, headcount, or capital—so when a real project demands
+      controls, people improvise, defer, or skip them because there is no resourced
+      plan behind the policy.
+    basis: inferred
+  plain_zh:
+    value: Identify what people, money, and tools each security control and major
+      system needs, secure those resources through the planning and budget cycle,
+      and keep the allocation current as systems and threats change.
+    basis: inferred
+  practice:
+    value:
+      '1': A rough estimate exists of what each major system or program needs in staff
+        and tooling, and security asks appear in the budget submission.
+      '2': Resource needs are tied to specific controls and the systems they protect,
+        tracked through the planning cycle, and shortfalls are escalated on paper
+        when a project cannot fund what is required.
+      '3': Allocation is reviewed at defined intervals and on major change (new system,
+        major acquisition, incident lesson learned); funding gaps are visible to leadership
+        and drive real decisions, not just slides.
+    basis: inferred
+  evidence:
+    value: Resource-allocation documents tied to controls and systems, budget submissions
+      showing security line items, escalation memos where funding was insufficient,
+      and review records showing how allocations changed after system or threat changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that listing security in a strategic plan or charter means resources
+      are allocated. A plan without funded headcount, tooling, and time in the operating
+      budget is just an intent statement—work still gets de-scoped when the money
+      runs out.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the system we are reviewing, what staff and tools are budgeted to operate
+      its security controls, and where is that shown?
+    - Show a recent case where a system needed a control the budget could not cover—what
+      happened, and is that escalation on file?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.142708Z'
+  signed_digest: 588e64e917724f12543ba0edfb795e5fa1ed33a0bc938d186b85d6a1e01ad032
+  interview_seconds: null
+  inherited_from: null

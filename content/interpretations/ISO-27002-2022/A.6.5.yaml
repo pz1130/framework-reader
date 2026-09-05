@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.6.5
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'people leaving but permissions remaining' and 'people changing roles
+      but permissions not following' — if credentials are not revoked upon termination, or access based
+      on former responsibilities is not removed upon transfer, it leaves a backdoor for external attackers
+      and creates risks for internal segregation of duties.
+    basis: inferred
+  plain_zh:
+    value: When an employee leaves or transfers, their access rights to systems and physical facilities
+      must be revoked or adjusted within a specified timeframe, and the individual must be made aware
+      of confidentiality obligations and asset return requirements after departure.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a termination/transfer process; HR or supervisor initiates notification; IT follows
+        the process to disable accounts and collect tokens; there is a handover checklist.
+      '2': The process has time limits (e.g., on the day of termination or the next day); transfers require
+        approval confirming the access needs for the new role; exit interviews covering confidentiality
+        obligations are documented; asset return lists are signed.
+      '3': Account lifecycle is linked with the HR system for automatic triggering; transfers trigger
+        access re-review and automatic adjustment; account revocation after termination is verifiable
+        via audit logs; additional review is conducted for high-privilege or critical positions.
+    basis: inferred
+  evidence:
+    value: Termination/transfer process documents, permission change tickets or system logs, asset return
+      lists, exit interview records, HR-IT interface process records, and periodic sample checks comparing
+      the active employee list with valid accounts to identify discrepancies.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'HR notifying IT to disable accounts' is sufficient — many companies lack defined
+      time limits and automatic trigger mechanisms, leaving terminated accounts active for a week or even
+      a month; more commonly, HR does not proactively notify IT, relying on the departing employee to
+      initiate. Similarly, for transfers, no one manages whether old permissions should be revoked.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For employees who left in the last three months, how long on average did it take to revoke their
+      accounts? What was the longest? Were there any exceeding the time limit?
+    - When an employee transfers from Department A to Department B, who is responsible for disabling old
+      permissions? What basis is used for the timing?
+    - During exit interviews, is the confidentiality obligation clearly communicated? Where can records
+      be found?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.330997Z'
+  signed_digest: 9681aa3c81c54d7aba2c56bf8b4a73b06e6e3f81d93245a1a6515e829b28174c
+  interview_seconds: null
+  inherited_from: null

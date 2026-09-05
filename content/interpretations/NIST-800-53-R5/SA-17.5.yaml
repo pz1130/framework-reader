@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-17.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems that grow into black boxes nobody can reason about
+      — suppliers, in-house teams, and auditors cannot tell what a component is supposed
+      to do, so a subtle malicious or vulnerable subcomponent hides in the complexity.
+      Complex designs also make post-incident analysis and security review effectively
+      impossible, so a flaw ships and stays.
+    basis: inferred
+  plain_zh:
+    value: Demand that the systems and components you acquire, build, or modify are
+      designed simply enough that you (and someone reviewing them) can read the architecture,
+      understand what each part is meant to do, and trace how data and control flow
+      through it.
+    basis: inferred
+  practice:
+    value:
+      '1': Document each component's purpose, interfaces, and trust boundary in plain
+        language so a reviewer who did not build it can summarise what it does in
+        a few sentences.
+      '2': 'Apply documented simplicity criteria during design review and before acceptance:
+        small interfaces, single-responsibility components, no hidden side channels;
+        reject or require justification when a component''s logic cannot be summarised.'
+      '3': Make conceptual simplicity a scored review gate for new acquisitions and
+        major changes; track complexity metrics (e.g., interface count, cross-module
+        call depth) over time; verify through independent review that a reviewer can
+        reconstruct the design from documentation alone.
+    basis: inferred
+  evidence:
+    value: Architecture and design documents for in-scope components, design-review
+      records showing simplicity was evaluated, acceptance criteria or checklists
+      referencing conceptual simplicity, independent reviewer attestations that the
+      design is summarisable.
+    basis: inferred
+  common_myth:
+    value: Treating 'conceptually simple' as a code-style preference (short functions,
+      clean formatting) rather than an architectural property — simplicity here means
+      you can describe what the component does and why without having to read its
+      implementation, not that the implementation is tidy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one critical component: can you describe what it does and its trust boundary
+      in a paragraph, and where is that description kept?'
+    - When was the last time a design was rejected or sent back because it could not
+      be explained simply, and what is the record of that decision?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.123069Z'
+  signed_digest: 391f1f2bbda703161ec16e09a5af83beb4d490b205c6846af6887b4aaa93f90f
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,59 @@
+control_id: NIST-CSF-2.0:RS.MA-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is preventing incident response from becoming 'turning a blind eye' — low-level
+      false positives and smoke screens go unvetted, while high-priority real events get buried in a pile
+      of tickets with no one to rescue them, ultimately resulting in garbage incident statistics.
+    basis: inferred
+  plain_zh:
+    value: All reported security incidents must have a formal intake and triage process, with someone
+      determining whether it is a real incident, its severity, and who should handle it, and leaving a
+      trail after handling.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an official mailbox or ticket intake for incident reports; someone promptly determines
+        authenticity and priority; can distinguish false positives from real events.
+      '2': Use a numbered ticket system to record each triage conclusion; have incident classification
+        criteria (e.g., high/medium/low); handling priority is linked to business impact and is documented.
+      '3': Triage logic is codified into rules that can auto-prioritize; false positive sources are fed
+        back to detection rules for closed-loop improvement; post-hoc statistics prove that high-priority
+        events were not misclassified or backlogged.
+    basis: inferred
+  evidence:
+    value: Triage ticket flow records include timelines and triage owners; incident classification definition
+      documents; evidence or reports of false positive closed-loop improvements.
+    basis: inferred
+  common_myth:
+    value: 'Thinking that setting up an alert group or opening a mailbox counts as ''triage'' — in reality,
+      without responsibility assigned to individuals, classification criteria, or timeout escalation mechanisms,
+      the chaos of grabbing incidents within five minutes persists, like a fire brigade extinguishing
+      paper fires: everyone fights fires, but no one counts how many buildings actually burned.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - How long did it take from reporting to first handling by a person for incidents marked as high priority
+      yesterday? Which specific tickets?
+    - How do you distinguish security false positives from anomalies that truly need attention? Who has
+      final classification authority? Where are the criteria documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.636508Z'
+  signed_digest: 57f0253e048d46e3be3eadb53666645e2ce542cae5eb86d7e3c79275c81cf9d1
+  interview_seconds: null
+  inherited_from: null

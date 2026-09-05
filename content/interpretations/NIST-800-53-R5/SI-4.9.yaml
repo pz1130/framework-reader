@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-4.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where intrusion-monitoring tools silently
+      go blind—signatures decay, sensors get tuned out by encrypted traffic, sandboxing
+      falls behind new file formats, and the team keeps trusting alerts that no longer
+      reflect reality. If you do not exercise the detectors against known bad inputs,
+      you find out they stopped working the day an actual attacker walks past them.
+    basis: inferred
+  plain_zh:
+    value: Periodically prove, on purpose, that your monitoring tools and the rules
+      they run still fire on attacks they are supposed to catch—and that someone fixes
+      what does not.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a calendar item that fires detection content (known malicious samples,
+        attack patterns, unauthorized ports) against the monitoring stack in a safe
+        way, and confirm alerts come out the other side.
+      '2': Track each test by tool and by rule, log expected vs. actual results, and
+        open a fix ticket whenever something fails to alert. Cover network, host,
+        and application-layer sensors, not just the perimeter.
+      '3': Run adversarial simulations and purple-team scenarios that test whole detection
+        pipelines (collection → correlation → ticket → responder), measure mean time
+        to detect on injected events, and feed gaps back into the detection-engineering
+        backlog on a fixed cadence.
+    basis: inferred
+  evidence:
+    value: Test plans and schedules, recorded test executions with expected vs. actual
+      alerts, remediation tickets for failed detections, and trend reports showing
+      detection-coverage gaps closed over time.
+    basis: inferred
+  common_myth:
+    value: Treating the annual vulnerability scan as proof that monitoring works.
+      Scanning tells you the scanner still sees assets; it does not tell you the IDS,
+      EDR, or log-correlation rule would actually alert on an attack, or that anyone
+      noticed when it didn't.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you intentionally fired a known-bad sample at production
+      sensors—did the alert fire, who saw it, and what was the ticket number?
+    - Which detection rules failed their last functional test, and what is the status
+      of the fix?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.060543Z'
+  signed_digest: 1bc5cbf94d63b93c8c2f95bd69d9a4ba36c528cfa2a4eaaf6dca4c9042acad5d
+  interview_seconds: null
+  inherited_from: null

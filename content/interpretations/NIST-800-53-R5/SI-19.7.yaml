@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SI-19.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a deployment-time attack surface hidden inside the cryptography
+      stack itself: weak, broken, or backdoored algorithms and libraries silently
+      shipping into production because nobody can prove what is actually executing.
+      The failure mode is not a missing TLS certificate — it is data protected with
+      software whose math or implementation nobody vouches for, so a future disclosure
+      (Heartbleed-class, Dual-EC-class) retroactively compromises everything that
+      used it.'
+    basis: inferred
+  plain_zh:
+    value: Make sure the cryptographic algorithms and the software that implements
+      them are validated against a recognized standard before they go live, and keep
+      that proof current — not 'we use TLS' or 'we use AES' on a slide, but verifiable
+      evidence that the specific build in production passed a defined validation.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the cryptographic libraries and algorithms in use; require vendor
+        attestation (FIPS 140 validation, NIST CAVP, or equivalent) for any product
+        handling sensitive data; forbid home-grown ciphers and unvetted open-source
+        forks in production paths.
+      '2': Document the validation status of each crypto module (certificate number,
+        scope, expiry); track which application versions bind to which validated module;
+        require change-control to re-check validation when libraries are patched or
+        swapped.
+      '3': Automate the link between software bill of materials and crypto-module
+        validation state; alert when a deployed binary relies on a non-validated or
+        revoked module; periodically re-run algorithm and module tests against current
+        builds; restrict environments where non-validated crypto can even run.
+    basis: inferred
+  evidence:
+    value: Cryptographic module inventory, validation certificates and their scopes,
+      SBOM entries tied to validated modules, change-control records showing validation
+      re-checks after library updates, results of algorithm/module self-tests against
+      deployed builds.
+    basis: inferred
+  common_myth:
+    value: Equating 'we use AES-256' or 'we use TLS 1.2' with validated cryptography.
+      Algorithm name on a slide does not prove the implementing library is the validated
+      one — vendors rebrand, recompile, or bundle and the validation no longer applies.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the validation certificate for the crypto module currently running in
+      production and the SBOM entry that points to it.
+    - When was the last time a patched or swapped library triggered a re-check of
+      the module's validation status, and what did that review conclude?
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors and contractors handling controlled data treat FIPS
+      140 validation as a hard line; European auditors more often accept equivalent
+      national schemes (BSI, ANSSI) and weigh algorithm/protocol choice under GDPR
+      and eIDAS, but ask the same underlying question — prove what is executing.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.915209Z'
+  signed_digest: c75b757f7fd11cab63e41c5504bcee20d50a70d92ea05a04597fdd0b3733baa2
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:IR-4.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against insider incidents being mishandled because HR, legal, physical
+      security, IT, and the business each see only their own slice — an employee exfiltrating
+      data while HR is in a disciplinary loop, legal is on hold, and IT is still deciding
+      what to preserve, so evidence vanishes and the wrong action is taken first.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when an insider incident is suspected, the people who must
+      work together (HR, legal, physical security, IT/cybersecurity, management, and
+      the affected business unit) actually coordinate on a predefined basis — not
+      improvised per case — sharing information, preserving evidence, and aligning
+      disciplinary, legal, and technical actions.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written list of which internal functions participate in insider
+        incident handling, and someone is named to call them together when a case
+        opens.
+      '2': A documented coordination procedure exists covering roles, information-sharing
+        boundaries, evidence preservation handoffs, and joint decision points; cases
+        are logged with who was involved and when.
+      '3': Coordination is rehearsed on insider-relevant scenarios (data theft, sabotage,
+        fraud, anomalous resignation), with after-action reviews feeding back into
+        the procedure; technical, HR, and legal actions are time-correlated so the
+        sequence and rationale of each step is reconstructible.
+    basis: inferred
+  evidence:
+    value: Written insider-incident coordination procedure with named participants
+      by function, case logs showing which functions were convened and when, evidence
+      preservation handoffs, joint decision records, and after-action notes from insider-scenario
+      exercises.
+    basis: inferred
+  common_myth:
+    value: Assuming that having an incident response plan and an HR disciplinary process
+      already covers insider coordination. The two usually run on different clocks
+      and confidentiality tracks, so without an explicit bridge the technical side
+      preserves evidence the legal side needs while HR has already interviewed the
+      person, or vice versa.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through your last insider case — which functions were pulled in, in
+      what order, and who decided evidence handling versus who decided employment
+      action?
+    - Show me where your IR plan and your HR disciplinary process are explicitly cross-referenced
+      so the two do not collide.
+    basis: inferred
+  regional_note:
+    value: US auditors more often expect linkage to a formal insider threat program
+      with documented cross-functional participation; EU auditors tend to press harder
+      on data-protection boundaries when personnel data and monitoring data are shared
+      across HR, legal, and IT during a case.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.326557Z'
+  signed_digest: c51dcb0faae56c6a8eb2fb89d65904909e1452ba7386e6949f9cdd00d3ad5973
+  interview_seconds: null
+  inherited_from: null

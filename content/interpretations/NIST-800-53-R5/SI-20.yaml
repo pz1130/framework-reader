@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SI-20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: This control guards against the failure mode where data trustworthiness
+      is decided by its source reputation only, so content that arrives from an 'internal'
+      or 'clean' channel gets executed or processed without scrutiny. Without tainting,
+      a piece of data that was corrupted or malicious at one point in its lifecycle
+      is treated as sacred once it crosses a trust boundary, and detection only happens
+      when the damage is already done.
+    basis: inferred
+  plain_zh:
+    value: You track the provenance of data through your systems — a marker that sticks
+      to data based on where it came from and what has been done to it. The goal is
+      to know whether a piece of data has been exposed to an untrusted source or a
+      potentially unsafe operation, and to be able to make decisions (or block actions)
+      based on that history.
+    basis: inferred
+  practice:
+    value:
+      '1': You know which of your inputs are untrusted (e.g., user input, external
+        files, email content). You have a way to tag data as 'untrusted' when it enters,
+        even if it's just a comment in the code or a field in a database.
+      '2': You propagate the taint flag as data moves through your pipelines — a calculation
+        or processing step that uses untrusted data also marks its output as untrusted.
+        You have a documented list of dangerous sink operations (eval, SQL query,
+        command execution) and you check the taint flag before reaching them.
+      '3': 'You automatically enforce the taint policy at runtime: untrusted data
+        cannot reach a dangerous sink without a deliberate, audited sanitization step.
+        Taint propagation is implemented in your code framework or a tool, and the
+        policy is tested with both positive and negative cases. The taint status is
+        visible to analysts when they triage an incident.'
+    basis: inferred
+  evidence:
+    value: A description of the taint model (what is untrusted, how it propagates,
+      what the sinks are), code or framework configuration that implements the tagging
+      and checking, test records showing that untrusted data is blocked at sinks,
+      and incident timelines that reference taint status.
+    basis: inferred
+  common_myth:
+    value: Teams believe that just having an 'input validation' function somewhere
+      in the codebase is enough. Validation is only useful if you can prove the data
+      you're about to use was actually validated at the exact point it entered, not
+      just that a validator exists that someone might have called.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Give me a concrete example of a taint sink in your application — what exact
+      operation is guarded?
+    - Show me the test that proves a tainted string cannot reach that sink without
+      a sanitization step.
+    - When an incident is investigated, how does the analyst see the taint history
+      of the data involved?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.945858Z'
+  signed_digest: 2e0ec935fc0df12a99bd107742127457c84c7e3b4bf2d48e78ab2f7eaec46821
+  interview_seconds: null
+  inherited_from: null

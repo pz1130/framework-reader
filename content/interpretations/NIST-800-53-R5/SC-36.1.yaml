@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-36.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who infer sensitive system state, key material,
+      or operational secrets by watching how a device behaves when asked to do something—power
+      draw, timing, cache use, RF emissions, fault responses—rather than by breaking
+      the crypto. If software polling paths are predictable or unconditional, the
+      side channel becomes free for an attacker who can place a probe.
+    basis: inferred
+  plain_zh:
+    value: When software polls or queries hardware (crypto modules, secure enclaves,
+      sensors, smart cards), it must be done in ways that do not let an outside observer
+      tell, from timing or response patterns, what the underlying operation, key,
+      or data was. Use non-deterministic delays, blinding, randomized ordering, or
+      hardware features that hide internal state, and document which technique applies
+      where.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the modules that handle keys or sensitive operations and confirm
+        they at least expose a documented mode or knob for side-channel resistance;
+        avoid using them in ways that obviously leak state (e.g., branching on key
+        bits).
+      '2': For each such module, record which polling/policy technique is applied
+        (constant-time code paths, blinding, randomized timing, dummy operations,
+        masking), and keep vendor certifications or implementation notes on file.
+      '3': Side-channel considerations are part of the secure-development checklist
+        and procurement review; changes to the module or its driver require re-evaluation,
+        and integration tests include checks that observable response patterns do
+        not correlate with secrets.
+    basis: inferred
+  evidence:
+    value: A list of in-scope components that handle sensitive material, the side-channel
+      mitigation technique applied to each (with vendor documentation or test notes),
+      and evidence that the technique is actually configured in the deployed build—not
+      just available as an option.
+    basis: inferred
+  common_myth:
+    value: Assuming a vendor sticker that says 'side-channel resistant' or FIPS-level
+      certification covers whatever the application does on top—ignoring that the
+      application's own polling, branching, or error handling around the module can
+      reintroduce the very leak the chip was designed to prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one component that handles keys; what does the calling code do around each
+      poll or query, and how was that verified not to depend on secret values?
+    - Show me a change ticket from the last year that touched a sensitive module's
+      driver or wrapper—what re-evaluation was done on side-channel behavior?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.557729Z'
+  signed_digest: 9a3c2d60245f061eb0c736224a32d77856c8932e904ae5b8fd64a9f263226276
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PM-28
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops leadership from treating risk as a security-team spreadsheet with
+      no bearing on real decisions—without an agreed framing, the same threat gets
+      accepted by one business unit and escalated by another, so capital is misallocated
+      and surprises hit the board unprepared.
+    basis: inferred
+  plain_zh:
+    value: Make the organization explicitly state how it thinks about and frames risk—what
+      counts, what matters, how trade-offs are reasoned about—so that strategy, investments,
+      and day-to-day calls are made against the same picture instead of ad-hoc judgments.
+    basis: inferred
+  practice:
+    value:
+      '1': Leadership (not just security) signs off on a short risk-framing statement
+        that names assumptions, what is in/out of scope, and how risk is reasoned
+        about across enterprise, mission, and system levels.
+      '2': 'The framing is operationalized: risk categories, scales, and decision
+        criteria are reused in investment cases, exception approvals, and incident
+        escalation; people can point to where their decision reflects it.'
+      '3': Framing is reviewed on a set cadence and on major strategy/M&A/regulatory
+        shifts; deviations between framing and actual decisions are surfaced to executives
+        with documented reconciliation.
+    basis: inferred
+  evidence:
+    value: Board- or executive-approved risk-framing document, mapping of framing
+      into investment/exception/incident processes, review minutes showing framing
+      updates tied to trigger events, and examples of decisions traced back to the
+      framing.
+    basis: inferred
+  common_myth:
+    value: Treating risk framing as a glossy risk-appetite slide that nobody operationalizes—writing
+      'we are risk-aware' without linking it to how budgets, exceptions, and escalations
+      actually get decided.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent business decision where the risk framing changed the outcome—what
+      was decided and what record proves it?
+    - When did leadership last revisit the framing, and what event triggered the change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.764822Z'
+  signed_digest: 2b8373d6e5ea51bf417347e1a5c3e16a0ece6fb0fef4d1dbedac62c99e7ab515
+  interview_seconds: null
+  inherited_from: null

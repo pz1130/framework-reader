@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:RC.RP-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about declaring business operations normal merely because the system can boot
+      after recovery—being able to restore backups does not mean data is complete, configurations are
+      correct, or upstream/downstream dependencies are in place; if issues arise after going live, accountability
+      is harder than if recovery had not been performed.
+    basis: inferred
+  plain_zh:
+    value: After disaster or incident recovery, it is not enough to merely confirm that systems are running;
+      you must verify item by item that recovered data is complete, service functions are normal, and
+      business status is confirmed usable. Only then is the entire process considered complete.
+    basis: inferred
+  practice:
+    value:
+      '1': After recovery drills or actual recovery, at least confirm that critical systems can start
+        and primary data can be read; document any issues.
+      '2': Incorporate verification steps into the recovery process; perform sample checks or integrity
+        verification on data, and functional smoke tests on systems; document verification results.
+      '3': Automate verification scripts and checksums; execute recovery processes according to playbooks;
+        keep verification results traceable; review and improve the verification steps themselves after
+        each drill.
+    basis: inferred
+  evidence:
+    value: Recovery verification checklists or scripts, data checksums, sample check records, system functional
+      test results, recovery drill reports, and issue remediation records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'successful backup recovery and system startup' equals complete recovery verification—data
+      may be silently corrupted, configurations may be outdated, logs may be misaligned; a system that
+      starts does not mean business is correct; verification must be at the data and functional level,
+      not just process-level 'alive'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the last recovery drill, what method was used to verify data integrity? What percentage of data
+      was sampled?
+    - After system recovery, who confirms that business is usable and at what stage? What evidence is
+      used?
+    - If recovery verification finds data issues, how do you handle them? Have you followed this process
+      before?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.618735Z'
+  signed_digest: 9386bc353d01eaf3cd2aa1655cab4733a30a1c57ed5394d6700ec1510bfec288
+  interview_seconds: null
+  inherited_from: null

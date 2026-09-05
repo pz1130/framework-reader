@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MA-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against scheduled maintenance being skipped, forgotten, or done
+      inconsistently because humans forget dates, miss patches, or document after
+      the fact — leaving known vulnerabilities unaddressed for months while logs claim
+      everything is fine.
+    basis: inferred
+  plain_zh:
+    value: Make maintenance happen on a defined schedule, with the work, the result,
+      and any failures captured automatically in records you can show an auditor —
+      not in someone's head or a hand-written notebook.
+    basis: inferred
+  practice:
+    value:
+      '1': A documented maintenance schedule exists for each in-scope system, with
+        the owner named; at least the most critical maintenance categories (patching,
+        log review, backup verification) are triggered by a job or tool rather than
+        only by reminder.
+      '2': Maintenance jobs run unattended and produce machine-readable records (timestamps,
+        what ran, success/fail, who/what ran it); failures raise a ticket or alert
+        that someone is responsible for closing.
+      '3': Coverage of automated maintenance is tracked against the asset inventory
+        (you can show which assets are and are not covered, and why a gap is acceptable);
+        missed or failed jobs feed into the same risk/exception workflow as other
+        control failures, with periodic review.
+    basis: inferred
+  evidence:
+    value: Maintenance schedule, automated job definitions and run logs (success/failure
+      with timestamps), exception register for assets or tasks not covered, sample
+      tickets for failures and how they were resolved.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a patching schedule' as proof that patching is automated
+      and happening. A schedule on a wiki is not automation — the test is whether
+      the work is actually triggered and recorded by a system, and whether missing
+      runs are visible rather than silent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which maintenance activities are actually triggered and recorded by a tool,
+      and which still depend on someone remembering to do them?
+    - Show me the last time a scheduled maintenance job failed or was missed — how
+      was that detected and resolved?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.378755Z'
+  signed_digest: c5bd056bbcda5bf15f82e5b5d9316b2e332da0ec16ddd1983b098582a038345e
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SC-40.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries tricking users or systems with communications
+      that look or sound like something trusted (spoofed emails, cloned portals, fake
+      helpdesk calls) so that credentials, payments, or sensitive data get handed
+      over or malicious actions get executed.
+    basis: inferred
+  plain_zh:
+    value: Make sure your communications channels and the signals your users and systems
+      rely on cannot be silently copied or impersonated by an outsider, so that 'who
+      is actually talking to me' stays verifiable end to end.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Know the channels that matter (email, voice, chat, web) and turn on the
+        basics that make impersonation harder: SPF/DKIM/DMARC on outbound email, a
+        verified caller identity process for helpdesk-style phone calls, and a checklist
+        for what legitimate staff will and will not ask for.'
+      '2': Sign critical messages or instructions with something the receiver can
+        check (signed email, code phrase for high-risk voice requests, second-channel
+        confirmation for payments or access resets), and record how often these checks
+        catch a fake.
+      '3': 'Measure and review: impersonation attempt volume, which controls caught
+        them, residual cases that got through, and feed that back into detection rules,
+        user training, and process changes so deception techniques and your countermeasures
+        evolve together.'
+    basis: inferred
+  evidence:
+    value: Email authentication policy and posture (SPF/DKIM/DMARC results), out-of-band
+      verification procedure for high-risk voice or message requests, signed-message
+      or code-phrase mechanism, logs or reports of blocked/forged messages and how
+      staff responded, training records covering impersonation.
+    basis: inferred
+  common_myth:
+    value: Treating DMARC as 'done' once a record is published at a permissive policy,
+      or assuming phishing-awareness training alone covers it. The real failure is
+      leaving email authentication at a loose policy with no signing on outbound mail
+      and no out-of-band check on risky voice or chat requests, so spoofed senders
+      and fake callers sail through.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your current DMARC policy and what percentage of your outbound mail
+      is DKIM-signed and aligned.
+    - When someone calls claiming to be the CFO asking for an urgent wire transfer,
+      what is the exact step the responder must take before acting?
+    - How many suspected impersonation attempts hit your users last quarter, and how
+      many were caught by a technical control versus user reporting?
+    basis: inferred
+  regional_note:
+    value: EU auditors under NIS2 tend to probe the integrity of communications used
+      for regulatory reporting and customer authentication more heavily, while US
+      auditors more often focus on financial fraud scenarios (BEC) and the email-authentication
+      chain. Same control, different storyline.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.594170Z'
+  signed_digest: de6e9892f298dfc1218e831cb66daf623d1240791293f10c6bd8a77707fe0cc6
+  interview_seconds: null
+  inherited_from: null

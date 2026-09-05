@@ -1,0 +1,59 @@
+control_id: NIST-CSF-2.0:ID.AM-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about treating all assets equally—without prioritization, money and effort are
+      spread across low-value assets; when an incident occurs, the most critical systems and data do not
+      receive the fastest recovery and optimal protection.
+    basis: inferred
+  plain_zh:
+    value: 'Rank assets by importance: whether they are critical and the impact of their loss determine
+      where security investment, monitoring intensity, and recovery order should be directed.'
+    basis: inferred
+  practice:
+    value:
+      '1': There is an asset inventory that can identify which system is most important, with the ability
+        to verbally explain the rationale.
+      '2': Assets are scored and categorized by type, importance, and impact on business; the categorization
+        results drive backup frequency and monitoring scope, with records available for review.
+      '3': Asset prioritization is linked to business continuity and disaster recovery plans, demonstrating
+        that recovery order and time objectives for different asset categories are set based on priority,
+        and are regularly revised as assets change.
+    basis: inferred
+  evidence:
+    value: Asset inventory and categorization table, impact analysis or scoring records, recovery priority
+      list, and records showing the correspondence between categorization results and actual security
+      investment (e.g., monitoring, backup, access control).
+    basis: inferred
+  common_myth:
+    value: Assuming that 'once assets are inventoried and classified, the job is done.' A common mistake
+      is that the information system owner arbitrarily assigns a few categories to assets, but business
+      units are not involved, and recovery order is not based on priority—the categorization remains in
+      the ledger, and the recovery order for critical systems does not match the categorization results.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which three assets have you classified as highest priority? Is the basis a scoring table or verbal
+      reporting?
+    - Does asset priority correspond to backup frequency and recovery order during major incidents? Please
+      show me.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.526335Z'
+  signed_digest: 76726ec0566e3c356947311a0499002cd83898127b830af571a2e463c214de38
+  interview_seconds: null
+  inherited_from: null

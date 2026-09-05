@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.5.36
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'the policy written on paper and the real world are two separate things'
+      — if no one verifies whether security policies are being followed, they are just decorations in
+      a filing cabinet; without a verification mechanism, deviations will never surface, and all subsequent
+      audits will fail at the documentation level.
+    basis: inferred
+  plain_zh:
+    value: After implementing information security policies and related rules, there should be designated
+      personnel to regularly confirm that actual practices align with what is written, and record the
+      verification results; any inconsistencies found should be managed.
+    basis: inferred
+  practice:
+    value:
+      '1': Clarify who is responsible for verifying policy implementation, conduct spot checks at least
+        once a year, and keep minutes of verification results.
+      '2': Verification has a fixed checklist, sampling method, and frequency; non-conformities have rectification
+        tracking; verification reports are reported to management or the security officer.
+      '3': Verification results form a closed loop with policy revision — deviations feed back into document
+        updates; the verification activity itself is included in monitoring metrics, proving to auditors
+        that the process is continuously operating.
+    basis: inferred
+  evidence:
+    value: Verification plan/schedule, verification checklist, spot-check records, deviation discovery
+      and rectification tracking table, verification report, meeting minutes reported to management.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'issuing a policy document is implementation' — document issuance is just the
+      starting point; only when you are unsure whether anyone actually follows it in practice does verification
+      count. A more common mistake is having compliance or internal control personnel 'go through the
+      motions and tick boxes' without involving those who actually execute security in the judgment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last verification of policy implementation conducted? Who did it, and what scope was
+      spot-checked?
+    - Of the inconsistencies found during verification, which are still open? What stage is the rectification
+      at?
+    - When there is a deviation between policy and actual process, do you change the process or the policy
+      first? Who makes the decision?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.307782Z'
+  signed_digest: b6c5adb5907d31ad35de0b85c39f2665d52d03079b8d7383940078a98cddcd25
+  interview_seconds: null
+  inherited_from: null

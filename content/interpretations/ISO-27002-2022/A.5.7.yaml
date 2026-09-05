@@ -1,0 +1,68 @@
+control_id: ISO-27002-2022:A.5.7
+locale: en
+state: draft
+fields:
+  intent:
+    value: This guards against 'passively waiting for alerts before acting'—attackers may have already
+      entered or be lurking inside, traditional defenses haven't triggered, and manual log review misses
+      it; without proactive hunting, an intrusion could persist for months before detection, with losses
+      already amplified.
+    basis: inferred
+  plain_zh:
+    value: Don't just wait for firewall or EDR alerts. Proactively and regularly assume that intruders
+      are already in the system, and have people or tools search for deep-hidden traces that bypass existing
+      defenses, to root out threats.
+    basis: inferred
+  practice:
+    value:
+      '1': Someone is responsible for threat intelligence collection; the security team subscribes to
+        public or commercial intelligence sources; when alerts occur, they know where to look up IoCs.
+      '2': There is a documented threat hunting process and plan; hunts are conducted regularly per the
+        plan (e.g., quarterly or after targeted incidents); hunt results are recorded and feed back into
+        detection rules.
+      '3': Hunting is integrated with detection/response in a closed loop; intelligence sources automatically
+        feed into detection tools; new techniques found in hunts automatically generate new detection
+        rules; hunting covers the full catalog of critical assets.
+    basis: inferred
+  evidence:
+    value: Threat hunting plan and execution records, hunt reports (including hypotheses, methods, findings,
+      conclusions), threat intelligence source subscription and consumption records, intelligence-driven
+      detection rule update records, and closed-loop evidence of hunt results feeding back into response.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'deploying a threat intelligence platform or subscribing to several intelligence
+      sources' counts as threat awareness. Intelligence is purchased but no one reads or uses it, and
+      alerts still rely on old rules; auditors need to see whether intelligence actually reaches detection
+      rules, hunting plans, and response processes, not just procurement lists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What was the hypothesis of the most recent threat hunt? Which assets were covered?
+    - How do you know which attack techniques current detection rules cannot cover? Who is following up
+      on gaps?
+    - What process does newly acquired threat intelligence go through to enter detection tools or hunting
+      plans?
+    basis: inferred
+  regional_note:
+    value: Auditors in both Europe and the US recognize the necessity of proactive hunting, but the US,
+      influenced by CISA and federal requirements, places more emphasis on cross-organizational intelligence
+      sharing and automation; in Europe, under the NIS2 context, there is more focus on systematic awareness
+      of incident precursors and alignment with notification obligations for internal and supervised entities.
+      The focus of practical checks is similar, but European auditors will probe whether intelligence
+      handling meets the preconditions for statutory reporting deadlines.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.317234Z'
+  signed_digest: ddc256e96ec6963efa33dddc94792fa5fd6f500f0a07b1ef52343cd6c907d0e5
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:GV.SC-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that supplier security requirements remain only in procurement questionnaires
+      and verbal commitments—without binding clauses in contracts, there is no contractual basis for accountability
+      and remediation when incidents occur, and auditors cannot find a written security obligation that
+      constrains the supplier.
+    basis: inferred
+  plain_zh:
+    value: Write cybersecurity risk requirements into contracts or agreements with suppliers and third
+      parties, not just a generic statement like "shall ensure security"—prioritize by risk and clearly
+      specify security responsibilities, standards, and consequences of breach.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a supplier onboarding process, and the contract template includes general security
+        clause language; high-risk supplier contracts undergo security review before signing.
+      '2': Suppliers are classified by risk level, and contract templates for different tiers include
+        corresponding security requirements (e.g., data protection, incident notification, audit rights);
+        both new and renewed contracts are confirmed by legal and security teams.
+      '3': Contract security clauses are regularly updated in line with risk appetite and threat landscape;
+        key supplier contracts explicitly include security audit rights, remediation timelines, and termination
+        conditions for breach; contract performance includes a security acceptance step.
+    basis: inferred
+  evidence:
+    value: Screenshots of security clauses in supplier contracts or framework agreements, risk-tiered
+      contract templates, records of pre-signing security review processes, and legal and security co-signing
+      records.
+    basis: inferred
+  common_myth:
+    value: 'Assuming that having a paragraph in the procurement contract stating "the supplier shall comply
+      with relevant laws and regulations" counts as a security clause. This language has no binding force
+      for mandatory remediation, audit rights, or breach compensation when incidents occur. A real security
+      clause must specify: what can be audited, time limits for fixing issues after discovery, and the
+      ability to terminate the contract if improvements are not made.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - In this contract template, how are security clauses distinguished from confidentiality and data
+      protection clauses? Or are they all merged into one paragraph?
+    - Does the contract for high-risk suppliers explicitly grant the client the right to conduct security
+      audits or request SOC 2 reports? Which clause covers this right?
+    - If a supplier is found to have a major security issue during the contract period, what is the agreed
+      timeline for triggering remediation?
+    basis: inferred
+  regional_note:
+    value: In Europe, with the push of NIS2 and DORA, auditors more often than their US counterparts review
+      contract texts to see whether digital resilience clauses are truly embedded in agreements with third
+      parties; US audits typically stop at the yes/no question of whether security clauses exist.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.506132Z'
+  signed_digest: db3f09ce5866974d5d673303246ac86e6a693405082f656883d6c5de1da25b53
+  interview_seconds: null
+  inherited_from: null

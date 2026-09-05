@@ -1,0 +1,68 @@
+control_id: ISO-27002-2022:A.8.7
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent malicious code from spreading laterally within the internal network—if
+      entry points are not blocked, endpoints are not scanned, and signature databases are outdated, ransomware
+      and cryptominers can spread across the domain before being detected, doubling the cost of remediation.
+    basis: inferred
+  plain_zh:
+    value: Deploy malicious code detection at system and network entry/exit points, with automatic signature
+      updates. Files coming in from external sources must be scanned in real time, and periodic full scans
+      must be conducted. Upon detection of malicious code, alerts must be raised and cleanup performed,
+      and false positives must be handled.
+    basis: inferred
+  practice:
+    value:
+      '1': Servers and critical endpoints have antivirus or EDR installed; signature databases can update
+        automatically; there is an alerting channel that can notify personnel.
+      '2': Malicious code detection (traffic-side or gateway) exists at the network boundary; configuration
+        records exist for periodic full scans and real-time scanning of external files; there are processes
+        for alerting, quarantining, and cleaning up detected malicious code; false positives are logged
+        and handled.
+      '3': Malicious code protection is included in configuration baseline management, with traceable
+        version and policy changes; detection alerts are integrated with security operations, enabling
+        traceability to specific assets and attack chains; false positive handling has a closed loop,
+        with continuous tuning of signatures and rules.
+    basis: inferred
+  evidence:
+    value: Antivirus/EDR deployment list and coverage, signature database versions and screenshots of
+      automatic update configuration, scan policies and schedules, malicious code detection alerts and
+      handling records, and false positive handling logs.
+    basis: inferred
+  common_myth:
+    value: The myth is that 'having 360 or Windows Defender installed on every computer means it's protected.'
+      Endpoint installation does not mean policies are unified, signature updates are not disabled, and
+      servers and network traffic are unmanaged—when auditors spot-check the backend for versions and
+      scan records, it's a different matter from 'being installed.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last automatic update of the signature database? Are there machines that have disabled
+      the update policy?
+    - Are files downloaded from external sources scanned before being opened? How can this be proven?
+    - When was the last time malicious code was detected? How long did it take from alert to remediation?
+    basis: inferred
+  regional_note:
+    value: European auditors, in the GDPR context, focus more on whether the processing of personal data
+      in malicious code protection is compliant, as well as data protection impacts during quarantine
+      and cleanup; U.S. auditors typically focus on coverage, timeliness of version updates, and integration
+      with operational systems. Expectations regarding the depth of false positive handling processes
+      also differ between the two sides.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.427800Z'
+  signed_digest: 2db81c237ee553ff92c76a940f820d3440fec9f163b4f8986a4b002ba1f8846b
+  interview_seconds: null
+  inherited_from: null

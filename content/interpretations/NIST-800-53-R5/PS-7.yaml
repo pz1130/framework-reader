@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:PS-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the gap where contractors, consultants, temp staff and other external
+      personnel get inside the building, the systems, and the data without the same
+      vetting, onboarding, offboarding, and accountability that employees receive
+      — so a person with valid credentials is still effectively a stranger, or worse,
+      a former stranger whose access was never revoked.
+    basis: inferred
+  plain_zh:
+    value: Make sure people who are not your employees — contractors, vendors on-site,
+      consultants, temps — are held to documented security requirements before, during,
+      and after their engagement, with clear ownership inside the organization.
+    basis: inferred
+  practice:
+    value:
+      '1': Written rules exist for what external personnel must do and not do (access,
+        escort, devices, data handling). A person or function is named as the owner
+        responsible for each external relationship. Vetting, badge issuance, and exit/access
+        revocation happen for externals.
+      '2': Security requirements are written into contracts and statements of work,
+        not handed verbally. External personnel get the same baseline onboarding (policies,
+        incident reporting, marking) as employees, with records kept. Offboarding
+        or role-end triggers explicit access removal within a defined window, and
+        that is logged.
+      '3': 'Externals are tracked like a population: an authoritative register of
+        who they are, who sponsors them, what they can reach, and when their engagement
+        ends. Periodic reviews compare actual access against current engagements.
+        Exceptions (escort waivers, elevated access) are risk-assessed, time-bounded,
+        and approved in writing, and the process is audited.'
+    basis: inferred
+  evidence:
+    value: Written external personnel security policy, contract/SOW security clauses,
+      register of external personnel with sponsor and engagement end dates, onboarding
+      and exit records, access provisioning and revocation tickets, exception approvals,
+      and periodic reconciliation of external access against active engagements.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a contractor clause in procurement' as the control —
+      a signed NDA or a single paragraph in an MSA is not PS-7. The control fails
+      when there is no named internal owner per external person, no exit trigger tied
+      to engagement end, and no periodic check that the contractor population still
+      matches the access population.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one external person who finished work in the last 90 days — show me when
+      their physical and logical access was revoked, and who inside the company was
+      responsible for triggering it.
+    - Who inside the organization is the accountable owner for an external engineer's
+      access, and where is that assignment documented?
+    - How do you reconcile the list of active external personnel against the access
+      accounts and badges currently active in your systems?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.851380Z'
+  signed_digest: b40b1a4b976e132fd5818bdbb110e4bd21ae2a56b0ca893f78180a4d0449feef
+  interview_seconds: null
+  inherited_from: null

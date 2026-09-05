@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:CA-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from believing its defenses work simply because
+      nothing has been breached yet. Without adversary emulation, blind spots, misconfigurations,
+      and detection gaps stay invisible until a real attacker finds them - so a 'clean
+      year' is mistaken for security rather than untested exposure.
+    basis: inferred
+  plain_zh:
+    value: Have an independent team act like a real attacker against your own production
+      environment on a planned basis, so you can see whether your people, processes,
+      and tools actually detect, respond to, and contain an intrusion - not just whether
+      they look correct on paper.
+    basis: inferred
+  practice:
+    value:
+      '1': Conduct at least one announced or semi-announced adversary emulation exercise
+        per year using internal staff or an external provider, with a written scenario
+        and defined objectives; capture findings in a report shared with leadership.
+      '2': Run exercises on a defined cadence (typically annual or more often for
+        critical systems), scope them against current threat intelligence and crown-jewel
+        assets, and feed every finding into the risk register and remediation backlog
+        with owners and dates.
+      '3': Combine multiple methodologies (assumed-breach, purple-team with blue team
+        in the loop, full-scope red team for critical environments), measure detection
+        and response time against targets, and re-test until previously exploited
+        gaps are demonstrably closed.
+    basis: inferred
+  evidence:
+    value: Red team exercise plans or rules of engagement, after-action reports with
+      findings and severity, remediation tickets linked to findings, and evidence
+      that previously identified gaps were re-tested and closed.
+    basis: inferred
+  common_myth:
+    value: Treating an annual vulnerability scan or a penetration test of a staging
+      environment as a substitute for red team exercises. Scanners and pen tests look
+      for known weaknesses in defined scope; red team exercises emulate a real adversary's
+      tactics end-to-end against production to test the whole defensive system, including
+      detection and response.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the rules of engagement and final report for your most recent red team
+      exercise, and which production systems were in scope.
+    - Which findings from that exercise are still open, who owns them, and when were
+      they re-tested to confirm closure?
+    basis: inferred
+  regional_note:
+    value: In the US, regulators in financial services and critical infrastructure
+      increasingly expect adversary-emulation testing rather than only point-in-time
+      penetration tests, and may require it on a defined cadence. In the EU, sector-specific
+      regimes (such as DORA for financial entities) introduce mandatory TLPT-style
+      testing for major institutions, while smaller entities face lighter expectations.
+      Scope, frequency, and independence requirements differ more by sector than by
+      region.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.718267Z'
+  signed_digest: d1fcc9969b272fa9fabd91f36836e57845e532a0bf6c0a371ac62a937f55c88d
+  interview_seconds: null
+  inherited_from: null

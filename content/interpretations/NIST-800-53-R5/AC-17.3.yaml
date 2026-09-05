@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-17.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against remote access that bypasses your choke points - users or
+      admins tunneling directly to internal systems from wherever they are, so you
+      lose the single place where you authenticate, log, inspect, and revoke. Without
+      controlled mediation, a stolen laptop or rogue VPN client becomes an undetected
+      backdoor into the flat internal network.
+    basis: inferred
+  plain_zh:
+    value: Force every remote connection to come through a small, known set of access
+      points that you own and watch, instead of letting people dial straight into
+      internal hosts.
+    basis: inferred
+  practice:
+    value:
+      '1': Document the approved remote-access entry points (VPN concentrator, jump
+        host, ZTNA broker); block direct RDP/SSH from the internet to internal systems
+        at the firewall; require auth through these entry points.
+      '2': All remote traffic is funneled through managed mediation points that authenticate,
+        log, and can be revoked centrally; non-approved remote-access tools are blocked
+        or detected; configuration is reviewed after changes.
+      '3': Mediation points enforce policy uniformly (MFA, posture check, session
+        recording for privileged access); coverage gaps surface as alerts; remote-access
+        paths are tested for bypass; the architecture is reviewed when new network
+        segments or cloud workloads are added.
+    basis: inferred
+  evidence:
+    value: Network diagrams showing remote-access choke points, firewall rules blocking
+      direct inbound remote protocols, configuration of the gateway/jump host/ZTNA
+      broker, logs of remote sessions, evidence that direct remote paths are blocked.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have a VPN' satisfies the control - the VPN exists, but admins
+      still RDP directly into internal servers from outside, or third parties open
+      SSH tunnels straight to hosts, so traffic never passes through the controlled
+      point.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where a remote user connects to an internal server - which device sits
+      in the middle and logs the session?
+    - Can a remote admin reach an internal host without going through that mediation
+      point? How would you know if someone tried?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.064841Z'
+  signed_digest: 16fe373ba1237ab252438d44ea3fae8ad35771d2f5d6843787d4e6462bbc7505
+  interview_seconds: null
+  inherited_from: null

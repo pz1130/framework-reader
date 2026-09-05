@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-18.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops users from pulling unvetted mobile code, scripts, or executable content
+      into the environment and running it under their own privilege - the classic
+      path where a phishing link or shadow-IT download turns into ransomware or credential
+      theft on a workstation the team never reviewed.
+    basis: inferred
+  plain_zh:
+    value: Block or strictly control the downloading and execution of mobile code
+      and unapproved software at the endpoint and browser level, so untrusted code
+      cannot run just because a user clicked.
+    basis: inferred
+  practice:
+    value:
+      '1': Default-deny application execution on endpoints (allowlist or managed installer
+        only); browser policies block downloads of executable/script file types from
+        non-approved origins.
+      '2': Documented policy on what mobile code and file types are permitted; exception
+        process with risk sign-off; logs of blocked downloads and executions retained.
+      '3': Centralized policy enforced by endpoint and browser management; telemetry
+        on block/allow decisions reviewed; policy tested against real attack chains
+        (e.g., signed payload from a look-alike domain); updates triggered by new
+        code-execution techniques.
+    basis: inferred
+  evidence:
+    value: Endpoint and browser execution policy configurations, allow/deny lists
+      with change history, sample of blocked-download and blocked-execution logs,
+      exception approvals, and a recent review showing policy updates after a relevant
+      threat.
+    basis: inferred
+  common_myth:
+    value: Assuming an EDR product on every laptop means this control is met - EDR
+      detects after code lands; this control is about preventing the download or the
+      first execution in the first place through allowlisting and browser restrictions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a workstation policy that blocks an unsigned .js or .exe downloaded
+      from a browser - which setting enforces it and where is it logged?
+    - Walk me through the last time a user tried to run an unapproved application
+      - what stopped it and what record was kept?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.431368Z'
+  signed_digest: b2bddc882df0be4a060fc68f2407cb0b65f38e026242b95e052fceff493bfb27
+  interview_seconds: null
+  inherited_from: null

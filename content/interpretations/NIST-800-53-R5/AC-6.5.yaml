@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-6.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the sprawl of standing admin rights where any employee account
+      that outranks normal users becomes a high-value target for attackers, and where
+      a single credential compromise can bypass most other access controls.
+    basis: inferred
+  plain_zh:
+    value: This asks you to keep a tight, documented list of accounts that have more
+      power than a normal user, know why each one exists, and actively enforce least
+      privilege on them—so that privileged access isn't quietly granted by default
+      and then forgotten.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of all privileged accounts (domain admins, local admins,
+        service accounts with high rights); restrict their use to administrative tasks
+        only; require a business or security owner for each.
+      '2': Implement technical controls to limit privileged account usage—e.g., separate
+        accounts from day-to-day email; use group policies or an IAM tool to enforce
+        this; keep a record of who has access and why, reviewed periodically.
+      '3': 'Centralize privileged account management: automated on-boarding/off-boarding,
+        rotation of credentials, usage monitoring and alerting, and a review process
+        that verifies each privileged account still meets a documented need and adheres
+        to least privilege.'
+    basis: inferred
+  evidence:
+    value: A current inventory of privileged accounts with owner, purpose, and creation
+      date; screenshots or logs from a PAM or GPO showing enforced separation between
+      admin and user accounts; access review meeting minutes that show the list was
+      re-validated and old accounts were removed.
+    basis: inferred
+  common_myth:
+    value: Assuming that simply having a 'domain admins' group and not adding people
+      casually is enough—without a maintained inventory, periodic review, or technical
+      separation, the control is not met, and dormant admin accounts often go unnoticed
+      until an audit finds them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many domain admin accounts exist, and who has the latest access review sign-off?
+    - Show me a procedure that prevents a user from logging in as an admin and also
+      checking email on the same session.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.394729Z'
+  signed_digest: 332187965afebaf7c83f8a568752228842d05955e09556d08db49bf18b46a524
+  interview_seconds: null
+  inherited_from: null

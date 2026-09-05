@@ -1,0 +1,69 @@
+control_id: NIST-CSF-2.0:PR.DS-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about data being 'exposed in plaintext on storage media'—when databases, file
+      servers, backup tapes, or cloud volumes are stolen or when privileged operations staff bypass application
+      layers to read data directly, plaintext data leaks; it also prevents insiders from bypassing the
+      application layer to directly modify databases or delete archives without leaving a trace.
+    basis: inferred
+  plain_zh:
+    value: Data stored on media (hard drives, database files, backups, cloud storage volumes, log archives)
+      must be protected with encryption, access control, and integrity measures to ensure that even if
+      the media is stolen or the system is compromised, the data cannot be read, modified, or deleted.
+    basis: inferred
+  practice:
+    value:
+      '1': Production databases, backup files, and sensitive file share directories have encryption enabled
+        (e.g., transparent data encryption, disk encryption); storage systems have access control.
+      '2': Encryption keys are managed by an independent mechanism (e.g., KMS or HSM) with a rotation
+        schedule; integrity checks (e.g., checksums or baseline comparisons) are in place for sensitive
+        storage paths; backup media is encrypted and periodically verified for recoverability.
+      '3': Encryption covers all data types and all copies (including logs, temporary files, and developer
+        local copies); keys have full lifecycle management (creation, distribution, rotation, revocation,
+        destruction) with auditable tracking; integrity monitoring is linked to alerts, and unauthorized
+        modifications automatically trigger incident response.
+    basis: inferred
+  evidence:
+    value: Screenshots of encryption configurations (e.g., database TDE configuration, disk encryption
+      policies), key management system rotation and access logs, storage permission matrices and change
+      records, backup encryption and recovery drill reports, and integrity verification logs for critical
+      files/databases (showing no anomalies or resolved anomalies over a period).
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'choosing an encrypted disk for cloud hosts' is a one-time solution—plaintext
+      temporary files written by the application layer, unencrypted database backups exported to object
+      storage, and production data copies in test environments often reside under the same account without
+      encryption or monitoring, and auditors can easily find them when reviewing storage inventories.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the most recent database backup export—is this file encrypted on storage? Where are the
+      keys managed?
+    - Which storage buckets or paths are not covered by encryption? Why?
+    - When was the last key rotation? Were old keys immediately destroyed upon rotation, or was there
+      a grace period?
+    basis: inferred
+  regional_note:
+    value: European auditors (especially in GDPR contexts) focus more on whether encryption covers every
+      copy of personal data and the explainability of keys; U.S. auditors tend to focus on specific compliance
+      items (e.g., encryption algorithms, key lengths) and industry practices. Both sides may differ on
+      determining which data is sensitive and thus must be encrypted, but both examine the implementation
+      of encryption configurations and key management.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.578251Z'
+  signed_digest: 81558e4192be7758e6e0e3328cf8ed3f21c47548f9ce93c2e7d67b28872d3c7b
+  interview_seconds: null
+  inherited_from: null

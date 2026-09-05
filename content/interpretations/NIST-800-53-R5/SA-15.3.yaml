@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SA-15.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against treating every component as equally important — when everything
+      is, nothing is, and a breach in a non-critical box wastes the same response
+      effort as one in the crown-jewel system. Without explicit criticality tagging,
+      security spend, monitoring depth, and incident response get mis-allocated, and
+      you cannot justify why some systems got stronger controls while others did not.
+    basis: inferred
+  plain_zh:
+    value: Look at every system, component, and service the development pipeline touches,
+      decide which ones are critical to the mission, and use that ranking to drive
+      stronger design, testing, and protection where it matters.
+    basis: inferred
+  practice:
+    value:
+      '1': List the systems and components touched by acquisition/development; mark
+        which ones are critical based on impact if compromised or unavailable; record
+        the reasoning.
+      '2': Apply documented criticality criteria (data sensitivity, mission impact,
+        dependencies); require stronger developer assurances — extra testing, code
+        review, threat modeling — for high-criticality items.
+      '3': Re-rate criticality when scope, threat, or dependency changes; tie criticality
+        levels to concrete engineering requirements (e.g., independent verification,
+        attack-surface reviews, stricter acceptance gates) and verify those requirements
+        were actually delivered.
+    basis: inferred
+  evidence:
+    value: Criticality inventory with assigned levels and rationale, criteria document
+      defining how criticality is determined, developer/contractor security requirements
+      keyed to criticality, and records showing heightened assurance activities were
+      performed for high-criticality items.
+    basis: inferred
+  common_myth:
+    value: Believing a one-page 'critical systems list' handed to engineering satisfies
+      the control. The list is the input, not the output — what auditors look for
+      is whether criticality actually changed the engineering requirements and whether
+      the stronger activities were carried out, not whether the list exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a high-criticality component: what extra engineering or testing requirement
+      did criticality trigger, and where is the evidence it was done?'
+    - When was the criticality list last updated, and what event triggered the change?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.083662Z'
+  signed_digest: 913aed99d7cb28ddad457e4126d5c8beed22a7f63213ce79db9bde553eb71456
+  interview_seconds: null
+  inherited_from: null

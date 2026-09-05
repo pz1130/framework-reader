@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents users, processes, or exploited code from running software the
+      organization has not authorized — without this, malware, dual-use tools (PowerShell,
+      PsExec, scripting hosts), and shadow IT run freely and blends into legitimate
+      activity, making detection and incident response guesswork.
+    basis: inferred
+  plain_zh:
+    value: Allow only programs the organization has explicitly approved to run on
+      each system, and block everything else by default. Define what is permitted,
+      enforce it technically, and review the list as new software is introduced.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which application categories are allowed (e.g., OS binaries, signed
+        vendor tools, an approved list); block execution outside that scope on high-risk
+        systems using built-in OS mechanisms (AppLocker, Gatekeeper, SELinux).
+      '2': Maintain a managed allow-list per platform with owner, version, and justification;
+        require change-control for additions; cover servers, kiosks, and bring-your-own-device
+        endpoints used for privileged work.
+      '3': Enforce in centrally managed policy across the fleet with tamper protection,
+        alert and log on block events, integrate allowed-software changes into the
+        change ticketing system, and regularly audit endpoints for drift, unsigned
+        binaries, and locally cached interpreters.
+    basis: inferred
+  evidence:
+    value: Allow-list policy and approval workflow, central policy configuration (AppLocker
+      rules, Gatekeeper, SELinux profiles), change tickets for additions/removals,
+      enforcement reports and block-event logs, periodic endpoint compliance audits.
+    basis: inferred
+  common_myth:
+    value: Treating antivirus or EDR as the substitute for allow-listing. Signature-based
+      or behavioral detection tries to catch bad things after they start; allow-listing
+      denies unknown execution before it happens — replacing one with the other leaves
+      the attacker free to use living-off-the-land tools that AV does not flag.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the allow-list and the process for adding a new executable — who approves,
+      and what is logged.
+    - Can you pull up the last 30 days of execution blocks across the fleet, and how
+      are those alerts reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.833051Z'
+  signed_digest: 248da22b9ad54f030180ad4eb5bf01f895f43c22b36c80b56de8f479765a29d8
+  interview_seconds: null
+  inherited_from: null

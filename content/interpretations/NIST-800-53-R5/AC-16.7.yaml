@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-16.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents attribute-based access decisions from silently disagreeing across
+      systems — when two systems tag a record with the same attribute name but apply
+      it differently (e.g., one treats 'data_owner=Finance' as authoritative, another
+      treats it as informational), access is granted or denied based on stale or contradictory
+      facts, and the failure looks like a 'permissions bug' rather than an attribute
+      governance gap.
+    basis: inferred
+  plain_zh:
+    value: Define what each security attribute means, make that definition shared
+      and consistent, and ensure the systems that consume those tags interpret them
+      the same way before they are used to make access or handling decisions.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a documented list of security attributes (e.g., classification,
+        owner, sensitivity) with a written meaning for each, and require systems consuming
+        them to reference that list.
+      '2': Map each attribute to the systems that produce and consume it; reconcile
+        naming and value semantics; record how discrepancies between systems are detected
+        and resolved.
+      '3': Automate consistency checks (e.g., reject or quarantine tags that do not
+        conform to the canonical schema at ingestion); audit attribute usage periodically;
+        revoke or relabel when source meaning changes.
+    basis: inferred
+  evidence:
+    value: Authoritative attribute dictionary, producer/consumer map, reconciliation
+      logs or tickets showing attribute conflicts and how they were resolved, automated
+      conformance check results, and change records when an attribute definition was
+      updated.
+    basis: inferred
+  common_myth:
+    value: Assuming that because every system uses the same field name (e.g., 'classification')
+      the attributes are interpreted consistently — in practice one system may treat
+      the tag as a hard control, another as a label, and a third as inheritable, so
+      an attribute-based access decision can be enforced by stale or divergent logic
+      across the stack.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two systems that both tag records with 'data classification'; show me where
+      each defines what values mean and how a conflict between them would be detected.
+    - When an attribute definition changed, how were downstream systems informed,
+      and what proves they stopped using the old meaning?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.040482Z'
+  signed_digest: 6d220752b2209f87957c76c2f1d2fb4655c75a03ac10471f2306b7ff389a3bd4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:PR.AA-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "the three identities of people, services, and hardware are managed separately,
+      accounts are opened without being closed, and password rules are a dead letter"—identity management
+      is not just about installing an AD or IAM tool; it is about whether the organization has a mechanism
+      to manage the entire lifecycle of identities and credentials from start to finish.
+    basis: inferred
+  plain_zh:
+    value: 'The company must manage identities and credentials for three types of entities: people (employees,
+      contractors, temporary), services (API accounts, microservice identities), and hardware (servers,
+      network devices, IoT). Each type must have clear rules for requesting, issuing, using, and reclaiming;
+      credentials must have strength and validity period controls, and there must be no passwords that
+      never expire.'
+    basis: inferred
+  practice:
+    value:
+      '1': There is a unified identity roster (even if it is Excel plus process); new accounts have requests
+        and approvals; systems have unified password complexity requirements; there is an account recovery
+        mechanism when employees leave or contractors are demobilized.
+      '2': 'Identity lifecycle has formal processes: onboarding, role changes, and offboarding all have
+        tickets or records; password policies (length, rotation, failed login lockout) are uniformly configured
+        and spot-checked; service accounts do not share human accounts and have responsible owners.'
+      '3': 'Identity management is systematized: the three types of identities—people, services, and hardware—have
+        authoritative sources and are automatically synchronized; credentials are centrally managed (e.g.,
+        vaults, credential safes), and privileged credentials are automatically rotated; audit logs can
+        trace the full lifecycle of each identity.'
+    basis: inferred
+  evidence:
+    value: Identity management policies or process documents; ticket records for account requests, changes,
+      and recoveries; screenshots of password policy configurations; list of service accounts and their
+      responsible owners; hardware device identity database or certificate management records; periodic
+      account reconciliation reports.
+    basis: inferred
+  common_myth:
+    value: The misconception is that "deploying Active Directory or an IAM platform means identity management
+      is compliant." Auditors actually look at whether systems outside AD (databases, cloud platforms,
+      network devices, outsourced business systems) are included in unified identity rules, and whether
+      years of siloed accounts have been cleaned up—tools are just containers; the existing mess inside
+      is where points are lost.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems or devices are not within the scope of your identity management platform?
+    - Pick a person who left more than three months ago; confirm on which date and through what process
+      their account was closed?
+    - Do service accounts share human account logins? After the owner changes, was the password changed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.561146Z'
+  signed_digest: 5972e900567fc7bc6f93d5011a3ae40c93e0b7bda6213026f7768c48a5e5aa21
+  interview_seconds: null
+  inherited_from: null

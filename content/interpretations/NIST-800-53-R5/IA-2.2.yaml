@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IA-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single stolen or guessed password from being enough to walk
+      into a normal user's account - which is how most breaches start, because phishing,
+      reused passwords, and credential dumps overwhelmingly target non-privileged
+      users first.
+    basis: inferred
+  plain_zh:
+    value: Require a second factor (something you have or are, not just a password)
+      for every standard user account when they log in, especially from outside the
+      network or when accessing sensitive systems.
+    basis: inferred
+  practice:
+    value:
+      '1': MFA enabled for remote/VPN access, email, and admin-adjacent systems; users
+        on standard apps inside the LAN still password-only.
+      '2': MFA enforced across all user-facing systems including internal apps and
+        VPN; policies written, exceptions documented with expiry dates; new app onboarding
+        has an MFA check.
+      '3': MFA is the default at the identity provider for every account and every
+        application that supports it; phishing-resistant factors (FIDO2/WebAuthn,
+        PKI smartcards) used where possible; legacy systems that cannot do MFA are
+        isolated, not exempted silently; coverage and bypass attempts are reported.
+    basis: inferred
+  evidence:
+    value: Identity-provider MFA policy configuration, coverage report by application/user
+      population, list of exceptions with justification and review date, sample of
+      authentication logs showing factor type, incident records of MFA bypass attempts
+      or failures.
+    basis: inferred
+  common_myth:
+    value: Treating MFA on VPN and email as 'done' and leaving dozens of internal
+      SaaS, ticketing, source-control, and HR systems on password-only - the attacker
+      simply logs in through whichever app the security team forgot to cover.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of user-facing applications and which ones do not require MFA,
+      with the reason.
+    - What happens when an MFA factor fails or is unavailable - is there a bypass
+      path, and who approves it?
+    basis: inferred
+  regional_note:
+    value: U.S. federal contractors (and agencies via OMB/Einstein and CISA Zero Trust
+      guidance) are pushed hard toward phishing-resistant MFA (FIDO2/PIV). In the
+      EU, GDPR/DORA drive MFA as part of 'appropriate technical measures' and reasonable
+      access security, but the specific push to phishing-resistant factors is less
+      prescriptive - auditors there focus more on whether coverage is complete than
+      which factor type.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.121065Z'
+  signed_digest: 29e724077a1f0becf418a763fd8eb4a4537c101beec1325ab59521e4a7f111cb
+  interview_seconds: null
+  inherited_from: null

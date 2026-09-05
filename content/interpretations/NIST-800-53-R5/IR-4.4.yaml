@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IR-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where individual event signals - a SIEM
+      alert, a user complaint, a vendor advisory, a physical access log anomaly -
+      sit in separate silos and only make sense when joined. Without correlation,
+      a low-severity phishing alert on Monday, a small data egress on Tuesday, and
+      an after-hours badge swipe on Wednesday never become an incident, and the organization
+      keeps treating them as background noise until a regulator or the press connects
+      the dots first.
+    basis: inferred
+  plain_zh:
+    value: Pull signals from detection systems, operations, users, and outside sources
+      together so that an incident is actually identified and declared - rather than
+      letting each piece die in its own queue.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which sources feed the incident-detection process (SIEM, EDR,
+        IDS, help desk, users, threat intel, physical security) and who is responsible
+        for looking across them.
+      '2': Define correlation rules or playbooks that join events across at least
+        two sources; record suspected incidents with the evidence trail that triggered
+        the join.
+      '3': Continuously tune correlation logic against confirmed incidents and false
+        positives; integrate external threat intel and physical/HR signals; review
+        correlation coverage gaps so that single-source events do not silently fail
+        to escalate.
+    basis: inferred
+  evidence:
+    value: Documented correlation sources and procedures, correlation rule set with
+      change history, sample incident tickets showing the joined evidence across multiple
+      sources, tuning/false-positive review records, and a coverage assessment identifying
+      sources or gaps.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a SIEM dashboard exists, correlation is happening.
+      In practice correlation means someone or some rule actively fuses signals across
+      at least two different sources and escalates; a SIEM full of unconnected widgets
+      is just a wall of noise.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show one incident from the last year where the trigger came from joining signals
+      from two different sources - which sources and which rule or person joined them?
+    - Which detection sources are not currently feeding the correlation process, and
+      how was that gap identified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.313761Z'
+  signed_digest: 9796f479d51e12856e96a22f6db340436ff8eb58d6eb5a9a10dd1f4945da7067
+  interview_seconds: null
+  inherited_from: null

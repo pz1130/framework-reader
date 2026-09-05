@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SR-11.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure mode where a repaired, swapped, or returned component
+      is reinstalled with stale firmware, tampered hardware, or an attacker-planted
+      implant - bypassing every integrity control that ran at acquisition time.
+    basis: inferred
+  plain_zh:
+    value: When components are sent out for service, repair, or return, and when they
+      come back, the configuration that left with them must be controlled and verified
+      before they go live again. No implicit trust on reintroduction.
+    basis: inferred
+  practice:
+    value:
+      '1': Components taken out of service for repair are tagged and logged (serial,
+        firmware hash, location, date, vendor); a basic checklist exists for what
+        gets re-checked on return.
+      '2': 'Returned components go through a documented re-acceptance step before
+        reinstallation: tamper inspection, firmware/hash comparison against the baseline
+        that left, and sign-off recorded; service providers are contractually required
+        to return components in a known state.'
+      '3': Tamper-evident seals or crypto-anchored identities are used; failed or
+        suspicious components are quarantined and analyzed rather than reissued; configuration
+        drift between departure and return is detected automatically and tied to incident
+        handling when it occurs.
+    basis: inferred
+  evidence:
+    value: Component in/out log with serial numbers and firmware hashes, tamper-inspection
+      records, vendor service agreements, re-acceptance sign-offs, and quarantine/incident
+      records for components that failed re-verification.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a component went to an authorized vendor, it comes
+      back trusted - the most common mistake is skipping the re-acceptance step on
+      returned parts and reinstalling them straight from the box.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a component that went out for repair in the last year - what configuration
+      left with it, and what did you verify on return before it went back into production?
+    - What happens to a component that fails tamper or hash verification - where is
+      it and who decides?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.144595Z'
+  signed_digest: 7eedb38fc125fde297fecf44188b47944256aa00f04e4496b5d896e92a4cab9f
+  interview_seconds: null
+  inherited_from: null

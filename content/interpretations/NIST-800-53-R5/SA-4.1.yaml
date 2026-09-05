@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent acquiring security or privacy controls whose advertised functional
+      properties (what the control claims to enforce, such as authentication strength,
+      session handling, encryption, or logging behavior) do not actually match what
+      the product delivers in operation. The failure mode is buying on a vendor datasheet
+      and discovering at incident time that the control does not do what everyone
+      assumed it did.
+    basis: inferred
+  plain_zh:
+    value: In procurement, require the supplier to describe the functional properties
+      of the security and privacy controls they will deliver, then make sure those
+      described properties actually map to what you need and what the system will
+      rely on.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement asks the vendor for a short list of functional properties for
+        each security/privacy control in scope (e.g. MFA methods supported, log fields
+        captured, encryption algorithms and modes, session timeout values, key management);
+        this list is filed with the contract.
+      '2': Those vendor-stated properties are mapped to your security requirements
+        and to applicable policies; gaps or ambiguities are raised before award and
+        resolved in the contract or by selecting another product.
+      '3': The mapped properties are tested during acceptance and periodically after
+        go-live (sample configurations, integration tests, or independent assessment);
+        deviations are tracked, escalated, and reflected in the contract or in re-evaluation.
+    basis: inferred
+  evidence:
+    value: Procurement/contract artifacts that capture vendor-stated functional properties
+      for each in-scope control, the mapping of those properties to internal requirements,
+      acceptance test results that exercise those properties, and any deviation logs
+      or contract amendments.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's marketing datasheet or a SOC 2 report as proof that
+      the control does what you need. Those artifacts describe the control family
+      or process, not the specific functional properties your design relies on — and
+      they are not acceptance evidence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a control you depend on in production (e.g. MFA, encryption, logging), where
+      is the vendor's stated functional property recorded, and where is the test that
+      confirms the deployed product actually behaves that way?
+    - Show me one case where a vendor-stated property did not match the deployed configuration
+      and what happened next.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.169570Z'
+  signed_digest: 30f47ccdb9d6419f2833bef96ceb122d981544af459e593b95cb957d6b9f44fb
+  interview_seconds: null
+  inherited_from: null

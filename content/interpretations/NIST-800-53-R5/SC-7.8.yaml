@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-7.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents devices or users on the internal network from bypassing the boundary's
+      inspected path - if traffic can leave (or reach the internet) directly, every
+      control at the gateway becomes advisory and malware, exfiltration, and unsanctioned
+      services just walk around them.
+    basis: inferred
+  plain_zh:
+    value: Make sure outbound (and where relevant inbound) traffic from your network
+      cannot bypass the inspected path - it has to go through authenticated proxy
+      servers that you control and can audit.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify networks that need to route through authenticated proxies; block
+        direct internet egress at the firewall or router for those segments; require
+        proxy authentication for users and devices.
+      '2': Document which segments are subject to the requirement, how exceptions
+        are granted and time-bound, and maintain logs of proxy-authenticated sessions
+        reviewed on a schedule.
+      '3': Continuously detect and alert on traffic that leaves the network without
+        traversing an authenticated proxy; review exceptions quarterly; verify after
+        every network change that the bypass path is still closed.
+    basis: inferred
+  evidence:
+    value: Network diagrams showing the enforced path, firewall rules blocking direct
+      egress, proxy authentication configuration, exception register with expiry dates,
+      and sample alerts or reviews of detected bypass attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have a proxy' satisfies the control - a proxy that any device
+      can use without authentication, or that sits next to an open firewall path,
+      does not force traffic through it; the bypass path is what an attacker uses,
+      not the proxy itself.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which internal subnets can still reach the internet without going through an
+      authenticated proxy, and why?
+    - Show me a recent alert or investigation for traffic that tried to bypass the
+      proxy.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.766781Z'
+  signed_digest: 425c6752e53b111238b1356fd2b218ce5cc57a11af9578ad928869eeac4490e3
+  interview_seconds: null
+  inherited_from: null

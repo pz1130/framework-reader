@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PT-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against personally identifiable information (PII) that was once
+      legitimately retained becoming a silent liability when consent or purpose expires
+      — without an active way to pull it back, expired consents become mere paperwork
+      and PII keeps circulating in backups, exports, and downstream systems.
+    basis: inferred
+  plain_zh:
+    value: When PII processing ends (consent withdrawn, purpose fulfilled, retention
+      reached), you must be able to actually delete or render inaccessible that individual's
+      data across the systems where it lives — not just stop new collection.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the main systems and stores holding PII; have a manual or scripted
+        deletion path for the obvious production systems when a revocation or expiry
+        event occurs.
+      '2': Define what 'revocation' triggers (consent withdrawal, contract end, retention
+        expiry) and document the deletion/return/destruction procedure per data category,
+        including backups and third-party processors.
+      '3': 'Revocation is end-to-end and verifiable: production, replicas, backups,
+        caches, exports, and downstream processors are all addressed; completion is
+        logged with evidence; periodic tests confirm data is actually gone or unrecoverable;
+        legal/contractual hold exceptions are time-boxed and reviewed.'
+    basis: inferred
+  evidence:
+    value: Revocation/deletion procedures mapped to data categories, ticket or runbook
+      records of completed revocations (production + backups + third parties), destruction
+      certificates or logs, periodic test results showing data is unrecoverable after
+      deletion, exception/hold register with expiry dates.
+    basis: inferred
+  common_myth:
+    value: Treating deletion in the primary application as sufficient, while backups,
+      analytics exports, vendor processors, and downstream caches still hold the data
+      — revocation looks done on paper but a restore or a vendor query brings it right
+      back.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a revoked record from the last six months: walk me through every system,
+      backup set, and external processor where that data still lived after revocation,
+      and what you did about each.'
+    - How do you verify that deleted PII is not recoverable from backups or restored
+      environments?
+    basis: inferred
+  regional_note:
+    value: EU auditors (especially under GDPR) push hardest on whether revocation
+      actually reaches backups, archives, and processors, and on demonstrable test
+      evidence; US sectoral auditors tend to focus on documented procedures and contract
+      clauses with processors, with less drill-down into backup recoverability unless
+      a breach case forces it.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.889526Z'
+  signed_digest: 7c78bda3fba30549a0dc6fbd12998cc94208f5dca3aa9c46a05b60b0645522bf
+  interview_seconds: null
+  inherited_from: null

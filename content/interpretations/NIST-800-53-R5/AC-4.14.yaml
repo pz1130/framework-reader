@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-4.14
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents information flowing through the system from crossing policy lines
+      that the organization never intended to allow - data leaving a controlled boundary
+      through an unmonitored path, or being combined with other data in ways the policy
+      never approved. The risk is that the security or privacy policy exists on paper
+      but the actual data flows and transformations do not enforce it.
+    basis: inferred
+  plain_zh:
+    value: Make the security and privacy policy into rules that travel with the data
+      itself, so that as information moves through, is combined, transformed, and
+      routed across system boundaries, those rules are checked and enforced - not
+      just written in a policy doc that nobody reads at runtime.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the few most sensitive data flows (cross-domain transfers, regulated
+        data leaving a boundary) and document what policy must apply to them as they
+        move and transform.
+      '2': Tag or label data with the policy constraints it carries; have controls
+        (filters, gateways, DLP, schema checks) actually enforce those constraints
+        at the boundaries where data moves, is aggregated, or is reformatted.
+      '3': Policy filters are centrally managed and version-controlled, cover aggregation
+        and transformation scenarios (not only simple copy/move), are tested against
+        attempts to bypass, and violations are logged and fed into monitoring.
+    basis: inferred
+  evidence:
+    value: Documented data flows with policy tags/labels, configuration of the enforcing
+      components showing the policy rules, test or attempt records showing bypasses
+      were blocked or alerted, and logs of violations.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a security policy document and a DLP tool at the egress
+      point satisfies the control. The rule has to travel with the data through every
+      transformation and aggregation step, not just be checked at one chokepoint on
+      the way out.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a regulated data element and walk it through every transformation -
+      where is the policy rule checked at each step?
+    - When two lower-classification items are aggregated into a higher-classification
+      result, what enforces the resulting policy constraint and where is that logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.272782Z'
+  signed_digest: cc04b61f021aa0ab175044517fa5d16e702a04008321550993169600ab60cc15
+  interview_seconds: null
+  inherited_from: null

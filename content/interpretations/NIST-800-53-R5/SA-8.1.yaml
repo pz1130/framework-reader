@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems whose internal complexity leaks into interfaces
+      and dependencies, forcing every consumer to inherit assumptions about state,
+      sequencing, and hidden coupling. When abstractions are opaque, one component's
+      internal change silently breaks another, integration bugs become the dominant
+      failure mode, and security enforcement (auth checks, validation, logging) cannot
+      be applied consistently at the boundary.
+    basis: inferred
+  plain_zh:
+    value: Design and implement system components so their internal workings are hidden
+      behind well-defined interfaces, so that callers depend only on what the component
+      promises — not on how it does it — and security-relevant behavior is enforced
+      at that boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': Each major component exposes a documented interface (API contract, header,
+        IDL) describing inputs, outputs, errors, and pre/post-conditions; developers
+        can name what a module hides vs. exposes.
+      '2': Design reviews explicitly check for abstraction quality (cohesion, coupling,
+        information hiding); security-relevant behavior (authn, authz, input validation,
+        logging) is anchored at the boundary, not scattered inside implementation;
+        review records capture findings.
+      '3': Abstraction violations are detected automatically or in CI (dependency
+        linting, contract tests, architecture fitness functions); changes that would
+        break encapsulation are blocked or flagged; refactors preserve external contracts
+        and security guarantees.
+    basis: inferred
+  evidence:
+    value: Architecture/design documents showing component boundaries and their contracts,
+      design-review records calling out abstraction and boundary-enforced security,
+      contract or interface test suites, CI rules that flag coupling or contract drift.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we use microservices' or 'we have an API layer' means the control
+      is satisfied — clear abstractions are about what is hidden, not how many network
+      hops exist; a microservice whose implementation class is imported across services,
+      or whose auth check lives in the caller, has no real boundary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one component: show me its interface contract and the security checks
+      guaranteed to run on every entry to it.'
+    - How would a developer be stopped from reaching into this component's internals
+      or depending on its internal state?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.211489Z'
+  signed_digest: 27b74bdc56ee51983ab76dea63b216a5aaac9636524bb7ef282f6c98b925c3e1
+  interview_seconds: null
+  inherited_from: null

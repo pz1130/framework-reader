@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AT-2.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against training that only transfers information without changing
+      behavior - staff pass a quiz on phishing, data handling, or incident reporting,
+      then do the wrong thing when a real event hits because they have never practiced
+      the decision under realistic conditions.
+    basis: inferred
+  plain_zh:
+    value: Make sure security awareness training includes hands-on practice (simulated
+      phishing, tabletop scenarios, hands-on labs), not only slide decks or click-through
+      modules, so that what staff are supposed to do is something they have actually
+      done at least once.
+    basis: inferred
+  practice:
+    value:
+      '1': Run at least one practical exercise per year that mimics a realistic security
+        event (e.g., a phishing simulation or a short tabletop) and capture who participated
+        and the outcome.
+      '2': Exercises are tied to specific training objectives (recognize phishing,
+        report an incident, handle sensitive data) and feed lessons back into the
+        next training cycle; results are documented by role or department.
+      '3': Exercises cover the highest-risk behaviors and roles, vary in scenario
+        over the year, include injection points the security team did not pre-announce,
+        and measured behavior change (report rates, click rates, time-to-report) improves
+        over successive cycles.
+    basis: inferred
+  evidence:
+    value: Exercise plans and scenarios, participation rosters, results and metrics
+      by cohort, lessons-learned notes showing how the exercise changed the next training
+      round, and any injected events with their detection/response timing.
+    basis: inferred
+  common_myth:
+    value: Assuming a once-a-year phishing simulation or a lunch-and-talk tabletop
+      counts as 'practical exercises for everyone' - the exercise has to be mapped
+      to a real behavior the role needs to perform and the results have to actually
+      change the training, otherwise it is theater.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last practical exercise scenario, who was in scope, and how the
+      results fed back into the training content.
+    - Which high-risk behaviors or roles are covered by exercises and which are still
+      covered only by slides or e-learning?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.448820Z'
+  signed_digest: 6c0fe37038cb4056dd5972cff8c0de338f5bd33c349addde99d431c7b83ff875
+  interview_seconds: null
+  inherited_from: null

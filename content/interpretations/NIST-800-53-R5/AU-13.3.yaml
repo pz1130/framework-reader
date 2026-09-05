@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-13.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data being copied out without anyone noticing — whether
+      by a compromised account exfiltrating a database, an insider cloning a repository,
+      or malware staging files for upload — by making sure the systems that hold sensitive
+      data can detect and alert on abnormal replication volumes or patterns.
+    basis: inferred
+  plain_zh:
+    value: For systems that store or process sensitive information, enable monitoring
+      that flags unusual bulk copying or replication, and make sure alerts reach someone
+      who can respond.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems hold sensitive data (databases, file shares, source
+        repos, SaaS data stores) and confirm basic replication logging is on (DB replication
+        jobs, bulk export events, large download events).
+      '2': Define what counts as 'unusual' (volume thresholds, off-hours, unfamiliar
+        destination, new account) and route alerts to a monitored queue; document
+        the thresholds and the responder.
+      '3': Tune thresholds against baseline behaviour, correlate replication events
+        with identity and egress signals, drill the response, and review false positives
+        so the alert stays trustworthy.
+    basis: inferred
+  evidence:
+    value: Inventory of in-scope data systems, configuration showing replication/export
+      logging enabled, threshold definitions, alert routing and on-call ownership,
+      sample alerts with disposition, tuning/retrospective notes.
+    basis: inferred
+  common_myth:
+    value: Assuming the database audit log alone satisfies this control because 'all
+      queries are logged.' Query logs show what was read but rarely show bulk export,
+      replication to a secondary, or staged exfiltration by an authorized user; the
+      control is specifically about replication, not read access.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which data stores have replication/transfer monitoring enabled, and which do
+      not?
+    - Show a recent alert where unusual replication was detected and what the responder
+      did.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.544127Z'
+  signed_digest: 67b0b4f5da6f7f935bb86afa97114797e95ae6192e2307abdae1b5b8579ef093
+  interview_seconds: null
+  inherited_from: null

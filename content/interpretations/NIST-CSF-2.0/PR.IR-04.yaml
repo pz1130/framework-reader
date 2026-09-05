@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:PR.IR-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that when business grows or disasters strike, no one backfills resources and
+      capacity—backup sites, standby systems, and communication lines exist only on paper. When an incident
+      actually occurs, it turns out bandwidth is insufficient, the machine room is not prepared, and personnel
+      have been reassigned.
+    basis: inferred
+  plain_zh:
+    value: Ensure that in both normal operations and emergency recovery states, there is sufficient margin
+      for people, equipment, machine rooms, bandwidth, and outsourced services, and that this margin is
+      planned and validated, not improvised on the spot.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical systems have capacity planning documentation; list required resources (machine room,
+        bandwidth, personnel) with basic margin; calculate alternative paths in case of failure.
+      '2': Capacity is linked to business growth plans; regularly track utilization and supplement resources;
+        recovery sites have resource lists and have conducted at least one resource-level exercise.
+      '3': Resource capacity is incorporated into business continuity management; resource switching is
+        simulated by scenario (e.g., bandwidth link failure switches to backup); capital and human resource
+        budgets explicitly support capacity needs; abnormal high loads have auto-scaling capability.
+    basis: inferred
+  evidence:
+    value: Capacity planning and monitoring reports, recovery site resource lists (including machine room,
+      bandwidth, backup equipment), resource-level switching exercise records, business growth forecasts
+      with capacity correspondence analysis, procurement/expansion approval records.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'having a backup machine room' means capacity is adequate—a common mistake is
+      that the backup site exists only on paper, but in reality only the rack is rented without bandwidth,
+      or the backup link bandwidth is only a quarter of the production link, and exercises did not test
+      peak traffic, so real switching will inevitably degrade or fail.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the backup link bandwidth? Compared to the production link, what is the ratio? When was
+      the last full-load switching exercise?
+    - How much has business volume grown in the past year, and by how many times has your capacity margin
+      expanded? Based on which decision record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.592305Z'
+  signed_digest: d390a06b6a58cb55ec5743e2cef260ff0c0c8df9ce15236cc31f108b75cb1ff6
+  interview_seconds: null
+  inherited_from: null

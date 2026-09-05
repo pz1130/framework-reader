@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AU-5.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit-log floods that either bury real signals (attacker
+      generating noise) or get silently dropped when storage fills — the control fails
+      the moment the team discovers during an incident that weeks of relevant events
+      were never recorded.
+    basis: inferred
+  plain_zh:
+    value: Set thresholds on how much audit traffic the system will handle or store,
+      and define what happens when those thresholds are hit, so that logs are never
+      silently lost or truncated without anyone noticing.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical audit sources and set a rough volume/storage threshold
+        on each; configure some form of alarm or notification when the limit is approached.
+      '2': Thresholds are documented per source with defined actions (e.g., rotate,
+        archive, alert, shed); when triggered, a real person is paged and the response
+        is logged.
+      '3': Thresholds are tuned to baseline with margin, reviewed after capacity changes;
+        actions taken on threshold breach are tested, and there is proof that no audit
+        record was silently dropped during the most recent stress event or storage
+        incident.
+    basis: inferred
+  evidence:
+    value: Documented per-source thresholds and the configured response actions, alert/receipt
+      logs from threshold events, capacity/retention tuning records, and post-incident
+      evidence that records were preserved or that drops were detected and reported.
+    basis: inferred
+  common_myth:
+    value: Treating this as a storage-capacity problem solved by buying more disk.
+      The control is about ensuring the audit pipeline never silently loses events
+      and that someone is told when it approaches the limit — buying storage without
+      a defined threshold and a defined action just postpones the same silent failure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time an audit source hit its threshold — what action fired
+      and who responded?
+    - How do you know no audit records were dropped between the threshold firing and
+      the corrective action?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.586618Z'
+  signed_digest: c667002d28b77bc284a64e1d9cd43b815bab2df68e394d5b971b8d7e752d0ca5
+  interview_seconds: null
+  inherited_from: null

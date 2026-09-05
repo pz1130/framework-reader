@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PL-11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the organization from applying a one-size-fits-all security baseline
+      that either over-protects low-value systems (wasting resources and slowing operations)
+      or under-protects critical assets (leaving exploitable gaps). Without tailoring,
+      baselines become bureaucratic checklists that fail to reflect actual mission
+      needs and risk appetite.
+    basis: inferred
+  plain_zh:
+    value: You must adjust the baseline security controls to each system's specific
+      mission, risk posture, and operational context—not just blindly apply a generic
+      catalog. This means documenting what you changed, why, and getting approval
+      for deviations.
+    basis: inferred
+  practice:
+    value:
+      '1': You have a documented process for customizing the baseline per system type,
+        including how to add or remove controls based on a simple risk characterization.
+      '2': Tailoring decisions are recorded per system (e.g., in the system security
+        plan), with justification and sign-off from the authorizing official. You
+        track which baseline version you started from.
+      '3': Tailoring is driven by a formal risk assessment and mission impact analysis.
+        You maintain a system-level mapping that traces each baseline control to its
+        tailoring decision, and you periodically review tailoring against actual threats
+        and mission changes.
+    basis: inferred
+  evidence:
+    value: System security plans with tailoring sections, approved waivers or deviations,
+      risk assessment reports that feed tailoring decisions, and a central register
+      of baseline tailoring actions per system.
+    basis: inferred
+  common_myth:
+    value: The common mistake is assuming that using a commercial cloud provider's
+      default security baseline or a compliance scanner's preset template means you've
+      tailored. Those are starting points, not the tailored baseline itself—you still
+      need to document rationale and get approval for deviations.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the tailoring decision for your most critical system—what controls did
+      you add or remove and why?
+    - Who approved the last tailoring change, and how did that approval get recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.663640Z'
+  signed_digest: dd8b432170ac314d46202a73fcc8eb1ac1ca76b75232d5855fbaa7da530fec54
+  interview_seconds: null
+  inherited_from: null

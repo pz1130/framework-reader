@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure mode where access enforcement decisions use identity
+      (who you are) without also weighing the content's sensitivity or the rules attached
+      to the data—so a low-risk person can read a top-secret file just because their
+      account is in the right group.
+    basis: inferred
+  plain_zh:
+    value: When granting or enforcing access, the system must also look at the security
+      attributes of the information itself (classification, category, handling rules),
+      not only the user's identity or group membership.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems handle data with meaningful security attributes
+        (e.g., classification, compartment, data category, handling caveats); document
+        those attributes and confirm access decisions consider them.
+      '2': Enforce attribute-based or policy-based access on the systems that carry
+        sensitive data; record the policy and show it being applied (e.g., a user
+        without the right attribute is denied).
+      '3': Attribute checks are enforced in the platform layer or by the data protection
+        tool itself (not only by a human reviewer); attribute sources are authoritative
+        and integrity-protected; exceptions are tracked and time-bound.
+    basis: inferred
+  evidence:
+    value: List of systems/data sets with security-relevant attributes, the attribute
+      schema, access control policy showing attribute conditions, sample denials or
+      approvals that prove the attribute was actually checked, and any exception register.
+    basis: inferred
+  common_myth:
+    value: Assuming that because role-based access control is implemented, this control
+      is automatically met. RBAC answers 'who is the user'; AC-3(5) specifically asks
+      whether the system also evaluates 'what this data is and how it must be handled'
+      before granting access.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a system where access depends on a security attribute of the data, and
+      walk me through a request where the attribute—not the user's role—was the deciding
+      factor.
+    - Where is the authoritative source of those data attributes, and how do you prevent
+      someone from re-labeling a file to gain access?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.238227Z'
+  signed_digest: ffc285cbcb8355e862761e8653763c6c1d67e43d4a3f6ea38c3762b8c559fd4d
+  interview_seconds: null
+  inherited_from: null

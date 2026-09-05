@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.8.12
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is data leaving your permitted boundaries in any form—whether through hacker exfiltration,
+      insider copying, employees accidentally sending emails, or physical media being taken out. The core
+      is to 'know where data goes and be able to stop what shouldn't leave,' not just to install monitoring
+      at the exit and call it done.
+    basis: inferred
+  plain_zh:
+    value: You need to establish a mechanism that can detect, prevent, and handle various paths by which
+      data leaves the organization without authorization—including network egress, endpoint devices, physical
+      boundaries, and third-party channels—and this mechanism must be tested.
+    basis: inferred
+  practice:
+    value:
+      '1': Basic protection at network egress (e.g., DLP or firewall rules); data classification exists;
+        you can articulate where sensitive data primarily resides and through which channels it exits.
+      '2': Clear data leakage detection and response procedures exist; DLP policies cover major channels
+        (email, web, USB); regular data leakage tests/drills are conducted with records.
+      '3': Egress and endpoint monitoring are integrated, with automatic blocking of abnormal outbound
+        transmissions; proactive tracking measures such as honeytokens are used; leakage tests are incorporated
+        into routine security assessments, with results driving policy improvements.
+    basis: inferred
+  evidence:
+    value: DLP policy and rule configurations, egress traffic monitoring logs, data classification inventory,
+      leakage alerts and handling records, data leakage drill test reports, honeytoken deployment records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'installing a DLP product and requiring approval for outgoing emails'
+      is sufficient. The most common reason DLP fails is the lack of data classification—without knowing
+      which data is sensitive, rules cannot be written accurately, resulting in either allowing everything
+      or blocking everything. Auditors only need to ask 'What categories of data does your DLP focus on,
+      and what are the rules based on?' to expose the gap.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What data classification rules are your DLP policies configured against? When were the rules last
+      updated?
+    - When was the last leakage drill? What issues were found and what changes were made?
+    - If an insider compresses a confidential file, renames it, and uploads it via cloud storage, would
+      your monitoring detect it?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors often reference NIST frameworks, focusing on network egress technical controls
+      (SC-7.10) and detection capabilities; European auditors in the GDPR context are more concerned about
+      where personal data goes and whether there is cross-border transfer, with questions probing 'How
+      do you prove that personal data has not been transferred without authorization?'—which is broader
+      than purely technical egress monitoring.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.372440Z'
+  signed_digest: 71312cfc0d47ae58c6e9547313b9191852d83d80e6931cbe994faa3e7eccca9c
+  interview_seconds: null
+  inherited_from: null

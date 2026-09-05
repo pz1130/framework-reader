@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against configuration drift and silent tampering going unnoticed
+      until exploitation. Even with a baseline and automated hardening, production
+      systems diverge over time — patches, hot-fixes, manual admin actions, malware
+      all nudge settings off the approved profile, and if nobody notices, the original
+      control investment is wasted.
+    basis: inferred
+  plain_zh:
+    value: Track whether the actual configuration of systems still matches the approved
+      baseline, react when something has been changed without authorization, and record
+      who did it and what was restored.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a documented baseline; periodic manual or basic scripted checks compare
+        running config to baseline; deviations are reported and someone is assigned
+        to fix them.
+      '2': Automated configuration scanning on a defined cadence with alerts to owners;
+        change tickets are cross-checked against scan findings; deviations have a
+        remediation workflow with timelines.
+      '3': Near-real-time continuous monitoring of configuration integrity with automated
+        alerting on unauthorized drift; deviations are correlated with authorized
+        change tickets so only true unauthorized changes escalate; rollback or re-hardening
+        happens automatically or within a defined SLA, and the evidence is retained.
+    basis: inferred
+  evidence:
+    value: Baseline definitions, scan/audit reports showing actual vs. approved configuration,
+      deviation tickets with remediation evidence, change tickets cross-referenced
+      to scan results, and retained logs of unauthorized-change responses.
+    basis: inferred
+  common_myth:
+    value: Assuming that running a hardening scanner once at build time and passing
+      the audit is enough. The control is about ongoing detection and response to
+      drift, not a one-time green scan; without recurring checks and an action loop,
+      settings quietly regress within weeks and the baseline becomes fiction.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a system you monitor: when was the last unauthorized configuration change
+      detected, how was it found, and what was the time from detection to restoration?'
+    - How do you distinguish a deviation caused by an authorized change ticket from
+      one that is truly unauthorized?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.825600Z'
+  signed_digest: 33520166e1159111ea4283295d3ef0bcc88477585ca78525a8399aa91fa28cec
+  interview_seconds: null
+  inherited_from: null

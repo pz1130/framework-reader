@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MA-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents maintenance media (USB drives, optical discs, diagnostic tools,
+      vendor-loaded devices) from being the covert channel that smuggles malware,
+      unlicensed software, or sensitive data into or out of controlled systems during
+      repair windows.
+    basis: inferred
+  plain_zh:
+    value: Before any maintenance media touches a system, inspect it for malicious
+      code, unauthorized software, and signs of tampering; reject anything that fails
+      the check; record what was inspected and by whom.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintenance technicians visually check media and run an up-to-date antivirus
+        scan before connecting it to a target system; obvious unauthorized tools are
+        refused.
+      '2': 'Inspection is a documented step in the maintenance procedure: media is
+        scanned in an isolated test environment, the scan result and technician ID
+        are logged, and the media source (vendor, technician, image library) is recorded.'
+      '3': Media comes only from an approved, signed image library; each piece is
+        hashed before and after use to detect alteration; the isolated scan environment
+        itself is regularly validated; inspection logs are reviewed; media that touched
+        a system is re-inspected before reuse on another.
+    basis: inferred
+  evidence:
+    value: Maintenance procedure documents specifying media inspection, scan logs
+      tied to maintenance tickets, approved media library with hashes, technician
+      sign-off on each inspection event, and records showing what happened to media
+      that failed inspection.
+    basis: inferred
+  common_myth:
+    value: Assuming a 'clean' USB stick from a trusted vendor laptop is safe because
+      the vendor is trusted — vendor laptops and field kits are routinely reused across
+      customers and are a common vector; trust the source process, not the logo on
+      the device.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last three maintenance events where media was used and the record of
+      what was scanned and what was found.
+    - Where is the isolated environment that media is scanned in, and how do you know
+      the scanner itself hasn't been tampered with?
+    - What do you actually do when inspection finds something — who is told, and is
+      the media quarantined?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.385848Z'
+  signed_digest: 1c5a25fb6649f5f1e65cd5c74cb51a8b2cc4c861a0aa51a7b370a708fcc5e64e
+  interview_seconds: null
+  inherited_from: null

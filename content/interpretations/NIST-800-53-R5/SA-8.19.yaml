@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-8.19
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against the failure mode where security protections are designed
+      for the moment of deployment but then rot as the system, its components, and
+      its threat landscape evolve—leaving components that were secure at release exposed
+      once an upstream library shifts, a configuration drifts, or a new attack surface
+      is added.
+    basis: inferred
+  plain_zh:
+    value: Build and operate the system so that its security protections are maintained
+      as an ongoing property across the full lifecycle—not bolted on at release and
+      then assumed to stay intact. Mechanisms, configurations, and components must
+      be continually assessed, updated, and re-validated as the system and its environment
+      change.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the protections (e.g., crypto modules, integrity checks, secure
+        boot, sandboxing) that are critical to the system's security posture and document
+        them in design artifacts.
+      '2': 'Embed those protections into the SDLC and operations: design reviews check
+        they exist, change management requires re-evaluation when components are swapped
+        or upgraded, and operations has a schedule to re-test them.'
+      '3': 'Treat protections as continuously verifiable assets: automated tests in
+        the pipeline re-confirm them on every build, runtime telemetry detects drift
+        or tampering, and exceptions trigger a documented re-design rather than a
+        one-off patch.'
+    basis: inferred
+  evidence:
+    value: Design records listing which protections are intended to be continuous,
+      change records showing re-evaluation when components or configurations changed,
+      pipeline or operational test results demonstrating the protections are re-checked
+      over time, and incident/exception handling showing how a degraded protection
+      was addressed.
+    basis: inferred
+  common_myth:
+    value: Assuming that documenting a security mechanism once in the design (e.g.,
+      'we use TLS' or 'code is signed') satisfies continuous protection. The protection
+      is only continuous if there is a defined owner and a recurring trigger that
+      re-verifies it after every relevant change to the system or its components.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one protection you claim is continuous and show me the last three times
+      it was re-verified, including once after a component change.
+    - When a dependency or underlying component was upgraded, what step in your change
+      process required the affected protection to be re-assessed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.248844Z'
+  signed_digest: 0e6845a3819c4502ce1392c7184283d689f332470fabf6e6371b78482fda4c17
+  interview_seconds: null
+  inherited_from: null

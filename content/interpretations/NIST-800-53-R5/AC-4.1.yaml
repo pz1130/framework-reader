@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against information flows that bypass or undermine the classification
+      scheme - a user with read access to Confidential who can copy it into an Unclassified
+      region, or who can aggregate fields from multiple sources into a single output
+      that the source objects never authorized. Without attribute binding to the flow
+      itself, confidentiality and integrity decisions are made only at rest and quietly
+      lost when objects move between domains, services, or trust boundaries.
+    basis: inferred
+  plain_zh:
+    value: When information moves between systems, components, or trust zones, carry
+      its security and privacy attributes along with the content - and make sure downstream
+      recipients, caches, and transformations still honor those attributes instead
+      of re-deciding access on their own.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the cross-boundary flows (zone-to-zone, B2B, data export to partners)
+        where objects change hands; document which attributes (classification, owner,
+        consent, lawful basis) must travel with the payload.
+      '2': Tag or label payloads and messages with the source object's attributes
+        at export; enforce policy at the boundary (DLP, API gateway, ETL, message
+        broker) so the attributes - not just the receiver's role - drive the decision.
+      '3': Bind attributes cryptographically or via signed metadata to the payload;
+        ensure downstream services, caches, and analytics pipelines re-validate attributes
+        rather than trusting the destination context; test that aggregation, transformation,
+        and de-identification pipelines cannot produce output that loses or contradicts
+        the source labels.
+    basis: inferred
+  evidence:
+    value: Inventory of cross-boundary information flows, attribute-tagging policy
+      and samples of tagged payloads, boundary enforcement rules (DLP/gateway/broker
+      configs), and test or audit evidence that downstream consumers re-validate attributes
+      rather than rely solely on destination-side controls.
+    basis: inferred
+  common_myth:
+    value: Treating AC-4 as a labeling exercise - 'we tag documents at rest, so AC-4
+      is done.' Tags that live only on the source object die at the first export,
+      copy, or API call. The control is about the flow, not the file.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a payload that crossed a trust boundary last month and tell me which
+      attributes traveled with it and which policy checked them on arrival.
+    - If a downstream service re-classifies or aggregates fields from this object,
+      how is it prevented from producing output that violates the source object's
+      attributes?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.254163Z'
+  signed_digest: 40eeffde459780441c16f46bdcbf657952006151013cef3131d3ae24014f8d78
+  interview_seconds: null
+  inherited_from: null

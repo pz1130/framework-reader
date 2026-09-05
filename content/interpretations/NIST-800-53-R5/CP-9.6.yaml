@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:CP-9.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a 'backup' turns out to share a
+      single point of failure with the system it is supposed to back up — same site,
+      same power, same network, same storage array, same ransomware blast radius —
+      so when the primary goes down, the backup goes with it.
+    basis: inferred
+  plain_zh:
+    value: Keep at least one independent copy of the system and its backup data far
+      enough away that a single site, power, network, or platform failure cannot take
+      both down at once.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems need a redundant secondary; pick a second location
+        or platform that does not share site, power, network path, or hypervisor with
+        the primary.
+      '2': Document the distance, independence, and recovery method for each secondary;
+        test restore from the secondary on a schedule and keep the records.
+      '3': 'Treat the secondary as a fully exercised failover path: automated failover
+        where feasible, regular cutover drills, monitoring of the secondary itself,
+        and re-evaluation whenever the primary stack or hosting site changes.'
+    basis: inferred
+  evidence:
+    value: Documented secondary-site/secondary-platform inventory with the separation
+      characteristics (location, power, network, storage, hypervisor) called out,
+      plus scheduled restore-from-secondary test records showing the secondary actually
+      stood up.
+    basis: inferred
+  common_myth:
+    value: Assuming two VMs on the same hypervisor, or two copies in the same data
+      center on the same SAN, count as 'redundant secondary.' They share the failure
+      surface; a host outage, SAN compromise, or ransomware event takes both.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me a system on the list: where is its secondary, and what does it not
+      share with the primary?'
+    - When did you last actually restore from the secondary, and what did the run
+      sheet show?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.043423Z'
+  signed_digest: fd341209b5b48d9beb46960aedded9892887636c55f42c7c3cae806bce3ce9c3
+  interview_seconds: null
+  inherited_from: null

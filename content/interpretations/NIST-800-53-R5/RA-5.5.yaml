@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:RA-5.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops privileged accounts (domain admins, root, service accounts with elevated
+      rights) from being scanned or assessed the same way as ordinary user accounts,
+      so a single misconfigured or compromised high-privilege credential turns into
+      total system compromise while everyone assumes it was 'covered by vulnerability
+      scans'.
+    basis: inferred
+  plain_zh:
+    value: Make sure privileged accounts and their access paths are included in vulnerability
+      monitoring as their own category — not lumped in with normal user scans — and
+      the results are acted on with priority.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which credentials and accounts are privileged; include them in
+        vulnerability scanning scope rather than excluding them for fear of disruption.
+      '2': Track vulnerabilities on privileged assets separately, with shorter remediation
+        SLAs than normal scan findings; log privileged-account scan activity.
+      '3': Continuous or near-real-time assessment of privileged endpoints and identity
+        infrastructure, automated priority routing of findings to the team owning
+        privileged access, and evidence that privileged-tier findings are closed faster
+        than ordinary-tier ones.
+    basis: inferred
+  evidence:
+    value: Inventory of privileged accounts and assets, scan configuration showing
+      privileged scope, separate privileged-tier finding tracker, remediation tickets
+      with shorter due dates, and reports comparing privileged vs. standard SLA performance.
+    basis: inferred
+  common_myth:
+    value: Assuming privileged systems are 'already covered' by the regular enterprise
+      scan, or worse, excluding them from scanning because they are sensitive — so
+      when an admin workstation or domain controller drifts out of patch cycle, no
+      one notices until it is exploited.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which privileged accounts and systems are in scope for vulnerability scanning,
+      and which (if any) are excluded?
+    - Show the last three critical findings on a privileged-tier asset and how long
+      each took to remediate.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.968894Z'
+  signed_digest: fad1e425cf7dfb5d0f25685e336ac930408c5f5448eda183574adf4db298c480
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:GV.OC-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that only operations staff know about the business-critical systems, while management
+      and collaborators are unaware—if it cannot be clearly stated which systems critical business operations
+      depend on, who provides them, and what happens if they fail, then risk treatment and resource allocation
+      are based on guesswork.
+    basis: inferred
+  plain_zh:
+    value: Identify the business outputs, supporting capabilities, and underlying dependent services (including
+      internal systems and external suppliers) that the company cannot operate without, make them known
+      to those who need to know, and be able to articulate them clearly.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the core systems and services supporting critical business operations, and assign
+        an owner to each service.
+      '2': The critical dependency list has a periodic update mechanism; re-identification is triggered
+        after each significant system change or supplier change; there are records of communication to
+        management and relevant teams.
+      '3': Business impact analysis is linked with the dependency list; new system projects or procurements
+        require mandatory assessment of impact on critical dependencies; changes to critical dependencies
+        automatically notify relevant decision-makers.
+    basis: inferred
+  evidence:
+    value: Critical business dependency list, business impact analysis reports, system architecture diagrams,
+      dependency change records, meeting minutes or notification emails reporting to management.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'drawing a system topology diagram' counts. Topology diagrams only show networks
+      and devices, and do not clarify 'if this system fails, which business line stops and how much is
+      lost per day'—a true dependency list must connect to business outputs, not just an IT view.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For your most profitable business line, what systems and suppliers does it depend on end-to-end?
+      Where is the list?
+    - When the last critical supplier issue occurred, how quickly did management know the scope of impact?
+      Based on what information did they judge?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.463374Z'
+  signed_digest: ea133acaaddf5e1287fe33ce007928f58267be92d44ce3d6441875a0ce086611
+  interview_seconds: null
+  inherited_from: null

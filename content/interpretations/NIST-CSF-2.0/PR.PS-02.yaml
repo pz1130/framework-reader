@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:PR.PS-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: Prevent the 'install and forget' approach to software—unpatched, outdated, and unmaintained
+      software can leave known vulnerabilities exposed in the attack surface for a long time, only to
+      be addressed after exploitation.
+    basis: inferred
+  plain_zh:
+    value: 'Manage software lifecycle: decide what to install, retain, or remove based on risk—continuously
+      patch what needs maintenance, replace what needs upgrading, and completely remove what should be
+      retired, with records kept throughout.'
+    basis: inferred
+  practice:
+    value:
+      '1': Have a software asset inventory; operating systems and applications receive security patches
+        regularly; know which software is no longer maintained.
+      '2': Set patch priority and timelines based on asset risk levels; have a fast-track process for
+        high-risk patches; have a planned retirement and removal process for unused software.
+      '3': Patch status can be automatically verified; patch deployment has automated validation; automatically
+        collect software versions and decide to retain or replace based on risk, with retirement actions
+        trackable.
+    basis: inferred
+  evidence:
+    value: Software asset ledger and version records, patch management records or automated reports, software
+      retirement/replacement approval forms, patch verification results or proof of no vulnerabilities
+      (e.g., scan reports).
+    basis: inferred
+  common_myth:
+    value: Thinking that 'installing a patch management tool' meets the requirement, but having automatic
+      updates enabled in the tool does not mean all environments are covered. Software not in the inventory,
+      unauthorized self-installed software, and old systems no longer maintained will still be missed,
+      and an audit spot-check will reveal the gaps.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which software is not covered by automatic patching? Is it identified in the inventory?
+    - For the last known software that is no longer maintained, do you continue to use it or have a retirement
+      plan? What is the basis?
+    - When patch deployment or verification fails, who follows up, and how long before it escalates?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.596522Z'
+  signed_digest: eb30639376e5ae8c69c17470052c2893cbb8fbc44e4d9e50298a4799c9bae7fe
+  interview_seconds: null
+  inherited_from: null

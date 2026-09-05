@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IR-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident response decisions being made without the information
+      and cooperation of suppliers, developers, distributors, and other supply-chain
+      participants. Without coordination, indicators may be missed, affected products
+      may remain in use, malicious changes may spread, and restoration decisions may
+      be delayed or inconsistent.
+    basis: inferred
+  plain_zh:
+    value: Define how the organization will obtain and share incident information
+      with relevant supply-chain participants, and use those relationships to identify
+      affected components, limit damage, and support recovery.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the suppliers and other supply-chain participants needed during
+        an incident, record current contact information, and establish a basic escalation
+        channel.
+      '2': Document incident coordination procedures that specify what information
+        is requested, who communicates with each participant, how sensitive information
+        is protected, and how supplier actions are integrated into incident handling.
+      '3': Maintain tested coordination arrangements with relevant participants, conduct
+        joint exercises or simulations, link supplier intelligence to incident detection
+        and vulnerability response, and review the arrangements after exercises, incidents,
+        or material supply-chain changes.
+    basis: inferred
+  evidence:
+    value: Supply-chain incident response plan, supplier and partner contact directory,
+      communication and escalation procedures, information-sharing rules, incident
+      exercise records, after-action reports, and evidence that supplier coordination
+      affected detection, containment, eradication, or recovery.
+    basis: inferred
+  common_myth:
+    value: Assuming a supplier contact in a contract or vendor-management system means
+      incident coordination is operational; the missing step is a tested procedure
+      for exchanging timely, usable incident information with the right participant.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which supply-chain participants are contacted for each major incident scenario,
+      and where are the current escalation contacts documented?
+    - Show the last exercise or real incident where a supplier or developer contributed
+      to detection, containment, or recovery.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.349016Z'
+  signed_digest: 3d213e588e2c36402db234e5ddc4a639af9062cfabe1f2f8328c06476024c523
+  interview_seconds: null
+  inherited_from: null

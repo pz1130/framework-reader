@@ -1,0 +1,60 @@
+control_id: NIST-800-53-R5:CA-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that an in-house security program is sound
+      because the team that runs it also signed off on it. Without an independent
+      set of eyes, blind spots in monitoring scope, control design, and operating
+      effectiveness go unchallenged until a real incident proves they were never there.
+    basis: inferred
+  plain_zh:
+    value: Have someone who is not responsible for running the continuous monitoring
+      program take a separate look at it, so that the program itself is examined —
+      not just the systems it watches.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate an assessor (internal group that does not own the ISCM program,
+        or an external party) and document the scope of what they will look at.
+      '2': Run the independent assessment on a defined cadence against the organization’s
+        ISCM strategy, covering depth, coverage, and analytic quality; produce a written
+        report with findings.
+      '3': Track findings to closure with management response and remediation evidence;
+        rotate or refresh assessors so the same party is not perpetually grading its
+        own work.
+    basis: inferred
+  evidence:
+    value: Independent assessment charter or SOW, the assessment report itself, management
+      responses to findings, and proof that remediation items were closed.
+    basis: inferred
+  common_myth:
+    value: Treating the assessor’s signed report as the deliverable and shelving the
+      findings. The control is met only if the assessment actually feeds back into
+      changes — a thick binder of recommendations that nobody acts on is the textbook
+      failure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who performed the last independent assessment, and what is their relationship
+      to the team running continuous monitoring?
+    - Show me the findings from that assessment and what was done about each one.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.694719Z'
+  signed_digest: b4984082a6bee504130da23b5e987daef060e7994498e2bebf5b7bff5000fa2d
+  interview_seconds: null
+  inherited_from: null

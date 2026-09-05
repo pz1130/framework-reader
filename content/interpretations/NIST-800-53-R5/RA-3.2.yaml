@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:RA-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against threat assessments built from a single feed or single vendor's
+      view - if your picture of the adversary comes from one source, blind spots in
+      that source become blind spots in your risk register, and attackers route around
+      the gaps.
+    basis: inferred
+  plain_zh:
+    value: Pull threat intel from multiple independent sources (open, commercial,
+      government, internal telemetry, sector ISACs), fuse it, and feed the combined
+      view into your risk assessment so it reflects what adversaries actually do,
+      not what one feed happens to report.
+    basis: inferred
+  practice:
+    value:
+      '1': Subscribe to at least two independent intel feeds relevant to your sector;
+        designate someone who reads them and flags items for the risk team.
+      '2': Document which sources you consume (open, commercial, government, internal,
+        peer sharing); define a lightweight fusion step that combines sources before
+        they enter the risk assessment; record what changed in the assessment as a
+        result.
+      '3': Maintain a source inventory with coverage gaps mapped to your critical
+        assets; refresh on a defined cadence; show traceability from a threat-actor
+        tactic to a control change or risk-register entry; measure whether intel actually
+        shifted decisions, not just whether feeds were read.
+    basis: inferred
+  evidence:
+    value: Intel source inventory, fusion/analysis notes showing how multiple sources
+      were combined, risk assessment revisions citing the intel that drove them, and
+      records of decisions changed by the fused picture.
+    basis: inferred
+  common_myth:
+    value: Treating a paid threat-intel platform subscription as proof of 'all-source'
+      - one vendor, even a good one, is still one perspective and does not constitute
+      multi-source intelligence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which intel sources fed into the last risk assessment revision, and how were
+      conflicting reports between sources resolved?
+    - Show me one decision - a control change, a risk acceptance, a hunt mission -
+      that was driven by intel from more than one source.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.938840Z'
+  signed_digest: 1d5bc13cd39dd9365344b1b4983afcf6f936033e8d4ca8a124210aadffd1816c
+  interview_seconds: null
+  inherited_from: null

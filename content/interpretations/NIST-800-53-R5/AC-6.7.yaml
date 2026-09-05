@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:AC-6.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Privilege creep silently grants former-role access to current users, expanding
+      blast radius for mistakes and insider misuse; without periodic review, dormant
+      admin rights turn into a permanent backdoor that nobody is responsible for.
+    basis: inferred
+  plain_zh:
+    value: Periodically look at who holds elevated or special privileges, confirm
+      each one is still justified by current role, and remove what is not.
+    basis: inferred
+  practice:
+    value:
+      '1': A list exists of accounts with elevated or sensitive privileges; reviews
+        happen at least annually; leavers and role-changers are flagged for recheck.
+      '2': Reviews are risk-based in frequency and scope, with documented approvals
+        per account; reviewers are independent of the system owner; changes are tracked
+        to completion.
+      '3': Reviews use system-generated entitlement data (not self-attestation); exceptions
+        have an expiry; standing privilege is minimized via just-in-time elevation;
+        reviewers must explain any retained access they sign off on.
+    basis: inferred
+  evidence:
+    value: Risk-tiered review schedule, entitlement reports pulled from systems, reviewer
+      sign-offs per account, change tickets closing out removals, and trend notes
+      on what was found and revoked.
+    basis: inferred
+  common_myth:
+    value: Treating the annual attestation as proof of least privilege - reviewers
+      typically tick every box because the entitlement list is too long to examine,
+      and the 'review' ends up rubber-stamping existing access.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last review of an account with the broadest privileges: who reviewed
+      it, what evidence did they look at, and what was removed?'
+    - What entitlement data did reviewers actually see, and how many removals came
+      out of the last cycle?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.402178Z'
+  signed_digest: 336be5622a5657c6fb1fe6767ab5bc9d3082f3edc20baf126dbcad3b95d83a48
+  interview_seconds: null
+  inherited_from: null

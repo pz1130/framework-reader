@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:DE.AE-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'only watching single-point alerts and each monitoring screen separately'
+      — attackers rarely trigger just one signal; real intrusions often hide in the intersection of multi-source
+      data. Without correlation analysis, security incidents are not taken seriously until business has
+      already been impacted.
+    basis: inferred
+  plain_zh:
+    value: Correlate information from different sources, such as network devices, host logs, threat intelligence,
+      application logs, and personnel behavior, to identify attack indicators that would not be visible
+      by looking at any single signal alone, and ensure that the analysis results can support subsequent
+      response actions.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a centralized log platform that can ingest logs from key devices, and security personnel
+        manually review logs to find correlations after an event occurs.
+      '2': There is a fixed set of correlation rules (e.g., login failures + privileged command execution
+        + abnormal outbound connections) that can detect known attack patterns; correlation results generate
+        alerts with dedicated personnel following up.
+      '3': Correlation analysis covers attack chain stages, integrating threat intelligence and asset
+        context; new attack patterns are addressed through regular rule updates and retrospective detection;
+        correlation results directly drive incident escalation and response processes.
+    basis: inferred
+  evidence:
+    value: Unified log management platform and ingestion list, correlation rule list and periodic update
+      records, alert event analysis records, incident tickets for events triggered by correlation rules,
+      and periodic reports showcasing events discovered through multi-source correlation.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'once the SIEM is deployed and logs are ingested, correlation analysis
+      is achieved.' Most SIEMs simply pile logs into the same search box; rules are not built, hits are
+      not reviewed, and intelligence is not integrated — that is not 'correlation,' it is 'archiving.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - What was the most recent attack or suspicious behavior discovered through correlation analysis that
+      was not detected by single-point alerts?
+    - What correlation rules do you have? What security event or intelligence drove the last update to
+      these rules?
+    - How is threat intelligence integrated into correlation analysis — manual lookup or system integration?
+    - Do you know the average time from when a correlation alert fires to when someone handles it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.435524Z'
+  signed_digest: 75b9035bbf175304f9ea8b648bb68c063ed3fcd1a700e557b7256eb2602a61b7
+  interview_seconds: null
+  inherited_from: null

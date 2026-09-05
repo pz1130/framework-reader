@@ -1,0 +1,57 @@
+control_id: ISO-27002-2022:A.5.33
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about records that exist but cannot be trusted—logs and backups lack tamper
+      protection, access control, and off-site protection. After an incident, auditors cannot trace the
+      complete chain, or attackers can directly delete logs to erase evidence.
+    basis: inferred
+  plain_zh:
+    value: Treat security records (logs, backups, configuration snapshots, etc.) as assets requiring protection,
+      ensuring they can only be read and written by authorized personnel, cannot be deleted or modified,
+      and have confidentiality and integrity protection during transmission and storage.
+    basis: inferred
+  practice:
+    value:
+      '1': Logs and backups are stored centrally; only operations and audit personnel have access; regular
+        backup restoration tests are performed.
+      '2': Logs and backups have access control lists (ACLs) and audit logs; transmission uses encrypted
+        channels; backups have multiple copies with at least one stored off-site or offline.
+      '3': Log writes use tamper-proof storage (e.g., WORM or append-only); backups use encrypted storage
+        with periodic checksum verification; automatic alerts are set for log deletion and backup tampering.
+    basis: inferred
+  evidence:
+    value: Screenshots of log storage and backup configurations, access control policy documents, backup
+      restoration test reports, configuration evidence of encrypted transmission and at-rest encryption,
+      audit logs or alert records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'logs are saved' is sufficient—but if logs are only stored on the
+      same server and an attacker with access can clear them, it is as if they were never recorded. Saving
+      is not protection; separate access control is required, and ideally tamper-proofing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If the server hosting logs is compromised, can an attacker directly delete the logs?
+    - When was the last backup restoration drill? Were the restored data complete and usable?
+    - What encryption protocol is used for log and backup transmission? Is at-rest storage encrypted?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.302065Z'
+  signed_digest: c3b095bef925b90c565f92622956f7c9ae566bc24ccce36b20d177e8bc159d18
+  interview_seconds: null
+  inherited_from: null

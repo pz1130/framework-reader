@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-18.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent end users from altering wireless client settings in ways that bypass
+      the organization's chosen security posture - e.g., turning off encryption, joining
+      unauthorized SSIDs, or connecting ad-hoc - which silently opens a path into
+      the managed network.
+    basis: inferred
+  plain_zh:
+    value: Lock down the wireless network settings on managed devices so users cannot
+      disable encryption, connect to rogue or unauthorized networks, or change other
+      security-relevant parameters without going through IT.
+    basis: inferred
+  practice:
+    value:
+      '1': Managed laptops and mobile devices are configured so users cannot modify
+        Wi-Fi adapter settings, add ad-hoc networks, or disable the corporate VPN/profile;
+        basic MDM or group policy enforces this.
+      '2': Configuration is documented per device class; changes require admin credentials;
+        non-compliant configurations are detected and remediated; logs of setting
+        changes are retained.
+      '3': Tamper attempts (e.g., user tries to add a profile, switch SSID, or disable
+        802.1X) generate alerts tied to ticketing; configuration baselines are reviewed
+        against current wireless threat landscape; bring-your-own and contractor devices
+        are covered by the same restrictions when accessing the network.
+    basis: inferred
+  evidence:
+    value: Configuration baselines for wireless clients, MDM/GPO screenshots or exports
+      showing locked settings, change logs, alert examples from tamper attempts, and
+      remediation records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the corporate SSID uses WPA2/3 and 802.1X, users
+      cannot undermine it - in fact, a user with local admin or a personal device
+      can disable the supplicant, join a rogue AP, or create an ad-hoc network that
+      bridges back into the LAN, bypassing every access-point-side control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a managed laptop - what happens if I try to add a personal Wi-Fi profile
+      or connect to an open SSID?
+    - Where is the policy that says users cannot modify wireless settings, and how
+      do you detect when someone tries?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.090267Z'
+  signed_digest: 8984cd36ed307d0bc5795ec3364fe717fbb878ab66f2b03fe6f240010af0a5f7
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.8.10
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'data deleted but not truly erased'—when hard drives are scrapped, devices
+      are returned for repair, or cloud storage is released, old data can still be recovered, leading
+      to leakage of customer data, source code, or financial information at the physical or virtual level.
+    basis: inferred
+  plain_zh:
+    value: For all media that have stored data—hard drives, SSDs, mobile phones, tapes, cloud storage—before
+      retirement, repair, transfer, or cross-security-domain movement, use irreversible methods to destroy
+      the data and leave proof.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an equipment retirement list; before retirement, full-disk erasure or physical destruction
+        is used; there is a destruction registration form but with relatively simple content.
+      '2': Erasure standards are defined by media type (e.g., cloud storage release, hard drive degaussing,
+        SSD secure erase); erasure is performed before repair and transfer to third parties; records are
+        kept for a certain number of years.
+      '3': Erasure methods match media type and are verifiable (e.g., encryption-then-erasure, double
+        erasure); release processes for cloud storage and virtual disks are automated; there are isolation
+        and remediation processes for erasure failures.
+    basis: inferred
+  evidence:
+    value: Media retirement and recycling logs, erasure tool logs or reports (including serial numbers
+      and timestamps), physical destruction photos or third-party destruction certificates, approval forms
+      for repair of devices containing data, cloud storage release confirmations.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'emptying the recycle bin' or 'deleting files' counts as erasure. Ordinary deletion
+      only marks space as overwritable; the data is still on the disk. Only irreversible overwriting of
+      the storage media, encryption-then-erasure, or physical destruction truly completes the process.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What process does this hard drive follow for retirement? Where is the output log of the erasure
+      command?
+    - Do the machines returned for repair contain customer data? Who approved the removal, and how is
+      it confirmed that they have been erased before removal?
+    - After data deletion in cloud storage, how is the underlying storage space released? Are there residual
+      snapshots?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.368378Z'
+  signed_digest: 67f4e02a9ba41b05e59d57e906553df34c7d4efed7b5b15f7477e46cfc923399
+  interview_seconds: null
+  inherited_from: null

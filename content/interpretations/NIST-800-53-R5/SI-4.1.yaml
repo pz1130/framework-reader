@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the blind spot where perimeter or host-only sensors miss
+      lateral movement, east-west traffic, encrypted flows, and the gaps between what
+      individual tools can see — a partial monitoring picture lets an attacker operate
+      inside the defended estate for months without triggering a single alert.
+    basis: inferred
+  plain_zh:
+    value: Deploy intrusion detection capability broadly enough that an attacker cannot
+      move through the environment unobserved — covering the full system and network,
+      not just the edge or a few critical hosts.
+    basis: inferred
+  practice:
+    value:
+      '1': IDS sensors exist at the network perimeter and on critical hosts; signature
+        updates are scheduled; an analyst is named to respond to alerts.
+      '2': Coverage map shows which network segments, host classes, and traffic types
+        are monitored; logs feed a central store; tuning changes are documented; gaps
+        in coverage are acknowledged in writing.
+      '3': Coverage is continuously measured against the asset inventory; encrypted-traffic
+        inspection or compensating analytics are in place; gaps trigger remediation
+        tickets; effectiveness is tested with adversary emulation and adjusted from
+        results.
+    basis: inferred
+  evidence:
+    value: Architecture diagram with sensor placement, coverage map tied to asset
+      inventory, change records for tuning and signatures, alert handling logs, gap
+      analyses, and results from adversary emulation or red-team tests showing whether
+      detection fired.
+    basis: inferred
+  common_myth:
+    value: Assuming that having IDS at the perimeter and on a few servers counts as
+      'system-wide' — east-west traffic between internal zones, cloud workloads, and
+      OT segments often have no sensors at all, so the control is technically in place
+      but not actually defending the system.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which network segments, host classes, or cloud workloads are not covered by
+      IDS, and why?
+    - Show me the last adversary emulation run and whether each technique was detected.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.976899Z'
+  signed_digest: 29888458ac9f3ad786f587ea6e5b101b1404613220c898b3ab429d9c1057f07b
+  interview_seconds: null
+  inherited_from: null

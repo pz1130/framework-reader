@@ -1,0 +1,71 @@
+control_id: NIST-CSF-2.0:ID.RA-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: This control guards against the risk register containing only single-point facts like 'has
+      vulnerabilities' without linking vulnerabilities to specific threats, the business impact of exploitation,
+      and the likelihood of occurrence—thus making vulnerability scan results a useless piece of paper
+      that no one dares to sign off on, leaving decision-makers to prioritize based on gut feeling.
+    basis: inferred
+  plain_zh:
+    value: 'For each known weakness (vulnerability), specify: what threat could exploit it, how much business
+      impact would result if successfully exploited, and how likely this occurrence is; document these
+      three answers in writing as the basis for risk treatment.'
+    basis: inferred
+  practice:
+    value:
+      '1': Records exist of vulnerability scan and penetration test results; confirmed vulnerabilities
+        have preliminary impact and likelihood assessments, even if only classified as high/medium/low.
+      '2': The assessment process follows a defined methodology, with inputs including asset value, existing
+        controls, and real threat intelligence; each assessment (source, date, method, participant) is
+        traceable; material vulnerabilities have documented opinions on impact and likelihood.
+      '3': Assessment results directly drive risk treatment and budget allocation, forming a risk scenario
+        library of 'threat-vulnerability-impact' triples; assessments within the system are automatically
+        triggered for re-assessment upon asset changes or threat intelligence updates, not remaining as
+        static archives.
+    basis: inferred
+  evidence:
+    value: Risk assessment reports covering threat-vulnerability-impact/likelihood fields; assessment
+      work orders or decision records assigning tasks to specific vulnerabilities; definition documents
+      for assessment methodology or rating criteria; traceable records of scan and assessment dates; a
+      mapping matrix between assessment results and risk treatment decisions.
+    basis: inferred
+  common_myth:
+    value: 'Assuming that a scanner outputting a list of ''high/medium/low risk'' satisfies this control—that
+      is a vulnerability remediation list, not a risk assessment. The real difference lies in whether
+      behind each high-risk vulnerability there are written answers to the three questions: ''who might
+      exploit it, what is the worst-case impact if breached, and how likely is it''; it is precisely these
+      three answers that determine whether you can skip fixing low-risk items and concentrate resources
+      on high-risk ones.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Bring the original scan report for this high-risk vulnerability—who assessed the likelihood and
+      impact? Using what method? Was it signed off?
+    - If the impact of a vulnerability is 'customer data breach,' which threat intelligence source supports
+      the likelihood parameter? Or was it determined arbitrarily?
+    - How long after the vulnerability scan was the impact/likelihood assessment completed? Is there an
+      SLA?
+    basis: inferred
+  regional_note:
+    value: European auditors in the GDPR context are more concerned about whether the likelihood assessment
+      includes a quantitative or modeling pattern for personal data breaches, while in the U.S. FedRAMP
+      context, it is more common to trace back to the formal documentation chain of RA-3. Both require
+      documentation, but European inquiries lean more toward the data sources for likelihood assessment.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.546574Z'
+  signed_digest: 1aca5218cb6f22dc22feb59f03b57313bc484c0b5b417c167d859805ca6827d5
+  interview_seconds: null
+  inherited_from: null

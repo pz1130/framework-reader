@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.8.4
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that source code, build artifacts, and repository credentials might be treated
+      as ordinary files and shared casually—once the company's most valuable code assets fall into the
+      hands of people without business necessity, the leakage path becomes uncontrollable, and if those
+      who modify code are not controlled, it is equivalent to leaving a door open for backdoors.
+    basis: inferred
+  plain_zh:
+    value: Only approved roles with a genuine work need can access source code and build systems; access
+      must be enforced according to policy, changes must be restricted, and those who can access repositories,
+      trigger builds, or merge branches must be identifiable.
+    basis: inferred
+  practice:
+    value:
+      '1': Source repositories grant access permissions based on roles; new employees receive only least
+        privilege; there is a process for revoking permissions upon departure or role change; an accessible
+        list of authorized personnel exists.
+      '2': Permissions for source code and build systems are divided by role and reviewed periodically;
+        code changes follow an approval and merge process; administrator accounts are separate; high-privilege
+        operations are logged for traceability.
+      '3': Source code and build system permissions are integrated with identity management; changes are
+        automatically approved and logged; access to build artifacts and secret stores (keys, tokens,
+        etc.) is separately controlled; abnormal access (e.g., pulling full code outside working hours)
+        triggers alerts and blocking.
+    basis: inferred
+  evidence:
+    value: Permission matrix or role definition documents, access control lists for source repositories
+      and build systems, permission review records, code merge approval records, audit logs of high-privilege
+      operations, and separate access authorization records for keys and tokens.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'code repositories have private permissions and are not publicly
+      accessible' is sufficient—but common issues include all team members having read or write access
+      to all repositories, shared administrator accounts, permission revocation after departure relying
+      on verbal reminders, and an inability to provide permission lists and mappings during audits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last full review of the access permission list for your source repositories? Who approved
+      the changes?
+    - Which accounts can trigger production builds or merge to the main branch? What positions do these
+      correspond to?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.422085Z'
+  signed_digest: 7897863783859ebb7d47b7aef4a7c0becb023271c8d81c30fe727835b96bf61b
+  interview_seconds: null
+  inherited_from: null

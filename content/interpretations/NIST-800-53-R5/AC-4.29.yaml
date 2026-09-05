@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-4.29
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops inconsistent or silently modified filter sets from becoming the actual
+      perimeter — without a governed orchestration layer, individual enforcement points
+      (firewalls, proxies, gateways) drift apart, last-touch edits go untracked, and
+      a deny rule on one box is meaningless if another box still allows the same flow.
+    basis: inferred
+  plain_zh:
+    value: Use an orchestration engine as the single source of truth for what is and
+      isn't allowed, and push those rules consistently to every enforcement point
+      so that deployed filter sets cannot be quietly modified on individual devices.
+    basis: inferred
+  practice:
+    value:
+      '1': One named orchestration engine or controller exists; engineers know not
+        to edit filter rules directly on individual enforcement points.
+      '2': Filter sets are authored in the engine, reviewed before push, versioned,
+        and every enforcement point pulls from this authoritative source; local edits
+        are blocked or auto-reverted.
+      '3': Drift between intended (engine) and deployed (device) filter sets is detected
+        continuously; deviations trigger alerts and are remediated back to the authoritative
+        set; changes are auditable end-to-end with approver identity and rationale.
+    basis: inferred
+  evidence:
+    value: Named orchestration engine, authoritative filter-set repository with version
+      history, push/deployment logs, drift-detection reports comparing engine state
+      to device state, change tickets with approver and reason, evidence that direct
+      device edits are prevented or detected.
+    basis: inferred
+  common_myth:
+    value: Treating orchestration as having "one management console that pushes policies"
+      and assuming the control is met because policies were once pushed. The control
+      is broken the moment a technician edits a rule directly on a device to clear
+      a ticket, or when two devices silently disagree about what is denied — the engine
+      is only authoritative if drift is detected and direct edits are prevented.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent example where a filter rule on an enforcement device differed
+      from the orchestration engine's authoritative set — how was it found and fixed?
+    - Can an engineer edit a filter rule directly on an enforcement point without
+      going through the orchestration engine?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.328209Z'
+  signed_digest: b5c7a104cb0d14a6c7f042ae23a27cad27d05ec1bf53c79518ef59337724363d
+  interview_seconds: null
+  inherited_from: null

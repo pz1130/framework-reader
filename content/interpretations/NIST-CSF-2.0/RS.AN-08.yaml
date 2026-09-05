@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:RS.AN-08
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that at the very start of incident response, the magnitude of the event may
+      be misestimated—if underestimated, insufficient resources are allocated and the impact spreads;
+      if overestimated, critical systems are overly isolated, and business losses are amplified a second
+      time. All priorities and resource allocation in incident response are based on the judgment of magnitude;
+      if this judgment is wrong, everything that follows is wrong.
+    basis: inferred
+  plain_zh:
+    value: After an event occurs, someone must estimate the scope of impact, severity, and affected systems,
+      and this estimate must be verifiable—not just one person saying 'it's not too serious' based on
+      gut feeling, but based on evidence, cross-validation, and later calibration with actual impact.
+    basis: inferred
+  practice:
+    value:
+      '1': The incident response process specifies that impact assessment must be performed; there is
+        a corresponding form or template; the on-duty analyst fills in the magnitude judgment.
+      '2': There are clear definitions and classification criteria for magnitude assessment; the assessment
+        process collects evidence (such as lists of affected assets, likelihood of data breach); the assessment
+        result requires a second-person review or supervisor approval.
+      '3': Assessment and validation are embedded in the response toolchain—correlating asset inventory,
+        vulnerability intelligence, and business impact data; after the event, actual losses are used
+        to review and calibrate the assessment model; assessment conclusions automatically trigger revisions
+        to initial judgments over time.
+    basis: inferred
+  evidence:
+    value: Incident records containing magnitude estimates (tickets/IR reports), classification criteria
+      definition documents, review or approval records, post-incident reviews or lessons learned, assessment
+      model update logs.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'having an incident classification table, filling in SLA and escalation time'
+      equals completing the magnitude estimate. The classification table is only an input condition—if
+      no one fills in information about the attack path, affected systems, whether there is data cross-border
+      or business continuity risk, then the 'urgent/major' checkbox is just a process prop, not an estimate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For this incident classified as 'major', what specific evidence was the judgment based on? Who reviewed
+      it?
+    - Did the post-incident review validate the initial magnitude judgment? If adjusted up or down, what
+      process changes were made?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.628690Z'
+  signed_digest: 0cc1e4dd801d70181cadfb15cb73618b9dc0db16005066f95ade4093641cbd2f
+  interview_seconds: null
+  inherited_from: null

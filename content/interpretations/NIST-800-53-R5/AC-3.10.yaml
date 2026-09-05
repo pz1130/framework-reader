@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-3.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent bypass of the access control system - the moment
+      an admin 'just disables the rule' to fix an outage, accountability, traceability
+      and least privilege all collapse at once, and the bypassed state can outlive
+      the incident that created it.
+    basis: inferred
+  plain_zh:
+    value: When access controls need to be temporarily overridden (emergency break-glass,
+      troubleshooting, etc.), the override must be authorized, logged, time-bound
+      and reviewed; otherwise you lose the very protection the controls were supposed
+      to provide.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what counts as an override (e.g., disabling a deny rule, granting
+        temporary admin, relaxing MFA); require verbal or ticket-based approval before
+        doing it; record who, what, when, why.
+      '2': 'Overrides are auditable events with a clear lifecycle: request → approval
+        → activation → deactivation → post-event review; emergency overrides are flagged
+        and reviewed within a fixed window; the system automatically reverts or alerts
+        if not closed out.'
+      '3': Overrides feed SIEM/alerting with elevated severity; pre-defined break-glass
+        accounts and time-boxed privilege escalation are used instead of disabling
+        rules; post-incident review checks whether the override was still active longer
+        than justified and whether the underlying access control gap should be fixed
+        rather than worked around.
+    basis: inferred
+  evidence:
+    value: Override policy and approval workflow, ticket/change records showing request-approval-expiry-revert,
+      audit logs of override events, post-event review notes for emergency overrides,
+      alert/SIEM rules for active overrides.
+    basis: inferred
+  common_myth:
+    value: Assuming 'only a few admins can do it' is the control. If the override
+      action is not logged as a distinct auditable event with an automatic expiry
+      and a post-use review, it is functionally invisible - and an admin under pressure
+      will skip the paperwork.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three access control overrides in the last 90 days and their
+      approval, expiry and review records.
+    - How does the system alert you when an override is still active past its approved
+      window?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.202020Z'
+  signed_digest: 5e4a5c2ec646d807f4ffb9153660feb72a0bbb0fd4f84e59dc76227e6e4bfd99
+  interview_seconds: null
+  inherited_from: null

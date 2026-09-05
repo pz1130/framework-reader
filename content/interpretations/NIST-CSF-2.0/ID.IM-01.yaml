@@ -1,0 +1,59 @@
+control_id: NIST-CSF-2.0:ID.IM-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'assessing and then moving on'—issues identified from exercises, audits,
+      red teaming, and incident reviews are not tracked, improvement recommendations remain in reports,
+      and risks remain unchanged.
+    basis: inferred
+  plain_zh:
+    value: Collect improvement points identified from various assessments (exercises, audits, tests, incident
+      reviews), prioritize them, actually implement them in processes, technology, or personnel, and verify
+      that they have been completed.
+    basis: inferred
+  practice:
+    value:
+      '1': The assessment report includes a clear list of improvement recommendations; someone is responsible
+        for follow-up; at the next assessment, it can be clearly stated whether changes have been made.
+      '2': Improvement items enter a formal remediation tracking mechanism (such as an issue log or risk
+        register), with priorities, owners, and deadlines; progress is reviewed periodically.
+      '3': Improvement items are linked with risk management and change management; the system can automatically
+        track status and send reminders; verification records exist when major improvements are completed;
+        in subsequent assessment cycles, previous issues can be confirmed as closed.
+    basis: inferred
+  evidence:
+    value: List of improvement recommendations in assessment reports, issue tracking logs (including priority/owner/status),
+      remediation completion evidence (work orders, configuration change records, retest results), and
+      minutes of management's periodic reviews of remediation status.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'reporting assessment results and listing remediation directions in a PPT' counts
+      as identifying improvements. Without an owner, deadline, or verification step, the list is just
+      a wish list; an auditor can tell from the first page of the log whether there is a closed loop.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Of the improvements identified in the last exercise/audit, how many have been closed? What is the
+      evidence of closure?
+    - Who set the priorities for improvement items, and based on what criteria? Is there an escalation
+      mechanism for delayed items?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.532483Z'
+  signed_digest: 1ae408a944a568671d0a5d6e1473b878bb9769c6be0431a3599259afbd6325ec
+  interview_seconds: null
+  inherited_from: null

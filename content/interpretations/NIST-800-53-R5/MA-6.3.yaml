@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:MA-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against maintenance being run on a fixed calendar while actual
+      component health degrades silently in between, so failures, capacity exhaustion,
+      or compromise of worn-out parts only surface as incidents. Without predictive
+      signals, scheduled maintenance either wastes effort on healthy gear or misses
+      the units that are about to fail.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools to pull live health and usage data from maintained
+      components, predict when they will fail or need service, and feed those predictions
+      into the maintenance schedule so you act before the break, not after.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the most failure-prone or business-critical components and turn
+        on whatever built-in health, error, or SMART-type telemetry they already expose;
+        a human reviews the output periodically.
+      '2': Collect telemetry into a central place, set thresholds or simple trend
+        rules that flag components drifting toward failure, and trigger work orders
+        or tickets from those flags with records kept.
+      '3': Continuous automated monitoring across the maintained estate with documented
+        prediction models or vendor-supported analytics, results tied into the change/incident
+        workflow, and periodic review of prediction quality (false positives, missed
+        failures) so the model and thresholds are tuned over time.
+    basis: inferred
+  evidence:
+    value: List of components under predictive maintenance, the automated telemetry
+      feeds and dashboards in use, threshold/prediction rules, work orders or tickets
+      generated from predictions, and records showing that predicted failures were
+      acted on before incidents occurred.
+    basis: inferred
+  common_myth:
+    value: Treating 'we run vendor diagnostic commands on a schedule' as predictive
+      maintenance. A script that runs at 3 a.m. and emails a green check is still
+      calendar-based maintenance; predictive means the tool itself decides a component
+      is trending toward failure based on its own data.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems feed health data into your predictive process, and which critical
+      systems do not?
+    - Show me a recent work order that was created because the prediction tool flagged
+      a component, before it failed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.455386Z'
+  signed_digest: 946d2bebe495e1e4ab5c30f2c82d47e010d9abbba8d50ef416f1b08f19e06d9a
+  interview_seconds: null
+  inherited_from: null

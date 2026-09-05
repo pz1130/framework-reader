@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.5.23
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the misconception that signing a procurement contract transfers all
+      security responsibility to the vendor—if security requirements for procured cloud services, software,
+      or hardware are not written into the contract, there is no basis for recourse in the event of an
+      incident, nor can the organization demonstrate that it has fulfilled its due diligence.
+    basis: inferred
+  plain_zh:
+    value: When procuring cloud services or IT products, incorporate security requirements into contract
+      terms, and maintain ongoing management of these agreements throughout the product's lifecycle to
+      ensure that external service providers implement security requirements as agreed.
+    basis: inferred
+  practice:
+    value:
+      '1': Procurement contracts or purchase orders include security-related clauses (e.g., data protection,
+        compliance requirements); basic security assessments are conducted for critical cloud services.
+      '2': Establish a security assessment process for cloud service procurement; contracts clearly define
+        security requirements, service levels, audit rights, and data disposal responsibilities; maintain
+        records of vendor security commitments or cloud security assessment reports.
+      '3': Categorize and standardize security requirements into procurement templates; conduct continuous
+        monitoring of cloud service security capabilities, periodically re-assess vendor security; for
+        high-risk suppliers, have exit and data return/destruction plans and conduct drills.
+    basis: inferred
+  evidence:
+    value: Security clause texts in procurement contracts, cloud service security assessment forms (e.g.,
+      covering data protection, encryption, access control), vendor security reports or certificates (e.g.,
+      SOC 2), security re-assessment records, supplier exit plans and drill records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that adding a checkbox item like 'Does it meet security requirements?'
+      in the procurement process constitutes implementation of this control. The real key is whether the
+      contract clearly defines security responsibilities, audit rights, and consequences of breach—otherwise,
+      there is no basis for post-incident accountability, and during audits, no actual procurement decision
+      evidence can be provided.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Among the cloud services procured last year, which contracts contain explicit audit rights and data
+      disposal clauses?
+    - When a supplier fails to cooperate with security assessments or remediation, what remedial measures
+      are specified in the contract? Have they actually been used?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.280959Z'
+  signed_digest: aa3b7f3f9e75b003c181ec53685def466a3e10d5551322a6b3d3de0572702064
+  interview_seconds: null
+  inherited_from: null

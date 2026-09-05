@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:GV.SC-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that supply chain risk management is treated as a siloed effort by the security
+      or procurement department, disconnected from enterprise-wide risk and improvement processes across
+      various functions. When a supplier incident occurs, business, legal, finance, and operations have
+      no prior awareness; the risk register and security remediation run on parallel tracks, and only
+      when audited or questioned by regulators do they realize the lack of integration.
+    basis: inferred
+  plain_zh:
+    value: Formally integrate supply chain risk into the organization's overall risk management, risk
+      assessment, and improvement cycles, using the same governance and cadence as other security and
+      business risks, rather than creating a separate process.
+    basis: inferred
+  practice:
+    value:
+      '1': Document that supply chain risk is integrated into enterprise risk management; establish regular
+        coordination mechanisms between security, procurement, and other departments; ensure risk assessments
+        cover key suppliers.
+      '2': Include supply chain risk in the annual risk assessment plan; specify supply chain items in
+        improvement plans; maintain written records demonstrating cross-departmental participation and
+        that results are incorporated into enterprise-level risk topics.
+      '3': Supply chain risk is integrated into a unified governance register and risk appetite; major
+        supplier incidents automatically trigger enterprise-level escalation; relevant findings from the
+        improvement cycle feed back to revise procurement and supplier strategies.
+    basis: inferred
+  evidence:
+    value: Sections in the enterprise risk management charter or policy explicitly addressing supply chain
+      risk; scope, methodology, and outputs of annual risk assessments (including suppliers); minutes
+      from cross-departmental risk management meetings; supply chain risk remediation items appearing
+      in internal improvement and tracking lists.
+    basis: inferred
+  common_myth:
+    value: Assuming that issuing a 'Supplier Security Management Policy' or including security clauses
+      in procurement satisfies this requirement, but the approach remains entirely separate from enterprise
+      risk management—without a unified risk register, linkage to risk appetite, or feedback of improvement
+      results into procurement processes, it equates to security and business departments keeping separate
+      records.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In which enterprise system or register is this supply chain risk register located, and how is it
+      aligned with other business risks?
+    - In the last enterprise-level risk review, who raised and addressed supply chain-related items, and
+      which improvement action did the conclusions feed into?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.502309Z'
+  signed_digest: 242542e8fed4371972291e8526a628e58fd54684e3b613830df2a4a6ce29f6f8
+  interview_seconds: null
+  inherited_from: null

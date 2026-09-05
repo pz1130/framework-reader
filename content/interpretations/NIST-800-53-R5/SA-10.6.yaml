@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SA-10.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against tampered or counterfeit software components entering production
+      through the supply chain: even if development is secure, an attacker who swaps
+      a binary on a distribution channel, or a careless publisher who repackages without
+      integrity checks, can hand every customer a pre-compromised build. Without a
+      trusted distribution mechanism, you cannot prove that what the customer installed
+      is what your developers actually signed off on.'
+    basis: inferred
+  plain_zh:
+    value: When you ship software to customers, integrators, or internal sites, make
+      sure the bits they receive are the bits you built, and that nobody can silently
+      swap or alter them in transit. Apply integrity and authenticity protections,
+      communicate them clearly to the receiver, and verify they are usable end-to-end.
+    basis: inferred
+  practice:
+    value:
+      '1': Distribute releases over channels that provide basic integrity (checksums
+        or vendor signatures published alongside the package); document in the build/release
+        procedure who produces the artifact and how it is signed.
+      '2': Use a code-signing or equivalent cryptographic mechanism tied to a controlled
+        private key; publish verification instructions; record which key and which
+        build produced each shipped artifact in the release evidence.
+      '3': Automate signing as part of the build pipeline with key custody segregated
+        from developers; provide machine-checkable verification (signed manifests,
+        signed packages); monitor distribution endpoints for tampering; verify at
+        install/update time; handle key rotation without breaking customer verification.
+    basis: inferred
+  evidence:
+    value: Release procedure showing where signing is applied, the signing key custody
+      and lifecycle, the artifacts shipped with their signatures/checksums and verification
+      instructions, and any monitoring or incident records for distribution tampering.
+    basis: inferred
+  common_myth:
+    value: Treating a published SHA256 on the website as sufficient while the package
+      itself is served over an unsigned channel that any mirror operator could rewrite.
+      A checksum without an out-of-band authenticity check only tells the customer
+      the file is internally consistent, not that it is yours.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the private key used to sign releases and explain who can access it
+      and how it is rotated.
+    - Walk me through how a customer, integrator, or internal site verifies an artifact
+      they downloaded was not altered in transit.
+    - How would you detect if a distribution mirror or update server served a tampered
+      build to recipients?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.017962Z'
+  signed_digest: dff9954f14aeab2d8cdc66b2d6c3f6359f3e4b4a308a8ce00b89473bd931ea01
+  interview_seconds: null
+  inherited_from: null

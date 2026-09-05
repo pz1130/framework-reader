@@ -1,0 +1,58 @@
+control_id: NIST-CSF-2.0:DE.AE-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that when an incident occurs, you only know 'something happened' but not 'how
+      severe and how widespread' — without a rapid assessment of impact and scope, response will be prioritized
+      by whoever shouts loudest, and necessary isolation or escalation may be missed.
+    basis: inferred
+  plain_zh:
+    value: Determine the extent and potential damage of a security incident, and document this assessment
+      so that responders can make decisions based on it.
+    basis: inferred
+  practice:
+    value:
+      '1': Incident severity levels are defined; response procedures require impact and scope assessment;
+        on-duty personnel know whom to contact for information.
+      '2': Incident response forms include mandatory fields for impact and scope; assessments are based
+        on asset inventory and business impact; written records are available for review.
+      '3': Predefined asset and business dependency relationships enable automated impact assessment against
+        systems; different impact levels correspond to specific response actions; post-incident reviews
+        evaluate the accuracy of initial assessments.
+    basis: inferred
+  evidence:
+    value: Actual completion of impact/scope fields in incident response records, asset and business impact
+      mapping tables, tiered response plans, and post-incident reviews of initial assessments.
+    basis: inferred
+  common_myth:
+    value: Assuming that having an incident severity classification table (P1/P2/P3) is sufficient. Such
+      a table only provides qualitative labels; without asset inventory and business dependencies as a
+      foundation, 'production database deletion' and 'slow visitor Wi-Fi' could both be labeled P1 or
+      P2, and impact assessment still relies on guesswork.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a recent P2 incident, how was the impact scope calculated? Which asset inventory was used as
+      the basis?
+    - When a business-critical system goes down, how long does it take to produce an impact assessment?
+      Who signs off on it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.437628Z'
+  signed_digest: e8bf760c790541171156760d9061302bc70a0ac624c9c914f8f2f00a77ff4082
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IA-5.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against authenticators being captured, copied, or replayed in transit
+      or storage — passwords, keys, tokens, and hashed values leak through logs, backups,
+      debug dumps, memory images, or accidental commits, and once stolen they authenticate
+      as if they were the real owner.
+    basis: inferred
+  plain_zh:
+    value: Store and transmit authenticators (passwords, keys, tokens, hashes) so
+      they cannot be read or replayed by anyone other than the system that needs them
+      — at rest, in motion, and while being handled by people and tools.
+    basis: inferred
+  practice:
+    value:
+      '1': Never store passwords in reversible form; transmit credentials only over
+        authenticated, encrypted channels; keep authenticators out of application
+        logs, error messages, tickets, and source repositories.
+      '2': Use approved salted hashing for stored passwords; protect cryptographic
+        keys in HSMs or equivalent keystores; define and enforce a documented handling
+        rule covering transmission, storage, logging, and destruction of every authenticator
+        type.
+      '3': Cryptographic keys are generated, rotated, and destroyed on a defined lifecycle
+        with separation of duties; authenticator handling is verified by automated
+        checks (secret scanning, log redaction tests, configuration audits) and exceptions
+        are tracked and time-boxed.
+    basis: inferred
+  evidence:
+    value: Cryptographic architecture and key-management procedure, hashing and storage
+      configuration samples, secret-scanning and log-redaction test results, records
+      of key lifecycle events, exceptions log for any authenticator handled outside
+      the standard rule.
+    basis: inferred
+  common_myth:
+    value: 'Equating TLS in transit with full authenticator protection — TLS stops
+      network eavesdropping, but the authenticator still has to land somewhere: in
+      a database row, a config file, a support ticket, a container env var, or a memory
+      dump, and that ''somewhere'' is where most real leaks happen.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the exact storage format and algorithm for stored passwords in this
+      application.
+    - Where do private keys live, who can read them, and when were they last rotated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.210900Z'
+  signed_digest: 5ba05d8919af7fa7f464c11b1ed5a7faba6b5298012b0f4a6d885917475f034c
+  interview_seconds: null
+  inherited_from: null

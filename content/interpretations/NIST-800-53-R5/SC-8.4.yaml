@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an on-path or passive observer from reading traffic in cleartext
+      when the underlying channel only provides basic transport encryption — without
+      concealment or randomization, metadata such as packet timing, length, and frequency
+      can still fingerprint the conversation even if the payload is encrypted.
+    basis: inferred
+  plain_zh:
+    value: For communications that need protection against traffic analysis, don't
+      just encrypt the content — also hide or randomize addresses, padding, timing,
+      or routing so an observer cannot infer who is talking to whom, when, and how
+      much.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the specific links or sessions (e.g., cross-border, sensitive
+        operational channels) where traffic-analysis exposure matters; apply a basic
+        concealment technique such as padding payloads to a fixed size or tunneling
+        through a relay that hides endpoints.
+      '2': Document which channels require concealment vs. only confidentiality; standardize
+        the technique (padding scheme, relay topology, cover traffic) and capture
+        it in the design; record exceptions where basic TLS is accepted as adequate.
+      '3': Verify the concealment under realistic adversary capability (not just unit
+        tests in a lab); rotate relay paths or pad profiles; alert when a configured
+        link falls back to a non-concealing mode; tie changes back to a re-assessment
+        of the traffic-analysis threat.
+    basis: inferred
+  evidence:
+    value: Design memo naming the protected channels and the concealment technique
+      chosen, configuration showing concealment is actually enforced on those channels,
+      test or audit results confirming traffic patterns are non-distinguishable from
+      cover traffic or that endpoints are not exposed, and records of exceptions with
+      justification.
+    basis: inferred
+  common_myth:
+    value: Assuming TLS or a VPN already handles this because the payload is encrypted.
+      TLS protects content; it does not hide who is talking to whom, packet lengths,
+      or timing — an observer at a network vantage point can still build a traffic-analysis
+      profile of the session.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which communications channels in scope require concealment, and where is that
+      list documented?
+    - Show me the configuration on one such channel that proves endpoint addresses
+      or payload sizes are actually hidden or randomized, not just encrypted.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.786253Z'
+  signed_digest: 6b85de215e89e9782ce76200a561c151f05865766ca787b4c45818df4c1031d2
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-19.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the re-identification of individuals when data is used for testing,
+      development, or analytics. If direct identifiers remain, a data breach or internal
+      misuse can directly tie records to real people, causing regulatory and reputational
+      damage.
+    basis: inferred
+  plain_zh:
+    value: When using data for non-production or secondary purposes, you must remove
+      or transform direct identifiers (like names, emails, national IDs) so that the
+      data can't be traced back to an individual.
+    basis: inferred
+  practice:
+    value:
+      '1': You have a policy that says direct identifiers must be removed or masked
+        in non-production environments. You know which fields are identifiers and
+        apply simple masking or removal manually.
+      '2': You have automated de-identification processes that consistently remove,
+        mask, encrypt, hash, or replace identifiers across datasets. You log and review
+        these processes to ensure they work.
+      '3': You use systematic data-centric techniques (e.g., pseudonymization, tokenization)
+        with verified effectiveness. You test that re-identification is not feasible
+        with available data, and you monitor for accidental leaks of identifiers.
+    basis: inferred
+  evidence:
+    value: A de-identification policy and field list, examples of de-identified datasets,
+      automated process logs or scripts used for transformation, and results of re-identification
+      risk assessments or tests.
+    basis: inferred
+  common_myth:
+    value: Assuming that simply removing obvious name and email fields is enough—doesn't
+      account for indirect identifiers or the fact that hashing without proper salts
+      can still allow reverse lookup.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an example dataset and explain which fields are considered direct identifiers
+      and how you de-identified them.
+    - How do you verify that your de-identification cannot be reversed to re-identify
+      an individual?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.903716Z'
+  signed_digest: 6d3ea42a25c5d9cce0921728b41f0535df9a244164ff4adc36c64da83846cd99
+  interview_seconds: null
+  inherited_from: null

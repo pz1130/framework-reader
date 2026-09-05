@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries brute-forcing or replaying biometric samples
+      to impersonate a user, and against gradual lockout-by-attrition where an account
+      gets effectively locked out of legitimate use because of misreads, stolen templates,
+      or runaway retries.
+    basis: inferred
+  plain_zh:
+    value: Put a cap on how many times a biometric matcher will try (or accept) a
+      sample in a short window, then block further attempts — and make sure the limit
+      is on the matcher, not just on the human at the door.
+    basis: inferred
+  practice:
+    value:
+      '1': Biometric system rejects further attempts after a small number of consecutive
+        failed matches; user is sent to a fallback path (PIN, token, helpdesk).
+      '2': Limits are documented per modality, cover both false-reject storms and
+        apparent replay/attempt flooding, and are logged with a tamper-evident trail.
+      '3': Caps are enforced inside the matcher (not only by the door controller),
+        trigger account-level or device-level lockout appropriate to the threat, alert
+        on repeated near-miss attempts, and are tested as part of change management.
+    basis: inferred
+  evidence:
+    value: Configuration showing attempt-limit thresholds on the biometric matcher/device,
+      lockout and fallback procedure, logs of repeated-failure events with resulting
+      lockouts, and test record showing the limit cannot be bypassed by power-cycling
+      or software reset.
+    basis: inferred
+  common_myth:
+    value: Treating this as satisfied by a generic account lockout policy that counts
+      failed logons — biometric matchers often sit in front of the credential and
+      have their own retry state; if the matcher is not configured, the door keeps
+      trying while the account counter never moves.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where is the retry cap enforced — in the biometric engine, the door controller,
+      or only the downstream account?
+    - 'Show me a recent case where the limit fired: what was the user told, what fallback
+      was used, and how was the lockout cleared?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.416693Z'
+  signed_digest: eaed9d6f33aa4a221b321e0f28677178815cee7ec9827b9d23b3f89c7e5865dc
+  interview_seconds: null
+  inherited_from: null

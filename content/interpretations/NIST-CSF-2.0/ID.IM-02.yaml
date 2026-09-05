@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:ID.IM-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: Prevent exercises and tests from being archived after completion without remediation or closure,
+      ensuring the same issues do not recur in the next incident; also highlight the value of supplier
+      and third-party participation in testing.
+    basis: inferred
+  plain_zh:
+    value: Formally raise issues exposed by internal and external security tests and exercises (including
+      disaster recovery, red team/blue team, and joint supplier exercises), and genuinely implement improvements,
+      not just record them in reports.
+    basis: inferred
+  practice:
+    value:
+      '1': Security test/exercise reports include an issue list; quarterly consolidation to identify major
+        issues; improvement items have owners and deadlines.
+      '2': Issue remediation has a tracking ledger with regularly updated status; completion verification
+        records exist; issues are prioritized (who must fix, who can defer); supplier/third-party exercise
+        issues also enter the same process.
+      '3': Remediation closure enters change or risk processes, linked to budget and resources; test results
+        feed back into security strategy and budget planning; overdue issue rate has trend indicators
+        demonstrating a decline.
+    basis: inferred
+  evidence:
+    value: Test/exercise issue lists and remediation ledgers, tracking records with owners and dates,
+      completion verification evidence (retest screenshots or confirmation forms), samples of supplier
+      exercise issues in the ledger, and periodic test conclusion documents submitted to management.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'completing a penetration test, issuing a report, and obtaining executive sign-off'
+      satisfies this requirement. Without remediation tracking and verification closure, reports and risk
+      registers only accumulate, while the security level remains stagnant—auditors expect a 'lifecycle
+      from issue discovery to closure that is traceable.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the most significant issue from the past year's tests/exercises closed? What is the verification
+      evidence?
+    - For exercises involving suppliers and third parties, which ledger contains the issue list? Who is
+      tracking it?
+    basis: inferred
+  regional_note:
+    value: In Europe, under the DORA framework, there is a stronger emphasis on remediation closure and
+      reporting deadlines for joint supplier testing and digital operational resilience testing; in the
+      US, more emphasis is placed on test coverage scope and whether remediation plans have governance
+      approval—the focus of 'how to prove completion' differs between the two.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.534325Z'
+  signed_digest: dcf16142be42ea0c02835455b2498de3a88bdf99cb637811e19e81bd8b7d69cc
+  interview_seconds: null
+  inherited_from: null

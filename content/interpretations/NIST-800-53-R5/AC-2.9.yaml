@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AC-2.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure mode where a shared login becomes unaccountable — when
+      multiple people use 'admin' or 'svc_backup' and you cannot tell who did what,
+      an attacker hides inside normal-looking activity, and insiders get plausible
+      deniability on misuse.
+    basis: inferred
+  plain_zh:
+    value: Where shared or group accounts are unavoidable, restrict who can use them,
+      log each individual user against the shared identity, and prevent ordinary password
+      reuse of that account outside the controlled path.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which shared/group accounts exist and why a unique account is
+        not feasible; require a manager and security sign-off for each.
+      '2': Route every shared-account use through a checked-out identity (e.g., privileged
+        access management / vaulted credential) so the actual person is bound to the
+        session in logs; review the list of shared accounts quarterly.
+      '3': Continuously monitor shared-account activity for anomalies tied to the
+        underlying user, alert on shared-credential use outside the approved path,
+        and retire shared accounts whenever technical debt allows a unique account
+        instead.
+    basis: inferred
+  evidence:
+    value: Inventory of shared/group accounts with justification and approvals, PAM
+      or vault configuration showing one-to-one binding between individual user and
+      shared credential at session time, logs that capture the real user behind each
+      shared login, quarterly review records, and tickets showing shared accounts
+      decommissioned when feasible.
+    basis: inferred
+  common_myth:
+    value: Treating the shared account as a single 'who' in audit logs and assuming
+      logging it once is enough — the point of AC-2(9) is that you must be able to
+      attribute each use to a specific person, not just to the account name.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a shared admin account from your inventory: show me three sessions from
+      last month and the named individual behind each one.'
+    - What stops a user from learning the shared password and using it directly instead
+      of going through the approved checkout path?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.150772Z'
+  signed_digest: 5a47a8a60b1c8a3c56fb60a44e0541f460be0bdb9346399be2939c1fb3174ef9
+  interview_seconds: null
+  inherited_from: null

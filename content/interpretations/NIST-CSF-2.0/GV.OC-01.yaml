@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:GV.OC-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the security team operates in isolation—security risks and investments
+      are disconnected from business objectives, ultimately spending money on audits or compliance rather
+      than genuinely protecting what the organization aims to achieve.
+    basis: inferred
+  plain_zh:
+    value: Clearly articulate what the company intends to accomplish, then align security efforts around
+      that objective, rather than the security team setting its own priorities independently.
+    basis: inferred
+  practice:
+    value:
+      '1': Can produce a written document stating the organization's mission or business objectives; the
+        security lead can articulate what these objectives are.
+      '2': There is a formal mechanism ensuring that security planning or risk assessment inputs include
+        the business mission or objectives; the security project list can indicate which business objective
+        each project supports.
+      '3': The security risk management process itself is derived from the business mission—when business
+        strategy changes, security priorities follow; there is evidence that security investments serve
+        business objectives.
+    basis: inferred
+  evidence:
+    value: Approved mission or strategy documents, sections of the security risk management charter or
+      methodology that reference the mission, meeting minutes of board or executive reviews of security
+      risks, and a mapping table of security projects to business objectives.
+    basis: inferred
+  common_myth:
+    value: Assuming that downloading the mission statement from the company website and pasting it on
+      the first page of the security documentation suffices. What auditors look for is not the citation,
+      but whether business input has genuinely appeared in the decision-making chain of the security program—for
+      example, when business objectives change, has the security risk assessment been redone?
+    basis: inferred
+  auditor_asks:
+    value:
+    - You say security work supports business objectives; give a specific example this year of a security
+      project initiated due to a particular business direction.
+    - When the business mission or direction changes, which process triggers adjustments in security risk
+      management? When was the most recent trigger?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.455104Z'
+  signed_digest: 45e3f88f781da4224077acac0c71a3213d2c4fbf49dda35df02555f2e528b71d
+  interview_seconds: null
+  inherited_from: null

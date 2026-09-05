@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.8.26
+locale: en
+state: draft
+fields:
+  intent:
+    value: This addresses the risk of business systems going live without proper security hardening—such
+      systems lack security baseline hardening, default credentials remain unchanged, patches are incomplete,
+      and encryption and transmission protections are missing, allowing attackers to compromise them using
+      known techniques.
+    basis: inferred
+  plain_zh:
+    value: Business systems must be hardened according to security baselines (configuration hardening,
+      account credentials, patching, encryption requirements) before going live, and after deployment,
+      continuous verification is required to ensure configurations have not been reverted and encryption
+      and transmission protections remain effective.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a system launch checklist that includes default password changes, minimum encryption
+        strength, and production environment isolation; sign-off is required before launch.
+      '2': Security configuration baseline documents exist and are applied to various system types; configuration
+        changes follow a ticket process with review; regular configuration audits are conducted.
+      '3': Configuration audits are automated and integrated with alerts; keys and certificates are centrally
+        managed with rotation processes; patch and vulnerability management covers the full lifecycle;
+        baselines are periodically revised based on the threat landscape.
+    basis: inferred
+  evidence:
+    value: System launch approval forms and security checklists, security configuration baseline documents,
+      configuration audit reports (manual or automated), key/certificate management logs and rotation
+      records, and patch and vulnerability remediation records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'default images and configurations provided by cloud platforms/vendors are secure
+      enough'—default images often contain publicly known default credentials, unhardened services, and
+      outdated components, which are the most common entry points for intrusions. A real hardening configuration
+      is required rather than enabling them directly.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Before a new system goes live, who executes and who reviews this security checklist?
+    - When was the last configuration baseline audit of production systems? Were there any instances of
+      deviation from the baseline that were not remediated?
+    - What mechanism triggers rotation of application keys or certificates before expiry, and when was
+      the last rotation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.402631Z'
+  signed_digest: 78c39e000f0b3f7b3edfec89916c5afcd53678dbd85f6c17da24ae1c40eaaad4
+  interview_seconds: null
+  inherited_from: null

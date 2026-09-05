@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:CM-7.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where a restricted-environment host is
+      breached and the attacker pivots freely inside it because the OS or runtime
+      itself is still running as a fully privileged administrator. The point is not
+      "the application is sandboxed" — it is "the underlying execution context has
+      no ambient authority to abuse, so even kernel, service, or container escape
+      leaves the attacker with nothing to do next."
+    basis: inferred
+  plain_zh:
+    value: Run the system inside a confined environment (a thin, hardened, purpose-built
+      OS image such as a kiosk, appliance, gateway, or locked-down container host)
+      where the underlying operating environment does not grant general administrator
+      privileges and does not provide general-purpose computing capabilities beyond
+      what the function strictly needs.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify systems whose function is fixed (kiosks, network appliances, jump
+        hosts, single-purpose servers) and document that they are intended to run
+        as confined environments; remove or disable end-user developer tooling and
+        unnecessary OS features.
+      '2': Use a purpose-built minimal image (e.g. a hardened appliance OS, a read-only/verified-boot
+        image, or a locked-down container host) and a configuration that prevents
+        interactive administrator logon; access to the underlying OS is gated through
+        a separate, audited management path.
+      '3': 'Enforce least-privilege at the OS layer: no local accounts with admin
+        rights on the workload, no shell for normal operation, integrity measurement
+        / verified boot on the image, and remote attestation before the system is
+        allowed to perform its function; deviations are detected and the host is taken
+        out of service.'
+    basis: inferred
+  evidence:
+    value: Designation list of systems covered as confined environments, the baseline
+      image and build definition, configuration showing absence of general admin access
+      on the workload, and attestation or integrity-verification records for those
+      hosts.
+    basis: inferred
+  common_myth:
+    value: Assuming that running a single application on a server already gives you
+      a confined environment. The control is about the OS and runtime context itself
+      having no ambient privilege and no general-purpose capability — putting one
+      app on a full Windows or Linux server with a local admin account is not confinement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one system you call a confined environment and show me the local accounts
+      that exist on it — what rights does each one have?
+    - If I sat down at the keyboard of that host, what could I actually do before
+      involving a separate management plane?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.849272Z'
+  signed_digest: c818a45a5739f55bfa04af17296a076e1396d8f9532a5f5d126b72380aa35eb8
+  interview_seconds: null
+  inherited_from: null

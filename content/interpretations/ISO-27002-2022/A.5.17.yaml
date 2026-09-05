@@ -1,0 +1,71 @@
+control_id: ISO-27002-2022:A.5.17
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about authentication materials such as passwords, keys, and tokens getting out
+      of control during issuance, reset, and revocation—initial passwords with no record of who received
+      them, default passwords not changed, and casual reissuance after loss, allowing external personnel
+      or former employees to enter with legitimate credentials, and audits looking only at login logs
+      cannot detect this.
+    basis: inferred
+  plain_zh:
+    value: 'Authentication materials must be managed systematically throughout their entire lifecycle
+      from creation to destruction: verify identity when issuing, have rules for initial content, ensure
+      strength and purpose match, have procedures for loss or compromise, change default values before
+      first use, have trigger conditions for changes and revocation, and prevent shoulder surfing during
+      access and storage.'
+    basis: inferred
+  practice:
+    value:
+      '1': Initial password issuance is registered and can be evidenced; system default passwords are
+        changed before first use; credentials of departed employees are deactivated along with their accounts.
+      '2': Initial passwords are one-time/random values with mandatory change at first login; there is
+        a documented process for reset after identity verification in case of loss or compromise; password
+        storage is encrypted (e.g., hashed with salt), and audit logs exist for credential issuance and
+        reset.
+      '3': Credential issuance and reset are performed only after multi-factor or dual-person verification;
+        there is no path for unconditional reissuance exceptions; high-strength credentials (e.g., privileged
+        account passwords, certificate private keys) are stored in a centralized vault, with automatic
+        rotation after high-risk operations.
+    basis: inferred
+  evidence:
+    value: Process documents and records for issuance/reset/revocation of authentication materials, configuration
+      or screenshots showing generation of initial passwords (indicating randomness and mandatory first-login
+      change), system audit records excluding temporary default passwords, self-check records of password
+      storage method (whether hashed with salt), and access and operation logs of the credential vault.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that setting maximum password complexity and strict change cycles
+      fully addresses this control. The focus here is on **who gets the credentials** and **how they are
+      reissued after loss**, not password length. Many teams have never checked whether initial passwords
+      are truly randomly generated once, or whether the entire IT group shares a common default—that is
+      equivalent to a door card that everyone can copy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How are initial passwords generated? Before a new employee's first login, through whose hands do
+      these passwords pass? Are there logs?
+    - When someone reports a 'lost password' and requests a reset, how do you verify their identity? Where
+      is the reset process recorded?
+    - Are there still servers or switches using factory default passwords? When was the last comprehensive
+      check?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.267483Z'
+  signed_digest: 40fa53e884b071e6c532743c2546346fad29aa0704a4dc4f1f0bc59ee0f76513
+  interview_seconds: null
+  inherited_from: null

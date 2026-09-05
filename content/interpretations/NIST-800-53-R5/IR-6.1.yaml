@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IR-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incidents that get stuck in inboxes, dashboards nobody
+      watches, or reports that arrive hours after the attacker has already moved laterally.
+      The point is that detection must turn into a reliable, machine-generated signal
+      that reaches the right people fast enough to act on, or you are effectively
+      blind during the critical first minutes.
+    basis: inferred
+  plain_zh:
+    value: Make sure security incident reports are generated and pushed out by automation,
+      not by someone remembering to forward an email. They have to land with the responders
+      and the relevant stakeholders on time.
+    basis: inferred
+  practice:
+    value:
+      '1': Detection tools (SIEM, EDR, IDS, cloud alerts) are configured to auto-generate
+        incident tickets or notifications without manual copy-paste; an on-call or
+        duty person is defined to receive them.
+      '2': Reporting pipelines have defined content (what fields, severity, enrichment)
+        and delivery targets; failed delivery or silence is itself alerted; reporting
+        timeliness is reviewed.
+      '3': Reports are time-stamped end-to-end so you can measure detection-to-notification
+        latency; the path from sensor to ticket to responder is monitored; missed
+        or delayed reports trigger investigation; the pipeline is tested for completeness,
+        not just connectivity.
+    basis: inferred
+  evidence:
+    value: Sample automated incident tickets and the alert-to-ticket workflow, configuration
+      showing auto-generation rather than manual initiation, on-call/notification
+      rosters, records of delivery-failure handling, and any latency or completeness
+      metrics kept on the reporting pipeline.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a SIEM in place means automated reporting is satisfied
+      - in reality many environments still rely on analysts to see an alert, decide
+      it is real, and then open a ticket, so 'reporting' is still human and still
+      late.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent incident ticket and the alert that created it - was the ticket
+      opened by a human or by automation?
+    - If your SIEM or EDR stopped forwarding events at 3 a.m., how would you know
+      before the next shift?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.341917Z'
+  signed_digest: 43f3bd4cf5451bad69a7081bd89db227620f64c42dcbf6f88ff1ea02dea04547
+  interview_seconds: null
+  inherited_from: null

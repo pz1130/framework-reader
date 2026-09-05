@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:PR.DS-11
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'backups that have never been restored'—if data is actually lost, you
+      might find that backup files are corrupted, ciphertext cannot be decrypted, or no one knows how
+      to run the recovery process, making the backup as good as nonexistent.
+    basis: inferred
+  plain_zh:
+    value: Not only should backups be performed regularly, but the backups themselves must be protected
+      against tampering and loss, maintained according to retention periods, and regularly tested through
+      recovery exercises to prove they actually work.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical systems and data have backup tasks; backup media have basic access controls; configuration
+        files can specify backup content and frequency.
+      '2': Backup content, frequency, and retention periods are documented in policies; offsite or immutable
+        storage is used to prevent tampering; recovery tests are performed regularly with records available
+        for review.
+      '3': Recovery testing is routine and covers full RTO/RPO objectives; backup and recovery exercises
+        are integrated into the annual business continuity plan; recovery failures trigger a closed-loop
+        problem resolution and policy revision.
+    basis: inferred
+  evidence:
+    value: Backup policies and configurations (content/frequency/retention), backup success and failure
+      logs, storage access control lists, regular recovery test reports (with timestamps and pass/fail
+      status), and remediation records after recovery failures.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'taking a snapshot or copying database files' equals a backup. A backup that
+      hasn't been tested doesn't count—what really matters is whether recovery exercises have been performed
+      at the policy frequency, whether failures have been seen and remediated, not just whether the backup
+      task itself ran.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last full recovery exercise? Which systems did it cover? How long did it take from
+      backup to recovery and going live?
+    - Have recovery tests ever failed? How was that failure discovered, handled, and prevented from recurring?
+    - Where are the access control lists for backup data and the encryption policies for sensitive data
+      backups?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.584328Z'
+  signed_digest: 0ffa58241ce59ee109fda00be640341f602908d7109fc2af67c52b8c937608de
+  interview_seconds: null
+  inherited_from: null

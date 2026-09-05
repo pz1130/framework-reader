@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:DE.AE-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the security analysis team is living in its own logs—only looking at internal
+      data, without understanding external attack techniques, exploit usage, and industry alerts. This
+      is like working the night shift with eyes closed, not recognizing threats when they arrive.
+    basis: inferred
+  plain_zh:
+    value: 'Connect your security operations and analysis work to external intelligence: feed threat intelligence
+      (e.g., vulnerability alerts, malicious IPs, attack techniques, industry advisories) into daily alert
+      analysis and incident investigation processes, so that analysis considers not only system logs but
+      also what is happening in the external world.'
+    basis: inferred
+  practice:
+    value:
+      '1': At least one external threat intelligence source (free or commercial); when critical vulnerabilities
+        or high-risk IOCs appear, there is a person to manually check and compare against the internal
+        environment.
+      '2': Threat intelligence is integrated into SIEM or analysis platforms; a regular process for subscribing,
+        filtering, and distributing intelligence is established; events triggered by intelligence have
+        response records.
+      '3': Multiple intelligence sources are cross-validated and automatically correlated with alerts;
+        intelligence is linked with risk assessment and incident response processes; regular reviews of
+        intelligence hit rate and false positive rate are conducted, and intelligence strategy is adjusted
+        accordingly.
+    basis: inferred
+  evidence:
+    value: Threat intelligence subscription contract or platform screenshots; list of intelligence sources
+      and coverage; records of alerts matching IOCs; intelligence-driven analysis reports or incident
+      response records; intelligence quality assessment or false positive tuning records.
+    basis: inferred
+  common_myth:
+    value: Thinking that purchasing a threat intelligence platform or subscribing to commercial intelligence
+      sources equals compliance. Subscription only provides information; what needs to be proven is whether
+      intelligence is actually used in analysis and decision-making—such as alert correlation or incident
+      characterization referencing external intelligence. Otherwise, it is just a cloud service expense.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a recent high-risk vulnerability alert and explain how you verified whether your environment
+      is affected and where the conclusion is recorded.
+    - Apart from weekly reports, when was the last time threat intelligence directly triggered or changed
+      an incident handling decision?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.441260Z'
+  signed_digest: 7d27011293bc9d5a3f3442b0ea100f738b99791d5b9713c1b2d675959da29714
+  interview_seconds: null
+  inherited_from: null

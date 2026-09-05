@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a situation where the organization believes it has reduced its
+      security risk simply by moving a function to a provider, while in reality the
+      function still exists, still depends on the organization's data, people, or
+      processes, and still leaves the organization exposed to failures, breaches,
+      or compliance gaps it no longer controls end-to-end.
+    basis: inferred
+  plain_zh:
+    value: Identify and explicitly accept the security risks that remain with the
+      organization after a function is outsourced or transferred to another provider,
+      rather than assuming the transfer has removed the risk. Document what is offloaded,
+      what is not, and who is accountable for what remains.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a list of offloaded functions (cloud, managed services, outsourced
+        development) and a short note next to each on what security responsibility
+        still sits with the organization.
+      '2': For each significant offloaded function, the residual risks the organization
+        keeps (data leakage, vendor breach, contract termination, jurisdictional issues)
+        are named, assigned to an owner, and accepted at an appropriate level; the
+        review is documented.
+      '3': Residual-risk acceptance is revisited when the provider changes scope,
+        when an incident occurs, when the contract is renewed, or when the threat
+        landscape shifts; acceptance decisions are tied to the enterprise risk register
+        and reviewed by leadership, not buried in a project folder.
+    basis: inferred
+  evidence:
+    value: Inventory of offloaded functions, residual-risk assessments per function,
+      signed risk-acceptance records with owners and dates, linkage to the enterprise
+      risk register, and evidence of periodic re-review triggered by provider or scope
+      changes.
+    basis: inferred
+  common_myth:
+    value: Treating a signed contract or a SOC 2 report as proof that the security
+      risk has been transferred. Offloading changes who operates the control, not
+      who is accountable for the residual risk; signing a contract does not, by itself,
+      retire the risk from the organization's books.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one outsourced function and walk me through which security risks stayed
+      with you versus which moved to the provider, and where that is documented.
+    - When was the last time a residual-risk acceptance was revisited because the
+      provider changed or an incident happened, and what changed as a result?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.798862Z'
+  signed_digest: 029d0b6da46b41ef3fdc66b67f3b662573fc73ab1d4af116cd9cec70ab40dcf9
+  interview_seconds: null
+  inherited_from: null

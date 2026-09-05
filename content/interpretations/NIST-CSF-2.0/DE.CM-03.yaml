@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:DE.CM-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'not being able to know about internal issues in advance'—if employee behavior
+      and technology use are not monitored, malicious or unintentional improper actions can only be exposed
+      after the fact, and no one can halt, trace, or hold accountable before harm spreads.
+    basis: inferred
+  plain_zh:
+    value: Continuous monitoring of personnel operational activities and technology use behaviors enables
+      timely detection of signs that may lead to security incidents, and leaves traces for future review.
+    basis: inferred
+  practice:
+    value:
+      '1': Critical systems have basic logging; someone reviews alerts; there are initial detection rules
+        for high-risk operations (e.g., bulk exports, late-night privileged logins).
+      '2': Personnel activities and technology use are incorporated into routine monitoring; alerts have
+        classification and response procedures; monitoring records are reviewed periodically and can be
+        traced back to specific accounts; new systems are considered for inclusion in monitoring.
+      '3': Monitoring rules evolve from known alerts to behavioral baselines—anomalies are not limited
+        to fixed rules and can trigger automated halts in response processes; monitoring coverage is maintained
+        in a list, and systems not included have clear risk approval and mitigation measures.
+    basis: inferred
+  evidence:
+    value: Monitoring system coverage list and log retention policy, alert rules and update records, alert
+      handling tickets and closure records, signed periodic review reports, and the ability to trace back
+      to log records when sampling a handled incident.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that deploying a SIEM or log platform with alerts constitutes monitoring.
+      In reality, most teams only focus on alerts from security devices, not on people—employees downloading
+      sensitive data, installing unauthorized software, or using unapproved tools go unnoticed. When an
+      incident occurs, the platform is piled with hundreds of thousands of untouched logs, and it is still
+      impossible to explain what happened.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If an employee exports the full customer dataset from a production database at 3 a.m., what means
+      do you have to detect it?
+    - Which network segments or internal systems lack log retention or alert coverage? Why are they not
+      included?
+    - When was the last review of personnel activity monitoring logs? Who signed off? What noteworthy
+      behaviors were found?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.449335Z'
+  signed_digest: 0b2ff50276628a52a2fc870068a0821164d9a54ff909a8f7bf4d409306d4721b
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:MP-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against removable media (e.g., writable optical, certain USB form
+      factors, encrypted-in-hardware-and-key-locked drives) being used to bypass media
+      controls, since their sanitization cannot be reliably proven; data leaving the
+      boundary on such media is effectively unaccounted for and may carry malware
+      inward.
+    basis: inferred
+  plain_zh:
+    value: Forbid the use of removable media types for which you cannot prove sanitization
+      actually wiped the data, on organizational systems handling sensitive information.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which media types in your environment are sanitization-resistant;
+        write them into the media protection policy and tell users not to use them
+        on organizational systems.
+      '2': Maintain a list of prohibited media makes/models, communicate it to staff
+        and vendors, and have a documented exception process that records who approved
+        what and why.
+      '3': Combine policy with technical enforcement (block device classes at the
+        endpoint or via removable-media policy tooling), periodically scan for prohibited
+        devices, and tie exceptions to a defined review and end date.
+    basis: inferred
+  evidence:
+    value: Policy clause listing prohibited sanitization-resistant media, technical
+      control configuration showing the block, periodic scan reports for unauthorized
+      device classes, and any exception records with approver, scope, and expiry.
+    basis: inferred
+  common_myth:
+    value: Equating 'we encrypt the drive' with 'we can sanitize it' — hardware-encrypted
+      drives where the keys are not escrowed with the org are effectively unsanitizable
+      on exit, so allowing them under a generic 'encrypted USB is fine' rule defeats
+      the control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which specific media types have you classified as sanitization-resistant, and
+      where is that list maintained?
+    - Show how an endpoint would block one of those devices if a user plugged it in.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.497928Z'
+  signed_digest: fcff82299e797f41ac6345e5226645b8c6e81ebf448339fa8b2f494d7eb7a2b7
+  interview_seconds: null
+  inherited_from: null

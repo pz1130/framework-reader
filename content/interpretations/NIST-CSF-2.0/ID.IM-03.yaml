@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:ID.IM-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "exercises, incident reviews, and monitoring alerts end without follow-up"
+      — if lessons learned from each operational cycle are not collected, the same vulnerabilities will
+      recur in the next cycle, turning security investments into repetitive work.
+    basis: inferred
+  plain_zh:
+    value: After each process run, exercise, or incident handling, identify the issues exposed, convert
+      them into specific improvements to plans, policies, and tools, and track their implementation.
+    basis: inferred
+  practice:
+    value:
+      '1': Incidents and exercises have review records; the review clearly lists improvement items; someone
+        is responsible for assigning them to specific teams.
+      '2': Improvement items are added to a tracking list with owners and deadlines; completion status
+        is reviewed periodically; gaps in policies or processes identified during reviews are written
+        back to update documentation.
+      '3': Improvement items are incorporated into the security improvement plan and linked to the risk
+        register; data demonstrates the closure rate of improvements; major improvements trigger systematic
+        revisions to relevant policies, processes, or tools.
+    basis: inferred
+  evidence:
+    value: Incident review reports, exercise summary reports, improvement item tracking logs (including
+      owner, status, completion date), revision history of policy and process documents, and meeting minutes
+      from security improvement meetings.
+    basis: inferred
+  common_myth:
+    value: Assuming that writing an incident review report or taking a group photo after an exercise counts
+      as "identifying improvements." If the review has conclusions but no improvement items with owners
+      and deadlines, or if improvement items sit in a shared drive for a quarter without action, this
+      control is not implemented.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many improvement items were raised in last quarter's incident reviews? How many are now completed?
+      Which ones are not completed and why?
+    - How quickly are issues found in exercises written back into emergency plans or operation manuals?
+      What was the most recent write-back, and which section of which document?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.536233Z'
+  signed_digest: 1f7e8c330984c7a685ad4cdbfbaa61f5b08ec95844c7e49bcec2d192b8b36a06
+  interview_seconds: null
+  inherited_from: null

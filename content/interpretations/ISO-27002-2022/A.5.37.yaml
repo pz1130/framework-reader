@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.5.37
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about having policies without action—policies are established but no one implements,
+      maintains, or knows about them; during audits, the only recourse is to point to documents on the
+      wall and claim that controls exist. This requirement mandates that 'how to write, who writes, how
+      often to review, and how to communicate' become verifiable actions.
+    basis: inferred
+  plain_zh:
+    value: 'Establish a lifecycle management mechanism for all information security policies and procedures:
+      assign responsibility for drafting and revision, conduct periodic reviews and updates, formally
+      communicate to those who need to know, and retain traceable records of the entire process.'
+    basis: inferred
+  practice:
+    value:
+      '1': There is a set of information security policy and procedure documents with designated owners;
+        employees can view or acknowledge receipt upon onboarding.
+      '2': Policies and procedures have version numbers and effective dates, are reviewed and updated
+        on a fixed cycle (e.g., annually), with meeting minutes or approval records for the review process;
+        when content changes, re-communicate to affected personnel.
+      '3': Policies and procedures are integrated into a unified management system (e.g., a document management
+        system), changes go through an approval workflow and automatically notify relevant roles; management
+        conducts periodic reviews of the effectiveness of high-risk policies in regular meetings, and
+        revisions have clear trigger conditions (e.g., major security incidents, regulatory changes).
+    basis: inferred
+  evidence:
+    value: Information security policy system catalog (including version, owner, review date), meeting
+      minutes or approval records for policy reviews, employee acknowledgment/training records, historical
+      versions and revision notes for policy changes, and communication notification records.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'taking an ISO template, changing the header, and placing it on a shared drive'
+      constitutes establishing operational procedures. Without someone responsible for revisions, no review
+      cycle, and no acknowledgment or training records, if an auditor finds that the last update was five
+      years ago, this control fails on the spot.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Bring out the records of the last three policy revisions—what was changed each time, who approved
+      it, and when was it communicated to all staff?
+    - What was the date of the last review of this access control policy? In which document are the review
+      conclusions recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.309739Z'
+  signed_digest: 1dd6043838dd56feb322c614b3109a52e621490a6f8be743a85c66b62e373b69
+  interview_seconds: null
+  inherited_from: null

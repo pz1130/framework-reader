@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CA-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the risk that a single form of assessment - such as a standard
+      vulnerability scan or a questionnaire - misses specialized, high-impact threats
+      that require purpose-built testing, so that critical systems don't get a false
+      'clean' signal while hidden weaknesses remain exploitable.
+    basis: inferred
+  plain_zh:
+    value: This control asks you to go beyond routine assessments and run additional,
+      specialized assessments - such as penetration tests, red team exercises, or
+      application-specific security tests - on systems where the stakes or complexity
+      demand it, and to align these with your organization's broader assessment program.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems or applications are high-risk or complex enough
+        to warrant specialized assessment, and document that rationale.
+      '2': Include specialized assessments (e.g., penetration testing, adversary emulation)
+        for those systems in the assessment plan/schedule, with defined scope, method,
+        and reporting.
+      '3': Integrate specialized assessments with the overall security assessment
+        program, track findings to remediation, and re-assess after significant changes
+        or as threats evolve.
+    basis: inferred
+  evidence:
+    value: Assessment plan or schedule that lists specialized assessments, scope and
+      methodology documents, sample reports of completed specialized assessments (e.g.,
+      pen test report, red team report), and evidence that findings were tracked to
+      remediation.
+    basis: inferred
+  common_myth:
+    value: Assuming that a standard vulnerability scan or a compliance checklist meets
+      this control, when it requires deliberately going beyond automated scans to
+      simulate real adversary behavior or test complex attack paths, which a scan
+      can't do.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your systems are designated as high-risk or complex, and what specialized
+      assessment did each receive in the last cycle?
+    - Show me the plan or schedule that includes specialized assessments and how it
+      adapts after significant system changes.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.667329Z'
+  signed_digest: 6404db36a5cd8debd1c955c3546946ae722a6b93d4f06ddfebbcab1ca0f619ec
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,73 @@
+control_id: NIST-CSF-2.0:DE.CM-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the boundary firewall is on and monitoring traffic, but internal east-west
+      traffic and endpoint behavior are not monitored—lateral movement and successful phishing landings
+      go unnoticed. Network monitoring must cover critical network segments and network services, detect
+      potential malicious events, and alert, rather than only watching traffic at the internet entry point.
+    basis: inferred
+  plain_zh:
+    value: Continuously monitor inbound, outbound, and east-west traffic, as well as services on network
+      devices, to identify events that may constitute threats; monitoring is not just installing a traffic
+      probe—it must cover important network segments, see behavioral clues beyond encrypted traffic, and
+      have alerting and response processes.
+    basis: inferred
+  practice:
+    value:
+      '1': Traffic monitoring or probes are in place at boundary and core switches; IDS/IPS is enabled
+        with rules loaded; there are contacts for receiving and responding to alerts.
+      '2': Monitoring covers critical internal and external network segments and key network services;
+        alerts have severity levels and normal response timeframes; probe and rule changes, as well as
+        alert handling, are documented.
+      '3': Monitoring channels are integrated with defense-in-depth systems, linked with log analysis
+        and threat intelligence; there are detection methods for encrypted traffic, DNS tunneling, and
+        anomalous protocol behavior; regular reviews of monitoring coverage blind spots and detection
+        effectiveness tests are conducted.
+    basis: inferred
+  evidence:
+    value: Network topology and monitoring coverage diagrams, IDS/IPS rule library versions and loading
+      records, alert tickets and handling records, bandwidth and protocol baseline analysis reports, and
+      periodic monitoring effectiveness test reports.
+    basis: inferred
+  common_myth:
+    value: Assuming that deploying an IDS is sufficient for monitoring
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where human review is involved, there is a risk of error
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions:
+  - n: 1
+    kind: fixed
+    text: 中文团队对这条控制最常见的误解是什么？
+  - n: 2
+    kind: fixed
+    text: 审计员会追问哪几句？
+  - n: 3
+    kind: adaptive
+    text: IDS部署后，还需要哪些措施来确保监控的有效性？
+  raw:
+  - n: 1
+    text: 以为部署了 IDS 就算做到监控了
+  - n: 2
+    text: 只要人看的，就有失误的风险
+  - n: 3
+    text: 接入siem，写usecase
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.445433Z'
+  signed_digest: f94588fdb142c8ab8baeae1bb124a20630b052629d71746fe4f566550f12866c
+  interview_seconds: null
+  inherited_from: null

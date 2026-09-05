@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CA-7.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a Security Operations Center that is busy, compliant-looking,
+      and still blind — analysts, sensors, and control checks drifting apart over
+      time so that what gets monitored no longer matches what the organization actually
+      runs, and what analysts respond to no longer matches the threat reality.
+    basis: inferred
+  plain_zh:
+    value: Make sure the information your continuous monitoring pulls in, and the
+      people acting on it, stay internally consistent and consistent with the real
+      environment and threat landscape — across assets, people, processes, and tools
+      — so monitoring doesn't quietly rot into theatre.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick a representative slice of the environment and compare what the monitoring
+        tools, the asset inventory, and the on-call roster believe is in scope against
+        each other; fix the obvious gaps (e.g. asset list says 10, SIEM ingests 7).
+      '2': 'Run scheduled consistency checks across assets, personnel, processes,
+        and tools: asset-to-monitor coverage, role-to-alert ownership, control-test-to-policy
+        mapping, and analyst skills-to-tooling; record variances and remediate them
+        with owners and dates.'
+      '3': Treat consistency analysis as a managed program with defined cadence, thresholds
+        that trigger escalation, trend reports to leadership, and feedback loops that
+        adjust the monitoring strategy when drift, false positives, or coverage gaps
+        are detected.
+    basis: inferred
+  evidence:
+    value: Consistency analysis methodology and schedule, cross-source comparison
+      reports (asset inventory vs. sensor coverage vs. ticket ownership vs. policy
+      mapping), variance logs with remediation owners and closure dates, and trend
+      data presented to governance forums.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the SIEM dashboard lights up every day and produces
+      tickets, monitoring is consistent. In practice, dashboards stay green while
+      asset inventory drifts, alert ownership rotates to wrong teams, and control
+      tests stop reflecting the actual configuration — none of which any single tool
+      will flag on its own.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last consistency check between your asset inventory and what your
+      monitoring sensors actually cover.
+    - When a variance was found (e.g. an unmonitored critical asset or an alert routed
+      to the wrong team), who owned the fix and how was it closed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.705957Z'
+  signed_digest: e0a042c7bf218b1e7e06dc2a9135aa366c42548e4a7897027ea7eaf233782c7c
+  interview_seconds: null
+  inherited_from: null

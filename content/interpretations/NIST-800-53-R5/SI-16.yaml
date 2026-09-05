@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against memory-corruption exploitation turning into code execution
+      — buffer overflows, use-after-free, and similar classes of memory safety bugs
+      that an attacker hijacks to run arbitrary code, escalate privilege, or break
+      out of sandboxes. Without enforced memory-safety mitigations at the process
+      or system level, a single memory bug in any exposed binary becomes a foothold.
+    basis: inferred
+  plain_zh:
+    value: Require and turn on hardware and compiler/OS-level memory protections (NX/DEP,
+      ASLR, stack canaries, control-flow integrity, and equivalents) on systems handling
+      untrusted input, so memory-corruption bugs cannot trivially become code execution.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems and processes that handle untrusted input; enable
+        the built-in memory-protection features their OS and compiler already offer
+        (DEP/NX, ASLR, stack canaries) rather than running defaults.
+      '2': Document a baseline of required memory protections per system class, enforced
+        via hardened build images and configuration baselines; verify on a sample
+        of production builds that mitigations are not silently disabled.
+      '3': Apply defense-in-depth mitigations (e.g., CFI, shadow stacks, sandboxing,
+        safe-language runtimes for high-risk code paths), continuously scan binaries
+        to catch regressions where mitigations get turned off, and block builds or
+        deployments that lack the required baseline.
+    basis: inferred
+  evidence:
+    value: Baseline configuration documents specifying required memory protections
+      per system class, hardened build templates or images, sample verification reports
+      showing mitigations are present on production binaries, and records of build/deployment
+      failures caught by missing-mitigation checks.
+    basis: inferred
+  common_myth:
+    value: Assuming the OS default is fine — many teams ship binaries with ASLR or
+      DEP effectively disabled (older toolchains, compatibility flags, debug builds
+      promoted without review), turning this control into wishful thinking rather
+      than an enforced baseline.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a production binary at random — is ASLR and DEP actually effective on it,
+      and who verified that?
+    - Where in the build and deployment pipeline would a binary with disabled mitigations
+      be caught and rejected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.867244Z'
+  signed_digest: ecd6df2a9b2ec1a8df53cd23712d7878c0b10a291f98dbeea21faede145afc2f
+  interview_seconds: null
+  inherited_from: null

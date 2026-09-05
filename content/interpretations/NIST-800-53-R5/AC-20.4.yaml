@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-20.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against sensitive data being quietly cached or replicated onto
+      network-accessible storage devices that fall outside the organization's control
+      — personal cloud drives, removable media on unmanaged endpoints, unmanaged file
+      shares — which then become a silent exfiltration path and an accountability
+      black hole when something leaks.
+    basis: inferred
+  plain_zh:
+    value: Do not let users store, sync, or process organization-controlled information
+      on network-accessible storage devices that are not owned, managed, and monitored
+      by the organization, except where a specific exception has been granted.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule that names what counts as a prohibited network-accessible
+        storage device and where users may or may not copy organization data; users
+        have been told.
+      '2': An approved-exception process with a business justification and time limit;
+        technical controls (DLP, endpoint policy, cloud app allow-listing) block the
+        rest and produce logs of attempts.
+      '3': Detection of unauthorized storage services is continuous and tied to incident
+        response; exceptions expire or are reviewed; blocking and logging are tested
+        against new consumer services the business starts adopting.
+    basis: inferred
+  evidence:
+    value: Written use restriction, exception register with justifications and expiry
+      dates, DLP/endpoint/identity policy showing the block, alert samples of blocked
+      attempts, incident records for any bypass.
+    basis: inferred
+  common_myth:
+    value: Treating this as a 'no USB sticks' policy. The control is about network-accessible
+      storage — personal cloud drives, rogue file shares, unmanaged sync targets —
+      where data leaves the governed perimeter silently, not about removable media.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of approved storage destinations and the exceptions currently
+      in force.
+    - When a user tries to sync to a personal cloud account, what blocks it and where
+      is the log?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.165888Z'
+  signed_digest: 39be73bfab98d4755a733e680b8bdde2938be2eece7deac69a589c556dd46f90
+  interview_seconds: null
+  inherited_from: null

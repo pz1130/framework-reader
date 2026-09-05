@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-2.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against fragmented, duplicated identity verification that lets
+      weak or inconsistent authentication propagate across systems—and against users
+      re-using weak credentials because each app demands its own login. Centralizing
+      authentication at an SSO layer forces one well-controlled decision point rather
+      than dozens of ad-hoc ones.
+    basis: inferred
+  plain_zh:
+    value: Make sure the credentials used to log in once can be trusted across all
+      systems that rely on that login, so each application is not re-inventing or
+      weakening its own authentication.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the applications and data stores that share a common identity;
+        document which rely on a single sign-on credential and where the trust really
+        ends.
+      '2': Define and enforce which accounts and which applications are in scope for
+        SSO; ensure the authentication source for the SSO meets the same strength
+        requirements (MFA, credential quality, session handling) that each downstream
+        app would have required on its own.
+      '3': 'Treat the SSO identity provider as a tier-1 authentication boundary: harden
+        it, monitor it, test the federation trust, and verify periodically that no
+        in-scope app has silently bypassed SSO with a local credential or alternate
+        identity store.'
+    basis: inferred
+  evidence:
+    value: SSO scope documentation, identity provider configuration and hardening
+      records, federation/trust agreements with relying parties, periodic attestation
+      that in-scope applications are actually federated (not shadow-logging in locally),
+      and monitoring/logging of authentication events at the IdP.
+    basis: inferred
+  common_myth:
+    value: Assuming that because users 'only log in once' the control is met. SSO
+      without a strong central authenticator just propagates a single weak credential
+      to many systems, and many shops quietly allow local accounts or bypass logins
+      in some apps, breaking the trust without realizing it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which applications are supposed to trust the SSO identity, and how do you prove
+      each one actually does (not just that they 'could')?
+    - If the identity provider is unavailable or compromised, which systems still
+      accept local credentials, and when did you last check that list?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.108525Z'
+  signed_digest: f1c8e7bdd8fe0310f5ced2e52f3f1be1880833f723dac382103436321528f36c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-7.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent tampering of critical code or firmware - if a system
+      can detect a bit flip in a download or an unauthorized write to boot/ firmware
+      but cannot prove or log that detection, the compromise goes unnoticed and uninvestigated,
+      and the same event keeps repeating.
+    basis: inferred
+  plain_zh:
+    value: Make systems that enforce software/firmware integrity generate tamper-resistant,
+      human-reviewable audit records of integrity violations so significant events
+      cannot occur quietly and the organisation can actually respond to them.
+    basis: inferred
+  practice:
+    value:
+      '1': Integrity-checking tools (e.g. file/FW integrity monitors, secure boot
+        validators, signature verifiers) are enabled on systems handling critical
+        code; on a detected mismatch they write at least to a local log with who/what/when
+        and which object failed.
+      '2': Audit records specify the object, hash/baseline value, observed value,
+        triggering component, and timestamp; records are forwarded to a central log
+        or SIEM; an owner is assigned to triage every integrity failure.
+      '3': Integrity events trigger automated alerting and a defined response runbook,
+        records are protected against the integrity tool itself being tampered with
+        (append-only/off-host), and the organisation periodically proves it can detect
+        injected changes via tabletop or purple-team tests.
+    basis: inferred
+  evidence:
+    value: Integrity-tool configuration with auditing enabled, sample alert and response
+      record from a real or exercised event, log showing central collection of the
+      record, and evidence the audit log itself resists tampering.
+    basis: inferred
+  common_myth:
+    value: Assuming that turning on a code/firmware integrity tool satisfies the control
+      without wiring its output into auditable logs and a response process - detection
+      that nobody reviews is the same as no detection.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last integrity violation your tools raised and what happened next.
+    - Where do integrity-checking audit records go, and who is notified on a failure?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.117684Z'
+  signed_digest: ae9aecee909483cb90957fbdf742a09b2e12724ef3fd337020521242a07bde78
+  interview_seconds: null
+  inherited_from: null

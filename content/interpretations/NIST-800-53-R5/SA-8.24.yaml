@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-8.24
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents systems that fail in ways that lose data, leak state, or break
+      recovery — designing components so they fail into a safe/known state and can
+      be restored without guesswork, instead of failing open, hanging mid-transaction,
+      or leaving backups as the only hope.
+    basis: inferred
+  plain_zh:
+    value: Engineer systems so they fail safely (no corrupt state, no exposed data,
+      predictable behavior) and so recovery is built into the design — not bolted
+      on after an incident shows it is missing.
+    basis: inferred
+  practice:
+    value:
+      '1': Each component has a defined fail-safe/fail-secure state documented; restart
+        and recovery steps exist in runbooks; backups are taken and one has been restored
+        at least once.
+      '2': Fail-safe and recovery behavior is specified during design and reviewed
+        before release; partial-failure modes are tested; recovery time and data-loss
+        expectations are documented per system.
+      '3': Failure and recovery are verified by test (chaos/failure-injection, restore
+        drills, failover exercises) on a schedule; metrics (RTO/RPO) are tracked against
+        actual incidents; design changes require re-verification.
+    basis: inferred
+  evidence:
+    value: Design documents specifying fail-safe states, test records from failure-injection
+      and recovery drills, restore-from-backup logs, RTO/RPO figures with actual incident
+      measurements, change records showing re-verification after modifications.
+    basis: inferred
+  common_myth:
+    value: Assuming backups exist means the control is met — but if no one has ever
+      restored from one, if the system fails open (e.g., a crashed auth gateway starts
+      letting traffic through), or if a half-written transaction corrupts the database,
+      backups alone do not satisfy fail-safe or recovery.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last time you restored a production system from backup — what was
+      the outcome and how long did it take?
+    - When component X fails mid-transaction, what state does the system land in,
+      and where is that specified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.272705Z'
+  signed_digest: 721449a46c7721cfca1e02dc521fdb577372d0c31fe27b1b3af346080213f313
+  interview_seconds: null
+  inherited_from: null

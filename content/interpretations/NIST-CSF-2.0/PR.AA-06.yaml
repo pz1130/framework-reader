@@ -1,0 +1,72 @@
+control_id: NIST-CSF-2.0:PR.AA-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that physical boundaries are effectively nonexistent—anyone can enter the server
+      room, power distribution room, or archives; servers can be disk-pulled, USB sticks inserted, photos
+      taken, or cables cut without anyone knowing. Access card sharing, unregistered visitors, and long-standing
+      surveillance blind spots effectively leave the last physical line of defense of network security
+      to luck.
+    basis: inferred
+  plain_zh:
+    value: Manage physical access control according to asset risk levels—there must be rules for which
+      areas can be entered, who can enter, when they can enter, and what they do inside. The access control
+      system must be able to record, query, and block; surveillance and patrols must cover all necessary
+      areas; physical access must not become a lawless zone.
+    basis: inferred
+  practice:
+    value:
+      '1': High-risk areas such as server rooms and power distribution rooms have access control or locks;
+        visitors are registered; employees have access cards; surveillance cameras exist but may not have
+        full coverage.
+      '2': Physical areas are classified by asset risk (e.g., public, restricted, high-security zones);
+        different zones have different authorization levels; access control records are retained and queryable;
+        visitors are escorted throughout; regular patrols are conducted and recorded.
+      '3': The access control system is integrated with employee onboarding/offboarding/transfer processes,
+        with card permissions automatically revoked; surveillance covers all critical entrances with retention
+        periods; anomalies (e.g., after-hours card swipes, tailgating) trigger alerts; physical security
+        incidents are drilled and reviewed; evidence demonstrates that physical access controls match
+        risk assessment levels.
+    basis: inferred
+  evidence:
+    value: Physical zone diagrams and risk assessment documents, access control permission lists and issuance/revocation
+      records, visitor logs (paper or electronic), surveillance footage retention and spot-check records,
+      patrol sign-in sheets, physical security incident reports and remediation records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'installing access control and surveillance means compliance'—but
+      if access cards for terminated employees are never revoked, visitors tailgate without being stopped,
+      and surveillance cameras have been broken for six months without repair, auditors will catch these
+      issues immediately. The key to physical access control is that the three actions—management, monitoring,
+      and enforcement—actually occur, not just having equipment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When were physical access card permissions for terminated employees revoked? Is this linked to the
+      HR offboarding process?
+    - Which areas do surveillance cameras cover? How long is footage retained? Who has access to view
+      it? When was the last time you verified that footage can be played back correctly?
+    - How do you detect someone swiping into the server room after hours? What is the response procedure?
+    basis: inferred
+  regional_note:
+    value: European auditors, in the context of GDPR, will ask whether physical access records contain
+      personal data (e.g., visitor ID copies, biometric data) and whether storage and access permissions
+      are compliant; American auditors focus more on whether access control and surveillance cover all
+      high-risk areas and whether evidence demonstrates that unauthorized access was actually blocked.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.571436Z'
+  signed_digest: e51e1c69a67719caed450d80ae007a79196aa7acb2f7b04648ff23293bbdda65
+  interview_seconds: null
+  inherited_from: null

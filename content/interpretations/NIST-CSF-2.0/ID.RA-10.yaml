@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:ID.RA-10
+locale: en
+state: draft
+fields:
+  intent:
+    value: It guards against 'collaborate first, review later'—embedding security clauses in procurement
+      contract templates and committing that suppliers have already been reviewed, but never actually
+      verifying the supplier's security posture before spending money, ultimately allowing high-risk suppliers
+      to directly connect to production networks or data links.
+    basis: inferred
+  plain_zh:
+    value: Before signing contracts, making payments, or allowing suppliers on-site, complete an assessment
+      of their security capabilities; do not treat the assessment as a post-implementation formality.
+    basis: inferred
+  practice:
+    value:
+      '1': The procurement process includes a documented gate requiring key suppliers to complete a security
+        questionnaire or basic due diligence before contract signing; those not passing cannot proceed
+        to the contracting stage.
+      '2': The procurement system or process mandates the assessment step—contract approval cannot be
+        initiated without submitting assessment results; assessment results influence contract terms and
+        access decisions based on risk level, with records available for review.
+      '3': Supplier assessment results are integrated with procurement system data, automatically determining
+        review depth based on supplier risk level; assessment conclusions directly affect whether contracts
+        are signed, whether additional security clauses are needed, or whether observation periods are
+        extended.
+    basis: inferred
+  evidence:
+    value: Procurement process documents, contract approval chain screenshots (showing assessment as a
+      prerequisite), supplier security assessment forms and conclusions corresponding to signed contracts,
+      and case records of rejected or conditionally approved procurements.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'including security clauses in the contract' equals completing the pre-assessment.
+      Clauses are only constraints; assessment is the action—auditors need to see evidence that assessment
+      conclusions were produced before actual signing, not a questionnaire filled out afterward and stuffed
+      into the contract file.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a key supplier newly contracted in the past year, is the assessment report date earlier than
+      the contract signing date?
+    - If the assessment is not done, can the procurement system block the contract approval process? How
+      is it handled if it cannot?
+    basis: inferred
+  regional_note:
+    value: In Europe, under DORA, pre-contract assessment requirements for critical ICT suppliers are
+      more stringent; auditors may directly verify the chronological order of procurement timelines and
+      assessment reports. In the US, reliance on decision trees and completed questionnaires for classification
+      is common, but the complete timeline of contract packages is also sampled.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.559184Z'
+  signed_digest: f38378ce527edaf134f4ab4295ee8934b8357d78efe42baf5a44871cf2ce30b4
+  interview_seconds: null
+  inherited_from: null

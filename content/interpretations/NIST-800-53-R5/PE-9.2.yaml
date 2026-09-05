@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:PE-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: A protection-class power failure (surge, sag, under/over-voltage) silently
+      destroys or corrupts equipment, causing downtime and loss of data the facility
+      is supposed to defend. Without automatic voltage regulation, power-line anomalies
+      pass straight through to the system that PE-9 already obligated you to shield.
+    basis: inferred
+  plain_zh:
+    value: Make sure the facility's power protection automatically regulates voltage,
+      not just that current flows. Mains disturbances must be corrected by the device
+      itself, without an operator noticing and stepping in.
+    basis: inferred
+  practice:
+    value:
+      '1': The same surge/UPS unit feeding the protected systems has automatic voltage
+        regulation (AVR) or is part of a line-conditioner that clamps/boostes without
+        operator action; incoming utility is measured at the panel.
+      '2': Vendor specs name AVR/regulation mode and acceptable input-voltage window;
+        routine self-test logs show the unit regulating within range; exceptions are
+        recorded and resolved.
+      '3': Voltage events at the panel and at the load are logged and time-stamped;
+        alarms go to facilities/security when excursions exceed the documented window;
+        the protection set is re-evaluated after every significant event or change
+        of equipment.
+    basis: inferred
+  evidence:
+    value: Equipment list with AVR/regulation capability, vendor spec sheets noting
+      input-voltage tolerance and regulation mode, self-test and event logs showing
+      automatic correction, incident tickets for any voltage excursions.
+    basis: inferred
+  common_myth:
+    value: 'Equating PE-9 with having any UPS or surge strip on the rack, so the auditor
+      checks a tickbox for power protection. PE-9.2 asks a different question: does
+      that box react automatically when the voltage goes bad, or does it just sit
+      there waiting for a human?'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three self-test or event logs from the power protection serving
+      the controlled area — did the device correct the voltage on its own?
+    - What input-voltage window does the vendor guarantee, and how would you know
+      if the supplied power has been outside it in the last year?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.653065Z'
+  signed_digest: 080d3e094d9cfa0558662970aa3903bfa852e1b05ae7b982c0ce3dc98611140a
+  interview_seconds: null
+  inherited_from: null

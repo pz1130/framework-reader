@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PE-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against physical intruders who are not seen in time because cameras
+      are reviewed after the fact or guards only notice on their next patrol. Without
+      automated detection tied to a live response, the window between entry and discovery
+      is long enough for theft, sabotage, or data destruction to complete.
+    basis: inferred
+  plain_zh:
+    value: Monitor the physical perimeter with sensors that can detect intrusion on
+      their own, and trigger an immediate response - not a guard who happens to glance
+      at a screen or reviews footage the next morning.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensors (motion, door contacts, glass-break, video analytics) are installed
+        at perimeter and sensitive areas and generate alarms in a monitoring station
+        or on-duty responder's device.
+      '2': Alarms are routed to a defined 24x7 or on-call response within an agreed
+        time window; alarm handling, escalation, and dispatch are written down and
+        drilled.
+      '3': Detection and response are regularly tested (walk-throughs, false-positive
+        tuning), tuned to the site's threat picture, and integrated with broader physical
+        and cyber incident response.
+    basis: inferred
+  evidence:
+    value: Sensor inventory and coverage map, monitoring station logs and alarm tickets,
+      response procedures and on-call rosters, test/calibration records, incident
+      reports showing time-to-detect and time-to-respond.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have cameras and a guard' satisfies the control because video
+      is being recorded. Recording is not recognition - a camera with no analytics
+      and no live watcher only proves the intruder walked past, after the fact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which physical zones are covered by automated intrusion detection, and which
+      sensitive zones are not?
+    - 'Show the last three intrusion alarms: detection time, response time, and who
+      responded.'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.630698Z'
+  signed_digest: 9d4199b32e030ea600fb8b2d3511fc6f620390b9fcfe603d87db6a0bb36117df
+  interview_seconds: null
+  inherited_from: null

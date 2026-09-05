@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:GV.PO-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'policies on the wall, processes gathering dust'—the policy document is
+      most correct on the day it is issued, but three years later, the environment, threats, and technology
+      have all changed, yet the document still manages new problems with old logic. The security team
+      operates according to outdated clauses, and only when an incident occurs do they realize the policy
+      has long been disconnected from reality.
+    basis: inferred
+  plain_zh:
+    value: 'Treat the policy for managing cybersecurity risk as a living document: review it regularly,
+      revise it as needed, communicate changes to those who need to know, and actually follow it—not just
+      publish and forget.'
+    basis: inferred
+  practice:
+    value:
+      '1': There is an approved information security policy document with version and effective date noted;
+        the policy states it will be reviewed periodically; someone is assigned responsibility for maintenance.
+      '2': Review the policy on a fixed cycle (e.g., annually), with clear trigger conditions (major incidents,
+        regulatory changes, organizational restructuring, significant architecture changes); each revision
+        has a change record, approval trail, re-publication, and evidence of communication.
+      '3': Policy review is linked to risk registers, threat intelligence, and changes in compliance obligations,
+        not just a periodic read-through; management genuinely participates in decision-making during
+        reviews; issues identified in reviews can be traced back to policy revisions and implementation
+        actions, forming a closed loop.
+    basis: inferred
+  evidence:
+    value: Policy document version history and revision records, review meeting minutes and attendance
+      sheets, policy distribution and acknowledgment records, and explanations of corresponding changes
+      between the policy and recent risk events or compliance changes.
+    basis: inferred
+  common_myth:
+    value: 'Thinking that ''taking the policy document out each year, changing the date, and re-publishing''
+      counts as the annual review—auditors want to see the review process itself: who reviewed it, what
+      basis they used (new threats, new compliance, new technology), what was changed, and why. A policy
+      with only a date change and no content change is worse than having no policy.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last real revision of this policy? What event or review basis triggered the revision?
+    - The policy says security incidents must be reported within X time—does the current incident response
+      plan align with it? Is there a case where the policy was updated but the plan is still the old version?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.473322Z'
+  signed_digest: 56712eb82b623637209e6d04ab28466fe13024818e1c245b2ff95f8bdae16f9c
+  interview_seconds: null
+  inherited_from: null

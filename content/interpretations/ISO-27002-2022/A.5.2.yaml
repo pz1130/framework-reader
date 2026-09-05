@@ -1,0 +1,68 @@
+control_id: ISO-27002-2022:A.5.2
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'security is everyone's responsibility' can become 'no one's responsibility'—after
+      an incident, no one can be identified as the decision-maker, approver, or accountable owner. Unclear
+      responsibilities lead to security tasks being left unaddressed, and during audits, no one can be
+      held accountable.
+    basis: inferred
+  plain_zh:
+    value: Clearly document who is responsible, who executes, who approves, and who has ultimate accountability
+      for each information security task, and make these roles visible to all relevant parties—not just
+      the security team.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a documented information security roles and responsibilities document that at least
+        specifies the titles and responsibilities of the CISO (or equivalent), security team, IT operations,
+        and business lines; the document is published and accessible to all employees.
+      '2': The responsibilities document is aligned with the organizational structure and job descriptions;
+        each key security process (e.g., risk assessment, incident response, access approval) has a clear
+        RACI matrix; new employees are informed of their security responsibilities during onboarding.
+      '3': Responsibilities are enforced by linking them to performance evaluations; changes to security
+        responsibilities go through formal approval and are reflected in updated documentation; periodic
+        reviews are conducted to ensure responsibilities match actual practice, and review results are
+        recorded.
+    basis: inferred
+  evidence:
+    value: Approved roles and responsibilities document, organizational chart and job descriptions for
+      comparison, RACI matrix, signed onboarding acknowledgment records, responsibility change approval
+      forms, and security-related items in performance evaluations.
+    basis: inferred
+  common_myth:
+    value: Some believe that having a job description for the security team satisfies this requirement.
+      What truly satisfies auditors is that every step in key security processes has a clear owner, and
+      that business units—not just the security team—bear primary responsibility for their own risks.
+      A job description is only a starting point; the RACI matrix is the real evidence.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In incident response, who has the authority to declare an emergency? In which document and line
+      is this specified?
+    - When a business unit requests an exception, who has approval authority? If the CISO is unavailable,
+      who makes the decision as a backup?
+    - When was the security responsibilities document last revised? What prompted the revision?
+    basis: inferred
+  regional_note:
+    value: European auditors emphasize explicit assignment of regulatory roles (e.g., DPO/data protection
+      duties) in responsibility definitions, while American auditors focus more on whether information
+      security roles are embedded in organizational governance and business line accountability chains.
+      Both require responsibilities to be assigned to individuals, not vaguely to 'teams'.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.273611Z'
+  signed_digest: d77ea918c78c4dead10c59e4a94d9d8920b217b56302520e51188e9eb5ad5d02
+  interview_seconds: null
+  inherited_from: null

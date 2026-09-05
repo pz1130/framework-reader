@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SA-23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure mode where the organization buys or builds a component
+      on top of a general-purpose platform, library, or cloud service without ever
+      pinning down what the upstream is trusted to do and what the organization itself
+      must enforce. Without specialization, security relies on whatever defaults the
+      vendor ships — which can change without notice — and gaps between the vendor's
+      guarantees and the mission's needs go unnoticed until an incident exposes them.
+    basis: inferred
+  plain_zh:
+    value: For every component you depend on, say out loud what security you are inheriting
+      from it, what you deliberately exclude, and what you must add on top — then
+      design, configure, and verify your part accordingly.
+    basis: inferred
+  practice:
+    value:
+      '1': For each critical component (OS, database, cloud service, framework, COTS
+        product) there is a short written statement of what is inherited, what is
+        excluded, and what the organization adds — even if it is just a paragraph
+        per system.
+      '2': The specialization statement drives configuration baselines and is reviewed
+        when the upstream vendor ships a major change or the component is upgraded;
+        deviations from the inherited-vs-added split are tracked as exceptions.
+      '3': 'Specialization decisions are tied to architecture artifacts and tested:
+        inherited controls are verified against vendor evidence (attestations, test
+        results) on a schedule, and the organization''s added controls are validated
+        end-to-end so the boundary between trusted upstream and in-house enforcement
+        is provable, not asserted.'
+    basis: inferred
+  evidence:
+    value: Per-component specialization statements (inherited / excluded / added),
+      configuration baselines and hardening guides derived from them, records of reviews
+      triggered by vendor changes or upgrades, exception records for deviations, and
+      test or attestation artifacts covering both inherited and added portions.
+    basis: inferred
+  common_myth:
+    value: Treating a vendor's common-criteria certificate, SOC 2 report, or default
+      hardening guide as proof that the component is specialized for the organization's
+      environment. Certification says the product can be configured securely; it does
+      not say which configuration you actually deployed, which controls you removed
+      from scope, or which controls you are now responsible for adding.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one system you depend on: which security functions did you inherit from
+      it, which did you exclude, and which did you add — and where is that written?'
+    - When the vendor pushed a major version or a breaking change last year, what
+      did you re-specialize, and can I see the diff against the prior baseline?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.150191Z'
+  signed_digest: 7eec6b106123cc48546331dcf20e6c584ea16f463df2aa27154c3193d3f408e2
+  interview_seconds: null
+  inherited_from: null

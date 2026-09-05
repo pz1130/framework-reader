@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:RS.AN-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: To prevent untraceable actions during an investigation—if who, when, and what operations were
+      performed during incident response, and the basis for decisions, are not recorded, then post-incident
+      review, accountability, legal evidence, and regulatory inquiries will be untenable, and the investigation
+      itself may be questioned as tampering with evidence.
+    basis: inferred
+  plain_zh:
+    value: During security incident investigations, all actions (including queries, evidence collection,
+      isolation, blocking, changes, and analytical judgments) must be recorded; these records themselves
+      must be tamper-proof, and it must be possible to explain how they were generated and where the original
+      sources are.
+    basis: inferred
+  practice:
+    value:
+      '1': Investigation operations are at least recorded in change tickets, operation logs, or emails;
+        key steps have responsible person markers; log retention periods are clearly defined.
+      '2': The investigation process has dedicated incident records (timeline + operator + operation content
+        + basis); logs are tamper-proof (e.g., read-only archives, WORM); source information (time, host,
+        account) is extractable.
+      '3': The investigation environment itself has full operation auditing (e.g., bastion hosts, terminal
+        recording, command logs); records are automatically integrated into the incident timeline; each
+        operation can be linked to the original log source, supporting a complete evidence chain.
+    basis: inferred
+  evidence:
+    value: Incident investigation records (timelines, operation logs, screenshots, forensic command outputs),
+      bastion host or terminal audit records, log integrity verification proofs, and the correspondence
+      between key actions in the investigation report and original logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'unified retention of all server logs' satisfies this requirement—if manually
+      entered commands during the investigation, temporarily created accounts, or manually changed firewall
+      policies exist only in the engineer's mind and are not recorded in the incident records, unified
+      log retention cannot cover them. Only when the complete chain of actions during the investigation
+      is preserved in the incident records does it count.
+    basis: inferred
+  auditor_asks:
+    value:
+    - During this incident investigation, what key operations were performed? Where is each step recorded,
+      and can you point it out?
+    - For these logs in the investigation records, what makes you believe they have not been altered?
+      What is the verification mechanism?
+    - Can the analytical conclusions in the incident report be mapped to specific original log sources?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.624938Z'
+  signed_digest: 9af164fc7a01181f0091d069a9bf7b3a5bf26d19fe2c964b5b311af9af219613
+  interview_seconds: null
+  inherited_from: null

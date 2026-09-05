@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.31
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data loss and integrity corruption when a system cannot
+      detect or stop the transfer of malformed, malformed-encoded, or otherwise unparseable
+      content at the boundary - the failure mode where an attempted block silently
+      fails and the bad payload still flows through, or where a parsing failure is
+      logged but the file is still released.
+    basis: inferred
+  plain_zh:
+    value: Make sure content checks at egress, ingestion, and transformation points
+      actually reject (not just log or warn on) payloads they fail to parse or sanitize
+      cleanly, and that those rejections are visible and reviewed.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Document which content inspection points are in scope (e.g., email gateways,
+        upload APIs, ETL jobs) and define a fail-closed rule: a parser/sanitizer that
+        errors out must drop or quarantine, never pass-through. Staff can name at
+        least one such point.'
+      '2': 'Each inspection point has a tested failure path: an engineered malformed
+        input is sent and the outcome is observed (blocked, quarantined, alerted).
+        Failures and fallbacks are logged with enough detail to tell ''reject'' from
+        ''skip''.'
+      '3': Fail-closed behavior is verified on a recurring schedule (or when rulesets/checks
+        change), with metrics on parser failures vs. silent passes; deviations trigger
+        change review. Coverage extends to nested/recursive content (archives, embedded
+        objects) so one wrapper does not defeat the check.
+    basis: inferred
+  evidence:
+    value: Architecture showing where content transfer decisions happen; configuration
+      or policy showing fail-closed behavior on parse/sanitization errors; test records
+      of malformed-input probes against inspection points and the resulting block/quarantine;
+      logs that distinguish rejected from passed-but-flagged traffic.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a content filter and we log when it fails to parse' as
+      the control - because logging a parse error is not the same as blocking the
+      transfer, and many gateways default to fail-open (release on error) to avoid
+      disrupting business, which is exactly what this control exists to prevent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a probe you sent through [gateway/API] that the parser could not handle
+      cleanly - was it blocked or delivered?
+    - Where in the configuration is the fail-closed behavior set, and what is the
+      default when a parser throws?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.340795Z'
+  signed_digest: f1c7ac965234d949e3b4bcbd3f3e1b0718ac262dda9d7eaa44073ffcc95296fb
+  interview_seconds: null
+  inherited_from: null

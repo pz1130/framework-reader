@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.5.6
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the security team works in isolation—threat intelligence, vulnerability
+      disclosures, and new regulatory requirements circulate in external communities first. Without proactive
+      engagement, the organization only learns after being notified or attacked, always reacting a step
+      too late.
+    basis: inferred
+  plain_zh:
+    value: Don't work in a silo; establish and maintain contact with the external security community (peers,
+      vendors, industry organizations, intelligence sources). Use external information for self-education,
+      updating awareness, and early warning, and have a process to convert external alerts into internal
+      actions.
+    basis: inferred
+  practice:
+    value:
+      '1': Designated personnel subscribe to key vulnerability and threat intelligence sources (at least
+        vendor advisories and CVEs); major vulnerabilities are known within one to two days and followed
+        up by someone.
+      '2': Formal membership with monthly meeting minutes; a classification and dissemination mechanism
+        for external alerts; when urgent update directives are received, they are executed per the established
+        schedule with compliance feedback.
+      '3': Active participation in industry threat intelligence sharing (platforms or groups); internal
+        alert and response processes are linked to incident management, allowing traceability from an
+        external alert to a specific handling action.
+    basis: inferred
+  evidence:
+    value: Membership list with join dates, subscription list of external intelligence sources, tickets
+      or email records of external alert receipt and forwarding, closed-loop records of internal alert
+      responses, and minutes of participation in industry organizations or cooperative meetings.
+    basis: inferred
+  common_myth:
+    value: Assuming that joining a WeChat group or mailing list and having someone read it counts as 'engagement.'
+      The real issue is whether there is a closed loop from receiving external information to internal
+      assessment and decision on handling; if no one is responsible for converting group messages into
+      tickets, it's equivalent to not being connected.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where is the process for converting external alerts into internal actions documented? Who decides
+      whether an alert requires a response?
+    - What was the most recent incident where you acted based on external intelligence? How long did it
+      take? Through what channel was it received?
+    - Is there version management for your list of threat intelligence sources? How is handover handled
+      when the responsible person changes?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.315288Z'
+  signed_digest: b28f90c58469d261bcb3e63224343b816d7ddfbfc22cb633788ea1fc30f0c82e
+  interview_seconds: null
+  inherited_from: null

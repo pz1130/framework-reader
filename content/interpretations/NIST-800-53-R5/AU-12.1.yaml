@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:AU-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit gaps that hide attacks or insider abuse — if logs
+      are scattered across components with mismatched clocks, an attacker can move
+      laterally and the trail either drops events or contradicts itself, so investigators
+      cannot reconstruct what actually happened or when.
+    basis: inferred
+  plain_zh:
+    value: Make sure logs from across the system share a common time source and can
+      be correlated together, so you can reconstruct a single coherent timeline of
+      activity across all components instead of looking at disconnected fragments.
+    basis: inferred
+  practice:
+    value:
+      '1': All in-scope components send logs to a central collector; clocks are synchronized
+        to a common time source; the collector at least tags each event with a host,
+        a timestamp, and an event type.
+      '2': Logs are parsed into a common schema with normalized fields; clock drift
+        is monitored and alerted; retention meets policy; coverage gaps (hosts or
+        components not logging) are tracked.
+      '3': A single timeline view or correlation rules join events across components
+        by session, user, or asset; log sources are continuously inventoried and gaps
+        trigger automatic alerts; integrity of the trail is protected.
+    basis: inferred
+  evidence:
+    value: Inventory of log sources with owners, NTP/time-sync configuration and drift
+      reports, centralized log collection and retention settings, schema/field normalization
+      documentation, sample correlation query or timeline view showing cross-component
+      events joined by time and identity.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a SIEM or central log server automatically means correlation
+      works — without a common time source, normalized fields, and coverage of every
+      relevant component, the SIEM just stores fragmented streams that cannot be joined,
+      and investigators still cannot follow an attack across the environment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How are clocks synchronized across the components in scope, and what drift would
+      you see if I checked it right now?
+    - Pick one host on this list and show me its last 24 hours of activity correlated
+      with the network and authentication events for the same user.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.520222Z'
+  signed_digest: c230135b7bea5044376990753eb1c9fbc4f809571b8559437f564d27b8e8ee8a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:RS.CO-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'an incident has occurred, but those who need to know do not'—business
+      units, legal, PR, regulators, and external partners learn about it from the news only after it has
+      escalated, leading to delayed response, expanded liability, contract breaches, or regulatory penalties.
+    basis: inferred
+  plain_zh:
+    value: When an incident occurs, notify the internal departments and external organizations on the
+      pre-defined list within the specified timeframes, and keep records of each notification.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a contact list/notification roster (including at least internal management, legal,
+        PR, and external regulatory contacts); the incident response process specifies 'who is responsible
+        for notification, whom to notify, and roughly when to notify.'
+      '2': The notification roster is updated regularly (at least quarterly); the incident response record
+        form has a dedicated notification section recording actual notification time, method, and recipient;
+        there are pre-set escalation timeframes.
+      '3': The notification process is tied to incident severity levels (e.g., major incidents reported
+        to executives within 1 hour and to regulators within 4 hours); there are alternative notification
+        channels (e.g., if email fails, a phone tree or SMS group is used); notification actions are automatically
+        logged in systems/tickets, allowing post-incident auditing of delays at each step.
+    basis: inferred
+  evidence:
+    value: Incident notification roster (including internal and external contacts and update dates), incident
+      response records (including timestamps of actual notification actions and recipient signatures),
+      drill records for incidents of different severity levels (proving the notification chain works),
+      and email or ticket timelines for escalation.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having an incident response process document' is sufficient. Writing 'notify
+      relevant parties in a timely manner' without specifying the roster, timeframes, and responsible
+      persons is equivalent to not writing it—auditors will ask, 'How do you justify that notification
+      was made within 3 hours?' and you will not be able to answer.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the last drill, how long did it take from incident detection to notifying legal/PR/regulators?
+      How does that compare to the planned timeframes?
+    - When was the notification roster last updated? Which role is responsible for maintaining it?
+    - If a 7x24 on-call person discovers a major incident at 2 AM, which executive can they contact? Is
+      there an alternative path?
+    basis: inferred
+  regional_note:
+    value: European auditors under GDPR will probe the time limit for personal data breach notification
+      (72 hours to regulators) and the rationale for delays; U.S. auditors focus more on contractual obligations
+      (notification timeframes in SLAs) and securities regulatory disclosures. If you operate a bank or
+      healthcare business, both regulators will require stricter notification timeframes, and relying
+      solely on 'internal management notification processes' is insufficient.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.630640Z'
+  signed_digest: 72c8d5bcecd99996890020dea9723acf85028514e352d309b19c404c1f7a3ed4
+  interview_seconds: null
+  inherited_from: null

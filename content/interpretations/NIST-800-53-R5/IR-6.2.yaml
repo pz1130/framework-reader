@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IR-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident responders closing tickets without ever asking
+      'why did this happen to us?' — without tying each real incident back to an actual
+      weakness, the same root cause repeats, and the incident knowledge base never
+      feeds the vulnerability program.
+    basis: inferred
+  plain_zh:
+    value: After incidents actually happen, look at what underlying vulnerability
+      (config drift, missing patch, design flaw, process gap) allowed it, record that
+      link, and feed it back into vulnerability handling.
+    basis: inferred
+  practice:
+    value:
+      '1': IR write-ups have a 'related vulnerability' field; responders name at least
+        one weakness when closing a real incident; that field is not optional.
+      '2': Vulnerabilities surfaced through incidents are logged in the vuln register
+        with a disposition and owner; trend analysis across incidents shows recurring
+        weakness categories; vuln team acknowledges them in writing.
+      '3': Incident-to-vulnerability feedback loop is measured (time from incident
+        close to vuln entry, % of incidents with a confirmed linked vuln); recurring
+        weakness patterns trigger systemic remediation or control changes, not one-off
+        patches; vuln program metrics reflect incident learnings.
+    basis: inferred
+  evidence:
+    value: Incident reports with linked vulnerabilities, vuln register entries sourced
+      from incidents, cross-references between the two systems, trend analyses showing
+      recurring weakness types, evidence that incident-derived weaknesses drove remediation
+      or control changes.
+    basis: inferred
+  common_myth:
+    value: Treating IR and vulnerability management as separate silos where IR writes
+      a postmortem and the vuln team keeps patching from scanner output. If nobody
+      is required to ask 'what weakness did this exploit?' at incident close, the
+      lessons stay in a PDF and the same hole gets breached again next quarter.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a closed P1/P2 incident from the last six months — what vulnerability did
+      you record as the root weakness, and where is it tracked?
+    - Show me a vulnerability in your register that originated from an incident —
+      who owns it, what is its status, and when was it closed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.345392Z'
+  signed_digest: dc5abadb3e3088127cf8d3569391564517bae64198c6e34aec7775805d86b0a6
+  interview_seconds: null
+  inherited_from: null

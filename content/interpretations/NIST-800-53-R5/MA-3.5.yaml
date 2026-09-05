@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:MA-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against maintenance work being performed under a low-trust account
+      that can quietly subvert the very systems it is supposed to fix - if the technician
+      logs in as root or admin on the device under repair, every change becomes invisible,
+      unreviewable, and possibly malicious, and an audit trail collapses to a single
+      privileged session you cannot separate from the actual maintenance task.
+    basis: inferred
+  plain_zh:
+    value: When maintenance is run with elevated privileges, restrict who can do it,
+      authorize it before it happens, log the activity, and make sure the privileged
+      session is dedicated to the maintenance - not a free pass into the environment.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of personnel allowed to run privileged maintenance; require
+        pre-approval (ticket or change record) before the work; have the technician
+        use a dedicated, named account that is not a shared local admin.
+      '2': Bind each privileged maintenance session to a specific change/ticket ID
+        in the log; review logs for after-hours or off-baseline privileged maintenance;
+        remove local admin rights when not actively needed.
+      '3': Enforce via technical controls (privileged access workstation, credential
+        vault with checkout, PAM tool that records the session and blocks use outside
+        an approved change window); correlate maintenance sessions to the change record
+        automatically and alert on mismatches.
+    basis: inferred
+  evidence:
+    value: Approved list of personnel authorized for privileged maintenance, pre-approval
+      records (change tickets), PAM or credential-vault checkout logs tied to change
+      IDs, session recordings for privileged maintenance, post-maintenance log reviews.
+    basis: inferred
+  common_myth:
+    value: Treating any 'admin' login during a maintenance window as normal and untouchable
+      - in reality the control asks you to specifically authorize and record the elevated
+      portion, not the whole job; the technician should drop back to a normal account
+      once the privileged step is done.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me a maintenance session from the last 90 days: who authorized the elevated
+      access and what change record is it tied to?'
+    - How are privileged maintenance credentials issued and rotated, and can a technician
+      use them outside an approved change window?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.396679Z'
+  signed_digest: 6fba4d1ce0c72e5b582d73ba392a553f16444a1e5a50579a935d1063dd7200f4
+  interview_seconds: null
+  inherited_from: null

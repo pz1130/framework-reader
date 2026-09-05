@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SI-19.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security team from optimizing defenses against yesterday's
+      known threats while ignoring the adaptive, well-resourced attacker who will
+      probe for novel weaknesses, chaining low-severity flaws, or targeting gaps between
+      tool coverage.
+    basis: inferred
+  plain_zh:
+    value: It requires you to explicitly think about and document how your security
+      measures hold up against a skilled, patient, and well-funded attacker, not just
+      against commodity malware or script kiddies. You need to identify where such
+      an intruder would likely succeed and have a plan to detect, delay, or prevent
+      them.
+    basis: inferred
+  practice:
+    value:
+      '1': During design or major changes, identify the most critical assets and discuss
+        what a motivated attacker might do differently; note high-risk gaps in a risk
+        register.
+      '2': Document a formal threat model that includes a motivated intruder profile,
+        potential attack paths, and compensating controls; review it on a defined
+        cycle or after significant changes.
+      '3': Integrate the motivated intruder perspective into security architecture
+        reviews, red team exercises, and vulnerability management; track and remediate
+        gaps they would exploit, and measure the improvement over time.
+    basis: inferred
+  evidence:
+    value: Threat model documents, architecture review minutes, red team reports,
+      risk register entries, and the list of gaps identified specifically from a motivated
+      intruder perspective with mitigation status.
+    basis: inferred
+  common_myth:
+    value: Assuming that passing a vulnerability scan or holding a pen test once a
+      year means you have addressed motivated intruders, when the scan only catches
+      known CVEs and the pen test is scoped to typical attack paths, not to the persistent
+      and creative adversary.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the threat model where you explicitly assume a motivated intruder—what
+      unique attack paths did you identify and what are you doing about them?
+    - When did you last red-team against your most critical asset, and what motivated-intruder
+      gaps did that exercise reveal?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.918893Z'
+  signed_digest: 9fd3a9113c18aa88947effea716323066ca32b05334ea5a72f129f750b633109
+  interview_seconds: null
+  inherited_from: null

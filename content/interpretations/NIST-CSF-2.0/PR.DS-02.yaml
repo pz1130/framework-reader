@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:PR.DS-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the misconception that 'link encryption equals end-to-end security'
+      — data in transit must not only be encrypted, but also be protected against tampering, replay, and
+      misdelivery; many incidents occur precisely because of the blind spot of 'assuming encryption means
+      no one has interfered.'
+    basis: inferred
+  plain_zh:
+    value: For all data flowing over the network, ensure it is not eavesdropped on, altered, intercepted
+      and replayed, and is only sent to intended recipients; encryption and integrity measures used must
+      conform to recognized standards, with coverage scoped according to network boundaries and sensitivity
+      levels.
+    basis: inferred
+  practice:
+    value:
+      '1': Know which data traverses which network paths; sensitive data is encrypted on critical links
+        (e.g., TLS, VPN); strong algorithms are used.
+      '2': Encryption and integrity verification are enforced across all network boundaries; certificates
+        and keys have a controlled lifecycle; abnormal communications can be detected on links; rules
+        for plaintext and ciphertext between boundaries exist and are auditable.
+      '3': Transmission security policy covers all network zones and device types (including cloud, IoT,
+        backup links); automatic detection and blocking of plaintext sensitive data; automated key rotation;
+        systematic verification of packet integrity and replay protection.
+    basis: inferred
+  evidence:
+    value: Network topology diagrams and data flow diagrams, TLS/VPN deployment configurations and policies,
+      certificate and key management records (rotation, storage, revocation), boundary device configurations
+      (e.g., firewalls, proxies), and periodic packet capture or endpoint detection anomaly alert logs.
+    basis: inferred
+  common_myth:
+    value: The myth is that 'having an HTTPS certificate on the website' means all transmission paths
+      are protected — internal system communications, database replication links, backup channels, and
+      API gateway to backend are often still plaintext, and audits immediately target these unmanaged
+      gaps.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What protocols are used between internal servers? Is there any plaintext? Who ensures this segment?
+    - How often are keys rotated? Who has the right to export them? Where are export records kept?
+    - Which links explicitly allow plaintext transmission? What is the justification?
+    basis: inferred
+  regional_note:
+    value: 'European auditors, in the GDPR context, tend to pursue compliance of transmission paths for
+      data leaving the jurisdiction (what links are used when, and to which country data arrives); American
+      auditors focus more on technical details: strong encryption standard versions, man-in-the-middle
+      protection, and the possibility of unrestricted certificate export.'
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.580428Z'
+  signed_digest: 60e2889867b2017d38dd321eda3c803a444b259fab6e824b1fe96aad9090b43b
+  interview_seconds: null
+  inherited_from: null

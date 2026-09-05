@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IR-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where incident response is treated as
+      a one-time project or a static playbook. Without a deliberate loop that feeds
+      lessons from real incidents, exercises, and threat changes back into the IR
+      plan, the program slowly drifts out of step with how attackers actually operate,
+      and the same mistakes repeat each incident.
+    basis: inferred
+  plain_zh:
+    value: 'Make the incident response program improve over time: use real incidents,
+      exercises, and threat intel findings to update the IR plan, playbooks, training,
+      and tooling, then prove those updates actually happened.'
+    basis: inferred
+  practice:
+    value:
+      '1': After every real incident or exercise, write up what broke or slowed things
+        down and assign someone to fix it; keep the IR plan and playbooks versioned.
+      '2': Run a recurring review (e.g., quarterly or after major events) that compares
+        the plan against recent incidents, exercise results, and threat intel, with
+        documented change decisions.
+      '3': Changes are tracked to closure with owners and dates; KPIs and lessons-learned
+        trends show recurring issues shrinking over time; the plan is re-baselined
+        against current threats, not just last year's text.
+    basis: inferred
+  evidence:
+    value: Post-incident and post-exercise reports with corrective actions, version
+      history of the IR plan and playbooks, review meeting minutes linking changes
+      to specific findings, closure records for action items, and any trend data on
+      recurring gaps.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the IR plan was approved last year, IR-3.3 is satisfied.
+      The control is about the program getting better over time — if you cannot show
+      that a real incident or exercise actually changed the plan, training, or tooling,
+      you have a static program, not a continuous-improvement one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick the last real incident or exercise: what specific change did it drive
+      in the IR plan, playbooks, or tooling, and where is that recorded?'
+    - Show me a corrective action that came out of a lessons-learned review, who owned
+      it, and when it was closed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.275309Z'
+  signed_digest: 5a61822a687b9a5234fe282ff8797329bbb51be89eacb6b4e3eb360567d1b45c
+  interview_seconds: null
+  inherited_from: null

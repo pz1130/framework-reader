@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SR-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents suppliers from quietly swapping, tampering, or misrepresenting
+      the components and software you receive — the risk that what arrives in the
+      box (or the container, or the repo) is not the same thing the vendor sold you,
+      and that you cannot tell the difference.
+    basis: inferred
+  plain_zh:
+    value: Make sure you can prove where every critical component, tool, and software
+      deliverable came from — the genuine vendor, the right version, the unmodified
+      bits — and that you can detect if something along the way was swapped, tampered
+      with, or rebuilt.
+    basis: inferred
+  practice:
+    value:
+      '1': Require vendors to state the source/origin and version of critical software
+        and components at delivery; keep purchase records and hashes next to what
+        was deployed.
+      '2': Validate signatures or checksums on critical software at intake; record
+        provenance (vendor, version, where obtained) in a known inventory; reject
+        items that cannot be traced.
+      '3': Use reproducible builds or vendor-signed artifacts where available; reconcile
+        provenance against the SBOM and the deployed production version; flag any
+        item whose pedigree does not chain back to the named supplier.
+    basis: inferred
+  evidence:
+    value: Intake records linking each critical component/software to its named supplier,
+      version, and hash or signature; SBOM entries with provenance attributes; mismatches
+      and rejections logged.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'we bought it from the official vendor' is enough provenance,
+      and that an SBOM alone closes the control — pedigrees must be checked against
+      what actually arrived, not assumed from the invoice.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three recently deployed critical components and the artifact proving
+      they came unmodified from the named supplier.
+    - How would you detect if a vendor rebuilt a binary with different dependencies
+      than the one you evaluated?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.184370Z'
+  signed_digest: f1b12df7b636258be134ce7b0089a5f3057b9d535520c1ffff8b191c66276a6e
+  interview_seconds: null
+  inherited_from: null

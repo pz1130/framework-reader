@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:MA-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against hardware and firmware failing in ways that quietly degrade
+      availability, integrity, or physical safety — disk arrays dying before their
+      predicted end-of-life, UPS batteries going uncalibrated, HVAC in a server room
+      drifting out of spec, fans clogged with dust. The point of preventive maintenance
+      is to catch components while they are still predictable, not to clean things
+      that are already broken.
+    basis: inferred
+  plain_zh:
+    value: Inspect, service, and replace physical and firmware components on a schedule
+      tied to manufacturer guidance and what you actually observe in your environment,
+      and keep a record of what was done so failures can be traced.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintenance windows are scheduled for critical systems; vendor service
+        contracts cover equipment under warranty; someone owns the maintenance calendar.
+      '2': Maintenance plans exist per asset class (servers, storage, UPS, cooling,
+        firewalls) tied to vendor intervals; completed work is logged with date, technician,
+        parts, and outcome; failed or overdue tasks are escalated.
+      '3': Maintenance telemetry from SMART, UPS self-tests, environmental sensors,
+        and vendor health feeds feeds back into the schedule; failed components and
+        recurring faults trigger root-cause review and plan adjustment; audit trail
+        ties each part replacement to the asset it left.
+    basis: inferred
+  evidence:
+    value: Preventive maintenance plan, asset-by-asset maintenance schedule, completed
+      work orders with technician and parts records, vendor service reports, inspection
+      checklists, and the log showing how missed or failed maintenance was handled.
+    basis: inferred
+  common_myth:
+    value: Treating the maintenance contract as the control — assuming that because
+      a vendor is on the hook, the schedule is being followed and the work is actually
+      being done. The contract is procurement, not maintenance; the audit asks what
+      was performed on which asset, not who bills you.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a critical asset — when was its last preventive maintenance, and what did
+      the technician actually do?
+    - Show me a maintenance task that was skipped or failed — what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.447889Z'
+  signed_digest: b701286a5e855f39214131b4b2247042335a6c89c72ea82cec093e86e40cb0b7
+  interview_seconds: null
+  inherited_from: null

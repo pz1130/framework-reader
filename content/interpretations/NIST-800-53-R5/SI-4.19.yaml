@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SI-4.19
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: This control addresses the risk that system monitoring treats only technical
+      activity and fails to detect actions or conditions that could cause harm, coercion,
+      or unacceptable consequences to individuals. The purpose is to incorporate impacts
+      on people into monitoring decisions, not to infer personal harm from every anomalous
+      event.
+    basis: inferred
+  plain_zh:
+    value: Consider how system activity may affect individuals when defining, tuning,
+      and responding to monitoring. Capture and protect relevant information appropriately,
+      and investigate when evidence suggests that a person may be at risk.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify monitored activities that could affect individual safety, privacy,
+        dignity, or rights; document basic response procedures and responsible personnel.
+      '2': Use risk assessments, threat intelligence, and incident findings to define
+        individual-risk monitoring scenarios, establish response criteria, and retain
+        relevant records under appropriate privacy and access controls.
+      '3': Integrate individual-risk indicators with technical monitoring, privacy
+        safeguards, escalation workflows, and periodic validation; measure detection
+        and response performance and update scenarios as systems and threats change.
+    basis: inferred
+  evidence:
+    value: System-monitoring procedures, individual-risk scenarios and assessment
+      records, privacy and access controls for collected information, incident and
+      escalation records, and monitoring validation or review results.
+    basis: inferred
+  common_myth:
+    value: Assuming this requires monitoring every person's communications or behavior
+      as a substitute for protecting people from demonstrated risk.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which monitoring scenarios specifically address possible harm to individuals,
+      and how were those scenarios selected?
+    - What records or privacy safeguards govern information collected for individual-risk
+      analysis?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.015874Z'
+  signed_digest: e30f35506e03202090cd531c3de26d22d7c5d2f0071e4afc822899258e559752
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CP-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a security program running on whatever each team individually
+      remembers. Without a written, approved, current policy and the procedures that
+      operationalize it, every other control in CP (and most of 800-53) becomes unenforceable:
+      people cannot follow what was never published, exceptions cannot be judged against
+      a baseline, and during an incident or audit no one can prove what the rule actually
+      was on a given date.'
+    basis: inferred
+  plain_zh:
+    value: Write down the contingency planning policy and the procedures that put
+      it into action, get them approved at the right level, publish them where the
+      people who must follow them can find them, and review/update them on a schedule.
+    basis: inferred
+  practice:
+    value:
+      '1': A CP policy exists, is signed by a accountable owner, and identifies scope,
+        roles, and minimum expectations. Procedures for the most critical activities
+        (backup, incident handoff to BCP, plan activation) exist as usable runbooks.
+      '2': Policy and procedures are version-controlled, communicated to relevant
+        staff with evidence of receipt, and owners are assigned per section. Exceptions
+        to the policy are documented with an approver and expiry.
+      '3': Reviews happen on a fixed cadence and are triggered by material change
+        (new system in scope, major incident, reorganization). The policy is mapped
+        to the actual plans and tests it governs, and gaps between policy and observed
+        practice surface in the review.
+    basis: inferred
+  evidence:
+    value: Signed and dated CP policy and procedure documents with version history,
+      distribution/acknowledgment records, review meeting minutes and change log,
+      and a mapping from policy clauses to the plans, tests, and roles that implement
+      them.
+    basis: inferred
+  common_myth:
+    value: Treating a policy document as the end product rather than the starting
+      point. Teams paste template language, get a signature, and file it - then run
+      continuity activities ad hoc. The auditor's question is not 'do you have the
+      document' but 'does this document drive what people actually do, and can you
+      show it was reviewed when things changed'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the CP policy last reviewed and what triggered that review?
+    - Show me a procedure in the policy and the most recent record of it being followed
+      as written.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.899728Z'
+  signed_digest: 2c4db15db58ef52575f8b684e49ab2b30b132eb9019620532c9372baf7a796f7
+  interview_seconds: null
+  inherited_from: null

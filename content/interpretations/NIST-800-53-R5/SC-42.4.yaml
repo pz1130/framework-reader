@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-42.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the silent capture of personal data with no clear obligation
+      to disclose the act of collection — without an explicit notice, the organisation
+      has no defensible boundary between legitimate data intake and undisclosed surveillance,
+      and regulators/auditors have no basis to confirm users were informed.
+    basis: inferred
+  plain_zh:
+    value: Tell people, clearly and at the point of collection, that you are collecting
+      their information and why, so the act of collection is not hidden behind the
+      system's interface.
+    basis: inferred
+  practice:
+    value:
+      '1': Every system or form that collects personal data shows a short notice at
+        the point of input stating what is collected and the stated purpose.
+      '2': Notice text is reviewed and versioned; the review covers legal language,
+        accessibility (language, screen reader), and alignment with the privacy notice
+        / consent record on file.
+      '3': Notice is linked to a data inventory and a purpose-limitation register;
+        changes to a collection field or purpose trigger a re-approval of the notice,
+        and exceptions (e.g. internal tools, machine-to-machine feeds) are documented
+        with justification rather than left silent.
+    basis: inferred
+  evidence:
+    value: Sample point-of-collection notices by system, the linked purpose record,
+      change log showing notice updates tied to collection changes, and any documented
+      exceptions to the notice requirement.
+    basis: inferred
+  common_myth:
+    value: Assuming a single global privacy policy on the website satisfies the control
+      — the control speaks to the moment of collection on the actual interface, not
+      to a linked policy most users never open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one system that captures personal data — show me the exact notice the user
+      sees at the field level.
+    - When a new data field was added recently, how was the notice updated and who
+      approved it?
+    basis: inferred
+  regional_note:
+    value: EU auditors (especially under GDPR transparency obligations) typically
+      ask for the notice language itself and proof it matches the Article 13 information;
+      US auditors under general privacy programs more often accept a link to a notice
+      plus a collection register. Both checkpoint the same artifact but with different
+      depth.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.612627Z'
+  signed_digest: a6e5588ba8fade2d4d7220f3a5937f4eb55be870c0aaa3c3993ab7bf94516423
+  interview_seconds: null
+  inherited_from: null

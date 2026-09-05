@@ -1,0 +1,39 @@
+# 中文术语表。spec §4.2④、§10.B3
+#
+# 规则：preferred 是唯一允许出现在解读中的写法，banned 里的同义词一律不用。
+# 跨境场景下术语不一致是致命的——同一个概念在中英文材料里必须能一一对上。
+terms:
+  - preferred: 控制措施
+    banned: [管控项, 控制点, 管控措施, 控制条目]
+    en: control
+    rationale: 与 ISO 27002 中文版及国内监管文件的主流译法一致；"管控"偏运维语境
+
+  - preferred: 证据
+    banned: [佐证, 举证材料, 凭据]
+    en: evidence
+    rationale: 审计语境的标准用词，与审计员口径一致
+
+  - preferred: 适用性
+    banned: [适配性, 适用范围判定]
+    en: applicability
+    rationale: 对应 ISO 的 Statement of Applicability，须保持可回溯
+
+  - preferred: 成熟度
+    banned: [成熟程度, 完善度]
+    en: maturity
+    rationale: 与 CMMI/CSF Tier 等既有模型用词一致
+
+  - preferred: 映射
+    banned: [对应关系, 关联, 对照表]
+    en: mapping
+    rationale: 本产品的核心概念，须单一化以便检索
+
+  - preferred: 差距
+    banned: [缺口, 差异]
+    en: gap
+    rationale: '"差距评估"是行业既定说法；"差异"在对比语境下有歧义'
+
+  - preferred: 出处
+    banned: [来源标注, 溯源信息]
+    en: provenance
+    rationale: 每条映射边的核心属性，须与 UI 文案统一

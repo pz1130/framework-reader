@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:CM-7.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we have a software whitelist' being a paper exercise —
+      without allow-by-exception enforcement, anyone can run anything on endpoints
+      and servers, turning the asset inventory into wishful thinking and giving attackers
+      an unaudited foothold for malware, dual-use tools, and lateral movement.
+    basis: inferred
+  plain_zh:
+    value: 'Enforce a deny-by-default stance on software execution: only an explicitly
+      authorized list is allowed, anything else is blocked unless a documented exception
+      is approved; keep the authorized and exception lists current and prove it on
+      the wire, not on paper.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a written list of approved software for each major endpoint and
+        server class; require a named approver for any deviation; deploy basic application
+        allowlisting on the highest-risk systems (admins, domain controllers, payment/data
+        hosts).
+      '2': Extend allowlisting to all general-purpose endpoints; define a documented
+        exception process with business justification, time-bounded approval, and
+        ownership; regularly review both the allowlist and active exceptions; collect
+        hashes or publisher signatures rather than filenames.
+      '3': Enforce deny-by-default centrally via policy that cannot be disabled by
+        local admin; integrate with software inventory and vulnerability data so the
+        allowlist reflects what is actually present; alert and block on unauthorized
+        execution attempts; periodically test enforcement by attempting to run unapproved
+        binaries.
+    basis: inferred
+  evidence:
+    value: Approved software/allowlist and exception register with approver and expiry,
+      deployment configuration showing deny-by-default enforcement on managed systems,
+      detection logs of blocked execution attempts, and review records showing stale
+      entries and exceptions were pruned.
+    basis: inferred
+  common_myth:
+    value: Believing purchasing an application allowlisting product (or running Windows
+      Defender ASR/AppLocker in audit mode) satisfies the control. The tool must be
+      in enforced mode on the targeted systems, the allowlist must reflect reality,
+      and the exception process must be the only path for unapproved software — otherwise
+      the box stays open and the control is theater.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent attempt to run software that was not on the allowlist — was
+      it blocked, and where is the log?
+    - Who can grant an exception, where is the current exception list with expirations,
+      and when were stale exceptions last cleaned up?
+    basis: inferred
+  regional_note:
+    value: Auditors in highly regulated US sectors (federal, payment, healthcare under
+      HIPAA Security Rule expectations) routinely press for enforced allowlisting
+      on critical systems and reject 'audit mode only'; EU auditors under NIS2 expect
+      a comparable posture for essential entities but vary more by sector and national
+      authority in how deeply they test enforcement on general endpoints.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.845002Z'
+  signed_digest: 674d706d335b8354fc8024191f3d738fec7ce8d117dfe5aa57192581119a8856
+  interview_seconds: null
+  inherited_from: null

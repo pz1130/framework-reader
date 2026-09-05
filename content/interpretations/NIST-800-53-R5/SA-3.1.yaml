@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk that development, test, and staging environments
+      quietly diverge from production in ways attackers exploit — unpatched libraries,
+      weak credentials left in place, exposed admin interfaces, and real production
+      data smuggled in for convenience. If those environments are not governed, they
+      become the easiest door in.
+    basis: inferred
+  plain_zh:
+    value: 'Govern the systems used to build and test software before release: keep
+      them under the same security expectations as production, protect them separately
+      from production, and make sure no real production data leaks into them.'
+    basis: inferred
+  practice:
+    value:
+      '1': Stand up dev/test/staging as distinct, network-isolated environments; production
+        data is not used in them; credentials are not shared with production.
+      '2': Documented standards cover patching, hardening, and access for each environment;
+        documented process controls movement of code and data in/out; exceptions are
+        recorded and time-boxed.
+      '3': Enforcement is automated — pipelines fail when standards drift, preproduction
+        access is monitored and reviewed like production, and production data cannot
+        reach test systems even if a developer tries.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing isolation between production and preproduction
+      environments, written standards for each environment tier, access records and
+      review logs, sanitization records for any data promoted into test, change tickets
+      demonstrating environment-specific controls.
+    basis: inferred
+  common_myth:
+    value: Assuming 'it is not production, so it does not matter' — treating dev and
+      test as throwaway spaces. In practice, attackers actively scan for these systems
+      because they often hold live credentials, unpatched software, and copied production
+      data with far weaker controls around them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show how a preproduction environment is network-isolated from production, and
+      which controls still apply to it.
+    - What is the most recent piece of production data that was needed in a test system,
+      and how was it sanitized before use?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.158134Z'
+  signed_digest: 02efc1b4f966528404a05835807e1bdff2e4d51ec5d3ff648a51043c6452bef9
+  interview_seconds: null
+  inherited_from: null

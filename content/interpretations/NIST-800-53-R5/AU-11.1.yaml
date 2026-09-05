@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AU-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where audit records are kept 'just enough for
+      yesterday' and become unreadable, undecryptable, or unsearchable years later
+      — so that when an investigator finally needs them for a breach, a dispute, or
+      a regulatory inquiry, the evidence is technically present but practically gone.
+    basis: inferred
+  plain_zh:
+    value: Make sure audit logs you keep for the long term can actually still be opened,
+      read, understood, and searched when they are needed — using documented methods
+      that don't depend on one person remembering how.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which log sources have a retention obligation beyond the lifespan
+        of the original tools; note the format and how to read them today.
+      '2': Document, for each long-term log type, the format, the tool or script used
+        to read it, where the decryption keys live, and who maintains them; test reading
+        a sample older than the shortest applicable retention.
+      '3': Run periodic retrievability tests against the oldest retained samples,
+        track format or key changes against the documented retrieval procedure, and
+        treat any failure to read a retained record as a finding with a fix-by date.
+    basis: inferred
+  evidence:
+    value: A written long-term retrievability procedure per log type (format, reader/tool,
+      key location, owner), dated retrievability test results against aged samples,
+      and a remediation log for any test failures.
+    basis: inferred
+  common_myth:
+    value: Assuming that storing logs in an encrypted archive or a proprietary SIEM
+      bucket counts as 'long-term retrieval capability' — without testing that anyone
+      can actually decrypt and query them years later when the original engineer has
+      left and the vendor has changed formats.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a log record from the oldest year of your retention window, and open
+      it now using your documented procedure.
+    - Who holds the keys or readers needed to read these archives if your current
+      SIEM team is unavailable?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.515975Z'
+  signed_digest: 72423173803d0b65cdb6c186beb748b7a7049db607769c5186f5bdf95896e460
+  interview_seconds: null
+  inherited_from: null

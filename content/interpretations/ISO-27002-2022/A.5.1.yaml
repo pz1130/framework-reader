@@ -1,0 +1,61 @@
+control_id: ISO-27002-2022:A.5.1
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security requirements are scattered across departmental emails, verbal
+      agreements, and personal habits—without an information security policy formally approved and uniformly
+      issued by management, security decisions lack a basis, accountability is impossible after incidents,
+      and audits are out of the question.
+    basis: inferred
+  plain_zh:
+    value: 'Ensure the company has a formal security charter: stating why security matters, its scope,
+      who is responsible for what, and management''s commitment, and regularly updated and visible to
+      all relevant parties.'
+    basis: inferred
+  practice:
+    value:
+      '1': Have an information security policy document approved by management, stating its purpose, scope,
+        and basic division of responsibilities, and issued to all employees.
+      '2': The policy is supported by implementation procedures (e.g., incident response, access control,
+        supplier security), defining specific responsibilities for each role, with annual review records.
+      '3': The policy is not an isolated document—it drives other security strategies and regulations,
+        with a formal review process and revision history, and management proactively updates and re-communicates
+        it during significant changes.
+    basis: inferred
+  evidence:
+    value: Approved and versioned information security policy document, publication and communication
+      records (emails, intranet announcements, or training sign-in sheets), policy review and revision
+      history, and documentation of the policy's linkage to supporting regulations.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a compilation of security regulations counts as having a
+      policy'—many companies stack dozens of pages of regulations and stamp them, but lack a concise policy
+      issued by management as the charter. Auditors look at whether the policy is a standalone document,
+      whether it clearly states management commitment, and whether it is reviewed periodically, not at
+      the thickness of the regulations.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was this policy last reviewed? Who initiated it, and what was the conclusion?
+    - Where can new employees see the information security policy upon onboarding? How do you confirm
+      they have actually read it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.240625Z'
+  signed_digest: c97f28694a80d77cd7898be8fc7f6fdfa86d9250d0b7edc94c56ccc5def07aab
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.5.31
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that legal and contractual obligations become completely disconnected from actual
+      security controls—legal says compliance, security says technology, and the two operate in silos;
+      when an incident occurs, it is discovered that privacy commitments were not met, customer contract
+      requirements were not implemented, and industry regulatory clauses were not owned by anyone.
+    basis: inferred
+  plain_zh:
+    value: Identify all legal, regulatory, and contractual obligations related to information security,
+      list them, assign responsibility, and periodically verify that security controls actually align
+      with these obligations, rather than merely claiming compliance verbally.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a list of regulatory and contractual obligations; know which laws and contract clauses
+        govern the organization's information security; someone is responsible for monitoring this.
+      '2': Map the obligation list to specific security controls or responsible parties; have a periodic
+        review and update mechanism; key compliance status is documented and traceable; new regulations
+        or customer clauses have a formal intake process.
+      '3': Integrate the obligation list into contract review and business change processes; compliance
+        status is continuously monitored with automated alerts; the mapping between obligations and controls
+        is traceable, allowing auditors to verify compliance clause by clause.
+    basis: inferred
+  evidence:
+    value: Register of legal and contractual obligations, mapping matrix from obligations to security
+      controls, compliance status review records, records of security clauses in contract reviews, and
+      documents for new regulation tracking and impact assessment.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'legal reviewed the contract and clauses were included' is sufficient. The contract
+      includes data protection clauses, but no one informs the security team which systems require encryption
+      or how long logs must be retained—legal commitments remain on paper without being translated into
+      technical configurations and operational actions, causing the chain to break during audits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the contract clauses requiring encrypted storage; where is the corresponding system list?
+      How do you verify that encryption is actually implemented?
+    - For new regulations or major customer clauses that took effect last year, how long did it take from
+      identifying obligations to implementing controls? Who is responsible for driving this?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.298424Z'
+  signed_digest: 4aa3797add050aa84ce8366cfd07e4bbbf6996f91adc7db524076e3e957d505e
+  interview_seconds: null
+  inherited_from: null

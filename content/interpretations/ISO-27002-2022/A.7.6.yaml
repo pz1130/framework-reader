@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.7.6
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that the physically protected area is treated as an ordinary office area—suppliers,
+      operations personnel, cleaning staff, and other external individuals move freely within the protected
+      area, with no one managing what they can see, touch, or when they leave. Once the physical boundary
+      is compromised, even the best network and logical controls are in vain.
+    basis: inferred
+  plain_zh:
+    value: Anyone entering the physically protected area to work must have clear authorization, be supervised,
+      and the area must be cleared after work; whether they are internal staff or outsourced personnel,
+      the rules are the same.
+    basis: inferred
+  practice:
+    value:
+      '1': The protected area has access control or a registration system; external personnel are accompanied
+        when entering; the area responsible person is known.
+      '2': 'Entry requires approval: visitors have a registration form, wear a visitor badge, and are
+        accompanied throughout; temporary personnel (cleaning, maintenance) have written authorization;
+        exit is logged and verified.'
+      '3': Entry records and access control logs are retained for review; sensitive areas are partitioned
+        by role and access rights; alerts are triggered for abnormal hours or unauthorized entry; periodic
+        spot checks are conducted to verify that accompaniment and clearance are actually enforced.
+    basis: inferred
+  evidence:
+    value: Access control system logs or paper entry/exit registration forms, authorization documents
+      for visitors and temporary personnel, accompanying person's confirmation signature, list of area
+      responsible persons, cleaning inspection records or spot-check photos.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly believed that installing an access control system and swiping a card to enter
+      is sufficient control. Access control only proves 'can enter'; the audit truly focuses on 'after
+      entering, is there someone accompanying throughout, is there someone overseeing the wrap-up', and
+      whether access cards and registration rights are promptly revoked after departure or project completion.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time cleaning or maintenance personnel entered the protected area? Who was the
+      authorizing person and the accompanying person?
+    - After the supplier personnel from the previous project left, when were their access control permissions
+      revoked?
+    - For accounts that have both protected area access and server room permissions, how often are they
+      periodically reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.358721Z'
+  signed_digest: 805432da0f261beec76fec09593d8c5760ac7df7ec9aed9cfb3af1b8acbf48ed
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PE-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an insider or outsider acting unseen in a non-public area
+      where badges, guards, or door logs alone miss who did what — without video,
+      tailgating, credential lending, and after-hours tampering cannot be tied to
+      a person, and investigations stall.
+    basis: inferred
+  plain_zh:
+    value: Use video cameras to monitor defined physical access points so you can
+      see and record who actually passes through, and can review the footage when
+      something looks wrong.
+    basis: inferred
+  practice:
+    value:
+      '1': Cameras cover the defined access points identified in the physical plan;
+        footage is recorded and retained for some usable period; someone knows how
+        to pull a clip when asked.
+      '2': Camera placement is documented against the access-point list; retention
+        and overwrite cycles are defined; footage retrieval requests are logged with
+        date, requester, and incident reference; blind spots are at least acknowledged.
+      '3': Coverage, retention, and integrity are reviewed on a schedule; tamper or
+        outage alerts exist on the recording system; footage is protected from alteration
+        and access to live/playback views is restricted and audited; camera coverage
+        gaps trigger remediation, not just notes.
+    basis: inferred
+  evidence:
+    value: Camera placement map tied to defined physical access points, retention
+      schedule, footage retrieval log (date, requester, incident), tamper/outage records,
+      access controls on the video system, periodic coverage review with gap findings.
+    basis: inferred
+  common_myth:
+    value: Assuming that having cameras mounted somewhere in the building satisfies
+      the control — coverage has to align with the specific access points the physical
+      plan calls out, retention has to be long enough to be useful after an incident
+      is noticed, and the footage has to be protected from being overwritten, deleted,
+      or quietly edited before anyone asks for it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a clip from [specific date/time] for [specific access point] — walk
+      me through how you retrieve it and who can authorize deletion.
+    - Which of the access points listed in your physical plan are not visible on a
+      camera, and what covers that gap instead?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.634146Z'
+  signed_digest: 153cdb2b400a2fc9b575ee9acd02917e2081e7e58827f65251899e7d10e4a6cb
+  interview_seconds: null
+  inherited_from: null

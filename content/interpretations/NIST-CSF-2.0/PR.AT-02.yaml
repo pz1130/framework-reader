@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:PR.AT-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'security training for all employees was conducted, but those who actually
+      touch core systems still don't know what to do' — if special roles like developers, operations,
+      and cloud administrators only receive general security awareness training, they remain exposed to
+      real attack surfaces.
+    basis: inferred
+  plain_zh:
+    value: Provide security training tailored to the job responsibilities of personnel in special roles
+      (e.g., developers, operations, cloud administrators, security analysts), so that they keep corresponding
+      security risks in mind while performing their duties.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify a list of special roles (e.g., development/operations/cloud management); arrange at
+        least one security training session for personnel in these roles, with attendance records or logs.
+      '2': Design training content by role (e.g., secure coding for developers, hardening configuration
+        for operations); new hires and role changers receive corresponding training; training effectiveness
+        is assessed through simple tests or verification.
+      '3': Training content is regularly updated in line with evolving threats and job responsibilities;
+        there is evidence that personnel in these roles receive targeted retraining after security mistakes;
+        training is linked to role-based skill certification or access authorization.
+    basis: inferred
+  evidence:
+    value: List of special roles and their responsibility definitions, role-specific training course outlines
+      and materials, training attendance sheets or learning records, training effectiveness assessments
+      or practical verification results, and review records of training related to typical security incidents.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'organization-wide information security awareness training twice a year' covers
+      this requirement. General awareness training targets behaviors like careless clicking and password
+      leakage; special-role training must clearly explain how to build, configure, and operate without
+      causing security incidents in that role — the teaching objectives and assessment methods are completely
+      different.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last secure coding training for your developers? What common vulnerability types were
+      covered in the training materials?
+    - What specific security training did newly hired cloud platform administrators receive before gaining
+      access to the production environment?
+    - After the last incident caused by an operations staff configuration error, was targeted retraining
+      arranged? Where are the records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.576053Z'
+  signed_digest: ace58eb5dea37392c05a7c38ee56e841f85ed80dffc844df001e46a1f090ee14
+  interview_seconds: null
+  inherited_from: null

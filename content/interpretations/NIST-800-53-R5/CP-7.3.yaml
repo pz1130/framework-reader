@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CP-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where, during a disaster or major disruption,
+      every system fights for the same limited recovery resources and nothing comes
+      back in the order the business actually needs — so a marketing site returns
+      before a life-safety or revenue-critical system, or a key dependency is restored
+      before the data it depends on, and executives discover the priority order only
+      after the incident.
+    basis: inferred
+  plain_zh:
+    value: Decide which systems, functions and sites get brought back first when disaster
+      strikes, document that order, and make sure the alternate-processing and continuity
+      plans actually follow it under pressure — not whoever shouts loudest on the
+      day.
+    basis: inferred
+  practice:
+    value:
+      '1': A written list exists of which mission-essential functions and systems
+        recover first, approved by leadership; staff know where to find it during
+        an incident.
+      '2': Recovery priorities are tied to business impact and recovery time objectives,
+        with rationale documented; the priority list is referenced inside the continuity
+        plan, the alternate-site plan and the system-level recovery procedures, not
+        kept in a separate spreadsheet.
+      '3': Priorities are exercised — tabletop or live failover tests confirm the
+        documented order matches what actually happens; changes to systems, dependencies
+        or business criticality trigger a formal update of the priority list before
+        the next exercise.
+    basis: inferred
+  evidence:
+    value: An approved recovery-priority list with business rationale, references
+      to it inside the continuity of operations plan and alternate-site plan, test
+      or exercise records showing the priority order was followed in practice, and
+      change records showing the list was updated when systems or criticality changed.
+    basis: inferred
+  common_myth:
+    value: Treating CP-7.3 as satisfied by the existence of an alternate site contract
+      or a hot-warm-cold facility tier — the building you recover into is the 'where',
+      this control is the 'in what order once you are there', and the two are routinely
+      conflated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If two systems compete for the same recovery slot at the alternate site tomorrow
+      morning, which one wins and where is that decision written down?
+    - Show me the last failover test or exercise and how the actual recovery sequence
+      compared to the documented priority list.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.998654Z'
+  signed_digest: 29b792a03e701fbe7ca00210c000bcbede309f20f1870180b4adc3fef6ad9573
+  interview_seconds: null
+  inherited_from: null

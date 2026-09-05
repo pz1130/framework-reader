@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SI-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Preventing monitoring that only sees traffic entering the network while
+      missing what leaves it - exfiltration, command-and-control callbacks, and compromised
+      internal hosts phoning home all flow outbound and stay invisible to one-directional
+      sensors, so a breach that looks fine inbound looks completely different in the
+      egress stream.
+    basis: inferred
+  plain_zh:
+    value: Make sure monitoring tools inspect traffic coming in *and* going out across
+      the monitored boundary, so the team can catch inbound attacks and outbound theft
+      or callback traffic instead of only half the picture.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensors are placed where they can see both directions of traffic at the
+        network boundary; the deployment diagram shows symmetric inbound and outbound
+        coverage.
+      '2': Outbound traffic is inspected for known-bad destinations, anomalous volumes,
+        unusual protocols, and beaconing patterns; findings are logged and routed
+        to the same triage queue as inbound alerts.
+      '3': Coverage gaps on egress (encrypted tunnels bypassing sensors, cloud egress,
+        partner links, roaming users) are explicitly enumerated and either brought
+        under monitoring or formally accepted as exceptions; detection content is
+        tuned against egress-specific adversary behaviors and exercised in tests.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams marking sensor placement on both ingress and egress
+      paths, sensor configuration showing outbound inspection rules, detection content
+      samples for outbound scenarios, coverage-gap register listing any unmonitored
+      egress paths with their disposition, and a test or purple-team exercise confirming
+      outbound detection fires.
+    basis: inferred
+  common_myth:
+    value: Assuming perimeter IDS/IPS installed for inbound threats also covers outbound
+      - many deployments physically or logically tap only the ingress side, so exfiltration
+      and C2 callbacks pass through unchecked while the team believes the boundary
+      is monitored.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which network egress points are not visible to any monitoring sensor.
+    - What was the last outbound-only detection that fired, and what traffic triggered
+      it?
+    - How do you verify that traffic leaving through encrypted tunnels or direct internet
+      breakout is still being inspected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.049206Z'
+  signed_digest: a0363322943ffaf353e2f97d81435f45e8e4f4e00114e22cd4606ad8729c6b45
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:GV.OV-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that once a risk policy is approved, it gets locked away in a folder—business,
+      threats, and organizational structure are all changing, and if the policy is not periodically revisited,
+      security investments and priorities will become disconnected from actual risks, leaving only a paper
+      document during audits.
+    basis: inferred
+  plain_zh:
+    value: Periodically review the cybersecurity risk policy to see if it still covers current organizational
+      goals, business requirements, and actual risks. If it falls short, update it and re-communicate
+      the changes.
+    basis: inferred
+  practice:
+    value:
+      '1': The risk policy document has an approved version number and approval date; when significant
+        business changes or serious incidents occur, an additional policy review is convened ad hoc.
+      '2': There is a fixed review cycle (e.g., annual or semi-annual); reviews have minutes that record
+        who participated, what risk inputs were considered, and the conclusions; after policy updates,
+        a comparison of old and new versions is retained.
+      '3': The review cadence of the risk policy is linked to business strategic planning and annual budgeting;
+        each review references current threat intelligence and a list of major risks, and revision comments
+        can be traced to specific risk sources; after policy changes, relevant personnel are automatically
+        triggered for re-acknowledgment and training.
+    basis: inferred
+  evidence:
+    value: Policy versions and their revision history, meeting minutes and attendance lists from periodic
+      reviews, risk assessment reports or threat intelligence summaries used as inputs for each review,
+      comparison notes between old and new versions, and records of communication or training after policy
+      changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that having the policy document clearly written, signed by leadership, and posted
+      on the intranet constitutes closure. Auditors reviewing meeting minutes and version records will
+      not be fooled—without review trigger conditions and revision history, a signed policy is no different
+      from a poster.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last systematic review of the risk policy? What risk information was used as input
+      at that time?
+    - From v1.0 to the current version, what changes were made to the policy? What events or new risks
+      triggered each change?
+    - When the business launches a new segment, what process is followed to confirm that the existing
+      risk policy remains applicable?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.467238Z'
+  signed_digest: df3be0df872a4a26310cdf0d27a7978c2dea8aecc734ea06207121073512a3af
+  interview_seconds: null
+  inherited_from: null

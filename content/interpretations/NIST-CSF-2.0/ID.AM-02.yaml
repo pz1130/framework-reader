@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:ID.AM-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'not knowing what you have'—shadow assets that are bypassed, components
+      that are no longer updated but still exposed, and temporary services that go live without an owner.
+      Without a reliable inventory, subsequent vulnerability management, patching, and risk assessment
+      are all futile.
+    basis: inferred
+  plain_zh:
+    value: Inventory the software, services, and systems managed by the organization, and keep it updated
+      to always be able to clearly state what assets are currently on hand.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a static asset ledger (Excel or CMDB) that can list major servers, endpoints, and
+        core business systems.
+      '2': The ledger has clear owners and update frequency; sources such as network scans, cloud accounts,
+        and domain controllers are regularly reconciled; manual change processes allow new devices and
+        services to be added to the inventory.
+      '3': Asset discovery is primarily automated (scanning, agents, cloud APIs), with key fields complete
+        (owner, environment, version, exposure); continuous comparison with the actual environment, with
+        alerts and handling processes for unregistered assets.
+    basis: inferred
+  evidence:
+    value: Asset ledger or CMDB records (including owner, IP, version, environment), scan reports or API
+      pull records from asset discovery tasks, discrepancy reports between the ledger and the actual environment,
+      and handling records for unregistered assets.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'running a network scanner once' equals having an asset inventory. Scanners can
+      only see hosts that respond, not cloud instances that are shut down, offline but connectable laptops,
+      or devices not powered on during the scan—a single scan is not an asset ledger, let alone a substitute
+      for continuous updates.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you discover systems that go live without prior declaration? When was the last discovery,
+      and who is responsible for handling it?
+    - How many items in the asset inventory have not been confirmed as still managed for over 90 days?
+    - Are assets in development and production environments in the same inventory? How are boundaries
+      defined?
+    basis: inferred
+  regional_note:
+    value: European auditors, after NIS2 implementation, are more concerned about whether the inventory
+      covers the complete supply chain components of critical services; in the US, it is commonly used
+      in SOC 2 and FedRAMP reviews, with CMDB accuracy and automated discovery as primary evidence, while
+      European parties focus more on 'whether the inventory can clearly explain dependencies'.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.520727Z'
+  signed_digest: a80aca373247c0a25ec4db6cb8816bc962209f29b95aedb1d09b7863371171b7
+  interview_seconds: null
+  inherited_from: null

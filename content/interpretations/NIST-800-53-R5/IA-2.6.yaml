@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single compromised device from being the gateway to every user
+      account on it — if one workstation or phone is stolen, phished, or malware-laden,
+      the attacker shouldn't automatically get every privileged or sensitive account
+      the user touches from that endpoint.
+    basis: inferred
+  plain_zh:
+    value: Require a separate, dedicated device (or equivalent hardened isolation)
+      when users log into higher-risk accounts, so a compromise of the normal workstation
+      cannot reach those accounts.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which accounts qualify as higher-risk (privileged/admin, sensitive
+        data, financial) and document a rule that they must be accessed from a separate
+        device or hardened environment, not the user's daily workstation.
+      '2': Provide the separate device, jump host, or isolated VM/workspace; require
+        its use through policy and onboarding training; track exceptions with an approval
+        and expiry date.
+      '3': Enforce technically (e.g., conditional access blocks privileged-account
+        sign-in from normal endpoints, network segmentation between daily and privileged
+        devices), monitor for policy violations, and periodically test that the separation
+        still holds.
+    basis: inferred
+  evidence:
+    value: List of accounts requiring separation, the policy/standard mandating a
+      separate device, configuration of conditional access or jump-host enforcement,
+      exception register with approvals and expiry, monitoring/log records of policy
+      violations.
+    basis: inferred
+  common_myth:
+    value: Assuming a password manager or MFA on the same laptop satisfies the control
+      — the device itself is still the shared attack surface; if the endpoint is owned,
+      the privileged session is reachable from it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which accounts in your environment require a separate device for sign-in, and
+      where is that list maintained?
+    - Show me how a privileged account sign-in attempt from an everyday workstation
+      is blocked or detected.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.129050Z'
+  signed_digest: 8603daac2ea1e56f450b1b760c5b3a07dddb7acb8ad33735e9961e9d40cc951d
+  interview_seconds: null
+  inherited_from: null

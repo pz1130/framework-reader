@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-2.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers exploiting older, unpatched versions of software
+      or firmware that remain addressable on a system after an update. Without enforced
+      removal, known-vulnerable builds keep running alongside (or instead of) the
+      patched one, giving a foothold that survives the very patch meant to close it.
+    basis: inferred
+  plain_zh:
+    value: After you patch or update software or firmware, get rid of the old version
+      from the device so attackers cannot still reach or roll back to a known-vulnerable
+      copy. Have a defined, checkable way to do this.
+    basis: inferred
+  practice:
+    value:
+      '1': When patching, the old version is explicitly uninstalled or replaced, not
+        just overwritten in place. Someone owns the check for at least internet-facing
+        and high-value systems.
+      '2': Removal is written into the patch procedure with a verification step (e.g.,
+        version query, hash check). Exceptions when old versions must stay are documented
+        and time-boxed.
+      '3': Automated tooling detects and reports unexpected prior versions or downgrade
+        attempts across the fleet; deviations trigger alerts and feed into the vulnerability
+        management process.
+    basis: inferred
+  evidence:
+    value: Patch records showing prior version was removed or replaced, configuration
+      baselines or scan outputs confirming only the expected version is present, exceptions
+      with justification and expiry, automated detection results for downgrade or
+      stale-version drift.
+    basis: inferred
+  common_myth:
+    value: Assuming that running the installer for the new version is sufficient -
+      many updates install side-by-side or leave the prior build in a recoverable
+      state (old kernels, prior firmware partitions, residual libraries), and the
+      new version is the one auditors will see even when the old one is still attackable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me, for a recent critical patch, where the prior version was removed and
+      how you verified only the new version is addressable on the device.
+    - Are there any systems where the previous version is intentionally retained,
+      and what stops that exception from quietly becoming permanent?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.938068Z'
+  signed_digest: 4191478d125211c6cca91e11447e73a0c662c4cd4475c457b96c4de05f1d5226
+  interview_seconds: null
+  inherited_from: null

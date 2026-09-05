@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:RA-6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protect against the failure mode where adversaries implant hidden listening,
+      recording, or transmission devices during lawful physical contact (cleaners,
+      vendors, visitors, escorted repairs, conference setups) and the organization
+      first notices the loss months later through leaked dialogue or a tip. The control
+      forces a proactive, periodic sweep by qualified TSCM personnel so the compromise
+      is found by the defender instead of by the outside party reading the transcript.
+    basis: inferred
+  plain_zh:
+    value: Have qualified people periodically inspect sensitive spaces (boardrooms,
+      SCIFs, exec offices, data centers, deal rooms) for covert audio, video, cable,
+      infrared, RF, or wireless eavesdropping devices, and act on what they find —
+      not just install a bug detector on the wall and call it done.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which rooms and assets actually warrant technical countermeasures
+        (boardrooms where M&A, legal, or classified topics are discussed; SCIFs; executive
+        suites); have a written scope listing them.
+      '2': Conduct sweeps on a defined cadence by staff or vendors who hold a recognized
+        TSCM qualification; document date, area, equipment used, anomalies found,
+        and remediation; track repeat-find trends per site.
+      '3': Sweeps are scheduled by risk (more frequent in high-traffic or high-sensitivity
+        rooms), triggered by external events (renovation, vendor change, suspected
+        incident), performed with calibrated instruments whose calibration is recorded,
+        and anomalies are investigated by a multidisciplinary team with explicit authority
+        to cordon the area and escalate above IT.
+    basis: inferred
+  evidence:
+    value: TSCM scope list, sweep logs with dates, personnel qualifications, instruments
+      and calibration records, anomaly reports and their disposition, trend analysis
+      across sweeps, and any remediation tickets or incident records produced from
+      findings.
+    basis: inferred
+  common_myth:
+    value: Treating the control as 'we own an RF bug detector and the security guard
+      walks around with it occasionally' — a handheld sweep by an untrained operator
+      with consumer gear is not the control; the auditor is looking for independent,
+      qualified technicians on a documented cadence, not proximity to the equipment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who performed your last TSCM sweep, what qualifications did they hold, and what
+      equipment did they use?
+    - Show me the sweep schedule for the last twelve months and the log for the boardroom
+      used in the most recent M&A negotiation.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.979621Z'
+  signed_digest: 557088144205441c9c0af4591714d00162764a51f2180def504af56fccab601d
+  interview_seconds: null
+  inherited_from: null

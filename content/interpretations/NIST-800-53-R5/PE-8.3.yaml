@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PE-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against facility access logs becoming a one-stop shop for identity
+      theft or insider targeting - when visitor/employee entry records carry SSNs,
+      full DOBs, home addresses or other sensitive PII, a single compromised log (or
+      a single curious guard) hands an attacker everything needed for fraud, stalking
+      or social engineering against staff.
+    basis: inferred
+  plain_zh:
+    value: Limit the personally identifiable information collected during facility
+      access (visitor and entry records) to only what is needed to grant and audit
+      physical access, and protect what is collected. Strip or avoid sensitive elements
+      such as full SSN, full date of birth, home address or government ID numbers
+      unless the access decision genuinely requires them.
+    basis: inferred
+  practice:
+    value:
+      '1': Visitor and entry record forms ask only for name, company, host, purpose,
+        time in/out, and ID type/number if required for verification. No SSN, full
+        DOB or home address on paper sign-in sheets or badges.
+      '2': A written data-minimization rule exists for access records; collected PII
+        is stored in a controlled system with retention and access limits; old paper
+        logs are disposed of per schedule.
+      '3': Access record fields are reviewed against what the access decision and
+        audit actually need; sensitive fields are masked or tokenized at capture;
+        the access control system and any physical logs are covered by the same data-handling
+        controls as other personal data, with periodic review.
+    basis: inferred
+  evidence:
+    value: Sample visitor sign-in form or badge issuance screen showing fields collected,
+      written data-minimization policy or data-element list for physical access records,
+      access log storage and access controls, retention/disposal records.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the access log is 'just internal security' the normal
+      PII minimization rules do not apply, so they keep full SSN or government ID
+      numbers on paper sign-in sheets 'to be safe' - the control fails the moment
+      a sensitive field is collected without a documented need.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the visitor sign-in form or badge system screen - which PII fields are
+      actually captured and which are left blank?
+    - Why is each PII field on the access record collected, and where is that justification
+      documented?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR tend to push harder on why each field is necessary
+      and on retention/deletion of physical access records; US audits often focus
+      more on whether the data is protected than on whether it should be collected
+      at all.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.645259Z'
+  signed_digest: ab4f9e1ce396d9ed06f5de12ca1592bc5b68e2abb50f980777dd13d6be4efc6e
+  interview_seconds: null
+  inherited_from: null

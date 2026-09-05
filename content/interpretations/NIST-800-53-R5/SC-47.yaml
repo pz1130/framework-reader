@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SC-47
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where the primary communications path
+      itself is the attack surface or the target — if voice, data, or coordination
+      channels all depend on the same infrastructure (same carrier, same switching
+      site, same power grid, same provider compromise), a single disruption or intercept
+      takes down both the operation and the team's ability to respond. The risk is
+      operational blackout plus undetected adversary observation, not just inconvenience.
+    basis: inferred
+  plain_zh:
+    value: Identify the systems and paths the organization depends on for command,
+      coordination, and data during incidents, then maintain at least one genuinely
+      independent alternate for each critical function so that loss or compromise
+      of the primary does not stop response or expose it.
+    basis: inferred
+  practice:
+    value:
+      '1': List the communications paths used during incidents (voice, data, messaging,
+        out-of-band coordination). For each, note the carrier, transport, power, and
+        physical sites it relies on. Mark any two paths that share all of these as
+        not truly independent.
+      '2': Designate at least one alternate path per critical function that uses a
+        different carrier or transport medium, document the trigger to switch, and
+        rehearse the switch end-to-end with the people who would actually use it.
+        Keep paper or non-network fallback for the most critical coordination.
+      '3': Periodically test the alternates under realistic disruption (primary carrier
+        outage, primary site down, primary network segment isolated). Track whether
+        the alternate actually carried traffic, whether latency/confidentiality held,
+        and feed gaps back into design. Independence is verified, not assumed.
+    basis: inferred
+  evidence:
+    value: A mapping of primary and alternate communications paths by critical function,
+      showing which carrier/transport/power/site each depends on; documented switch
+      triggers; test or rehearsal records with results; corrective actions from failed
+      tests.
+    basis: inferred
+  common_myth:
+    value: Assuming a second carrier contract or a satellite phone in a closet counts
+      as an alternate path. Two paths that terminate in the same PBX, ride the same
+      fiber trench, share the same building power, or both rely on the same cloud
+      provider are one path with two price tags — the independence test is what proves
+      it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one critical coordination channel used during a real incident last year
+      and walk me through the alternate path that was actually used — who switched,
+      on what trigger, and how do you know the two paths did not share a single point
+      of failure?
+    - When did you last rehearse switching to the alternate under realistic conditions,
+      and what broke?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.640501Z'
+  signed_digest: 0cb3f1c954467d3e9e206ce9a9bb9786c2ec5d0f48a9b3fc642f35fd888b36c2
+  interview_seconds: null
+  inherited_from: null

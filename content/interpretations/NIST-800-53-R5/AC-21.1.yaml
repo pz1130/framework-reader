@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-21.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against access decisions being made without the human reviewer
+      ever seeing the actual data behind them - so an automated tool blocks, grants,
+      or flags access based on stale roles, wrong context, or faulty logic and the
+      approver rubber-stamps it. If you do not surface what the system actually relied
+      on, segregation of duties and access oversight collapse into theater.
+    basis: inferred
+  plain_zh:
+    value: When a system recommends or decides who gets access, the human approver
+      must be shown the specific information the system used (who, what role, last
+      login, policy matched, risk score, etc.), and the recommendation itself must
+      be visible before approval - not hidden inside a black box.
+    basis: inferred
+  practice:
+    value:
+      '1': Access request workflow displays the system's recommendation (approve/deny/flag)
+        and the basic attributes it was based on, so the reviewer does not approve
+        blindly.
+      '2': Reviewer must see the full decision inputs (role, entitlements requested,
+        policy rule hit, anomaly signal, manager, requester) and provide an explicit
+        override reason if disagreeing with the system; both inputs and decision are
+        logged.
+      '3': Decision inputs and the system's output are captured in an audit trail
+        with timestamp and reviewer identity; overrides feed back into tuning the
+        model; periodic review checks that presented inputs still match the actual
+        policy in force.
+    basis: inferred
+  evidence:
+    value: Access provisioning tickets showing the system's recommendation, the inputs
+      surfaced to the reviewer, the reviewer's decision and any override justification,
+      plus logs tying the workflow to the underlying identity and policy data.
+    basis: inferred
+  common_myth:
+    value: Assuming a 'click approve' workflow with an automated recommendation counts
+      as human-in-the-loop - if the approver cannot see what the system actually checked,
+      they are not reviewing, they are just pushing a button.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me a recent access approval: what did the system tell the reviewer, and
+      what did the reviewer actually see?'
+    - When a reviewer overrode the system's recommendation, where is that decision
+      logged and how is it used?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.173550Z'
+  signed_digest: c1004cf231f24b703f74f592388c94974403edc05663f5aaeea1f3ce59b18a37
+  interview_seconds: null
+  inherited_from: null

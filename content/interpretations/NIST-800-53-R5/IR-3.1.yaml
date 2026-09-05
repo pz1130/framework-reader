@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:IR-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents incident-response playbooks from rotting on the shelf — when a
+      real incident hits and nobody can actually execute the steps under time pressure,
+      the 'preparedness' on paper was always theater.
+    basis: inferred
+  plain_zh:
+    value: Don't just write the incident response plan; you have to regularly exercise
+      it end-to-end, including under automated conditions that simulate real failure,
+      and feed what breaks back into the plan.
+    basis: inferred
+  practice:
+    value:
+      '1': An annual tabletop walkthrough covers the main scenarios; contact lists
+        are updated as a by-product.
+      '2': Exercises cover technical containment and decision-making, not just comms;
+        results are written up with action items that get tracked.
+      '3': Automated, recurring tests (e.g., failure injection, backup restoration,
+        detection rule validation) run on a schedule, feed into a metrics trend, and
+        trigger plan updates whenever an exercise surfaces a gap.
+    basis: inferred
+  evidence:
+    value: Exercise schedule, scenarios used, after-action reports with tracked action
+      items, evidence that the plan was updated based on findings, and logs from any
+      automated test runs.
+    basis: inferred
+  common_myth:
+    value: Treating IR-3 as a box-check on an annual tabletop and assuming a signed
+      attendance sheet proves readiness — the plan almost never gets revised, so the
+      next incident exposes the same gaps the exercise already flagged.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last after-action report and which gaps from it actually changed
+      the plan.
+    - Which parts of the IR plan are exercised via automated testing vs. only talked
+      through?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.268100Z'
+  signed_digest: e40d53ebda1e9f1ca42009e703b67c99280aa86c0cd9c6ee4a50d39acfaa525e
+  interview_seconds: null
+  inherited_from: null

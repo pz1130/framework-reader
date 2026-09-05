@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-11.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where the development team is left to
+      grade its own homework — i.e., the same group that wrote the code, ran the test
+      plan, and recorded the results also declares the system secure, so any blind
+      spots in their plan, execution, or reporting go unchallenged and into production.
+    basis: inferred
+  plain_zh:
+    value: Require that an independent party reviews and verifies the test/assessment
+      plan before it runs, and independently checks the evidence and results after
+      — so the people who built the system are not also the ones who certify it works.
+    basis: inferred
+  practice:
+    value:
+      '1': Documented policy that developer testing is not the sole basis for accepting
+        a system; an independent reviewer is named for security-critical assessments.
+      '2': Independent reviewer signs off on the assessment plan before execution,
+        and on the results and evidence afterwards; deviations and weaknesses in the
+        plan are recorded and addressed.
+      '3': Independence is structural (separate org, contracting, or formal reporting
+        line), reviewer qualifications are on file, sampling of evidence is performed
+        without the developer present, and rejected or retested assessments are tracked
+        to closure.
+    basis: inferred
+  evidence:
+    value: Independent review records for assessment plans, signed acceptance of test
+      results, reviewer qualifications, evidence sampling notes, and tracking of remediation
+      or retest cycles.
+    basis: inferred
+  common_myth:
+    value: Assuming that having an internal QA or test team sign off counts as independent
+      verification — when QA reports into the same delivery organization and uses
+      the same plan and logs that the developers produced, it is not independent,
+      and an auditor will say so.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who reviewed and approved the security assessment plan for the last release,
+      and what is their reporting line relative to the development team?
+    - Show me one case where the independent reviewer rejected or required changes
+      to the plan or the results before acceptance.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.033532Z'
+  signed_digest: 5f14be5f62e31d09352b030b55177d48eca016a96552c60484258393d33b1d3c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:AT-2.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against staff being socially engineered through phishing, vishing,
+      smishing, deepfake voice/video calls, or other deceptive contacts that mimic
+      legitimate parties—because untrained employees will hand over credentials, transfer
+      funds, or run attacker payloads, and generic 'don't click bad links' awareness
+      training does not prepare them for the realistic, anomalous lure they will actually
+      face.
+    basis: inferred
+  plain_zh:
+    value: Train personnel to recognize and respond to suspicious communications and
+      anomalous system behavior (such as phishing, fraudulent call/voice/video, and
+      unexpected prompts for credentials or payments) so they report, verify, and
+      avoid acting on them.
+    basis: inferred
+  practice:
+    value:
+      '1': Brief awareness material that names phishing, voice/video impersonation,
+        and unusual system prompts; staff know the basic 'stop, verify, report' steps
+        and where to forward a suspicious message.
+      '2': Role-based training for high-risk groups (finance, IT admin, executives,
+        help desk) including realistic phishing and impersonation scenarios; reported
+        incidents are tracked and triaged; periodic exercises are scheduled.
+      '3': Simulated phishing and voice/social-engineering exercises run on a defined
+        cadence with metrics tied to behavior change (report rate, time-to-report,
+        repeat offenders); findings feed back into training content and controls;
+        suspicious communications trigger an automated, well-known reporting channel
+        with analyst follow-up.
+    basis: inferred
+  evidence:
+    value: Training curriculum and attendance records for general and role-based sessions,
+      exercise scenarios and results (phishing/voice simulations, response rates,
+      repeat-offender tracking), reporting channel documentation, incident tickets
+      generated from reported suspicious communications, and evidence of feedback
+      from exercises into updated training.
+    basis: inferred
+  common_myth:
+    value: Treating AT-2.4 as covered by an annual generic security awareness video
+      and a 'report phishing' button nobody uses. The control specifically targets
+      recognition of *suspicious communications and anomalous behavior*—without realistic
+      exercises and a working reporting pipeline, staff cannot tell a deepfake CFO
+      call, an OAuth-consent lure, or an MFA-fatigue prompt from the real thing, and
+      'awareness' remains decorative.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last phishing or social-engineering exercise: scenario, target population,
+      pass/fail breakdown, and how repeat offenders were handled.'
+    - Walk me through what happens from the moment an employee forwards a suspicious
+      email or reports a suspicious call—who picks it up, how fast, and what is logged.
+    - Which roles get additional training beyond the baseline, and on what cadence?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.461221Z'
+  signed_digest: 808dbee023e8263790d2b2850c680752053d51fb8df9085db40c1f53dba6e02d
+  interview_seconds: null
+  inherited_from: null

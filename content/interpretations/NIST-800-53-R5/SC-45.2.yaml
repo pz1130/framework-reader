@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-45.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single, trusted time source becoming the silent single
+      point of failure - if the primary clock skews, drifts, gets spoofed on the network,
+      or simply dies, every timestamp on logs, certificates, token validation, and
+      forensic evidence either lies or freezes, and you cannot detect the lie because
+      nothing else is comparing against it.
+    basis: inferred
+  plain_zh:
+    value: Make sure systems have a second, independent, trustworthy time source they
+      can cross-check against the primary, so a broken or manipulated clock is detected
+      instead of silently corrupting logs, authentication, and forensic timelines.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems whose time integrity matters (log servers, identity/AD,
+        certificate/TOTP validators, forensic hosts, ICS controllers). Confirm at
+        least one secondary authoritative time source is reachable from them, independent
+        of the primary path.
+      '2': Configure secondary time sources explicitly on those systems; document
+        why each secondary is authoritative; alert when skew between primary and secondary
+        exceeds a defined threshold; record the configuration and the alert path.
+      '3': Periodically verify that the secondary source itself is correct (traceable),
+        that alerts on divergence fire and get investigated, and that the design survives
+        loss or compromise of any single source (heterogeneous paths, hardware time
+        where appropriate).
+    basis: inferred
+  evidence:
+    value: Inventory of in-scope systems, their configured primary and secondary time
+      sources, the independence/authority justification for each secondary, divergence
+      thresholds and alert rules, and recent alert/remediation records showing divergence
+      was caught and acted on.
+    basis: inferred
+  common_myth:
+    value: Assuming that having two NTP servers configured is the same as having an
+      authoritative secondary source - the two are often on the same upstream, same
+      network path, same stratum, or even the same hardware, so a single failure or
+      attack fools both at once.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If your primary time source is wrong by an hour, which system would tell you,
+      and within how long?
+    - Show me the last time the secondary disagreed with the primary and what you
+      did about it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.632208Z'
+  signed_digest: 37d19991749bed6d962f8a2c4b6d8b1fc16740bd16e5e128b093f2167b1691d4
+  interview_seconds: null
+  inherited_from: null

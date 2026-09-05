@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-16.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent drift of security attributes on objects - if anyone,
+      including admins, can flip labels like classification, owner, or handling codes
+      without traceability, an object can downgrade in sensitivity or get reassigned
+      to the wrong owner and the org never notices; controls built on those attributes
+      (access decisions, retention, encryption strength, DLP rules) silently break.
+    basis: inferred
+  plain_zh:
+    value: Make sure that only specific, named people can change the security attributes
+      attached to objects (data, accounts, devices, assets), and that every change
+      is attributable to a person, with a timestamp and the before/after values.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the security attributes in use (classification, owner, handling,
+        provenance) and the systems that store them; write down who is allowed to
+        change which attribute on which object class.
+      '2': Require change requests to carry the changer identity, timestamp, and prior/new
+        value; enforce dual control or approval for sensitive attributes (e.g. classification
+        downgrade, ownership transfer); retain the change log.
+      '3': Attribute changes are logged to a tamper-evident store, monitored for risky
+        patterns (bulk downgrades, off-hours ownership transfers), and reconciliation
+        reports periodically confirm that attributes on critical objects still match
+        policy expectations; revoked individuals lose change rights immediately.
+    basis: inferred
+  evidence:
+    value: Attribute-change log entries showing user identity, timestamp, prior value,
+      new value, and the authorization basis; the policy listing which roles may change
+      which attributes; reconciliation or audit reports comparing object attributes
+      to expected state.
+    basis: inferred
+  common_myth:
+    value: Believing that having an attribute on an object (a classification label,
+      a data owner field) means the attribute is protected - the label exists, but
+      anyone with edit rights on the underlying record can rewrite it and the access
+      control system will trust the new value.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent change to a security attribute on a production object - who
+      changed it, when, from what to what, and on whose authority?
+    - Which roles have the ability to change classification or ownership, and how
+      do you make sure that ability is revoked the moment someone leaves or changes
+      job?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.020098Z'
+  signed_digest: ef74d7fe89c0492e329b562b51532bab409c5dd4c6c6ea91737e1789108a1060
+  interview_seconds: null
+  inherited_from: null

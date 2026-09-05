@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:CP-9.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single insider or compromised account being able to irreversibly
+      wipe backups, snapshots, or stored data — the kind of act where one bad click,
+      one malicious admin, or one hijacked credential destroys the only copy you had.
+      Dual authorization forces two independent humans (or systems acting as separate
+      principals) to agree before destruction, so destruction becomes a deliberate,
+      reviewable event rather than a one-person decision.
+    basis: inferred
+  plain_zh:
+    value: Before any backup, snapshot, or stored copy can be deleted or destroyed,
+      two independent people must each approve it, and the system must enforce that
+      two-person rule. No single admin — including a compromised one — should be able
+      to wipe data alone.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which backup systems, snapshots, and retention stores hold critical
+        or sensitive data, and require that destructive actions on them go through
+        a second approver (e.g. a peer or manager) before execution.
+      '2': 'Document the dual-authorization procedure: who can initiate, who must
+        co-approve, how long the approval window is, and how the request is logged.
+        Approvals and the underlying destructive action are recorded together as one
+        auditable event.'
+      '3': Enforce dual authorization in the backup tool itself (e.g. vault software,
+        cloud backup console, snapshot API) so the system refuses single-actor destruction.
+        Cover retention purges, not just immediate deletes; alert on attempts that
+        bypass the workflow; and periodically test that the control actually blocks
+        a one-person destruction.
+    basis: inferred
+  evidence:
+    value: Procedure document naming covered systems and approver roles, sample approvals
+      paired with the resulting destructive operation, tool configuration showing
+      dual-authorization enforced, and a recent test demonstrating a single actor
+      cannot destroy a backup alone.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a backup tool with a "two-person rule" checkbox, or
+      a wiki page saying "two admins must approve", means the control is met. If the
+      underlying system still lets one account delete a snapshot or purge retention,
+      the policy is decorative — auditors will try to prove this by asking which account
+      could do it alone.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the backup or snapshot account that has the most privilege and walk
+      through whether it can delete or purge a copy by itself.
+    - Pick one real deletion or retention purge from the last quarter — who initiated,
+      who co-approved, and where is the matching approval record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.047334Z'
+  signed_digest: 86e982505a60efcbcd95d0db23af4ed1d7541243fff8218dca776d910198ce23
+  interview_seconds: null
+  inherited_from: null

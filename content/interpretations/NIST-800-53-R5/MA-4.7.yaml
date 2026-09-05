@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:MA-4.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents unauthorized or unverified reconnection of remote maintenance
+      sessions—if the disconnect is not verified, a session can linger or be re-established
+      without the expected authorization, allowing an attacker to piggyback on the
+      maintenance activity or return later without triggering fresh approval.
+    basis: inferred
+  plain_zh:
+    value: For remote maintenance, you must actually check that the session has been
+      fully terminated when you think it has been—not just assume it ended. You verify
+      that the connection is truly cut before considering the maintenance event closed,
+      to avoid leaving a hidden open channel.
+    basis: inferred
+  practice:
+    value:
+      '1': When remote maintenance ends, the technician or operator confirms the session
+        is closed (e.g., logout, tool disconnect) and logs the time and who ended
+        it.
+      '2': There is a documented procedure for remote maintenance that includes explicit
+        disconnect verification steps (e.g., check session state, ping test, or review
+        connection logs) and a responsible person signs off that the session is closed
+        before declaring maintenance complete.
+      '3': 'Disconnect verification is automated or semi‑automated: the system logs
+        session termination, flags any session that remains open beyond the expected
+        window, and reconciliation between maintenance records and network/remote‑access
+        logs is performed periodically to catch dangling sessions or unauthorized
+        reconnects.'
+    basis: inferred
+  evidence:
+    value: Remote maintenance procedure document with disconnect verification steps;
+      session logs showing termination times and who ended them; sign‑off records
+      for maintenance closure; and periodic reconciliation reports between maintenance
+      tickets and remote‑access session logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the remote tool shows a 'disconnect' button, the
+      session is actually dead—without confirming at the network level (e.g., port
+      closed, VPN tunnel down, or session object removed from the access server),
+      the session may remain active or be easily re‑established, making the control
+      ineffective.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How do you know a remote maintenance session is truly terminated when the technician
+      says it is—what evidence do you keep?
+    - Show me the log entry for the last maintenance session where you verified the
+      disconnect—what timestamp and what system recorded it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.423582Z'
+  signed_digest: a4d4f7b5fc7570124369efc39841cf21bf0bfd5ec0750933ab4663bd10ee4169
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-10.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop input-validation bypass by guaranteeing the software runs the same
+      validation path and produces the same decision every time, so attackers cannot
+      probe for or rely on edge-case divergence between requests, sessions, or code
+      paths.
+    basis: inferred
+  plain_zh:
+    value: 'Make every input check behave the same way for every user, request, and
+      run: one validation path, one decision, no surprise branches triggered by timing,
+      session, source, or past failures.'
+    basis: inferred
+  practice:
+    value:
+      '1': Validation code is centralized in a shared routine rather than re-implemented
+        per endpoint; the same checker handles web, API, batch, and internal callers.
+      '2': Documented rule set drives the validator (allow/deny lists, length, type,
+        encoding) and is version-controlled; test cases include normal, malicious,
+        and edge inputs and are run on every change.
+      '3': The validator is the single chokepoint enforced at the framework layer;
+        bypasses are blocked or alerted on, and any divergence between code paths
+        is treated as a defect with a regression test.
+    basis: inferred
+  evidence:
+    value: Centralized validation module reference, versioned input-handling rules,
+      test suites covering normal and adversarial inputs, code-review or SAST results
+      showing duplicated validation removed, and incident or test records demonstrating
+      no path-specific bypass.
+    basis: inferred
+  common_myth:
+    value: Assuming a working WAF or front-end filter means inputs are validated the
+      same way everywhere, when back-end services, internal APIs, and batch jobs still
+      re-parse inputs with their own inconsistent logic.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me two code paths that receive the same input and confirm they call the
+      same validation function.
+    - What happens when an internal admin tool submits an input the public form would
+      reject?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.805828Z'
+  signed_digest: 76a9eaedb40f08769ac169fa05a3bbffeca247aa40f3f0e0cd1fb39ef1d739a6
+  interview_seconds: null
+  inherited_from: null

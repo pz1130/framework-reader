@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:PR.DS-10
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is the blind spot of 'data protected only at rest on disk and in transit'—when
+      data is being processed in memory, CPU cache, or registers, it must neither be readable nor tampered
+      with by others, nor can a process crash or system residue cause the next process to read the previous
+      process's data.
+    basis: inferred
+  plain_zh:
+    value: Data in processing (in memory, in CPU, during computation) must also ensure confidentiality,
+      integrity, and availability—encrypt what should be encrypted, isolate what should be isolated, and
+      clear what should be cleared; do not focus only on storage and network.
+    basis: inferred
+  practice:
+    value:
+      '1': Server memory and disk encryption enabled; clearly define the responsible person for protecting
+        data in use; production environments do not allow plaintext passwords to reside in memory for
+        extended periods.
+      '2': Process and memory isolation mechanisms in place; critical data is zeroed immediately after
+        processing in memory; access control for memory dumps; virtualization platforms enable memory
+        encryption (e.g., confidential computing or equivalent measures) for highly sensitive data.
+      '3': Confidential computing or homomorphic encryption used for processing highly sensitive data;
+        automated verification tools for memory clearing and lifecycle; ability to prove that data during
+        code execution cannot be read by the host or administrators.
+    basis: inferred
+  evidence:
+    value: Memory encryption and clearing policy documents, configuration records for confidential computing
+      or isolated environments, access control lists for memory dumps, memory lifecycle management plans
+      for highly sensitive data, container or virtualization isolation and hardening configuration baselines,
+      and relevant operation logs.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'enabling full-disk encryption equals protecting data in use'—that
+      is encryption at rest, which only covers stored data. Once data is read into memory by a process,
+      it exists as plaintext in RAM; without memory protection, it is like taking files out of a safe
+      and spreading them on a desk for work.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the most highly sensitive data, is it in plaintext or ciphertext in memory? Has there been any
+      verification by performing a memory dump and successfully reading plaintext?
+    - After a process crash or abnormal exit, how are memory pages cleared? What is the fallback when
+      a parent process exits but child processes still hold keys?
+    basis: inferred
+  regional_note:
+    value: In Europe, expectations for encryption in use are notably higher in the context of DORA and
+      cloud services, especially where financial industry auditors will question whether cloud tenants
+      can prove that cloud provider administrators cannot read their data processing; U.S. auditors relatively
+      remain at the level of memory protection, process isolation, and dump auditing, with fewer proactively
+      discussing confidential computing.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.582437Z'
+  signed_digest: 98f48efefbd606ae2371347085d711cff78be753c8c7d6272d51452e6c737656
+  interview_seconds: null
+  inherited_from: null

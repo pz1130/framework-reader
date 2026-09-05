@@ -1,0 +1,68 @@
+control_id: NIST-CSF-2.0:ID.RA-08
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about reacting only after vulnerabilities have been exploited—security teams
+      must have a publicly disclosed reporting channel through which external researchers, customers,
+      regulators, or suppliers can submit vulnerabilities following a clear process, with internal staff
+      to receive, assess, handle, and respond; otherwise, vulnerability information will either languish
+      in external inboxes or be ignored as spam.
+    basis: inferred
+  plain_zh:
+    value: Open a door externally so that anyone discovering a vulnerability in your products, systems,
+      or services knows where to report it and what happens after reporting; internally, define who receives,
+      who validates, who determines severity, who drives remediation, and who maintains communication
+      with the reporter. The entire chain must be supported by documented processes, not relying on someone's
+      personal inbox by chance.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a public vulnerability reporting email or web form; designate at least one person to regularly
+        check and acknowledge receipt.
+      '2': Publish an accessible vulnerability disclosure policy specifying response timelines and handling
+        stages; have internal processes for vulnerability receipt, assessment, and remediation with records.
+      '3': Integrate the disclosure process with the main vulnerability management workflow, automatically
+        generating tickets; have clear SLAs (e.g., first response, severity assessment, remediation timeframes);
+        have distinct handling paths for duplicate and malicious reports.
+    basis: inferred
+  evidence:
+    value: Publicly accessible vulnerability disclosure policy (URL or document), screenshot of the webpage
+      pointing to the disclosure email, records of receipt and response (email tickets or vulnerability
+      management platform entries), SLA achievement reports, and records of handling duplicates and false
+      positives.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having a vulnerability response process' simply means setting up a dedicated
+      email inbox for vulnerabilities. The real audit point is not the existence of the inbox, but whether
+      the entire handling chain can close the loop—after a report comes in, is there someone to acknowledge
+      it the same day, characterize it within a few days, prioritize remediation, and notify the reporter
+      after fixing? The inbox is just the entry point; if no one follows up after entry, it is equivalent
+      to not having one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which page hosts the public link to the vulnerability disclosure policy? Can you provide a screenshot?
+    - Pull a recent vulnerability report ticket—how many days elapsed from receipt to first response,
+      and then to remediation notification?
+    - Which channels are included in the statistics for received vulnerabilities? If a researcher reports
+      to your boss's personal email, does that count?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.555195Z'
+  signed_digest: 79b4e28cf0482bed93c7fa773146b4791eceb7289c36da0e04c0cd1b1b448c22
+  interview_seconds: null
+  inherited_from: null

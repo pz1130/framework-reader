@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:DE.AE-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'alerts sound and events are logged, but no one truly dissects what happened,
+      how far it reached, or why it occurred'—logs become a running tally, the monitoring screen flashes,
+      but the response team can only guess, and small issues escalate into major ones.
+    basis: inferred
+  plain_zh:
+    value: 'After seeing an anomaly alert or security event, one must not merely log or notify but genuinely
+      analyze: the sequence of events, the assets and users involved, the business scope affected, and
+      how it happened. Transform ''what happened'' from scattered raw alerts into structured understanding.'
+    basis: inferred
+  practice:
+    value:
+      '1': The security team opens raw logs for every medium or higher alert, manually reviews related
+        records, and can verbally describe roughly what occurred.
+      '2': There is a standard event analysis procedure specifying which fields to analyze (source IP,
+        target asset, account, timeline), and analysis results form written event records and are communicated
+        to relevant parties.
+      '3': The analysis process is systematic, using correlation analysis tools or playbooks to automatically
+        aggregate clues from multiple log sources; key events undergo root cause analysis, and conclusions
+        feed back to detection rules to fix blind spots.
+    basis: inferred
+  evidence:
+    value: Event analysis reports (including timeline, involved assets, accounts, impact assessment),
+      analysis records before alert closure, SIEM alert-ticket correlation records, analysis procedure
+      documents.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having a SIEM and EDR installed on every server' meets this requirement. When
+      alert volume rises, the team quickly glances to see if it's a false positive and closes it, never
+      forming a proper analysis timeline—during audits, when spot-checking tickets, if asked 'what machine
+      was the source of this event, and how many lateral movement steps occurred' and they can't answer,
+      it's as if they didn't do it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a medium-level alert ticket from last quarter: does the analysis conclusion clearly state
+      the affected asset list and event timeline?'
+    - Is your correlation analysis done manually by reviewing logs, or are there tools with rules running?
+      Are there cases where things are missed because tools can't find them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.433456Z'
+  signed_digest: dcd54dd091ef1f73cf64f9295e23b57b1d73d72e44f2386e21038edfc5b00da5
+  interview_seconds: null
+  inherited_from: null

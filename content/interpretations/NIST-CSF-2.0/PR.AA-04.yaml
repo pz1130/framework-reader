@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:PR.AA-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that identity credentials are only verified at the moment of login—every subsequent
+      operation and service-to-service call implicitly trusts the established session or token, allowing
+      session hijacking, token replay, and identity spoofing to go unchecked.
+    basis: inferred
+  plain_zh:
+    value: Identity assertions (login credentials, tokens, session identifiers) must be encrypted in transit,
+      protected at rest, and verified for authenticity and validity at each use; they cannot be issued
+      once and remain valid forever, accepted everywhere.
+    basis: inferred
+  practice:
+    value:
+      '1': Login and critical interfaces use encrypted channels; session tokens have expiration times;
+        after logout, server-side tokens are invalidated.
+      '2': Tokens or assertions are signed or bound to the session context; critical operations (e.g.,
+        password changes, transfers) require re-verification of identity; logs can trace token usage.
+      '3': Tokens have short validity and can be rotated; service-to-service calls verify the caller's
+        identity each time, not trusting the internal network or established sessions; abnormal token
+        usage is detected and blocked.
+    basis: inferred
+  evidence:
+    value: Authentication and authorization configurations (token lifecycle, encryption suites), key management
+      and rotation records, audit logs of session or token usage, and verification records of token replay/forgery
+      in security test reports.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'using JWT or single sign-on is enough'—JWT by default is only signed,
+      not encrypted, and the payload is readable in plaintext; if keys are hardcoded in code, tokens lack
+      short expiration, and the same token is used across services, the signature is meaningless. What
+      truly matters is that the token itself is protected and verified at every point of use, not just
+      at issuance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When two microservices call each other, how is the caller's identity proven? Is it the same user
+      token or independent service credentials?
+    - What is the validity period of your tokens? Can old tokens still be used after expiration?
+    - Do tokens appear in plaintext in logs or monitoring? Who has permission to read or write where tokens
+      are stored?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.567163Z'
+  signed_digest: 55ced469bbab1e287480b196d3196402433ab912645885a7fbb5b09515131cce
+  interview_seconds: null
+  inherited_from: null

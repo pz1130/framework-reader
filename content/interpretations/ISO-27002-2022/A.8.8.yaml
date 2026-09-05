@@ -1,0 +1,60 @@
+control_id: ISO-27002-2022:A.8.8
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'scanning and then calling it done' — scan reports sit unattended, and
+      truly dangerous vulnerabilities remain exposed in systems until exploited, only to be discovered
+      then.
+    basis: inferred
+  plain_zh:
+    value: There should be a systematic process to continuously identify technical vulnerabilities, assess
+      risks, remediate them within a reasonable timeframe, and integrate remediation efforts into configuration
+      management.
+    basis: inferred
+  practice:
+    value:
+      '1': Vulnerability scanning tools are used to regularly scan the production environment; scan results
+        are reviewed by someone; high-risk vulnerabilities are tracked until closure.
+      '2': Vulnerabilities have clear priorities and time requirements from discovery to remediation;
+        patches are validated in a test environment before remediation; remediation records are linked
+        to the vulnerability tracking system.
+      '3': Scan coverage is automatically validated (new assets are automatically included); the vulnerability
+        process is integrated with the ticketing system; critical assets have an escalation mechanism
+        for remediation time overruns; vulnerability trends are regularly reviewed.
+    basis: inferred
+  evidence:
+    value: Scan reports and coverage lists; vulnerability tracking records (discovery, priority, remediation
+      time, rescan confirmation); patch validation records; escalations and exception approvals for remediation
+      overruns; vulnerability trend and analysis reports.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'buying a vulnerability scanning tool' equals compliance. Scan reports are auto-generated,
+      no one follows up on remediation, and the vulnerability list only grows. The tool is just the starting
+      point; the key is whether each vulnerability has an owner, a deadline, and escalation for overruns.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the average remediation cycle for high-risk vulnerabilities discovered this quarter? Which
+      ones exceeded the deadline, and why?
+    - When a new server is brought online, how long until it is included in scan coverage?
+    - Where are the rescan confirmation records for vulnerability scan reports?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.429678Z'
+  signed_digest: 92cbe3de51070b1d3a68ee87fa80ac5ff50bd5cd87644e33ef71e2899b63aa6f
+  interview_seconds: null
+  inherited_from: null

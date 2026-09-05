@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:ID.AM-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'only inventorying the supplier list, not the services that suppliers
+      actually provide to us' — when suppliers change service scope, subcontract sub-services, or discontinue
+      services, security assessments and incident response become ineffective, and it is only when an
+      incident occurs that we realize even the service boundaries were not clearly defined.
+    basis: inferred
+  plain_zh:
+    value: List the services actually provided by each supplier (not the supplier itself), including service
+      names, dependencies, what data is used, and which systems are interfaced, and maintain it continuously
+      with contract changes.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a supplier list, with each supplier's services noted; updates are made when services
+        are added or removed.
+      '2': The service list is maintained by risk level, noting the data and systems each service depends
+        on; when contracts or services change, the list is updated in sync with version records.
+      '3': The service list is linked with asset inventory and business impact analysis; supplier service
+        changes can trigger reassessment; the list marks critical services for redundancy or alternatives.
+    basis: inferred
+  evidence:
+    value: Supplier service list (including service scope, dependencies, data flows), list update records
+      and version history, reconciliation records of service changes and contract changes, and dependency
+      diagrams for critical services.
+    basis: inferred
+  common_myth:
+    value: Thinking 'having a supplier roster is enough' — a roster only answers 'who we have contracts
+      with,' not 'what services they are running and what systems they connect to.' Auditors want a service-level
+      inventory, not a supplier-level list.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What services are actually running under this supplier? Which of our systems does each service interface
+      with?
+    - When was the last change to the supplier's service scope? Which version of the list reflects that
+      change?
+    - Which services in the list are single-sourced, where if the supplier stops, we are paralyzed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.524402Z'
+  signed_digest: f4bc3eff3b109b19ee49550cb650fb1d29ba0bfa57a94dd9d62406210acb18a4
+  interview_seconds: null
+  inherited_from: null

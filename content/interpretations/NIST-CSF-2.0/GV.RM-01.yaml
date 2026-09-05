@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:GV.RM-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent "risk management objectives" from being shelved after a security department
+      obtains an executive signature—business units may not know which security risks they own or what
+      level of performance constitutes compliance, ultimately causing security budgets and business decisions
+      to misalign and leaving risk exposure unclaimed.
+    basis: inferred
+  plain_zh:
+    value: Ensure that all risk-related parties in the company (executives, business units, security,
+      legal, etc.) jointly agree on and formally endorse a set of risk management objectives, and that
+      these objectives align with actual business operations, avoiding a disconnect between stated policies
+      and actual practices.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a documented set of risk management objectives, approved by management or governance,
+        clearly stating the level of risk to be addressed.
+      '2': Objectives are broken down by business line or risk domain; there is a periodic review process;
+        objectives align with actual risk registers or treatment records; key stakeholders have signed
+        off.
+      '3': Objectives are linked to strategic planning and budget allocation; major business changes trigger
+        proactive objective review and revision; achievement of objectives is reported to governance on
+        a periodic basis with documented records.
+    basis: inferred
+  evidence:
+    value: Approved risk management objectives document, meeting minutes and signature pages for objective
+      development or revision, records of objective references in actual risk registers or exception approvals,
+      and periodic reports to governance.
+    basis: inferred
+  common_myth:
+    value: Assuming that "writing a security risk objective and getting an executive signature" suffices—if
+      the objectives do not answer "which business risks we accept, which we do not, and what each department
+      is responsible for," the signed document only satisfies a superficial audit review and fails to
+      meet the substantive requirement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which objective in this document corresponds to your biggest security risk this year? Which business
+      unit is responsible?
+    - Who from the business units was present during objective development? Can I see the meeting minutes
+      confirming their sign-off?
+    - When was the last business strategy adjustment? Were the objectives updated accordingly? To what
+      version?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.475934Z'
+  signed_digest: bcabf37ab498c442a0305e9ca20426c70cc7b1a95535b527664606a72af2160a
+  interview_seconds: null
+  inherited_from: null

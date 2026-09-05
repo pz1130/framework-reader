@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.7.11
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about physical environment incidents such as servers being flooded, data centers
+      overheating to the point of downtime, inability to find the power switch during a fire, and hard
+      shutdowns of machines after power loss—ensuring that support facilities are not neglected in normal
+      times, only to be remembered when an incident occurs, by which time damage has already been done.
+    basis: inferred
+  plain_zh:
+    value: Support facilities in the computer room/equipment room, such as water, electricity, gas, temperature,
+      and humidity controls, must be kept in normal working condition at all times. In the event of a
+      failure, they should be quickly addressed, and in emergencies, there should be personnel who know
+      how to operate them correctly. Additionally, these facilities themselves must not be accidentally
+      misoperated.
+    basis: inferred
+  practice:
+    value:
+      '1': The computer room has UPS, temperature and humidity monitors, and clear labels for the main
+        water valve and power switch; at least one inspection and emergency drill per year; key personnel
+        know where the switches are.
+      '2': UPS and air conditioning have regular maintenance and switchover test records; water immersion,
+        temperature, and smoke detectors have alarms that can notify personnel; there is an inventory
+        list for spare parts; emergency response procedures are documented.
+      '3': Support facilities are integrated into the monitoring platform (UPS status, temperature and
+        humidity, and water leak detection are visible in real time); drainage and power paths have diagrams
+        and redundancy; maintenance and switchover operations have work orders for traceability; drills
+        have reports and closed-loop improvements.
+    basis: inferred
+  evidence:
+    value: Inspection records for support facilities, UPS test and discharge records, air conditioning
+      maintenance records, alarm system test screenshots, emergency drill scripts with sign-in sheets
+      and summaries, photos of water valve/power switch labels, and fault handling records for corresponding
+      facilities.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a UPS is sufficient for support. If the UPS battery hasn't been tested
+      in three years, no one monitors the alarms, and the new duty officer doesn't know where the power
+      switch is—these are as good as not having them. Auditors look at whether these facilities can actually
+      function in an emergency and whether there are people who know how to operate them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last discharge test on the UPS? How long did it last? Where are the results recorded?
+    - Can the duty officer demonstrate on-site which valve to close first if the computer room floods?
+    - After a temperature alarm is triggered, who gets notified? What was the last real trigger situation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.343193Z'
+  signed_digest: 5204f4d311d5378dcbc75db09f4d0108fda2c5f4bb2eb84c36383627a500c06c
+  interview_seconds: null
+  inherited_from: null

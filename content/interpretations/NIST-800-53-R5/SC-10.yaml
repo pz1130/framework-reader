@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:SC-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a forgotten or hijacked session from sitting idle on a network
+      endpoint indefinitely, so an attacker who walked up to a logged-in terminal,
+      or who captured an authenticated session, cannot keep using it as a free pass
+      into the network.
+    basis: inferred
+  plain_zh:
+    value: After a period of inactivity, terminate the network session so the user
+      must re-authenticate; do this for any connection that can reach the network.
+    basis: inferred
+  practice:
+    value:
+      '1': Set an inactivity timeout on all network-facing access (VPN, remote desktop,
+        web portals, jump hosts, SSH gateways); require re-authentication to resume.
+      '2': Apply the same timeout policy across endpoints and privileged paths; exceptions
+        are documented and approved; logs show disconnects occurring.
+      '3': Timeouts are enforced at the network or identity layer (not just client-side),
+        monitored for non-compliance, and tuned to risk - shorter for privileged and
+        remote access, longer where operationally justified.
+    basis: inferred
+  evidence:
+    value: Configuration baselines showing inactivity timeouts on each access path,
+      sample logs of sessions being disconnected after the timeout, exception register
+      with approvals, monitoring of policy compliance.
+    basis: inferred
+  common_myth:
+    value: Believing a screen saver with a password is enough, because the session
+      to the network is still alive underneath. The lock screen hides pixels but leaves
+      the authenticated channel open until the underlying session is torn down.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the inactivity timeout on your VPN and remote admin paths, and where
+      is it configured?
+    - Show me a log entry from the last 30 days where a session was actually disconnected
+      for inactivity.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.374856Z'
+  signed_digest: e4128d075bb922b53be1d8e19e45f0382d83585b69627a0a7685bce0533f7d40
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:PM-6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the security program from running on vibes - without measurable
+      targets, 'we are improving' and 'we are degrading' look identical, and leadership
+      cannot tell whether to keep funding, retune, or halt a control. The failure
+      mode is a program that produces activity (tickets closed, scans run) but no
+      evidence of outcome against defined objectives, so it survives reviews on anecdote.
+    basis: inferred
+  plain_zh:
+    value: Define how you will measure whether the security program is actually working,
+      set targets against those measures, collect the data, and review it on a schedule
+      so decisions (budget, scope, priorities) are made on evidence rather than narrative.
+    basis: inferred
+  practice:
+    value:
+      '1': A small set of measures exists for the most important security outcomes
+        (e.g. patch latency, phishing-driven incidents, privileged-account misuse).
+        Data is collected somewhere - even a spreadsheet - and shown at periodic reviews.
+      '2': Measures are linked to explicit program objectives and risk decisions;
+        targets/thresholds are documented; collection is repeatable and assigned to
+        owners; trends and missed targets trigger a defined response.
+      '3': Measures cover outcome, not just activity; cross-checked against independent
+        sources (incident data, audit findings, threat intel); reviewed on a fixed
+        cadence with leadership; fed back into risk register, budget, and control
+        re-tuning; obsolete or gamed measures are retired and replaced.
+    basis: inferred
+  evidence:
+    value: Documented measures of performance with targets, data sources and collection
+      methods, periodic measurement reports with trends and variance explanations,
+      governance minutes where the measures drove a concrete decision, and evidence
+      of retired/replaced measures.
+    basis: inferred
+  common_myth:
+    value: Treating 'we run scans every week' or 'we closed X tickets last month'
+      as measures of performance. Activity volume is not a measure of effectiveness
+      - a team that runs more scans while detection coverage is unchanged is not improving,
+      and a ticket-closure count says nothing about residual risk. The control fails
+      when measures answer 'how busy are we' instead of 'are we more secure against
+      the risks we said matter'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which program objective does this measure support, and what target did you set
+      for it?
+    - Show the last time a missed target caused a change - what changed, who decided,
+      and where is it recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.795041Z'
+  signed_digest: a23efdb744f49c4cd5d8e7f1011a5dc741561bc0a9d89876bd187996fe84c84f
+  interview_seconds: null
+  inherited_from: null

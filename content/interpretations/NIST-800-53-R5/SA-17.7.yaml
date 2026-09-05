@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-17.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against trusted components silently accumulating capabilities they
+      do not need - developers writing caller code with admin-level access, system
+      modules running with privileges not strictly required for their function, and
+      dependencies inheriting rights they never use. Once over-privileged code is
+      shipped, every vulnerability inside it escalates with it, turning a small bug
+      into full system compromise.
+    basis: inferred
+  plain_zh:
+    value: Design and build the components you rely on so each one runs with only
+      the privileges it actually needs - no more. Define that as a requirement, not
+      as a hope.
+    basis: inferred
+  practice:
+    value:
+      '1': For in-house and reused components, document the minimum privileges each
+        module, service and caller needs to do its job; reject blanket admin/root
+        patterns in design review.
+      '2': 'Embed least-privilege as a design requirement in the SDLC: architecture
+        review checks it, code review rejects hardcoded broad permissions, and exceptions
+        are recorded with justification and time-box.'
+      '3': Component privileges are modeled alongside data flow and trust boundaries;
+        CI checks flag calls or roles exceeding declared minimums; periodic review
+        re-validates that production privilege matches the documented design.
+    basis: inferred
+  evidence:
+    value: Component-level privilege design records, SDLC design/code review checklists
+      covering least privilege, exceptions register with justification and expiry,
+      CI/static analysis output flagging over-broad grants, periodic re-validation
+      results.
+    basis: inferred
+  common_myth:
+    value: Treating this as covered by the operating system's standard user model
+      - assuming that because the application runs as a non-admin account, its internal
+      functions (parsers, helpers, network calls, config loaders) are also least-privileged.
+      Internal modules routinely request or assume broader rights than the outer process,
+      and that is exactly where this control is supposed to catch.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one component you ship or reuse heavily: what is the smallest set of privileges
+      it actually needs, and where is that written down?'
+    - Show me a recent design or code review where a proposed change was rejected
+      or trimmed because it asked for more privilege than required.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.130854Z'
+  signed_digest: f8ae2a2e8dbd5fe7a4908079d88836360893447278e3d15b3c53a7ef0ec04f01
+  interview_seconds: null
+  inherited_from: null

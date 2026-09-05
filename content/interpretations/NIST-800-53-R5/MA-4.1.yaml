@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MA-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent compromise of the maintenance channel itself - if
+      a vendor technician's remote session, physical visit, or diagnostic call goes
+      unlogged and unreviewed, malicious or accidental changes ride straight into
+      production with no trail and no detection. Without independent logging and review
+      of maintenance activity, an attacker who has already won the technician account
+      can dwell, escalate, and exfiltrate with near-zero visibility.
+    basis: inferred
+  plain_zh:
+    value: Independently record every maintenance action performed under the maintenance
+      controls (remote sessions, on-site service, diagnostic sessions) and review
+      those records, so that what the vendor did is visible to you, not just to the
+      vendor's own tools.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintenance activities generate some form of log entry (date, technician,
+        system, reason) captured in a system you control, not solely on vendor equipment;
+        a person reviews the log when something looks unusual.
+      '2': Logs cover session start/stop, commands or actions performed, files or
+        settings changed, and exit; reviews are scheduled and recorded with findings
+        and follow-ups; logs are retained per policy and protected from tampering.
+      '3': Maintenance logs are correlated with change tickets and config baselines;
+        deviations auto-alert; review metrics and sampling are auditable; logs are
+        write-once or hashed and reviewed against independent evidence (jump-host
+        recordings, CCTV for physical maintenance, configuration snapshots).
+    basis: inferred
+  evidence:
+    value: Maintenance activity log records, independent session captures or jump-host
+      recordings, review logs or ticket comments showing who reviewed what and when,
+      retention configuration, and sample correlations between maintenance log entries
+      and corresponding change tickets or configuration snapshots.
+    basis: inferred
+  common_myth:
+    value: Assuming the vendor's own session recording or the technician's verbal
+      hand-off counts as your logging - the vendor controls that recording, can disable
+      it, and is not an independent witness to its own session.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the log entry for a specific maintenance ticket from last quarter - who
+      reviewed it and what did they compare it against?
+    - Where is the maintenance log stored, who can edit it, and how do you detect
+      if a vendor session was not logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.404212Z'
+  signed_digest: 89e99be03ee696a5ad9a9bf3cef7e19c9251e6aaeadffeac641fa9c95dfb5393
+  interview_seconds: null
+  inherited_from: null

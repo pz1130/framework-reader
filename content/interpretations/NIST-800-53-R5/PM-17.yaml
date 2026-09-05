@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PM-17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops CUI from leaking through contractor laptops, personal devices, or
+      any system your agency does not own, image, patch, or scan - because once the
+      file is opened on an unmanaged host, your boundary controls stop applying and
+      you have no idea what protections actually held.
+    basis: inferred
+  plain_zh:
+    value: Define the rules for when CUI may be stored or processed on systems that
+      the organization does not itself control, enforce those rules technically and
+      contractually, and verify they still hold.
+    basis: inferred
+  practice:
+    value:
+      '1': Written policy naming which external systems are allowed to touch CUI;
+        signed agreements covering CUI handling; users told the basic rules.
+      '2': CUI on external systems only on approved platforms (e.g., a sanctioned
+        cloud enclave or contractor-hosted FedRAMP environment); contracts require
+        FedRAMP/equivalent controls; exceptions logged with an expiry date.
+      '3': Technical enforcement so unmanaged endpoints cannot download, sync, or
+        print CUI; periodic verification that external systems still meet the bar;
+        revocation and re-homing procedure when an external system loses its approved
+        status.
+    basis: inferred
+  evidence:
+    value: Policy on CUI on external systems, contract clauses referencing the safeguarding
+      requirements, list of approved external systems with their accreditation status,
+      exception register, technical enforcement configuration, periodic verification
+      reports.
+    basis: inferred
+  common_myth:
+    value: Treating 'the contractor signed a CUI addendum' as the control. A signature
+      does not stop data being exfiltrated from a contractor laptop that is not enrolled,
+      monitored, or encrypted to your standard - the policy still has to drive technical
+      restrictions and recurring proof.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a CUI dataset from last quarter and the external systems that held it
+      - how do you know each one met the safeguarding requirements at the time?
+    - Walk me through what happens when a contractor loses their approval or their
+      FedRAMP authorization lapses - how is the CUI recovered or re-homed?
+    basis: inferred
+  regional_note:
+    value: US federal auditors will trace this back to the CUI Program and NIST SP
+      800-171; state and commercial audits rarely raise it unless federal contract
+      work is in scope. There is no comparable EU baseline in this shape.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.716984Z'
+  signed_digest: d05d11b467b804483e7e07ac45f52d8722018958ee9d50e56bf5ceb8528d8c8d
+  interview_seconds: null
+  inherited_from: null

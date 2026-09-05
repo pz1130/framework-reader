@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CA-2.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where an organization pays for and files
+      away external audit or assessment reports, but never converts the findings into
+      its own risk picture — so inherited weaknesses from shared systems, cloud providers,
+      or partner assessments stay invisible until they cause an incident on your side.
+    basis: inferred
+  plain_zh:
+    value: When you receive or buy assessment results from outside (cloud providers,
+      shared-service operators, partner audits, third-party assessors), you must actually
+      pull the relevant findings into your own control and risk decisions — not just
+      store the PDF.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the recurring sources of external assessment results (provider
+        SOC/ISO reports, joint assessments, regulator letters); record which ones
+        you receive and who reviews them.
+      '2': Document a defined process for selecting which external findings apply
+        to your environment, assign ownership, and track them in your existing finding
+        or risk register with due dates.
+      '3': Systematically map external results to your control baseline and risk register,
+        trend them over time, feed them into authorization decisions, and verify that
+        inherited weaknesses are either accepted, remediated, or compensated by your
+        own controls.
+    basis: inferred
+  evidence:
+    value: Inventory of external assessment sources, documented reuse process, copies
+      or excerpts of external reports, mapping of relevant findings into the internal
+      risk/finding register with owners and due dates, evidence of resulting authorization
+      or remediation decisions.
+    basis: inferred
+  common_myth:
+    value: Treating a provider SOC 2 or ISO 27001 certificate filed in a shared folder
+      as evidence that the inherited risks are covered — without checking which controls
+      are carve-outs, which findings affect your scope, or whether anything needs
+      to change on your side.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how a finding from your last cloud provider's external assessment made
+      it into your own risk register or authorization decision.
+    - Which external assessment results have you received in the last year, and which
+      ones did you decide were not applicable — on what basis?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.671136Z'
+  signed_digest: 1f2c7f080c7bbe64ed87d4b24855baf227f2f983a71b794934aaee04589b2619
+  interview_seconds: null
+  inherited_from: null

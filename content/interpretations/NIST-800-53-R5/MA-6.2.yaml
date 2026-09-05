@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:MA-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the situation where maintenance is always reactive — equipment that
+      was about to fail keeps running until it breaks, causing outages, safety events,
+      or emergency change windows. The risk is unplanned downtime and the security/availability
+      incidents that follow when critical assets degrade silently.
+    basis: inferred
+  plain_zh:
+    value: Use data, sensor output, or vendor guidance to predict when an information-system
+      component will need maintenance, and act on those signals before it fails —
+      instead of waiting for a breakdown.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the most critical components and note any vendor-recommended service
+        life, warranty cycles, or obvious wear indicators that should trigger scheduled
+        replacement.
+      '2': Collect basic operational data (uptime, error counts, temperature, disk
+        health, battery cycles) and review it on a schedule; set thresholds that,
+        when crossed, open a planned maintenance ticket.
+      '3': Systematic monitoring with alerts feeding a maintenance backlog; trends
+        reviewed in change/risk meetings; predictive signals tied to incident postmortems
+        so repeated near-misses change the schedule.
+    basis: inferred
+  evidence:
+    value: List of components under predictive monitoring, the data sources and thresholds
+      used, maintenance tickets opened from predictive signals, and incident reviews
+      where predictive data led to a schedule change.
+    basis: inferred
+  common_myth:
+    value: Assuming predictive maintenance only means buying an AI monitoring tool.
+      The control is met when monitoring output actually changes maintenance behavior
+      — most failures look like the team installed a dashboard and kept running everything
+      to failure anyway.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a maintenance ticket in the last year that was opened because a predictive
+      signal fired, not because something broke.
+    - Which critical components are not covered by any predictive or scheduled-life
+      indicator, and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.451576Z'
+  signed_digest: 14b049ec641cf0986339616aa4e79aef66e0d14a165e43a70c688dc88c31e6d8
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-6.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against shared compute, network, or storage domains letting an
+      attacker who breaches one tenant, service, or sensitivity tier pivot laterally
+      into others — so a flaw in the web app, a compromised container, or a misclassified
+      dataset escalates into a cross-domain compromise because nothing was actually
+      isolated under the hood.
+    basis: inferred
+  plain_zh:
+    value: Run different processing domains (tenants, sensitivity levels, services)
+      on physically or logically separated infrastructure so a failure in one cannot
+      spill into another, and prove the separation with configuration and monitoring
+      rather than relying on application-layer checks alone.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems or services must run in separate domains (e.g.,
+        production vs. development, different tenants, different data classifications)
+        and document the reason for each split.
+      '2': Enforce separation via distinct hosts, hypervisor pools, VPCs, or network
+        segments with controlled gateways; require change tickets that justify when
+        workloads are placed together.
+      '3': Verify separation continuously with automated checks (no shared accounts,
+        no cross-domain trust, no co-tenant keys, dedicated management planes); alert
+        and block on drift; test the boundary with periodic red-team or breach-scenario
+        exercises.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams and isolation rationale, domain-to-infrastructure
+      placement records, network and identity segmentation configurations, automated
+      drift-detection reports, and results of tests demonstrating that a compromise
+      in one domain cannot reach another.
+    basis: inferred
+  common_myth:
+    value: Believing that running workloads in separate VMs, containers, or SaaS tenants
+      on the same underlying host, cluster, or account boundary counts as separation
+      — when hypervisor bugs, shared service accounts, or cloud control-plane compromises
+      can still cross the boundary and the configuration was never tested.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me two domains you claim are separated and prove the underlying infrastructure,
+      identity, and network paths between them are also separate.
+    - When was the last time you tested that a compromise in one domain could not
+      reach another, and what did the test actually do?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.391071Z'
+  signed_digest: 9048e66badf2ef387856b2b67ab05e5d14c63bc7fa1422c1b820d0afe4247572
+  interview_seconds: null
+  inherited_from: null

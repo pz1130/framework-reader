@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:AC-4.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents information from crossing a trust boundary in an unauthorized
+      direction, such as sensitive data leaving a protected network or untrusted commands
+      entering a controlled system.
+    basis: inferred
+  plain_zh:
+    value: Use a system that permits information to move in only one permitted direction
+      and blocks reverse flow. Define the protected information flow, identify the
+      enforcement point, and verify that the mechanism cannot be bypassed.
+    basis: inferred
+  practice:
+    value:
+      '1': Document the one-way information flow, identify the systems and boundary
+        it protects, and deploy a mechanism that prevents reverse transmission.
+      '2': Define ownership, operating procedures, monitoring, maintenance, and testing
+        requirements for the one-way mechanism; retain configuration and test records.
+      '3': Validate the mechanism through technical testing, monitor for attempted
+        reverse flows or bypasses, review its continued suitability after architecture
+        changes, and remediate failures.
+    basis: inferred
+  evidence:
+    value: Approved one-way flow design or data-flow diagram, enforcement-point configuration,
+      operating and maintenance procedures, monitoring records, and technical test
+      results demonstrating that reverse information flow is blocked.
+    basis: inferred
+  common_myth:
+    value: Assuming a firewall rule for one direction and a deny rule for the other
+      is equivalent to using a one-way mechanism, even though the same bidirectional
+      device or path may still allow bypass, feedback, or configuration errors.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What information flow is restricted, and at which system or network boundary
+      is the one-way mechanism enforced?
+    - Can you show a test or monitoring record demonstrating that reverse flow is
+      blocked and the mechanism cannot be bypassed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.361024Z'
+  signed_digest: 5de8ae598720e51237ad7edd5e200a2ff077bf992b8ef53cc0918d2d80a5e223
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.6.6
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that employees signing a confidentiality agreement is treated as permanent authorization—after
+      personnel transfers, departures, contract endings, or agreement updates, the original confidentiality
+      obligations are not reconfirmed or released, causing a disconnect between data access rights and
+      confidentiality commitments, making it impossible to hold anyone accountable after an incident.
+    basis: inferred
+  plain_zh:
+    value: Ensure that every person who can access company systems and data signs a written commitment,
+      clearly stating what they can access, what they cannot, and what must be kept confidential; and
+      this commitment must be re-signed as roles change and agreements are updated, not just once at onboarding.
+    basis: inferred
+  practice:
+    value:
+      '1': Require signing of confidentiality/behavioral agreements before onboarding or granting system
+        access; maintain signed records; remind departing employees that confidentiality obligations remain
+        in effect.
+      '2': Periodically (e.g., annually) re-sign or confirm; update agreement content synchronously with
+        role changes or project modifications; those who have not signed or refuse to sign cannot obtain
+        or retain access rights.
+      '3': The system enforces verification of signing status before account activation; agreement changes
+        automatically trigger re-signing processes; accounts not re-signed in time are automatically downgraded
+        or frozen; signing and version history are fully traceable.
+    basis: inferred
+  evidence:
+    value: Signed records (including electronic signing logs), confidentiality agreement templates and
+      version history, re-signing cycles and trigger records, audit screenshots or reports linking access
+      rights and signing status, lists of unsigned personnel and handling records.
+    basis: inferred
+  common_myth:
+    value: Assuming that the confidentiality agreement signed at onboarding is 'permanently valid,' and
+      never re-signing after role changes, partner renewals, or agreement upgrades. During an audit, it
+      is found that third-party personnel with current database access have no corresponding signing records
+      in the agreement list.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Among personnel currently with system access, how many have expired or missing signing status? Provide
+      the list and corresponding handling.
+    - After agreement updates, what mechanism do you use to ensure existing personnel re-sign? Look at
+      re-signing records for three recent role changes.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.332943Z'
+  signed_digest: b1ba82d534179691037c48b6f772cadca2856ed8ac0b988683b205773e3e4b8d
+  interview_seconds: null
+  inherited_from: null

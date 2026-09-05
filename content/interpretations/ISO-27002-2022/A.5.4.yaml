@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.5.4
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the situation where the signatory of the security policy is absent,
+      creating a responsibility vacuum—where management's obligations are not assigned to specific individuals,
+      leaving no one to make decisions or take responsibility in the event of an incident, and no one
+      to maintain the policy and processes, causing the security system to deteriorate as personnel change.
+    basis: inferred
+  plain_zh:
+    value: 'A senior manager (or a management level) must be designated as having overall responsibility
+      for the information security policy: issuing the policy, assigning responsibilities, conducting
+      regular reviews and updates, ensuring resources are available, and making the organization aware
+      of whom to contact.'
+    basis: inferred
+  practice:
+    value:
+      '1': Designate a senior executive (e.g., CISO or a vice president in charge) as the person responsible
+        for the security policy; the policy document bears their signature and the effective date; employees
+        know where to access the policy.
+      '2': The responsible person organizes policy reviews and revisions according to a defined cycle
+        (e.g., annually), with meeting minutes recorded; policy changes require their approval; the division
+        of responsibilities is clearly stated within the policy.
+      '3': Management's obligations are linked to organizational governance processes (e.g., reporting
+        to the board); policy updates are triggered by risk and business changes rather than a fixed cycle;
+        there is a backup arrangement when the responsible person is unavailable.
+    basis: inferred
+  evidence:
+    value: Security policy or charter documents signed by senior management, records of policy reviews
+      and revisions (including approvers), meeting minutes or appointment letters regarding management's
+      security responsibilities, and records of communicating the policy to all employees.
+    basis: inferred
+  common_myth:
+    value: The misconception is that merely having a written security management system with a stamp of
+      approval is sufficient. If the system does not specify who is responsible for maintenance, who approves
+      revisions, and who is accountable for policy implementation, auditors will uncover gaps by asking
+      three 'whys'—if no one can be identified as accountable, the document is just a piece of paper.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If this policy needs to be revised this year, what is the process? Who has the authority to approve
+      it?
+    - Between the departure of the previous security officer and the appointment of a new one, who is
+      responsible for policy reviews and updates?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.311560Z'
+  signed_digest: ce51b6e07c23125fa82cc5d0d331aa93f26f993c00f3db10831a6b25afbce47c
+  interview_seconds: null
+  inherited_from: null

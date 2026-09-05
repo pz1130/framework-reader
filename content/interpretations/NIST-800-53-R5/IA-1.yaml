@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where identity, authentication, and account
+      controls are scattered, undocumented, or last-touched years ago — so during
+      an incident or audit no one can show what the rules actually are, who owns them,
+      or whether they match what is running in production.
+    basis: inferred
+  plain_zh:
+    value: Write down, approve, publish, and maintain an organization-wide policy
+      and supporting procedures for IA controls (identification, authentication, MFA,
+      account lifecycle, etc.), assign ownership, review on a defined cadence, and
+      update when something material changes.
+    basis: inferred
+  practice:
+    value:
+      '1': A single IA policy document exists, is dated, is approved at a named governance
+        body, and names who owns it.
+      '2': Policy is paired with written procedures for the common IA processes (account
+        creation, privilege grants, MFA issuance, credential resets); staff can point
+        to them; ownership and review cadence are documented.
+      '3': Policy and procedures are reviewed on a fixed schedule and after triggering
+        events (incidents, major system changes, new regulations); review records
+        exist; the document set is the one staff are actually trained against and
+        the one referenced in exception decisions.
+    basis: inferred
+  evidence:
+    value: Current version of the IA policy and its procedures, approval signatures
+      with dates, owner designation, review-and-revision history, training or attestation
+      records showing the policy was communicated, and a small sample showing the
+      policy is the one actually used when exceptions or incidents arise.
+    basis: inferred
+  common_myth:
+    value: Treating IA-1 as a paperwork formality satisfied by inheriting an enterprise
+      "security policy" that says little or nothing specific to identification and
+      authentication — so when an auditor asks how MFA exceptions are decided or how
+      dormant accounts are handled, no IA-specific document is on the table.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your IA policy and tell me when it was last reviewed and by whom.
+    - Which procedures do account provisioning and credential reset actually follow,
+      and are they the same documents new hires are trained on?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.055353Z'
+  signed_digest: 617b96bb0862363b3301a570527ec0b060392ed36e8dc174431383ae1132b976
+  interview_seconds: null
+  inherited_from: null

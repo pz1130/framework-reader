@@ -1,0 +1,71 @@
+control_id: ISO-27002-2022:A.6.7
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that when employees work outside the fixed office, the work environment, network,
+      and terminals may completely fall outside the security perimeter—home or café Wi-Fi, personal computers,
+      and shared devices become side doors for hackers to enter the corporate intranet; it also addresses
+      the risk that remote work is merely 'being outside' while security requirements and device configurations
+      have not kept pace.
+    basis: inferred
+  plain_zh:
+    value: When employees work off-site (at home, cafés, client sites, etc.), it must be clear which devices
+      can be used, what conditions the network must meet, how data is handled, and who to contact in case
+      of incidents; moreover, it is not enough to merely write 'be careful' in the policy—there must be
+      actual technical and procedural constraints.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a remote work policy; it requires the use of company-issued devices and VPN access
+        to the internal network; it specifies which data cannot be taken out of the office environment.
+      '2': Remote access includes device compliance checks (e.g., patches, antivirus, disk encryption);
+        VPN uses multi-factor authentication; there are reporting and handling procedures for lost or
+        compromised remote work devices.
+      '3': Remote access is dynamically controlled based on device trust level and user risk; session
+        timeouts and anomalous behavior are monitored; the company can remotely wipe or forcibly isolate
+        compromised devices; the remote work policy is linked to data classification and grading.
+    basis: inferred
+  evidence:
+    value: Remote work policy documents, device compliance baselines (e.g., MDM/UEM policies), VPN configuration
+      and MFA enablement records, inventory of remote devices, records of handling lost or compromised
+      remote devices in the incident response process, and records of spot checks on employees' remote
+      work environments.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'giving employees a laptop and enabling VPN is enough for remote
+      work security.' In reality, many people go home and plug the company computer into a home router,
+      share a computer with family members for work emails, or the VPN is merely a formality without enforced
+      traffic routing—if the policy does not specify minimum network and terminal requirements, the VPN
+      is just a paper shield.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When company-issued laptops are used at home, who manages patches and antivirus? If employees use
+      personal computers for work, how is that controlled?
+    - Is VPN mandatory for all employees? Is there an exception list? How is the exception list reviewed?
+    - Do your policies and mechanisms allow employees to work from a café using public Wi-Fi?
+    - If a remote work device is lost or compromised, who do employees report to? What is the response
+      time limit?
+    basis: inferred
+  regional_note:
+    value: Auditors in Europe, under GDPR, focus more on privacy compliance issues related to personal
+      data processing and device mixing in remote work, and will ask about home networks and screen-sharing
+      tools shared with colleagues; auditors in the U.S. tend to focus more on infrastructure controls,
+      such as VPN configuration, certificate management, and MDM coverage.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.334854Z'
+  signed_digest: a30ce58fb4c0e5238b5c5a1057f26e558dc153c4a0ee3e112e97d768e4d861a7
+  interview_seconds: null
+  inherited_from: null

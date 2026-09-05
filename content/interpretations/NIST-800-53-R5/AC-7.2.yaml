@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:AC-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protect sensitive data from disclosure when a mobile device leaves authorized
+      use, is lost, or is retired; without reliable sanitization, residual files,
+      messages, credentials, or cached data may remain recoverable.
+    basis: inferred
+  plain_zh:
+    value: Establish and verify a process for securely removing information from mobile
+      devices before disposal, reassignment, loss response, or release from organizational
+      control, using a method appropriate to the device and data sensitivity.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify mobile devices that may contain organizational data; define approved
+        wipe or purge methods and require authorized personnel to execute them before
+        reassignment, disposal, or loss of control.
+      '2': Maintain sanitization procedures, device inventory records, approved-tool
+        lists, authorization records, and completion evidence; verify that remote
+        wipe, where available, is followed by confirmation or an escalation if unsuccessful.
+      '3': Integrate mobile-device sanitization with asset retirement, incident response,
+        and data-classification processes; use validated tools and device-specific
+        procedures, test effectiveness where feasible, and verify device state and
+        residual-data risk before final release.
+    basis: inferred
+  evidence:
+    value: Approved mobile-device sanitization procedures, asset and disposition records,
+      wipe-tool approvals and validation results, authorization tickets, remote-wipe
+      confirmations, and disposal or reassignment documentation.
+    basis: inferred
+  common_myth:
+    value: Assuming that deleting files, signing out of an account, or performing
+      a factory reset on every device automatically removes all organizational data;
+      resets and cloud synchronization can leave recoverable or externally retained
+      information.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which mobile-device wipe or purge method is used before a device is reassigned
+      or disposed of?
+    - Can you show a completed sanitization record and confirmation for a sampled
+      device?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.413078Z'
+  signed_digest: 61a5c40a49c9cd58abf6dfa7bfdbd76f84dcc01103f114fa18ef81cc39a6268b
+  interview_seconds: null
+  inherited_from: null

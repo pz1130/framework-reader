@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SI-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against spam, phishing, and other socially-engineered malicious
+      email reaching users in the first place. The control is broken when the spam
+      solution relies only on a static vendor reputation list and cannot adapt to
+      attackers rotating domains, tweaking subject lines, or replaying fresh infrastructure
+      — every minute a learning model lags, more weaponized messages land in inboxes.
+    basis: inferred
+  plain_zh:
+    value: Email protection tools must keep learning from new threats on an ongoing
+      basis, not just at installation. As attackers change tactics, the detection
+      logic has to update with them.
+    basis: inferred
+  practice:
+    value:
+      '1': Email gateway or cloud filtering is in place with spam and phishing detection
+        enabled, and the vendor or internal rule set is configured to receive automatic
+        updates.
+      '2': There is a documented update cadence, recent update logs are retained,
+        and sample phishing or spam that bypassed the filter within the last quarter
+        is reviewed to confirm the system has learned from it.
+      '3': 'Feedback loops exist: user-reported spam/phishing and confirmed malicious
+        samples are fed back into detection models; rules and reputation data update
+        frequently; bypasses trigger tuning or vendor escalation; effectiveness (block
+        rate, false-positive complaints) is measured and trends are reviewed.'
+    basis: inferred
+  evidence:
+    value: Vendor or product documentation describing the continuous learning mechanism,
+      update/log records showing recent model or rule updates, samples of user-reported
+      or detected-bypass messages and the resulting rule or model changes, and periodic
+      effectiveness metrics.
+    basis: inferred
+  common_myth:
+    value: Assuming that turning on a vendor's anti-spam feature is sufficient because
+      the vendor 'updates automatically' — without checking the update log, sample
+      feedback, or measured block rate. Automatic updates only help if they are actually
+      applied, if the organization reports missed messages back into the loop, and
+      if anyone notices when it stops working.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last several updates applied to the spam/phishing engine — how frequent
+      are they and when was the most recent?
+    - 'Pick one phishing message that reached a user in the last 90 days: how was
+      it reported and what changed in detection as a result?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.129219Z'
+  signed_digest: cda25c1fe3488a2bd51d89c32d81883edd42b28eccd3bffc4f539e9426523e76
+  interview_seconds: null
+  inherited_from: null

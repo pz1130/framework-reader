@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.6.8
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that signals of security events get stuck in individual employees or point tools—no
+      one knows, no one reports, and by the time impact spreads or regulatory accountability kicks in,
+      it's discovered that no reporting trail was ever left. This control governs the reporting pipeline
+      between 'detection' and 'response,' not incident response itself.
+    basis: inferred
+  plain_zh:
+    value: Establish a clear path so that anyone who discovers a suspicious or actual security event knows
+      where to report it, what to report, and how quickly, and that reporting is followed by records and
+      follow-up—not just a verbal shout.
+    basis: inferred
+  practice:
+    value:
+      '1': Designated incident reporting channels and contacts exist; employees know who to contact upon
+        spotting suspicious activity; reports are logged and initially assessed by someone.
+      '2': A documented reporting procedure specifies reporting timelines and required content elements;
+        all reports are centrally registered and tracked to closure; reporting status is periodically
+        summarized to management.
+      '3': Reporting channels are automatically triggered in conjunction with monitoring alerts; reporting
+        timelines are system-monitored; critical events are automatically escalated and notified to management
+        upon reporting; reporting data feeds back into risk treatment and improvement.
+    basis: inferred
+  evidence:
+    value: Incident reporting procedure documents, reporting registration logs (including timestamps,
+      reporter, event description, handling status), alert integration configuration records, reporting
+      statistical analysis reports, and periodic exercise records.
+    basis: inferred
+  common_myth:
+    value: 'The misconception is that having a security team email and an on-call phone constitutes an
+      established reporting channel. If employees don''t know what constitutes an event, whether to report,
+      or where to report, the channel effectively doesn''t exist. The real test: can any random non-security
+      employee articulate exactly how to report within thirty seconds?'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three actual tickets—how long between employee discovery and security team receipt? Was there
+      follow-up?
+    - Does employee onboarding training cover what must be reported? How often is it refreshed?
+    - How do system monitoring alerts and manual reporting paths converge? Could they be tracked separately?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.337013Z'
+  signed_digest: 5347b8ddf126079a34ff2f059bcf5dff6fddd119ee019078bf7b62c79b87deec
+  interview_seconds: null
+  inherited_from: null

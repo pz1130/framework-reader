@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AT-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against awareness training that is given once and forgotten, then
+      ignored when a contractor, vendor, or temporary worker walks past the front
+      desk because nobody thought to brief them on site-specific physical security
+      rules.
+    basis: inferred
+  plain_zh:
+    value: Make sure everyone who physically accesses your systems or work spaces
+      — including outsiders like contractors and vendors — gets security awareness
+      training tuned to the physical risks of your environment, and that this training
+      actually reaches them.
+    basis: inferred
+  practice:
+    value:
+      '1': Onboarding for any external person with physical access includes a short
+        physical-security briefing (tailgating, badge handling, escorted vs. unescorted
+        areas, where to leave devices).
+      '2': Briefing content is tailored to the role (data-center visitor vs. office
+        guest vs. long-term contractor); records show who was briefed, by whom, and
+        when; re-briefing triggered when rules change.
+      '3': Physical-security awareness is part of a unified training program with
+        attendance evidence, expiry/refresher cadence, exception handling for repeat
+        visitors, and coverage verified against the active visitor and contractor
+        population.
+    basis: inferred
+  evidence:
+    value: Visitor and contractor onboarding records, tailored physical-security briefing
+      materials, delivery logs naming attendees and dates, refresher schedule, and
+      a reconciliation between current badgeholders and briefing completion.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by the general annual security-awareness
+      course everyone clicks through online — that module rarely covers site-specific
+      physical rules, and visitors and short-term contractors often sit outside the
+      mandatory training audience entirely.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the physical-security briefing given to a contractor who entered your facility
+      last month.
+    - How do you confirm every active long-term contractor and recurring visitor has
+      actually received this briefing, not just held a badge?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.476499Z'
+  signed_digest: 301f14095387165a1863d4efad93782ee1f55866230a0e4bd2fe809bf7e74f43
+  interview_seconds: null
+  inherited_from: null

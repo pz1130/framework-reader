@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-8.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against software whose internal logic is so tangled that no one
+      — including the original developers weeks later, auditors, or incident responders
+      — can predict what it will actually do under attack. Unnecessarily complex designs
+      expand the attack surface, hide flaws, and make it impossible to reason about
+      security properties, so a single subtle bug becomes a system-wide compromise.
+    basis: inferred
+  plain_zh:
+    value: Require and design systems so their security-relevant components are as
+      simple as the function allows — minimal interfaces, layered defenses, reusable
+      modules — and document that choice so reviewers can judge it.
+    basis: inferred
+  practice:
+    value:
+      '1': Security architects flag components whose design is more complex than the
+        requirement demands and call for simplification before code is accepted.
+      '2': Procurement and SDLC checklists require vendors and internal teams to justify
+        complexity in security-critical modules; design reviews record the decision.
+      '3': There is a written policy mandating reduced complexity for security-relevant
+        components, reviewed designs show evidence of modular separation and minimal
+        interfaces, and post-incident reviews feed complexity-reduction back into
+        standards.
+    basis: inferred
+  evidence:
+    value: Design documents and review records showing complexity reduction was considered
+      and applied, SDLC/procurement criteria referencing reduced complexity, and examples
+      where complex designs were simplified or rejected.
+    basis: inferred
+  common_myth:
+    value: Assuming 'reduced complexity' means writing shorter code or using fewer
+      lines — it actually targets architectural simplicity (fewer trust boundaries,
+      smaller attack surface, clearer modules) that can be reasoned about, which a
+      line count never measures.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which security-critical component in scope is the most complex, and what made
+      you accept that complexity?
+    - Show me a design review where complexity was reduced, not just discussed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.328098Z'
+  signed_digest: c259ec9a56027e9e6e7a7bfaa1406dc57a8b3ea1b7b360e8eb9533621eaf3c3b
+  interview_seconds: null
+  inherited_from: null

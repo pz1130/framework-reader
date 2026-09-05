@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-8.30
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Preventing components that 'look correct on paper' from being integrated
+      into systems that handle real data or run real processes — i.e., ensuring that
+      security engineering principles are actually applied through documented, reviewable,
+      repeatable procedures rather than left to developer judgment per component.
+    basis: inferred
+  plain_zh:
+    value: When designing and building systems, the security principles you claim
+      to follow (least privilege, defense in depth, etc.) must be translated into
+      concrete, documented procedures that engineers apply and reviewers can verify
+      per component — not just listed in a policy slide.
+    basis: inferred
+  practice:
+    value:
+      '1': For each major component, the team has a short written procedure covering
+        how the relevant security principles (least privilege, fail-safe defaults,
+        modular isolation, etc.) get applied during design and code/integration work.
+      '2': Procedures are referenced in design docs and review checklists; security
+        reviewers sign off that the procedure was followed, with deviations justified
+        and approved.
+      '3': Procedures are standardized across similar component types, defects traced
+        to procedural gaps trigger procedure updates, and periodic sampling confirms
+        components in production were built under the documented process.
+    basis: inferred
+  evidence:
+    value: Component-level security design procedures, design and code review records
+      showing procedure adherence, deviation/exception records with approvals, and
+      traceability from production components back to the procedure version they were
+      built under.
+    basis: inferred
+  common_myth:
+    value: Treating SA-8.30 as satisfied by listing security principles in an overarching
+      policy — assuming that if the principles are written somewhere, engineers are
+      applying them. The control fails when there is no component-level procedure
+      proving the principles were actually operationalized for the thing now running
+      in production.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a component in production — show me the procedure it was built under and
+      the review record showing that procedure was applied.
+    - Where do you record when an engineer deviates from the documented security procedure,
+      and who approves it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.299520Z'
+  signed_digest: ace888fcb400925ce6ffc25ba4a7e9cc75b15959aa0ec879b1bb8256459f7c14
+  interview_seconds: null
+  inherited_from: null

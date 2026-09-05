@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AC-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a situation where the people who configure, change, or
+      disable the very controls meant to protect the system can quietly weaken them
+      without anyone noticing—security-relevant settings drift because anyone with
+      admin access can flip them, and accountability is lost.
+    basis: inferred
+  plain_zh:
+    value: Only a defined set of people may access security functions (e.g., logging
+      configuration, authentication settings, firewall rules, AV policies, audit controls),
+      and that access must be authorized, logged, and reviewed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which accounts hold privileged access to security functions; require
+        documented approval before granting it; keep an up-to-date list of those accounts.
+      '2': Route security-function access through a small named group, log its use,
+        and review membership periodically; restrict security-relevant settings from
+        day-to-day admin roles.
+      '3': Enforce the restriction in the system itself (technical separation of duties),
+        alert on use of security-function privileges, and review logs and membership
+        on a schedule tied to risk.
+    basis: inferred
+  evidence:
+    value: List of accounts with access to security functions, authorization records,
+      membership reviews, technical enforcement rules, and logs of security-function
+      privilege use.
+    basis: inferred
+  common_myth:
+    value: Treating 'security functions' as identical to normal admin rights—so a
+      domain or server admin is assumed to be allowed to change logging, audit, or
+      AV settings because they already have full control. AC-6.1 specifically tightens
+      access to the protective controls themselves, on top of general least privilege.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which accounts in your environment can change logging, audit, or authentication
+      settings, and who approved each one?
+    - Show the last change made to a security-relevant setting by one of those accounts
+      and how it was reviewed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.375743Z'
+  signed_digest: e1d876977c4004ae3bf72ad7eb064a6fbc518ec4c08ad0dab585e144193f9d2d
+  interview_seconds: null
+  inherited_from: null

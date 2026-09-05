@@ -1,0 +1,68 @@
+control_id: ISO-27002-2022:A.7.10
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'media being left around, borrowed casually, and thrown away as trash
+      when broken' - confidential data stored on hard drives, USB drives, tapes, and printed paper can
+      leak at any stage of storage, transport, maintenance, or disposal, and the data is gone. This control
+      governs the physical and procedural management of media from creation to disposal.
+    basis: inferred
+  plain_zh:
+    value: For storage media such as hard drives, USB drives, tapes, optical discs, and paper documents,
+      every step from intake, borrowing, in-storage, sending for repair, external carrying, erasure, to
+      disposal must have logs, authorization, and records. Who accessed it, where it was taken, and how
+      it was ultimately handled must be clearly documented.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a media inventory; store media in locked cabinets or server rooms; log borrowing and
+        return; perform basic erasure (e.g., formatting or shredding) before disposal.
+      '2': Store media in separate cabinets by classification level; require approval forms for borrowing;
+        register any repair and clarify data responsibility; follow an erasure-verification-witness process
+        with records for disposal.
+      '3': Integrate the full lifecycle of media into the asset management system; ensure traceability
+        for repairs or external carrying; use certified erasure tools appropriate to the data classification;
+        disposal records include erasure method, executor, witness, and date; issue alerts or block unauthorized
+        use.
+    basis: inferred
+  evidence:
+    value: Media inventory, borrowing/return logs, repair approvals and records, erasure/disposal records
+      (including method, executor, witness), media stocktaking records, and records of handling unauthorized
+      carrying or use.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'crushing a hard drive or formatting a USB drive' constitutes secure
+      disposal. Ordinary formatting can be recovered, and physical destruction without witness records
+      is not accepted by auditors; another common blind spot is repair - sending a faulty hard drive directly
+      to after-sales without registration or confirmation of data erasure is equivalent to handing over
+      the data unprotected.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When and how were these disposed hard drives erased? Where are the records?
+    - Who confirms data erasure before sending hard drives for repair? Show me the repair registration
+      form.
+    - How do you manage non-critical media such as printer drums or copier hard drives?
+    basis: inferred
+  regional_note:
+    value: In Europe, due to GDPR, stricter requirements apply to the disposal of media containing personal
+      data, and audits often probe whether media may hold personal data and whether disposal can be proven
+      irreversible; in the US, audits focus more on asset inventory processes and media access authorization
+      records, with differing depths of scrutiny on 'verifiability of destruction' between the two regions.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.340983Z'
+  signed_digest: 7f806791b5028ad8160ae8487dccfb30f268063bb53b92944c17eb02af19643a
+  interview_seconds: null
+  inherited_from: null

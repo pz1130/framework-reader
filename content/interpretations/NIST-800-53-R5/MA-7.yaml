@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:MA-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a maintenance hole that lives outside the building: when
+      a vendor or field engineer services hardware at a customer site, hotel, branch
+      office, or remote location, they can plug in a malicious component, copy data
+      off a disk, or leave the device in a weaker state than they found it — and no
+      one inside the org was watching the box while it was open.'
+    basis: inferred
+  plain_zh:
+    value: 'Make sure equipment that gets serviced off-premises, by an outside technician,
+      or anywhere you can''t watch it directly is treated with the same rigor as on-site
+      maintenance: who is allowed, what they did, what they left behind, and how the
+      device is verified before it goes back into production.'
+    basis: inferred
+  practice:
+    value:
+      '1': Keep a list of devices that ever leave your physical control (laptops,
+        mobile, field gear, removable media). Have a rule that field service needs
+        to be authorized, escorted or supervised where possible, and that devices
+        are checked before returning to use.
+      '2': 'Document the field maintenance event: who came, what was serviced, what
+        parts were swapped, escort/supervisor name, post-service integrity check (visual,
+        anti-malware, config diff), and any data sanitization done on removed media.
+        Service contracts state the security expectations.'
+      '3': Cryptographic bind devices to the organization (full-disk encryption, measured
+        boot, signed firmware) so a swapped component or tampered disk is detectable
+        on return. Field maintenance events feed a tamper-evident log reviewed periodically;
+        anomalous parts or missing devices trigger investigation.
+    basis: inferred
+  evidence:
+    value: Inventory of portable/field devices, field maintenance authorization records,
+      post-service integrity check logs, escort or supervision records, service contract
+      clauses on parts and sanitization, and incident records for any tampered or
+      swapped component detected on return.
+    basis: inferred
+  common_myth:
+    value: Treating field maintenance as a logistics problem — 'we sent the laptop
+      to the vendor and got it back working' — without realizing the control exists
+      because the device was out of sight and a malicious component or data extraction
+      can happen in that window.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a device that left your premises for service last quarter and the record
+      of what happened to it while it was gone.
+    - How do you detect that a component inside a returned device is not the one you
+      shipped out?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.459771Z'
+  signed_digest: 1671c3495d31d40763bcbfac2f3b94bc1f6ae4ac5398d6628f246b4f5fa0e5a2
+  interview_seconds: null
+  inherited_from: null

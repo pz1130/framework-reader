@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:CA-7.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Risk Monitoring prevents a snapshot view of control effectiveness: without
+      continuous surveillance of the security posture, controls that have silently
+      degraded (misconfigurations, expired keys, drift in deployed configs) won''t
+      surface until an incident forces their discovery. It also stops the ''one-time
+      assessment'' failure mode where a system passes on day one and is assumed safe
+      forever.'
+    basis: inferred
+  plain_zh:
+    value: Continuously watch how well your security controls are actually working
+      in production, compare the observed state to what you assessed, and act on the
+      gaps - not just re-assess once a year on paper.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which controls need ongoing monitoring (the ones you can't trust
+        to stay correct by themselves); define who is responsible for reviewing results;
+        have a basic dashboard or report someone reads.
+      '2': Monitoring runs on a defined cadence with documented thresholds; deviations
+        trigger a documented response (ticket, escalation); results feed back into
+        the assessment of record so a failing control is visibly 'not green' until
+        remediated.
+      '3': Monitoring is automated end-to-end against authoritative sources (config
+        baselines, vulnerability data, identity state); drift is detected near real-time;
+        status of every monitored control is queryable; trend data shows whether the
+        program is improving or degrading over time.
+    basis: inferred
+  evidence:
+    value: Monitoring plan or matrix tying each in-scope control to its monitoring
+      source and cadence, sample dashboards/reports, records of deviations detected
+      and the resulting tickets/escalations, and evidence that assessment-of-record
+      records were updated when monitoring surfaced drift.
+    basis: inferred
+  common_myth:
+    value: Believing that an annual security assessment or a passed ATO satisfies
+      the control. The assessment is one input; if nothing is checking the controls
+      between assessments, a control that broke six months after sign-off stays 'compliant'
+      on paper until the next review cycle.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two controls marked 'implemented' in your last assessment - show me the
+      monitoring data from the last 90 days and what it said about their actual state.
+    - When monitoring surfaced a control in a degraded state recently, what changed
+      in your assessment and tracking records, and on what date?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.702061Z'
+  signed_digest: b434094a8250bcc1b4b7194fd954977be33bd52337533dc6f6d8d0935f8bdd79
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-5.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker bypassing biometric login by presenting a fake
+      biometric sample (a photo, replayed recording, silicone fingerprint, 3D mask,
+      etc.) to the camera or sensor. If presentation attack detection is not in place,
+      the biometric factor degrades into 'something the attacker already has from
+      a public source' and the authenticator adds no real security.
+    basis: inferred
+  plain_zh:
+    value: For any biometric used to verify identity (face, fingerprint, iris, voice),
+      the system must be able to tell a live, real sample from a spoof, and act on
+      that detection — not just record a match.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify every biometric authenticator in use (face, fingerprint, voice,
+        iris) and where the underlying sensor/library supports liveness or presentation
+        attack detection, enable the default setting and keep vendor firmware updated.
+      '2': Document the chosen PAD approach (hardware sensor capability, software
+        liveness model, or both) per modality, the thresholds used, and what happens
+        on a failed PAD check (retry, fallback to another factor, lockout). Track
+        PAD failures as security events.
+      '3': Periodically test each biometric authenticator with spoof samples appropriate
+        to the modality; measure PAD false-accept and false-reject rates; require
+        vendors to publish conformance to a recognized PAD standard; treat degradation
+        of PAD accuracy as a security incident, not just a UX bug.
+    basis: inferred
+  evidence:
+    value: Inventory of biometric authenticators and their modalities, vendor documentation
+      of PAD capabilities and conformance, configuration showing PAD enabled with
+      documented thresholds, logs of PAD failures and resulting actions, periodic
+      spoof-test results and remediation actions.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a device ships with 'face unlock' or 'fingerprint'
+      it inherently rejects photos and masks — many consumer-grade sensors perform
+      only basic matching without robust liveness checks, and software-only PAD can
+      be bypassed by replays. 'We use biometrics' is not evidence of PAD.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which biometric authenticators are deployed, and for each one what specific
+      mechanism detects a presentation attack?
+    - Show me the last time a spoof attempt was rejected — what was logged and what
+      action was taken?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.196472Z'
+  signed_digest: dbf9ac204dee7684ad1ddc788b249a03e30c1bb1e78db5975af925e4382a3255
+  interview_seconds: null
+  inherited_from: null

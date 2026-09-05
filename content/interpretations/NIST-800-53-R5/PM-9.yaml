@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PM-9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against risk management being treated as an ad-hoc, person-dependent
+      discipline - the failure where one executive's gut feel or one team's spreadsheet
+      defines what is acceptable, leaving the organization unable to defend its risk
+      decisions consistently or repeatably.
+    basis: inferred
+  plain_zh:
+    value: Develop, document, and maintain a coherent organization-wide strategy that
+      describes how risks (including those to other organizations from your systems)
+      are identified, assessed, responded to, and monitored, and that aligns with
+      your enterprise risk picture.
+    basis: inferred
+  practice:
+    value:
+      '1': A written risk management strategy exists, is approved at an appropriate
+        level, and names the framework(s) used and the roles responsible.
+      '2': The strategy defines how risks are categorized, how responses are chosen,
+        how tolerances link to it, and how third-party / supply-chain risk fits in;
+        it is communicated to the people who execute it.
+      '3': The strategy is reviewed on a defined cadence or when enterprise risk posture
+        changes; risk decisions across the organization can be traced back to it;
+        gaps between strategy and practice are surfaced and closed.
+    basis: inferred
+  evidence:
+    value: Approved risk management strategy document, evidence of communication (training
+      or distribution records), review/approval history, and sample traces of actual
+      risk decisions back to the strategy.
+    basis: inferred
+  common_myth:
+    value: Assuming the existence of a separate Enterprise Risk Management (ERM) framework,
+      or a single risk register, means PM-9 is satisfied. PM-9 is the strategy itself
+      - the overarching how-we-manage-risk - not the ERM framework and not any individual
+      risk artifact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the document that is your risk management strategy and point to where
+      third-party risk and risk tolerance are addressed.
+    - When was it last reviewed, what triggered the review, and how do day-to-day
+      risk decisions trace back to it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.806252Z'
+  signed_digest: 88e75b6bc47087966ca54174a8475b642e18afa2967434f25a87065f80ca72bf
+  interview_seconds: null
+  inherited_from: null

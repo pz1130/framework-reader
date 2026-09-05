@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SA-8.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against systems that grant access via coarse-grained or implicit
+      pathways—so a caller who reached a function or endpoint was implicitly trusted,
+      and you cannot tell whether the access should have been allowed at all, only
+      that it happened. Without mediated access, the system has no choke point where
+      identity, authorization, and context are actually checked, so privilege abuse
+      and lateral misuse become invisible to logs and impossible to constrain in real
+      time.
+    basis: inferred
+  plain_zh:
+    value: Make sure every access to system resources goes through a layer that checks
+      who is asking, what they are allowed to do, and under what conditions—and that
+      layer is the only path in, not one of several routes around it. Access should
+      be mediated at a level of detail that matches the sensitivity of the resource.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive resources are reached through a defined entry point (an API gateway,
+        service mesh, authorization service, or similar) that performs an authorization
+        check; no direct database or admin paths are exposed to end users.
+      '2': 'Mediation logic is documented: which resource is protected, who decides
+        the decision (policies/roles), and where the decision is enforced; authentication,
+        authorization, and context (e.g., source, time, input validation) are all
+        in place at the entry point; failures are logged.'
+      '3': Access decisions consider content and context (input validation, data sensitivity,
+        risk signals), not just identity and role; the mediation layer is the single
+        authoritative path—bypass routes are closed or explicitly exception-handled
+        and monitored; decisions are auditable and consistent across all callers,
+        including internal services.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing the mediation layer as the sole entry point
+      to protected resources; policy/authorization definitions referenced at that
+      layer; sample access logs showing enforcement decisions; evidence that alternate
+      paths are not usable (e.g., network segmentation, closed ports); exception process
+      and any access outside the mediator.
+    basis: inferred
+  common_myth:
+    value: Treating authentication (proving who you are) as if it were access mediation.
+      Logging in is not the same as being authorized for a specific action on a specific
+      resource—plenty of breaches involve fully authenticated users hitting functions
+      or data they should never have reached because the system had no policy checkpoint
+      between identity and action.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one sensitive resource and walk through every path a request can take
+      to reach it—is the mediator the only one, and how do you know?
+    - If I send a crafted or unexpected input to the mediated entry point, what component
+      validates that input before granting access?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.320039Z'
+  signed_digest: 9087acfc0c92b75bf2d7a95cd94dce9027ea2fe9619273a0b2ea21618e88b0ca
+  interview_seconds: null
+  inherited_from: null

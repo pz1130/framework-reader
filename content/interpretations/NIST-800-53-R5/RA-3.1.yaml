@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:RA-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against the failure mode where critical products, services, or
+      components arrive from suppliers without anyone having looked at who actually
+      built them, what is inside, how they are maintained, or whether they can be
+      quietly swapped out — so a compromise of the supplier, the integrator, or a
+      sub-tier becomes a direct compromise of your environment with no prior visibility.
+    basis: inferred
+  plain_zh:
+    value: Identify which suppliers and the products and services they provide actually
+      matter to your mission, then assess the supply chain risks they bring — including
+      how they are built, maintained, delivered, and updated — and do this before
+      acquisition and again when something significant changes.
+    basis: inferred
+  practice:
+    value:
+      '1': List the systems and services that depend on external suppliers; mark which
+        ones are critical; for those, record who the supplier is, what is actually
+        supplied, and one responsible owner.
+      '2': Run a documented supply chain risk assessment for critical suppliers covering
+        origin, integrity, dependencies, and update path; tie findings to decisions
+        (accept, require controls, avoid, exit); repeat on material changes.
+      '3': Assessment feeds into enterprise risk and procurement gates; sub-tier visibility
+        and software bill of materials are tracked where feasible; assessments are
+        triggered by events such as supplier breach, ownership change, or major version
+        shifts; results are auditable end to end.
+    basis: inferred
+  evidence:
+    value: Critical supplier list with scope and owners, individual supply chain risk
+      assessment records with findings and decisions, change-triggered reassessment
+      log, evidence that assessment outcomes flow into contracts, design choices,
+      or exit plans.
+    basis: inferred
+  common_myth:
+    value: Assuming a standard vendor security questionnaire or a SOC 2 report handed
+      back by the supplier is the supply chain risk assessment. Those cover the supplier's
+      own security posture; they do not address what is in the product, how it is
+      built and updated, where components come from, or what happens if a sub-tier
+      is compromised.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one critical supplier where you assessed what is actually inside the
+      product or service they give you, not just whether their security program looks
+      fine.
+    - When a critical supplier is acquired, suffers a breach, or ships a major change,
+      what in your process triggers a reassessment and where is the last example on
+      record?
+    basis: inferred
+  regional_note:
+    value: European regulators under NIS2 and sector-specific rules increasingly expect
+      supply chain assessment to extend beyond the prime supplier to sub-contractors
+      and to be revisited during the relationship, not only at procurement; U.S. practice
+      more often centers on contract clauses and supplier attestations, with auditors
+      pressing harder on reassessment triggers and sub-tier visibility.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.934676Z'
+  signed_digest: 0a245684a339b799d20d0b27e717e442df384b6a9a6a727fa39a80c3deb0ff41
+  interview_seconds: null
+  inherited_from: null

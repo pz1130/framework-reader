@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:GV.SC-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that supplier lists rely on memory or scattered emails, and the security team
+      is the last to know when a supplier is disrupted or has an incident. Therefore, there must first
+      be an approved comprehensive list, prioritized by criticality, so that subsequent assessments, monitoring,
+      and response efforts have a clear target.
+    basis: inferred
+  plain_zh:
+    value: Identify and register all suppliers (including hardware, software, cloud services, outsourced
+      operations, etc.), and classify them by their criticality to business operations—so that when an
+      incident occurs, you know who to prioritize and who to investigate first.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a comprehensive supplier roster that includes at least the supplier name, contact
+        person, and the service or product provided; perform a simple criticality classification (e.g.,
+        high, medium, low) and assign someone to maintain it.
+      '2': The roster and criticality classification are jointly approved by procurement, legal, and security;
+        classification follows clear rules (e.g., impact on core business, handling of sensitive data,
+        irreplaceability); updates are triggered upon onboarding new suppliers or significant changes.
+      '3': The supplier list is integrated with procurement processes and asset inventories, with changes
+        automatically triggering reassessment; criticality classification is based on quantitative criteria
+        and is used to set priorities for resource allocation and incident response plans.
+    basis: inferred
+  evidence:
+    value: Maintained supplier roster (including classification fields), classification rule documentation,
+      approval and update records, linkage records between procurement or change tickets and the roster,
+      and samples of periodic reports exported from the roster.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'following the contract ledger is sufficient'—financial contract lists miss suppliers
+      that did not go through contracts, such as free trials, direct procurement by developers, or temporary
+      outsourcing; they also do not distinguish whether a supplier provides core transaction chain services
+      or administrative utilities. The roster must include a security-usable criticality classification
+      field, not just a direct copy of the contract ledger.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Select external suppliers involved in security incidents over the past six months; what was their
+      criticality level in the roster at the time?
+    - At which step in the procurement process is supplier registration and classification required? If
+      procurement bypasses this, how does security detect unregistered suppliers?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.504204Z'
+  signed_digest: 86a6d9b7c18ed97dc2f881fce700f28bb4de4ef5f6fc8f9ccfe24f1d1888f59e
+  interview_seconds: null
+  inherited_from: null

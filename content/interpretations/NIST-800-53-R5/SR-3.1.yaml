@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SR-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a single point of failure in the supply chain: if one
+      vendor collapses, gets sanctioned, is compromised, or quietly drops a product
+      line, the agency''s mission-critical operations stop with no fallback. Concentration
+      risk in sourcing is what this control is built to break.'
+    basis: inferred
+  plain_zh:
+    value: Make sure critical products and services are not all coming from the same
+      vendor, the same geography, or the same technology stack — so a single supplier
+      problem cannot take you down, and you have a realistic option to switch.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems or services are mission-critical and who supplies
+        them; note obvious single-source dependencies (one vendor, one region, one
+        underlying technology).
+      '2': Maintain a written diversification strategy for critical categories (multiple
+        qualified suppliers, geographic spread, or competing technology options);
+        track it alongside procurement and supply chain risk records.
+      '3': Periodically test whether switching is actually possible — alternate suppliers
+        are qualified, contracts support exit, spare parts or parallel environments
+        are maintained; concentration metrics reviewed at the same cadence as other
+        supply chain risk.
+    basis: inferred
+  evidence:
+    value: Critical-system supplier list with concentration analysis, documented diversification
+      strategy, evidence of qualified alternate suppliers (contracts, accreditations,
+      test purchases), and records showing periodic review of concentration risk.
+    basis: inferred
+  common_myth:
+    value: Assuming that listing two vendors in a procurement plan counts as diversification,
+      even when one is the only one actively contracted, the only one with current
+      certifications, or the only one whose product has been integrated into production.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one of your critical systems and walk me through what happens if your primary
+      supplier is unavailable for 30 days.
+    - Which critical categories today still have only one qualified supplier, and
+      what is the plan to change that?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.159985Z'
+  signed_digest: d412337fe6d261f2185a59dfb9780c79758839354d1f73b094c77c1dab5805ab
+  interview_seconds: null
+  inherited_from: null

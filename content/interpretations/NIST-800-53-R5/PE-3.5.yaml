@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:PE-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protect physical security equipment from being manipulated, bypassed, disabled,
+      or replaced without detection. This prevents an intruder from tampering with
+      locks, sensors, cameras, or monitoring hardware and using that change to gain
+      unauthorized access or conceal subsequent activity.
+    basis: inferred
+  plain_zh:
+    value: Put physical safeguards around security equipment and detect, investigate,
+      and repair any attempt to alter, move, disable, or replace it.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical physical security equipment and document basic tamper-prevention
+        measures, such as secured mounting, protected cabling, and controlled access
+        to device enclosures.
+      '2': Maintain inspection and maintenance records, assign responsibility for
+        investigating suspected tampering, and retain relevant access or surveillance
+        data for review.
+      '3': Use tamper-evident seals or alerts, continuously monitor equipment status,
+        reconcile changes against authorized work records, and test the detection
+        and response process through inspections or exercises.
+    basis: inferred
+  evidence:
+    value: Physical security equipment inventory, tamper-prevention design or installation
+      records, inspection and maintenance logs, tamper-detection and incident records,
+      and evidence of corrective action.
+    basis: inferred
+  common_myth:
+    value: Assuming the equipment is protected because it is mounted on a wall or
+      locked in a cabinet; physical attachment alone may not reveal unauthorized opening,
+      repositioning, disconnection, or replacement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which physical security devices are covered by tamper protection, and how are
+      the protective measures applied?
+    - Show the most recent suspected-tampering event and the records of investigation
+      and corrective action.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.607944Z'
+  signed_digest: 22d0e337666792893d21f703757bdd448e33d7e7138f2fd453d24f8c784211f6
+  interview_seconds: null
+  inherited_from: null

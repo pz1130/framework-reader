@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IA-12.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against identity spoofing during enrollment — an attacker (or insider)
+      creating or claiming an identity tied to a real person without that person knowing,
+      which then becomes the trusted root for every downstream credential, background
+      check, and access grant.
+    basis: inferred
+  plain_zh:
+    value: Before issuing any credential to a person, confirm through a separate,
+      independent channel that the person is who they claim to be, and that the identity
+      actually exists and is not being misappropriated.
+    basis: inferred
+  practice:
+    value:
+      '1': Identity proofing is performed by HR or a sponsor before any account is
+        created; the proofing step and the channel used are recorded in the onboarding
+        record.
+      '2': A documented identity-proofing procedure specifies what evidence is collected
+        and an out-of-band confirmation (callback to a known number, postal mail,
+        in-person) to the claimed identity before the credential is issued; failed
+        or suspicious cases are escalated and logged.
+      '3': Proofing is repeatable, auditable, and tied to the credential issuance
+        event so an auditor can trace any active credential back to an independently
+        verified identity; periodic re-proofing or re-confirmation is required for
+        high-risk roles or after long absences.
+    basis: inferred
+  evidence:
+    value: A single, traceable record set covering identity-proofing records, the
+      independent confirmation channel used (call logs, signed postal responses, in-person
+      logs), the credential-issuance ticket referencing that proofing, and any re-proofing
+      or escalation logs for exceptions.
+    basis: inferred
+  common_myth:
+    value: Treating the hiring or contractor-onboarding paperwork as sufficient proof
+      of identity — the same HR file the attacker may have manipulated is the only
+      evidence behind the credential, with no independent confirmation that the person
+      exists and is not being impersonated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick any current credential: show me the independent confirmation that the
+      person claiming that identity actually exists and is who they said they were.'
+    - What happens when the out-of-band contact cannot reach the claimed person —
+      who escalates, and where is that recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.083772Z'
+  signed_digest: 337ccca0845f993d09017d81b41378dcb8744276d904c9ce4c05476ed0562a91
+  interview_seconds: null
+  inherited_from: null

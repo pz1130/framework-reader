@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:RA-5.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the 'each scanner tells its own story' failure — one tool
+      says a host is clean, another says it has a critical CVE, and nobody notices
+      they are scanning the same asset differently or disagreeing on patch state.
+      Without correlation, duplicate work hides real gaps, vulnerability tickets get
+      closed by who scanned last instead of by what is actually exposed, and remediation
+      decisions are made on a single noisy snapshot that drifts from reality within
+      hours.
+    basis: inferred
+  plain_zh:
+    value: Take what your different scanners, agents, and assessment sources each
+      report, and combine them so one consistent picture of asset-and-vulnerability
+      state emerges, with conflicts resolved and gaps visible.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory the scanning sources (network scanner, authenticated agent, cloud
+        posture, application scanner, pen-test results) and the assets each one covers;
+        produce a single combined asset-to-finding list that de-duplicates by asset+plugin/CVE.
+      '2': Define rules for conflict resolution (e.g., agent data beats unauthenticated
+        scan; most recent successful auth wins) and timestamp every finding; track
+        coverage gaps where an asset is seen by only one source or none.
+      '3': Feed the correlated view into remediation tracking so tickets reflect real
+        exposure rather than whichever scanner ran last; alert when a finding disappears
+        from one source but not another (possible patch or possible evasion); report
+        coverage gaps and source disagreement as first-class metrics.
+    basis: inferred
+  evidence:
+    value: A documented correlation procedure (sources, keys, conflict rules, refresh
+      cadence), the unified asset-and-finding view with source attribution, coverage-gap
+      reports showing which assets are seen by zero or only one source, and remediation
+      tickets that trace back to the correlated state rather than a single scanner's
+      output.
+    basis: inferred
+  common_myth:
+    value: Assuming that running two or more scanners automatically means better coverage
+      — when the findings are kept in separate dashboards, the team either double-remediates
+      the same CVE or, worse, closes tickets on the tool that shows 'clean' while
+      the other still flags the asset, so real exposure is hidden behind whichever
+      report was checked last.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one critical CVE from last quarter and show me every scanner that flagged
+      it, every system that remediated it, and which report you used to close the
+      ticket.
+    - Which assets in the inventory are currently visible to only one scanning source,
+      and how did you find that out?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.950262Z'
+  signed_digest: 9183562655550ae515f1c3501cab57db5b83d0b071f93bf6d4e4db2ebbf3b9e0
+  interview_seconds: null
+  inherited_from: null

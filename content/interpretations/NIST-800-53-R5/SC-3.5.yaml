@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single security control failure from exposing the full security
+      function — without layered structures, one misconfigured or defeated control
+      gives an attacker a straight path to the asset the function is supposed to protect.
+    basis: inferred
+  plain_zh:
+    value: Design security functions (e.g., access control, audit, encryption) so
+      they are built from multiple independent layers, each layer itself trustworthy,
+      so that breaking or misconfiguring one layer does not bypass the whole function.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the critical security functions (access enforcement, identification,
+        audit, cryptographic protection) and document that each is composed of more
+        than one mechanism in sequence or in depth.
+      '2': For each function, define which layers exist, what each layer independently
+        enforces, and what evidence shows each layer is operating; review this mapping
+        when systems change.
+      '3': Test the failure of an individual layer (e.g., disable a single control)
+        and confirm the function still holds or fails closed in a measurable way;
+        treat the layered design as an architectural artifact under change control,
+        not an incidental implementation detail.
+    basis: inferred
+  evidence:
+    value: Architectural diagrams or design documents showing the layered composition
+      of security functions, the independent enforcement point of each layer, and
+      test or review records showing the layers operate independently and that single-layer
+      failure does not bypass the function.
+    basis: inferred
+  common_myth:
+    value: Assuming that stacking multiple tools of the same kind counts as layering
+      — running two antiviruses on the same endpoint, or two firewalls on the same
+      traffic, is not layering because they enforce the same property and a single
+      bypass defeats both. Layering requires distinct mechanisms enforcing independent
+      checks at different points in the path.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one security function in a critical system and walk through each independent
+      layer that contributes to it.
+    - If layer X is misconfigured or disabled, what stops the function from being
+      bypassed, and how was that verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.511961Z'
+  signed_digest: 48002791faca51b68942535183ef9a08b0a179a0f8e6c820a4004f12e1f21f05
+  interview_seconds: null
+  inherited_from: null

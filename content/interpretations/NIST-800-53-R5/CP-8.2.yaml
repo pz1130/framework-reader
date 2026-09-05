@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:CP-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure mode where the organization believes it has communications
+      continuity on paper, yet a single carrier, single site, single device, or single
+      link outage takes primary or backup communications down with it - the continuity
+      plan only works as long as nothing breaks.
+    basis: inferred
+  plain_zh:
+    value: Make sure that the communications paths the continuity plan relies on do
+      not depend on one carrier, one facility, one piece of equipment, or one circuit.
+      Provide a real alternate path, not just a second number on the same provider.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which carriers, sites, devices, and links carry the communications
+        listed in the CP plan; flag any that are single-sourced.
+      '2': Have a documented alternate path for those single points, with a different
+        carrier or different physical route where feasible, and a way to reach key
+        staff if the primary is down.
+      '3': Test the alternate path end-to-end on a schedule, treat the dependency
+        list as a living inventory reviewed when carriers or topologies change, and
+        make sure failover actually exercises the redundant path rather than the same
+        provider's secondary service.
+    basis: inferred
+  evidence:
+    value: Inventory of communications dependencies (carrier, site, device, circuit)
+      tied to the CP plan, documented alternate paths, and test records showing the
+      alternate path was actually exercised.
+    basis: inferred
+  common_myth:
+    value: Treating a second line from the same carrier, or a failover to the same
+      provider's secondary service, as an alternate communications path - it is still
+      one provider and often shares the same physical risk, so a single upstream outage
+      still takes both down.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the communications paths the CP plan relies on and which ones have a
+      true alternate.
+    - When did you last test the alternate path, and was it a different carrier or
+      just a secondary service from the same one?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.013731Z'
+  signed_digest: 6ea4f229db1e359e46ebf3eb8422615b3cdcbf4971998a9fe497d32ca53897e0
+  interview_seconds: null
+  inherited_from: null

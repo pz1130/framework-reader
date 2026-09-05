@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-4.22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against data leaving a controlled boundary through an unintended
+      or unmonitored path inside the system itself — when an authorized component
+      forwards information somewhere it should not, the originating user typically
+      never sees the leak. Without a per-component allow-list on what it may send,
+      where, and to whom, exfiltration looks like normal traffic from a legitimate
+      service.
+    basis: inferred
+  plain_zh:
+    value: For each individual system component authorized to handle information,
+      define and enforce which destinations, users, and information types it is permitted
+      to send data to — and deny everything else. The control is per-component, not
+      per-system.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the components that move or transform information (services, middleboxes,
+        agents, scripts); have a written list of what each one is allowed to send
+        and to where.
+      '2': Encode these per-component rules as configuration or policy; review and
+        update them when components, networks, or data flows change; keep change records.
+      '3': Enforce at the network or kernel layer so that even a misconfigured or
+        compromised component cannot reach unauthorized destinations or ship unauthorized
+        data; alert on violations; periodically test that the deny path actually fires.
+    basis: inferred
+  evidence:
+    value: Component inventory with assigned data-flow destinations, per-component
+      allow-list policy/configuration, enforcement mechanism (network rules, egress
+      filters, host-based controls), change records for the policy, and violation
+      logs or test results proving denied traffic is actually blocked.
+    basis: inferred
+  common_myth:
+    value: Treating this as a system-level egress rule and assuming one outbound filter
+      at the perimeter covers it — the control is explicitly per-component, so a single
+      service, agent, or sidecar can still reach places the perimeter does not see,
+      and that is exactly the gap the control targets.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one component that handles sensitive data and walk me through what it is
+      allowed to send, where, and where that rule is enforced.
+    - Show me a recent log or alert where the component tried to send something outside
+      its allowed destinations and what happened.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.300526Z'
+  signed_digest: d517998b4e57620460ada2418860fc6108f3d12170fcc15aae3ccbae6abc8d6e
+  interview_seconds: null
+  inherited_from: null

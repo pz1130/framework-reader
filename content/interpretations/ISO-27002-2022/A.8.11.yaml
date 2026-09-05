@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.8.11
+locale: en
+state: draft
+fields:
+  intent:
+    value: To prevent sensitive information from being carried over as-is when data flows between different
+      security domains within the organization—for example, real phone numbers from a production database
+      entering a test environment, or customer names appearing in analytical reports. Data masking is
+      applied so that even if data is viewed by unauthorized individuals, it cannot be directly linked
+      to specific individuals.
+    basis: inferred
+  plain_zh:
+    value: When data is moved from one system or environment to another, first identify which fields are
+      sensitive (phone numbers, ID numbers, names, addresses, etc.), then transform these fields according
+      to rules—masking, replacing with fake values, or deleting—so that end users cannot see the real
+      values, but the data remains usable to a certain extent.
+    basis: inferred
+  practice:
+    value:
+      '1': Sensitive data has been identified; manual or semi-automated masking steps exist in the copy
+        process between test and production environments; a basic list of masking rules is available.
+      '2': Masking rules are configured differently based on data type and environment (production to
+        test, production to analytics, cross-department sharing each have rules); masking processes are
+        logged for traceability; spot checks are conducted on masking results for key sensitive fields.
+      '3': Masking tools are automatically embedded in data flow pipelines, preventing unmasked data from
+        entering target environments; masking rules are version-controlled and regularly reviewed; automated
+        tools are used periodically to scan target environments for the presence of unmasked real data.
+    basis: inferred
+  evidence:
+    value: Sensitive field classification list, masking rule configuration documents, masking execution
+      logs or script records, data sampling inspection results from target environments (e.g., test databases),
+      tool configuration screenshots or change records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'masking is just writing a script to replace the middle four digits
+      of a phone number'—the key to masking is identifying every copy point throughout the data lifecycle,
+      such as backup restoration, temporary channels for data export, and fields included in logs. If
+      any pipeline is missed, real data can still flow out.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Is masking applied to every copy path from production data to test environments? Does backup restoration
+      to a development environment count as a path?
+    - Which fields in the data dictionary are marked as sensitive? Who confirmed this? What is the frequency
+      of updating masking rules and field markings?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.370466Z'
+  signed_digest: d6d3ce9d85ed010d8a84aae944559e7c2e7278925d2bd76e936711e4a5f09e6f
+  interview_seconds: null
+  inherited_from: null

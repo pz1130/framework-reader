@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:IA-12.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against identity proofing done entirely over channels an attacker
+      can also control — a deepfake video call, a synthetic selfie, a spoofed phone
+      number, or a forged document scan all let the wrong person be issued credentials.
+      In-person presence lets the issuer compare a real human and physical documents
+      against a trusted source, so a credential cannot be bound to a fabricated identity.
+    basis: inferred
+  plain_zh:
+    value: When issuing a credential to a person, the organization must be able to
+      require that the applicant shows up in person so the issuer can physically compare
+      the human and the real documents against authoritative records before the credential
+      is bound to that identity.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which populations or credential classes warrant in-person proofing
+        (e.g., privileged, high-risk, or first-time issuance where remote signals
+        are weak); define a written in-person validation and verification step for
+        those cases; train issuing staff on what to check.
+      '2': Run the in-person step at a controlled location with trained staff, compare
+        physical documents against authoritative sources, record the artifacts inspected
+        and the staff member who performed the check, and tie the credential issuance
+        to a recorded successful in-person event.
+      '3': Periodically re-validate a sample of credentials issued in person against
+        the original artifacts, audit staff adherence (e.g., tailgating, document
+        substitution, weak fallback to remote-only flows), and adjust the policy when
+        remote signal quality changes the residual risk.
+    basis: inferred
+  evidence:
+    value: In-person proofing policy with the populations it applies to, location
+      and staffing details, the artifacts and authoritative sources used for comparison,
+      issuance records linking each credential to a successful in-person event, and
+      audit results on adherence.
+    basis: inferred
+  common_myth:
+    value: Treating a video call or a selfie-with-ID upload as equivalent to in-person
+      validation and verification, because the tools feel rigorous. They are not —
+      they are still channels the applicant controls, and a successful deepfake or
+      synthesized image satisfies the tool while producing a credential bound to a
+      fabricated identity.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which credential classes require in-person validation and verification, and
+      which are allowed to skip it?
+    - Show me three recent issuances and the in-person record attached to each — who
+      verified, which documents were checked, against which authoritative source.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.079520Z'
+  signed_digest: 350fcb487a8da6589258f15067d4c2820d762dc43e74d6c810eb5dc64bfc98f2
+  interview_seconds: null
+  inherited_from: null

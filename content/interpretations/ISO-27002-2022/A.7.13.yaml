@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.7.13
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'only calling for repairs when equipment breaks, and leaving no trace
+      after repairs' — if maintenance and repair are not controlled, it effectively hands over system
+      integrity, data confidentiality, and supply chain trustworthiness to the ad-hoc decisions of third-party
+      repair personnel, with no way to trace afterward who touched what, installed what, or took away
+      what.
+    basis: inferred
+  plain_zh:
+    value: 'Manage equipment maintenance and repair as a security control: what is repaired, who repairs
+      it, how it is repaired, and what records are left after repair must all be planned and approved;
+      data must be cleared before off-site repair; critical equipment must be repairable or replaceable
+      in a timely manner.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a repair log or work order, recording repair time, personnel, and basic operations;
+        perform data clearing before off-site repair, at least with a verbal request and a signed form.
+      '2': Implement an approval process for repairs, distinguishing on-site/remote/off-site; regularly
+        review repair records; use equipment handover forms and clearing confirmations for off-site repairs;
+        maintain a list of critical spare parts and procurement channels.
+      '3': Make repair records structured and searchable, linked to the equipment asset register; have
+        a standard sanitization process with proof for off-site repairs; conduct session audits for remote
+        repairs; ensure redundancy or spare parts inventory for critical equipment, with repair timeframes
+        written into contractual SLAs.
+    basis: inferred
+  evidence:
+    value: Repair work orders and approval records, equipment off-site handover forms and data sanitization
+      certificates, remote repair session logs, repair personnel qualification and authorization records,
+      spare parts and repair contract SLAs.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having a work order for repairs is enough' — a work order only proves
+      that work was done, not that data was secure before and after the repair. Auditors actually pursue
+      evidence of data clearing, whether repair personnel exceeded their authorized scope and accessed
+      data they shouldn't have, and whether remote repairs were fully supervised throughout.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For equipment sent off-site for repair, who performs data clearing and what standard is used for
+      verification? Where is the evidence stored?
+    - During remote repairs, are the screens and data seen by repair personnel recorded or audited via
+      logs?
+    - If critical equipment fails, how long before it must be repaired or replaced? Where is this specified
+      in a contract or SLA?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.346990Z'
+  signed_digest: 78a8281925b3c99ae34bf2e2b54f9795ebdfa06ee4179f13a5590e3f0849507e
+  interview_seconds: null
+  inherited_from: null

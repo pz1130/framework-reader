@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-3.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'configuration changes approved by whoever happens to be
+      online' — without a defined security/privacy sign-off role, changes ship without
+      anyone accountable for catching weakening of controls, missed privacy impact,
+      or policy violations that the change author is unqualified or too close to spot.
+    basis: inferred
+  plain_zh:
+    value: Name who is responsible for security and privacy on configuration change
+      decisions, make sure they actually review and sign off, and record that review
+      — so a change cannot go live just because the requester or implementer wanted
+      it.
+    basis: inferred
+  practice:
+    value:
+      '1': Designate at least one security and one privacy representative for the
+        change review function; their names/roles are documented and reachable for
+        change boards.
+      '2': Every configuration change request records a sign-off (or explicit non-applicability)
+        from the designated security representative, and privacy when PII is in scope;
+        rejections and escalations are logged with reasons.
+      '3': The security/privacy sign-off is enforced in the change workflow (cannot
+        be bypassed); representative workload, coverage gaps, and override rates are
+        reviewed; missed or overridden sign-offs trigger post-implementation review.
+    basis: inferred
+  evidence:
+    value: Designation memo or charter naming security and privacy representatives,
+      change tickets showing sign-off (or documented non-applicability), sample of
+      approved/rejected changes with reviewer comments, evidence that sign-off gates
+      progression in the workflow.
+    basis: inferred
+  common_myth:
+    value: Treating 'InfoSec is on the CAB mailing list' as equivalent to a designated
+      security representative reviewing changes. Being cc'd is not a review; the control
+      fails if no one is accountable, no record exists, and tickets can close without
+      an actual security or privacy judgement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three recent change tickets and tell me which person signed off as security
+      representative on each one.
+    - Can a change be marked complete in your workflow without a security or privacy
+      sign-off — and if so, how often does that happen?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.781449Z'
+  signed_digest: c94780f28629b2b351fd11c7ee54068c463563fb8cd5c2efe3fd520e0571a33f
+  interview_seconds: null
+  inherited_from: null

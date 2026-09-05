@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:SA-8.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk that a component or system is built so that a
+      small, undetected change to its code, configuration, or data silently flips
+      its behavior, persisting under the radar of normal checks. The control forces
+      designs to make such inverse modifications (insertions, swaps, deletions, or
+      replay of old states) infeasible or reliably detectable, so an attacker who
+      gains a foothold cannot quietly rewrite history, swap payloads, or roll a counter
+      back to cover their tracks.
+    basis: inferred
+  plain_zh:
+    value: Engineer systems so that unauthorized modifications - whether to code,
+      configuration, firmware, or stored state - cannot be quietly introduced or quietly
+      reversed. Build in protections that make covert alteration either impossible
+      without detection, or visible to monitoring and integrity checks.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify critical components and the states, files, firmware images, and
+        configuration paths whose silent change would matter most; apply basic integrity
+        controls (signed builds, file integrity monitoring, write protection) to those
+        assets.
+      '2': Document the design choices that raise the inverse modification threshold
+        - signed and verified boot, append-only or hashed logs, write-once storage
+        for security-relevant records, cryptographic chaining of updates - and require
+        them in the secure-development guidance given to engineers.
+      '3': 'Make the threshold enforceable in the SDLC: threat models explicitly examine
+        modification-and-replay paths, design reviews reject architectures that allow
+        untraceable edits to critical state, integrity violations trigger automated
+        containment, and the choices are re-validated whenever the component is significantly
+        redesigned.'
+    basis: inferred
+  evidence:
+    value: Secure-development policy and design guidelines covering inverse-modification
+      resistance, threat-model and design-review records that show modification/replay
+      paths were considered, integrity-control configurations on critical components,
+      and incident records demonstrating detection or containment of covert modification
+      attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that because a component is digitally signed, the inverse-modification
+      requirement is satisfied - signing proves who produced the artifact, not that
+      an attacker with write access to deployed state cannot silently edit a configuration
+      file, roll a counter back, or replay an older signed artifact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one critical component and walk through how an insider or compromised process
+      could covertly modify its state or configuration - which control stops that,
+      and how would you know it happened?
+    - Show the design-review record where the modification and replay paths for this
+      component were actually discussed, not just a checklist tick.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.218646Z'
+  signed_digest: 81b3cd607325f54ca75d1a83346f8edceff48bb532857ee91b33fef5c822ca36
+  interview_seconds: null
+  inherited_from: null

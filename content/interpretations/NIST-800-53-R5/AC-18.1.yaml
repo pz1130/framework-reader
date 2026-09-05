@@ -1,0 +1,76 @@
+control_id: NIST-800-53-R5:AC-18.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker who lands on or spoofs the same wireless medium
+      the user is on—open Wi-Fi at a coffee shop, a rogue access point cloned to your
+      SSID, or an unmanaged device bypassing the wired network. Without enforced authentication
+      and encryption on the wireless link, traffic (including credentials and session
+      tokens) can be passively sniffed, actively tampered with, or used to pivot into
+      internal resources.
+    basis: inferred
+  plain_zh:
+    value: Any wireless access your staff or devices can reach—corporate Wi-Fi, guest
+      Wi-Fi, ad-hoc, peer-to-peer, or Bluetooth—must require authenticated, encrypted
+      connections. The corporate WLAN is the easy part; the audit pressure is on the
+      wireless paths people actually use when they leave the building or plug in their
+      own kit.
+    basis: inferred
+  practice:
+    value:
+      '1': A written wireless usage policy exists. The corporate WLAN uses WPA2-Enterprise/WPA3
+        with a RADIUS or equivalent authentication backend. Open and WEP networks
+        are prohibited by policy. Guest Wi-Fi is isolated from internal segments.
+      '2': A current inventory of authorized access points and authorized wireless
+        clients. Rogue AP detection (periodic site survey or sensor-based). Wireless
+        settings on corporate devices are centrally managed so staff cannot add an
+        ad-hoc or peer-to-peer network. Bluetooth and other non-Wi-Fi radios are addressed
+        in the same policy.
+      '3': Wireless traffic that must traverse untrusted networks is wrapped in an
+        additional encrypted tunnel (VPN or application-layer TLS to a managed gateway).
+        Rogue AP scans are continuous, not annual. New SSIDs or unauthorized wireless
+        protocols trigger automatic alerts. Departing-employee and lost-device de-provisioning
+        removes their wireless credentials promptly.
+    basis: inferred
+  evidence:
+    value: Wireless security policy, configuration baselines for corporate and guest
+      WLANs, AP and wireless-client inventory, rogue AP scan reports, MDM or configuration-management
+      evidence showing wireless settings enforced on endpoints, VPN usage evidence
+      for remote/travel scenarios, incident records involving rogue or unauthorized
+      wireless.
+    basis: inferred
+  common_myth:
+    value: Treating AC-18.1 as satisfied by the corporate WPA2-Enterprise SSID alone.
+      The control covers all wireless access to the organization's systems, including
+      ad-hoc/peer-to-peer, Bluetooth, hotspots used by travelling staff, and rogue
+      APs that mimic the corporate SSID—a clean dashboard for the office WLAN does
+      not cover the auditor's question.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how a lost laptop or a departing employee's wireless credentials are
+      removed from the authentication backend and how quickly.
+    - How do you detect a rogue access point broadcasting your corporate SSID in a
+      building you do not own, and when was the last such scan run?
+    - What stops a user from tethering through their phone hotspot or joining an ad-hoc
+      peer-to-peer network to reach internal resources?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.082261Z'
+  signed_digest: 07d46b06af68927f2b8cf1eac140c66a917f9a0ab6267fb908793a2f04ce020b
+  interview_seconds: null
+  inherited_from: null

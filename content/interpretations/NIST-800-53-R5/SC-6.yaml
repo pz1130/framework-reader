@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:SC-6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the scenario where a component's resource exhaustion (CPU, memory,
+      disk, connections, etc.) silently degrades or halts other systems, so that a
+      single noisy or compromised component can cause a cascading denial of service
+      across the enterprise.
+    basis: inferred
+  plain_zh:
+    value: Make sure that every system component can only use the resources it is
+      supposed to have, and that when it tries to use more (due to a bug, attack,
+      or misconfiguration), the rest of the environment stays operational. You need
+      to define what 'enough' means, enforce it technically, and have a way to notice
+      when it's being exceeded.
+    basis: inferred
+  practice:
+    value:
+      '1': Define and document resource limits (CPU, memory, disk, network) for each
+        system or application, and ensure the underlying platform or application is
+        configured to enforce them (e.g., OS quotas, container limits, application
+        thread pools).
+      '2': Maintain a formal resource allocation policy that links limits to business
+        criticality, and use monitoring to track actual usage against limits. Document
+        how over-consumption is handled (e.g., hard stop, alert, throttle, redirect).
+      '3': Automate the enforcement of resource limits as part of deployment (e.g.,
+        via Infrastructure as Code), test failure scenarios (e.g., load test that
+        pushes one component over its limit and verifies others survive), and review
+        limits periodically against observed growth and new risk. Integrate alerts
+        with incident response so over-consumption events are acted on, not just logged.
+    basis: inferred
+  evidence:
+    value: A single document or system configuration repository that lists for each
+      component its resource limits, the enforcement mechanism, and the monitoring
+      or alerting rule. Include a test result or incident record showing that when
+      a limit was exceeded, the impact was contained. Auditors will ask to see the
+      configuration and a recent example of limit enforcement in action.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'we have a monitoring tool' is enough—you need not just to
+      watch usage but to actually enforce the limit, because without enforcement a
+      noisy neighbor still brings down the box and there's no audit trail that the
+      control was even configured.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the configuration that limits CPU and memory for the web server that
+      talks to the database—how do you know it's actually applied?
+    - What happened last time a component exceeded its resource limit? Is there an
+      alert, and did it trigger a response or just a log entry?
+    - Which components are not covered by any resource limit and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.670222Z'
+  signed_digest: 81445b983745d002029655577dd71a0c35b4bd89d21382b738722d0f46c5c482
+  interview_seconds: null
+  inherited_from: null

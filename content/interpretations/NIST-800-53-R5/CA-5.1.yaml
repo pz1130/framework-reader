@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CA-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a Plan of Action and Milestones (POA&M) that drifts from
+      reality—when weaknesses, remediation steps, owners, and due dates are tracked
+      on paper or in a spreadsheet that no one reconciles against the actual system,
+      the documented 'remediation plan' becomes a fiction that hides unresolved risk
+      from leadership and auditors.
+    basis: inferred
+  plain_zh:
+    value: Make sure the POA&M and any other corrective-action tracking is maintained
+      in a tool that mechanically enforces accuracy and currency, so weaknesses, deadlines,
+      owners, and status cannot quietly rot away from the truth.
+    basis: inferred
+  practice:
+    value:
+      '1': POA&Ms live in a designated tool (ticketing, GRC, or equivalent) with required
+        fields for weakness, owner, due date, and status; updates go through that
+        tool rather than email.
+      '2': Tool is configured so status changes, closure, and due-date extensions
+        require justification; overdue items surface automatically to the responsible
+        owner and to management.
+      '3': The tool is integrated with the system inventory and assessment results
+        so findings feed in without manual re-entry, due dates trigger escalations,
+        and reports compare recorded status against current evidence on a fixed cadence.
+    basis: inferred
+  evidence:
+    value: Tool configuration showing enforced fields, validation rules, and automated
+      notifications; POA&M records demonstrating updates with timestamps and justifications;
+      overdue and escalation reports; audit trail of changes versus the source assessment
+      or scan that created the item.
+    basis: inferred
+  common_myth:
+    value: Assuming a shared spreadsheet counts as 'automation support'—it doesn't,
+      because nothing in the spreadsheet prevents stale status, missing owners, or
+      silent slips past the due date, so the POA&M still lies to leadership.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how the tool prevents a POA&M item from sitting in 'in progress' past
+      its due date without escalation.
+    - Pick three POA&Ms marked complete in the last quarter—what evidence in the tool
+      proves the weakness is actually fixed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.682744Z'
+  signed_digest: 89fbcebff1001de0d51bf5c156d08a0ba477a75070c0a9914cd22dcc56a57ede
+  interview_seconds: null
+  inherited_from: null

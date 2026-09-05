@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-4.16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against blind spots where one sensor sees an attack but the rest
+      of the stack does not, so a single low-signal indicator slips past defenses
+      until it becomes an incident. Without correlation, an adversary probing from
+      one host, authenticating from another, and exfiltrating from a third looks like
+      three unrelated events nobody escalates.
+    basis: inferred
+  plain_zh:
+    value: Pull monitoring data from across systems (network, host, application, identity)
+      and correlate it so that a single activity is judged in context, not as isolated
+      log lines. The goal is to detect multi-step or distributed events that any one
+      source would miss.
+    basis: inferred
+  practice:
+    value:
+      '1': A list exists of which monitoring sources feed into correlation (firewall,
+        IDS/IPS, endpoint, auth, DNS, cloud audit logs). Analysts have a defined place
+        to bring these together for an incident.
+      '2': Correlation runs on a schedule or in near real-time using documented rules
+        or use cases (e.g., failed logins plus lateral movement plus outbound beaconing).
+        Each rule records what it is meant to catch and who owns it.
+      '3': Correlation rules are tested against historical and synthetic attack scenarios,
+        tuned for false positives, and tied to response playbooks. Coverage gaps -
+        sources not yet ingested, segments not yet monitored - are tracked and closed
+        on a schedule.
+    basis: inferred
+  evidence:
+    value: Source inventory, correlation rule library with owners and review dates,
+      test/tuning records, incident write-ups showing how correlated signals led to
+      detection, coverage gap tracker.
+    basis: inferred
+  common_myth:
+    value: Assuming SIEM license plus a few default dashboards satisfies the control.
+      Buying the tool without designing use cases that actually cross-correlate across
+      sources means logs are stored but never joined, and the multi-step attack still
+      slips through.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show a recent incident where detection came from correlating signals across
+      two or more sources, not from a single alert.
+    - Which monitoring sources are not yet feeding correlation, and what is the plan
+      to onboard them?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.004156Z'
+  signed_digest: 2278ad05164875c945a3308966631b9b47f57db26c25ba9978d45cb1c7e5f17e
+  interview_seconds: null
+  inherited_from: null

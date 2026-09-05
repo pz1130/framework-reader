@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.6.1
+locale: en
+state: draft
+fields:
+  intent:
+    value: 'The intent is to prevent "careless hiring"—placing a person with significant risk history
+      or credential fraud into a role that can access critical assets or data, only to discover background
+      issues after the fact. It also prevents perfunctory verification: checking as if not checking, or
+      checking without records, leaving ambiguity afterward.'
+    basis: inferred
+  plain_zh:
+    value: Before granting system accounts or authorizing access to business data, conduct background
+      checks on individuals based on role risk; what to check and how deep should match what the role
+      can access, not merely verifying ID for everyone as a formality.
+    basis: inferred
+  practice:
+    value:
+      '1': On recruitment onboarding, provide copies of ID and academic certificates; designated personnel
+        verify originals; for critical roles, commit to supplementary checks later but do not perform
+        them.
+      '2': Conduct background checks by role risk tier (e.g., criminal records, credit defaults, employment
+        history verification); archive verification results; for high-risk roles, verification must be
+        completed before authorization, with an approval exemption process.
+      '3': Verification standards are linked to role risk levels and documented in policy; lifetime re-verification
+        (e.g., rehire, role change, outsourcing) triggers re-checks; verification records are searchable;
+        verification failures have a clear decision chain for rejection or access restriction.
+    basis: inferred
+  evidence:
+    value: Verification record forms and original/copies of reports, verification standard checklist by
+      role risk tier, signatures of handler and approver, re-verification trigger records (rehire/role
+      change), decision records for handling verification anomalies.
+    basis: inferred
+  common_myth:
+    value: The myth is that "checking ID and verifying education at onboarding" counts as background verification.
+      Real verification targets risk, not identity existence—criminal records, credit defaults, non-compete
+      restrictions, and employment history fraud determine whether someone can access critical assets.
+      "Verifying identity" and "verifying background" are two different things; auditors can see the difference
+      at a glance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the background check cycle for this financial supervisor role? Which items were checked
+      in the verification report?
+    - At what approval level can a candidate with a criminal record be exceptionally hired? Where is the
+      basis documented?
+    - Was the person re-verified before accessing the new system after a role change? Where is the role
+      change record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.323269Z'
+  signed_digest: e171630c809f6ea5d17bd5ec90cfc1f4997858411b49c910985f72e1b98285da
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CP-10.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: To prevent an audit finding of unacceptable downtime or data loss after
+      a system failure that interrupts in-flight transactions, leaving dependent business
+      processes in an inconsistent state.
+    basis: inferred
+  plain_zh:
+    value: You need a way to bring systems and databases back to a known-good state
+      that preserves the integrity of partially completed transactions, so operations
+      can resume without manual reconciliation or corruption.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify systems that perform transactions and document which recovery
+        mechanism (journal, checkpoint, rollback) is available. Ensure at least one
+        method is known for each critical transactional system.
+      '2': Define and implement a recovery procedure that specifies how to roll back
+        or complete transactions after a crash. Test the recovery process regularly
+        for key systems and log the tests.
+      '3': Automate transaction recovery checks, integrate with backups, and verify
+        consistency across dependent systems. Maintain a runbook with step-by-step
+        recovery actions and train operators. Include transaction recovery objectives
+        in continuity tests.
+    basis: inferred
+  evidence:
+    value: System documentation listing recovery mechanisms (journaling, rollback,
+      checkpointing), tested recovery procedures with logs, test results showing successful
+      transaction restoration, and incident reports demonstrating use of these procedures.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the database is backed up, transactions are automatically
+      recoverable — backups alone do not roll back or complete in-flight transactions;
+      you need a specific recovery method.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems have in-flight transactions and what is the recovery mechanism
+      for each?
+    - Show me the last test where you simulated a failure during a transaction and
+      how you restored consistency.
+    - How do you ensure that after recovery, no partial transactions are left that
+      could affect dependent data?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.903768Z'
+  signed_digest: 59aa354015ab67914a4e963729d4aabdaa04cb648b1f1a91c4ba36b5c4ae793d
+  interview_seconds: null
+  inherited_from: null

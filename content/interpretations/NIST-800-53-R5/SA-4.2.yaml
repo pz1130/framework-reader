@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the failure where security controls are written on paper but the
+      system that actually runs is something different — bought, built, or configured
+      in a way that does not honour them. The risk is that procurement and delivery
+      teams ship a solution whose internal workings quietly bypass the controls the
+      security team believes are in place.
+    basis: inferred
+  plain_zh:
+    value: When you acquire or build systems that are supposed to enforce security
+      controls, you must demand and review design and implementation details that
+      show those controls are actually built in — not just claimed in a brochure or
+      a contract clause.
+    basis: inferred
+  practice:
+    value:
+      '1': Contracts and procurement docs require the vendor or integrator to hand
+        over a control-by-control design description for the parts of the system that
+        enforce security; security reviews that description before go-live.
+      '2': 'There is a documented review (design review, security acceptance review)
+        with sign-off: the design matches the stated controls, boundary protections,
+        logging, and configuration are in place before production cutover.'
+      '3': The review recurs on major changes or re-releases; the as-built configuration
+        and source are tested against the documented controls; deviations trigger
+        a documented exception and re-assessment, not silent acceptance.
+    basis: inferred
+  evidence:
+    value: Procurement security requirements, vendor design/implementation documents
+      (e.g. control mapping, architecture diagrams, configuration baselines), design
+      review records with sign-off, change-triggered re-reviews, and records of exceptions
+      taken when the as-built diverges from the documented design.
+    basis: inferred
+  common_myth:
+    value: Treating the vendor's datasheet or a contractual security clause as proof
+      the control is implemented. The clause is a promise; SA-4(2) asks you to look
+      at the actual design and confirm the control is engineered in, not just promised
+      on paper.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a sample system that enforces a key control, show me where the vendor or
+      integrator described how that control is implemented and where your team reviewed
+      it before go-live.
+    - What did you do when the as-built configuration differed from the documented
+      design — can you show the exception or the change you forced?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.184807Z'
+  signed_digest: 43480ab98772c350c0d93f1cda10be50ac6f324ebf002f63e099a9a76131cbfa
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:IA-4.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against silent re-identification of users whose 'pseudonymous'
+      accounts are actually linkable across systems — when the same opaque identifier
+      (e.g., a hashed email) is reused everywhere, anyone who cracks one mapping unlocks
+      the user's entire activity trail. The control forces designers to think about
+      linkability before deployment, not after a leak shows two 'anonymous' datasets
+      describe the same person.
+    basis: inferred
+  plain_zh:
+    value: Use identifiers that are unrelated across different contexts, so the same
+      person cannot be tied together by the identifier itself; map between contexts
+      only when needed, and protect that mapping.
+    basis: inferred
+  practice:
+    value:
+      '1': Decide, before any system goes live, which identifiers are intentionally
+        linkable across which boundaries (same service, same user across two services,
+        etc.) and document that decision per system.
+      '2': Generate distinct pseudonyms per context (per system, per dataset, per
+        tenant) instead of reusing one stable token; if a mapping table exists, it
+        is access-controlled, logged, and minimised to only the fields necessary for
+        the join.
+      '3': Periodically test whether published or shared identifiers can be re-linked
+        by an adversary using auxiliary data; rotate pseudonyms when linkability risk
+        grows; treat the mapping key as a high-value secret with its own lifecycle.
+    basis: inferred
+  evidence:
+    value: A written policy or design memo per system describing the pairwise-pseudonym
+      approach, the chosen scopes of unlinkability, where mapping tables live and
+      who can read them, plus any linkability-risk review records.
+    basis: inferred
+  common_myth:
+    value: Assuming that hashing an email or user ID with a salt already gives 'pseudonymity'
+      — the same salted hash used in two systems is still a single shared identifier,
+      so joining the two datasets reveals the user without breaking the hash.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one system where the same identifier is reused across two contexts and
+      explain why that is acceptable.
+    - Where is the table that maps a pairwise pseudonym back to the real user, and
+      who can read it?
+    basis: inferred
+  regional_note:
+    value: European auditors (especially under GDPR-linked reviews) tend to push harder
+      on whether the mapping key itself is a separate processing activity requiring
+      its own legal basis; US auditors more often accept 'salted hash' as a sufficient
+      description of pseudonymisation without probing the cross-context linkability
+      question.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.163062Z'
+  signed_digest: dd125ddfd606bc17063fe7c050b6de2bc0de518f75024e3b89da703c759b45e5
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:AC-20.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents sensitive organizational data from being processed or stored on
+      personally owned or otherwise non-organizational systems that the enterprise
+      cannot enforce policy on, monitor, or recover from after loss or theft.
+    basis: inferred
+  plain_zh:
+    value: Limit or forbid using personal/unmanaged devices and other non-organizationally
+      owned systems to access, store, or process the organization's sensitive information;
+      when use is permitted, hold it to documented restrictions the user signs onto.
+    basis: inferred
+  practice:
+    value:
+      '1': Written policy stating that personal/unmanaged devices may not be used
+        for sensitive organizational data, with an exception process that requires
+        explicit approval.
+      '2': Documented restrictions (permitted data classes, network zones, time limits,
+        no local storage) attached to approved exceptions; user signs acceptable-use
+        terms before access is granted.
+      '3': Technical or procedural enforcement (network segmentation, DLP, conditional
+        access, remote-only sessions) that detects and blocks unauthorized non-organizational
+        system use, with periodic reviews of exceptions and revocations when conditions
+        change.
+    basis: inferred
+  evidence:
+    value: Use-restriction policy, approved exception register with business justification,
+      signed acceptable-use acknowledgements, technical control configurations (conditional
+      access/DLP/network segmentation), and records of exception reviews and revocations.
+    basis: inferred
+  common_myth:
+    value: Treating a signed BYOD policy as sufficient even though there is no technical
+      means to stop someone from forwarding, downloading, or syncing sensitive data
+      onto an unmanaged device.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current list of approved non-organizational system exceptions and
+      the data each is permitted to handle.
+    - What stops a user from copying restricted data to a personal laptop or phone
+      that is not enrolled in your MDM/MAM?
+    basis: inferred
+  regional_note:
+    value: European auditors under GDPR tend to press harder on data classification
+      alignment and cross-border transfer implications of personal device use, while
+      US auditors more often focus on policy enforcement and revocation evidence;
+      both regions treat the technical enforcement gap similarly.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.162237Z'
+  signed_digest: dafdce3053d69eaa1f5db58c6933e83d8ac1cd103223366b7556b55a8681d7d6
+  interview_seconds: null
+  inherited_from: null

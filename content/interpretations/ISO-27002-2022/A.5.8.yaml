@@ -1,0 +1,58 @@
+control_id: ISO-27002-2022:A.5.8
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security controls exist only in design documents but are not implemented
+      in the system. If security arrangements are not written into project plans, allocated resources,
+      and assigned responsibilities from project initiation, procurement, development, to deployment,
+      the cost and risk of remedial actions later will spiral out of control.
+    basis: inferred
+  plain_zh:
+    value: Ensure that each project clearly defines its security arrangements at the start—who is responsible,
+      whether resources are sufficient, and whether security activities are scheduled in the timeline—rather
+      than waiting for the security team to check afterwards.
+    basis: inferred
+  practice:
+    value:
+      '1': A security owner is designated at project initiation; the project plan includes a list of security
+        tasks; major security activities (e.g., penetration testing) are scheduled in the timeline.
+      '2': The project charter or plan document specifies security roles, responsibilities, key milestones,
+        and resource estimates; changes to security arrangements undergo review; written records are maintained.
+      '3': Security arrangements are linked to activities and responsible persons across the entire project
+        lifecycle (initiation, procurement, development, testing, deployment, operations); security tasks
+        have acceptance criteria; a security release gate exists before deployment.
+    basis: inferred
+  evidence:
+    value: Sections of the project charter or project plan covering security roles, activities, and milestones;
+      appointment emails or meeting minutes for the security owner; records of security-related changes
+      in project change requests; sign-off records for security release/denial in deployment reviews.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'the security team participated in project meetings' counts as security arrangement.
+      Without written roles, responsibilities, and resource commitments, participation is merely observation—when
+      issues arise, no one takes ownership, and audits cannot verify compliance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is the security owner for this project? In which document is this specified?
+    - Which milestones in the project plan are security-related? Who is responsible for reporting delays?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.319309Z'
+  signed_digest: f393c35277bb48f7d4ce5ca239945172589ca8c69fd9eb0101b1e565c27eaf8c
+  interview_seconds: null
+  inherited_from: null

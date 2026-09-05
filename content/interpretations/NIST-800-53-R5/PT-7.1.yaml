@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PT-7.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent the unnecessary collection, retention, and exposure of Social Security
+      Numbers (SSNs), which are a high-value target for identity theft and a common
+      cause of data breaches. Without this control, SSNs are stored in multiple systems
+      'just in case,' with no clear business justification, leading to a wider attack
+      surface and higher impact when a breach occurs.
+    basis: inferred
+  plain_zh:
+    value: You must identify every place where SSNs are collected, used, stored, or
+      transmitted, and remove them where there is no clear legal or business requirement.
+      Where SSNs are essential, limit their use, mask them when possible, and ensure
+      they are handled with stricter safeguards than ordinary personal data.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory all systems and forms that collect or store SSNs. Document the
+        business or legal justification for each. Remove SSNs from any process where
+        they are not strictly necessary.
+      '2': Define roles and rules for SSN access. Use masking, truncation, or tokenization
+        in applications and reports. Require a documented exception, with approval,
+        for any new use of SSNs.
+      '3': Automatically detect SSNs in databases, logs, and documents. Establish
+        a data retention schedule that destroys or pseudonymizes SSNs when no longer
+        required. Regularly audit SSN usage and revoke access that lacks a clear need.
+    basis: inferred
+  evidence:
+    value: A data inventory listing SSN fields with justification and retention periods;
+      exception requests for SSN use; a report showing which systems have SSNs and
+      which do not; masking or tokenization configuration in dashboards and logs;
+      a defined data retention and destruction policy.
+    basis: inferred
+  common_myth:
+    value: Assuming that moving SSNs to a 'secure server' or encrypting the database
+      meets the control—the real requirement is to reduce the number of places where
+      SSNs live and to justify every instance, not just protect them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of every system or application that stores SSNs. What is the
+      business justification for each?
+    - What happens when someone tries to view a full SSN in a front-end application?
+      Is it masked by default?
+    - How do you ensure SSNs are deleted or anonymized when the retention period expires?
+    basis: inferred
+  regional_note:
+    value: EU auditors are more likely to tie SSN handling to the 'data minimization'
+      principle under GDPR and expect a documented legal basis for each use; US auditors
+      may emphasize compliance with specific federal or state breach notification
+      laws, but the core expectation of minimizing SSN usage is consistent.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.909056Z'
+  signed_digest: c53374aa655caaaf19736c6897fc85286aa76fa206e059ad7482f38de626544f
+  interview_seconds: null
+  inherited_from: null

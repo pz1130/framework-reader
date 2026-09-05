@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-9.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against users logging in and missing a legally required or security-critical
+      notice (privacy banner, acceptable-use reminder, warning that the session may
+      be monitored) — without it the org cannot enforce its acceptable-use policy,
+      cannot later prosecute unauthorized access, and creates inconsistent warnings
+      across systems that erode user awareness.
+    basis: inferred
+  plain_zh:
+    value: Make every system show an approved, configurable notice or banner before
+      granting access, so users see and acknowledge it before reaching any data, and
+      so the wording stays consistent across the estate.
+    basis: inferred
+  practice:
+    value:
+      '1': A written notice/banner exists for each system type; users see it before
+        reaching any data; the wording is approved by legal/security; it can be changed
+        centrally when policy changes.
+      '2': Banner is technically enforced at login on all in-scope systems (OS, network
+        devices, applications, remote-access gateways); exceptions are documented;
+        change history of the banner text is retained.
+      '3': Banner content, presentation, and acknowledgement are tested periodically;
+        non-compliant systems are detected by monitoring or scan; wording updates
+        propagate through automated configuration management with proof of coverage.
+    basis: inferred
+  evidence:
+    value: Approved banner text with version history, configuration showing the banner
+      displayed at login on sampled systems, screenshots or session captures of the
+      pre-login prompt, exception register, and evidence of automated propagation/verification.
+    basis: inferred
+  common_myth:
+    value: Treating the banner as a one-time legal artwork posted once and never re-verified
+      — the wording changes, new systems get added without banners, and remote-access
+      portals keep showing the old text while production hosts have none. The control
+      is met only when every entry point shows the current approved version.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the current banner wording and who last approved it.
+    - How do you know every production system and remote-access portal is actually
+      displaying it today, not just the ones you set up three years ago?
+    basis: inferred
+  regional_note:
+    value: U.S. auditors (especially in federal/DoD-adjacent contexts) often require
+      specific wording tied to consent-to-monitor and legal liability language; EU
+      auditors tend to focus less on the liability phrasing and more on whether the
+      notice is consistent, current, and present at every entry point including third-party-hosted
+      ones. Same control, different acceptance criteria.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.440739Z'
+  signed_digest: 135c20264c2d409e4a6ae1f1643c710bf7ce0640f5a9e7c61f0bb1556ab2156e
+  interview_seconds: null
+  inherited_from: null

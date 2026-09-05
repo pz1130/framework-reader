@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:SA-15.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where a system or component that was once
+      trusted, integrated, or in active use gets quietly retired, replaced, or orphaned,
+      and then keeps running or gets reattached later with stale configurations, unpatched
+      code, or forgotten credentials still intact. Without an explicit archive step,
+      the artifact disappears from one inventory but reappears later as an unknown
+      or untested element.
+    basis: inferred
+  plain_zh:
+    value: When you stop developing, integrating, or using a system or component,
+      you do not just turn it off and walk away. You move it to a defined archive
+      state so that its code, configuration, and supporting material are preserved
+      in a controlled location, and so that no one can mistake it for a live, supported
+      part of the environment.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Define what ''archive'' means for systems and components in your lifecycle
+        policy: a designated storage location, a clear status flag, and a rule that
+        anything archived cannot be re-introduced without going through normal development
+        and assessment again.'
+      '2': 'Run an explicit archive step at retirement or replacement: hand off documentation,
+        configuration baselines, build files, and source to the archive repository;
+        mark the system as archived in the inventory and configuration management
+        database; record who approved the archive and when.'
+      '3': Periodically reconcile the archive against active and disposed inventories;
+        verify that archived artifacts cannot be executed or connected to production
+        networks by default; require re-baselining and re-assessment before any item
+        leaves the archive.
+    basis: inferred
+  evidence:
+    value: Lifecycle policy that defines archive status, archive repository contents
+      and access rules, retirement/archiving records (date, approver, artifacts handed
+      off), inventory entries showing archived flag, and reconciliation reports showing
+      archived items are not present in production.
+    basis: inferred
+  common_myth:
+    value: Treating 'decommissioned' as the same thing as 'archived' — pulling the
+      plug and deleting the VM, but keeping no preserved copy of the source, configuration,
+      or build material, so a later audit, legal hold, or re-introduction attempt
+      has nothing to work from.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one system retired in the last year: where is its source, configuration
+      baseline, and build material stored right now, and who approved the archive?'
+    - How does your inventory distinguish archived systems from active and from disposed
+      systems, and when was the last reconciliation run?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.067703Z'
+  signed_digest: b58daa12fa286a9416f4d832edf4ecb8db187c547b9b23999b1a0a31c84b90c9
+  interview_seconds: null
+  inherited_from: null

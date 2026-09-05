@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.7.2
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'uncontrolled entry and exit'—external personnel, departing employees,
+      and temporary visitors could sneak into restricted areas, or equipment and materials could be quietly
+      taken out or brought in, leading to theft, tampering, and data leakage.
+    basis: inferred
+  plain_zh:
+    value: Authorize and register personnel entering and exiting office areas and core areas; visitors
+      must be accompanied; keys and access cards must be managed properly; equipment and material movements
+      must be recorded.
+    basis: inferred
+  practice:
+    value:
+      '1': Access control or front desk registration in place; visitors register and wear visitor badges;
+        departing employees' access cards are recovered on the same day.
+      '2': Access to areas is authorized by level; visitors are accompanied throughout and records are
+        kept; key/access card issuance logs are clear, with a replacement process for loss.
+      '3': Access control system is linked with personnel records; permissions for departing or transferred
+        employees automatically expire; equipment and material movements require approval and registration;
+        access logs are regularly audited and retained.
+    basis: inferred
+  evidence:
+    value: Access permission requests and change records, visitor registration forms, companion signatures,
+      key/access card issuance and recovery logs, equipment and material movement registration forms,
+      access control system logs, and audit sampling records.
+    basis: inferred
+  common_myth:
+    value: It's a misconception that installing an access control system and having a front desk registration
+      book is sufficient—the real issues are that departing employees' access permissions are not promptly
+      revoked, visitors are not accompanied after registration, and material movements are unmonitored;
+      auditors can spot the hollow execution with just a few samples.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For three departed employees, on what date were their access permissions revoked? Based on which
+      procedure?
+    - When a visitor enters the core server room, where is the companion's signature or record? Can the
+      visitor leave unaccompanied?
+    basis: inferred
+  regional_note:
+    value: In Europe, under GDPR influence, auditors focus more on whether entry/exit records involve
+      personal data and whether retention periods comply; in the US, the emphasis is more on the completeness
+      of access logs and physical isolation of sensitive areas. Both are strict on 'visitor accompaniment,'
+      but Europe also scrutinizes the data protection compliance of the records themselves.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.351011Z'
+  signed_digest: 8fde75be71762757630e7aa70cf8abd2b9f0b45477d9599a727c44b4605627d8
+  interview_seconds: null
+  inherited_from: null

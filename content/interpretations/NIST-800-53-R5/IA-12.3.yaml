@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:IA-12.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against fake or stolen identities slipping through onboarding —
+      a person or non-person entity (NPE) proves who they are with documents that
+      were never checked, were checked by eye only, or were checked against the wrong
+      reference, so the account is bound to a fraud rather than a real identity. Once
+      that account is provisioned, downstream controls (background checks, access
+      reviews, accountability) are all aimed at a phantom.
+    basis: inferred
+  plain_zh:
+    value: When issuing any identity — employee, contractor, service account, machine,
+      third-party user — the presented identity evidence (passport, national ID, birth
+      certificate, employer attestation, corporate registry record) must be validated
+      as genuine and verified as belonging to the applicant, in person or by an equivalent
+      strong method, before the account is created.
+    basis: inferred
+  practice:
+    value:
+      '1': A written rule says identity evidence is required before an account is
+        created; HR or the identity-issuing process collects documents and an authorized
+        person reviews them by eye at onboarding.
+      '2': Each evidence type is bound to a defined issuer and validity window; validation
+        checks security features (holograms, MRZ, digital signatures, registry lookups);
+        a second factor of identity binding (e.g., live photo against the document,
+        recorded in-person or video session, employer attestation cross-checked with
+        HR system) is used; the whole flow is logged per identity issued.
+      '3': Strong validation tools (e.g., document-authentication readers, eIDAS-aligned
+        eID, federated identity providers) are integrated into the provisioning workflow
+        so a fail-stop prevents account creation; the process covers NPEs (service
+        accounts, devices, service agents) with equivalent binding to a real-world
+        sponsor; periodic re-verification occurs for high-risk identities; exceptions
+        are tracked and time-bounded.
+    basis: inferred
+  evidence:
+    value: Identity-proofing procedure document, sample completed identity-proofing
+      records linking an issued credential back to a specific validated document and
+      binding check, list of accepted evidence types and their issuers, evidence-validation
+      tool logs, and records of any identity-proofing exceptions.
+    basis: inferred
+  common_myth:
+    value: Treating 'we copied the passport into the HR file' as identity proofing.
+      Photocopying a document is not validation and not binding; without checking
+      the document is genuine and that the person presenting it is the rightful holder,
+      the account is bound to whatever claim was made on day one.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through the exact checks performed before the last contractor account
+      was created, and which person performed them.
+    - How do you bind the document to the individual so you know the applicant is
+      the rightful holder, not just in possession of the document?
+    - Show me a service account or non-person identity that was created in the last
+      quarter and explain how its real-world sponsor was validated.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.075068Z'
+  signed_digest: f755d2c625b06e4acec7a90448ef3ed066264e9492eb65f1ff240ad063b328cf
+  interview_seconds: null
+  inherited_from: null

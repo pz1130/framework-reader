@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.5.9
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'being unable to clarify where assets are when incidents occur'—without
+      an inventory of information assets that records who uses them, who maintains them, and when updates
+      are due, incident investigations, backup recovery, and vulnerability remediation will have no clear
+      targets, and shadow assets will remain outside management control.
+    basis: inferred
+  plain_zh:
+    value: Maintain an inventory of all assets related to information systems (hardware, software, data,
+      services), recording responsible parties, locations, configurations, and lifecycles, and regularly
+      verify and update it.
+    basis: inferred
+  practice:
+    value:
+      '1': An asset inventory exists, covering major hardware and software; there is a basic registration
+        process for new assets; the inventory at least covers critical systems.
+      '2': The inventory covers all environments (including cloud resources, virtualization, mobile devices);
+        clear asset owners are assigned; regular (e.g., quarterly) stocktakes are conducted with update
+        records archived.
+      '3': The inventory is linked with the configuration management database, with changes automatically
+        updated; stocktakes compared against the real environment can identify unregistered assets; asset
+        decommissioning and disposal processes are traceable.
+    basis: inferred
+  evidence:
+    value: Asset inventory documents or tool snapshots, list of asset owners, stocktake and comparison
+      records, asset change and decommissioning review records, screenshots of the registration process
+      for new project assets.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having an Excel sheet in operations is sufficient'—many teams' sheets only list
+      servers, forgetting cloud instances, development environments, test machines, documentation, and
+      data assets, and they never proactively verify accuracy before audits; the value of an inventory
+      lies in stocktake comparisons that reveal unknown and obsolete assets, while the record itself does
+      not prove you are managing them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last stocktake? Have the results been compared against the production environment?
+    - Who is the asset owner of this test database on the cloud? Where does it appear in the inventory?
+    - For new equipment purchased mid-year, is there a gap between receipt and deployment where it is
+      not under inventory management?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.321331Z'
+  signed_digest: f871bd2b3d12953c66ddbfe55857072e762dd0aea68c394064b4e57df13315be
+  interview_seconds: null
+  inherited_from: null

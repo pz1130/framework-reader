@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:CP-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against backups and alternate processing facilities silently becoming
+      unrestorable - the documentation says backups exist and a DR site exists, but
+      you never actually prove you can pull real data out of them under realistic
+      conditions, so the first time a real incident hits, the 'backup' turns out to
+      be a corrupted snapshot, a tape that won't mount, or a DR site that cannot serve
+      the production workload.
+    basis: inferred
+  plain_zh:
+    value: Periodically restore information from backups and bring up systems at the
+      alternate processing facility using a representative sample of data, so you
+      know the backup and the DR site actually work - not just that files are being
+      written somewhere.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick one critical system each year and restore the most recent backup onto
+        isolated hardware, confirming the data is readable and the application can
+        start.
+      '2': Test on a documented cadence (at least annually) across all critical systems;
+        use samples of real production data sized to be meaningful; record what was
+        restored, how long it took, and any defects found; have the alternate processing
+        facility actually host a sample workload for a short window.
+      '3': Coverage extends to every backup medium and every alternate site in scope,
+        with sample sizes that meaningfully exercise the worst-case recovery scenario;
+        defects drive corrective work with owners and deadlines; restoration time
+        is compared against documented RTO; the same samples are re-run after infrastructure
+        changes; results feed back into the backup and continuity strategy.
+    basis: inferred
+  evidence:
+    value: Restoration test plans, dated test reports showing the sample restored
+      and where, defect logs and corrective actions, evidence the alternate facility
+      actually ran a workload, and a coverage matrix linking critical systems to their
+      last successful restore test.
+    basis: inferred
+  common_myth:
+    value: Treating a successful nightly backup job as proof that restoration works.
+      A job that writes bytes to disk tells you nothing about whether those bytes
+      can actually be reassembled into a working system when you need them - restoration
+      testing is the only thing that proves the backup is usable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last restoration test report for [critical system X] - what sample
+      did you restore, where did you restore it to, and how long did it take?
+    - When was the alternate processing facility last actually used to host a sample
+      workload, and what was the outcome?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.032332Z'
+  signed_digest: 041550ce0067901e80bf19a969b6e8e28d0bb17f5eb64f4aae05c2fc793b3f76
+  interview_seconds: null
+  inherited_from: null

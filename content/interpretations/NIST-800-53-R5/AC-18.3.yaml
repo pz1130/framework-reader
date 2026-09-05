@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-18.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the 'always-on radio' failure mode where a wireless NIC
+      stays enabled on a device that should be air-gapped or confined to wired networks,
+      letting attackers bridge in via rogue APs, evil-twins, or accidental ad-hoc
+      connections without ever touching the wired perimeter.
+    basis: inferred
+  plain_zh:
+    value: On systems where wireless networking is not allowed, make sure the wireless
+      radios are actually off and cannot be re-enabled by the user, and prove it on
+      a defined set of devices.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the device classes that must not use wireless (e.g., SCADA, jump
+        hosts, classified laptops); document the rule; disable Wi-Fi/Bluetooth in
+        the OS image or via removable hardware.
+      '2': Enforce the disable through a configuration baseline (group policy, MDM,
+        hardening profile) so end users cannot toggle it back on; verify on a sample
+        of devices during normal audits.
+      '3': Detect and alert if a wireless interface comes up on a managed device;
+        integrate the check into continuous compliance monitoring; cover both built-in
+        radios and external USB adapters.
+    basis: inferred
+  evidence:
+    value: List of device classes subject to the wireless ban, hardening baseline
+      or build configuration that disables wireless, sample device audit showing radios
+      off and users blocked from re-enabling, and any alert or incident from a wireless
+      interface unexpectedly appearing on a controlled system.
+    basis: inferred
+  common_myth:
+    value: Believing that selecting 'disable Wi-Fi' in the operating system once is
+      enough. Users can re-enable it, BIOS/UEFI settings can be flipped, USB adapters
+      bypass the OS-level disable entirely, and dual-boot machines may re-enable it
+      on the other OS.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a hardened laptop from this list and prove its wireless radios are currently
+      off and cannot be turned on by a standard user.
+    - What happens if someone plugs a USB Wi-Fi adapter into a system that is supposed
+      to be wireless-disabled?
+    - How do you detect a wireless interface appearing on a device that is on the
+      no-wireless list?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.086350Z'
+  signed_digest: 7985dd159ab730be880cf95f23d2079293e4836a93a4e5974cfb49eabb850454
+  interview_seconds: null
+  inherited_from: null

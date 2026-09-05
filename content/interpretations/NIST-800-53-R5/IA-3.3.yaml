@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IA-3.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker from maintaining persistent or unauthorized access
+      merely by obtaining, guessing, or retaining a dynamically assigned network address.
+      Dynamic addressing must not become a stable identifier that supports repeated
+      access attempts or bypasses normal authorization and identity controls.
+    basis: inferred
+  plain_zh:
+    value: Treat dynamically assigned addresses as temporary network locations, not
+      trusted identities. Ensure attackers cannot indefinitely preserve a useful address,
+      and require all access to be authorized and authenticated independently of the
+      address.
+    basis: inferred
+  practice:
+    value:
+      '1': Configure address allocation so dynamic addresses change at appropriate
+        intervals or when the allocation session ends, and do not automatically grant
+        access based solely on possession of an address.
+      '2': Document dynamic address lease and reassignment rules, monitor for repeated
+        allocation to untrusted devices, and review whether address changes disrupt
+        abuse detection or stale authorizations.
+      '3': Integrate dynamic addressing with centralized authorization, session, and
+        anomaly monitoring so changing addresses cannot preserve privileges, mask
+        device identity, or support long-term unauthorized access.
+    basis: inferred
+  evidence:
+    value: Network address allocation configuration, lease and reassignment records,
+      authentication and authorization logs, examples showing that a new address does
+      not inherit prior access, and monitoring records for address reuse or abnormal
+      session continuity.
+    basis: inferred
+  common_myth:
+    value: Assuming that using DHCP or another automatic allocation service already
+      satisfies this control because addresses are assigned dynamically, even when
+      a device can retain the same address and its access is not independently authorized.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Can a device retain the same dynamic address after its authorized user, device,
+      or session is no longer valid?
+    - Which logs and controls distinguish a legitimate device from an attacker that
+      merely obtains a new address?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.140678Z'
+  signed_digest: be93752520c018fdce38ab0b4560052a8244dd78a392a5b61e0c8c492a98f78a
+  interview_seconds: null
+  inherited_from: null

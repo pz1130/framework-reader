@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:RS.AN-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "the incident is considered closed once handling is complete"—if you only
+      restore business operations without investigating the root cause, similar incidents will recur in
+      different forms, and the security team will always be fighting fires rather than extinguishing them.
+    basis: inferred
+  plain_zh:
+    value: When a security incident occurs, analyze what actually happened and why it happened, uncovering
+      the attack path and root cause, rather than simply restarting the system and calling it done.
+    basis: inferred
+  practice:
+    value:
+      '1': After incident handling, require a description that includes a timeline, impact scope, and
+        preliminary cause, archived for future reference.
+      '2': Have a formal incident analysis process that distinguishes between direct causes and root causes;
+        use basic analysis techniques (such as 5 Whys, fishbone diagrams) and have an analysis report
+        template.
+      '3': Root cause analysis results drive remediation items, with responsible persons, deadlines, and
+        verification closure; analysis capability relies on logs and forensic platforms to trace the full
+        attack chain.
+    basis: inferred
+  evidence:
+    value: Incident analysis reports (including timeline, impact scope, root cause conclusions), log and
+      forensic evidence retention records, and remediation items arising from root cause analysis along
+      with their closure evidence.
+    basis: inferred
+  common_myth:
+    value: The misconception is that "restarting the system, blocking the IP, and restoring business operations"
+      equals completing incident response. Handling without root cause analysis is only temporary pain
+      relief; attackers will return through alternate entry points or by exploiting the same vulnerabilities.
+      Auditors want an analysis of "how the attacker was able to do this," not a summary of "how we restored
+      operations."
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the most recent major incident, what was the root cause conclusion? Who signed off on it?
+    - Of the remediation items proposed in the root cause analysis, which ones have been closed and which
+      are still open? For those closed, what evidence demonstrates their effectiveness?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.623018Z'
+  signed_digest: f990b4f1fe5362e0cdd93bba876bc219ee9f433a495d6586720ba546d033544b
+  interview_seconds: null
+  inherited_from: null

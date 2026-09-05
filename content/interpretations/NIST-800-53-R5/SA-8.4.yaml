@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against software build and integration failures that stem from
+      design-level assumptions about call order or data flow — when components are
+      wired up ad hoc, a developer calling module X before module Y, or feeding uninitialized
+      data downstream, becomes a runtime crash, corrupted state, or exploitable race,
+      and the codebase can't be reasoned about.
+    basis: inferred
+  plain_zh:
+    value: Design the system so that components and modules are required to be initialized
+      and invoked in a specific, defensible order, and so that the design itself —
+      not just the code — documents and enforces those orderings.
+    basis: inferred
+  practice:
+    value:
+      '1': Architecture documents or module headers state the required initialization
+        and call order for components with non-trivial lifecycles; reviewers can point
+        to them.
+      '2': Design review checklist explicitly covers ordered dependencies for new
+        and changed components; reviews are recorded and deviations are flagged before
+        code merge.
+      '3': Static analysis or build-time checks fail the pipeline when a module is
+        referenced before its declared dependency is satisfied; ordering violations
+        are tracked as defects with owners.
+    basis: inferred
+  evidence:
+    value: Architecture notes or interface contracts documenting required call/initialization
+      order, design-review records showing the ordering topic was addressed, static
+      analysis or linter rules enforcing dependency order, defect history of ordering
+      violations and their fixes.
+    basis: inferred
+  common_myth:
+    value: Treating ordering as a coding-style issue left to each developer's discipline,
+      so 'we just call init() first' is enough without a design-level statement or
+      enforcement — the control fails the moment a new component or refactor changes
+      the implicit order and nobody notices until production.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in the design a specific ordered dependency (e.g., auth before
+      config load, logging before network) is documented and how a developer is expected
+      to learn it.
+    - What stops a developer from calling a component before its prerequisite, and
+      what was the last time that catch fired?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.315605Z'
+  signed_digest: 367eef17e657e5a9fa3930e9fa8f5162b727f4bde94e7fa0143cad1d23cd1845
+  interview_seconds: null
+  inherited_from: null

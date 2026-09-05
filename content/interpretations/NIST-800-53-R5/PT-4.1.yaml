@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PT-4.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents PII processing from continuing on a one-size-fits-consent basis
+      when context, purpose, or sensitivity changes - if you only collect consent
+      once and never re-tailor it, the user is agreeing to things they never agreed
+      to and the organization has no defensible basis for the new use.
+    basis: inferred
+  plain_zh:
+    value: When you ask for consent to use someone's PII, tailor what you ask to the
+      actual purpose, the people involved, and the data being collected - and redo
+      it whenever those change. Generic or forever consents don't count.
+    basis: inferred
+  practice:
+    value:
+      '1': Each consent notice names the specific purpose, the categories of PII involved,
+        and the recipient types; consent is recorded with a timestamp and the exact
+        wording the user saw.
+      '2': A process exists to detect when purpose, data, or recipient scope changes,
+        triggering a new consent cycle; previously collected PII is held or deleted
+        pending re-consent.
+      '3': Consent prompts are versioned and tested; users can withdraw and have downstream
+        processing stop; consent records are auditable end-to-end and reviewed against
+        actual processing logs.
+    basis: inferred
+  evidence:
+    value: Versioned consent text, consent receipts tied to specific purposes/data/recipients,
+      change-trigger matrix for re-consent, withdrawal handling records, reconciliation
+      between consent scope and actual processing.
+    basis: inferred
+  common_myth:
+    value: Treating a blanket 'I agree to the privacy policy' checkbox as covering
+      any new purpose or data type added later - the consent was tailored to whatever
+      existed at the time, so repurposing without re-asking is using PII on a basis
+      that no longer exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the consent text a user saw for processing X last year, and how it covers
+      the new purpose you added in March.
+    - When you expanded the recipient list for analytics, what triggered re-consent
+      and what happened to data from users who didn't re-consent?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR treat consent as purpose-specific and freely withdrawable
+      by default, so missing tailoring or no withdrawal path is a frequent finding;
+      US sectoral regimes (HIPAA, GLBA, COPPA for children) are stricter on specific
+      contexts such as marketing or minors, but looser on general consent tailoring.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.881510Z'
+  signed_digest: ef33618baef9a6ed75b44df38e9b447a062391d3831f8d8c8fef0154435bce37
+  interview_seconds: null
+  inherited_from: null

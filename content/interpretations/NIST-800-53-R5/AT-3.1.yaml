@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AT-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Stops security training from happening in a vacuum: if awareness content
+      does not reflect the actual systems, data, and threats the workforce touches,
+      people default to generic advice and miss the specific mistakes that cause incidents
+      (wrong click on a real portal, mishandling of a real data class). The control
+      forces training to be grounded in the organization''s own operational environment.'
+    basis: inferred
+  plain_zh:
+    value: Make sure the security awareness content you deliver (classes, e-learning,
+      phishing exercises, briefings) is tailored to the systems people use, the data
+      they handle, and the threats they actually face in this organization — not a
+      generic off-the-shelf package.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick the awareness topics based on what the org actually runs (e.g., a
+        heavy Microsoft shop teaches OAuth/MFA abuse, a healthcare org teaches PHI
+        handling) and document the rationale somewhere.
+      '2': Map topics to roles, systems, and data classes; refresh content when a
+        new threat (e.g., a wave of vendor email compromise) shows up in incidents;
+        track completion per role.
+      '3': 'Feed training design a continuous loop: incident trends, phishing simulation
+        results, audit findings, and new-system rollouts all update the curriculum;
+        content reviewers include system owners, not just the training team.'
+    basis: inferred
+  evidence:
+    value: Curriculum-to-environment mapping (topics → systems/data/roles), documented
+      rationale for topic selection, records showing content updates after incidents
+      or new deployments, role-based completion reports, examples of environment-specific
+      material (screenshots, scenarios, policy references) inside the training.
+    basis: inferred
+  common_myth:
+    value: Buying an off-the-shelf awareness library and toggling completion checkboxes
+      satisfies the control. It does not — the test is whether the content speaks
+      to the systems and threats this workforce actually encounters, not whether the
+      LMS shows green.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in your awareness content a topic is tied to a specific system
+      or data class your people use.
+    - How did the last real incident or phishing wave change what is taught next quarter?
+    - Who outside the training team reviews whether the material still matches how
+      you actually operate?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.472734Z'
+  signed_digest: 7ab780a32377f780201197f6e739979bf26927116da364ebfcd2d3f2f5401b5a
+  interview_seconds: null
+  inherited_from: null

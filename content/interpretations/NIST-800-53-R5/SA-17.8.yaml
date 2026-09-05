@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-17.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the situation where security controls are defined in static configs
+      but the orchestration layer (IaC, CI/CD pipelines, runbooks) can silently drift
+      from the security baseline, or where orchestration itself becomes an unmonitored
+      attack surface. Without this, a playbook that used to be safe may now deploy
+      insecure infrastructure, and nobody can prove that the pipeline the auditor
+      is looking at is the one that actually runs.
+    basis: inferred
+  plain_zh:
+    value: For every automated orchestration script, playbook, or pipeline step, make
+      sure the security-relevant behavior is explicitly written down, reviewed, and
+      tied to the underlying security design—so that when someone changes the orchestration,
+      they are not accidentally deleting a security control, and the change is traceable.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify all orchestration components that touch security controls (e.g.,
+        firewall rule updates, VM provisioning, key rotation). Document what each
+        one does in a simple description that a security engineer can read.
+      '2': Require peer review for any orchestration change that could affect security;
+        keep an approval trail. Maintain a mapping from each orchestration script
+        to the specific security control it implements or supports.
+      '3': 'Treat orchestration code as security-relevant code: run automated checks
+        (linting, policy-as-code) in the CI pipeline, require signed commits, and
+        periodically verify that the running deployment matches the documented design.
+        Include orchestration changes in the security impact analysis process.'
+    basis: inferred
+  evidence:
+    value: An inventory of orchestration assets (CI/CD pipelines, configuration management
+      playbooks, IaC templates) annotated with the security controls they impact,
+      plus code review records, approval trails for security-relevant orchestration
+      changes, and results from policy-as-code scans run during pipeline execution.
+    basis: inferred
+  common_myth:
+    value: Assuming that because an orchestration tool is 'secure by default' or because
+      the team has used it for a while, its outputs are automatically compliant. The
+      control is about explicitly documenting and reviewing the security-relevant
+      logic within the orchestration, not just having the tool.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your CI/CD pipeline steps can modify security controls (e.g., security
+      group rules, IAM policies), and where is that documented?
+    - Show me the last security-relevant orchestration change and the approval review
+      associated with it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.135323Z'
+  signed_digest: 6887b488e81f7e17540aa8ef14423509bb45836383b1ace87834b366ec3d7de6
+  interview_seconds: null
+  inherited_from: null

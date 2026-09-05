@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:RA-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where defenders only react to alerts they
+      already knew to write — letting adversaries who blend in with normal traffic,
+      use novel tools, or sit in a blind spot between detections dwell for months.
+      Threat hunting is the discipline of forming and testing hypotheses about attacker
+      presence using data the SOC isn't automatically alerting on, so you find the
+      intruder before they act.
+    basis: inferred
+  plain_zh:
+    value: Don't wait for your SIEM to scream. Regularly have skilled people proactively
+      search telemetry for adversaries your existing detections miss — using current
+      intel about who is targeting you, what they look like, and what TTPs they use
+      — and turn what they find into new detections.
+    basis: inferred
+  practice:
+    value:
+      '1': Hunting is assigned to named people with protected time; they start from
+        a current threat (advisory, incident lessons, sector intel) and document a
+        hypothesis, the data sources queried, and the outcome — even when the result
+        is 'nothing found'.
+      '2': A written hunting plan cycles through crown-jewel systems and current threat
+        actors on a defined cadence; each hunt produces findings that feed backlog
+        of new detections or control gaps; results are reviewed in security leadership
+        meetings.
+      '3': 'Hunting is a measurable function: coverage of MITRE ATT&CK techniques,
+        time-to-new-detection from a hunt, and hunts that originated from incident
+        retrospectives. New detections from hunting are deployed, tuned, and themselves
+        tested for effectiveness; hunting routinely surfaces dwell time data and shapes
+        monitoring gaps.'
+    basis: inferred
+  evidence:
+    value: A current hunting plan tied to threat intel, records of individual hunts
+      (hypothesis, data sources queried, queries run, findings, dispositions), and
+      evidence that findings translated into deployed detection rules or remediated
+      control gaps.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a threat intel feed' or 'the SOC runs ad-hoc queries
+      sometimes' as threat hunting. A feed without someone testing hypotheses against
+      your own telemetry is just a news ticker; a SOC analyst chasing curiosity between
+      tickets is not a hunting program — both have no hypothesis, no cadence, no record,
+      and nothing measurable to show.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me the last three hunts: the hypothesis each one tested, what data was
+      queried, and what came out of them.'
+    - Which detections currently in production originated from a hunting exercise
+      rather than from an alert or vendor playbook?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.925993Z'
+  signed_digest: 438989a6198cb64bf2ac534c8bbe87c2fa87d7dee431e2c35fbf08fd762080ad
+  interview_seconds: null
+  inherited_from: null

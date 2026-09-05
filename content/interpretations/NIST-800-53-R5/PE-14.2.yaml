@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:PE-14.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against fire, smoke, or environmental threats going unnoticed long
+      enough to destroy equipment, expose data, or block emergency response — a working
+      suppression system alone fails if the alarm never reaches the right people in
+      time to act.
+    basis: inferred
+  plain_zh:
+    value: Fire detection and suppression systems must be monitored continuously and
+      must send real alarms and notifications to people who will respond, so a fire
+      or environmental event is caught and acted on while it is still small.
+    basis: inferred
+  practice:
+    value:
+      '1': Alarms from fire detection and suppression equipment are wired to a constantly
+        attended location (on-site security, operations center, or contracted monitoring)
+        and a response procedure exists on paper.
+      '2': Notifications are routed to defined responders with escalation paths; alarms
+        are tested on a scheduled cadence and test results are logged; suppression-system
+        trouble signals (e.g., low pressure, disabled, maintenance bypass) raise the
+        same alarms as a real event.
+      '3': Monitoring covers power, temperature, and water-leak sensors tied to the
+        same notification path; missed or unacknowledged alarms escalate automatically;
+        alarm and notification handling is reviewed against actual incident timelines
+        to confirm alarms preceded response.
+    basis: inferred
+  evidence:
+    value: Monitoring configuration showing alarm paths, attended-monitoring agreement
+      or console screenshots, alarm and notification test logs, trouble-signal handling
+      records, incident timelines cross-referenced against alarm timestamps, escalation
+      procedures and on-call rosters.
+    basis: inferred
+  common_myth:
+    value: Assuming the suppression system's built-in local sounder is the alarm path.
+      A beeping panel nobody watches outside business hours, or alarms that only light
+      up in a server closet, do not notify anyone — the control is about who gets
+      notified and whether they act, not whether the device can beep.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When the fire panel went into trouble at 2:00 AM last quarter, who received
+      the notification and how was it acknowledged?
+    - Show the alarm path from a suppression-system disable or maintenance bypass
+      event — does it raise the same alert as an actual discharge?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.547724Z'
+  signed_digest: 0810bdb5432b99982b602a6be6879314796f6a1f7658a44d0b227db3b1b94deb
+  interview_seconds: null
+  inherited_from: null

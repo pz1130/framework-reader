@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SR-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure to detect counterfeit, tampered, or substituted
+      hardware and firmware before they enter the operating environment - the risk
+      that a fake component silently runs your workload and exfiltrates data, signs
+      inauthentic transactions, or fails under attack in ways you cannot debug because
+      it was never legitimate to begin with.
+    basis: inferred
+  plain_zh:
+    value: Before systems and components are put into use, inspect them against what
+      you actually ordered - origin, integrity, and that nothing has been swapped
+      or tampered with along the supply chain.
+    basis: inferred
+  practice:
+    value:
+      '1': Define what "trustworthy" means for incoming hardware and firmware (supplier,
+        version, tamper-evident packaging); reject deliveries that lack traceability
+        or show signs of resealing.
+      '2': 'Inspect at receipt: verify part numbers and serial ranges against the
+        purchase order, check tamper seals and packaging integrity, validate firmware
+        hashes against vendor-published values for a sample of deliveries; record
+        the inspector, date, and outcome.'
+      '3': Run inspection on a defined sampling basis tied to risk (higher scrutiny
+        for critical components and new suppliers), track anomalies to closure, feed
+        repeat findings back to procurement and the supplier, and reassess when counterfeit
+        advisories are issued.
+    basis: inferred
+  evidence:
+    value: Inspection procedures, signed receipt inspection records (part numbers,
+      serial ranges, hash values, tamper-evidence checks), non-conformance and rejection
+      logs, supplier traceability records, and evidence that inspection findings influence
+      procurement decisions.
+    basis: inferred
+  common_myth:
+    value: Treating inspection as a one-time vendor audit or assuming a trusted supplier
+      badge means parts are authentic - the failure is inspecting at procurement but
+      not again at unboxing, and not checking the firmware actually shipped against
+      what the vendor published.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three incoming inspections for [critical component class] -
+      who inspected, what did they check, and what was the result?
+    - When a counterfeit or tampered component is suspected, what is the step-by-step
+      path from suspicion to containment, and where is it recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.137003Z'
+  signed_digest: cc350877610ce952533bef7d41bfcd27e45630752639cb0d09c15fc7d488f42c
+  interview_seconds: null
+  inherited_from: null

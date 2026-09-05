@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:IA-8.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents 'strong auth everywhere' from collapsing into 'one credential
+      fits every user, every system' — without profile segmentation, a single compromised
+      identity can reach privileged, external-facing, and high-value assets at the
+      same blast radius, and accountability disappears because the same login is reused
+      across contexts that should be distinguishable.
+    basis: inferred
+  plain_zh:
+    value: Define distinct identity profiles for different classes of users and systems
+      (employees, contractors, external partners, service accounts, privileged administrators,
+      devices/IoT, non-person entities), and assign each profile its own credential,
+      authentication policy, and audit treatment — do not let one credential work
+      wherever a person or system shows up.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the main user/system classes; for each, document what credential
+        type is required and at what assurance level; make sure no single shared credential
+        spans privileged, ordinary, and external contexts.
+      '2': Documented profile catalog with mapping to credential types and authentication
+        policy (MFA factors, session handling, password or key policy); identity-provider
+        or directory enforces profile selection at login based on the credential presented;
+        basic logs distinguish which profile authenticated.
+      '3': Profiles are enforced at policy decision points, not just documented; provisioning
+        ties the profile to lifecycle events (hire/role change/exit, contractor offboarding,
+        service-account rotation); periodic review confirms no profile is bypassing
+        MFA or inheriting another profile's rights; privileged and non-person profiles
+        are cryptographically separated from human profiles.
+    basis: inferred
+  evidence:
+    value: Identity profile catalog, mapping of profiles to credential types and assurance
+      levels, identity-provider/directory configuration showing profile-based policy
+      enforcement, sample logs distinguishing profiles at authentication, provisioning
+      and deprovisioning records tied to profile assignment, and review records showing
+      profile integrity over time.
+    basis: inferred
+  common_myth:
+    value: Assuming that once MFA is on for everyone, the profile requirement is satisfied
+      — MFA is the strength of the factor, not the separation between classes of identity.
+      A contractor logging in with the same credential shape and policy as a domain
+      admin still violates IA-8(4) even though MFA is present on both.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the catalog of identity profiles and which credential each class receives
+      — does any shared or reused credential span privileged and ordinary contexts?
+    - 'Where in the login flow is the profile selected, and what enforces it: directory
+      attributes, group membership, or just whoever hands over a valid password?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.241302Z'
+  signed_digest: 756e894128d0db4bde32967e02c7a80d74a787916aea18756a7811a3b3918d14
+  interview_seconds: null
+  inherited_from: null

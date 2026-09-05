@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PE-22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers (or insiders) walking out with unmarked equipment,
+      swapping components, or staging tampered hardware that the organization cannot
+      tell apart from its own — because if you cannot tell what belongs to you or
+      where it came from, you cannot investigate loss, prove chain of custody, or
+      detect counterfeit/foreign-sourced parts.
+    basis: inferred
+  plain_zh:
+    value: Mark the physical components of your information systems (hardware, media,
+      cables, ports, panels, devices) so anyone touching them can tell what the organization
+      owns, how sensitive it is, and where it belongs — and maintain that marking
+      across moves and maintenance.
+    basis: inferred
+  practice:
+    value:
+      '1': Label visible external hardware, media, and removable components with an
+        asset tag or identifier; know which labels mean what; lost items are recognizable
+        as yours.
+      '2': Marking covers internal boards, drives, cables, ports, and patch panels;
+        sensitivity or ownership is encoded where useful; labels survive moves and
+        are reapplied after repair; auditable inventory ties to the marks.
+      '3': Marking scheme is part of the configuration baseline; tamper-evident or
+        anti-counterfeit features where the threat warrants; marks verified during
+        audits, maintenance handoffs, and disposal; chain-of-custody evidence exists
+        for any item removed or replaced.
+    basis: inferred
+  evidence:
+    value: Marking scheme documentation, photos or samples of labeled components (internal
+      and external), inventory cross-referenced to physical marks, maintenance/handoff
+      logs showing label preservation, and disposal records showing marks removed
+      or items destroyed.
+    basis: inferred
+  common_myth:
+    value: Treating asset tags only as inventory stickers on laptops. Real risk is
+      inside the rack and inside the machine — unmarked drives, NICs, cables, and
+      patch-panel ports get swapped, pulled, or replaced during moves and repairs
+      with nothing to flag the change.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a rack at random — how do I tell from the patch panel and the internal
+      drives which of these belong to this organization and which are authorized to
+      be here?
+    - Show me the last three hardware swap or repair tickets — did the replaced component
+      come back labeled, and is the disposal record linked to the same serial you
+      marked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.585792Z'
+  signed_digest: 7af4c640571e04a7a90cea7be7bccc44f606695a207edd75cbb11acc52e8cea7
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:AC-17.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against a session on the remote-access path being passively intercepted
+      or actively tampered with: if the traffic between the endpoint and the network
+      is only authenticated but not cryptographically protected, credentials, tokens,
+      and payload can be read or rewritten in transit, and the breach is invisible
+      because no alarm fires.'
+    basis: inferred
+  plain_zh:
+    value: Every remote-access session must be encrypted end-to-end between the user
+      device and the access point, so that confidentiality and integrity of the traffic
+      are guaranteed by cryptography, not assumed by the network being 'internal'
+      or 'trusted'.
+    basis: inferred
+  practice:
+    value:
+      '1': Remote access uses a protocol that provides both encryption and integrity
+        (e.g., TLS, IPsec with authenticated encryption); plaintext protocols like
+        Telnet, FTP, or HTTP for the access path are not allowed; the same rule covers
+        vendor, admin, and end-user remote entry.
+      '2': Approved cryptographic algorithms, minimum key lengths, and cipher-suite
+        baselines are documented; deviations require a written exception with expiry;
+        the approved list is referenced from the remote-access standard, not left
+        to each team to pick.
+      '3': Configuration is enforced and verified technically - weak ciphers and unsigned
+        certificates are rejected at the VPN gateway or zero-trust controller; periodic
+        scans confirm no remote-access endpoint accepts a deprecated cipher; key/cert
+        lifecycle (rotation, revocation) is owned and tracked.
+    basis: inferred
+  evidence:
+    value: Remote-access architecture diagram showing the encryption boundary, approved
+      cryptography standard with algorithm and key-length baselines, configuration
+      baselines for VPN/zero-trust gateways, scan results showing no weak ciphers
+      or unsigned certs on remote-access endpoints, and exception register with expiry
+      dates.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the VPN tunnel is 'encrypted' the control is met,
+      regardless of cipher suite - a gateway still configured to negotiate legacy
+      ciphers, NULL integrity, or self-signed certs silently downgrades sessions and
+      satisfies nothing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the cipher suites your remote-access gateway actually accepts today, not
+      what the vendor datasheet claims by default.
+    - When was the last time you scanned a remote-access endpoint for weak or deprecated
+      ciphers, and what did you find?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.060610Z'
+  signed_digest: 543003fa2522dce2993a7eee7306e1213456a35e81e45cf0b2908406af944c0a
+  interview_seconds: null
+  inherited_from: null

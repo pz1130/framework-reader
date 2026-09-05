@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:GV.RR-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'responsibility division is written on the organizational chart, but when
+      an incident occurs, no one acknowledges accountability' — if security risk management responsibilities
+      lack formal authorization and clear cross-departmental boundaries, incident response, risk treatment,
+      and compliance remediation will result in buck-passing or inaction. During audits, you cannot produce
+      a document stating who has the authority to make decisions and who must execute.
+    basis: inferred
+  plain_zh:
+    value: Clearly define who is responsible for identifying risks, who has the authority to treat risks,
+      and who is accountable for outcomes, so that every person in a role knows their security responsibility
+      boundaries, and in actual operation, they truly have the authority and resources to execute, rather
+      than merely holding a nominal title.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written document listing the responsibilities and authorities of key security risk
+        roles (e.g., CISO, departmental liaisons); new appointees are clearly informed.
+      '2': Responsibility division is detailed to specific roles (e.g., cloud platform owner, data owner),
+        with job descriptions and authorization letters; cross-departmental responsibilities have written
+        handover and coordination mechanisms.
+      '3': Responsibilities and authorities are embedded in recruitment, transfer, performance, and promotion
+        processes; responsibility changes automatically trigger adjustments in authorities and reporting
+        lines; there are periodic reviews and evidence of responsibility fulfillment.
+    basis: inferred
+  evidence:
+    value: Security risk management responsibility descriptions, role authorization letters, organizational
+      charts (annotated with security responsibilities), responsibility communication records, cross-departmental
+      security collaboration meeting minutes or contractual clauses.
+    basis: inferred
+  common_myth:
+    value: It is assumed that 'hanging a security responsibility sign on the wall of the IT department'
+      constitutes clear responsibility. What truly needs verification is whether the responsible person's
+      authority matches — for example, if the IT department is responsible for fixing vulnerabilities
+      but lacks server change authority, then that responsibility is empty, and an audit will quickly
+      expose it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the event of a data breach, who is the final decision-maker for the response plan? In which document
+      is this authority written?
+    - Are security responsibilities attached to positions or to individuals? After a transfer, does the
+      new responsible person have written authorization?
+    - Do business department security liaisons know they have the authority to halt high-risk changes?
+      Have they actually exercised it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.492236Z'
+  signed_digest: adc61e50326f1147c3acc6646a0cddfb3ddb366dafae870a72ee67d6d615cfbf
+  interview_seconds: null
+  inherited_from: null

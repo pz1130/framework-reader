@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:IA-12.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure of accounts existing without a named human owner who
+      approved them — which is how departed employees, fraudulent identities, and
+      shared accounts slip through access reviews and accountability holds.
+    basis: inferred
+  plain_zh:
+    value: Before anyone gets an account issued, a responsible supervisor must formally
+      approve that this identity is needed and who it belongs to. No standing-account-by-default,
+      no provisioning on verbal request.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a written rule that no account is created without a named supervisor's
+        approval; the request and approval are stored against the account record.
+      '2': Approval flows through a ticketing or IAM workflow tied to HR record (hire,
+        transfer, contractor onboarding); supervisor identity and date are captured;
+        departures auto-revoke.
+      '3': Periodic reconciliation between the authoritative HR/contractor roster
+        and the account inventory proves every active identity has a current approver
+        of record; orphan accounts are blocked or removed at provisioning time, not
+        after.
+    basis: inferred
+  evidence:
+    value: Account provisioning tickets with named supervisor approval, IAM records
+      linking each identity to an approver, HR-to-account reconciliation reports,
+      and termination records showing access removal tied to the same workflow.
+    basis: inferred
+  common_myth:
+    value: Treating the helpdesk ticket itself as 'supervisor authorization' because
+      the manager once emailed or called. Verbal or side-channel approvals with no
+      retrievable record collapse during audit and leave no accountable chain back
+      to the person who vouched for the identity.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three recently created accounts from different departments — show me the
+      supervisor approval record for each, with name and date.
+    - How do you detect an account whose supervisor approver has left the company
+      or changed role, and what did you do with the last one you found?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.066908Z'
+  signed_digest: 31466e1c9aa1309fc35b659a901341ed924c5a52633ab032ebea11a18b6ef820
+  interview_seconds: null
+  inherited_from: null

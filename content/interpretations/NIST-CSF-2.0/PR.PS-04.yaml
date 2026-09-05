@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:PR.PS-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'logs exist but no one reviews them'—if records merely sit in storage without
+      continuous consumption and correlation, attacks may be discovered days or even weeks later, making
+      forensics and mitigation too late.
+    basis: inferred
+  plain_zh:
+    value: 'Make log generation a routine: systems generate logs as configured, logs are collected promptly,
+      and are continuously available for monitoring and analysis, rather than only thinking of reviewing
+      logs after an incident.'
+    basis: inferred
+  practice:
+    value:
+      '1': Enable basic logging on critical systems (logins, privilege changes, anomalous behavior); store
+        logs per retention periods so that at least they can be retrieved when security incidents occur.
+      '2': Generate logs based on risk levels and centrally collect them; monitoring tools provide real-time
+        alerts for critical events; log rotation and retention times are defined in written policies and
+        executed.
+      '3': 'Integrate log generation and monitoring into the system lifecycle: new systems must pass a
+        ''log readiness'' check before deployment; anomaly detection rules are periodically updated based
+        on environmental changes; log integrity (e.g., hashing, tamper prevention) is ensured to support
+        forensics and response.'
+    basis: inferred
+  evidence:
+    value: Log configuration baselines, list of systems connected to the central log platform, alert rules
+      and trigger records, log retention policies with periodic sampling of log content, and monitoring
+      tool coverage reports.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'installing a log collection agent on servers and feeding logs into
+      a SIEM' completes the task. In reality, common issues include having many logs but no correlation
+      rules, alert fatigue desensitizing operations teams, some systems not generating logs at all, or
+      time synchronization issues causing analysis errors—agent installation does not equal log usability.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which systems are outside the log monitoring scope, and why?
+    - How do you demonstrate that logs have not been tampered with or lost?
+    - What was the most recent security incident discovered through logs, and what triggered it?
+    basis: inferred
+  regional_note:
+    value: European auditors often pursue GDPR and ePrivacy constraints on minimization and retention
+      of personal data in logs, tending to require significantly shorter retention with clear purposes;
+      U.S. auditors focus more on whether logs support compliance forensics and continuous monitoring
+      coverage, typically requiring longer retention in the 1-3 year range. Expectations differ on 'what
+      can be in logs, how long, and who can access them.'
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.600544Z'
+  signed_digest: 6d2bb4e0fb86c09778be826233536eb54075a59f8269624d5d2525a0baa774f4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:GV.SC-10
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'when a contract ends or cooperation terminates, security responsibilities
+      are reset to zero' — if data, accounts, physical access channels, and associated liabilities left
+      behind by a supplier when they exit are not managed, they become long-term exposures; if the termination
+      process is not done thoroughly, you still bear responsibility for subsequent incidents.
+    basis: inferred
+  plain_zh:
+    value: The supply chain risk management plan must clearly specify what to do after the termination
+      of a cooperation or service contract, and must not treat 'termination' as the end of security responsibilities.
+    basis: inferred
+  practice:
+    value:
+      '1': 'When a contract terminates, someone follows a closure process: revoke accounts, collect physical
+        credentials, and confirm data return or deletion.'
+      '2': The termination process has a written checklist, responsible persons, and inspection records;
+        there is an assessment and handling of residual risks after termination (e.g., data remaining
+        in the other party's systems, the other party still being your sub-processor).
+      '3': The termination process is integrated with procurement, legal, and security responsibilities;
+        post-termination data handling, audit rights, and joint obligations are included as clauses in
+        the contract; for high-value suppliers, there is post-exit review and residual risk tracking.
+    basis: inferred
+  evidence:
+    value: Termination and exit process documents, checklists, handover and account revocation records,
+      data disposal or transfer confirmations, post-termination residual risk review records, and termination
+      clauses in contracts.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'deleting accounts and collecting access badges' is a proper conclusion — the
+      more fatal leftover is that the other party still has forwarding rules, managed keys, sub-processing
+      relationships in your production chain, and you remain accountable to regulators for their actions
+      after termination. Exit is not just physical departure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For suppliers terminated last quarter, is there written confirmation that their hosted data has
+      been deleted or returned? Where are the records?
+    - How many clauses in the contract address post-termination audit rights and data handling? Who is
+      responsible for triggering the review at termination?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.516695Z'
+  signed_digest: 5a7cf84f5bcc33551014ff8dc96cb3db779308a0aa1167592923a41454b8c57c
+  interview_seconds: null
+  inherited_from: null

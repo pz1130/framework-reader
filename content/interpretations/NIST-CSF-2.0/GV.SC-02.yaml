@@ -1,0 +1,71 @@
+control_id: NIST-CSF-2.0:GV.SC-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'security responsibility is only for internal personnel, and suppliers
+      and customers do not acknowledge it' — when incidents occur, parties shift blame, information is
+      not shared, interface departments do not know whom to contact, and supplier security clauses are
+      signed in name only.
+    basis: inferred
+  plain_zh:
+    value: Clearly define what suppliers, customers, and partners are responsible for in cybersecurity;
+      internally inform the operational departments, externally inform the counterpart contact persons,
+      and ensure coordination between both sides without disconnection.
+    basis: inferred
+  practice:
+    value:
+      '1': Contracts or annexes include security responsibility clauses; there are internal counterpart
+        positions (e.g., security officer, procurement liaison); there is a designated contact person
+        with the supplier.
+      '2': Responsibility allocation is documented in writing and incorporated into supplier admission
+        and contract management; relevant internal departments (procurement, legal, IT) acknowledge and
+        are aware of it; there is a regular communication mechanism; entry and exit interfaces are documented
+        in writing.
+      '3': Responsibilities and boundaries are included in supplier risk classification and performance
+        evaluation; the responsibility matrix is updated synchronously upon contract changes or subcontracting;
+        internal and external coordination is institutionalized through tools or processes, traceable
+        to individuals; regular verification that the other party actually fulfills responsibilities.
+    basis: inferred
+  evidence:
+    value: Contract templates containing security responsibility clauses, responsibility matrices or SLAs
+      signed with suppliers, internal division of labor descriptions (e.g., RACI), contact lists for both
+      parties, interface meeting minutes, and evaluation records of supplier security responsibility fulfillment.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'writing in the contract that the supplier is responsible for security' is sufficient.
+      In reality, many incidents occur at the boundary between parties — the contract states it, but procurement
+      does not communicate it to the backend, the supplier does not know whom to report to, and internal
+      departments assume another is monitoring. Having responsibilities in black and white is only the
+      first step; it is only implemented when communicated to specific individuals, acknowledged with
+      understanding, and a single point of contact exists for issues.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the part the contract states the supplier is responsible for, which internal position in your
+      organization tracks and verifies it? Based on which document?
+    - Who is responsible for supplier penetration testing or vulnerability remediation? How was the last
+      dispute or gray area resolved?
+    - When a new supplier is onboarded, who reads out the security responsibility clauses and who signs
+      to confirm?
+    - Which internal department receives customer-required security obligations? Who responds to customer
+      audit requests?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.499960Z'
+  signed_digest: c45fb4e6a59a4a3098578e7cb5bdc1f224849ca3832f729f4e8d96e101495c93
+  interview_seconds: null
+  inherited_from: null

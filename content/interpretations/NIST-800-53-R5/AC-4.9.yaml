@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-4.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against blind trust in automated information flow enforcement —
+      without a human review of access decisions on a sampled basis, misconfigured
+      ACLs, flawed rule logic, or exceptions granted under pressure slip through unnoticed
+      and accumulate as undetected exposure.
+    basis: inferred
+  plain_zh:
+    value: For information flows where the system enforces who can send what to whom,
+      make sure a human periodically reviews those flow control decisions — especially
+      denials and exceptions — instead of assuming the automated rules are correct.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the systems or enclaves where automated information flow controls
+        (e.g., cross-domain guards, DLP rules, firewall / micro-segmentation policy)
+        are the primary gatekeeper; designate who is responsible for reviewing their
+        decisions.
+      '2': Sample denied flows, granted exceptions, and rule changes on a defined
+        cadence; document the review with reviewer name, scope, anomalies found, and
+        corrective actions taken.
+      '3': Reviews are independent of the team that wrote the rules, the sample size
+        and selection criteria are documented, findings feed back into rule tuning,
+        and management is informed of systemic patterns of false negatives or unjustified
+        grants.
+    basis: inferred
+  evidence:
+    value: Sampling methodology, reviewed logs of flow decisions (grants, denials,
+      exceptions), reviewer sign-off records, anomalies identified and the resulting
+      changes to rules or policy.
+    basis: inferred
+  common_myth:
+    value: Treating the flow-control device itself as the control — assuming that
+      because traffic is blocked or allowed automatically, a human is still 'in the
+      loop'. The rule base, exception list, and the logic that produced the decision
+      are exactly what needs independent eyes; a vendor appliance doing its job is
+      not a substitute.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last three months of human-reviewed flow decisions for one cross-domain
+      transfer point — who reviewed, what was sampled, what was changed.
+    - When a flow was allowed that should have been denied (or vice versa), how was
+      that detected, and what record exists of the corrective action?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.368474Z'
+  signed_digest: 4e9ec592d88accfd47fe48a658e862052f88a80886e76320aae6490494761728
+  interview_seconds: null
+  inherited_from: null

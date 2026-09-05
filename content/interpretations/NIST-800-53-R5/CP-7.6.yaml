@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CP-7.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that recovery means resuming production
+      at the primary site, even when that site is no longer viable (destroyed, contaminated,
+      legally inaccessible, or simply unavailable for the long term) - without a credible
+      plan to continue operations elsewhere, the business dies long before IT is technically
+      restored.
+    basis: inferred
+  plain_zh:
+    value: Decide and document what the organization does when the primary site cannot
+      be brought back in time to matter; identify an alternate operating location,
+      define what runs there, who goes there, and for how long, and keep the plan
+      current.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which mission-essential functions cannot wait for primary-site
+        recovery; name an alternate site (internal, vendor, or reciprocal) and document
+        the rough plan for moving people and workloads there.
+      '2': Define recovery time and recovery point objectives for alternate-site operations;
+        document communications, data replication, and staffing needs; test activation
+        at least annually with records kept.
+      '3': Maintain contract or agreement terms for the alternate site that match
+        current operational needs; replicate or rapidly transport required data; rehearse
+        sustained operations (not just a tabletop); periodically reconfirm that the
+        alternate can absorb the organization's scope under realistic constraints.
+    basis: inferred
+  evidence:
+    value: Alternate site designation and rationale, contract or service-level agreement
+      for the site, documented activation procedures with RTO/RPO targets, test or
+      exercise records showing actual relocation or sustained operations, and recent
+      reviews confirming the site remains suitable.
+    basis: inferred
+  common_myth:
+    value: Treating a reciprocal or vendor agreement as proof of recovery, without
+      checking whether the contract still covers the workloads and data volumes the
+      organization now runs - the agreement signed years ago rarely matches today's
+      footprint, and an untested site is a guess, not a plan.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the contract or agreement that gives you access to the alternate site
+      and tell me which of your current systems it is sized to support.
+    - When did you last activate or exercise the alternate site, and what did the
+      after-action review find?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.006065Z'
+  signed_digest: 8473816f64c2e745cd5a35d57d03ce9425cd87d4c76ebca7518a2406a2fd47e1
+  interview_seconds: null
+  inherited_from: null

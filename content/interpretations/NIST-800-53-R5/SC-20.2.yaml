@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-20.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents trusting data based on claimed origin or assumed integrity—an
+      attacker who spoofs sources, tampers with files on the wire, or replays stale
+      content gets treated as legitimate. Without it, downstream security decisions
+      (allow/deny, signature trust, audit trail) are built on inputs that cannot be
+      verified to be what they claim to be.
+    basis: inferred
+  plain_zh:
+    value: Make sure that when a system or person relies on a piece of data (software
+      update, telemetry, message, log, executable), it can prove where it came from
+      and that it was not altered in transit or at rest—and that this proof is enforced,
+      not just documented.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which data classes need origin/integrity assurance (firmware updates,
+        signed packages, authenticated logs, configuration fetches); pick a baseline
+        mechanism (digital signature, HMAC, TLS pinning, secure boot) for each.
+      '2': Enforce verification in the path that consumes the data—not an optional
+        step that callers forget; rejected items are logged and treated as untrusted;
+        keys/signing identities are managed and rotated under change control.
+      '3': Keys anchor to a hardware or out-of-band trust root (HSM, certificate transparency
+        monitoring, secure boot chain); failed verification triggers a hard failure
+        with alerting and incident response; periodic checks compare signed reference
+        data against signed runtime state to detect tampering.
+    basis: inferred
+  evidence:
+    value: Policy stating which data flows require origin/integrity verification,
+      the mechanism for each, configuration showing verification is enforced (not
+      advisory), signing-key lifecycle records, logs of verification failures with
+      handling, and test results proving altered or spoofed data is rejected end-to-end.
+    basis: inferred
+  common_myth:
+    value: Assuming TLS or a digital signature on the channel means the data's origin
+      and integrity are protected—a signed transport does not validate what arrives
+      at the consumer once cached or written, and a signature on an installer only
+      helps if the consumer actually checks it before executing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a data flow where integrity/origin checks are supposed to happen—walk
+      me through what happens when the signature check fails.
+    - Where does the signing key live, who can issue under it, and how is key compromise
+      detected or revoked?
+    basis: inferred
+  regional_note:
+    value: U.S. federal auditors (FISMA/RMF) frequently probe this through supply-chain
+      and firmware-update controls; European auditors tend to raise it under NIS2
+      secure-development or DORA ICT third-party integrity, but the technical expectation
+      is similar. No structural divergence in expectations.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.450597Z'
+  signed_digest: 9867b3d49d1ebebb8942bf71b60fa2cc73c3ca704a72e0f5bafd82bd0a44b242
+  interview_seconds: null
+  inherited_from: null

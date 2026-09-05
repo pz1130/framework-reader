@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:RA-5.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers free-scanning your external footprint to build
+      a target list before they ever touch your controls — ports, services, banners,
+      subdomains, leaked credentials, exposed admin panels all sitting in public view
+      because nobody is looking at what an outsider can see.
+    basis: inferred
+  plain_zh:
+    value: Figure out what an outsider can discover about your systems from the outside,
+      decide what is too much, and fix or hide it so attackers cannot map you for
+      free.
+    basis: inferred
+  practice:
+    value:
+      '1': Run a basic external scan from outside your network (public IPs, public
+        web, exposed cloud storage) at least once; write down what is visible and
+        obvious — open ports, service banners, exposed admin interfaces, public S3
+        buckets, leaked subdomains.
+      '2': Compare what is discoverable against a documented list of what should be
+        exposed; track deltas as findings; assign owners and remediation deadlines;
+        rescan after fixes.
+      '3': Discoverability checks run continuously or on a short cycle (not just annual);
+        integrated with vulnerability and attack-surface management; findings tie
+        to remediation SLAs and trend over time; includes shadow IT, certificate transparency,
+        leaked credentials, exposed dev/staging, and third-party-hosted assets in
+        scope.
+    basis: inferred
+  evidence:
+    value: External scan reports from outside the perimeter, documented baseline of
+      expected discoverable assets, delta/findings log with owners and remediation
+      dates, before/after rescan evidence, scope statement covering cloud and third-party
+      assets.
+    basis: inferred
+  common_myth:
+    value: Treating the internal VA scan output as proof that discoverability is managed
+      — internal scans see what is behind the firewall, while attackers are probing
+      what sits in front of it; banners, ports, and exposed assets on the public side
+      are a different problem and need a different scan.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me your most recent scan run from outside the network and who ran it.
+    - Which assets are in scope for discoverability checks, and how do you make sure
+      shadow IT and third-party-hosted assets get included?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.965400Z'
+  signed_digest: 20529bdc5f980756ae941382a80ab9173896f1256518b9cb5ea6e6ededc67663
+  interview_seconds: null
+  inherited_from: null

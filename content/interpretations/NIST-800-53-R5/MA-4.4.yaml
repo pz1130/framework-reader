@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MA-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where a maintenance session, once authenticated,
+      becomes indistinguishable from a normal user session — a hijacked or replayed
+      maintenance channel that an operator cannot tell from their own actions, and
+      that nobody can later separate cleanly from production traffic during an investigation.
+    basis: inferred
+  plain_zh:
+    value: Maintenance access must be authenticated before it is granted, and the
+      resulting session must be visibly and technically distinct from operational
+      sessions — so a malicious or replayed maintenance action cannot be hidden inside
+      normal traffic, and forensic review can tell the two apart.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintenance accounts require some form of credential check before access
+        is granted; maintenance sessions are run over a channel that is, at minimum,
+        not the same workstation used for daily operations.
+      '2': Maintenance sessions are logged with a clearly tagged identity (separate
+        account, separate credential, separate log stream), are initiated through
+        a documented jump host, and session capture is enforced.
+      '3': Maintenance traffic is cryptographically separated from production traffic
+        (dedicated VLAN, out-of-band network, or encrypted tunnel with strong mutual
+        auth), session recording is tamper-evident, replay of captured sessions is
+        restricted, and any attempt to merge a maintenance identity with a production
+        identity is blocked and alerted on.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing maintenance network segmentation, jump host
+      configuration, maintenance account inventory separate from operational accounts,
+      session recording evidence, and audit logs demonstrating that maintenance sessions
+      are tagged and distinguishable from production activity.
+    basis: inferred
+  common_myth:
+    value: Believing that logging into a vendor's management console with a personal
+      admin password satisfies the control — in that setup the maintenance session
+      rides the same network, uses the same identity space, and produces logs indistinguishable
+      from operator activity, so authentication happened but separation did not.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the network path a vendor engineer takes to reach a managed device — is
+      it on the same VLAN as production traffic?
+    - Pull a maintenance session from last month and demonstrate in the logs that
+      it is tagged as maintenance, not as a normal admin action.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.412185Z'
+  signed_digest: bd6010633338a45d5e484f362463fb26bf044ba4e683d91d863efbc66d7a9be4
+  interview_seconds: null
+  inherited_from: null

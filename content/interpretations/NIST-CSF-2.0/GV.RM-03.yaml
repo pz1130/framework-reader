@@ -1,0 +1,69 @@
+control_id: NIST-CSF-2.0:GV.RM-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'cybersecurity risk' and 'enterprise risk' are managed separately—security
+      says a vulnerability is severe, but business says it can be tolerated; business says a system cannot
+      be down, but security is unaware. Both sides set priorities by their own standards, and ultimately
+      the board cannot get a unified risk table.
+    basis: inferred
+  plain_zh:
+    value: Integrate cybersecurity risk into the enterprise risk management process—the assessment, rating,
+      treatment, and reporting of security risks should use the same language, the same rhythm, and the
+      same reporting line as financial, operational, and compliance risks.
+    basis: inferred
+  practice:
+    value:
+      '1': The company has an enterprise risk management process, and security risks have a name and an
+        owner in that process; the security leader can attend meetings where risks are reported to the
+        board.
+      '2': Security risk assessment results are entered into the risk register in a unified corporate
+        format and manner; security risks and enterprise risks use the same rating criteria; a consolidated
+        risk view is reported to management periodically.
+      '3': Security risks and enterprise risks share a single risk register system or equivalent mechanism,
+        with traceable changes; treatment decisions for security risks are linked to business priorities,
+        making it visible which security risks are accepted, by whom, and on what basis; enterprise-level
+        risk review meetings periodically review security risk items.
+    basis: inferred
+  evidence:
+    value: The enterprise risk register includes security risk items in a format consistent with other
+      risks; the board or executive risk report includes a security section; security risk assessment
+      documents explicitly reference enterprise risk rating criteria; written decisions record the acceptance
+      of security risks.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'posting a security risk matrix on the wall and having the security
+      team score it themselves' counts as integration into enterprise risk management. The real threshold
+      is that security risks and enterprise risks flow through the same register or the same set of review
+      meetings, rather than being deemed important by the security team alone with verbal acknowledgment
+      from business leaders. Auditors will look for a unified risk register tool or meeting minutes, not
+      the security team's own Excel.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the item number of this security risk in the enterprise risk register? Who determined the
+      risk level, and with which business owner was it confirmed?
+    - Was the risk acceptance decision made solely by the security leader, or was it signed off by a business
+      owner? Where is the written record?
+    - When was the last time the board or executive management saw a complete list of cybersecurity risks?
+      Was it in the same report as financial risks?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.480142Z'
+  signed_digest: ad74a5c480ae619b50fe2a0e0933ec08185822c55d482ff4e9abf57525abf678
+  interview_seconds: null
+  inherited_from: null

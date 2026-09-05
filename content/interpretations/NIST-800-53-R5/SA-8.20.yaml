@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SA-8.20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against metadata leakage becoming a silent side channel — when
+      systems carry hidden tags, labels, version markers, or descriptive fields that
+      reveal more about the data, its owner, its sensitivity, or its origin than the
+      system itself intends to expose. Without engineered metadata hygiene, design-level
+      confidentiality, integrity, and accountability claims are undermined by what
+      is automatically attached to every artifact.
+    basis: inferred
+  plain_zh:
+    value: 'Engineer systems so that metadata — descriptive tags, labels, headers,
+      version stamps, embedded identifiers — is treated as a security-relevant asset:
+      classified, minimized, controlled, and protected, rather than left to whatever
+      defaults the framework or platform imposes.'
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the categories of metadata the system produces, carries, or inherits
+        (file properties, document tags, HTTP headers, EXIF, version metadata, internal
+        IDs); document which are required and which are incidental.
+      '2': Define rules for what metadata must be stripped, masked, or rewritten at
+        defined boundaries (uploads, exports, API responses, cross-domain transfers);
+        record those rules in design docs and verify against a sample of artifacts.
+      '3': Build metadata handling into the system design itself — automated scrubbing
+        at egress, schema enforcement on ingest, alerts when sensitive or unexpected
+        metadata appears, and review of metadata as part of change and release controls.
+    basis: inferred
+  evidence:
+    value: Design documentation identifying metadata types and their handling rules,
+      sample artifacts (files, payloads, API responses) showing metadata applied as
+      designed, test results verifying stripping/masking at boundaries, and change
+      records showing metadata controls reviewed when components evolve.
+    basis: inferred
+  common_myth:
+    value: Assuming metadata controls are just about document properties or file properties
+      panels — treating it as a user-facing cleanup rather than an engineering concern.
+      The real surface is far broader (HTTP headers, container labels, image EXIF,
+      internal correlation IDs, framework-injected tags) and the leak often happens
+      automatically, not because a user pasted something they should not have.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through the last time you changed how a component handles metadata at
+      a system boundary — what triggered the review and what changed?
+    - Pick one uploaded file or one outgoing API response from the last month; show
+      me the metadata it actually carries versus what the design said it should carry.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.257047Z'
+  signed_digest: 20db172781727c68c55f79efb6abb5ad5fa214186e39db68ca9e5656fcf0c5d6
+  interview_seconds: null
+  inherited_from: null

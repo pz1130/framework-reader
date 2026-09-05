@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-9.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the situation where an external system provider''s incentives
+      silently diverge from yours after contract signature: their cost-cutting, their
+      other tenants, or their supply chain starts eroding the confidentiality, integrity,
+      or availability you were promised, and you find out only when something breaks
+      or leaks.'
+    basis: inferred
+  plain_zh:
+    value: Make sure the providers you rely on for systems, services, or data processing
+      are actually structured and incentivised to protect what matters to you, and
+      that this alignment is defined, verifiable, and reviewed over the life of the
+      relationship.
+    basis: inferred
+  practice:
+    value:
+      '1': For each critical external provider, list in the contract what they must
+        protect and how their interests align with yours (e.g., shared security obligations,
+        breach notification, audit rights, exit assistance).
+      '2': Define and document the specific protections, SLAs, and conflict-of-interest
+        rules that keep their incentives consistent with yours; require evidence (reports,
+        attestations) and review them on a schedule tied to provider risk tier.
+      '3': 'Make the alignment testable: technical segregation of your data from other
+        tenants, monitored compliance with stated protections, contract terms that
+        survive subcontracting changes, and a formal review triggered when the provider
+        materially changes its ownership, platform, or sub-processor chain.'
+    basis: inferred
+  evidence:
+    value: Provider contracts with security and SLA clauses, conflict-of-interest
+      or shared-interest declarations, audit/SOC reports and review records, segregation
+      or tenancy controls, change notifications for ownership or sub-processor changes,
+      and exit/transition plans.
+    basis: inferred
+  common_myth:
+    value: Believing that signing a standard NDA or master service agreement already
+      aligns incentives. A generic contract sets legal boundaries but does not guarantee
+      that the provider's operational decisions day-to-day — cost cuts, multi-tenancy,
+      subcontractor swaps — still serve your security interests.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show where in a critical provider's contract it is required that your data and
+      workloads are technically isolated or protected to the level you depend on.
+    - When was the last time you reviewed evidence that a critical provider is still
+      meeting the alignment obligations, and what triggered that review?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.352654Z'
+  signed_digest: a55711f34b23d78e052c294e7d8e4e79b95e73282eb83efa40f4f0cf161c6c6f
+  interview_seconds: null
+  inherited_from: null

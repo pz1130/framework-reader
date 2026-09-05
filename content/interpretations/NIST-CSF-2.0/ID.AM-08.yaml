@@ -1,0 +1,58 @@
+control_id: NIST-CSF-2.0:ID.AM-08
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'procurement as the end'—systems and assets, once purchased, are not managed
+      until retirement, leading to outdated systems operating with defects, running unsupported without
+      protection, and data at the end of the lifecycle being left unmanaged or arbitrarily deleted.
+    basis: inferred
+  plain_zh:
+    value: From planning and procurement, deployment, change and upgrade, maintenance, to retirement and
+      disposal, there must be responsible management throughout the entire process; assets cannot be left
+      unmanaged after purchase.
+    basis: inferred
+  practice:
+    value:
+      '1': An asset inventory exists; procurement processes involve security assessment; contracts specify
+        maintenance and retirement responsibilities.
+      '2': There is a management process and responsible person throughout the lifecycle; major changes
+        go through change approval; systems and software have clear retirement plans.
+      '3': Lifecycle processes are linked with configuration management and risk management; data disposal
+        and migration approvals occur before system retirement; the retirement list automatically aligns
+        with the asset ledger.
+    basis: inferred
+  evidence:
+    value: Asset inventory with lifecycle status markers, procurement/change/retirement approval records,
+      maintenance and patch management logs, and data and software retirement disposal records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having an asset ledger and conducting an annual inventory' constitutes
+      lifecycle management. The ledger only answers 'what exists,' not 'when this system should be retired,
+      who will prompt it, and how data will be handled after retirement.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - For this system launched in 2015, in which document is the retirement date specified? Who is responsible
+      for prompting it?
+    - When the system is decommissioned, how are decisions made regarding the disposal of business data?
+    - After software support ends, have you followed an exception approval process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.530547Z'
+  signed_digest: a55fe4e3d128350467a2ea08ded2e87c45346183755b06b46cc1998808c634f0
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-11.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk that automated tooling and unit tests give a false
+      sense of security — logical flaws, backdoors, trust-boundary violations, and
+      business-logic errors that scanners and tests do not catch ship to production
+      and become exploitable weaknesses.
+    basis: inferred
+  plain_zh:
+    value: Require qualified humans to read the source of critical, high-risk, or
+      security-relevant code line-by-line to look for defects that tools and tests
+      miss, and act on what they find before that code is accepted.
+    basis: inferred
+  practice:
+    value:
+      '1': Define in policy which code (security-critical, auth, crypto, trust boundaries,
+        externally produced) must get a manual review; assign reviewers who are not
+        the author.
+      '2': Maintain review checklists tied to the threat model; record findings, dispositions,
+        and re-review; require sign-off before release of in-scope code.
+      '3': Track reviewer expertise and rotation; sample-audit completed reviews for
+        quality; trend defect classes back into training, design rules, and automated
+        checks so the same mistake is caught earlier next time.
+    basis: inferred
+  evidence:
+    value: Manual code review policy and scope list, completed review records with
+      author/reviewer, checklists used, findings and remediation outcomes, and any
+      retrospective metrics on review effectiveness.
+    basis: inferred
+  common_myth:
+    value: Treating a peer walkthrough or a senior engineer's rubber-stamp approval
+      as the manual review. A real review is an adversarial read by someone other
+      than the author, against a checklist derived from the threat model, with documented
+      findings — not a sign-off line on a pull request.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last manual review for the authentication module — who reviewed
+      it, what checklist did they use, and what did they change?
+    - Which classes of code are in scope for mandatory manual review, and how is that
+      scope decided and kept current?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.037198Z'
+  signed_digest: d3deecf4cb70375296a726f2af2460b62e79f1db979e9e6197dbfc26cf37dd5d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:AC-6.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against developers (or compromised build accounts) running arbitrary
+      code at elevated OS or kernel level when only a normal user account is needed
+      for the task — which turns every developer workstation into a domain-admin-equivalent
+      foothold and makes malware, supply-chain tampering, or a single phishing click
+      catastrophically recoverable.
+    basis: inferred
+  plain_zh:
+    value: Users should not be able to execute code at a higher privilege level than
+      they are logged in as; if a user only needs normal rights to do their job, they
+      must not be able to silently flip into admin or system mode while writing or
+      running code.
+    basis: inferred
+  practice:
+    value:
+      '1': Remove local administrator rights from developer and engineer accounts
+        on workstations and laptops; technical users who only edit and run code get
+        standard user accounts.
+      '2': Document which roles legitimately require elevated execution (e.g., OS
+        or kernel development, certain build agents) and which standard tooling is
+        allowed to run with elevation; approved elevation goes through a controlled
+        request and ticketed process, not a permanent local-admin grant.
+      '3': Enforce non-elevation through OS policy (least-privilege accounts, controlled
+        elevation paths, signed/executable allowlisting tied to user identity) so
+        that bypassing the restriction requires breaking policy, not just closing
+        a prompt; review the list of users with execution-level privilege at least
+        annually and on role change.
+    basis: inferred
+  evidence:
+    value: Workstation configuration baselines showing developer accounts are non-admin,
+      role-based justification for the small set of accounts that do have elevated
+      execution rights, elevation request/approval records, and periodic review of
+      the privileged-execution user list.
+    basis: inferred
+  common_myth:
+    value: Treating AC-6.8 as already covered by AC-6 (least privilege in general)
+      and AC-6.1 (separate admin accounts) — and assuming 'developers have a standard
+      account for email and an admin account they elevate to when coding' is compliant.
+      The control is specifically about preventing code from being *executable* at
+      a higher privilege than the user holds, which a UAC-elevation-permitted developer
+      laptop violates.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick two developer laptops at random and show me what privilege level their
+      primary working account runs at — can they install a driver or run a script
+      as SYSTEM without a ticket?
+    - Which roles in your org are authorized to execute code at elevated level, where
+      is that list, and when was it last reviewed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.405809Z'
+  signed_digest: 630eeca3609b029b682d7c144ea5821b56e159bbe42c760a110cd453f32d7d15
+  interview_seconds: null
+  inherited_from: null

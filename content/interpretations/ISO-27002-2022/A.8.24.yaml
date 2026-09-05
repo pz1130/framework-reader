@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.8.24
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that having encryption algorithms, certificates, and keys does not automatically
+      mean security—if key storage, rotation, root certificate management, and certificate expiration
+      or revocation are not handled correctly, encryption is just for show. Auditors check whether you
+      can explain each item clearly, not whether your slogans are loud.
+    basis: inferred
+  plain_zh:
+    value: 'Manage the entire chain of encryption algorithms, keys, and certificates: choose appropriate
+      algorithms, assign responsibility for keys and rotate them regularly, and ensure certificates come
+      from trusted sources and do not expire.'
+    basis: inferred
+  practice:
+    value:
+      '1': Encryption algorithms and keys are deployed for important systems and transmission channels;
+        keys have designated owners; someone can renew certificates before they expire; cryptographic
+        bad practices (e.g., hardcoded keys) have not spread in production environments.
+      '2': A written key management policy covers key generation, storage, distribution, rotation, and
+        destruction; a centralized or user-side trust store contains only approved root certificates;
+        key rotation and certificate renewal are performed on schedule and documented.
+      '3': Algorithm selection and key length policies are enforced automatically or at least subject
+        to spot checks to block non-compliant usage; key usage meets industry requirements for storage
+        interfaces; alerts are in place before certificate expiration, and failures are traceable in a
+        list; supplier or local cryptographic components are also within tracking scope.
+    basis: inferred
+  evidence:
+    value: Key and certificate inventory lists, list of designated key owners, records of key rotation
+      and certificate renewal, root certificate list in the trust store, tracking of cryptographic components
+      and algorithm versions, and results of checks for hardcoded keys from automated scans or audit logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'installing encryption software or enabling HTTPS' is enough to pass. Auditors
+      want to know what each key looks like, where it is, who has accessed it, and when it was rotated;
+      if you cannot articulate this in Q&A, it is as if you have not done it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through the key generation and destruction process for this system on a timeline, and show
+      me the actual execution records.
+    - Apart from official certificates, have any test or temporary root certificates been placed in the
+      trust store? If so, who approved them?
+    - When was your last full scan for hardcoded keys? Are any that were not cleaned up still running
+      in production code?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.398421Z'
+  signed_digest: 3dce16594f90ac51f2b69811ac97f0231b5c7c532c5cfcbf9d8bbfcd5cb98283
+  interview_seconds: null
+  inherited_from: null

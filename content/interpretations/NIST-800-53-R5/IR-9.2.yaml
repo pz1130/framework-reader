@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-9.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents incident responders from learning the playbook during the actual
+      incident—when stress is high, time is short, and mistakes cost evidence, containment,
+      and trust. If people are trained only on paper, the response is slow, the wrong
+      systems are pulled offline, and the breach expands while the team debates who
+      does what.
+    basis: inferred
+  plain_zh:
+    value: Make sure people on the incident response roster actually practice the
+      procedures through realistic exercises, not just by reading them, so that when
+      a real incident hits the team can execute the documented steps without fumbling.
+    basis: inferred
+  practice:
+    value:
+      '1': Every person assigned an IR role has at least one live walkthrough of the
+        IR plan per year using a plausible scenario; attendance and basic role coverage
+        is recorded.
+      '2': Exercises cover the full plan lifecycle (detection, containment, eradication,
+        recovery, communication) on systems that mirror production; after-action notes
+        identify gaps and feed back into the plan; lessons-learned are tracked to
+        closure.
+      '3': Exercises are scenario-varied (ransomware, insider exfiltration, DDoS,
+        third-party breach), cross-functional with legal/PR/exec participation, stress-tested
+        against communication timing and decision rights, and unannounced drills are
+        used to validate readiness; performance metrics trend over time.
+    basis: inferred
+  evidence:
+    value: Annual exercise schedule and scenarios, attendance/role-coverage records,
+      after-action reports with tracked remediation items, plan revision history tied
+      to exercise findings, and trend of exercise performance over time.
+    basis: inferred
+  common_myth:
+    value: Treating the annual tabletop as proof of readiness. A single scripted discussion
+      where the same three people read their talking points does not exercise containment,
+      evidence handling, or cross-team handoffs—real failures show up when roles,
+      tools, or systems diverge from the script.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last exercise that involved actual system actions (isolation, image
+      capture, or restoration)—what was the scenario, who played which role, and what
+      broke?
+    - Which after-action findings from the past year are still open, and which have
+      been closed by plan updates rather than just marked complete?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.364189Z'
+  signed_digest: 1032bc9ad3b20e8ed7a76c05fb0df193818ee7b628e695497e5ab240db3c17a7
+  interview_seconds: null
+  inherited_from: null

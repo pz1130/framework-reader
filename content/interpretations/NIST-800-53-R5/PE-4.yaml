@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:PE-4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against interception, tapping, or piggybacking on cables that
+      carry regulated data — because anyone who can physically reach a network wire
+      or fiber can passively capture traffic or insert themselves into a session,
+      and encryption alone does not stop layer-1/fiber-tap, splicing, or rogue-device-on-the-cable
+      attacks.
+    basis: inferred
+  plain_zh:
+    value: Control who can physically touch the cables and wireless links that carry
+      your data, and lock down or hide the rest. The control asks you to restrict
+      physical access to transmission lines and the rooms they pass through, not just
+      to the endpoints.
+    basis: inferred
+  practice:
+    value:
+      '1': Network and telecom cabling runs inside secured spaces (locked telecom
+        rooms, raised floors, conduit); exterior cables are protected or hidden; spare
+        jacks and patch panels are disabled or labeled.
+      '2': Documented physical access list for telecom rooms, MDFs/IDFs, and cable
+        pathways; escorted-access process for visitors and contractors; removable
+        media ports (fiber patch, console) inventoried.
+      '3': Continuous monitoring (badge logs, CCTV, tamper-evident conduit/seals)
+        on transmission pathways; rogue-device and unauthorized-cable detection; periodic
+        sweeps for unknown drops; physical paths reviewed against floor plans whenever
+        cabling changes.
+    basis: inferred
+  evidence:
+    value: Physical access lists and escort logs for telecom rooms and cable pathways,
+      locked/concealed cabling design records, disabled or labeled unused drops, CCTV
+      or badge-system coverage of pathway chokepoints, tamper-seal inspection records,
+      and change tickets tying cabling moves to updated floor plans.
+    basis: inferred
+  common_myth:
+    value: Assuming encryption on the wire makes physical access to the cable irrelevant
+      — a determined attacker with physical access to a fiber run can tap the light,
+      splice in a device, or drop a rogue endpoint on an unused jack, none of which
+      TLS or IPsec will alert on.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me from the service provider demarc to the core switch — who can touch
+      that cable along the way, and how would you know if someone did?
+    - Show me the last time you inventoried unused network jacks or patch panel ports
+      and what you did with the ones you found live.
+    basis: inferred
+  regional_note:
+    value: European auditors under tighter critical-infrastructure regimes (e.g.,
+      energy, finance) more often press for evidence of conduit/duct sealing and provider-demarc
+      protection; US FedRAMP/DoD assessments typically lean on SCIF/classified-space
+      style wording. Both expect the same core controls, but European reviews more
+      frequently trace the cable end-to-end through shared or third-party spaces.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.619503Z'
+  signed_digest: c1a07e92474c95b8cbe7e4139dd613907bde4340e53aa50d4b6838efa79a6365
+  interview_seconds: null
+  inherited_from: null

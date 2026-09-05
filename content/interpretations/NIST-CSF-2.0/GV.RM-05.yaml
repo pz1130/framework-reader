@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:GV.RM-05
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that risk information stays stuck inside the security department—when suppliers
+      have issues, business launches new systems, or executives ask about the risk posture, the message
+      does not reach the decision-makers, and the leadership is unaware of existing risks before an actual
+      incident occurs.
+    basis: inferred
+  plain_zh:
+    value: 'Establish clear and operable channels for communicating cybersecurity risks (including those
+      from suppliers and third parties) within the organization: who identifies risks, who they are communicated
+      to, who is responsible for handling them, and who makes the final decision—this chain must be explicit
+      and functional.'
+    basis: inferred
+  practice:
+    value:
+      '1': A list of security contacts exists; risks can be communicated to responsible personnel via
+        email or regular meetings, with basic records maintained.
+      '2': Formal risk reporting and communication mechanisms (e.g., regular meetings, tickets, escalation
+        forms) are in place; supplier risks have dedicated points of contact; escalation paths are documented
+        and known to relevant departments.
+      '3': Risk communication channels are tiered by risk level (routine, escalation, crisis), with periodic
+        drills to test communication effectiveness; major risks automatically notify the leadership; third-party
+        risks have clear points of contact and response timeframes.
+    basis: inferred
+  evidence:
+    value: Risk reporting process documents, supplier risk contact lists, security risk meeting minutes,
+      major risk reporting and response records (including timelines), and communication mechanism drill
+      or test records.
+    basis: inferred
+  common_myth:
+    value: Assuming that creating a DingTalk or WeChat Work group establishes a communication line. A
+      group is not a mechanism—who is in the group, who must respond during an incident, how quickly they
+      must respond, and whether group records can serve as audit evidence are not defined; without these,
+      the group is just a chat tool, not a communication line.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What is the standard path for a high-risk supplier risk from identification to reporting to the
+      leadership? What are the timeframes for each step?
+    - When the security lead is on leave, who is the alternate contact for risk reporting?
+    - When was the last cross-departmental risk communication? Are there records?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.484120Z'
+  signed_digest: e5fab87b46f85282ff3a6141c996232b97a67f37847a1e13cdbccf671a87d9a0
+  interview_seconds: null
+  inherited_from: null

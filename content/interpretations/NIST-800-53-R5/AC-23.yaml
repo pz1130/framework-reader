@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:AC-23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an organization being legally compelled - or quietly tempted
+      - to use aggregated data holdings to infer attributes about individuals (beliefs,
+      health, affiliations, behavior) that those people never explicitly provided,
+      breaching privacy law and eroding the basis for lawful processing. The failure
+      mode is treating 'we have the data' as equivalent to 'we may analyze it for
+      any pattern'.
+    basis: inferred
+  plain_zh:
+    value: Establish a written position and technical controls on whether, how, and
+      for what purpose the organization mines its own data stores to derive attributes
+      about people - including deciding not to - and make that position enforceable
+      so analysts cannot run ad hoc profiling against user data.
+    basis: inferred
+  practice:
+    value:
+      '1': A short policy exists stating which data mining/profiling activities are
+        allowed, prohibited, or require approval, and which roles can authorize them.
+      '2': A documented review/approval workflow is in place for new mining initiatives;
+        sensitive datasets (health, communications, location, biometrics, children's
+        data) are flagged and require higher-level sign-off; results that could affect
+        individuals are reviewed before use.
+      '3': Technical controls (query allow-listing, sandboxed analytics environments,
+        separation between operational stores and mining stores, DPIA-style review
+        tied to lawful basis) prevent unapproved mining; mining activity is logged
+        and periodically audited against the policy; the policy is revisited when
+        new data sources or models are introduced.
+    basis: inferred
+  evidence:
+    value: Data mining/profiling policy, approval records for mining initiatives,
+      DPIA or equivalent privacy review for sensitive datasets, logs of analytic queries
+      against user data, audit reports comparing actual queries to approved scope.
+    basis: inferred
+  common_myth:
+    value: Treating this control as satisfied by having an analytics platform or a
+      data lake with role-based access. The control is about whether the organization
+      may infer things about people from data it holds, not about who can query which
+      table; access control on the warehouse does not answer whether the analysis
+      itself is permitted at all.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last data mining or profiling initiative that was rejected or modified
+      before it ran against user data - what was the trigger and who decided?
+    - Which datasets in your environment are flagged as sensitive enough that ad hoc
+      analysis against them is blocked at the query layer, not just at the table-permission
+      layer?
+    basis: inferred
+  regional_note:
+    value: EU auditors under GDPR tend to anchor this in lawful basis, DPIA, and Article
+      22-style restrictions on decisions produced solely by automated profiling; US
+      auditors more often frame it around program-specific statutes (HIPAA, FERPA,
+      COPPA) and contract terms. The substantive question is similar, but the EU side
+      will more readily ask for a DPIA artifact tied to the mining activity.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.185952Z'
+  signed_digest: 989f8353143e1c33bf7e69a6f9808df59af36dd35ab037a06773271f5188db20
+  interview_seconds: null
+  inherited_from: null

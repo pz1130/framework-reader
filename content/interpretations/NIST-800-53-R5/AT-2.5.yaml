@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AT-2.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defense against the assumption that generic awareness training prepares
+      staff for the slow, patient, multi-stage intrusion style that APT groups actually
+      use — phishing lures, lateral movement, supply-chain compromise, and quiet data
+      staging. Baseline awareness that covers 'don't click bad links' will be bypassed
+      by an attacker who waits months and uses legitimate-looking tools against a
+      specific employee.
+    basis: inferred
+  plain_zh:
+    value: Provide role-appropriate training that specifically covers how advanced
+      persistent threat actors operate — their tactics, techniques, and typical attack
+      patterns — so that people who hold sensitive access or work in exposed roles
+      can recognize and respond to a slow, targeted campaign, not just opportunistic
+      spam.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify roles most exposed to targeted intrusion (executives, finance,
+        IT admins, developers, anyone with privileged or externally visible access);
+        deliver at least one session or module per year that addresses how APT-style
+        attacks differ from commodity threats, using real-world scenarios.
+      '2': Maintain a written curriculum that maps APT tactics to specific behaviors
+        employees must exhibit (recognizing reconnaissance, social engineering via
+        trusted channels, suspicious scheduled tasks, unusual vendor access); track
+        completion per role; test with tabletop or scenario exercise and capture results.
+      '3': Refresh the APT content against current threat intelligence at planned
+        intervals and after major incidents; integrate lessons from real attempted
+        intrusions into the curriculum; measure whether staff behavior actually changed
+        (reporting latency, detection of planted artifacts in exercises), not just
+        training completion rates.
+    basis: inferred
+  evidence:
+    value: Role-based training plan identifying exposed populations, curriculum materials
+      covering APT tactics with scenarios, attendance and completion records by role,
+      exercise or tabletop results, updates tied to threat intelligence or incidents.
+    basis: inferred
+  common_myth:
+    value: Treating AT-2.5 as satisfied by a single annual phishing-awareness video
+      or by pointing to AT-2 baseline training — generic awareness is the whole point
+      of AT-2, so AT-2.5 is supposed to be the targeted, threat-informed layer above
+      it. If the same content everyone gets is what is offered to executives and admins,
+      the control is not met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which roles in your organization receive APT-specific training, and how was
+      that list decided?
+    - Show the most recent update to the APT training content and what triggered it.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.465160Z'
+  signed_digest: 48e2dfe37a32c845340ae71c49590a894d17927f40ea05111e43c4562003d520
+  interview_seconds: null
+  inherited_from: null

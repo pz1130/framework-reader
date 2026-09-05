@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:SA-4.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that 'we said use secure coding' is enough
+      — without prescribing specific methods (e.g., threat modeling, code review,
+      language-specific safe functions), developers default to whatever they're comfortable
+      with and known classes of flaws (injection, deserialization, XSS) keep shipping
+      in. The risk is that security requirements in the contract or SDLC become generic
+      slogans rather than enforceable engineering practices.
+    basis: inferred
+  plain_zh:
+    value: Require the developer (internal team or vendor) to follow defined, documented
+      secure development methods, techniques and practices — and verify they actually
+      use them, not just promise to.
+    basis: inferred
+  practice:
+    value:
+      '1': Contract or internal SDLC policy names a baseline of secure development
+        practices (input validation, least-privilege defaults, error handling) that
+        must be followed; deliverables require a short description of which ones were
+        applied.
+      '2': The baseline includes explicit practices tied to known flaw classes — threat
+        modeling for new components, peer code review with security checklist, use
+        of language/framework safe APIs, static analysis in CI, dependency review
+        — and acceptance gates check the artifacts (threat model doc, review records,
+        scan reports).
+      '3': Practices are versioned and tied to training/qualifications; deviations
+        need a documented rationale; effectiveness is measured (defect escape rate,
+        recurrence of specific flaw classes) and the baseline is updated when new
+        classes appear; supplier audits verify adherence, not just self-attestation.
+    basis: inferred
+  evidence:
+    value: Documented secure development practices baseline, contract or SDLC clauses
+      requiring compliance, deliverable acceptance records showing which practices
+      were evidenced (threat models, review logs, scan outputs, dependency checks),
+      and records of how non-compliance or deviations were handled.
+    basis: inferred
+  common_myth:
+    value: Treating SA-4(3) as satisfied by a one-line requirement in a contract like
+      'developer shall follow industry best practices.' That phrase is unenforceable
+      — auditors want to see the named practices, evidence they were applied to each
+      delivery, and proof the team has the skills to apply them. Best-practice language
+      without specifics is the exact gap this control closes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the documented secure development methods, techniques and practices
+      your developers (or this vendor) are required to follow — not a one-line policy,
+      the actual baseline.
+    - For the last accepted deliverable, which of these practices were applied and
+      where is the evidence (threat model, review record, scan report)?
+    - How do you handle a developer who skips a required practice — is there a gate,
+      and when did it last fire?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.188806Z'
+  signed_digest: ae3a5e5d3c21e5141939a1102e630ed935d014b0a55c1df395d3c5a85ae187ae
+  interview_seconds: null
+  inherited_from: null

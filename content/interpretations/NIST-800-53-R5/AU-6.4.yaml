@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:AU-6.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against audit logs piling up untouched until an incident forces
+      a frantic search with no baseline of normal. Without centralized review, anomalous
+      activity stays buried, recurring patterns get missed, and the audit trail becomes
+      write-only evidence that proves nothing about what was actually noticed at the
+      time.
+    basis: inferred
+  plain_zh:
+    value: Aggregate audit records from across systems into one place where trained
+      people (or automated tooling they supervise) actually look at them, correlate
+      events, flag anomalies, and report findings - not just store them.
+    basis: inferred
+  practice:
+    value:
+      '1': Logs from critical systems are forwarded to a central store; someone is
+        named responsible for periodic review.
+      '2': Defined review procedures exist with cadence, escalation paths, and documented
+        findings for unusual activity.
+      '3': Correlation rules or analytics run against the central feed; review output
+        feeds into incident response and risk decisions; coverage gaps are tracked
+        and closed.
+    basis: inferred
+  evidence:
+    value: Central log collection configuration, documented review procedures and
+      schedules, review records showing what was examined and conclusions reached,
+      escalation tickets triggered from review findings, coverage report of which
+      systems feed the central store.
+    basis: inferred
+  common_myth:
+    value: Assuming that shipping logs to a SIEM satisfies this control. If nobody
+      or nothing systematically reads, correlates, and acts on those logs, the control
+      is not met - collection is input, review is the control.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is responsible for reviewing aggregated logs and how often do they actually
+      do it?
+    - Show me a recent finding that came out of central log review - what was flagged
+      and what happened next?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.605833Z'
+  signed_digest: a4c92e9e29d64764dd6dcd6c8d3d1e8345909d18d05f3540c630cf44f1afec18
+  interview_seconds: null
+  inherited_from: null

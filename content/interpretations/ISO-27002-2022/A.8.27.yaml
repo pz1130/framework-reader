@@ -1,0 +1,61 @@
+control_id: ISO-27002-2022:A.8.27
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security requirements are only written in requirements and acceptance documents
+      but not implemented in the architecture—if system decomposition, component boundaries, and trust
+      levels are vague at the design stage, all subsequent controls rely on patching, and vulnerabilities
+      and privilege escalation become architectural issues that cannot be fixed by patches.
+    basis: inferred
+  plain_zh:
+    value: During system design, development, and modification, follow established security engineering
+      principles so that the architecture diagram clearly shows how security functions and components
+      collaborate, and this design aligns with the organization's overall security architecture.
+    basis: inferred
+  practice:
+    value:
+      '1': New system designs have a security architecture diagram; key component boundaries and trust
+        levels are defined; high-risk designs undergo security review.
+      '2': Design phase includes a security engineering principles checklist; security architecture reviews
+        are documented; changes follow a design re-evaluation process.
+      '3': Security architecture is templated, and principle-driven validation is integrated into CI/CD;
+        threat modeling is linked with architecture review; deviations from principles require written
+        exemption and senior management approval.
+    basis: inferred
+  evidence:
+    value: System design specifications and security architecture diagrams, threat modeling reports, meeting
+      minutes of security design reviews, design principle checklists and deviation exemption records,
+      and re-evaluation records for architecture changes.
+    basis: inferred
+  common_myth:
+    value: The misconception is that passing MLPS assessment and security tests implies the architecture
+      conforms to engineering principles. Testing validates the behavior of the final product, while architecture
+      principles govern whether the design allows controls to be effectively placed—reviewing diagrams
+      and testing code are two different things.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How far does this system's security architecture diagram deviate from the actual deployment architecture?
+      When was the last verification?
+    - Which security engineering principles did you use during development? When principles and the final
+      implementation diverge, who decides what to do?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.404481Z'
+  signed_digest: dc9a9990ba32f7d5c4805a22d410ddd7e0b326c79d39526677d1c81883f3f73b
+  interview_seconds: null
+  inherited_from: null

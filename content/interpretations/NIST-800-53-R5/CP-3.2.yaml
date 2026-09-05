@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CP-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents contingency training from becoming theater that produces no usable
+      muscle memory - if the training environment doesn't reflect the real systems,
+      contacts, and decision paths people will face, people rehearse the wrong things
+      and the plan still fails under stress.
+    basis: inferred
+  plain_zh:
+    value: Make the systems, people, and information you use to train for emergencies
+      behave like the real ones, so rehearsing actually prepares people for the real
+      event.
+    basis: inferred
+  practice:
+    value:
+      '1': Training exercises reference the real continuity plan, real contact lists,
+        and at least one production-like stand-in for a critical system; deviations
+        from real behavior are named in the exercise briefing.
+      '2': Exercise scenarios use sandboxed replicas or sanitized production data;
+        roles and escalation paths mirror on-call rosters and authority limits; a
+        post-exercise review notes where the training environment diverged from reality
+        and what was learned from it.
+      '3': Training environments are versioned against production (config, dependencies,
+        data shape) with drift tracked; participants use the same collaboration and
+        decision tools they would use in a real incident; gaps between training and
+        production drive updates to either side, and the realism check is reviewed
+        on a fixed cadence.
+    basis: inferred
+  evidence:
+    value: Exercise design documents that describe the training environment and its
+      fidelity to production, copies of the contact rosters and plans used during
+      the exercise, sanitized data sources, and after-action notes recording environment
+      gaps and resulting corrective actions.
+    basis: inferred
+  common_myth:
+    value: Treating any tabletop or runbook walkthrough as a valid continuity exercise
+      even when the systems, data, and decision-makers in the room are all stand-ins.
+      The point of CP-3.2 is that the rehearsal itself has to behave like the event;
+      otherwise you have only tested whether people can read a document.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick the last continuity exercise - which production system or data set did
+      the training environment mirror, and where did it deliberately differ?
+    - Who was in the room during the exercise, and is that the same group that would
+      actually respond to a real incident on that shift?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.957628Z'
+  signed_digest: e3f13539a8f3c8e45c4e28a4eb9bba39f5769c8630b6fb3e416fbbf9fc74dff0
+  interview_seconds: null
+  inherited_from: null

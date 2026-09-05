@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.8.18
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that privileged accounts are used as ordinary accounts, shared, or left logged
+      in for long periods—if someone with administrator or privileged identity is impersonated or makes
+      an erroneous operation, the impact is global, and such accounts are often the last hop for attackers
+      to take over the domain controller or core systems.
+    basis: inferred
+  plain_zh:
+    value: 'Manage privileged tools and accounts that can install software, change configurations, or
+      view full data separately: avoid using them when possible, minimize usage when needed, revoke promptly
+      after use, keep records throughout, and periodically review who still has access.'
+    basis: inferred
+  practice:
+    value:
+      '1': Privileged accounts are not shared or hardcoded in scripts; request before use, revoke after
+        use; high-risk operations require at least one person's approval.
+      '2': Privileged operations are performed on dedicated jump servers or privileged access management
+        platforms; each operation has audit logs; periodically (e.g., quarterly) review the list of privileged
+        accounts and their holders.
+      '3': Login grants temporary authorization that automatically expires after use; high-risk commands
+        are intercepted or alerted via bastion hosts; privileged sessions are recorded via screen capture
+        or full logging; permission issuance and revocation are integrated with identity governance, with
+        automatic revocation upon termination or role change.
+    basis: inferred
+  evidence:
+    value: List of privileged accounts and approval tickets, session logs and operation recordings from
+      bastion hosts or privileged access management platforms, interception/alert records for high-risk
+      commands, meeting minutes of periodic account reviews, and process records of permission revocation
+      triggered by termination or role change.
+    basis: inferred
+  common_myth:
+    value: The misconception is that setting strong passwords for a few administrator accounts is enough
+      to manage privileged access—but the real issues arise when these accounts are used for daily logins,
+      sessions left unlocked, or the same root/administrator password is reused across dozens of machines;
+      password strength cannot prevent such misuse.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who has used privileged accounts in the past three months? Can you provide a time-based record of
+      each login and operation?
+    - If a server was hit by rm -rf or database deletion two weeks ago, how would you trace who did it
+      and whether there was approval at the time?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.384926Z'
+  signed_digest: e3fbb5925f5718369daf6173bf1e01cbe62010debd2f15b735bdb3a7351f0665
+  interview_seconds: null
+  inherited_from: null

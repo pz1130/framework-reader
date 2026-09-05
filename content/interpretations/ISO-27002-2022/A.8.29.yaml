@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.8.29
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'develop, it runs, then ship it' — code goes into production without security
+      testing before delivery, allowing vulnerabilities, backdoors, and malicious code to enter the runtime
+      environment, only to be addressed after an incident occurs.
+    basis: inferred
+  plain_zh:
+    value: Security testing should be performed during software development and acceptance phases to block
+      common vulnerabilities, backdoors, and malicious code before release, rather than relying on patches
+      and monitoring after deployment.
+    basis: inferred
+  practice:
+    value:
+      '1': Before release, manual code review or automated scanning is conducted to block high-risk vulnerabilities
+        (e.g., injection, privilege escalation) in the test environment; unresolved vulnerabilities have
+        documented waivers.
+      '2': 'Security testing is integrated into the development process: static scanning and vulnerability
+        detection on critical paths are run before each release; results are recorded, with assigned owners
+        for remediation; high-risk vulnerabilities must be fixed before release.'
+      '3': Testing covers the entire development, testing, and acceptance phases; dynamic testing and
+        dependency/library and supply chain component scanning are integrated with CI/CD, blocking the
+        pipeline on issues; results are linked to defect management, enabling trend analysis of vulnerability
+        density and remediation time.
+    basis: inferred
+  evidence:
+    value: Sections on security testing in development process documentation, static/dynamic scan reports,
+      vulnerability remediation and waiver records, sign-off sheets for security testing during acceptance,
+      and screenshots of security testing steps in CI/CD pipeline configuration.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'running a purchased scanning tool in every environment' equates to security
+      testing — many teams simply run scans, output PDFs, and archive them without anyone reviewing results
+      or following up on remediation; high-risk alerts from tools are ignored, and auditors quickly uncover
+      the issue when asking 'how was this high-risk vulnerability handled later?'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many high-risk vulnerabilities were found in the security scan reports for the last three releases?
+      What is the remediation or waiver status for each?
+    - Do the scan results for third-party components/dependency libraries used in the development environment
+      show any known vulnerabilities? Who is responsible for following up on these?
+    - Who are the respective owners for scanning and vulnerability remediation? Where can remediation
+      records be found?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.408280Z'
+  signed_digest: 78b2f5bc1dbf1744b34e47c680b0048bf46ed57a6347fcc41695cb7dc1e9e801
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.5.35
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is the ineffective closed loop of 'self-inspection and self-certification'—when
+      the security team is both the system developer and the evaluator of its effectiveness, audit conclusions
+      are inherently distorted. This control forces you to introduce an independent external perspective;
+      otherwise, control effectiveness will always be based on self-perceived adequacy.
+    basis: inferred
+  plain_zh:
+    value: Requires you to engage individuals or teams with no vested interest in the audited system to
+      conduct control assessments, ensuring unbiased conclusions. Assessors must not be the system developers,
+      operators, or self-assessors.
+    basis: inferred
+  practice:
+    value:
+      '1': Security assessments are conducted by personnel not directly involved in system development
+        and operations; assessors sign a declaration of no conflict of interest.
+      '2': Documented criteria for selecting independent assessors and recusal requirements; assessments
+        are performed at least annually or after significant changes by a non-development team; formal
+        reports cover scope, methodology, and conclusions.
+      '3': Responsibilities for assessment and remediation are separated; assessment results are reported
+        directly to governance; annual assessments are conducted by external third parties or independent
+        internal audit; assessor independence is periodically verified and included in supplier and outsourcing
+        management.
+    basis: inferred
+  evidence:
+    value: List of independent assessors and their conflict-of-interest declarations, independent assessment
+      reports (including scope, methodology, and conclusions), documentation of the assessor's organizational
+      affiliation and relationship to the assessed system, and annual or change-driven assessment plans.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'security team members from another project group conducting checks'
+      counts as independence. As long as assessors have performance or reporting dependencies on the assessed
+      team, conclusions can still be pressured—independence depends on organizational boundaries and reporting
+      lines, not names.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Does the person who executed last year's assessment report directly to the supervisor of the assessed
+      system? What is the basis for that?
+    - If the assessment uncovers systemic deficiencies by the development team, what authority and responsibility
+      does the assessment team have to ensure records are not suppressed?
+    basis: inferred
+  regional_note:
+    value: In Europe, regulated industries (e.g., finance, healthcare) clearly require third-party independent
+      organizations for control assessments of important ICT systems, and they cannot be the original
+      vendor or long-term on-site consultants; in the US, when the internal audit function is strong,
+      the boundary for organizational independence is broader, but self-assessment is still prohibited.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.305828Z'
+  signed_digest: 2e50a565af71a51d5bb1508b67d496851bba6180e5cdbedf5f00e4ebf8e69d84
+  interview_seconds: null
+  inherited_from: null

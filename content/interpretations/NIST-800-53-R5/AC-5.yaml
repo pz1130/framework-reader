@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:AC-5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a single person being able to both commit and conceal fraud,
+      error, or malicious action—because if one individual can request, approve, execute,
+      and review the same sensitive operation, there is no independent check and a
+      mistake or attack passes unnoticed.
+    basis: inferred
+  plain_zh:
+    value: Make sure no single person can carry out a complete sensitive task alone
+      from start to finish; divide responsibilities so that different people handle
+      the conflicting steps, and enforce that division in systems and processes.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the duties that conflict (e.g., request vs. approve, code vs.
+        deploy, create vendor vs. pay vendor) and document them in a written policy
+        that names which role pairs cannot be held by the same person.
+      '2': Map SoD rules to roles and systems; review user assignments against the
+        rules and record exceptions with justification and compensating controls such
+        as elevated monitoring or post-hoc review.
+      '3': Enforce SoD at the system layer (provisioning and transaction systems reject
+        conflicting-role actions), detect and alert on violations, and periodically
+        reconcile role assignments against authoritative HR data so transfers and
+        terminations cannot silently re-create conflicts.
+    basis: inferred
+  evidence:
+    value: Documented SoD policy and conflicting-duty matrix, role-to-user assignment
+      reports, violation/exception logs with approvals and compensating controls,
+      evidence that systems enforce or block conflicting actions, and review records
+      showing conflicts were actually resolved.
+    basis: inferred
+  common_myth:
+    value: Treating SoD as satisfied by an org chart or a matrix on a shared drive—while
+      in practice the same person still holds both roles in production systems because
+      provisioning, transfers, and shared admin accounts were never reconciled against
+      the matrix.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a sensitive transaction (for example, a vendor payment or a production
+      deployment) and show me the trail of who requested, approved, and executed it—was
+      any step performed by the same individual?
+    - How does the system prevent someone from holding two conflicting roles, and
+      how was that rule tested against current assignments?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.372166Z'
+  signed_digest: 0ea30cd9db08c619435e38fd77eb1d428c4436a8f8e93fa22758a040f7577b5a
+  interview_seconds: null
+  inherited_from: null

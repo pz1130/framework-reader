@@ -1,0 +1,72 @@
+control_id: ISO-27002-2022:A.7.5
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that when a real fire, flood, power outage, or high temperature occurs in the
+      equipment room, business operations will directly halt—but many teams interpret this control as
+      'having fire extinguishers and air conditioning running in the room is enough,' resulting in disaster
+      recovery rooms being in the same campus and on the same underground cable as the primary room. A
+      single construction dig can cut everything off, and backup data is lost along with it.
+    basis: inferred
+  plain_zh:
+    value: Ensure that locations housing systems (computer rooms, server closets, disaster recovery centers)
+      have fire prevention, water resistance, temperature and humidity control capabilities; equipment
+      placement should avoid physical threats; and disaster recovery storage sites should be geographically
+      separated from primary sites to ensure that backups remain usable and business can continue elsewhere
+      after a primary site incident.
+    basis: inferred
+  practice:
+    value:
+      '1': The computer room has basic fire detection and suppression equipment; air conditioning can
+        maintain temperature; accessible shut-off valves are available in areas near water sources; the
+        disaster recovery site does not share a building with the primary site.
+      '2': Fire protection, temperature and humidity, and water leak monitoring have regular inspection
+        and maintenance records; the disaster recovery site is geographically isolated from the primary
+        site with documented explanation; equipment placement considers known surrounding risks (e.g.,
+        water pipes, windows, electromagnetic interference sources).
+      '3': Fire protection and environmental monitoring are integrated into a centralized monitoring platform
+        with automatic alerts for anomalies; the disaster recovery site can restore critical business
+        within the defined time and is regularly tested; new computer rooms or equipment selection have
+        a formal site selection assessment process, with assessment results archived and auditable.
+    basis: inferred
+  evidence:
+    value: Maintenance and test records for the computer room's fire protection system, temperature and
+      humidity monitoring, and water leak detection; site selection documentation for the disaster recovery
+      site and recovery capability verification reports (e.g., switchover drill summaries); equipment
+      floor plans marking risk source locations; water valve locations and list of operators.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'purchasing a gas fire suppression system and precision air conditioning' means
+      compliance, without ever testing whether the fire suppression system actually triggers in coordination,
+      or confirming the site's independent power feed and the physical isolation of the disaster recovery
+      center—beyond equipment and credentials, what is missing is verification records and site selection
+      logic.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last coordinated test of the fire detection system? Whose phone or screen actually
+      received the alarm signal?
+    - How far physically is the disaster recovery room from the primary room? Do they share the same municipal
+      power supply or the same network backbone?
+    - Who can shut off the water valve first if the computer room floods? Is that person on site, and
+      can their phone be reached?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.356660Z'
+  signed_digest: 09034eb4a622012030291f42654d656da2ea4104295f6b90987993554e5282df
+  interview_seconds: null
+  inherited_from: null

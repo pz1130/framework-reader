@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:DE.CM-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is 'when a third party has an incident, you are the last to know'—if a supplier's
+      system is compromised, service degrades, or data is breached, and you have not agreed on alert channels
+      in contracts and monitoring, you will only learn from the news that you are being affected.
+    basis: inferred
+  plain_zh:
+    value: For external suppliers providing critical services, there should be a mechanism for continuous
+      monitoring of their activities and service status, capable of promptly detecting anomalies or malicious
+      events, and clearly defining who can notify you and how when problems occur.
+    basis: inferred
+  practice:
+    value:
+      '1': Require suppliers to report security incidents in contracts; maintain contact information and
+        escalation paths for critical suppliers; ensure someone can be reached when a major incident occurs
+        at a supplier.
+      '2': Conduct regular manual checks of service availability and alert logs for critical suppliers;
+        have a written incident notification protocol (timelines, content, channels); keep records of
+        monitoring results.
+      '3': Implement automated monitoring for high-risk suppliers (e.g., threat intelligence, service
+        health probes, anomalous traffic detection); supplier notification protocols are exercised and
+        validated for real-world effectiveness; monitoring covers observable signals such as service outages,
+        anomalous logins, and data exfiltration.
+    basis: inferred
+  evidence:
+    value: Supplier registry with risk classification, contract clauses containing incident notification
+      obligations, contact lists and escalation tables, incident notification and response records, service
+      monitoring alert screenshots or logs, and exercise minutes for third-party incident notification
+      protocols.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'the contract states the supplier is responsible for notification' is sufficient
+      for monitoring. Contract clauses only give you the right to know, not the guarantee that you will
+      know in time—without agreed notification timelines, proactive detection measures, or exercises,
+      suppliers often focus on their own remediation first, and you may only discover service anomalies
+      days later.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time you received a proactive incident notification from a supplier? What was
+      the content?
+    - Which contract explicitly specifies the notification timeline that suppliers must adhere to? What
+      happens if they exceed it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.451114Z'
+  signed_digest: 8c4b5703a92c4bc8f56631d88825dd73716894d8eb29f5332e0345a6c3d93329
+  interview_seconds: null
+  inherited_from: null

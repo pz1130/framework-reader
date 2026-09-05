@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:ID.RA-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent "building behind closed doors"—relying only on internal logs and public
+      news for threat intelligence, unaware that organized groups on the dark web are targeting you or
+      that attack techniques are emerging in your industry, only to feel the pain after being hit.
+    basis: inferred
+  plain_zh:
+    value: You cannot rely solely on your own devices and known vulnerabilities; you must continuously
+      obtain threat intelligence from external sources—such as industry sharing groups, government notifications,
+      commercial intelligence feeds, and communities—and actually use it, not just subscribe to emails
+      and forget about it.
+    basis: inferred
+  practice:
+    value:
+      '1': Establish and maintain at least one list of external threat intelligence sources, with dedicated
+        personnel subscribing and receiving, ensuring that this information does not go directly to spam;
+        the company name itself can also be identified as an intelligence source.
+      '2': Have a formal process for intelligence reception → filtering → classification → distribution,
+        able to distinguish which intelligence is relevant to your industry, technology stack, and geography,
+        and forward relevant intelligence to the responsible parties (e.g., incident response, SOC, development).
+      '3': Intelligence is not just forwarded; it is linked with your own asset and risk data, able to
+        trigger alerts or generate new detection rules; regularly review intelligence effectiveness and
+        eliminate low-value sources.
+    basis: inferred
+  evidence:
+    value: List of intelligence sources and subscription credentials, records of intelligence reception
+      and distribution (emails, tickets, group notifications), intelligence source evaluation reports,
+      detection rule changes or alert records triggered by intelligence.
+    basis: inferred
+  common_myth:
+    value: Thinking that "subscribing to several threat intelligence services, such as buying a vendor's
+      subscription, counts as having threat intelligence"—but the subscription itself has no value; the
+      value lies in whether you have people to read it, filter it, and turn relevant parts into your own
+      detection or response actions; auditors will look at whether intelligence has been translated into
+      action.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the past three months, which external threat intelligence led you to change detection rules or
+      address a real issue? Please point it out.
+    - Which roles receive this intelligence distribution? If intelligence indicates that a vulnerability
+      you use is being exploited, how quickly can you initiate an investigation?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.542461Z'
+  signed_digest: 716f6599d34e945a1787c6dc66d2826ab3820f5ecefb55d4a4aaa4a1417df90a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:IA-5.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against identity fragmentation and credential sprawl across federated
+      partners — where users end up with multiple stale identities, shared service
+      accounts, or unmanaged third-party credentials that survive employee turnover
+      and become unmonitored footholds.
+    basis: inferred
+  plain_zh:
+    value: Manage credentials issued to and accepted from external organizations (partners,
+      suppliers, federated identity providers) through a defined, accountable process
+      — not ad-hoc trust arrangements that nobody owns once signed.
+    basis: inferred
+  practice:
+    value:
+      '1': Inventory of federated identity relationships (which orgs we federate with,
+        what assertions we accept or issue); contract or agreement names an owner;
+        leavers/joiners prompt a federation-side action, not just internal HR.
+      '2': Written policy on which federation standards are accepted (SAML, OIDC,
+        federated SSO), attribute release, trust lifecycle and renewal; periodic review
+        of partner IdP hygiene; revocation tested.
+      '3': Federation metadata monitored for drift (cert expiry, IdP endpoint changes,
+        unusual assertion patterns); automated provisioning/deprovisioning tied to
+        federated identity; alerts on stale or orphaned federated accounts; exit clause
+        tested for at least one partner.
+    basis: inferred
+  evidence:
+    value: Federation inventory, trust agreements with owners, policy on accepted
+      federation standards, periodic review records, revocation and exit test results,
+      monitoring of federation metadata and assertion anomalies.
+    basis: inferred
+  common_myth:
+    value: Believing that signing a federation agreement with a partner or turning
+      on 'Login with IdP' is the control — and that the partner now owns the risk.
+      The agreements rot, IdPs get compromised, and accounts on our side are rarely
+      inventoried against the federation source, so a departed partner employee can
+      still authenticate months later.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the list of external organizations whose identities you currently accept
+      or issue credentials to, and name the owner for each trust.
+    - When an employee leaves a federated partner organization, how does that reach
+      your systems and how quickly is the federated access actually revoked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.222292Z'
+  signed_digest: a0e98a9a705549ccb426fd8592f27762f6a1250a283c1a8542046cfd227a79d9
+  interview_seconds: null
+  inherited_from: null

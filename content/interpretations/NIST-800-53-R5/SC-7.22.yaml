@@ -1,0 +1,75 @@
+control_id: NIST-800-53-R5:SC-7.22
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents accidental or hostile bridging between networks of different trust
+      levels when a single host or device sits on both — for example, a workstation,
+      jump server, or container host that can reach both an internal enterprise segment
+      and an external/less-trusted network at once, becoming the conduit that bypasses
+      every firewall in between.
+    basis: inferred
+  plain_zh:
+    value: Make sure that anything which has to talk to networks of different trust
+      levels cannot do so on the same logical interface or at the same time — the
+      device's own traffic must be split across separate subnets so cross-domain traffic
+      has to traverse an explicit, controlled boundary rather than leak through the
+      endpoint itself.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify devices or services that must connect to more than one security
+        domain (for example, a vendor management host, an OOB management jump box,
+        a DMZ proxy). Put each such device on distinct subnets/VLANs per domain, with
+        routing forced through a controlled gateway.
+      '2': Document the dual-domain devices in a register with which subnets/VLANs
+        they bind to each domain; configure host firewall or NIC-level rules to restrict
+        which networks each OS instance or interface may reach; disable or remove
+        any path that would let one domain reach the other without going through the
+        boundary.
+      '3': Enforce single-domain binding technically — disable unused NICs/segments
+        on dual-homed hosts, segment OS instances so a process in one domain cannot
+        address the other, validate by periodic configuration scans and by testing
+        that a compromised endpoint in one domain cannot initiate a session into the
+        other without crossing the documented boundary.
+    basis: inferred
+  evidence:
+    value: Register of dual-domain hosts and the subnets/VLANs each binds to, network
+      diagrams showing the boundary path between domains, host firewall / NIC configuration
+      samples, configuration scan results showing no cross-domain route exists on
+      the endpoint, and test records (e.g., penetration test or tabletop) demonstrating
+      that compromise in one domain cannot reach the other directly.
+    basis: inferred
+  common_myth:
+    value: Treating this as satisfied by the presence of a perimeter firewall — assuming
+      that because the firewall between domains is configured, an endpoint with interfaces
+      in both domains is fine. The whole point of SC-7.22 is that the endpoint itself
+      must not be allowed to bridge domains; otherwise the firewall is bypassed the
+      moment that endpoint is compromised.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one host that legitimately sits in two security domains and walk me
+      through how the OS itself is prevented from routing between them.
+    - If a laptop or jump box in domain A is fully compromised by an attacker, what
+      stops that attacker from reaching domain B directly from the box without going
+      through the boundary device?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.720790Z'
+  signed_digest: 39a70a2c83372f6235068575bddd894597c9b523eef20f272784ce8882a33d38
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.5.20
+locale: en
+state: draft
+fields:
+  intent:
+    value: This addresses the risk of 'no security requirements in contracts'—procured systems, components,
+      or services lack a security basis. After an incident, you cannot hold the supplier accountable,
+      nor do you have contractual terms requiring remediation; more critically, the supplier may transfer
+      data or code to lower-tier subcontractors of unclear qualification in the subcontracting chain,
+      and you have no right to intervene.
+    basis: inferred
+  plain_zh:
+    value: In contracts signed with suppliers, security requirements, data protection responsibilities,
+      acceptance criteria, and incident notification obligations must be written as explicit clauses,
+      not verbal agreements or assumptions that the supplier understands.
+    basis: inferred
+  practice:
+    value:
+      '1': Important procurements have contract templates that include a section on security and privacy
+        requirements; suppliers sign without objection.
+      '2': Contract clauses are differentiated by risk level; security requirements map to specific deliverables
+        and acceptance conditions; suppliers provide written confirmation of acceptance.
+      '3': Contract security clauses are strongly linked to the procurement process; supplier subcontracting
+        or outsourcing requires your written consent, and contracts specify that security obligations
+        flow down the subcontracting chain.
+    basis: inferred
+  evidence:
+    value: Contracts or purchase orders containing security clauses, supplier signed confirmations, contract
+      template version records, subcontracting/outsourcing approval records, security acceptance reports.
+    basis: inferred
+  common_myth:
+    value: Assuming that a 'supplier commitment letter' or 'security compliance undertaking' counts as
+      contractual terms. Such letters typically lack liability for breach, acceptance trigger conditions,
+      and subcontracting constraints, with much lower legal effect than the main contract body—auditors
+      look for security clauses in the main contract, not a declaration in an appendix.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Among key system procurement contracts newly signed in the past year, which ones include security
+      acceptance clauses? What are the consequences of failed acceptance?
+    - If the supplier subcontracts part of the services to a third party during the contract period, does
+      your contract require prior notification and written consent?
+    basis: inferred
+  regional_note:
+    value: In Europe, under GDPR and industry regulatory influence, auditors check whether contracts clearly
+      specify data processor and entrusted processing clauses, and whether data cross-border transfers
+      are lawful; US auditors focus more on federal acquisition regulation-type requirements (e.g., CMMC,
+      FedRAMP references in contracts). The actual difference lies in the standards cited in contracts,
+      but both regions equally require security clauses to be written into the main contract body.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.275492Z'
+  signed_digest: e50c39271f6d2b88f0bf9f12815938366125e0b2e6fead059d68075bac3ba519
+  interview_seconds: null
+  inherited_from: null

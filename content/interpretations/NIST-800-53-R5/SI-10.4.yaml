@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-10.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents race conditions and timing-based exploits where an attacker manipulates
+      the order or interleaving of operations to slip unauthorized input past the
+      parser, bypass validation, or corrupt state mid-transaction. Without timing
+      controls, a check-then-act gap lets an attacker land input between the moment
+      validation runs and the moment the system acts on it.
+    basis: inferred
+  plain_zh:
+    value: Make sure input checks and the actions that depend on them cannot be subverted
+      by racing them — validate input atomically with the operation that uses it,
+      or lock the resource so nothing can change between check and use.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of high-value functions (file writes, financial
+        transactions, auth decisions, config changes) where a check-then-act gap would
+        matter, and add a basic mutex or database transaction so the check and the
+        act complete as one unit.
+      '2': Document which timing-sensitive code paths use atomic operations, transactions,
+        or file locks; review new code during change management for added race windows;
+        verify with at least one concurrency test on each critical path.
+      '3': Build a regression test suite that deliberately races the parser/validator
+        against concurrent input or state changes; track timing-related defects as
+        their own category; require architectural review when a change introduces
+        new shared state between validation and action.
+    basis: inferred
+  evidence:
+    value: Code or design notes showing atomic operations, transactions, or locks
+      on the identified timing-sensitive paths; concurrency or race-condition test
+      results; defect log entries tagged for timing issues; change-review records
+      flagging shared-state concerns.
+    basis: inferred
+  common_myth:
+    value: Assuming SI-10 (input validation) on its own covers SI-10(4) — the base
+      control validates syntax and content, but it does not stop an attacker who races
+      the validator. Teams ship 'input is validated' as the answer and miss that the
+      validation window can be exploited between read and write.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which functions were evaluated for check-then-act races, and how were they protected?
+    - Show a test that exercises a timing-sensitive path under concurrent load — when
+      did it last run and what did it find?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.809392Z'
+  signed_digest: 10fa60b0327f5ed41c676fe1971e6a6ca7ccc4fa5d182373515d6669dc3bc974
+  interview_seconds: null
+  inherited_from: null

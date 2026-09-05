@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PE-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against tailgating, badge cloning, and social-engineering entry
+      by ensuring the access-control system verifies something the person has AND
+      something they know or are — so a lost, loaned, or stolen credential alone cannot
+      get a person into a controlled area.
+    basis: inferred
+  plain_zh:
+    value: At facility entry points, require staff and visitors to present two independent
+      forms of identification (e.g., a badge plus a PIN, biometric, or guard verification)
+      before being allowed in.
+    basis: inferred
+  practice:
+    value:
+      '1': High-security areas use a badge plus a PIN, biometric, or staffed verification;
+        badges are not handed out at the door or self-issued by the holder.
+      '2': All controlled facilities have a documented two-factor entry procedure;
+        visitor management ties the second factor (escort, ID check, or temporary
+        credential) to a logged identity; the procedure is trained and posted.
+      '3': Two-factor verification is enforced at the door system itself (no manual
+        override without logged approval), badge issuance is centrally controlled,
+        exceptions are time-bounded and reviewed, and failed or bypassed entries generate
+        alerts.
+    basis: inferred
+  evidence:
+    value: Documented entry-control procedure, list of facilities and entry points
+      covered, badge issuance records tied to individuals, logs showing two-factor
+      checks at doors (including exceptions and overrides), and any alerts or reviews
+      of bypassed events.
+    basis: inferred
+  common_myth:
+    value: Assuming a badge reader alone satisfies the control because 'you need a
+      card to get in.' A card is one factor; if a lost or borrowed card opens the
+      door, the control is not met.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which entry points require a second factor and how that second factor
+      is verified at the door.
+    - Can a holder's badge alone, without the second factor, open a controlled door
+      — and if so, where is that exception approved?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.570394Z'
+  signed_digest: 895851321dd8b71f998a501234fa9c1fe4943365011003a6c4d656b5afe76f9b
+  interview_seconds: null
+  inherited_from: null

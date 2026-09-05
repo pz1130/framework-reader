@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IA-8.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure mode where federal-facing contractors accept
+      any 'government-looking' badge or smart card as proof of identity, when only
+      properly validated PIV-Interoperable (PIV-I) credentials actually let you trust
+      that the person on the other end is who they claim to be — and was vetted at
+      a comparable level to a federal PIV holder.
+    basis: inferred
+  plain_zh:
+    value: If non-federal users need to authenticate to your systems at a federal-equivalent
+      assurance level, you must accept PIV-Interoperable (PIV-I) credentials issued
+      from a trusted issuer — and you must have a written acceptance policy plus the
+      technical means to verify those cards, not just a willingness to 'take a government
+      card.'
+    basis: inferred
+  practice:
+    value:
+      '1': A written policy exists stating that PIV-I credentials from an approved
+        issuer are an accepted authentication method; staff can name the issuers they
+        trust.
+      '2': The relying system can actually read and validate PIV-I cards (cert chain,
+        status, FIPS-compliant crypto); acceptance is documented per user/session
+        for audit purposes.
+      '3': Acceptance is tied to a documented assurance need (e.g., the application
+        requires federation-grade or high-confidence identity); periodic review verifies
+        card readers, trust anchors, and issuer lists are current; exceptions are
+        tracked and time-bound.
+    basis: inferred
+  evidence:
+    value: Acceptance policy referencing PIV-I, list of trusted issuers/roots, system
+      configuration showing PIV-I certificate validation, sample authentication logs
+      from PIV-I users, and any exception records with justification and expiry.
+    basis: inferred
+  common_myth:
+    value: Believing that accepting 'any federal smart card' or a card just because
+      it has a government agency logo on it satisfies the control. PIV-I requires
+      verification against a specific trust framework and federation assurance level
+      — visually government-issued cards from unapproved issuers do not qualify.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which issuers' PIV-I credentials does your system actually accept, and where
+      is that trust anchor list maintained?
+    - Show me an authentication event from the last quarter where a PIV-I credential
+      was used to access a federal-facing application.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.245062Z'
+  signed_digest: 01c70bcc2f485d091419e4274ed29f55af14957ded5dd87292eead7e9226c74f
+  interview_seconds: null
+  inherited_from: null

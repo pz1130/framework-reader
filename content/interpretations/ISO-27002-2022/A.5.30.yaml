@@ -1,0 +1,62 @@
+control_id: ISO-27002-2022:A.5.30
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "the emergency plan is comprehensive on paper, but when a power outage,
+      network outage, or ransomware attack occurs, it turns out to be unexecutable" — a plan that hasn't
+      been tested and exercised is just a piece of paper; if critical assets haven't been identified,
+      you won't even know which ones to prioritize for recovery.
+    basis: inferred
+  plain_zh:
+    value: For ICT systems supporting business continuity, develop plans, identify critical assets, conduct
+      regular testing and exercises, and continuously improve based on test results to ensure they are
+      truly usable in critical moments.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an emergency plan for critical systems; you know which systems are most important;
+        you have conducted a tabletop exercise or simulation drill.
+      '2': The plan is linked to business impact analysis, with clear recovery priorities and recovery
+        objectives; exercises are conducted regularly (e.g., annually) with documented records; issues
+        found during exercises are tracked for remediation.
+      '3': Exercises cover real disruption scenarios (e.g., network outage, power outage, ransomware);
+        exercise results are quantitatively assessed against recovery time and recovery point objectives;
+        the critical asset inventory and dependencies (including upstream suppliers) are continuously
+        maintained and monitored.
+    basis: inferred
+  evidence:
+    value: Emergency plan and version history, business impact analysis report, critical asset inventory,
+      exercise plan and scripts, exercise results report, issue remediation tracking table, exercise site
+      records or screenshots.
+    basis: inferred
+  common_myth:
+    value: The misconception is that "having conducted a disaster recovery switchover once means compliance."
+      A single success doesn't prove the plan is effective — many teams only test technical recovery,
+      not business-side processes, personnel contact, or third-party dependencies; moreover, issues found
+      after testing are not remediated, leading to failure the next time.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last exercise? What systems and scenarios did the exercise cover?
+    - What non-conformities were found during the exercise? What is their remediation status?
+    - How often is the critical asset inventory updated? Who is responsible for maintaining it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.296372Z'
+  signed_digest: 66db30f18dd333bd234529a4b648fd32796b63e4d65d2720cfb1638a3c85542c
+  interview_seconds: null
+  inherited_from: null

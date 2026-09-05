@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:PR.AA-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about "anyone with an account can get in" — credentials are issued without trusted
+      identity verification, allowing attackers to gain legitimate access through fake identities, credential
+      stuffing, or insider misrepresentation. All subsequent access controls are then built on an untrusted
+      foundation.
+    basis: inferred
+  plain_zh:
+    value: Before issuing accounts and credentials to users, identity verification of appropriate strength
+      must be performed based on the usage scenario (whether internal employee, partner, or external customer),
+      ensuring that the identity is genuine and that the identity and credentials are bound together.
+    basis: inferred
+  practice:
+    value:
+      '1': Basic identity verification (e.g., checking ID documents) is performed for internal employees
+        upon onboarding; a unified identity source (e.g., HR system) is the sole basis for account creation.
+      '2': Different scenarios (employee/outsourced/customer/API) have clear identity verification level
+        requirements; high-risk roles (e.g., administrators, finance) have enhanced verification processes;
+        identity changes (e.g., name changes, role transfers) are synchronized to credentials.
+      '3': The identity verification process has audit logs that can trace the verification basis for
+        each account creation; privileged accounts are subject to multi-factor authentication bound to
+        verified identities; the system can detect and prevent identity reuse or mismatches between credentials
+        and identities.
+    basis: inferred
+  evidence:
+    value: Identity verification process documentation (by scenario), verification records in onboarding/account
+      creation tickets, screenshots of identity source systems, MFA binding records, logs or reports of
+      identity verification failures.
+    basis: inferred
+  common_myth:
+    value: Assuming that "having the HR system create an account" equals completing identity verification.
+      HR account creation only records information; if systems are manually synchronized, or outsourced
+      personnel are requested verbally by project teams, the identity has not actually been verified —
+      the account does not match a real person.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who verifies the identity of outsourced or temporary personnel? What documents are verified? Where
+      are the records?
+    - Can a departed employee's identity be used to create a new account? How does the system prevent
+      identity reuse?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.563104Z'
+  signed_digest: 2a880fac9519fd3384e74745b775d155f58682cec6a0691ddb064a749954ad25
+  interview_seconds: null
+  inherited_from: null

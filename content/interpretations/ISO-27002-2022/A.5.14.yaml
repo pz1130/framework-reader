@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.5.14
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about preventing information transfers that lack records, constraints, and technical
+      interception—where employees can send or receive as they please, interfaces are opened at anyone's
+      discretion, and once data flows out, there is no record or basis for accountability.
+    basis: inferred
+  plain_zh:
+    value: List all channels for transferring data to and from external parties (connections to external
+      systems, interfaces, email, file exchange, etc.), define security requirements for each, sign agreements,
+      obtain approvals, and impose technical restrictions.
+    basis: inferred
+  practice:
+    value:
+      '1': There is an inventory of external data transfers (which external systems are connected, via
+        what methods, and what data is transferred); new or changed transfer methods require approval.
+      '2': Each transfer method has a written agreement or specification stating interface parameters,
+        security requirements, and responsibilities of both parties; transfer activities are logged.
+      '3': External data transfers are enforced at network gateways according to policy (e.g., filtering,
+        approval, encryption, blocking); information flow is traceable and auditable; transferred content
+        is verifiable as consistent with the approved basis.
+    basis: inferred
+  evidence:
+    value: Inventory of external data transfers and approval forms, interface or connection protocol agreements,
+      information flow policy configurations and interception logs on firewalls/API gateways/email gateways,
+      and records of periodic reviews of transfer methods.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having a dedicated line or VPN constitutes compliant information exchange'—a
+      dedicated line is merely a pathway, lacking written definitions and approval records of transmitted
+      content, interface methods, and responsibilities of both parties. When an audit traces what specific
+      data was transmitted, who approved it, and whether there were restrictions at the transport layer,
+      only a bare link exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Please identify each data transfer method between the current system and external systems; where
+      are the corresponding approval documents?
+    - How do you verify that the data types transmitted via a given external interface match the actual
+      content?
+    - How are prohibited transfer methods (e.g., personal cloud storage, private email) blocked at the
+      technical level?
+    basis: inferred
+  regional_note:
+    value: European auditors focus more on whether cross-border information flows have a legal basis at
+      the transport layer (e.g., data export compliance), while American auditors focus more on whether
+      information flows are actually enforced and recorded at the point of control.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.261567Z'
+  signed_digest: df5b64330758cd1cde1db29d8f42011a0cc8eef22a8d8c3a6e5b05e50136e67f
+  interview_seconds: null
+  inherited_from: null

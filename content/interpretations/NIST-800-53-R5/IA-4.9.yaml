@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:IA-4.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure where identity attributes used for authentication
+      and authorization decisions (badges, certificates, biometric templates, group
+      memberships, role claims, device identifiers, PIV/IAM attributes) get altered,
+      replaced, or spoofed after issuance without anyone noticing — meaning an attacker
+      who edits the attribute store gets the same trust as a legitimate user.
+    basis: inferred
+  plain_zh:
+    value: Maintain the integrity and authenticity of the security attributes attached
+      to identities (and where they live) so that decisions based on them can be trusted,
+      and detect/prevent tampering of those attributes and their storage.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the authoritative sources that store identity attributes (IAM
+        directory, PKI, badge system, MDM); restrict who can write to them; protect
+        the stores with the same controls as the authentication system.
+      '2': Cryptographically bind attributes to the identity where feasible (signed
+        certificates, signed tokens, signed badge records); log every attribute change
+        with actor, before/after value, and justification; review changes periodically.
+      '3': Continuous integrity monitoring of attribute stores (hash baselines, signed
+        audit trails, tamper-evident logging); automated alerting on out-of-band attribute
+        changes; attribute changes are themselves access-controlled and subject to
+        separation of duties; periodic third-party verification that attributes in
+        local stores match the authoritative source.
+    basis: inferred
+  evidence:
+    value: Inventory of identity attribute stores with their protection controls,
+      attribute-change logs with actor and justification, integrity-protection configuration
+      (signing, hashing, write-access restrictions), periodic reconciliation reports
+      between consuming systems and the authoritative attribute source.
+    basis: inferred
+  common_myth:
+    value: Assuming authentication strength is the whole problem — so MFA is in place
+      and attributes are ignored. In reality, the authentication event verifies an
+      identity at one moment; if the attributes tied to that identity (role, clearance,
+      group, clearance level, employee status) can be silently changed, the strong
+      authentication becomes a wrapper around attacker-controlled claims.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is authorized to change identity attributes in the authoritative directory,
+      and how is that write access controlled?
+    - 'Show me the last change to a privileged-group membership: who made it, when,
+      and what approval preceded it?'
+    - How do you detect that an attribute store has been altered outside of the normal
+      change process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.167116Z'
+  signed_digest: b0082eac5abf0bf171ca09938d79c9f7c7e1c408398023d6a4f97c420af0fd2c
+  interview_seconds: null
+  inherited_from: null

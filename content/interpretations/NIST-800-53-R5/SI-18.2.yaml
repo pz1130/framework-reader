@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-18.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents data flowing through systems without any machine-checkable identity,
+      so that the organization can't enforce handling rules, detect exfiltration of
+      tagged assets, or prove after an incident which data was actually subject to
+      which protections.
+    basis: inferred
+  plain_zh:
+    value: Attach machine-readable tags to data so systems can identify its sensitivity,
+      handling requirements, and provenance, and route or audit it accordingly throughout
+      its lifecycle.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a tag schema (e.g., sensitivity, lawful basis, data category) in
+        a policy; apply tags manually to the most sensitive datasets at creation or
+        upload.
+      '2': Tagging is automated where feasible (classification tools, mail/DLP rules,
+        schema-based tagging in data platforms); tags propagate with the data through
+        copies and exports; handling rules are bound to tag values.
+      '3': 'Tags are enforceable end-to-end: egress, sharing, and processing controls
+        read the tag; tampered or stripped tags are detected; tag accuracy is spot-checked
+        and feeding back into the classification scheme.'
+    basis: inferred
+  evidence:
+    value: Tag taxonomy, classification-to-tag mapping, samples of tagged assets,
+      evidence tags persist through export/copy, DLP or access rules keyed on tags,
+      and spot-check or audit results showing tag accuracy over time.
+    basis: inferred
+  common_myth:
+    value: Treating data tags as a labeling exercise for humans (color-coded folders,
+      document headers) rather than as machine-readable metadata that systems enforce.
+      If the tag isn't read by a control, it doesn't exist for security purposes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three assets tagged as restricted. Show where that tag is enforced in an
+      access, sharing, or DLP control.
+    - What happens when a user exports or copies a tagged dataset — does the tag travel
+      with it, and how do you know?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.879264Z'
+  signed_digest: ce378dd32103361e02968b87dca304af5c012a59a6d024c9193c5141db381f23
+  interview_seconds: null
+  inherited_from: null

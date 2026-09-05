@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.5.3
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is preventing "one person completing a critical process from start to finish"—where
+      authorization, execution, and review are all in the same hands, giving that person authority that
+      overrides oversight, with no one to detect or stop issues when they arise, and no one to correct
+      internal wrongdoing or single-point errors.
+    basis: inferred
+  plain_zh:
+    value: Break sensitive business or technical processes into multiple segments, assigning key steps
+      to different individuals, and codify this segregation in policies and enforce it through system
+      permissions—relying not on self-discipline but on system controls that prevent the same person from
+      completing the entire process.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify high-risk roles such as financial payments, account authorization, and system administration;
+        clearly document in policies that these roles must be segregated, with critical operations requiring
+        dual-person review.
+      '2': Define specific roles and system permissions for each segregated duty; document and approve
+        any exceptions to segregation of duties in writing, and conduct periodic reviews to ensure configurations
+        have not been bypassed.
+      '3': Access control management systems enforce the segregation of duties matrix, automatically blocking
+        or alerting on conflicts; separate management of permissions and audit logs; conduct regular reviews
+        of conflict cases and trigger matrix updates.
+    basis: inferred
+  evidence:
+    value: Segregation of duties matrix or role responsibility descriptions, conflict approval and exemption
+      records, system permission and role mapping tables, permission review minutes, dual-person records
+      or system-enforced blocking alerts for critical operations in audit logs.
+    basis: inferred
+  common_myth:
+    value: Assuming that "having a policy stating procurement and payment are handled by different people"
+      is sufficient. In reality, many individuals hold permissions for both functions, or although roles
+      are nominally separated, reviewers only check results without examining documents—audits that sample
+      specific cases quickly reveal gaps. Policy is the starting point; consistency between system permissions
+      and actual execution is key.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Why does this supervisor have both system administrator rights and audit log viewing rights? Which
+      process documented the exemption, and who approved it?
+    - For the highest-value payment, trace each step from initiation, approval, to payment—who performed
+      each step and what accounts were used?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.294057Z'
+  signed_digest: c86c5c542acb0e45de20fc46214e30a0000726279826cfce6705a9f7f2408451
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:IR-4.15
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an incident becoming a public-relations disaster because
+      the organization had no plan to communicate, contain the narrative, or repair
+      trust after a security event. Without a pre-built reputation playbook, statements
+      get made ad hoc, regulators hear about the breach from the press instead of
+      from you, and customers walk away with the impression you were hiding.
+    basis: inferred
+  plain_zh:
+    value: Before an incident happens, decide who speaks for the organization, what
+      they will and will not say, how misinformation gets corrected, and how trust
+      with customers, media, regulators, and the public gets rebuilt. Treat communications
+      as a first-class incident response capability, not a post-incident scramble.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify a spokesperson and a backup; draft holding statements for the
+        most likely incident scenarios (data loss, outage, ransomware, third-party
+        breach); keep a contact list of legal, comms/PR, and the regulator notification
+        path.
+      '2': Write a public-relations and reputation-repair plan that is reviewed annually
+        and tied to the incident response plan; run at least one tabletop that includes
+        a comms team exercise; pre-clear messaging templates with legal; track who
+        was told what and when.
+      '3': The plan is exercised end-to-end with simulated press inquiries and social-media
+        monitoring; metrics exist for time-to-first-statement, message consistency
+        across channels, and post-incident sentiment; lessons from real incidents
+        feed back into templates and spokesperson training; reputation-repair actions
+        are tracked to closure.
+    basis: inferred
+  evidence:
+    value: Public-relations and reputation-repair plan linked to the incident response
+      plan, pre-approved holding statements, spokesperson designations and authority
+      matrix, exercise records involving comms, real-incident after-action notes showing
+      communications lessons learned, and tracking of outbound statements during incidents.
+    basis: inferred
+  common_myth:
+    value: Treating communications as 'something marketing handles after the SOC calls
+      them.' By the time legal and PR are looped in, the first 24 hours of public
+      narrative are already set, and you are reacting rather than leading.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the section of your incident response plan that covers external communications
+      and reputation repair, and the date it was last reviewed.
+    - When was the last time the comms function was actually exercised as part of
+      an incident response test, and what changed afterward?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.301923Z'
+  signed_digest: e807b3a432f8b28f2d9afa6ffbb5330618e42c1697fecb07514582152450a188
+  interview_seconds: null
+  inherited_from: null

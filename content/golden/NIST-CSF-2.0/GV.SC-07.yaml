@@ -1,0 +1,38 @@
+control_id: NIST-CSF-2.0:GV.SC-07
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: "防的是「合同签完、问卷填完就算第三方风险结清」——供方产品、服务与转包链条在合作期内一直在变，风险要跟着盯，不能一次尽职调查交差。"
+    basis: practitioner
+  plain_zh:
+    value: "把重要供方及其产品服务在合作全程会带来什么安全风险说清楚、记下来、排优先级、评估、处置，并且定期回头看。"
+    basis: practitioner
+  practice:
+    value:
+      "1": "关键供方有名册；合同写最低安全要求；入场前做一次尽职调查；出事知道找谁。"
+      "2": "按风险档位做持续评估与复评；关键供方有书面处置与退出预案；复评有记录可查。"
+      "3": "供方风险进企业风险管理节奏；关键服务可替换或有备用路径；监控覆盖产品大改与转包换人。"
+    basis: practitioner
+  evidence:
+    value: "供方名册与风险分级、尽职调查与复评记录、合同安全条款、问题处置与退出演练纪要、持续监控报告。"
+    basis: practitioner
+  common_myth:
+    value: "以为「采购做完安全问卷、合同盖了章」就算达标。问卷过一次不够——条款要覆盖关系存续期的复评、变更与退出，否则只是入场门槛。"
+    basis: practitioner
+  auditor_asks:
+    value:
+      - "上一次对关键供方复评是什么时候？触发条件写在哪份文件？"
+      - "供方产品大版本升级或转包换人时，你们怎么重新评估风险？"
+    basis: practitioner
+  regional_note:
+    value: "欧洲在 DORA/NIS2 落地后，对 ICT 第三方的持续盯防与合同可审计性口径更紧，审计员常追到关键功能能否在合理时间内切换或退出；美国实践多半仍停在 SOC 报告与问卷抽查。两边松紧不同，追问深度也不同。"
+    basis: practitioner
+interview:
+  questions: []
+  raw: []
+provenance:
+  drafter: null
+  extractor: null
+  confirmed_by: jc
+  confirmed_at: 2026-08-21T10:00:00+08:00

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-27
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against applications that silently inherit the security weaknesses
+      of the OS, hypervisor, or hardware stack they run on. Without platform-independent
+      design, a vulnerability or compromise in the underlying platform becomes a vulnerability
+      in your app, and your 'application-layer' controls are bypassed by an attacker
+      who walks up the stack instead of through the front door.
+    basis: inferred
+  plain_zh:
+    value: Build and run applications so their security does not depend on a specific
+      OS, hypervisor, or hardware platform, so a compromised or vulnerable underlying
+      platform cannot undermine the application itself.
+    basis: inferred
+  practice:
+    value:
+      '1': Architecture docs explicitly state that the application is designed to
+        be portable across supported platforms; security-relevant functions are not
+        tied to one OS or hardware feature.
+      '2': Identified platform-specific dependencies are documented with the compensating
+        controls that make them safe; portability is tested during major platform
+        changes or patches.
+      '3': Continuous verification that the application behaves securely when deployed
+        on new or hardened platforms; platform-independent abstractions (e.g., vetted
+        crypto libraries, portable runtimes) replace native hooks; platform changes
+        trigger re-assessment.
+    basis: inferred
+  evidence:
+    value: Architecture and design documents calling out platform-independence requirements,
+      lists of platform-specific dependencies and their mitigations, test results
+      from cross-platform or cross-version deployment, change records showing re-assessment
+      after platform shifts.
+    basis: inferred
+  common_myth:
+    value: 'Treating SC-27 as satisfied by simply writing the application in a portable
+      language like Java or Python. Language portability is not the same as security
+      independence: the app can still rely on platform-specific crypto, auth, or filesystem
+      semantics, and the auditor will ask how you know it doesn''t.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which platform-specific components does the application rely on, and what happens
+      to its security if any of those platforms is compromised?
+    - Show me the test or design artifact that proves the application's security posture
+      holds when the underlying platform is replaced or hardened.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.477600Z'
+  signed_digest: ec5ee7e6b1202588fd4c1b230deb2c0ec4b1b89a5d41378592b75537f555bd14
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:PM-12
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the blind spot where malicious or negligent insiders—employees,
+      contractors, or partners with legitimate access—cause harm that perimeter controls
+      cannot see or stop because the activity looks normal from the outside. Without
+      a program, you only notice the problem after the damage is done, and you have
+      no mechanism to detect, deter, or respond to it in time.
+    basis: inferred
+  plain_zh:
+    value: It asks you to stand up a formal, documented program that actively looks
+      for, deters, and responds to threats coming from people inside your organization
+      who have legitimate access—not just to write a policy, but to run detection,
+      analysis, and response as an ongoing function.
+    basis: inferred
+  practice:
+    value:
+      '1': Assign an owner for the insider threat program; draft a charter or policy
+        that names the program, its scope, and its basic process for handling a potential
+        insider incident.
+      '2': Define and document roles (e.g., HR, legal, security, management) and procedures
+        for detecting, reporting, and responding; maintain a list of indicators or
+        behaviors that trigger review; keep records of investigations and their outcomes.
+      '3': 'Operate the program as a continuous cycle: proactively monitor user activity
+        against a defined baseline, analyze anomalies, have clear escalation and response
+        playbooks, and periodically review and update the program based on lessons
+        learned and changes in the threat landscape.'
+    basis: inferred
+  evidence:
+    value: A documented insider threat program charter or policy, a named owner and
+      defined roles, written procedures for detection/reporting/response, records
+      of investigations (redacted as needed), and evidence of periodic reviews or
+      updates to the program.
+    basis: inferred
+  common_myth:
+    value: Many teams believe that deploying a user behavior analytics tool or running
+      an annual security awareness campaign constitutes an insider threat program.
+      A tool or a training slide is not a program—it lacks the governance, defined
+      roles, investigation procedures, and sustained operational rhythm that make
+      detection and response actually work.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Who is accountable for this program, and what documented authority do they have
+      to pull logs or talk to people?
+    - Show me the last three months of insider-threat-related alerts or reviews and
+      what you did with them.
+    - How do you balance insider threat monitoring with employee privacy expectations?
+    - What triggers an investigation, and who has to sign off before one starts?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.697664Z'
+  signed_digest: a726166650608830b27101eb7804f343d9113c9f2ad35f9e255b7fe7d9454de7
+  interview_seconds: null
+  inherited_from: null

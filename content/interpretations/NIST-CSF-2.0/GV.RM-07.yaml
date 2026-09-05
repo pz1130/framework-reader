@@ -1,0 +1,70 @@
+control_id: NIST-CSF-2.0:GV.RM-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'risk only discusses bad things, not opportunities'—security departments
+      only do subtraction (preventing vulnerabilities, reducing losses), and exclude 'positive risk,'
+      i.e., the business value or benefits that security investments can bring, from decision-making.
+      This leads to security projects being perpetually treated as cost centers rather than strategic
+      resources.
+    basis: inferred
+  plain_zh:
+    value: Treat 'the positive gains and strategic benefits of doing security (e.g., customers won, business
+      launched, insurance premiums saved because of good security)' as a type of risk to identify, assess,
+      and discuss, incorporating it into enterprise-level risk communication, rather than only reporting
+      bad news.
+    basis: inferred
+  practice:
+    value:
+      '1': Reserve a fixed agenda item or session in risk management meetings specifically to discuss
+        security-related positive opportunities; at least one record shows a discussion of 'potential
+        benefits from security investments.'
+      '2': Have a clear case or list that spells out 'where opportunities can be seen, who proposes them,
+        and how benefits are measured'; every security project initiation requires a field for 'positive
+        risk/business benefits.'
+      '3': Embed positive opportunity assessment into existing risk management processes (as formal as
+        negative impact assessment), with quantitative or semi-quantitative methods (e.g., expected value
+        analysis); major security strategy decision documents explicitly include the opportunity-side
+        description, and provide examples where senior management made strategic decisions based on this.
+    basis: inferred
+  evidence:
+    value: Sections in board or risk management committee meeting minutes containing keywords like 'security
+      opportunity' or 'benefit,' opportunity/benefit fields in project initiation reports, or assessment
+      reports that include both positive and negative risks.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'fixing vulnerabilities faster than competitors or being reported less' counts
+      as discussing opportunities—that is still mitigation of negative risk. True positive opportunities
+      are 'what we can commit to and what we can pursue,' such as winning European customers due to strong
+      privacy protection, or obtaining insurance discounts or contract points due to meeting disaster
+      recovery drill standards. If these are not written into risk discussions, they will never be seen.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the last risk review, besides negative impacts, what specific new markets, new customers, or
+      efficiency improvement opportunities were discussed? In which meeting minutes and which paragraph
+      were they recorded?
+    - If the security team claims that a certain investment can bring positive business value, what metrics
+      support this claim? Who verifies whether that value is ultimately realized?
+    - In a security project initiation report, which field shows its contribution to business growth besides
+      reducing risk?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.488156Z'
+  signed_digest: 137fe4cc6e0b1a6f291f22160304dde84459d23c18f2a759eb567b331ab76634
+  interview_seconds: null
+  inherited_from: null

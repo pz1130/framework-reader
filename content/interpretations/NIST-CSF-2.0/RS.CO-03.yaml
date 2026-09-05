@@ -1,0 +1,69 @@
+control_id: NIST-CSF-2.0:RS.CO-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that incident information may only circulate within a small circle—if people
+      on the detection, response, and recovery chain operate in silos with information gaps, the worst
+      case is that response actions conflict, escalations are missed, and there is no channel to communicate
+      key external information (e.g., affected third parties).
+    basis: inferred
+  plain_zh:
+    value: When a security incident occurs, send relevant information to designated internal and external
+      personnel or organizations according to the established list and channels, including management,
+      legal, public relations, external regulators, or affected business partners. The focus is on 'sending
+      as planned' rather than 'sending after the fact when remembered.'
+    basis: inferred
+  practice:
+    value:
+      '1': Have an internal notification contact list (at least including security, IT, management, and
+        legal); actually notify individuals via email or instant messaging when an incident occurs.
+      '2': Have a written incident communication matrix specifying what level of incident notifies whom,
+        via what channel, and within what timeframe; have interfaces for specific external contacts; maintain
+        actual communication records.
+      '3': The communication matrix has version management and is reviewed and validated after incidents;
+        internal and external communication processes are linked to incident response playbooks, and systems
+        or tools can leave auditable communication traces; key external contacts have a regularly updated
+        verification mechanism.
+    basis: inferred
+  evidence:
+    value: Incident communication matrix or list, actual email or communication tool forwarding records
+      from incidents, the 'notification list' section in incident records or reports, and confirmation
+      lists or acknowledgments for external contact interfaces (e.g., regulators, business partners).
+    basis: inferred
+  common_myth:
+    value: Assuming that 'shouting in an internal group' counts as communication. Without notifying according
+      to a pre-defined matrix, it is easy to miss notifying those who should be informed, or to inform
+      those who should not see the information, especially legal, public relations, or external regulators.
+      Auditors require 'pre-defined how to send and post-event proof of sending.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the incident communication matrix, which roles should be notified for a level-one incident? Where
+      did you see this requirement during the last level-one incident?
+    - Is there a list of external contacts? How often is the list maintained? Through which channel did
+      the last actual external communication occur, and where is it recorded?
+    basis: inferred
+  regional_note:
+    value: In Europe, due to GDPR data breach notification obligations, auditors more often probe whether
+      time limits and message approval processes are built into the incident process for external communication
+      (regulators, data subjects); in the United States, for critical infrastructure and listed companies,
+      there is greater emphasis on internal escalation levels and external regulatory (e.g., securities
+      regulator) windows. Both sides have hard requirements for 'external communication must be fast and
+      orderly,' but European auditors are more likely to pursue specific timeline evidence.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.632582Z'
+  signed_digest: ce967e9e21defa891f19417c27992b3ee5c008e9904af4ace912e25e5ab18b16
+  interview_seconds: null
+  inherited_from: null

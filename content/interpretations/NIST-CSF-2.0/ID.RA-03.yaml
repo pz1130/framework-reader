@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:ID.RA-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security teams only look at vulnerability scans and SIEM alerts—threat
+      intelligence, business-side risks, and external supply chain threats are not collected or recorded,
+      so decision-makers lack a full picture and only discover gaps after incidents occur.
+    basis: inferred
+  plain_zh:
+    value: Collect and record threats from both inside and outside the organization that could affect
+      business operations. Don't just focus on technical vulnerabilities; also consider business risks,
+      supplier risks, geopolitical risks, etc.
+    basis: inferred
+  practice:
+    value:
+      '1': Have threat intelligence subscriptions, or at least someone monitoring public vulnerability
+        information; have a channel for reporting internal threats; have a place to record threat information.
+      '2': Collect internal and external threats regularly as required; have risk assessment records for
+        significant threats that can be traced to business impact; keep the threat repository or log updated.
+      '3': Threat intelligence sources cover both internal and external and are automatically aggregated;
+        threat records are linked to assets or business, driving risk priority adjustments; threat analysis
+        undergoes periodic review and mechanisms for external sharing.
+    basis: inferred
+  evidence:
+    value: Threat intelligence subscription records, internal threat reporting tickets or logs, threat
+      analysis and risk assessment reports, and mapping documents linking threat information to business.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having SIEM and threat intelligence subscriptions' is sufficient—but
+      if threats are not identified, recorded, or linked to business risks, the intelligence sources are
+      just for show. Auditors look for a traceable threat log and risk judgment, not which service is
+      subscribed to.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What was the most recent recorded internal threat? Where is it in the handling process, and where
+      is it recorded?
+    - What threat intelligence sources are there? How often are they reviewed? Who is responsible for
+      determining their impact on the business?
+    - Are external threat reports linked to specific assets or business lines? How are they linked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.544476Z'
+  signed_digest: fafa07cbc3606aa3afb6ffa75e1e082b5283f2cedec34b4009203a695b2ce231
+  interview_seconds: null
+  inherited_from: null

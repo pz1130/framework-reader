@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SI-12.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against 'we wiped the disk' being the end of the story — sensitive
+      output still leaking because print queues, backup tapes, cloud object copies,
+      developer laptops, or contractor-returned media were never disposed to match
+      the original confidentiality.
+    basis: inferred
+  plain_zh:
+    value: When information output is no longer needed, dispose of it so that confidentiality
+      matches what it had in use, and do not let media or devices skip that step on
+      their way out.
+    basis: inferred
+  practice:
+    value:
+      '1': Sanitization methods are written down by data class (clear, purge, destroy);
+        paper, mobile devices, disks, and cloud copies are all covered; staff know
+        not to throw devices in normal recycling.
+      '2': Each disposal is tied to a ticket that records asset, data class, method
+        used, who did it, and when; methods are chosen from the documented matrix,
+        not improvised.
+      '3': Disposal outcomes are verified (e.g., destruction certificate, log of purge
+        tool run, certificate of destruction from vendor) and the records flow into
+        asset decommissioning so nothing leaves inventory without a matching disposal
+        entry.
+    basis: inferred
+  evidence:
+    value: Disposal policy or sanitization matrix by data class, asset decommissioning
+      tickets with method and verification, certificates of destruction or sanitization
+      tool output, and a sample of recently retired assets traceable to disposal records.
+    basis: inferred
+  common_myth:
+    value: Treating a factory reset on a laptop or 'deleting the file from cloud'
+      as sufficient disposal — factory reset rarely reaches the storage medium in
+      a recoverable way, and cloud deletion often leaves backups, snapshots, or object
+      versions intact unless the disposal procedure targets those too.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me three assets retired in the last quarter and the disposal record for
+      each, including any cloud or backup copies.
+    - How do you decide whether a device is wiped, purged, or physically destroyed,
+      and who signs off on that choice?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.833142Z'
+  signed_digest: 64a97cc9fe15fa2bd9b78200cd3a9ce6ac02c17bb8f0e1d14f9792d20bcd290b
+  interview_seconds: null
+  inherited_from: null

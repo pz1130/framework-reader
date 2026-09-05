@@ -1,0 +1,69 @@
+control_id: ISO-27002-2022:A.5.19
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about the situation where the business department handles commercial negotiations,
+      the technical department handles delivery, and the security department only gets involved after
+      the fact—throughout the procurement process, no one imposes security capability requirements on
+      the supplier from the source. Only after the contract is signed do they discover that the supplier
+      lacks even basic security management, leaving remediation to rely on subsequent patchwork fixes
+      or reluctantly proceeding with the cooperation.
+    basis: inferred
+  plain_zh:
+    value: During the selection and procurement phase, security requirements must be written into the
+      requirements for suppliers, ensuring that 'security' is not a remedial item after the contract is
+      signed—what suppliers can do and must do should be agreed upon as early as possible, rather than
+      only being disclosed when data is needed or problems arise.
+    basis: inferred
+  practice:
+    value:
+      '1': The procurement process includes a security requirements template; contracts with important
+        suppliers include data protection and basic security obligations; the security department can
+        participate in advance in reviews of important procurements.
+      '2': Security requirements are differentiated based on supplier risk classification; security requirements
+        are incorporated into supplier pre-qualification questionnaires and contract clauses; the procurement
+        process has security sign-offs at key points.
+      '3': Security requirements are issued along with technical specifications from the RFQ/tender stage,
+        and suppliers must self-certify when bidding; clauses cover subcontracting, audit rights, compliance
+        joint liability, and exit mechanisms; the procurement system is integrated with security processes,
+        and the security department has veto power over supplier assessments.
+    basis: inferred
+  evidence:
+    value: Procurement policies and process documents (including security requirements templates), examples
+      of tender/RFQ documents containing security clauses, supplier response records, a list of contract
+      security clauses, and meeting minutes or countersignature records of security participation in procurement
+      reviews.
+    basis: inferred
+  common_myth:
+    value: The misconception is that including a sentence in the contract stating that the supplier must
+      comply with applicable laws and regulations counts as a security requirement—this sentence is neither
+      actionable nor does it have acceptance criteria. Substantive requirements should be written as verifiable
+      and accountable agreements, such as 'the supplier must provide penetration test reports' or 'the
+      supplier must impose equivalent security obligations in its subcontracts.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the most recent significant procurement, were security requirements raised before the tender
+      was issued, or were they added after the contract was awarded? Where is the evidence?
+    - When a supplier's capabilities are insufficient to meet your contract requirements, does the process
+      allow for disqualification? Or does the security department only provide an opinion?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.271557Z'
+  signed_digest: f2e4b3e839492e38e375728a11e3689cf105c41f032d32550a120496623fafb4
+  interview_seconds: null
+  inherited_from: null

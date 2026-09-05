@@ -1,0 +1,69 @@
+control_id: ISO-27002-2022:A.5.5
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security incidents may be concealed within local or business line operations—regulatory
+      bodies, industry supervisors, and jurisdictions have legal obligations and time limits for incident
+      reporting, and failure to report or underreporting can lead to penalties, licensing risks, and loss
+      of trust with regulators.
+    basis: inferred
+  plain_zh:
+    value: Requires you to report security incidents to the competent authorities as required by law and
+      regulation, within specified time limits and formats, with clear responsibility assigned for this
+      task, and evidence retained.
+    basis: inferred
+  practice:
+    value:
+      '1': Legal or security leads maintain a list specifying which incident types and scales need to
+        be reported to which authority, along with approximate time limits; at least one clear contact
+        is responsible for external reporting.
+      '2': A written incident reporting procedure is established, defining incident severity levels and
+        corresponding reporting deadlines; at least one reporting drill or actual report has been conducted,
+        with records available.
+      '3': The incident reporting process is integrated with the incident response process, with systems
+        able to automatically trigger reminders for incidents pending reporting; regular pre-communication
+        with authorities to confirm latest requirements and contact details; reporting is reviewed by
+        designated personnel, and a complete evidence chain is retained.
+    basis: inferred
+  evidence:
+    value: Incident reporting list and list of responsible persons, external reporting templates, actual
+      or drill reporting records (including timestamps and submission receipts), and communication letters
+      or meeting minutes with authorities.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'having dinner with the cybersecurity brigade or regulator means a phone call
+      in a real incident is enough.' Without a written incident severity classification table and reporting
+      deadlines, verbal communication does not count in audits or legally; incident reporting requires
+      written records and receipts to be considered complete.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last time you reported a security incident to a competent authority? Where are the
+      archived report content and receipts?
+    - What is the basis for determining that a certain type of incident needs to be reported? In which
+      document is this written?
+    - If a data breach involving personal data is discovered early this morning, by what time tomorrow
+      morning must action be taken? Who is responsible?
+    basis: inferred
+  regional_note:
+    value: In Europe, there is more emphasis on reporting incident types in detailed categories according
+      to regulations like GDPR, with tight deadlines and retrospective review; in the US, it is primarily
+      industry regulation and state laws, and auditors focus more on whether you can demonstrate that
+      you 'know where to report and can report in time.'
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.313420Z'
+  signed_digest: 77cc37719002456db2a1e9b33ddfd2604ec7ccef0a44d71d3979330c9a16ae3a
+  interview_seconds: null
+  inherited_from: null

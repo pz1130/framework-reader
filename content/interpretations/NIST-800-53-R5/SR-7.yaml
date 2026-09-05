@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SR-7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stops the supplier-side attack where someone tampers with, substitutes,
+      or otherwise compromises the product or service after the contract was signed
+      but before it lands in your environment — without an OPSEC discipline, integrity
+      is assumed rather than proven.
+    basis: inferred
+  plain_zh:
+    value: Apply operational security practices when acquiring, transporting, storing,
+      and deploying supplies from external providers so that you can detect and resist
+      tampering, counterfeits, and unauthorized substitutions across the supply path.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which suppliers and which delivery paths matter most; require
+        tamper-evident packaging or basic chain-of-custody on intake; log who received
+        what and when.
+      '2': Define OPSEC procedures per critical supplier covering storage, transport,
+        hand-off, and disposal; train the people who actually receive and stage the
+        goods; verify integrity before the item enters production.
+      '3': Run OPSEC as a measurable program with periodic reviews, exception handling,
+        and lessons learned after incidents; integrity checks happen at defined gates
+        and deviations trigger investigation rather than being quietly accepted.
+    basis: inferred
+  evidence:
+    value: OPSEC procedures for supply operations, supplier risk tiering, intake and
+      chain-of-custody logs, integrity verification records, deviation and incident
+      reports tied back to OPSEC gaps.
+    basis: inferred
+  common_myth:
+    value: Treating OPSEC as a hardware-only concern about physical seals and shipping
+      boxes, while ignoring the software, virtual images, cloud artifacts, and service
+      deliveries that dominate modern supply chains — or assuming the procurement
+      checklist already covers it because it mentions 'supplier security'.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the OPSEC procedure for a named critical supplier and the log proving
+      it was actually followed on the last three deliveries.
+    - When integrity verification failed or was skipped, what was the documented response?
+    basis: inferred
+  regional_note:
+    value: US federal buyers (and contractors supporting them) tend to drive this
+      control deeper into contractual and CMMC-style requirements; EU auditors more
+      often route the same risk through NIS2 supply-chain duties and sector regulations,
+      asking less about OPSEC procedure names and more about whether tampering scenarios
+      were considered end-to-end.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.198257Z'
+  signed_digest: c00e2e8c3e9e782ea2066fdc4b89bff2689b6c39680494b077eed552bfbf67fc
+  interview_seconds: null
+  inherited_from: null

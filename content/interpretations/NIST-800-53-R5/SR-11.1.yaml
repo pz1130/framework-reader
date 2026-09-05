@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SR-11.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against counterfeit or tampered components being accepted as genuine
+      because staff cannot recognize the warning signs — without trained eyes, fake
+      parts slide through receiving, procurement, and integration, and the failure
+      (malicious implant, sub-spec part in critical systems) is discovered only after
+      deployment.
+    basis: inferred
+  plain_zh:
+    value: Make sure the people who buy, receive, install, or validate hardware/components
+      know how to spot counterfeits and know what to do when they suspect one — and
+      back that with written procedures and reporting channels.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the roles that touch hardware/component acquisition and acceptance;
+        give them a short briefing on common counterfeit indicators (packaging, markings,
+        supplier red flags) and a place to report suspicions.
+      '2': Document a counterfeit-awareness procedure covering receiving inspection,
+        supplier verification, and reporting/handling of suspected fakes; deliver
+        training at onboarding and refresh periodically; retain attendance records.
+      '3': 'Training is tied to a measurable program: defined audience, refresher
+        cadence, content updated against recent threat intel (e.g., known-bad suppliers,
+        component-level alerts), and suspected-counterfeit events fed back into training
+        and supplier decisions.'
+    basis: inferred
+  evidence:
+    value: Documented counterfeit-awareness policy and training material, attendance/completion
+      records for receiving, procurement, and engineering staff, defined reporting
+      channel for suspected counterfeits, and records of any past suspected-counterfeit
+      reports and how they were handled.
+    basis: inferred
+  common_myth:
+    value: Treating anti-counterfeit training as a one-time onboarding slide deck
+      and assuming 'we only buy from authorized distributors' covers it — training
+      still has to exist for the staff who actually inspect incoming parts, and authorized-distributor
+      assumptions need verification when fakes have entered official channels.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which job functions receive counterfeit-awareness training and how often is
+      it refreshed?
+    - Show me the last suspected-counterfeit report your team raised and what happened
+      to that lot.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.140877Z'
+  signed_digest: 96b071d5664df4d24ba0dcd9e176efd8c9268ed85011dadc3794eecec1ca0726
+  interview_seconds: null
+  inherited_from: null

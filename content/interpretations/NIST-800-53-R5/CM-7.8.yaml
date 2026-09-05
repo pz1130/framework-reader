@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:CM-7.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against embedded malicious logic and undocumented capability shipped
+      inside vendor or third-party binaries - the organization cannot review source,
+      so unsigned executables can carry backdoors, logic bombs, or behaviors that
+      silently weaken every system they land on.
+    basis: inferred
+  plain_zh:
+    value: Only allow binary or machine-executable code to run on organizational systems
+      when it comes from an approved, trusted source and its integrity can be verified;
+      otherwise block, quarantine, or require exception. This applies to vendor products,
+      third-party utilities, scripts compiled to native code, and downloaded executables
+      - not just to code the organization writes itself.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain an allowlist of approved binary sources (vendors on contract,
+        signed packages from internal repos); systems or EDR tools block execution
+        of unsigned or unknown binaries by default; security can name who approved
+        a given binary.
+      '2': Code-signing verification is enforced at endpoints and at install boundaries;
+        an exception process exists with justification, scope, and expiry; binaries
+        in use are periodically reconciled against the allowlist and findings are
+        tracked.
+      '3': Binary provenance, integrity hashes, and signatures are captured automatically
+        at ingestion; deviations from approved sources trigger alerts; supply-chain
+        integrity is tied into vendor risk and SBOM practices; the block-by-default
+        stance is tested in periodic red-team or audit exercises.
+    basis: inferred
+  evidence:
+    value: Approved-binary allowlist with sources and version pins, code-signing or
+      hash-verification enforcement configuration, exception register with approvals
+      and expiries, reconciliation reports between running binaries and the allowlist,
+      incident records for blocked or quarantined binaries.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we only run vendor products, so we are fine' - vendor
+      binaries still arrive unsigned, repackaged, or pulled from mirrors, and unsigned
+      executables from browser downloads, scripts-to-native compilers, and engineering
+      tools slip in daily.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick a workstation and tell me which of its unsigned binaries were approved,
+      by whom, and when.
+    - What stops a downloaded executable from running today, and where is that enforcement
+      configured?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.856837Z'
+  signed_digest: 00d48a0104a94308840af178526a7cd9ded33167b191fd63a9bfe2bd25ee439b
+  interview_seconds: null
+  inherited_from: null

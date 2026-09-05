@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:MA-5.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevent maintenance work on classified or high-sensitivity systems being
+      performed by personnel who have not been cleared to the level of data those
+      systems hold — an uncleared technician handling a classified system can see,
+      retain, or exfiltrate information they were never vetted to access, regardless
+      of how trustworthy they appear.
+    basis: inferred
+  plain_zh:
+    value: When maintenance is performed on systems that process classified or otherwise
+      highly sensitive information, make sure the people doing the work hold the appropriate
+      security clearance, and have a way to verify that before they touch the system.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which systems and components are designated as handling classified
+        information; require maintenance personnel on those systems to hold a clearance
+        at or above the relevant level before access is granted.
+      '2': Maintain a documented list of cleared personnel authorized to maintain
+        each classified system; verify clearance status (e.g., from the issuing authority)
+        before assigning the work; record who performed each maintenance action and
+        under what clearance.
+      '3': Integrate clearance verification into the maintenance ticketing workflow
+        so a job cannot start without a current, valid clearance match; periodically
+        audit completed work orders against clearance records; revoke access promptly
+        when clearances lapse or are downgraded.
+    basis: inferred
+  evidence:
+    value: Inventory of systems designated as handling classified or high-sensitivity
+      data, list of maintenance staff with their clearance levels, verification records
+      linking each maintenance activity to a cleared individual, and audit reports
+      reconciling maintenance logs against clearance status.
+    basis: inferred
+  common_myth:
+    value: Assuming an employee's company badge or general IT access implies they
+      are cleared to service classified systems. Standard employment vetting and a
+      facility badge are not a substitute for the specific personnel security clearance
+      required for the data classification of the system being maintained.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your systems are designated as processing classified information, and
+      where is that designation documented?
+    - Show me the clearance verification record for the last three maintenance actions
+      performed on one of those systems.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.431981Z'
+  signed_digest: 1f25664ffd183dfc0739419194154573d655332009767f9136a887db8e48228d
+  interview_seconds: null
+  inherited_from: null

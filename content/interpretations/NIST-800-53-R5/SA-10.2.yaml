@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-10.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against developers, integrators, or suppliers bypassing the standard
+      CM process for 'urgent' or 'special-case' changes—where untracked modifications
+      quietly enter production, and when an incident happens there is no baseline
+      to diff against, no accountability for who altered what, and no way to roll
+      back.
+    basis: inferred
+  plain_zh:
+    value: When a developer, integrator, or supplier needs to alter an existing system
+      component, the change must still flow through your CM process (defined, approved,
+      tracked, baselined). Define the circumstances, the equivalent controls, and
+      who is allowed to use an alternative path without losing traceability.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which actors (in-house devs, integrators, vendors) may need to
+        touch components and where the standard CM gate is bypassed; document one
+        alternative path with equivalent approval and logging.
+      '2': Each alternative path is defined in writing with named roles, scope, justification,
+        duration, and the compensating controls (logging, integrity check, review
+        window); deviations are time-bounded and recorded.
+      '3': Alternative changes are detected automatically, reconciled against the
+        authoritative baseline, reviewed within a defined SLA, and non-conformities
+        feed back into the CM policy; exceptions expire unless explicitly renewed.
+    basis: inferred
+  evidence:
+    value: Documented alternative CM procedures with scope and approval authority,
+      change tickets/logs showing alternative-path changes with justification and
+      compensating controls, baseline-delta reports, and records of post-change reconciliation
+      and policy feedback.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we have CM' covers it because vendors and integrators also follow
+      their own change process—third-party process is not your CM process, and a vendor's
+      internal change log does not prove the change was reviewed, approved, and baselined
+      against *your* system configuration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last change a supplier or integrator made to a component under your
+      alternative CM path—who approved it, what was the justification, and where is
+      the resulting baseline.
+    - How do you detect that an alternative-path change bypassed your standard CM
+      gate, and what happens when one does?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.002042Z'
+  signed_digest: a37ecf000d7e42eef7e2472f9806e8bf9f1646ab409f6f1f5138d66986b94294
+  interview_seconds: null
+  inherited_from: null

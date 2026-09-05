@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SA-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against monolithic designs where a single flaw or compromise cascades
+      across the entire system—because when components are tangled, one bug, one breach,
+      or one unsafe change takes down everything. The risk is that you cannot contain
+      failure, you cannot isolate trust, and you cannot change one part without re-testing
+      the whole.
+    basis: inferred
+  plain_zh:
+    value: Build the system out of separated, well-defined modules arranged in layers,
+      so that a fault, compromise, or change in one module does not automatically
+      propagate to the others and trust boundaries are clear.
+    basis: inferred
+  practice:
+    value:
+      '1': Architectural documentation shows distinct modules (e.g., presentation,
+        business logic, data) and at least basic layering such as a DMZ separating
+        untrusted from trusted zones.
+      '2': Modules communicate only through defined interfaces; security-relevant
+        boundaries (trust zones, privilege layers) are documented and enforced in
+        design reviews; changes inside one module trigger regression scope limited
+        to that module.
+      '3': Layering is verifiable—interface contracts are enforced, least-privilege
+        applies between layers, failures in a lower layer cannot escalate privilege
+        upward, and the architecture is tested as if a module were compromised or
+        replaced.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams with modules and trust boundaries, interface/contract
+      definitions between modules, design-review records showing layering was checked,
+      and test or tabletop results showing failure or compromise of one module is
+      contained.
+    basis: inferred
+  common_myth:
+    value: Believing a three-tier web diagram on a slide means SA-8.3 is satisfied.
+      A diagram without enforced interfaces, isolation between layers, and demonstrated
+      containment just describes boxes—layering is a behavior the system must exhibit
+      under failure, not a picture in a deck.
+    basis: inferred
+  auditor_asks:
+    value:
+    - If the component handling untrusted input is fully compromised, what stops it
+      from reaching the data store or identity layer?
+    - Show me where the interface between two modules is defined and enforced, and
+      how a change inside one module was scoped without retesting the rest.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.295588Z'
+  signed_digest: 7b2c0766b41975479dd6a221a12a2416d8534a094f3e209bf6000312fd80c043
+  interview_seconds: null
+  inherited_from: null

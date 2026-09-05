@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-40.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against attackers reading or corrupting sensitive signals by exploiting
+      unintended electromagnetic emanations (TEMPEST/EM side-channel leakage) — the
+      failure mode is assuming physical-layer emissions only matter in defense facilities,
+      while modern adversaries use cheap, commodity hardware to recover on-screen,
+      cable, or device emissions from financial, healthcare, and R&D environments.
+    basis: inferred
+  plain_zh:
+    value: Make sure critical systems do not leak sensitive information (or get corrupted)
+      through electromagnetic interference or unintentional emanations, and that the
+      environments they live in are not exposed to EM threats from outside.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify a small set of assets handling the most sensitive data (classified,
+        payment card, R&D IP, health records); confirm they sit in a controlled physical
+        environment with standard shielding (enclosed racks, bonded conduits, grounded
+        power); restrict portable electronic devices in sensitive work areas.
+      '2': Document a threat assessment that names EM emanation and EM interference
+        as considered risks for those assets; apply zoning and equipment separation
+        rules (distance from windows, external walls, public areas); verify shielding
+        on cabling and enclosures during site surveys.
+      '3': Apply formal TEMPEST/EM hardening controls (shielded facilities, filtered
+        power, emanation-tested equipment) where the threat model warrants; instrument
+        monitoring for anomalous EM events; require vendors to certify equipment to
+        recognized emanation standards; review and re-test whenever the physical layout
+        changes.
+    basis: inferred
+  evidence:
+    value: EM threat assessment for sensitive assets, zoning and shielding specifications,
+      site survey and emanation test reports, equipment certifications, restricted-area
+      access logs for sensitive spaces, and change records tied to physical or equipment
+      modifications.
+    basis: inferred
+  common_myth:
+    value: Believing EM emanation control only applies to government classified systems,
+      so commercial environments can ignore it — modern commodity hardware (software-defined
+      radio, cheap antennas, power-analysis probes) has made non-intrusive EM capture
+      feasible well outside defense contexts, especially in co-located offices, open
+      trading floors, and shared data centers.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which of your environments handle data sensitive enough that on-screen or cable
+      emanations would matter, and how was that list decided?
+    - What shielding, zoning, or emanation-testing is in place for those areas, and
+      when was it last verified?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.585676Z'
+  signed_digest: 59ce2b2ec36af4365a7a48d55eeca2ef07477bd8c5f891a5a82f23b93e9ca44d
+  interview_seconds: null
+  inherited_from: null

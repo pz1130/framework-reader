@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:PL-9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the chaos of each team applying its own ad-hoc security controls
+      independently, which leads to inconsistent coverage, gaps, and an inability
+      to correlate events across the enterprise.
+    basis: inferred
+  plain_zh:
+    value: You need to centrally manage and operate the security controls that you
+      already have in place—the tooling, the policies, the configurations—so that
+      they are consistent, up-to-date, and can be monitored from a single vantage
+      point rather than left to each team to run as they see fit.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which security controls (e.g., patch management, antivirus, firewall
+        rules, SIEM) are currently managed locally per team or device. Pick one central
+        platform to manage the most critical ones.
+      '2': Define who centrally operates each control, document the process for updating/configuring
+        them, and centralize the logging/monitoring of those controls. Teams use the
+        central process, not their own workarounds.
+      '3': Centrally manage all significant security controls with automated deployment
+        and configuration. Continuously monitor for compliance drift and have a central
+        team that can enforce changes and respond to alerts from any of the managed
+        controls.
+    basis: inferred
+  evidence:
+    value: A list of centrally managed controls, the central management platform's
+      configuration and access records, documented operational procedures for each
+      centrally managed control, and audit logs showing that changes are made through
+      the central process.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying a central security management tool means the control
+      is met—but if teams still maintain their own exceptions, local overrides, or
+      unmanaged instances not connected to the central platform, you still fail the
+      intent.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me which controls are actually managed from the central platform versus
+      each team running their own instance.
+    - If a team needs to make a local override, what is the approval process and how
+      is the override tracked centrally?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.682111Z'
+  signed_digest: 96257bbce02972e373d26bcc3041e9e269c5d51cb511a2a506917bbe325d1636
+  interview_seconds: null
+  inherited_from: null

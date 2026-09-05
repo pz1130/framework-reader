@@ -1,0 +1,67 @@
+control_id: NIST-CSF-2.0:PR.AT-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'organization-wide training is a formality, and security knowledge stays
+      in PowerPoint slides'—employees do not take risks seriously in their daily work, leading to repeated
+      human-caused incidents such as phishing emails, careless sharing of sensitive data, and unauthorized
+      device connections, yet training is not held accountable for these issues.
+    basis: inferred
+  plain_zh:
+    value: 'Provide security awareness training and skills development for all personnel, ensuring they
+      remain vigilant in their daily tasks: knowing which operations carry risks, who to contact in case
+      of an incident, and how to respond. The focus is on making training genuinely change behavior, not
+      just sending a link for people to click and forget.'
+    basis: inferred
+  practice:
+    value:
+      '1': New employees receive security training during onboarding; all personnel undergo at least one
+        security awareness session annually; attendance records or learning platform logs are available
+        for review.
+      '2': Training content is differentiated by role (e.g., general staff, administrators, developers
+        each have tailored content); regular phishing email simulations or online quizzes are conducted;
+        training effectiveness is statistically analyzed and reviewed.
+      '3': Training is linked to security awareness assessments, with remedial training or access restrictions
+        for those who fail; specialized training is provided for high-risk roles (e.g., finance, operations);
+        training content is updated in response to evolving threats, and a quality assessment mechanism
+        demonstrates behavioral improvement.
+    basis: inferred
+  evidence:
+    value: Training plans and course outlines, learning platform records (including completion rates and
+      scores), new employee training sign-in sheets, phishing simulation reports, and training effectiveness
+      evaluation and improvement records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'purchasing an online training platform and having all employees
+      click through the courses' equates to fulfilling this control. Platform records only prove clicks,
+      not behavioral change—auditors actually look at whether employees fall for phishing emails after
+      training and whether non-compliant individuals have their access restricted, rather than focusing
+      on completion rates.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Please provide the click rate from the most recent phishing simulation; what actions were taken
+      against those who clicked?
+    - Is training content uniform for all personnel or differentiated by role? How do courses for developers
+      and finance staff differ?
+    - What system-level consequences exist for employees who fail to complete annual training?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.573776Z'
+  signed_digest: 962a714ea147487c61f256f24305308d7a85a9b6bca560daf6b8a252129badd9
+  interview_seconds: null
+  inherited_from: null

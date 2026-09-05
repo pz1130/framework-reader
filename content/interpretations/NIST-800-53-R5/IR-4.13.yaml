@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:IR-4.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against an attacker or insider behaving like a normal user long
+      enough to go unnoticed—where indicators of compromise only show up as deviations
+      in how accounts, processes, or network endpoints are used, not as known-malware
+      signatures.
+    basis: inferred
+  plain_zh:
+    value: Establish a capability that detects malicious activity by watching how
+      users, processes, and endpoints actually behave, flagging and responding to
+      deviations from what is normal for them.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a baseline of expected behavior for critical user roles (admin,
+        finance, developers) and critical systems; flag obvious anomalies such as
+        impossible travel, off-hours bulk export, or unusual service start times.
+      '2': 'Behavior-based detection is integrated into the incident-handling process:
+        alerts have owners, severity, and runbook responses; analysts can pivot from
+        an anomaly to the underlying session, file, or network flow.'
+      '3': Baseline is learned per entity and refreshed; detection covers user, process/service,
+        and network/endpoint behavior; detections feed SIEM/IR and have measured false-positive
+        rates with periodic tuning; coverage gaps are known and tracked to closure.
+    basis: inferred
+  evidence:
+    value: Description of baseline construction (per-entity or per-role), detection
+      rules or models with what anomaly they target, alert-to-response runbooks, tuning/accuracy
+      metrics, and a documented map of which user classes, services, and network segments
+      are in scope versus out of scope.
+    basis: inferred
+  common_myth:
+    value: Assuming UEBA or 'anomaly detection' tooling installed on the network means
+      this control is met—without an entity-level baseline, an owner for each high-risk
+      alert, and a runbook that ties the anomaly to a containment action, the tool
+      just generates noise that gets muted.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Walk me through one real alert from detection to closure: what behavioral signal
+      fired, who owned it, what action was taken, and on what evidence?'
+    - Which user populations and which critical services are not yet covered by behavior
+      analysis, and what is the plan to bring them in?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.293929Z'
+  signed_digest: adac437065f0c4c2582e81c24ff8deefb9840144c1054930ea3e80f645d38cae
+  interview_seconds: null
+  inherited_from: null

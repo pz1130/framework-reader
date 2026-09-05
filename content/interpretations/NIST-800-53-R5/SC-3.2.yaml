@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:SC-3.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Without explicit separation between the parts of the system that enforce
+      who can talk to whom and the parts that decide what can flow where, a single
+      compromised enforcement layer can rewrite security policy. The failure mode
+      is conflating 'who is allowed in' with 'what content is allowed through' and
+      putting both under one administrative or code base - so an attacker who lands
+      on one side bypasses the other, or a configuration mistake changes access policy
+      while touching flow rules (or vice versa) without anyone noticing.
+    basis: inferred
+  plain_zh:
+    value: Make sure the functions that enforce access decisions (allow/deny subjects
+      to objects) are separated from the functions that enforce flow decisions (what
+      information is allowed to move between subjects and objects). They should be
+      implemented, managed, and reviewed as distinct capabilities, not collapsed into
+      one black box.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which system components enforce access control and which enforce
+        flow control; document them as separate functions, even if provided by the
+        same vendor product.
+      '2': Use separate admin roles/accounts to manage access policy vs. flow policy;
+        document the boundary; review configuration of each side independently on
+        a defined cadence.
+      '3': Architectural separation in code or modules with distinct trust boundaries;
+        automated tests or assertions that prove access policy changes cannot mutate
+        flow policy and vice versa; change-control diffs that flag any single commit
+        touching both enforcement surfaces.
+    basis: inferred
+  evidence:
+    value: Architectural diagram or design doc separating access-enforcement components
+      from flow-enforcement components, with distinct admin role assignments and independent
+      review records for each side.
+    basis: inferred
+  common_myth:
+    value: Treating 'the firewall/router/SDP does both' as proof of separation just
+      because they live in different screens - separation of functions is about administrative
+      and logical independence, not just feature tabs in one appliance.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the admin accounts that change access rules; are they different from
+      the ones that change flow rules?
+    - If I look at the last change to the access policy, what guard prevents it from
+      also rewriting flow rules?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.500934Z'
+  signed_digest: 3c8f0795d9555351b71bc33767414361e02c7e253550ad24e2189a99aa455b9d
+  interview_seconds: null
+  inherited_from: null

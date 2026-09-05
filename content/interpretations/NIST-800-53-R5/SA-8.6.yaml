@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-8.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against designs that quietly grant more access than the system
+      actually needs - when components, services, or subsystems share state, memory,
+      processes, or data structures by default, a compromise in one part becomes a
+      compromise in many. Shared resources also create covert channels and lateral
+      movement paths that turn a single flaw into a wide breach.
+    basis: inferred
+  plain_zh:
+    value: Engineer systems so that different parts share as little as possible -
+      separate processes, address spaces, and resources unless sharing is explicitly
+      required - and limit how much any single component can see or affect the rest.
+    basis: inferred
+  practice:
+    value:
+      '1': Developers can name the boundaries (process, memory, file, network) between
+        system components; new designs state what is shared and why.
+      '2': Architecture documents and design reviews flag unintended sharing; security
+        testing looks for cross-component leakage and shared-resource abuse.
+      '3': Sharing decisions are tracked as explicit exceptions with justification;
+        components are isolated (sandboxing, separate address spaces, least-privilege
+        interfaces) and verified by tests that prove one component cannot read or
+        disturb another's state.
+    basis: inferred
+  evidence:
+    value: Architecture and design docs showing component boundaries, a record of
+      sharing decisions with justifications, design-review checklists that flag shared
+      resources, and test results demonstrating isolation between components.
+    basis: inferred
+  common_myth:
+    value: Assuming 'we use containers' or 'we run a microservice architecture' means
+      sharing is minimized - in practice, containers commonly share the host kernel,
+      network namespace, or volumes, and microservices still share databases, caches,
+      and message brokers; isolation claims must be traced down to the actual resource
+      being shared, not the deployment diagram.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me one component in the system and list exactly what resources it shares
+      with other components - what was the justification for each shared resource?
+    - How do your tests prove that a failure or compromise in component A cannot reach
+      the data or state of component B?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.324072Z'
+  signed_digest: bbb351c5d8e30f40a05de23567be9634edad18b27565eca2d4356633437945e5
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:GV.OC-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the security department from setting priorities in isolation—where
+      the real needs of business, regulators, customers, and suppliers are not incorporated into risk
+      management, resulting in security efforts that no one acknowledges; it also prevents key stakeholders
+      from only learning of their involvement during major changes or incidents.
+    basis: inferred
+  plain_zh:
+    value: Identify all internal and external roles related to cyber risk, understand their requirements
+      and expectations regarding what you manage, how you manage it, and to what extent in security, and
+      formally incorporate these expectations into risk management decisions rather than leaving them
+      as polite communication.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a stakeholder list that includes major internal and external roles (e.g., executives,
+        legal, regulators, key customers, suppliers), and identifies the risk topics each cares most about.
+      '2': Stakeholder needs and expectations are collected and documented, with key differences assigned
+        to individuals for follow-up, and their input is reflected in the annual risk assessment.
+      '3': Stakeholder analysis is embedded in the entire risk management process, with changes in needs
+        triggering updates to risk assessments; there is a mechanism to demonstrate whose expectations
+        were considered and how they were prioritized, with conclusions communicated back to stakeholders
+        for confirmation.
+    basis: inferred
+  evidence:
+    value: Stakeholder registry (including classification, needs summary, update dates), interview minutes
+      or survey collection records, sections in risk assessment documents citing stakeholder input, risk
+      reassessment records after needs changes, and communication records of conclusions fed back to stakeholders.
+    basis: inferred
+  common_myth:
+    value: The misconception is that creating a stakeholder WeChat group and posting when needed counts
+      as compliance. The real gap lies in the disconnect between what is discussed in WeChat and risk
+      assessments or control decisions—a statement like 'the customer said they are very concerned about
+      supply chain security' never translates into a risk item or control requirement, and auditors find
+      no record of it entering any review process when checking documentation.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Regarding employee personal data breaches, where in which risk assessment has the voice of the union
+      or employee representatives appeared?
+    - During the last supplier contract change, which stakeholders' expectations were reassessed? Based
+      on what evidence?
+    - Which stakeholders have raised conflicting needs? By what principles do you adjudicate? Where is
+      this recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.457213Z'
+  signed_digest: e73c6ee727815249c3c58e6653889e772baaa59cab44ba50df641e8db3a13b11
+  interview_seconds: null
+  inherited_from: null

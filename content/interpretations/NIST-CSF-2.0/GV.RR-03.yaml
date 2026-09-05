@@ -1,0 +1,59 @@
+control_id: NIST-CSF-2.0:GV.RR-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that security budgets and staffing are allocated based on "last year's practice"
+      or "how much can be cut this year," rather than prioritized by risk—resulting in high-risk business
+      areas being unprotected, low-risk areas being overstaffed, and when incidents occur, it is unclear
+      why resources were not allocated in the first place.
+    basis: inferred
+  plain_zh:
+    value: 'Ensure that security resource allocation follows risk: high-risk areas receive sufficient
+      budget and personnel, low-risk areas do not waste resources; and there must be mechanisms to guarantee
+      that resources are indeed spent where they should be.'
+    basis: inferred
+  practice:
+    value:
+      '1': The annual security budget and staffing table show linkage with risk classification; major
+        risk items are at least claimed by someone.
+      '2': Budget and staffing have allocation logic based on risk ranking; there are records of adjustments
+        due to risk changes within the year; resource gaps have escalation channels.
+      '3': Resource allocation is linked to a quantitative risk model; key positions have succession or
+        redundancy; formal reviews of "resource-risk coverage" are conducted quarterly/annually.
+    basis: inferred
+  evidence:
+    value: Budget allocation memos or approval documents (showing correspondence with the risk register),
+      staffing and risk responsibility mapping tables, resource gap and escalation records, annual resource
+      review meeting minutes.
+    basis: inferred
+  common_myth:
+    value: Assuming that "security budget increased by 10% annually" equals allocating resources according
+      to risk. Increasing budget but spending it all on low-risk compliance items leaves high-risk business
+      unprotected—auditors look at allocation logic and rationale, not total amounts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which version of the risk list corresponds to that budget and staffing table? Who confirmed the
+      priorities?
+    - If the threat environment changes dramatically next year, how quickly can you reallocate resources
+      and budget? Where is the process?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.494041Z'
+  signed_digest: 399e99c2966365d95963575a51792b8554010440a382ef9235bd0e5546205f3e
+  interview_seconds: null
+  inherited_from: null

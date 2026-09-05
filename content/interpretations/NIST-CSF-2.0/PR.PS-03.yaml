@@ -1,0 +1,66 @@
+control_id: NIST-CSF-2.0:PR.PS-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that hardware may escape control at various stages of its lifecycle—active devices
+      operating with defects without oversight, retired devices disposed of without data sanitization,
+      and counterfeit or modified components entering the supply chain. Without this, vulnerabilities
+      cannot be remediated through patches and software alone; hardware-level tampering and leakage bypass
+      all upper-layer defenses.
+    basis: inferred
+  plain_zh:
+    value: 'Hardware maintenance, replacement, and retirement should not be done casually; the pace and
+      methods must be determined based on risk: know what runs on each device and its risk level, repair
+      when needed, replace when needed, and destroy when needed, with full records throughout the process.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a hardware asset inventory; have a repair process for faulty devices; perform basic
+        data sanitization (at least formatting) for retired devices.
+      '2': Define maintenance cycles and retirement criteria based on asset criticality; require approval
+        and records for repairs and retirements; verify data sanitization (e.g., spot checks after wiping);
+        procure through legitimate supply chain channels.
+      '3': Automatically collect hardware health and vulnerability information and correlate with risk
+        scores; retirement processes cover physical destruction of storage media; have replacement plans
+        for critical devices; implement supply chain trust verification mechanisms (e.g., firmware validation,
+        physical inspection).
+    basis: inferred
+  evidence:
+    value: Hardware asset ledger with risk classification, maintenance and repair records (including fault
+      tickets), retirement approval forms and data sanitization/destruction certificates, procurement
+      channel and firmware validation records, hardware change logs.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'listing devices in the asset ledger counts as a register, and formatting
+      the hard drive during retirement counts as sanitization.' In reality, auditors will sample retired
+      devices to check sanitization verification records; formatted drives can have data recovered, and
+      devices retired without an approval chain often end up unaccounted for.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three devices retired last year: when was data sanitization performed? What method was used?
+      Is there verification evidence?'
+    - For hardware failures on critical production equipment, how are replacement part models and procurement
+      channels reviewed?
+    - When was the last reconciliation between the hardware asset list and the actual data center inventory,
+      and what was the discrepancy count?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.598546Z'
+  signed_digest: d70acb4974adb7f5c8d059f6971f4eefb8d26afbdd0a6dd1bb41859f7a613789
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.8.28
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about leaving security considerations until the testing phase—code is written
+      and committed with vulnerabilities, and scanning only before release is too late. This control requires
+      blocking common weaknesses at the moment of writing code and demonstrating that every change has
+      passed security checks.
+    basis: inferred
+  plain_zh:
+    value: Establish secure coding standards, telling developers which functions to avoid and which libraries
+      to steer clear of; use automated tools to scan for common weaknesses automatically at each code
+      commit or merge; discovered issues must have a closed loop of remediation and verification, not
+      just scanning and forgetting.
+    basis: inferred
+  practice:
+    value:
+      '1': Written secure coding standards exist, covering common weaknesses (e.g., injection, privilege
+        escalation, hardcoded secrets); the development repository is integrated with a static scanning
+        tool that can produce reports.
+      '2': Static scanning is automatically executed in the CI pipeline for each change, with blocking
+        gates for high-severity issues; remediation is tracked via tickets or records; key libraries/components
+        have version checks.
+      '3': In addition to static scanning, attack surface analysis and threat modeling are performed at
+        the architecture level; coding standards are updated based on vulnerability intelligence; scanning
+        rules are customized to the business with controlled false positives; a phased remediation plan
+        exists for legacy code.
+    basis: inferred
+  evidence:
+    value: Secure coding standards document, static scanning tool configuration and scan reports, CI pipeline
+      gate configuration screenshots or logs, vulnerability remediation records or tickets, library/component
+      version list and vulnerability check results.
+    basis: inferred
+  common_myth:
+    value: Thinking that 'having a scanner in the CI is enough'—common mistakes include scan results being
+      ignored, high-severity issues not blocking, remediation leaving no trace; or scanner rules never
+      updated, so new vulnerability types are not detected.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Are high-severity vulnerabilities blocked or just alerted in the pipeline? Where is the blocking
+      rule documented?
+    - For the most recent high-severity issues found in scans, where are the remediation records and verification
+      results?
+    - How often are scanner rules updated? How is it confirmed that coverage includes newly published
+      vulnerability categories?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.406379Z'
+  signed_digest: 740974881097f0a67d1f008f949cb7cb8437623603f070ac2a31ce1f81bd21c9
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CM-11.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against configuration drift that silently rewinds hardening—someone
+      (or some pipeline, image, or policy exception) flips a setting back, and weeks
+      later an outage or breach is traced to a control that was technically documented
+      but never actually live in production.
+    basis: inferred
+  plain_zh:
+    value: Make sure user-installed software and current configuration values are
+      checked against the approved baseline continuously by automated means, and any
+      deviation is detected, flagged, and forced back—without depending on humans
+      to remember or notice.
+    basis: inferred
+  practice:
+    value:
+      '1': An approved configuration baseline exists; a scanner or agent runs on assets
+        and reports posture; out-of-policy settings are visible in a dashboard or
+        ticket queue.
+      '2': Deviations trigger an automated alert with an owner and a remediation SLA;
+        exceptions are recorded with an expiry date, not open-ended.
+      '3': Non-compliant settings are blocked or auto-reverted by policy (e.g., SCCM/GPO/MDM-enforced
+        state), so drift is corrected even when no one is watching; coverage and detection
+        are themselves monitored and reported.
+    basis: inferred
+  evidence:
+    value: Approved baseline documentation, scanner/agent coverage report, drift alerts
+      with assigned owners and remediation timestamps, exception register with expiry
+      dates, evidence of automated enforcement (block or revert) on at least one sample
+      system.
+    basis: inferred
+  common_myth:
+    value: Assuming that running a configuration scanner a few times a year satisfies
+      CM-11(3)—the control specifically requires *automated* (continuous) enforcement
+      and monitoring, not periodic snapshots that get reviewed long after the drift
+      occurred.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me a recent drift event: how was it detected, who was notified, and how
+      long did it take to remediate?'
+    - Which assets or configuration items are not covered by automated monitoring,
+      and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.740434Z'
+  signed_digest: 549744db6ce9c6900dfbc5694f929abf77d148925a1c3a53a56e0f876e46c75d
+  interview_seconds: null
+  inherited_from: null

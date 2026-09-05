@@ -1,0 +1,30 @@
+# Optional. Local `fr serve` is unchanged.
+# HTTP:  docker compose up --build
+# HTTPS: docker compose -f docker-compose.yml -f deploy/compose.https.yml up --build
+#
+# Do not commit a filled .env. Compose reads it for interpolation only.
+
+services:
+  app:
+    build: .
+    image: framework-reader:local
+    environment:
+      FR_CONTENT_DB: /data/content.sqlite
+      FRAMEWORK_READER_HOME: /data/home
+      FR_SECRET_KEY: ${FR_SECRET_KEY:-}
+      FR_BOOTSTRAP_ADMIN_EMAIL: ${FR_BOOTSTRAP_ADMIN_EMAIL:-admin@localhost}
+      FR_BOOTSTRAP_ADMIN_PASSWORD: ${FR_BOOTSTRAP_ADMIN_PASSWORD:?Set a strong bootstrap admin password in .env}
+      FR_ENTRA_TENANT_ID: ${FR_ENTRA_TENANT_ID:-}
+      FR_ENTRA_CLIENT_ID: ${FR_ENTRA_CLIENT_ID:-}
+      FR_ENTRA_CLIENT_SECRET: ${FR_ENTRA_CLIENT_SECRET:-}
+      FR_ENTRA_REDIRECT_URI: ${FR_ENTRA_REDIRECT_URI:-}
+      FR_ENTRA_AUTHORITY: ${FR_ENTRA_AUTHORITY:-}
+    volumes:
+      - fr-data:/data
+    ports:
+      # Bind to loopback for HTTPS-in-front; set FR_HTTP_BIND=0.0.0.0 for LAN HTTP.
+      - "${FR_HTTP_BIND:-127.0.0.1}:8765:8765"
+    restart: unless-stopped
+
+volumes:
+  fr-data:

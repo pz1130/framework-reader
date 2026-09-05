@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:DE.CM-02
+locale: en
+state: draft
+fields:
+  intent:
+    value: The intent is to prevent the security team from being unaware of physical environment incidents
+      until they escalate—such as water leaks flooding server racks, air conditioning failures causing
+      overheating, forced entry through access doors, or tailgating into buildings. These leave traces
+      in surveillance cameras and sensor data; not monitoring them means waiting for post-incident review.
+    basis: inferred
+  plain_zh:
+    value: Use cameras, access control alarms, temperature and humidity sensors, and water leak detection
+      to monitor physical spaces like server rooms, office areas, and equipment rooms, enabling timely
+      response to anomalies rather than waiting until devices fail.
+    basis: inferred
+  practice:
+    value:
+      '1': Server rooms and key entrances are equipped with surveillance and access control; access alarms
+        and video recordings are available; in case of an incident, recordings can be replayed to identify
+        individuals and timestamps.
+      '2': Dedicated personnel regularly review surveillance and sensor data (video spot checks/alarm
+        log reviews); abnormal events are recorded with a closed-loop response; sensors (temperature/humidity,
+        water leak, smoke) have maintenance and self-test records.
+      '3': Surveillance and alarms are integrated into a unified platform for real-time analysis; physical
+        anomalies are linked with security incident response (e.g., access alarms trigger video tracking);
+        periodic physical security assessments (e.g., tailgating tests, access permission audits) are
+        conducted with reports generated.
+    basis: inferred
+  evidence:
+    value: List of surveillance system inventory and coverage maps, access control and sensor alarm logs
+      with response records, video replay spot-check records, physical security incident list and handling
+      minutes, equipment maintenance and self-test records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'installing cameras and access control' equates to meeting this requirement.
+      In reality, many teams never open alarm logs throughout the year, surveillance recordings are kept
+      but never reviewed, and sensor failures go unnoticed—equipment is installed, but people are asleep,
+      and physical anomalies are only discovered when business reports a failure.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many access alarms occurred last month? Where are the records from alarm to closure for each?
+    - If the server room temperature/humidity sensor continuously alarms, how long until someone arrives
+      on site? In which process is this time specified?
+    - How long are surveillance recordings retained? How often do you spot-check actual footage, or do
+      you only check device online status?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.447435Z'
+  signed_digest: db944bf0c6ea3905f038b1876c0197920851124d1cc91fa3fe4d32ab4a6eb83c
+  interview_seconds: null
+  inherited_from: null

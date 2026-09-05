@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SA-17.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the failure where components developed without a defined
+      internal structure are integrated and then exercised in operation — bugs, malformed
+      interfaces, and tampered sub-modules only surface after they are already trusted,
+      and there is no architectural map to localize where to test, isolate, or pull
+      a suspect piece out.
+    basis: inferred
+  plain_zh:
+    value: Design the system, and each component inside it, so that it has a documented
+      internal structure with defined interfaces and modular boundaries, and build
+      testing, verification, and fault isolation around that structure instead of
+      treating the system as a single opaque blob.
+    basis: inferred
+  practice:
+    value:
+      '1': System and major components have a written structural description showing
+        modules, interfaces, and data flows; security testing plans reference this
+        structure.
+      '2': Each module's interface, expected behavior, and security-relevant assumptions
+        are documented; tests, code review, and integration checks are traceable back
+        to specific modules.
+      '3': Structure enables targeted isolation of suspect components, automated interface
+        conformance checks, and regression testing at module boundaries; structural
+        deviations or undocumented couplings are detected and reviewed.
+    basis: inferred
+  evidence:
+    value: Architectural and module-level structure documents, interface specifications,
+      test plans and results mapped to modules, records of structural deviation reviews.
+    basis: inferred
+  common_myth:
+    value: Treating any system diagram or API list as proof that the control is met
+      — auditors look for whether testing and fault isolation actually use the documented
+      structure, not just whether a diagram exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent failure or security finding and how the documented structure
+      told you where to look first.
+    - Which interfaces are exercised by automated conformance tests, and which modules
+      are explicitly excluded from coverage?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.126885Z'
+  signed_digest: 16c8ac0d155438c00384135927903578e3504d3b63b40dfd2abae088b1c73409
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:SC-40.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers (or malicious insiders) hiding their activity
+      inside the environment because legitimate-looking traffic, processes, and signals
+      are indistinguishable from normal noise — by stripping ambient signals that
+      hide adversaries and shaping signals that should be visible to defenders.
+    basis: inferred
+  plain_zh:
+    value: Make it harder for adversaries to blend in by removing non-essential environmental
+      signals (banner grabs, error verbosity, exposed metadata, random ports, default
+      services) and harder for them to mask their actions, so legitimate defenders
+      can actually spot malicious activity.
+    basis: inferred
+  practice:
+    value:
+      '1': Disable banner/version disclosure on public-facing services; suppress verbose
+        error messages and stack traces in production; turn off unused services, ports,
+        and protocols; remove or rename default accounts and sample applications.
+      '2': Maintain a documented list of suppressed/normalized signals and the reason
+        for suppression; review what detection rules actually need which signals so
+        suppression is deliberate, not accidental; include the suppression list in
+        change control.
+      '3': Periodically test that suppressed signals really do not break detection
+        (red/purple team confirms blind spots are expected and acceptable); align
+        suppression decisions with the detection engineering team and threat model;
+        re-evaluate as the environment changes.
+    basis: inferred
+  evidence:
+    value: Configuration baselines showing disabled banners/verbose errors, hardened
+      service configs, change records for suppression decisions, detection-rule reviews
+      confirming required signals remain visible, and red-team or purple-team findings
+      on residual detection blind spots.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'reducing detection potential' means turning off all logging
+      to frustrate attackers — the control is about reducing the signal-to-noise ratio
+      for *the adversary*, not removing signal for *the defender*. Suppressing things
+      defenders rely on actually hands attackers more cover.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which non-essential signals (banners, error detail, default accounts) did you
+      suppress, and how do you know none of your own detections depend on them?
+    - Show a case where a suppression decision was revisited because the detection
+      or threat landscape changed.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.589760Z'
+  signed_digest: 91c0684b5a40e1f0dca9dec4fde636d675ef78305d2fb635c6362e8d79adaf2c
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:CM-6.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents configuration drift that quietly opens exploitable holes — without
+      automation, baseline settings get changed during incident response, vendor installs,
+      or routine maintenance and the organization believes it is hardened when it
+      is not.
+    basis: inferred
+  plain_zh:
+    value: Configuration settings must be enforced and verified by automated tools,
+      not just documented and hoped to stay that way.
+    basis: inferred
+  practice:
+    value:
+      '1': A documented secure configuration baseline exists for key systems; admins
+        know what it is; manual checks happen occasionally.
+      '2': Automated tools scan or pull configuration from systems on a schedule;
+        deviations produce tickets; someone owns closure.
+      '3': Configuration is continuously monitored and automatically remediated or
+        blocked at change time; exceptions require approved waivers with expiry; coverage
+        gaps are tracked and reported.
+    basis: inferred
+  evidence:
+    value: Configuration baseline documents, automated scan/assessment reports with
+      timestamps, deviation tickets and their resolution, waiver register with expiry
+      dates, coverage map of systems in scope versus those actually assessed.
+    basis: inferred
+  common_myth:
+    value: Treating a hardening guide or CIS benchmark PDF on a share as the control
+      — the baseline describes the target; the control is whether the live system
+      matches it and stays that way without manual policing.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the last automated configuration assessment for [system] and the deviations
+      found versus still open.
+    - Which systems are excluded from automated configuration checking, and why —
+      what is the waiver and when does it expire?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.822004Z'
+  signed_digest: 055998a743e5ec5441325bacf373dfa14a38da7096fd0e2a9a28b36477239b24
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:CP-2.7
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the situation where a contingency plan exists on paper
+      but the people or systems you actually depend on to recover are outside your
+      walls — colocation, cloud, managed SOC, telco — and they have no idea what you
+      expect of them when an incident hits. The plan rehearsed alone fails because
+      the recovery dependency silently drops out.
+    basis: inferred
+  plain_zh:
+    value: Make sure your contingency and continuity plans are coordinated with the
+      outside providers you depend on for backup, recovery, and continued operations,
+      so that on the day it matters they know their role and can actually perform
+      it.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which external providers are critical to recovery (hosting, backup,
+        telco, managed detection); include recovery roles and contacts from them in
+        the plan.
+      '2': Document coordination points — who calls whom, in what order, with what
+        information; ensure provider contracts reference the plan and recovery time
+        expectations.
+      '3': Run joint exercises or tabletop walk-throughs with the external providers
+        at planned intervals; capture gaps and update both the plan and the contract;
+        verify provider-side evidence of their recovery capability during the exercise.
+    basis: inferred
+  evidence:
+    value: Contingency plan sections naming external providers and their roles, contracts
+      or SLAs referencing recovery obligations, coordination procedures, and records
+      of joint exercises or communications tests with providers.
+    basis: inferred
+  common_myth:
+    value: Treating CP-2.7 as satisfied by listing a vendor name in a contacts appendix.
+      Naming a provider is not coordination — coordination means they know the plan,
+      agree to their part, and have rehearsed it with you.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which external providers are named in the contingency plan and what is each
+      one expected to do during a declared incident?
+    - When did you last exercise or communicate with these providers about the plan,
+      and what came out of it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.946413Z'
+  signed_digest: 1df662e2db332de625690952bb56e92c1712daa8e0ef043168d880332c32efbf
+  interview_seconds: null
+  inherited_from: null

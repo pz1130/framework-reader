@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-6.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Prevents integrity-check tooling from becoming a checkbox: if no one reads
+      or acts on the results, you only know something is wrong after the damage is
+      already done. The control exists so verification outputs reach the right people,
+      get acknowledged, and trigger response.'
+    basis: inferred
+  plain_zh:
+    value: When integrity verification (e.g., file hashes, signature checks, unauthorized-change
+      scans) detects a problem, the findings must be reported to defined roles and
+      acted on, not just logged and forgotten.
+    basis: inferred
+  practice:
+    value:
+      '1': Verification tools are configured to send alerts to an email or ticket
+        queue; someone is named as the recipient and has a basic runbook for what
+        to do on alert.
+      '2': Reporting recipients and escalation paths are documented per system; alerts
+        are tracked as tickets with acknowledgement and resolution timestamps; deviations
+        from expected results have a documented response.
+      '3': Verification results flow into a central monitoring or SIEM pipeline with
+        defined SLAs, trend analysis on false positives vs true positives, and periodic
+        review of whether the reported anomalies led to corrective action and control
+        updates.
+    basis: inferred
+  evidence:
+    value: Configuration showing where verification alerts are sent, on-call or responsible-role
+      assignments, sample alert tickets showing acknowledgement and resolution, runbook
+      for handling integrity deviations, and any post-incident changes made to verification
+      scope or thresholds.
+    basis: inferred
+  common_myth:
+    value: Treating integrity verification as 'set and forget' once the tool is installed
+      - assuming the scan running on schedule equals the control being met, without
+      verifying that alerts reach a human who can actually do something with them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent integrity verification alert and what happened next.
+    - Who is the named recipient of integrity alerts for system X, and how is that
+      role currently staffed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.071761Z'
+  signed_digest: 4deeb58f58b335f225711f0f49263ec6a4e22974188fd09c0cc3dd9433e98074
+  interview_seconds: null
+  inherited_from: null

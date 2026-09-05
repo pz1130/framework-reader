@@ -1,0 +1,65 @@
+control_id: NIST-CSF-2.0:PR.IR-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'no defense once the network is connected'—insiders moving laterally without
+      restriction, and external traffic directly reaching core systems. This control addresses logical
+      access control and isolation at the network layer, not just whether firewalls are purchased, but
+      whether traffic and access are actually blocked according to rules.
+    basis: inferred
+  plain_zh:
+    value: 'Implement logical access control for networks and operating environments: traffic, people,
+      and systems accessing each other must be allowed or denied based on rules; the capability to withstand
+      abnormal traffic is required, and not just any request should be able to reach internal systems.'
+    basis: inferred
+  practice:
+    value:
+      '1': Basic perimeter firewall or network ACLs are in place, with separation between internal and
+        external network segments; core systems are not directly exposed to the public internet; access
+        rule changes are documented.
+      '2': Least-privilege policies are enabled based on business needs (default deny, allow on demand);
+        internal segmentation by security zones or VLANs, with controlled paths for inter-segment access;
+        critical traffic has admission and access control policies that are regularly reviewed.
+      '3': Network and environment access control policies are systematically managed, rule changes follow
+        an approval workflow and are reversible; proactive detection and blocking of abnormal traffic
+        or lateral movement; architecture defaults to isolation, with openness as an exception that is
+        traceable.
+    basis: inferred
+  evidence:
+    value: Network topology diagrams, firewall/ACL rule sets and change approval forms, policy review
+      records, internal network segmentation documents, and sample alerts and blocking logs for abnormal
+      access or lateral movement.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'installing a firewall or next-generation firewall' means this control
+      is satisfied. Devices are just the medium—whether rules are default-deny, whether someone regularly
+      cleans up invalid rules, and whether internal segments are directly connected without protection
+      are what auditors really focus on; many organizations spend money on devices but only add rules
+      without ever removing them, effectively leaving no defense.
+    basis: inferred
+  auditor_asks:
+    value:
+    - List the rules that allow traffic from external to internal and from internal to core segments—which
+      ones are long-standing and have not been validated?
+    - Are there paths for employees to directly connect from the office network to databases or production
+      servers that are not blocked by ACLs or firewalls? Or are they all open?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.586201Z'
+  signed_digest: ad5acc61fd39be8a64380af3e9d689210598e0d19dc76978d7dec343fe9b6d9f
+  interview_seconds: null
+  inherited_from: null

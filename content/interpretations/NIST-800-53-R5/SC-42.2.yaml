@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-42.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a device or sensor being repurposed to collect information
+      in spaces where the owner has no authority to gather it - a phone, laptop, or
+      IoT component quietly turned into a covert microphone or camera after the user
+      believes collection has ended, or where physical presence itself is the violation.
+    basis: inferred
+  plain_zh:
+    value: For sensors that can record people, sound, location, or surroundings, spell
+      out who may activate them, for what purpose, under what notice, and revoke or
+      visibly disable the capability when that authorized use ends.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which devices and components have sensors that capture people,
+        audio, video, or location; mark them in an asset list; document a basic rule
+        that activation requires a stated purpose.
+      '2': Write an authorized-use rule that names the roles permitted to enable each
+        sensor class, requires notice to people who may be recorded, ties activation
+        to a documented purpose, and defines how sensors are disabled or removed at
+        end-of-use or end-of-life.
+      '3': Bind the rule into device configuration and procurement so sensors default
+        off, cannot be re-enabled silently, produce a logged event on activation,
+        and the authorized-use list is reviewed when devices change role, location,
+        or ownership.
+    basis: inferred
+  evidence:
+    value: Asset inventory flagging sensor-bearing devices, the written authorized-use
+      rule, configuration baselines showing sensors disabled by default, activation
+      logs and purpose records, decommission records showing sensor removal or disabling.
+    basis: inferred
+  common_myth:
+    value: Treating a webcam cover sticker or a microphone mute key as proof the control
+      is met - the policy still permits any app or admin to re-enable the hardware
+      silently, so the failure mode (covert re-activation after the user thought it
+      was off) is wide open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one sensor-bearing device in the asset list: who is authorized to turn
+      its microphone or camera on, and where is that authorization recorded?'
+    - Show me a device that was reassigned or decommissioned last quarter - what was
+      done to its sensors?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.609070Z'
+  signed_digest: c3a72afdefc651ff3c9f3687d096c59ae15eed96f456f40e6b49a9ac87097d47
+  interview_seconds: null
+  inherited_from: null

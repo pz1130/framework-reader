@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.5.27
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that after an incident is handled, it is considered closed—reviews are only
+      written into meeting minutes and summary presentations, without feeding lessons learned back into
+      plans, training, and tools. As a result, the next similar incident still causes chaos, with inconsistent
+      response pace and messaging across the organization.
+    basis: inferred
+  plain_zh:
+    value: After each significant security incident, lessons from the entire process from preparation
+      to recovery must be extracted and turned into substantive modifications to plans, scripts, training,
+      and exercises. The organization must ensure a consistent response approach and capability level
+      across all teams, rather than each team acting independently.
+    basis: inferred
+  practice:
+    value:
+      '1': For major incidents, a post-incident review meeting is held upon closure, with minutes that
+        identify which phases were effective and which failed.
+      '2': Improvement items from the review have assigned owners, deadlines, and tracking verification;
+        plans and training materials are revised accordingly, with release records for updated versions.
+      '3': Review inputs cover detection, analysis, containment, eradication, and recovery phases; cross-team
+        and cross-region incidents use a unified review template and scoring criteria; the effectiveness
+        of improvement items is verified through subsequent exercises to close the loop; review conclusions
+        are fed back into organization-wide training and new employee onboarding.
+    basis: inferred
+  evidence:
+    value: Incident review reports (including timeline, root cause, and improvement item list), tracking
+      logs or tickets for improvement items, version history of updated plans and training materials,
+      subsequent exercise plans and result comparisons, and review meeting attendance and minutes.
+    basis: inferred
+  common_myth:
+    value: The misconception is that a review means holding a meeting after an incident and writing a
+      'cause analysis and corrective actions' report to close the case. The real value lies in process
+      closure—without assigned responsibilities, deadlines, verification, and feedback into plans and
+      training, the review report is just a piece of paper. Without a unified template and criteria across
+      the organization, review results from different teams are incomparable; the same incident might
+      be labeled 'improved' in Team A and 'no anomaly' in Team B.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For the three improvements proposed in the last major incident review, what are the completion timelines
+      and evidence for each?
+    - How do you determine that review conclusions truly changed daily operational processes, rather than
+      just being written into reports?
+    - When similar incidents occur simultaneously across regions or business units, are response steps
+      and escalation messaging consistent, and who ensures this?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.288480Z'
+  signed_digest: 62032b08e19b9f91f294fc9e86d46acd0941f6c4827f6001bd1ae1af3065effa
+  interview_seconds: null
+  inherited_from: null

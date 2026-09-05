@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SI-19.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defend against sensitive information being exposed through a collection
+      capability after its operational purpose is forgotten, an owner changes, or
+      the collection is no longer necessary. The control requires collection activities
+      to be explicitly authorized, periodically reviewed, and bounded so that data
+      is gathered only when needed.
+    basis: inferred
+  plain_zh:
+    value: Identify what information the organization collects, document why each
+      collection is necessary, obtain the required approval, and review or stop collections
+      that are no longer justified.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a basic inventory of collection activities, the information collected,
+        the purpose, owner, and approval status.
+      '2': Use written authorization and review records for each collection; define
+        periodic review, renewal, suspension, and deletion procedures.
+      '3': Integrate collection review into the governance and change-management process;
+        automatically or routinely identify unapproved, stale, or purpose-expanded
+        collection and prevent continued use until reapproved.
+    basis: inferred
+  evidence:
+    value: A collection inventory; purpose and business justification statements;
+      authorization records; periodic review and renewal results; suspension or deletion
+      records for collections no longer needed; change records showing review after
+      ownership, purpose, or system changes.
+    basis: inferred
+  common_myth:
+    value: Assuming that collecting data is acceptable because the organization owns
+      the system, without documenting the specific information, purpose, approval,
+      and ongoing need.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which information collections are active, who owns each one, and what purpose
+      was approved?
+    - When did you last review a collection, and what happens when its purpose or
+      owner changes?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.893230Z'
+  signed_digest: 6708808ef62a35c5ab4719a442f03c99a22508fe0bc418d12e07345179d72a93
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:PT-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents PII processing from running ahead of an active, specific consent—i.e.,
+      a user grants blanket permission once, the consent is cached indefinitely, and
+      downstream systems keep using the data long after the purpose has ended or the
+      user has changed their mind, leaving the organization exposed to unauthorized
+      processing.
+    basis: inferred
+  plain_zh:
+    value: When you rely on consent as the legal basis to process someone's personal
+      data, ask for that consent at the moment you actually need it, for the specific
+      purpose you need it for—not at account creation, not bundled with other terms,
+      and not assumed to last forever. Make sure withdrawal stops further processing.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify processing activities that rely on consent; stop collecting consent
+        at signup for everything; present a clear, purpose-specific prompt at the
+        point of collection or use; record the consent decision and timestamp.
+      '2': Consent is bound to a stated purpose and a defined data set; withdrawal
+        is a single, supported action that takes effect downstream; retention of consent
+        records is governed by a documented schedule.
+      '3': Consent prompts are triggered at the moment of use, not pre-bundled; systems
+        enforce purpose limitation programmatically; withdrawal propagates to all
+        downstream processors and cached uses; consent records and expirations are
+        reviewed periodically.
+    basis: inferred
+  evidence:
+    value: Inventory of consent-based processing activities, point-of-use consent
+      prompts with screenshots, consent records (who, what purpose, when, how withdrawn),
+      withdrawal workflow and proof of downstream propagation, retention schedule
+      for consent records.
+    basis: inferred
+  common_myth:
+    value: Assuming a terms-of-service checkbox at signup covers every future use
+      of the data—that is a one-time blanket consent, not just-in-time consent for
+      the specific processing happening now.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a processing activity that relies on consent and the exact moment the
+      user is asked for it.
+    - When a user withdraws consent, which systems are notified and how do you prove
+      no further processing occurs?
+    basis: inferred
+  regional_note:
+    value: EU auditors (under GDPR) treat consent bundled with other terms, or obtained
+      without a specific, informed, unambiguous act, as invalid processing; US auditors
+      under state privacy laws focus more on opt-out mechanics and prior notice than
+      on the moment-of-use distinction.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.885422Z'
+  signed_digest: 2aa6570c320ffdc2f12892493fc2d76251a86bf531a2122f57ce5a7f1f9a2ea4
+  interview_seconds: null
+  inherited_from: null

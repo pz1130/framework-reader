@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the blind spot created when hardware moves in and out:
+      stale inventories that keep listing decommissioned assets (so they still get
+      patched, monitored, or held to standard) and new assets that go untracked until
+      something goes wrong on them. Without updates tied to install/removal events,
+      the inventory becomes a historical document instead of a current one.'
+    basis: inferred
+  plain_zh:
+    value: Make sure the system component inventory is updated as devices, software,
+      and other components are installed and removed, not reconciled on a periodic
+      sweep. The list you have today should reflect what is actually in the environment
+      right now.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a defined place where new components are recorded when they are
+        installed and old ones are marked removed; someone is responsible for making
+        the entry at install/removal time.
+      '2': Install and removal events trigger a documented update to the inventory
+        (ticket, checklist, or automated hook) and the records are kept with dates;
+        spot-checks compare inventory to what is actually online.
+      '3': Inventory updates are coupled to the install/removal workflow itself (provisioning
+        tool, MDM, EDR onboarding, or change management), so the inventory cannot
+        lag behind the deployment; exceptions and drift between inventory and reality
+        surface as alerts.
+    basis: inferred
+  evidence:
+    value: Sample inventory entries with install/removal dates, change tickets or
+      provisioning records that triggered each entry, and a recent reconciliation
+      showing inventory matched to active assets (or the exceptions found and resolved).
+    basis: inferred
+  common_myth:
+    value: Treating the inventory as an annual or quarterly project. A list that is
+      correct on audit day but stale the next morning still fails the control, because
+      updates are required at the moment of installation and removal, not on a refresh
+      cycle.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick three components installed in the last 90 days: show me the inventory
+      entry and what triggered it on install day.'
+    - 'Pick three components removed in the last 90 days: when was the inventory updated
+      and how was the removal verified?'
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.864793Z'
+  signed_digest: bf5bb96694adf7a835a718429b07a9a53a9f18f956908e478a79f79f0996635a
+  interview_seconds: null
+  inherited_from: null

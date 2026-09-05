@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:IR-4.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attacks that are already underway where the response plan
+      is static, manual, and slow — by the time humans coordinate and act, the attacker
+      has moved laterally or exfiltrated. The control requires the organization to
+      be able to detect, decide, and contain at machine speed, not just have a binder
+      for after-action review.
+    basis: inferred
+  plain_zh:
+    value: Make sure your incident response can react in near real-time as the situation
+      changes — detection feeds directly into automated or pre-approved containment
+      actions, and the playbook adapts as the attack unfolds instead of waiting for
+      the next war-room meeting.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the handful of high-frequency, high-blow incidents (ransomware
+        staging, credential abuse, C2 beaconing) where minutes matter; define a small
+        set of pre-approved containment actions tied to specific triggers.
+      '2': Wire detection signals (EDR, NDR, IAM, firewall) to those pre-approved
+        actions through documented runbooks; record what fired, when, and what changed;
+        rehearse on a tabletop and one live drill per year.
+      '3': Close the loop from response back to detection tuning; measure time-from-trigger-to-containment;
+        decisions are explainable and reversible; gaps found in incidents feed control
+        and playbook changes within a defined cadence.
+    basis: inferred
+  evidence:
+    value: Catalog of pre-approved dynamic response actions with their triggers, integration
+      between detection tooling and containment mechanisms (EDR/NSG/IAM policies),
+      runbooks with owners and decision rights, drill records including measured containment
+      times, and change records showing playbook updates driven by real incidents
+      or exercises.
+    basis: inferred
+  common_myth:
+    value: Treating this as 'we bought a SOAR platform' — the platform is plumbing,
+      not the control. Without pre-approved actions wired to specific detections,
+      the playbook still sits until a human approves each step, and 'dynamic' collapses
+      into a slow ticket queue.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one recent incident: what triggered the response, was the containment
+      action automatic or human-approved, and how long from first signal to containment?'
+    - Show a runbook that is actually wired to a live detection source, not a PDF
+      in a shared drive.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.334457Z'
+  signed_digest: 359f283fe2c51e14254b767a83bee4bd669fdd83d33486f1b098e99422c2d9f8
+  interview_seconds: null
+  inherited_from: null

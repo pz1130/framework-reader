@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-16.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents security attributes (classification, provenance, handling caveats,
+      releasability) from drifting away from the data they are supposed to describe.
+      Without enforced association, a label says one thing while the file, email,
+      or record says another, and downstream controls like access enforcement, filtering,
+      and audit cannot trust the tag.
+    basis: inferred
+  plain_zh:
+    value: Make sure that the security attributes bound to data, users, or objects
+      cannot be silently changed, lost, or separated from the thing they describe,
+      and that those associations are preserved as information is created, modified,
+      stored, transmitted, and destroyed.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify where security attributes are set (classification, owner, handling
+        code) and require that any change to the data also updates or carries the
+        attribute, at minimum through documented tagging rules and acceptance checks.
+      '2': Bind attributes to the object via mechanisms the system enforces (headers,
+        metadata stores, signed manifests, or repository-controlled properties) rather
+        than relying on filename conventions or user discipline; record binding and
+        update events.
+      '3': Test that attribute-to-object association is intact across copying, export,
+        redaction, archival, and destruction; detect mismatches (a sensitive file
+        with no tag, a tag with no matching object, a tag edited without corresponding
+        content change) and block or quarantine them.
+    basis: inferred
+  evidence:
+    value: Binding design (how attributes are attached and enforced), test or audit
+      results showing attribute–object consistency after common operations (copy,
+      export, archive, delete), records of detected and resolved mismatches, and the
+      policies that require attribute maintenance on create/modify/destroy.
+    basis: inferred
+  common_myth:
+    value: Treating a label in a document header or a spreadsheet column as proof
+      that the attribute is associated with the data. If nothing prevents a user from
+      editing the label independently of the content, or stripping it on export, the
+      association is not maintained — it is just decoration.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a file that was copied or exported last quarter and prove its security
+      attribute traveled with it unchanged.
+    - How does the system detect a sensitive object that has lost its attribute, or
+      an attribute that has been changed without an authorized workflow?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.036044Z'
+  signed_digest: 13f0bcfa8c6d89b36ae490dca0bd1e1a6dba9563c3177f8f6a0559171d9a6ed2
+  interview_seconds: null
+  inherited_from: null

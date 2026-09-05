@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SC-18.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the condition where mobile code (scripts, applets, active
+      content, macros) runs in the environment without anyone having decided what
+      is acceptable — so malicious or merely buggy code executes by default, and there
+      is no defined action to take when it is found.
+    basis: inferred
+  plain_zh:
+    value: You must define what mobile code is not allowed in your systems, have a
+      way to detect it, and have a predesigned response for when it shows up — not
+      just hope the endpoint protection catches it.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a written list of forbidden mobile code types (e.g., unsigned
+        active content, scripts from untrusted origins). Have a technical control
+        that blocks or at least flags those types.
+      '2': 'Add detection and response procedures: logs show when blocked code was
+        found, an owner is assigned to review findings, and corrective actions are
+        documented for each incident.'
+      '3': The list is tied to threat intelligence and updated on a schedule; detection
+        coverage is verified across all endpoints and browsers; corrective action
+        effectiveness is tested and tied to continuous monitoring.
+    basis: inferred
+  evidence:
+    value: A current document listing unacceptable mobile code types; detection tool
+      configuration and alerts; a sample of incident tickets showing analysis and
+      remediation; a test result showing a known-bad script was blocked.
+    basis: inferred
+  common_myth:
+    value: Assuming that buying an antivirus or content-filtering tool means the control
+      is met — the tool only helps if the 'unacceptable' list is defined by your own
+      threat model and someone is actively reviewing detection alerts and taking verifiable
+      corrective actions.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of mobile code types you consider unacceptable — when was it
+      last updated and who approved it?
+    - Pick a recent alert where your scanner flagged a script — what corrective action
+      was taken and where is that documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.424385Z'
+  signed_digest: 3a81c89754e0ec98bdca3431e7990f229fa723ce10aeacf5fc45a4e95ee55eca
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PE-13.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Fire suppression equipment that no one has physically checked can silently
+      fail — a cylinder loses pressure, a nozzle clogs, a pull-station linkage breaks
+      — and the first time anyone notices is during the fire you bought it to stop.
+      Routine physical inspection exists to catch degradation before activation is
+      needed.
+    basis: inferred
+  plain_zh:
+    value: Visually check the fire suppression equipment (extinguishers, pull stations,
+      fixed systems) on a defined cadence so you know it is still there, still accessible,
+      and still operable.
+    basis: inferred
+  practice:
+    value:
+      '1': A checklist exists; someone walks the site on a fixed interval (commonly
+        monthly for extinguishers) and confirms presence, accessibility, and that
+        gauges/ seals look right.
+      '2': Inspection records are kept per unit with date, inspector, and any defects
+        found; defects are ticketed and resolved within a documented timeframe.
+      '3': Results feed a register with coverage by location, missed inspections are
+        escalated, and suppression equipment readiness is reportable alongside other
+        physical-protection metrics.
+    basis: inferred
+  evidence:
+    value: Inspection logs or checklists per suppression unit, dates and inspector
+      names, defect tickets and their closure, a coverage map or register showing
+      which assets are inspected on which cadence.
+    basis: inferred
+  common_myth:
+    value: Assuming the annual vendor service tag is enough — the tag covers maintenance,
+      not the between-service visual checks that catch a moved, blocked, or discharged
+      unit.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the inspection record for the extinguisher nearest to the data center
+      entrance for the last three months.
+    - When an inspection finds a defect, where is that ticket and how do you confirm
+      it was fixed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.540043Z'
+  signed_digest: 4fa2ce45032bd66ae8a3e7c3c68036529c8bd401d0e2451f5e926e9b7d611095
+  interview_seconds: null
+  inherited_from: null

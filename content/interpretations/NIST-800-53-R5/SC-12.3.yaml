@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SC-12.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the failure mode where asymmetric key material lives forever
+      once issued — keys that outlive the cryptographic lifetime of their algorithm,
+      that nobody rotates, and that nobody revokes when a device or contractor leaves.
+      The downstream break is silent: signatures and decryptions keep validating under
+      a key that an adversary already compromised months or years ago.'
+    basis: inferred
+  plain_zh:
+    value: Maintain a written policy and operational controls for issuing, managing,
+      and retiring asymmetric (public/private) keys so that every key has a defined
+      lifetime, a defined owner, and a defined path for revocation.
+    basis: inferred
+  practice:
+    value:
+      '1': A written key management policy exists that names which asymmetric algorithms
+        and key lengths are acceptable, who can request a key, and how keys are stored.
+        Keys used in production are inventoried somewhere a person can read.
+      '2': Keys have documented validity periods and an owner of record. Certificate
+        or key issuance, rotation, and revocation are recorded in a log or system
+        of record. Out-of-policy algorithms or expired keys trigger a defined action.
+      '3': Key rotation and revocation are automated or at least ticketed through
+        a workflow with measurable SLAs. Discovery scans periodically enumerate keys
+        in use and flag those outside policy (expired, weak algorithm, no owner, orphaned
+        in a repo). Revocation actually propagates to relying parties within an agreed
+        window.
+    basis: inferred
+  evidence:
+    value: Key management policy document, key inventory or certificate inventory,
+      issuance/rotation/revocation records with dates, revocation propagation evidence
+      or test, discovery scan reports against production endpoints and repositories.
+    basis: inferred
+  common_myth:
+    value: Believing that because the key lives in an HSM or KMS, the control is satisfied.
+      The protection of the key at rest is one piece; the missing piece is usually
+      lifecycle — keys minted for a project in 2018 that were never rotated, never
+      reassigned an owner, and never revoked when the workload was decommissioned,
+      while the HSM dutifully keeps serving them.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a key currently used in production: who is its owner of record and when
+      does it expire?'
+    - Show me the last time a key was revoked and how relying parties were informed
+      within what timeframe.
+    - How do you find keys that are still in use but no longer tied to an active owner
+      or approved algorithm?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.390359Z'
+  signed_digest: f4b531dc48d136ce5a5e879713866db0eb6a433209f440472ac7699b568c1c2a
+  interview_seconds: null
+  inherited_from: null

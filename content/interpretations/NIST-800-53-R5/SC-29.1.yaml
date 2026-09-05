@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SC-29.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a guest or non-privileged domain reaching outside its virtual
+      boundary to read, tamper with, or impersonate another tenant's memory, storage,
+      or execution state on a shared host.
+    basis: inferred
+  plain_zh:
+    value: On systems that run virtualisation, isolate each virtual machine or container
+      from the host and from every other tenant so that one workload cannot see, touch,
+      or run in the memory, storage, or CPU space of another.
+    basis: inferred
+  practice:
+    value:
+      '1': Hypervisor / container runtime is hardened to vendor defaults; management
+        plane is segregated from data plane and tenant traffic; no two tenants share
+        mutable state at runtime.
+      '2': Defined isolation architecture documented (which segments, which control
+        plane, which storage); periodic configuration review against vendor hardening
+        guide; changes to isolation go through change control.
+      '3': 'Isolation is continuously verified: integrity measurements of the hypervisor/host
+        at boot, attested before tenants start; tenant-to-tenant traffic monitored
+        for escape attempts; configuration drift triggers alerts; architecture reviewed
+        against new shared-resource side channels (e.g. speculative execution flaws).'
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing host/control/data plane boundaries, hardening
+      baselines and review records, integrity-attestation logs, change tickets for
+      isolation-affecting changes, and any testing or monitoring evidence that tenants
+      cannot cross boundaries.
+    basis: inferred
+  common_myth:
+    value: Assuming that running on a hypervisor or in containers means isolation
+      is automatically provided — the platform gives defaults, but a single misconfigured
+      shared volume, over-provisioned management interface, or unpatched CPU side-channel
+      turns isolation into a shared-machine.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show how the management plane is separated from tenant traffic and who can reach
+      it.
+    - What was the last hypervisor or container runtime patch applied, and which CVEs
+      in the shared-resource layer have you assessed since?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.492926Z'
+  signed_digest: 42964b2b4473bef09a2f3bd3d5b50db470b9fb78018428b65faebc1215037414
+  interview_seconds: null
+  inherited_from: null

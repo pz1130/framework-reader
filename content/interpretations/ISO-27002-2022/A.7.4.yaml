@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.7.4
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that physical access records and system audit logs are kept separately—people
+      enter the server room while accounts are used in the system, but the two records do not align, making
+      it impossible to confirm the key evidence chain of 'who was physically present at the time' in the
+      event of an incident.
+    basis: inferred
+  plain_zh:
+    value: Correlate physical information such as entry/exit logs, surveillance footage, and access control
+      records with login audit logs from servers and applications to detect suspicious behavior and facilitate
+      post-incident investigation and reconstruction.
+    basis: inferred
+  practice:
+    value:
+      '1': The server room has access control records and basic surveillance footage; systems have login
+        logs; both are retained for a sufficient period, and can be retrieved separately when needed.
+      '2': Periodically compare and sample physical access control records with system login logs, for
+        example, checking whether entries/exits during late night or non-working hours correspond to system
+        operations during those times; comparison results are documented, and anomalies are followed up.
+      '3': Physical and logical access records can be automatically correlated by person and time; rules
+        or analysis tools can detect anomalies such as 'system logins with an account while the person
+        is not physically present'; investigation results are linked to incident response procedures.
+    basis: inferred
+  evidence:
+    value: Access control/surveillance logs, system login audit logs, correlation and comparison records
+      of physical and logical access, investigation minutes for anomalous events, and proof of retention
+      period and retrievability.
+    basis: inferred
+  common_myth:
+    value: It is mistakenly assumed that installing an access control system and surveillance cameras,
+      and enabling server audit logs, is sufficient. In reality, during an investigation, the clocks of
+      the two log sets may be inconsistent, logs may be retained for only thirty days, or access control
+      records may not be exportable and are manually transcribed into Excel, causing physical logs and
+      system audits to not align, which means there is no correlation capability.
+    basis: inferred
+  auditor_asks:
+    value:
+    - After aligning access control records and system login logs by time, can you directly tell me which
+      person's physical presence record corresponds to a login with a specific account during a specific
+      period?
+    - What is the log retention period? How is the clock offset between the two record sets calibrated
+      during forensic analysis?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.354722Z'
+  signed_digest: 70411d44d6f7bb91b640be0abf51f883745c33cc5d4ea55d0b4f8e0ccb4ab127
+  interview_seconds: null
+  inherited_from: null

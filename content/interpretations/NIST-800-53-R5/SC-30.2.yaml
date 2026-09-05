@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SC-30.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against cryptographic predictability — when keys, nonces, salts,
+      tokens, or session identifiers are generated from weak or biased sources, attackers
+      can pre-compute, replay, or guess values, undermining confidentiality, integrity,
+      and authentication that depend on those primitives.
+    basis: inferred
+  plain_zh:
+    value: Make sure the random values your systems rely on for security (keys, nonces,
+      salts, tokens, identifiers) actually come from a source with enough entropy
+      and are free of detectable bias — and show you can prove it.
+    basis: inferred
+  practice:
+    value:
+      '1': All security-relevant random values are generated through vetted OS or
+        library APIs (e.g., /dev/urandom, CryptGenRandom, BCryptGenRandom, java.security.SecureRandom)
+        rather than hand-rolled or weak generators; the choice is documented somewhere.
+      '2': For each system producing keys/tokens/nonces, the source of randomness,
+        seeding method, and entropy guarantees are described; high-risk uses (root
+        CA keys, long-lived TLS keys, password reset tokens) are explicitly identified
+        and treated with stronger entropy sources.
+      '3': Entropy sources are continuously validated — health tests or sanity checks
+        run on the RNG, failures trigger alarms and fail-secure, and entropy budget/quality
+        is periodically re-verified against the algorithm’s requirements (e.g., key-length-appropriate
+        entropy for generated keys).
+    basis: inferred
+  evidence:
+    value: Design notes showing which RNG/API is used for each cryptographic operation,
+      entropy and seeding documentation for high-risk uses, validation or health-test
+      outputs for RNG sources, and incident/change records showing how weak RNG events
+      were handled.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'using an approved algorithm' (AES, RSA, ECDSA, etc.) automatically
+      means the system is safe — the algorithm is only as unpredictable as the randomness
+      feeding it, and a strong cipher with a biased or low-entropy source is still
+      breakable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which API or library function generates each type of security-relevant value,
+      and where is that documented?
+    - How do you know the entropy source actually has enough entropy at the moment
+      of key generation (e.g., right after VM boot or container start)?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.515675Z'
+  signed_digest: 3422ac8f5962d7b15a799006d0a6896691defe05c05bf1d0f517b5f38ede4349
+  interview_seconds: null
+  inherited_from: null

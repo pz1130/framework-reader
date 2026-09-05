@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:AC-19.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the case where a lost or stolen mobile device hands the
+      attacker the data in cleartext because storage encryption was never turned on,
+      was bypassed by a removable card, or was applied only to part of the media —
+      the control exists so that every byte of user data on the device, including
+      the parts most often forgotten, is unreadable without the key.
+    basis: inferred
+  plain_zh:
+    value: Make sure that mobile devices used for organizational work have full-disk
+      or container-based encryption covering the whole device or every container holding
+      organization data, so a lost or stolen device does not leak readable data.
+    basis: inferred
+  practice:
+    value:
+      '1': Mobile devices issued or approved for work have storage encryption enabled
+        by default; removable storage is covered or prohibited; encryption status
+        is checkable on each device.
+      '2': A written standard names which devices and which containers must be encrypted,
+        how the keys are protected, and how exceptions are granted; compliance is
+        verified on a fixed cadence and recorded.
+      '3': Encryption state is continuously monitored through MDM, missing or disabled
+        encryption blocks access automatically, key recovery is tied to identity,
+        and the standard is revisited when new device classes or container technologies
+        appear.
+    basis: inferred
+  evidence:
+    value: Mobile device encryption standard, MDM inventory with per-device encryption
+      status and last check date, configuration profiles enforcing encryption, exception
+      register with approver and expiry, audit logs of non-compliant devices blocked
+      or remediated.
+    basis: inferred
+  common_myth:
+    value: Assuming the device ships encrypted from the factory, so there is nothing
+      to do — default-encrypted consumer phones still leave removable media, secondary
+      partitions, and user-installed containers unprotected unless the MDM profile
+      actually enforces coverage of those surfaces and the team watches the compliance
+      dashboard.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the MDM report for the mobile fleet right now — how many devices are
+      not reporting full encryption, and what did you do about them?
+    - Where is the written rule on removable media and on container-only versus full-device
+      encryption, and who approved the most recent exception?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.102098Z'
+  signed_digest: 6d120106b13ed77ac18964ebbba1588925cc12209792720ae84f826a2753a597
+  interview_seconds: null
+  inherited_from: null

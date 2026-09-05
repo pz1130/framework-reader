@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AT-3.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents PII handling from being treated as a generic compliance checkbox
+      that everyone signs without understanding what data they actually touch and
+      what mishandling would mean. The control exists so that staff who process PII
+      can recognize it, know the authorized handling rules, and recognize misuse when
+      they see it - otherwise PII is leaked, sold, or stored informally by people
+      who never realized they were holding sensitive data.
+    basis: inferred
+  plain_zh:
+    value: Anyone whose job touches personally identifiable information must get role-specific
+      training on what counts as PII in your environment, the authorized ways to handle
+      it, and the reporting duties when something looks wrong.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify which roles actually process PII; give them a short training that
+        names the data categories they handle and the handling rules they must follow.
+      '2': Role-based content is documented per role; refresher cadence is defined;
+        completion records are kept and missing staff are followed up before they
+        touch live data.
+      '3': Training is refreshed whenever PII handling rules, data categories, or
+        systems change; the team can show what was taught, who attended, and how knowledge
+        is checked (e.g., spot questions, simulated incidents).
+    basis: inferred
+  evidence:
+    value: List of PII-processing roles, role-based training content, attendance and
+      completion records, refresher schedule, and proof that staff are reached before
+      being granted PII access.
+    basis: inferred
+  common_myth:
+    value: Assuming the general annual security awareness module satisfies this control
+      because it mentions 'data protection' once. Generic awareness does not count
+      - the training must be role-specific to people who actually process PII, naming
+      the categories they handle and the handling rules they are bound by.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which roles in this organization process PII, and what PII categories does each
+      role handle?
+    - Show the training record and content for one PII-processing role - when was
+      it last delivered, and what did it specifically cover?
+    basis: inferred
+  regional_note:
+    value: European auditors under GDPR expect this training to feed into the Article
+      39/39-equivalent staff awareness obligations and often cross-check it against
+      the records of processing activities; US auditors tend to scope it to roles
+      covered by federal PII programs (e.g., federal contractors handling government
+      PII) and do not necessarily tie it to a broader DPIA artefact.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.484349Z'
+  signed_digest: 03c08c47421d38f9e64b7ab10630b506dcf731e694ac5559de1f97c5d57aa2fb
+  interview_seconds: null
+  inherited_from: null

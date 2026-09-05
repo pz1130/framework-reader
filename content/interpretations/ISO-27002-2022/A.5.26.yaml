@@ -1,0 +1,64 @@
+control_id: ISO-27002-2022:A.5.26
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that "when an incident occurs, no one takes charge, no one can handle it, or
+      teams act independently"—if security incidents are handled chaotically, the impact expands, recovery
+      slows, and losses and compliance risks are amplified.
+    basis: inferred
+  plain_zh:
+    value: Establish an incident response capability with defined processes from preparation, detection,
+      analysis, containment, eradication, to recovery; incident handling should be coordinated with business
+      continuity plans; after the event, lessons learned should be fed back into processes, training,
+      and testing.
+    basis: inferred
+  practice:
+    value:
+      '1': An incident response plan and basic handling procedures exist; an incident response lead is
+        designated; for major incidents, it is clear who to contact and what steps to follow.
+      '2': Incident handling is documented and classified/graded; there is a coordination mechanism with
+        the business continuity team; after each incident, a review is conducted, and improvement items
+        are incorporated into processes or training.
+      '3': The rigor, intensity, scope, and results of incident response are comparable and predictable
+        across the organization; regular exercises are conducted to validate process effectiveness; review
+        improvement items have a tracking loop and are included in testing.
+    basis: inferred
+  evidence:
+    value: Incident response plan and process documents, incident records (including timeline, actions
+      taken, impact), incident classification criteria, post-incident review reports and improvement item
+      tracking lists, exercise plans and summaries.
+    basis: inferred
+  common_myth:
+    value: Thinking that "creating an incident response group chat and having an on-call phone" constitutes
+      response capability—if no one in the group follows procedures, there is no classification, no documentation,
+      no review, and incidents are handled based on personal experience, auditors will see through it
+      immediately.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When was the last real security incident? How long did it take from detection to containment? What
+      is the target time in the process document?
+    - When was the last test of the incident response plan? What three improvement items were identified
+      during the test?
+    - Are incident handling records classified and graded? Who has the authority to decide containment
+      measures for the highest-level incidents?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.286601Z'
+  signed_digest: 98f9294ac8b6352bfc2f7d7d7709117f28fc56f8eb1001f9985fd38a4ca49902
+  interview_seconds: null
+  inherited_from: null

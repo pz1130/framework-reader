@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-43
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the attacker surface created when hardware components,
+      peripherals, or firmware features (e.g., removable media, radios, debug ports,
+      IME, hidden management interfaces) are left enabled in environments where the
+      system or data they sit in cannot tolerate that exposure — usage must be restricted
+      on the assets that matter, not assumed benign.
+    basis: inferred
+  plain_zh:
+    value: For systems that handle sensitive data or operate in high-risk environments,
+      identify the hardware/firmware components whose normal behavior creates unacceptable
+      risk, then disable or restrict them, enforce the restriction technically, and
+      verify it stays restricted over time.
+    basis: inferred
+  practice:
+    value:
+      '1': List the system classes that need restrictions (kiosks, industrial controllers,
+        classified endpoints, payment terminals, dev machines in OT zones); identify
+        the specific hardware/firmware features that are off-limits for each (USB
+        storage, Bluetooth, Wi-Fi, cameras, microphones, debug ports, management engines);
+        document a rule that says these are disabled or controlled.
+      '2': Apply the rule in a repeatable way — group policy, MDM, BIOS/UEFI lockdown,
+        jump images, or removable-media controls — with role-based exceptions logged
+        as tickets; make the configuration auditable instead of relying on each user
+        to remember.
+      '3': Detect and alert when a restricted feature appears on an asset (configuration
+        drift, rogue USB, re-enabled radio, debug interface opened); include the restriction
+        in continuous compliance monitoring; test that the technical enforcement actually
+        blocks the action, not just reports it.
+    basis: inferred
+  evidence:
+    value: Asset-class definitions, the per-class restriction rule, technical enforcement
+      artifacts (GPOs, MDM profiles, BIOS settings, jump-image configs, block-lists),
+      exception tickets, and monitoring/output showing restrictions remain in place.
+    basis: inferred
+  common_myth:
+    value: Assuming the operating system or anti-malware product 'already blocks USB
+      and Bluetooth by default' counts as restricting usage — most defaults allow
+      more than high-assurance environments require, and BIOS-level or firmware features
+      sit below what the OS polices, so the audit will fail at the device level even
+      when the host looks clean.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an asset from your highest-risk system class and walk through which
+      hardware/firmware features are restricted and how.
+    - What happens when someone plugs an unapproved USB device into a restricted workstation
+      — does it get blocked, logged, both, or neither?
+    - Where is the policy that defines which classes of systems must restrict which
+      features, and who approved it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.620341Z'
+  signed_digest: ab97bebcf558bcfa723b1dbe0e9c240a6fba1354106fa551d9f1e24fd86483a4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CM-8.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure where the inventory exists on paper or in someone's
+      head but cannot be trusted to be current, because updates depend on manual sweeps
+      that lag reality, miss shadow assets, and silently drift from what is actually
+      plugged into the network or running in production.
+    basis: inferred
+  plain_zh:
+    value: Make the system component inventory update itself. New, changed, and removed
+      assets should be detected and recorded without relying on someone remembering
+      to enter them, so the inventory stays close to truth.
+    basis: inferred
+  practice:
+    value:
+      '1': At least one automated mechanism (agent, scan, cloud/API pull, MDM) feeds
+        new and removed assets into the inventory; someone reviews flagged items weekly.
+      '2': Multiple sources are correlated (network scan, endpoint agent, cloud control
+        plane, MDM) and discrepancies between them are triaged; changes are timestamped
+        and attributable.
+      '3': Inventory is continuously reconciled, deviations trigger alerts, coverage
+        gaps (un-scannable segments, offline assets) are explicitly tracked, and accuracy
+        is periodically measured against an independent ground truth.
+    basis: inferred
+  evidence:
+    value: Automated inventory tool configuration and data sources, reconciliation
+      reports between sources, change logs with timestamps, coverage notes for unscannable
+      segments, and any independent accuracy checks.
+    basis: inferred
+  common_myth:
+    value: Assuming that running a single network scan or turning on a cloud asset
+      dashboard satisfies 'automated maintenance' — one source, even if automated,
+      still leaves blind spots and stale entries; the control asks for the inventory
+      itself to stay current, not for one tool to be installed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which asset types or network segments are not visible to your automated inventory,
+      and how do you know?
+    - Show me the last reconciliation between two independent sources and what came
+      out of it.
+    basis: inferred
+  regional_note:
+    value: FedRAMP/US federal assessments tend to probe harder on continuous authorization
+      evidence (changes reflected in the inventory within defined SLAs); EU-driven
+      audits (NIS2, ISO 27001 certifiers) more often ask whether the inventory is
+      complete enough to support asset-level risk treatment. The underlying expectation
+      is similar, but the lens differs.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.869065Z'
+  signed_digest: 14f189c1c68452fa1f75af5d5ffdbcb818700f34f4912edcae8f8eb3c927a935
+  interview_seconds: null
+  inherited_from: null

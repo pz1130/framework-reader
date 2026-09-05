@@ -1,0 +1,61 @@
+control_id: NIST-CSF-2.0:ID.AM-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about "unclear asset inventory and unknown infrastructure"—if you don't know
+      which hardware is running in the organization, you can't monitor vulnerabilities, handle incidents,
+      or define responsibility boundaries; auditors will notice discrepancies between system records and
+      physical assets.
+    basis: inferred
+  plain_zh:
+    value: Maintain a list of all hardware devices managed by the organization (servers, endpoints, network
+      devices, IoT devices, etc.), and keep it continuously updated, not just a one-time effort at the
+      start.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a hardware asset inventory covering at least major data centers and office endpoints;
+        new or decommissioned devices are manually registered.
+      '2': The asset inventory has clear ownership and update mechanisms, covering network devices and
+        operational endpoints; regular physical checks are conducted and discrepancies are reconciled.
+      '3': The asset inventory is driven by automated discovery tools, integrated with the configuration
+        management database (CMDB); new or decommissioned devices are reflected in the inventory within
+        hours; discrepancies trigger automatic alerts and follow a remediation process.
+    basis: inferred
+  evidence:
+    value: Hardware asset inventory file or system export, records of asset owner appointments, minutes
+      of regular physical checks, collection scope and logs of automated discovery tools, change records
+      for added/decommissioned devices.
+    basis: inferred
+  common_myth:
+    value: Assuming that "having a CMDB counts as having an asset inventory." Many teams' CMDBs only include
+      servers, excluding network devices and office endpoints; or they are never updated—new devices aren't
+      added, decommissioned ones aren't removed—leading to mismatches between physical assets and the
+      system during audits.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How many hardware devices are in the inventory? What types are covered, and which types are not
+      included?
+    - When was the last comprehensive physical check? Who is responsible for rectifying discrepancies
+      and where are they recorded?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.518522Z'
+  signed_digest: e0d8e1408fe20538b117019aae0017d60a54567adcca6ce57b25112c17647d75
+  interview_seconds: null
+  inherited_from: null

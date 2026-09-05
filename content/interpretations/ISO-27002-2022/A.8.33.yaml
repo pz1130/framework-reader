@@ -1,0 +1,63 @@
+control_id: ISO-27002-2022:A.8.33
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'casually copying production data to test environments' — development,
+      testing, and staging environments lack the same level of security controls as production, yet they
+      hold real customer data. If a leak or misuse occurs, responsibility is shifted to data sensitivity.
+    basis: inferred
+  plain_zh:
+    value: Real data from production environments (especially personally identifiable information) used
+      in testing, development, integration, or staging environments must be approved, recorded, and controlled
+      beforehand; the security protection level of these pre-production environments must be as high as
+      that of the real data they contain.
+    basis: inferred
+  practice:
+    value:
+      '1': 'There is an informal verbal or email agreement: test environments are not allowed to use production
+        data; if truly necessary, at least someone must approve and a record must be kept.'
+      '2': 'A formal written approval process exists: application, business owner approval, stated purpose
+        and validity period; test environment databases and security configurations are hardened according
+        to the level of production data; usage records are auditable.'
+      '3': Data masking, synthetic data, or on-demand subsetting is the default approach; when real data
+        is truly necessary, workflow-based approval is followed, and test environments have access controls,
+        auditing, and encryption consistent with or equivalent to production; periodic reviews identify
+        which environments still use real data and drive replacement.
+    basis: inferred
+  evidence:
+    value: Approval forms for pre-production environment data usage, tools and policy configurations for
+      masking or synthetic data, comparison tables of security baselines between pre-production and production
+      environments, logs of real data usage, and records of periodic cleanup or replacement.
+    basis: inferred
+  common_myth:
+    value: Assuming 'test environments are on the internal network, so nothing will happen' and thus copying
+      data without following procedures. Real data appearing in a lower-security test database bypasses
+      all production controls — an audit finding of plaintext ID numbers or real phone numbers in a test
+      database is more embarrassing than a lapse in production.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Are there plaintext copies of production databases in test environments? When was the last full
+      cleanup?
+    - For using production data in integration testing, who signed the approval form? After data use,
+      is it deleted and who confirms?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.418152Z'
+  signed_digest: 748f5cd4eaa5a39e074de9363270240e4eb15fd169f30d13650ba7cf75e6c4e6
+  interview_seconds: null
+  inherited_from: null

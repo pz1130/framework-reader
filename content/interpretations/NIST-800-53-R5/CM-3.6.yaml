@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:CM-3.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents configuration changes from silently weakening or bypassing cryptography
+      - situations where a 'minor' tweak (disabling TLS, downgrading ciphers, swapping
+      a vetted library, hard-coding a key) erodes the entire crypto posture without
+      anyone noticing until data is exposed.
+    basis: inferred
+  plain_zh:
+    value: Make sure any change to cryptographic protections - algorithms, modules,
+      keys, certificates, the libraries that implement them - is reviewed and approved
+      before it goes live, because once weak crypto ships, every system that depends
+      on it is exposed.
+    basis: inferred
+  practice:
+    value:
+      '1': Changes touching TLS settings, cipher suites, key stores, certificates,
+        or crypto libraries are flagged in the change ticket and routed to someone
+        who knows the crypto baseline.
+      '2': Documented review checklist for crypto-touching changes (algorithm approval,
+        key strength, FIPS module status, certificate chain) attached to the change
+        record; reviewer must sign off before deployment.
+      '3': Automated tests in CI/CD that fail the build if approved algorithms are
+        weakened or removed; crypto baseline (approved algorithms/keys/libraries)
+        versioned and referenced in every change; post-change verification confirms
+        the live system still meets the baseline.
+    basis: inferred
+  evidence:
+    value: Change tickets for crypto-affecting changes showing the crypto-specific
+      review and approval, the baseline document of approved algorithms/keys/libraries,
+      and post-change verification that the deployed configuration still matches the
+      baseline.
+    basis: inferred
+  common_myth:
+    value: Assuming a normal change manager can review a crypto change because 'it's
+      just a config update' - they rubber-stamp it without checking whether the new
+      cipher, key length, or library is on the approved list.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a recent change that touched TLS, certificates, or a crypto library
+      - who reviewed it and what did they check?
+    - How does the change process know which changes affect cryptography and route
+      them to a qualified reviewer?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.788840Z'
+  signed_digest: 2397057952bfef419fa0583e66b9f488e0ba67f6661dd48cf85a4450b4b63f83
+  interview_seconds: null
+  inherited_from: null

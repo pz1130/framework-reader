@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:SI-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the failure where monitoring tools are deployed but no one actually
+      notices or triages malicious traffic — alerts sit unopened because analysis
+      is manual, slow, or off-hours, and attackers dwell undetected because the data
+      was never looked at.
+    basis: inferred
+  plain_zh:
+    value: Use automated tools or mechanisms to watch network traffic and system activity
+      in real time so threats are detected and flagged without waiting for a human
+      to read logs.
+    basis: inferred
+  practice:
+    value:
+      '1': A monitoring tool is running and generating alerts; someone is nominally
+        responsible for checking them.
+      '2': Automated signatures, correlation rules, or anomaly detection are in place;
+        alerts have a documented triage workflow with response times and escalation
+        paths.
+      '3': Detection content is tuned against current threats; coverage gaps are tracked;
+        critical segments and traffic (including encrypted flows where feasible) are
+        monitored; alert-to-triage timing is measured and incidents show the automation
+        contributed to detection speed.
+    basis: inferred
+  evidence:
+    value: Monitoring tool inventory and coverage map, detection rules and tuning
+      records, alert triage logs with response timestamps, sample incidents where
+      automated detection triggered the response, coverage gap analyses.
+    basis: inferred
+  common_myth:
+    value: Assuming that turning on a SIEM or IDS sensor satisfies the control because
+      traffic is 'being monitored'. If alerts are unstaffed, untriaged, or based on
+      default rules no one tunes, real-time analysis is not actually happening — the
+      tool is logging, not protecting.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me an alert from last month: how was it generated, who triaged it, and
+      how long did it take to act on it?'
+    - Which network segments or traffic types are not visible to your real-time monitoring,
+      and why?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.019374Z'
+  signed_digest: 1a4f51dfa81696558a3d369c0e1c6f80cb74771fda8ec6ac2036134a2dd00c49
+  interview_seconds: null
+  inherited_from: null

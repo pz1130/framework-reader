@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SI-17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a component that has failed, misbehaved, or been compromised from
+      continuing to operate in a state that erodes trust in the rest of the system
+      — e.g., a signing service returning bad signatures, a sensor returning plausible-but-wrong
+      data, an identity provider issuing tokens after its private key leaked. The
+      failure must be detected and the component moved into a mode that cannot silently
+      corrupt downstream decisions.
+    basis: inferred
+  plain_zh:
+    value: When a critical system component fails, is under attack, or is behaving
+      outside its known-good envelope, it must shut down, isolate, or otherwise degrade
+      into a state that cannot poison the rest of the system, until the operator confirms
+      it is trustworthy again.
+    basis: inferred
+  practice:
+    value:
+      '1': 'Identify the components whose wrong output would silently corrupt security
+        decisions (signers, identity providers, telemetry sources, patch servers,
+        configuration managers). For each, define a default action on integrity failure:
+        stop, isolate, or alert-and-halt.'
+      '2': 'Document the fail-safe procedure per component: the signal that triggers
+        it, who decides recovery, what ''safe'' looks like, and how the component
+        is brought back. Test it on a schedule and after any architectural change.'
+      '3': Make the procedure enforceable from the system itself — the component drops
+        its output or refuses to serve when integrity checks fail, the recovery path
+        is auditable, and exercises prove that a corrupted component cannot cause
+        downstream harm during the window between detection and human action.
+    basis: inferred
+  evidence:
+    value: List of components in scope for fail-safe behavior, the fail-safe procedure
+      per component, test or exercise records showing it actually triggered and contained
+      the failure, and audit trail of recovery actions.
+    basis: inferred
+  common_myth:
+    value: 'Assuming fail-safe means ''the system has high availability and redundant
+      nodes'' — it is the opposite: the procedure deliberately takes the component
+      out of service, trading availability for the guarantee that a bad actor cannot
+      keep serving trusted output.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one component you marked as fail-safe. Show me the last test where it was
+      forced into a fault state — what stopped it from continuing to serve, and who
+      signed off on bringing it back?
+    - If the integrity of this component were compromised at 2 a.m., what would your
+      customers see within the next five minutes, and how would you prevent those
+      bad outputs from being acted on in the meantime?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.871423Z'
+  signed_digest: 61ab368ffecdeeeac1aa8cb67b35826332355a805ddc2c81c49fce3cb4ef69a2
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-7.16
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against processes that hang, deadlock, or silently spin forever
+      and quietly consume CPU, memory, file handles, or locks—events that often mask
+      deeper failures (infinite loops, leaked resources, runaway retries) and starve
+      real workloads. Without a hard time bound and an enforced response, a single
+      stuck process can degrade availability, block transactions, or hide an active
+      compromise indefinitely.
+    basis: inferred
+  plain_zh:
+    value: Ensure that any process started—whether by users, jobs, or services—cannot
+      run forever without check. Set a maximum execution time, monitor whether it
+      is being supervised, and have a defined, automated response when the limit is
+      hit.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify long-running or untrusted process types (batch jobs, scheduled
+        tasks, scripts, user-launched utilities). Document reasonable maximum execution
+        times for each and a basic response when exceeded (kill, alert, restart).
+      '2': Enforce time limits at the OS, scheduler, job runner, or container level—not
+        only in code. Define what counts as 'supervised' (e.g., a live parent process,
+        heartbeat, or watchdog) and log violations. Incidents are reviewed and the
+        limits tuned.
+      '3': Limits and supervision checks are part of the standard build and deployment
+        baseline; deviations require exception approval. Detection of unsupervised
+        or overrun processes is automated (alerts, tickets, auto-kill), and trends
+        are reviewed to catch recurring design or stability defects.
+    basis: inferred
+  evidence:
+    value: Documented execution-time limits per process class, scheduler or OS configuration
+      enforcing those limits, logs of unsupervised or overrun process detections,
+      incident records showing the defined response was taken, and evidence of periodic
+      review/tuning.
+    basis: inferred
+  common_myth:
+    value: Assuming a vendor tool with a built-in job timeout means the control is
+      satisfied—time limits must be set explicitly per workload and enforced by the
+      platform; defaults may not match your risk profile, and user-launched or custom
+      processes usually fall outside any tool's default scope.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a process that ran past its time limit last quarter—what did the system
+      do automatically, and what was the human response?
+    - How do you distinguish a process that is 'supervised' from one that is not,
+      and where is that distinction enforced?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.091155Z'
+  signed_digest: 9b94b2d47e402622019c297ad1f4befcf9f4311c992184a4893939abc5f1abe5
+  interview_seconds: null
+  inherited_from: null

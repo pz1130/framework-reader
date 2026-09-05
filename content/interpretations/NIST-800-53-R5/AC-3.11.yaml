@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-3.11
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the failure mode where data of a sensitive class (e.g.,
+      regulated PII, financial records, health data, source code) is treated like
+      ordinary data: any authenticated user with broad read rights can pull it because
+      nothing in the access path actually inspects *what* is being requested. Without
+      per-type restrictions, classification labels and handling rules do not survive
+      contact with real systems.'
+    basis: inferred
+  plain_zh:
+    value: Decide which categories of information need tighter access rules than the
+      general baseline, and enforce those tighter rules at the point where access
+      is granted - not just in policy documents. The system must actually look at
+      the data type and apply the corresponding restriction, instead of letting 'logged-in
+      user' be sufficient.
+    basis: inferred
+  practice:
+    value:
+      '1': List the sensitive information types in scope (e.g., cardholder data, health
+        records, source code, M&A material) and the extra access rules each one requires;
+        document who is allowed to approve access to each type.
+      '2': Configure access enforcement so that requests for those data types check
+        the type and apply the type-specific rule - for example, a file server policy
+        that blocks 'Confidential' folders unless the user is in a named group, or
+        a database policy that masks PII columns for non-privileged roles.
+      '3': Periodically test that the type-specific restriction still works (a non-privileged
+        account attempting to read a tagged resource should be denied) and that new
+        repositories/data types are folded into the scheme when they appear, not left
+        at the default.
+    basis: inferred
+  evidence:
+    value: List of in-scope information types with their access rules; access-control
+      configuration showing type-aware policies (e.g., sensitivity-tagged folders,
+      column-level DB rules, DLP labels); change tickets that added new types; test
+      or audit results demonstrating a denied access attempt against a tagged resource.
+    basis: inferred
+  common_myth:
+    value: Believing that having a data classification policy on paper satisfies this
+      control. Classification labels that no system actually reads at decision time
+      do not restrict anything - the policy and the enforcement are two different
+      artefacts, and only the second one counts.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one sensitive data type you have scoped: show me where in the access-control
+      configuration a request for that type is treated differently from a generic
+      request.'
+    - When a new system is onboarded that holds a scoped data type, how is the type-specific
+      rule applied there, and who verifies it before go-live?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.205949Z'
+  signed_digest: d6a93267a88b61a6bfe5f719b6e8aaf8ed9abc4da7ef44330905dc7119b9666c
+  interview_seconds: null
+  inherited_from: null

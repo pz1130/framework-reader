@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.7.3
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'people can enter just by showing up'—no access authorization checks at
+      doors, visitors unmanaged, keys and access cards freely duplicated, or sensitive documents piled
+      on printers and copiers where passersby can easily take them.
+    basis: inferred
+  plain_zh:
+    value: 'Extend the security boundary from the network to the physical world: verify identity before
+      allowing entry into server rooms and office areas, maintain entry/exit logs, ensure visitors are
+      escorted and have activity restrictions, manage keys and access cards, and prevent sensitive printed
+      materials from being visible to unauthorized individuals.'
+    basis: inferred
+  practice:
+    value:
+      '1': Server rooms and critical office areas have access control (card or key), with entry/exit registration;
+        visitors are registered at the front desk and escorted; keys and access cards have custody records.
+      '2': Access authorizations are approved based on job roles and periodically revoked; entry/exit
+        logs are retained for audit; visitors are escorted throughout and restricted in activity range;
+        keys and access cards are promptly replaced or recovered upon loss or employee departure; printers
+        and copiers are placed in non-public corridor areas.
+      '3': Access control systems are integrated with personnel management systems (automatic card activation
+        upon onboarding, automatic deactivation upon departure); entry/exit logs are periodically analyzed
+        with alerts (e.g., entries during non-working hours); surveillance covers entry/exit points and
+        areas around sensitive equipment; keys and access cards are periodically inventoried, with written
+        records for damage or loss.
+    basis: inferred
+  evidence:
+    value: Access authorization lists and approval records, entry/exit logs, visitor registration forms
+      (including escort signatures), key/access card issuance and return records, and diagrams or photos
+      of equipment placement areas.
+    basis: inferred
+  common_myth:
+    value: It is assumed that having access control in the server room and a front desk in the office
+      is sufficient. The core of this control lies in 'authorization verification'—can an employee who
+      left three months ago still use their card to enter? After visitor registration, is someone actually
+      escorting them? When keys are borrowed, is there a reminder to return them? Are logs reviewed by
+      anyone?
+    basis: inferred
+  auditor_asks:
+    value:
+    - After an employee leaves, is their access card automatically deactivated by the system or manually
+      recovered by administration? When was the last time this happened?
+    - When visitors enter the server room, is the escort present throughout or only responsible for opening
+      the door? Are there records of visitors being left alone in sensitive areas?
+    - Where are printers and copiers located? Can passersby see the output content?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.352811Z'
+  signed_digest: 4f170fdaba31be8ece8230cf50be6372a06694d2a4a37815b65209848130b7a1
+  interview_seconds: null
+  inherited_from: null

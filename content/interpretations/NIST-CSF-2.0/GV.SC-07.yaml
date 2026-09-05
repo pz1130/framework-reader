@@ -1,0 +1,70 @@
+control_id: NIST-CSF-2.0:GV.SC-07
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that suppliers and third parties continuously become backdoors or points of
+      failure throughout the lifecycle of products and services—contracts are signed with great fanfare,
+      but then no one oversees them; only when an incident occurs do people remember that suppliers are
+      also part of the attack surface, leading to data breaches or supply chain disruptions.
+    basis: inferred
+  plain_zh:
+    value: 'Risks posed by suppliers, their products and services, and other third parties must be continuously
+      understood throughout the entire collaboration: identify risks, document them, prioritize them,
+      assess them, take action to address them, and monitor them until the relationship ends.'
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain a supplier inventory; conduct a basic risk assessment before contracting with key
+        suppliers; know which suppliers have access to your data or systems.
+      '2': Have a formal supplier risk management policy and risk classification; conduct regular (e.g.,
+        annual) assessments of high-risk suppliers; include security and confidentiality clauses in contracts;
+        notify and reassess in the event of security incidents or major product changes.
+      '3': Link supplier risk to business system assets; track supplier product vulnerabilities or security
+        incidents in real time and automatically; document risk treatment (accept, mitigate, transfer,
+        terminate) with records; have supplier exit and data destruction processes with evidence of execution.
+    basis: inferred
+  evidence:
+    value: Supplier inventory and risk rating matrix, annual or continuous risk assessment reports, supplier
+      security contract clauses (confidentiality, incident notification, audit rights), supplier communication
+      and incident notification records, supplier exit and data destruction verification records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that simply obtaining and archiving a 'Supplier Information Security Commitment
+      Letter' completes this requirement. A common mistake is to only review paper qualifications without
+      examining which systems are actually connected, where data flows, and how often risk levels are
+      reassessed—the contract may be signed for three years, but the supplier's security environment may
+      have changed drastically, yet no one updates the risk assessment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which suppliers in your inventory were newly introduced this year? Where are their risk assessment
+      reports, and who approved them?
+    - If Cloudflare disclosed a severe vulnerability yesterday, what mechanism would you use to learn
+      about it, and how quickly would you assess its impact on your systems?
+    - Which supplier was required to remediate or had its contract terminated last year due to an elevated
+      risk level? Show me the specific records.
+    - After a supplier relationship ends, how do you technically ensure that their access permissions
+      and data are revoked?
+    basis: inferred
+  regional_note:
+    value: European auditors, under the GDPR chain, more often check whether suppliers have signed Data
+      Processing Agreements (DPAs) and the data cross-border paths; U.S. auditors focus more on critical
+      infrastructure and supply chain security requirements, and whether suppliers are included in incident
+      response exercises.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.510580Z'
+  signed_digest: c176c63fcd6b611feedafdaea94a5a15ffcdae38201f7a54d636fd3d8b32e69b
+  interview_seconds: null
+  inherited_from: null

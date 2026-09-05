@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:RA-5.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against scanning that is wide but shallow — finding known CVEs
+      on a handful of hosts while missing the long tail of outdated libraries, shadow
+      IT, and unauthenticated attack surfaces that actually get exploited.
+    basis: inferred
+  plain_zh:
+    value: Make vulnerability scans cover enough of the environment and probe deep
+      enough to catch what adversaries would actually exploit, not just the obvious
+      servers the security team already knows about.
+    basis: inferred
+  practice:
+    value:
+      '1': Scan all in-scope IP ranges and known hostnames on a fixed cadence; include
+        authenticated credentialed scans on key systems so the scanner can read installed
+        software versions, not just open ports.
+      '2': Track coverage gaps explicitly — cloud accounts, remote workers, dev/test,
+        containers, and ephemeral infrastructure are inventoried and scanned; scan
+        depth (authenticated vs. unauthenticated, which checks enabled) is documented
+        per asset class.
+      '3': 'Coverage metrics (breadth: % of known assets scanned in the last cycle;
+        depth: % of assets scanned with credentials and full plugin set) are reported
+        and acted on; gaps trigger remediation tickets, and the program is stress-tested
+        by comparing scanner results against an independent technique such as an authenticated
+        agent or external attack-surface view.'
+    basis: inferred
+  evidence:
+    value: A coverage matrix by asset class showing scan frequency, authenticated/unauthenticated
+      mode, and last successful scan date; sample scan reports demonstrating depth
+      (e.g., local software enumeration, not just port banners); gap list with owners
+      and remediation dates.
+    basis: inferred
+  common_myth:
+    value: Treating RA-5.3 as satisfied by pointing at a scanner license and a weekly
+      Internet-facing IP scan. The control fails when internal cloud workloads, employee
+      laptops, OT, and container images are never credentialed, so the scanner sees
+      open ports but no software versions — which is exactly the gap attackers exploit.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What percentage of your known assets were scanned with authenticated credentials
+      in the last cycle, and which asset classes are excluded?
+    - Show me a scan result that actually identified a missing patch on an internal
+      system because the scanner had local access — not a port scan.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.961593Z'
+  signed_digest: c27091dfa438165ec464ef0001761c5dfa0eb7d8149b2e4e52e26cb5839dcad4
+  interview_seconds: null
+  inherited_from: null

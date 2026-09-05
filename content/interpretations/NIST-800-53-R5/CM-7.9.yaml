@@ -1,0 +1,67 @@
+control_id: NIST-800-53-R5:CM-7.9
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Protects against shadow hardware — rogue USB drives, bring-your-own devices,
+      unsanctioned network or peripheral equipment — that bypass the standard build,
+      image, and vulnerability management pipeline and become a persistent, invisible
+      entry point for malware, data exfiltration, or lateral movement.
+    basis: inferred
+  plain_zh:
+    value: Identify what hardware is allowed in the environment, prevent everything
+      else from being plugged in or connected, and detect and respond when unauthorized
+      hardware shows up anyway.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintain an authorized hardware list for high-risk ports (USB, removable
+        media, network/expansion cards); user policy prohibits attaching anything
+        not on the list; basic endpoint tooling can block common unauthorized device
+        classes.
+      '2': Enforce allow-listing through technical controls (endpoint lockdown, port
+        disabling, MDM/Intune-style policies); log device connection attempts; have
+        a documented exception and removal process; periodic scans for unknown devices.
+      '3': Continuous device discovery across endpoints and network-connected hardware;
+        unauthorized device events feed SIEM with alerting; exception lifecycle tied
+        to ticket and approval workflow; KPIs on unauthorized-device detection and
+        mean-time-to-isolate; review of authorized list driven by threat and architecture
+        changes.
+    basis: inferred
+  evidence:
+    value: Authorized hardware inventory, technical enforcement policy/configuration,
+      device connection event logs, exception tickets and approvals, periodic scan
+      reports, incident records of unauthorized devices detected and removed.
+    basis: inferred
+  common_myth:
+    value: Treating this as a removable-media-only concern for air-gapped or classified
+      environments. The control applies broadly to any peripheral, network device,
+      or expansion hardware that can carry data or provide a foothold — assuming USB
+      is the only vector leaves network cards, storage controllers, and unsanctioned
+      endpoints unaddressed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show the last three unauthorized hardware events: what device, where detected,
+      how removed, and who approved any exception.'
+    - Which device classes are blocked by policy versus only logged, and how is that
+      enforced on a Linux endpoint versus a Windows endpoint?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.860828Z'
+  signed_digest: f72e4366767edef1756663709ea427dc7de15a89e60e0f737905084d91891f3a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SA-15.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against the risk that engineering processes drift without visibility:
+      when no one is systematically collecting data on security and privacy posture
+      across the development pipeline, vulnerabilities, design weaknesses, and privacy
+      defects accumulate silently until they ship or surface in production.'
+    basis: inferred
+  plain_zh:
+    value: Implement tools and processes that systematically collect, track, and report
+      on security and privacy posture across the system development life cycle, so
+      issues are visible while they can still be fixed cheaply.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the SDLC phases where security and privacy data needs to be captured
+        (design reviews, code, build, test, release) and apply at least basic tracking
+        — issue tickets, scan results logged, privacy review checklists recorded.
+      '2': 'Standardize tracking across projects: SAST/DAST/SCA findings, threat model
+        outputs, privacy impact assessments, and defect remediation status are recorded
+        in a shared system with owners, severity, and due dates; periodic reports
+        go to engineering leadership.'
+      '3': Tracking is integrated into the delivery pipeline and gated by policy —
+        critical findings block promotion, metrics (mean time to remediate, open critical
+        count, privacy defects per release) trend over time, and the data drives roadmap
+        and design changes rather than sitting in dashboards nobody reads.
+    basis: inferred
+  evidence:
+    value: Sample tracking records showing security and privacy findings captured
+      across SDLC phases, dashboards or reports demonstrating trend visibility, policy
+      or pipeline configuration showing findings gate promotion, evidence that tracking
+      output drove a concrete design or process change.
+    basis: inferred
+  common_myth:
+    value: Assuming that running scanners and producing a dashboard constitutes compliance
+      — scanning without assigning owners, setting SLAs, integrating into developer
+      workflow, or acting on the output means findings pile up unaddressed and the
+      tracking system becomes a write-only artifact.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick a critical finding from six months ago: who owned it, when was it closed,
+      and what proves it was actually fixed?'
+    - Show how a security or privacy finding has ever changed a design decision or
+      blocked a release — not just appeared in a report.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.079648Z'
+  signed_digest: c6cd73841629f67382ac026330ee6d607b4a16e817c3bda8ca71ca6772c184cf
+  interview_seconds: null
+  inherited_from: null

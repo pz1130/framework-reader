@@ -1,0 +1,59 @@
+control_id: NIST-800-53-R5:SI-18.5
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: To prevent the spread of misinformation or corrupted data after a security
+      incident, and to ensure that affected individuals or systems are promptly informed
+      when their data has been altered or removed.
+    basis: inferred
+  plain_zh:
+    value: When a security incident leads to the correction or deletion of user data,
+      you must notify the affected individuals or organizations, and document the
+      action so that they are not left unknowingly relying on altered or missing information.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a process for notifying users when their data is corrected or removed
+        due to a security incident. Maintain a log of such notifications.
+      '2': Establish criteria for when notification is required, including severity
+        thresholds. Ensure notifications include the nature of the correction or deletion
+        and a point of contact for questions.
+      '3': Integrate notification triggers with incident response workflows. Automate
+        where possible, and periodically test the notification process to ensure timeliness
+        and completeness.
+    basis: inferred
+  evidence:
+    value: A documented notification procedure, sample notification templates, logs
+      of notifications sent (including dates, affected parties, and actions taken),
+      and incident reports referencing the alerts.
+    basis: inferred
+  common_myth:
+    value: Assuming that correcting or deleting the data in the backend is enough,
+      without notifying the affected users or tracking that they were informed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Walk me through a recent incident where data was corrected or deleted. Who was
+      notified, and when?
+    - How do you determine which users need to be informed of a data correction or
+      deletion?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.889817Z'
+  signed_digest: ecbe04e629e024ae1e40b12389714db38be3873519ecf2dd61ac95392fb0769d
+  interview_seconds: null
+  inherited_from: null

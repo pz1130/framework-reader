@@ -1,0 +1,72 @@
+control_id: NIST-CSF-2.0:GV.PO-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is the disconnect between security policy and actual business operations—having
+      business strategy and priorities but no documented policy to weld them together, resulting in security
+      decisions made by gut feeling, policy revisions without a structured process, and management signatures
+      that are mere formalities.
+    basis: inferred
+  plain_zh:
+    value: First clarify the company's business objectives, strategic direction, and priorities, then
+      develop a comprehensive set of matching cybersecurity policies, disseminate them, provide training,
+      enforce them, and ensure they are regularly updated in line with organizational changes.
+    basis: inferred
+  practice:
+    value:
+      '1': One or more management-approved cybersecurity policy documents exist, covering baseline requirements
+        (e.g., passwords, access control, incident reporting); new employees can access or view the policies
+        upon onboarding.
+      '2': Policy documents are developed based on business/strategic inputs, with a defined periodic
+        review cycle (e.g., annually); version control and approval trails are maintained; training attendance
+        records or emails demonstrate that policies have been communicated to all staff.
+      '3': The policy framework is broken down into families by security domain (e.g., backup, outsourcing,
+        development, data), with each policy mapped to corresponding business risks and priorities, and
+        review triggers are established (e.g., unconditional revision upon major business launches or
+        architectural changes); policy enforcement is subject to spot checks, violations are recorded,
+        and revisions are reviewed.
+    basis: inferred
+  evidence:
+    value: Policy documents and approval signature pages, records of policy publication and communication
+      to all staff (email notifications, training attendance, or online read confirmations), version change
+      history, periodic review meeting minutes, and documentation or presentation materials showing alignment
+      between policies and organizational context/strategy.
+    basis: inferred
+  common_myth:
+    value: The misconception is that simply renaming an ISO 27001 or equivalent protection template with
+      the company's name and having executives sign it completes this requirement. Auditors focus on whether
+      policies are tailored to the company's business strategy and priorities; if a generic template is
+      used without correspondence to actual business operations, it is equivalent to having no policy.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What business change or event triggered the last revision of this policy?
+    - When new employees onboard or transfer roles, where and in what form do they receive job-relevant
+      policy documents?
+    - Which clause in the policy directly corresponds to the business priorities set by the company this
+      year?
+    - How is it confirmed that all staff have read and understood the policies—is there evidence?
+    basis: inferred
+  regional_note:
+    value: Auditors in the U.S. typically review the policy documents and approval chain, accepting 'management
+      approval plus staff accessibility' as compliance; in Europe, within the NIS2 context, there is greater
+      scrutiny on whether policies are truly embedded in business decision-making processes, often requiring
+      evidence of linkage between policies and risk assessments or business impact analyses, not just
+      approval signatures.
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.471364Z'
+  signed_digest: 9d72bd923e0cdbd9473a07ad793fbb6000ede3f6db916c8ea329caad44f3614d
+  interview_seconds: null
+  inherited_from: null

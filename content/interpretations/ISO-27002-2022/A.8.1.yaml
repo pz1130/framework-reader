@@ -1,0 +1,67 @@
+control_id: ISO-27002-2022:A.8.1
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about 'device in hand, person not present'—unlocked screens and mobile devices
+      left unattended, allowing others to access systems, modify data, or send messages under your identity.
+      It also addresses unmanaged personal phones and tablets connecting to the corporate network, bringing
+      in malware and unauthorized access.
+    basis: inferred
+  plain_zh:
+    value: 'Manage portable devices such as phones, tablets, and laptops: lock the screen when leaving;
+      have security requirements for moving devices in and out of office areas; personal devices must
+      be declared and follow rules before connecting to company systems.'
+    basis: inferred
+  practice:
+    value:
+      '1': 'Written policy exists: lock screen or set automatic lock when leaving the workstation; mobile
+        devices have basic password protection.'
+      '2': Lock screen policy enforced at the system level (automatic lock timeout, password or biometric
+        unlock); mobile devices are registered with configuration requirements; personal device access
+        has a clear approval process.
+      '3': Lock policy integrated with device management; remote wipe or lock for lost or suspected compromised
+        devices; network access control for devices connecting to corporate network; personal devices
+        isolated from corporate data; additional controls and records for mobile devices taken out of
+        the country or off-site.
+    basis: inferred
+  evidence:
+    value: Screenshots of group policy or MDM configuration for lock screen policy, device registration
+      list, work orders or process documents for mobile device access approval, incident records for device
+      loss or compromise (logs of remote lock/wipe).
+    basis: inferred
+  common_myth:
+    value: Assuming 'each employee has a laptop, and setting a lock screen password per the manual is
+      sufficient'—auditors look at whether the policy is enforced in the system, whether anyone bypasses
+      it, and whether remote control is possible if a device is lost. A 5-minute lock timeout versus 30
+      minutes represents a whole level of difference in control strength to an auditor; personal phones
+      connecting to Wi-Fi to access the intranet without being on the registration list is more critical
+      than not having a password.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where is the automatic screen lock timeout configured? Show me the modification records of the configuration
+      file or MDM policy.
+    - If an employee's personal phone with cached corporate emails is lost, how do you handle it? Where
+      is the process documented?
+    - After business trips with company laptops to high-risk countries, are device checks or baseline
+      re-assessments performed upon return?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.366473Z'
+  signed_digest: 2f0bda515199b9cd9d0b37377b68e842bc9cd2cb13fb616b74093a39546f94c0
+  interview_seconds: null
+  inherited_from: null

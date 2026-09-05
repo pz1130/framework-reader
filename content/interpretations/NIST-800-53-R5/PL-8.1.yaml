@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:PL-8.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents a single security architecture that relies on one layer of control
+      to stop attackers — when that layer fails or is bypassed, nothing else catches
+      the breach, and a flat compromise becomes catastrophic.
+    basis: inferred
+  plain_zh:
+    value: Make sure each system has more than one independent control layer protecting
+      it, so that if one breaks the next one still holds, and the controls do not
+      all depend on the same assumption or the same component.
+    basis: inferred
+  practice:
+    value:
+      '1': Each critical system has at least two distinct control types (e.g., network
+        segmentation plus application-level access control plus logging) listed in
+        its design notes.
+      '2': Architecture diagrams show overlapping layers per system; gaps where a
+        single layer is the only defense are called out in a design review and recorded.
+      '3': Defense-in-depth is enforced as a design review checkpoint — changes that
+        would leave an asset protected by only one layer are rejected, and existing
+        architectures are periodically re-tested to confirm the layers are still independent
+        and functional.
+    basis: inferred
+  evidence:
+    value: System security architecture diagrams showing layered controls, design
+      review records identifying single-point-of-failure layers, and evidence that
+      compensating layers exist for each critical asset.
+    basis: inferred
+  common_myth:
+    value: Assuming that deploying a firewall, an antivirus, and MFA on the same system
+      already gives defense in depth, when in reality those three often share the
+      same identity store, the same admin team, and the same network segment — so
+      one compromise takes all three down together.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one critical system: walk me through the independent layers protecting
+      it and what each layer catches that the others do not.'
+    - Show me a design review where a proposed change was rejected because it would
+      leave an asset with only one effective control layer.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.674501Z'
+  signed_digest: bb66ad0ff5900f335e7cbe2aae45ad970244b6dca049a24ff3f0ae63788b3c69
+  interview_seconds: null
+  inherited_from: null

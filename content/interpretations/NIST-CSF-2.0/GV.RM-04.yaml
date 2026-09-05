@@ -1,0 +1,64 @@
+control_id: NIST-CSF-2.0:GV.RM-04
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is the lack of a unified approach to risk treatment—business units handle incidents
+      based on their own convenience; some immediately buy insurance, some suppress reporting, and some
+      directly cut business operations, without a management-defined response strategy, leaving treatment
+      decisions to personal judgment and position.
+    basis: inferred
+  plain_zh:
+    value: Management should first define 'for what risks we accept, avoid, transfer, or mitigate,' turning
+      this into a documented strategy, and ensure relevant departments receive and understand it, so treatment
+      follows this approach.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a management-approved strategy document that clearly defines the applicable boundaries
+        for at least four treatment options (accept, avoid, transfer, mitigate); key department heads
+        can state the document's location.
+      '2': There is a cross-reference record between the risk treatment strategy and specific risk treatment
+        decisions; each treatment option has a designated owner or approval path; new hires or newly promoted
+        managers are directed to this document.
+      '3': The treatment strategy is not a one-time document—it is regularly reconciled with actual treatment
+        cases; there are cases showing how disagreements, such as business wanting to 'accept' while security
+        says no, are resolved by rules; the strategy is proactively revised upon major threat changes
+        rather than waiting for incidents.
+    basis: inferred
+  evidence:
+    value: Approved treatment strategy document, communication records (e.g., emails or training sign-in
+      sheets), cases where specific risk treatment decisions align with the strategy, exception approval
+      records, revision history and triggering reasons.
+    basis: inferred
+  common_myth:
+    value: The misconception is that writing 'mitigate' for each risk in the register equates to having
+      a treatment strategy. The terms in the register are just outcome labels, not strategy—strategy should
+      articulate 'under what conditions we generally lean toward acceptance and when transfer is mandatory.'
+      Without this premise, the treatment terms in the register are retroactively fabricated.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For a risk marked as 'accepted,' who signed off on the acceptance decision? Which clause of the
+      strategy document supports it?
+    - The strategy document states 'high-impact events must not be accepted,' but the actual register
+      shows a high-impact event marked as 'accepted'—how do these reconcile?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.482059Z'
+  signed_digest: fff327ae12e01e6a8e93000090f59d51322d3cd8e314d8954766074a8b15f2ea
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,70 @@
+control_id: NIST-800-53-R5:SC-8.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against adversaries who read or tamper with the routing, headers,
+      and metadata of a message rather than its body — because if only the payload
+      is encrypted, an attacker can still learn who is talking to whom, when, how
+      much, and can rewrite headers to redirect, spoof, or inject traffic without
+      ever breaking the cipher.
+    basis: inferred
+  plain_zh:
+    value: When you send a protected message, encrypt and integrity-protect not only
+      the contents but also the external wrapper (headers, routing info, sender/receiver
+      identifiers and other metadata) so that anyone off the path cannot read or alter
+      who is communicating or steer the message somewhere else.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify message flows that carry sensitive or regulated content; confirm
+        in those flows the transport or message-layer mechanism in use actually wraps
+        headers and metadata, not only the body (e.g., TLS with hostname verification
+        for SMTP, full message-layer encryption, or authenticated tunnels).
+      '2': Document per channel which mechanism protects externals and which does
+        not; require explicit sign-off for any channel that intentionally leaves headers
+        in clear; verify integrity (not just confidentiality) so headers cannot be
+        silently rewritten.
+      '3': Periodically test with traffic inspection that headers, sender/receiver
+        identifiers, subject lines, and routing fields are unreadable and unmodifiable
+        on the wire; fail and remediate any channel where externals are exposed or
+        integrity is not enforced.
+    basis: inferred
+  evidence:
+    value: Per-channel inventory of message flows, the cryptographic mechanism applied
+      (with version/profile), proof that headers and metadata are within the authenticated-encrypted
+      scope, configuration and test artifacts showing externals are unreadable and
+      unmodifiable in transit, and any exception register for channels deliberately
+      not protected.
+    basis: inferred
+  common_myth:
+    value: Assuming that TLS on the transport hop is enough — body and header look
+      encrypted in the spec, but if the protection is only applied to the message
+      body (or TLS terminates at a relay that rewrites headers), headers, sender/recipient,
+      subject, and routing are still exposed to anyone on path and remain tamperable.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a packet capture of a sensitive message in transit — can you point to
+      where the To, From, and routing headers are protected?
+    - Which message channels leave any external field in cleartext, and what is the
+      documented justification for each?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.782225Z'
+  signed_digest: cc70ec3a383e01352c6ab848be131514405baff872a858e074bbc1ed5b36e1e1
+  interview_seconds: null
+  inherited_from: null

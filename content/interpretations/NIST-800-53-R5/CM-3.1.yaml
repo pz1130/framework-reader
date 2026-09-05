@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-3.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Stop silent or out-of-band configuration changes — the kind a sysadmin
+      makes directly on a device at 2 a.m. with no ticket, no peer review, and no
+      record. Without automated enforcement, change control becomes a paper exercise
+      that approves changes that already happened, and rollbacks become guesswork
+      because nobody knows what was changed.
+    basis: inferred
+  plain_zh:
+    value: Make configuration changes get recorded, reviewed, and either approved
+      or blocked by the system itself — not relying on people to file the paperwork
+      later.
+    basis: inferred
+  practice:
+    value:
+      '1': Changes go through a documented request/approval workflow; emergency changes
+        are flagged and reviewed after the fact.
+      '2': The change system automatically timestamps, logs, and notifies the right
+        reviewers when a change is proposed or applied; unapproved changes are detected.
+      '3': The system itself enforces the gate — unauthorized or out-of-process changes
+        are technically blocked or auto-reverted, with alerts, and the audit trail
+        is tamper-evident and tied back to the change record.
+    basis: inferred
+  evidence:
+    value: Change tickets linked to automated system notifications, sample logs showing
+      approved vs. blocked changes, evidence that detected unapproved changes triggered
+      rollback or escalation.
+    basis: inferred
+  common_myth:
+    value: Treating the ticketing system as the control. Tickets document intent;
+      they do not stop a technician from SSH-ing into a server and editing a config
+      file at 3 a.m. The control only works when the configuration itself is gated,
+      not when the paperwork is.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a change made last month where the automated system flagged or blocked
+      it — what happened next?
+    - How does the change tool know a change is approved before it lands on the device?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.770488Z'
+  signed_digest: b5f70fc1e0b8e44b48d6926dcc9474d1f11fa450db99923c93bf59a92bdcae82
+  interview_seconds: null
+  inherited_from: null

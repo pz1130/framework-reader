@@ -1,0 +1,63 @@
+control_id: NIST-CSF-2.0:ID.RA-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'vulnerability scan reports are generated but no one acts on them' — vulnerabilities
+      in assets must go through a closed loop from discovery to confirmation to recording; otherwise,
+      scanning is just a facade, vulnerabilities pile up in reports without handling, and subsequent risk
+      prioritization and tracking are impossible.
+    basis: inferred
+  plain_zh:
+    value: Identify vulnerabilities in the organization's internal assets (servers, endpoints, network
+      devices, applications, etc.), confirm whether they are true vulnerabilities or false positives,
+      and record them in a trackable location to form a continuously updated vulnerability list.
+    basis: inferred
+  practice:
+    value:
+      '1': Have vulnerability scanning tools or services that regularly scan core assets; scan results
+        are compiled into a list (table or document) by someone.
+      '2': Have a clear vulnerability discovery-verification-recording process; scan results are manually
+        or automatically confirmed, false positives are marked; the vulnerability list has an owner and
+        update frequency.
+      '3': Vulnerability identification is automated and integrated with the asset inventory; new assets
+        are included in the scanning scope upon deployment; the verification process is aided by tools
+        or re-testing; the recording system can query by asset, severity, and status, and supports linkage
+        with the remediation process for tracking.
+    basis: inferred
+  evidence:
+    value: 'Vulnerability scan reports, vulnerability lists (including status fields: pending verification/verified/false
+      positive), scan configuration files (scan scope, frequency), vulnerability record entries with handling
+      status, re-test or verification records.'
+    basis: inferred
+  common_myth:
+    value: Assuming that 'purchasing a commercial vulnerability scanner, running it periodically, and
+      sending out reports' is sufficient. Running the tool does not equal vulnerabilities being identified,
+      verified, and recorded — auditors need to see status fields in the list, false positives marked,
+      and evidence for the verification step (e.g., re-testing, manual judgment, or comparison with public
+      databases).
+    basis: inferred
+  auditor_asks:
+    value:
+    - For entries marked as confirmed in the vulnerability list, what is the verification basis?
+    - How long does it take for newly purchased devices or newly deployed applications to be included
+      in the scanning scope? Where is the process documented?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.540283Z'
+  signed_digest: fa6fcdfd69709cbfd01666d1fafbb271646252d36d9bbdbf3646fa42e7b6e80d
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,62 @@
+control_id: NIST-CSF-2.0:RS.MA-01
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that incident handling only occurs within one's own organization—third parties
+      such as supply chain, cloud service providers, and outsourced operations hold critical assets. If
+      there is no coordination during incidents, you may not be aware when they are affected, and by the
+      time you discover it, the impact is difficult to assess.
+    basis: inferred
+  plain_zh:
+    value: Emergency plans are not just for internal use; during an incident, relevant parties should
+      be brought in for coordinated response as agreed, including notifications, escalations, and takeovers,
+      and there should be designated points of contact in place beforehand.
+    basis: inferred
+  practice:
+    value:
+      '1': The emergency plan identifies key third parties, their contact information, and the types of
+        incidents that require notification, ensuring they can be reached during an incident.
+      '2': Formal coordination agreements with key third parties are in place, specifying incident notification
+        timelines, respective responsibilities, and escalation paths, and at least one drill or tabletop
+        exercise has been conducted.
+      '3': Third-party coordination is a standard component of the emergency plan, including real-time
+        intelligence sharing interfaces, with post-incident or post-exercise reviews, and agreements are
+        updated when suppliers change.
+    basis: inferred
+  evidence:
+    value: Third-party contact lists in emergency plans, incident coordination or notification agreements
+      with suppliers, records of coordination during drills or real incidents, and review meeting minutes
+      with improvement actions.
+    basis: inferred
+  common_myth:
+    value: Assuming that having emergency plans on both the client and security provider sides is sufficient
+      for coordination. If each side has its own plan without agreed notification timelines and points
+      of contact, they may not be able to reach each other or align on messaging during an incident, which
+      means there is no effective coordination.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In the past year, during real incidents or drills, how many times were third parties notified according
+      to the plan? What was the time between detection and notification?
+    - When a key cloud service provider changes its point of contact, what is your process for updating
+      the emergency contact list?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.634638Z'
+  signed_digest: b3f052f2906cadf9d1081ad153abf120862754b358c30e9913a224dbdb8d47b5
+  interview_seconds: null
+  inherited_from: null

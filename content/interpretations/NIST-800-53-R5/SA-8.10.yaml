@@ -1,0 +1,62 @@
+control_id: NIST-800-53-R5:SA-8.10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against flat-trust designs where any compromised component can
+      impersonate or directly call any other — lateral movement, privilege escalation
+      across tiers, and forged identities become trivial when components treat each
+      other as equals.
+    basis: inferred
+  plain_zh:
+    value: 'Engineer systems so that trust flows in a defined hierarchy: lower-trust
+      components cannot directly call or impersonate higher-trust ones, and every
+      interaction crosses a controlled boundary that enforces who can do what.'
+    basis: inferred
+  practice:
+    value:
+      '1': Document a trust hierarchy for the system (e.g., external → edge → application
+        → data) and identify which tiers must never call each other directly.
+      '2': Map each inter-tier interface to the controls that enforce it (auth, network
+        segmentation, API gateway, broker) and record the design decisions.
+      '3': 'Codify the hierarchy in architecture reviews and tests: reject designs
+        that bypass tiers, verify lower tiers cannot escalate or impersonate upward,
+        and re-check after major changes.'
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing trust tiers, interface control list with
+      enforced boundaries, design review records rejecting flat-trust patterns, and
+      test or penetration-test results demonstrating that lower-tier components cannot
+      directly invoke higher-tier functions.
+    basis: inferred
+  common_myth:
+    value: Assuming that having network segmentation or an API gateway means hierarchical
+      trust is enforced — those controls often sit inside one tier or between peers,
+      while the real risk is a low-trust service calling a high-trust one over an
+      internal channel with no policy gate.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me where in the architecture a low-trust component is prevented from directly
+      calling a high-trust one, and which control enforces it.
+    - Walk me through the last design review where a flat-trust pattern was rejected
+      — what was the system and what changed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.214907Z'
+  signed_digest: 1a3cce08078cc993ec565f9794c937268f97693dbdb6a24f22383fccf9e3ab56
+  interview_seconds: null
+  inherited_from: null

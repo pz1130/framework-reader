@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:AC-6.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the scenario where one powerful account is shared across all administrative
+      and security roles, so that a single compromise or insider action can pivot
+      to every sensitive function without any second pair of eyes.
+    basis: inferred
+  plain_zh:
+    value: Ensure non-security personnel (like developers or DBAs) don't use a privileged,
+      security-admin account for their daily tasks. They should have a separate, least-privileged
+      account for routine work, keeping security functions restricted to only those
+      who need them.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which roles are 'security functions' (e.g., IAM admin, firewall
+        admin). Ensure non-security staff have a separate non-privileged account for
+        their normal work.
+      '2': 'Document account usage policies: who gets privileged accounts, for what
+        purpose, and enforce that non-security tasks are done with a non-privileged
+        account. For example, developers use a standard account for email/browsing
+        and a separate admin account for server access.'
+      '3': 'Automate enforcement: use technical controls to prevent non-privileged
+        users from even having the ability to log into security admin consoles. Monitor
+        for misuse—flag any attempt by a non-security user to use a security function
+        account. Regularly review these logs.'
+    basis: inferred
+  evidence:
+    value: Written policy defining security functions and account segregation; list
+      of users with security-admin accounts and their justification; technical control
+      settings (e.g., separate admin consoles, role-based access); logs showing no
+      non-security user logged into security functions; exception records for any
+      deviation.
+    basis: inferred
+  common_myth:
+    value: Believing that having a separate admin account for security tasks is enough,
+      even if the same person uses it for both security and non-security work—the
+      control requires that non-security functions use a non-privileged account, not
+      just that security admin is a different account.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Do your developers have a separate non-privileged account for daily work? How
+      is that enforced technically?
+    - Show me the list of users who have access to security functions. For each, what
+      is their job role and justification?
+    - What happens if a non-security user tries to log into a security admin console?
+      Logged? Blocked?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.383370Z'
+  signed_digest: 13bda20c55a455db69d101c6c8aebca762c9120d4f6d8222cf22a2ce5e6eab88
+  interview_seconds: null
+  inherited_from: null

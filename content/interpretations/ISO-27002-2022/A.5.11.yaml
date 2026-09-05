@@ -1,0 +1,66 @@
+control_id: ISO-27002-2022:A.5.11
+locale: en
+state: draft
+fields:
+  intent:
+    value: It guards against the situation where 'the person leaves, but assets are not handed over, and
+      permissions are not revoked'—after resignation or transfer, accounts remain active, company assets
+      are taken away, and confidential knowledge leaves with the person. If an incident occurs, accountability
+      cannot be traced, and former employees' subsequent access to systems cannot be blocked.
+    basis: inferred
+  plain_zh:
+    value: When personnel resign or transfer, company property such as access cards, computers, USB tokens,
+      keys, and ID badges should be collected; system and physical permissions should be adjusted or revoked
+      according to the new role; an exit interview should be conducted to reiterate confidentiality obligations;
+      and necessary records should be retained.
+    basis: inferred
+  practice:
+    value:
+      '1': 'The offboarding process has a clear checklist: collect assets such as access cards, computers,
+        keys, and USB tokens; deactivate system accounts; conduct an exit interview with signature confirmation.
+        For transfers, a notification triggers permission reassessment.'
+      '2': Resignation and transfer processes have written records (acknowledgment receipts, work orders);
+        permission revocation has a clear timeline and is tracked by someone; for transfers, permissions
+        are re-approved based on the new role, and pre-transfer permissions are promptly revoked.
+      '3': Permission revocation upon resignation is automatically triggered at the system level (e.g.,
+        HR system events drive IAM/AD); asset return and permission revocation are reconciled without
+        gaps; transfer permission changes are auditable and traceable, and access logs after departure
+        are retained for review.
+    basis: inferred
+  evidence:
+    value: Offboarding handover checklists and asset acknowledgment records, exit interview minutes, permission
+      deactivation/change work orders with timestamps, process records of HR-triggered notifications,
+      and transfer permission review and approval records.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'having the departing employee sign the handover form' ensures all
+      assets and permissions are fully collected. The acknowledgment receipt only proves what was handed
+      over, not that system-side permissions have been revoked or that access cards have been deactivated—many
+      teams eventually discover that an employee who left three months ago can still log into the company
+      VPN.
+    basis: inferred
+  auditor_asks:
+    value:
+    - For three employees who left last year, on what dates were their system accounts and access permissions
+      revoked? Based on which process, and who executed it?
+    - For transferred employees who changed teams, when were their permissions to the old team's file
+      shares and project repositories removed?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.255392Z'
+  signed_digest: d0dff99f840dd188c2358140d39cccf56299649b9f937afd919bb0979580ede4
+  interview_seconds: null
+  inherited_from: null

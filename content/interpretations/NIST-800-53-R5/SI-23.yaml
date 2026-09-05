@@ -1,0 +1,69 @@
+control_id: NIST-800-53-R5:SI-23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers exploiting the fact that no single component
+      sees the whole picture - sensitive context (PII, credentials, decisions) is
+      split across subsystems or layers, so a compromise of one part yields fragments
+      that look harmless, and detection that only inspects one layer misses correlated
+      abuse.
+    basis: inferred
+  plain_zh:
+    value: Fragment sensitive information across components so that a compromise of
+      any single element does not let an attacker reconstruct the full picture, and
+      design collection/processing so that no one place concentrates what an attacker
+      most wants.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the small set of data items whose combination creates outsized
+        risk (identity + secret, account + payment route, decision + underlying record);
+        document which systems hold each fragment and who can join them.
+      '2': Apply defined fragmentation patterns (separate stores, tokenization, distinct
+        trust zones) to the high-value combinations; restrict which roles can rejoin
+        fragments; log every join attempt.
+      '3': Periodically re-test by assuming compromise of one fragment holder and
+        asking whether the attacker can reconstruct the sensitive whole; rotate fragmentation
+        assignments; alert on cross-fragment correlation attempts that no legitimate
+        workflow needs.
+    basis: inferred
+  evidence:
+    value: Documented data-inventory showing which sensitive combinations exist and
+      where their fragments live, fragmentation design rationale for high-risk combinations,
+      access/log records showing who can rejoin fragments and when, test reports from
+      compromise-of-one-fragment exercises.
+    basis: inferred
+  common_myth:
+    value: Assuming encryption alone satisfies this control - encryption protects
+      a fragment in storage, but if the same process or admin routinely decrypts and
+      re-joins fragments at runtime, the control does nothing; fragmentation is about
+      where the joining happens and who can do it, not about ciphers.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one sensitive combination in your environment (for example, identity plus
+      payment credential) - which two components hold each half, and which role or
+      service is allowed to rejoin them?
+    - Show the last time you assumed one fragment holder was fully compromised - what
+      did the attacker actually get, and did any legitimate workflow rely on rejoining
+      there?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.957034Z'
+  signed_digest: 274ca79cc642691e1c1ed2ff40ea0b6432caa599aa5674f1f0cf0e6b48f88124
+  interview_seconds: null
+  inherited_from: null

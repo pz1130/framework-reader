@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:IA-10
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against account compromise when normal login conditions become
+      abnormal, such as attackers using stolen credentials from an unusual location,
+      device, network, or behavior pattern. Static authentication treats the possession
+      of a password as sufficient even when the request context indicates a materially
+      higher risk.
+    basis: inferred
+  plain_zh:
+    value: Monitor the risk signals surrounding each login and require stronger verification—or
+      deny access—when the request differs materially from the user’s established
+      pattern. Apply the added challenge consistently and explain the decision so
+      legitimate users are not silently locked out.
+    basis: inferred
+  practice:
+    value:
+      '1': Define a small set of reliable risk signals, such as an unfamiliar device,
+        location, network, or impossible travel, and identify which situations trigger
+        an additional challenge or denial. Provide a recovery path for legitimate
+        users.
+      '2': Document the authentication rules, scoring or decision logic, challenge
+        methods, response actions, and override or recovery process. Log the signals
+        considered, the decision made, and the outcome; test the controls with representative
+        high-risk and normal logins.
+      '3': Tune the rules using reviewed false-positive, false-negative, denial, and
+        bypass data; validate identity again before granting high-impact access; protect
+        and monitor the adaptive engine; test the bypass, degradation, and recovery
+        paths; and regularly verify that high-risk sessions are challenged while normal
+        sessions remain usable.
+    basis: inferred
+  evidence:
+    value: Approved adaptive-authentication policy and rule documentation, risk-signal
+      and decision records, authentication event logs, challenge and recovery records,
+      false-positive and bypass reviews, and test results demonstrating behavior for
+      normal and high-risk login attempts.
+    basis: inferred
+  common_myth:
+    value: Assuming that merely collecting device, location, or behavior telemetry
+      constitutes adaptive authentication, even when no rule changes the authentication
+      decision or triggers a stronger challenge.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which specific login conditions cause an additional challenge, access restriction,
+      or denial?
+    - Can you show the recent authentication record where an abnormal login was challenged
+      and the legitimate-user recovery path that followed?
+    - How are false positives, false negatives, and attempts to bypass the adaptive
+      rules reviewed and corrected?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.059096Z'
+  signed_digest: d52552672c7063b48a20ee9212e994d3b90650a40c821875e06526610750656d
+  interview_seconds: null
+  inherited_from: null

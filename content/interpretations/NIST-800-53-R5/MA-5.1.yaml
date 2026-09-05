@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:MA-5.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against maintenance performed by people who were never vetted,
+      never briefed, and never supervised — a foreign technician with a service account
+      on a production server, a cleaning crew with unsupervised physical access to
+      the data center, a contractor plugging in a laptop nobody logged. The control
+      fails the moment an unauthorized person is inside the trust boundary doing work
+      that leaves no forensic trace.
+    basis: inferred
+  plain_zh:
+    value: Make sure anyone doing maintenance on your systems — employees, vendors,
+      on-site contractors, remote hands — is authorized, competent, screened to the
+      level the system requires, and escorted or supervised whenever policy or risk
+      says so. No implicit trust, no badge-only access, no 'they're with the vendor'
+      assumption.
+    basis: inferred
+  practice:
+    value:
+      '1': Maintenance personnel list exists (in-house and vendor); supervisor is
+        named for each session; visitors and non-employees are escorted in sensitive
+        areas; competence is checked before touch.
+      '2': Screening level is documented per system class (e.g., background checks
+        for those handling sensitive data); escort logs are kept; access windows are
+        time-bound and revoked after the job; post-maintenance, accounts and credentials
+        are rotated.
+      '3': Screening is tied to system classification so the bar rises with sensitivity;
+        unsupervised access is blocked by physical and logical controls, not just
+        policy; all maintenance actions by non-employees produce tamper-evident logs
+        reviewed by someone other than the requester.
+    basis: inferred
+  evidence:
+    value: List of authorized maintenance personnel with screening records, escort
+      logs for sensitive areas, time-bound access tickets, post-maintenance credential
+      rotation records, supervisor sign-offs, and audit logs of non-employee maintenance
+      sessions.
+    basis: inferred
+  common_myth:
+    value: Assuming a vendor's master service agreement or a signed NDA is enough
+      — it is not. MA-5.1 is about *who is physically and logically allowed to perform
+      maintenance right now*, screened to the right level and supervised. Procurement
+      paperwork does not screen a technician or stop a malicious insider on a service
+      visit.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me the list of people authorized to perform maintenance on [system name]
+      and the screening record for each.
+    - Walk me through what happens when a vendor technician arrives at the data center
+      unannounced — who escorts them, who logs the session, who revokes their access
+      after?
+    - How do you know the person who plugged into the rack yesterday is still the
+      same person on the approved list?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.427785Z'
+  signed_digest: 97d55329cac7d7e6e2660736b7c61db8411e54c4ce6228b75b5bb0b785782a0a
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,74 @@
+control_id: NIST-800-53-R5:AC-4.4
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against traffic that is invisible to inspection by design — encrypted
+      flows — being used to move sensitive data, reach blocked destinations, or exfiltrate
+      to attacker-controlled endpoints, because once content is wrapped in TLS/VPN
+      the network control point stops seeing what is inside and starts approving based
+      on blind trust.
+    basis: inferred
+  plain_zh:
+    value: When information flows are encrypted, do not just let them pass. Decide
+      which encrypted channels are allowed, where they may terminate, what the traffic
+      patterns look like, and check what you can still check (certificate, destination,
+      reputation, behavior) before crossing the trust boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': List the egress points that handle encrypted traffic; block direct outbound
+        connections from user systems that bypass these points; restrict where encrypted
+        tunnels (VPN, TLS, SSH) may terminate to an approved list.
+      '2': Document rules for inspecting TLS where legally permissible (decryption
+        at the boundary or endpoint); record exceptions with business justification
+        and an expiry; review the list of allowed encrypted destinations periodically.
+      '3': Enforce flow-control decisions on encrypted traffic through technical means
+        (proxy with cert validation, pinned destinations, egress allow-listing, host-firewall
+        rules); alert and block when encrypted flows deviate from expected peer, volume,
+        or destination pattern; integrate decryption decisions with data-protection
+        and legal review.
+    basis: inferred
+  evidence:
+    value: Architecture diagram showing encrypted-traffic enforcement points, the
+      policy and exception register for encrypted flows, configuration samples of
+      egress proxies/allow-lists, and logs of blocked or alerted encrypted sessions.
+    basis: inferred
+  common_myth:
+    value: Assuming a TLS-inspecting proxy purchase equals compliance. The control
+      is about flow decisions on encrypted traffic, not about possessing a decryption
+      appliance — without an enforced allow-list, a managed exception process, and
+      detection on bypass attempts, encrypted sessions still move wherever the client
+      wants.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me an encrypted session from last week that your boundary actually decided
+      to block or redirect — which rule fired and why.
+    - Which systems on your network can open an outbound encrypted connection directly
+      to the internet without going through an approved egress point?
+    - How do you handle encrypted traffic to a destination you have not pre-approved?
+    basis: inferred
+  regional_note:
+    value: 'European auditors tend to probe the lawful-basis side harder: can you
+      actually decrypt this flow under GDPR, and is there a DPIA or legal review behind
+      it. US-leaning audits more often focus on whether the technical bypass (split
+      tunneling, personal VPNs, DNS-over-HTTPS) is controlled at all. Both angles
+      come up; the lawfulness question is the one that catches teams off guard in
+      Europe.'
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.349073Z'
+  signed_digest: 0a7ceb95bb15c6e4a7ec79228c526e7cf7363560ae0fa04d0937ec4b0aafa5ce
+  interview_seconds: null
+  inherited_from: null

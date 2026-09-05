@@ -1,0 +1,72 @@
+control_id: NIST-800-53-R5:SC-7.23
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against attackers using outbound protocol error feedback (e.g.,
+      SMTP, DNS, HTTP error banners, NTP, SNMP responses) as a side channel or oracle
+      to fingerprint internal systems, confirm a packet reached a sensitive enclave,
+      or coerce different responses to map trust boundaries. If internal hosts keep
+      replying with rich error data when a connection is denied at the boundary, the
+      boundary stop doing its job - it has become a probe surface.
+    basis: inferred
+  plain_zh:
+    value: When traffic is blocked or filtered at the network boundary, the systems
+      inside should not send back protocol-specific error responses, status codes,
+      or other feedback that reveal what is on the inside or how the filter decided.
+      Block silently or with a generic response; do not let internal services or stack
+      layers answer on behalf of the boundary.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify boundary devices and any internal hosts that can receive traffic
+        from outside; confirm their default behavior is not to emit protocol-native
+        errors (SMTP banners, ICMP host-unreachable, TCP RST from internal IPs, HTTP
+        4xx/5xx with server fingerprints) when traffic is dropped at the boundary.
+      '2': Configure boundary devices and internal hosts in screened segments to suppress
+        or normalize error responses - drop with no reply, generic TCP RST, or a single
+        shared banner - and document which protocols are affected and where the rule
+        is applied.
+      '3': Test from outside the boundary across each protocol actually in use; verify
+        that responses carry no version, OS, role, or topology hints, that filtered
+        vs. unfiltered paths return indistinguishable feedback, and that the suppression
+        rule is reviewed when new services are exposed or boundary devices change.
+    basis: inferred
+  evidence:
+    value: Boundary configuration showing silent-drop or generic-response rules, list
+      of protocols in scope, test results comparing responses on filtered versus allowed
+      paths, change records when boundary devices or internal services are added or
+      moved.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the firewall blocks the packet, the control is met.
+      The packet is blocked, but the internal server behind the firewall still answers
+      with a SYN-ACK, SMTP 220 banner, or HTTP response that leaks host, version,
+      and reachability - the firewall only handled L3/L4, not what the protected host
+      says back.
+    basis: inferred
+  auditor_asks:
+    value:
+    - From an external host, what does an SMTP, HTTP, and DNS query to a blocked internal
+      target actually return, and where in the architecture is that reply generated?
+    - Show me the configuration that silences responses from screened segments, and
+      the last time it was checked after a boundary or service change.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.725003Z'
+  signed_digest: 16fcb4a1d1484a31f8996b924c24d7f2b61541195edf77ccc0cdf72899288db9
+  interview_seconds: null
+  inherited_from: null

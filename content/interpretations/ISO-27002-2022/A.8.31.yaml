@@ -1,0 +1,71 @@
+control_id: ISO-27002-2022:A.8.31
+locale: en
+state: draft
+fields:
+  intent:
+    value: Prevent debug data, temporary code, incomplete features, or maliciously crafted input from
+      directly contaminating production data when development and test environments are mixed with production;
+      also prevent test activities (such as load testing or failure drills) from interrupting production
+      services, or test environments retaining real production data without equivalent protection, becoming
+      a channel for data leakage.
+    basis: inferred
+  plain_zh:
+    value: Development and test environments must be separated from the real production environment, whether
+      physically or logically isolated. It must be ensured that any disruption, misconfiguration, or dirty
+      data in testing does not affect production, and production data does not flow into test environments.
+      Before changes are promoted to production, they must first be validated in an isolated test environment.
+    basis: inferred
+  practice:
+    value:
+      '1': The production environment has a separate account system; development and test personnel do
+        not have production access, or require separate approval for temporary access. There is a test
+        environment, separated from the production network or resources.
+      '2': There is a documented environment isolation and change rollout process, clearly defining the
+        boundary between test and production environments; production changes must go through test validation;
+        when test environments use real production data, there are masking or equivalent protection measures
+        with records.
+      '3': Environment isolation is enforced at the infrastructure layer (network policies, private cloud
+        project boundaries, account permission matrix linkage); without manual approval, cross-boundary
+        access is physically impossible; the change pipeline automatically ensures tests pass before release
+        to production; both test data productionization and production data test usage have automated
+        checks or manual approval with audit trails.
+    basis: inferred
+  evidence:
+    value: Network topology diagrams or cloud account structures show production and test in different
+      networks/subscriptions/VPCs; production access approval records; release pipeline includes a test
+      environment validation stage as a hard gate; masking or authorization records when test environments
+      use real data; environment configuration drift check results.
+    basis: inferred
+  common_myth:
+    value: Assuming that placing development and test servers on different network segments constitutes
+      isolation, but developers can still jump from a test environment machine to production, or the test
+      environment directly reuses the production database, making the so-called isolation merely drawing
+      two lines on a diagram.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What accounts do developers use to log into production? Who approved it? When was the most recent
+      approval form?
+    - If a database in the test environment contains real names or real customer records, are there masking
+      records or equivalent protection declarations?
+    - In the production change release pipeline, which stage is the unique, unavoidable test validation
+      step?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.414487Z'
+  signed_digest: 17ae9aa57b20db73f9d2b1cdf33a9e5a971960d4bb478c8486e2872ea76c9c42
+  interview_seconds: null
+  inherited_from: null

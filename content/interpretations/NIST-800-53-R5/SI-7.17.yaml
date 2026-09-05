@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:SI-7.17
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against application logic being weaponized in production while
+      no one is watching — flaws like SQL injection, deserialization bugs, or unsafe
+      data flows slip past build-time scanners and only show up when real traffic
+      hits them. If you rely solely on pre-release testing, the application itself
+      must be the sensor and the brake.
+    basis: inferred
+  plain_zh:
+    value: Have the running application detect and block attacks against its own logic,
+      inputs, outputs, and control flows in real time, rather than depending only
+      on perimeter tools or pre-release code review.
+    basis: inferred
+  practice:
+    value:
+      '1': Pick the most exposed or exploited apps (public web, payment, auth) and
+        enable a runtime self-protection feature on them; confirm it logs blocked
+        events; someone gets paged on a block.
+      '2': Define what counts as an exploit attempt the runtime must catch (injection,
+        unsafe deserialization, suspicious control flow); rules are documented; coverage
+        is tracked per app; false positives get reviewed.
+      '3': Runtime protection is part of the SDLC — new services ship with it on by
+        default; detection signatures and policies are tuned against real app behavior;
+        blocks feed into vuln and incident workflows; coverage gaps are reported with
+        metrics, not anecdotes.
+    basis: inferred
+  evidence:
+    value: List of in-scope applications with runtime protection status, the rules/signatures
+      configured, sample blocked-event logs with response actions, tuning records,
+      and SDLC policy showing runtime checks are required for new releases.
+    basis: inferred
+  common_myth:
+    value: Treating runtime self-protection as identical to a WAF or RASP vendor purchase.
+      A WAF sits in front of the app and protects the perimeter; this control requires
+      protection embedded in the app's own execution, with app-aware decisions and
+      feedback into the dev lifecycle. Buying the license without integrating it into
+      how the app runs and how code is shipped leaves the gap open.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which applications have runtime self-protection actually enforcing in production,
+      and which rely only on network-layer controls?
+    - Show me the last time a runtime block fired, who was notified, and how that
+      signal reached the developer or the incident queue.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:55.095031Z'
+  signed_digest: e6cb239c452712b004e7eaccd382f64e32d0e9569b29b2f05e6235befe5ef662
+  interview_seconds: null
+  inherited_from: null

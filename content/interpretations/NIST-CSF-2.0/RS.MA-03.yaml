@@ -1,0 +1,72 @@
+control_id: NIST-CSF-2.0:RS.MA-03
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is about treating all incidents equally and handling them on a first-come, first-served
+      basis—without classification and prioritization, high-impact incidents and minor faults compete
+      for the same ticket queue, and truly critical issues are not addressed first.
+    basis: inferred
+  plain_zh:
+    value: When incidents occur, they should be categorized by impact and urgency, allowing major issues
+      like critical business disruptions and data breaches to be prioritized, while minor ones are queued
+      behind. The classification criteria and process should be documented.
+    basis: inferred
+  practice:
+    value:
+      '1': Incident classification and priority definitions exist (e.g., high, medium, low); duty personnel
+        know which characteristics to use for assignment; high-priority incidents have clear escalation
+        paths.
+      '2': Classification and prioritization criteria are documented and all staff are trained; handling
+        follows tiered SLAs (response/resolution time limits); classification results are recorded and
+        traceable.
+      '3': Classification and prioritization criteria are linked to business impact analysis, allowing
+        dynamic adjustments based on asset value and regulatory requirements; incident handling data feeds
+        back into criteria revisions; there are detection mechanisms for abnormal misclassification or
+        omissions.
+    basis: inferred
+  evidence:
+    value: Incident classification and prioritization standard documents, typical incident classification
+      examples (including rationale for the assigned level), correspondence between classification fields
+      and handling time limits in incident records, records of reclassification and dispute handling,
+      and training sign-in sheets for classification standards.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a 'High/Medium/Low' dropdown in the ticketing system constitutes classification
+      and prioritization. Without documented judgment criteria (which system failures count as high, which
+      data breaches are severe), duty personnel will only assign levels based on gut feeling, resulting
+      in two operators from the same company giving different priorities to similar incidents—the dropdown
+      selection has no basis, and auditors will expose this upon questioning.
+    basis: inferred
+  auditor_asks:
+    value:
+    - What happens if a duty operator misclassifies an incident? Is there a reclassification mechanism?
+      Show me the most recent reclassification record.
+    - For high-priority incidents, what is the SLA from detection to response in hours? Can the system
+      calculate the breach rate?
+    - In your classification table, which tier corresponds to a core business system outage versus a regular
+      corporate website failure? Where are the judgment criteria documented?
+    basis: inferred
+  regional_note:
+    value: 'Both regions recognize the principle that ''classification should drive response timeliness,''
+      but Europe, influenced by NIS2, is more sensitive to the linkage between incident classification
+      and reporting obligations—misclassification could lead to failure to report to regulators when required;
+      U.S. auditors more often sample SLA achievement rates and classification accuracy. European auditors
+      will raise the timing question earlier: ''How quickly can you determine the level of this type of
+      incident?'''
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.638473Z'
+  signed_digest: 5590f9c0959b62ae6e6077d166aebd26d8555021be34e710747f264b133885f2
+  interview_seconds: null
+  inherited_from: null

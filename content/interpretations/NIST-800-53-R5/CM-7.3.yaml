@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:CM-7.3
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the risk that least- functionality and system-component
+      inventories stay frozen in time — new services, ports, devices, and software
+      get added through ad-hoc change tickets, and the organization loses the ability
+      to prove what is actually running on its systems versus what was originally
+      approved.
+    basis: inferred
+  plain_zh:
+    value: Track every device, program, port, protocol, and service that is allowed
+      on a system in a living inventory, and make sure any addition or removal goes
+      through a controlled registration process tied to the actual deployed state.
+    basis: inferred
+  practice:
+    value:
+      '1': Have a baseline list of allowed components per system; require a ticket
+        to add or remove anything; flag additions that bypass the list.
+      '2': Maintain the inventory as a single source of truth, reconciled with change
+        records and periodic scans; reviews are logged and signed.
+      '3': Automated detection of unlisted components triggers registration workflow;
+        deviations are blocked or escalated; inventory accuracy is measured and reported.
+    basis: inferred
+  evidence:
+    value: Component/service inventories per system, registration tickets and approvals,
+      change-management records tied to inventory entries, reconciliation reports
+      between scans and the authorized list, exception handling and closure evidence.
+    basis: inferred
+  common_myth:
+    value: Assuming the baseline configuration document or the system security plan
+      already serves as the registration record. CM-7 is about runtime authorization;
+      a paper baseline without a process to register new components leaves every post-baseline
+      addition unauthorized.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me a component added in the last six months — where is the registration
+      ticket and who approved it against the current inventory?
+    - How do you reconcile a vulnerability scan's output against the authorized component
+      list, and what happens when something unlisted appears?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.836726Z'
+  signed_digest: 560dbb1b7b64896c1f86efa2f4d8b9a955e6514af1d5c5b7164dc86570c37a91
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,71 @@
+control_id: NIST-800-53-R5:AC-16.8
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents subject objects (users, devices, services) from being silently
+      re-purposed or spoofed across security domains because their association to
+      authorizations is not cryptographically and procedurally bound; without enforced
+      association, a token or attribute can drift away from the policy that authorized
+      it, and accountability collapses.
+    basis: inferred
+  plain_zh:
+    value: Require and verify that subjects are bound to their security attributes
+      and authorizations using techniques (digital signatures, cryptographic chaining,
+      secure protocols, hardware roots of trust) so that the binding cannot be silently
+      altered, and so that policy decisions can actually trust the attribute presented.
+    basis: inferred
+  practice:
+    value:
+      '1': Define which attributes (identity, role, clearance, location, device posture)
+        must be bound to subjects and objects; document the binding technique used
+        per attribute class; do not rely on self-asserted attributes at decision points.
+      '2': Use cryptographic binding (signed assertions, attribute certificates, secure
+        protocol tokens such as SAML/OAuth/JWT with signature validation, TPM-backed
+        device identities) at enforcement points; log binding events with the technique
+        used; reject attributes whose binding cannot be verified.
+      '3': Mandate hardware-rooted binding for high-impact subjects (smart cards,
+        TPM/TPM-equivalent, HSM-bound service identities); continuously re-verify
+        binding at session and policy-decision boundaries; detect and alert on tampered
+        or unbound attributes; integrate binding integrity into access control tests.
+    basis: inferred
+  evidence:
+    value: Binding policy and technique catalog per attribute class, samples of signed
+      assertions or tokens in use, validation logic at enforcement points, cryptographic
+      module/key management evidence (e.g., FIPS-validated or equivalent), incident
+      records for tampered or unbound attribute detections.
+    basis: inferred
+  common_myth:
+    value: 'Believing that issuing a signed token or buying an SSO/PKI product satisfies
+      the control because ''it is cryptographic''. The binding is only as strong as
+      the validation: if the verifier does not check signatures, chains, and revocation,
+      or if attributes travel unsigned alongside the token, the attribute-to-subject
+      link can be stripped or substituted and the decision point accepts a forged
+      association.'
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick one attribute class in use (e.g., role, clearance, device identity); show
+      me where the subject-to-attribute binding is cryptographically established and
+      where it is re-validated before a policy decision.
+    - What happens when a token or assertion arrives at an enforcement point with
+      a modified or unsigned attribute, and where is that rejection logged?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.044718Z'
+  signed_digest: 819b1fee0f28d82b785a9c6e46752b40939777982162973070815443a3ab2add
+  interview_seconds: null
+  inherited_from: null

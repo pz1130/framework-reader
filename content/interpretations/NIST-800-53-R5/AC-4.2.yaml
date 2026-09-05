@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:AC-4.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against flat, unsegmented trust inside a system - where a single
+      compromise lets an attacker walk from a low-risk function (e.g., a public web
+      form) into a high-risk one (e.g., payment processing or key signing) because
+      all data flows through the same execution domain. Without explicit domain isolation,
+      every parser, plugin, or subsystem failure becomes a system-wide failure.
+    basis: inferred
+  plain_zh:
+    value: Split each system into processing domains (physical or logical partitions)
+      so that information flowing through one domain cannot freely reach or subvert
+      another, and route or deny cross-domain traffic according to policy.
+    basis: inferred
+  practice:
+    value:
+      '1': Identify the distinct processing domains in the system (e.g., user-facing
+        front end, application logic, data store, signing/key material) and draw the
+        data flows between them; confirm each domain runs with the minimum privileges
+        and interfaces it needs.
+      '2': Document the domain boundaries in architecture artefacts; define what may
+        cross between domains and how (allow-list of calls, sanitisation points, validated
+        APIs); enforce those crossings in code and configuration, not only in design
+        docs.
+      '3': Verify each domain's failure is contained (fault/exception isolation),
+        enforce type safety and access checks at every crossing, and test that a compromise
+        in a lower-trust domain cannot read, modify, or invoke higher-trust domains
+        - through both code review and targeted exploit testing.
+    basis: inferred
+  evidence:
+    value: Architecture diagrams showing processing domains and data-flow crossings,
+      a written policy for what is permitted to cross each boundary, configuration
+      or code that enforces those crossings, and test or review records showing a
+      compromise in one domain is contained.
+    basis: inferred
+  common_myth:
+    value: Treating AC-4(2) as satisfied by deploying the application in containers
+      or behind a load balancer. Container or VM boundaries that share a kernel, network
+      namespace, or trust tier are not real processing-domain separation if any process
+      can call any other across the boundary without policy enforcement.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which processing domains did you identify in this system, and what rules govern
+      what data crosses between them?
+    - Show me a test or incident where a failure or compromise in one domain was prevented
+      from reaching another - what stopped it?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.288473Z'
+  signed_digest: 5e443c51bce1f1a6a32350c25208e7a4955c8ad3bc5ba9c6399eea87af189f28
+  interview_seconds: null
+  inherited_from: null

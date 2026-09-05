@@ -1,0 +1,65 @@
+control_id: ISO-27002-2022:A.5.10
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that 'information attached to media does not leave with the person'—once items
+      like USB drives, portable hard drives, paper documents, and tapes leave one's hands, the data on
+      them escapes all access controls; without rules for usage, storage locations, entry/exit records,
+      and destruction processes, one may not even know from which link a leak occurred.
+    basis: inferred
+  plain_zh:
+    value: 'All carriers capable of carrying information (USB drives, hard disks, optical discs, paper
+      documents, microfiche, etc.) must have rules: who can use them, where they are stored, how they
+      are carried out, and how they are disposed of when no longer needed—each step must have rules and
+      be verifiable.'
+    basis: inferred
+  practice:
+    value:
+      '1': There are written regulations for media usage and disposal; portable media such as USB drives
+        are uniformly registered with clear responsible persons; discarded media have basic erasure or
+        shredding requirements.
+      '2': Media have classification labels and ownership registration; borrowing and returning follow
+        an application process with records; storage areas have physical controls; taking media outside
+        requires approval and registration; scrapping follows a unified clearing/destruction process.
+      '3': Removable media are controlled or disabled on terminals; media storage areas have access permission
+        controls and inventory checks; the entire media lifecycle from receipt to destruction is traceable;
+        destruction executors have review and third-party witness records.
+    basis: inferred
+  evidence:
+    value: Media management system and classification list, ledgers for USB drive/hard disk requisition
+      registration, approval records for media borrowing and external taking, entry/exit registration
+      or access control records for media storage areas, implementation records for destruction and erasure,
+      and screenshots of terminal control policies.
+    basis: inferred
+  common_myth:
+    value: Assuming that 'banning USB drives solves everything' without controlling paper documents and
+      maintenance external taking; or assuming that 'erasure means deleting files' without realizing that
+      data can be recovered after formatting—destruction must select corresponding erasure, degaussing,
+      or physical shredding methods based on the media's classification level.
+    basis: inferred
+  auditor_asks:
+    value:
+    - How were this batch of scrapped hard drives destroyed? Are there on-site photos or third-party signatures
+      in the destruction records?
+    - Who took that mobile hard drive for external transfer? Where is the approval form?
+    - Does the storage area for printed confidential documents have access control?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.253401Z'
+  signed_digest: fc8c2c58610d7f4e60729f4eb65e4eec6d38034cff3c93e91d0ecf2dc8cd3131
+  interview_seconds: null
+  inherited_from: null

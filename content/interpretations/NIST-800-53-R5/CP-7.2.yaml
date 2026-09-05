@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:CP-7.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against a backup site that exists on paper but cannot actually
+      be reached or staffed when the primary site is down—plan says you can failover,
+      reality says you cannot. The risk is discovering during an incident that the
+      alternate site is inaccessible to the people who need it, lacks the systems
+      or data to operate from, or is itself in the same hazard zone.
+    basis: inferred
+  plain_zh:
+    value: Make sure the alternate processing/backup site is genuinely usable by the
+      people who would need to relocate there—reachable, equipped with needed systems
+      and data, and not exposed to the same threats that knocked out the primary site.
+    basis: inferred
+  practice:
+    value:
+      '1': Alternate site is identified with an address; written agreement (recovery
+        site, reciprocal, or commercial) covers basic access; key systems and data
+        can be loaded there within the stated recovery time.
+      '2': 'Site accessibility is documented per user role: who can get there, how,
+        under what authorization; required equipment, connectivity, and data are listed
+        and refreshed; site hazard assessment exists and is reviewed when site or
+        surroundings change.'
+      '3': Alternate site accessibility is rehearsed (walk-through or tabletop) with
+        the actual responders; same-site-hazard risks (flood, power, telecom, civil
+        unrest) are explicitly re-evaluated after nearby incidents or facility changes;
+        documented lessons feed updates to the contingency plan.
+    basis: inferred
+  evidence:
+    value: Alternate site agreement, accessibility requirements per role, site hazard
+      assessment with review history, equipment/data readiness checklist, rehearsal
+      or walk-through records with attendees and findings.
+    basis: inferred
+  common_myth:
+    value: Treating 'we have a hot/warm/cold site contract' as proof of accessibility—the
+      contract only confirms the room exists; the auditor will ask whether the people
+      who must go there can actually get in, get to their desks, log in, and work,
+      and whether the site is exposed to the same hazard.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show me how a recovery team member physically accesses the alternate site after
+      hours—badge, key, escort, or notification chain?
+    - What hazard caused you to leave the primary site, and what stops the same hazard
+      from disabling the alternate site?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:52.994749Z'
+  signed_digest: 6b02ef0d540a6c9bde28302ef3e14eab8ee4aa4a434df1ea85a0cb22f5bf7f45
+  interview_seconds: null
+  inherited_from: null

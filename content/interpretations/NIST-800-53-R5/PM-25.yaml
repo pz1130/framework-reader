@@ -1,0 +1,63 @@
+control_id: NIST-800-53-R5:PM-25
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents real personal data exposed during testing, training, or research
+      from being copied, modified, disclosed, or retained unnecessarily, turning routine
+      secondary use into a breach or privacy violation.
+    basis: inferred
+  plain_zh:
+    value: Do not use live personally identifiable information unless it is genuinely
+      necessary. Prefer safe substitutes, and when real data must be used, minimize
+      its scope, protect it, and dispose of it when the work is complete.
+    basis: inferred
+  practice:
+    value:
+      '1': Check whether personally identifiable information is needed before each
+        test, training exercise, or research activity; use synthetic or masked data
+        whenever possible and prohibit unnecessary copies.
+      '2': Maintain an approval and data-handling record identifying the permitted
+        purpose, data fields, users, systems, safeguards, retention period, and approved
+        disposal method for any activity using real personal data.
+      '3': Apply enforceable minimization rules across development and test environments,
+        automatically detect or prevent unnecessary personal data, monitor compliance,
+        investigate exceptions, and verify secure deletion after the approved use
+        ends.
+    basis: inferred
+  evidence:
+    value: A documented personal-data minimization policy; approvals and data-handling
+      records for non-production use; synthetic or masked dataset inventories; access
+      and environment controls; retention and disposal records; and audit or exception
+      reports showing that live data is not used without justification.
+    basis: inferred
+  common_myth:
+    value: Assuming the production security controls also protect copied personal
+      data in test, training, or research environments, so no separate approval or
+      disposal process is needed.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Which test, training, or research activities used live personal data, and who
+      approved each use?
+    - How do you verify that personal data copies are deleted when the approved activity
+      or retention period ends?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.753254Z'
+  signed_digest: 58b94c91fc8909e788812ee1b5349ae44ddff41bf7008c70e877d83223fead7a
+  interview_seconds: null
+  inherited_from: null

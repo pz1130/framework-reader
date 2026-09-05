@@ -1,0 +1,68 @@
+control_id: NIST-800-53-R5:IA-6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents the system from becoming a covert shoulder-surfing or screen-capture
+      oracle — if login screens echo the password back, or visibly differentiate 'user
+      not found' from 'wrong password', an attacker who watches one screen, photographs
+      one monitor, or scrapes one error log learns exactly which accounts exist and
+      which credential half is wrong, turning a normal login attempt into account
+      enumeration and credential-guessing fuel.
+    basis: inferred
+  plain_zh:
+    value: Obscure authentication feedback so the system does not reveal whether the
+      username exists, whether the password is close, or any other clue that helps
+      an attacker narrow in on valid credentials; protect any feedback that must be
+      shown.
+    basis: inferred
+  practice:
+    value:
+      '1': Login and credential-change screens return the same generic message for
+        unknown user, wrong password, locked account, and expired password; CAPTCHA
+        or throttling is applied where appropriate.
+      '2': Authentication endpoints documented to suppress user-distinguishing errors;
+        residual feedback (e.g. password-reset confirmation emails) reviewed so they
+        do not disclose account validity to non-targets; logs sanitized before any
+        feed that is not auth-internal.
+      '3': Automated checks in CI or pen-test scope verify that probes for valid usernames,
+        valid prior passwords, and account-state changes all produce indistinguishable
+        responses; feedback-obscuring tested after every login-flow change.
+    basis: inferred
+  evidence:
+    value: Authentication flow documentation with the exact messages returned per
+      failure mode, code or config samples showing the generic-message handling, pen-test
+      or automated scan results comparing responses across user states, review of
+      any out-of-band feedback (emails, SMS) for information leakage.
+    basis: inferred
+  common_myth:
+    value: Assuming a generic 'invalid credentials' banner on the login page is enough
+      — the real leaks are often in password-reset emails that say 'a reset link has
+      been sent if the account exists', in API responses that differ by status code,
+      or in logs forwarded to non-auth teams.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Pick three failure paths (unknown user, wrong password, locked account) — show
+      me the exact response returned for each and prove they are indistinguishable.
+    - What does a password-reset or account-recovery flow tell an unauthenticated
+      caller about whether the account exists?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.226338Z'
+  signed_digest: 6d16b29a62caae6be9c852e47b7f4cd9763c9aae611c309ae8e9fc06d016db24
+  interview_seconds: null
+  inherited_from: null

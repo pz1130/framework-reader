@@ -1,0 +1,73 @@
+control_id: NIST-800-53-R5:SC-7.20
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Prevents an attacker who has compromised one workload or function from
+      moving laterally to the rest of the environment because everything is implicitly
+      reachable. Without dynamic isolation, network controls are static rules that
+      do not adapt to the actual communication paths that change as workloads, users,
+      and services change.
+    basis: inferred
+  plain_zh:
+    value: It asks you to make isolation and segregation of systems, workloads, and
+      network segments dynamic—meaning you actively change the boundaries and rules
+      based on the current state and risk, not just set a static firewall rule and
+      forget it.
+    basis: inferred
+  practice:
+    value:
+      '1': You have a documented set of network segments and use static firewall rules
+        or similar controls to keep them separate. You can point to the diagram and
+        the rules.
+      '2': You have a process to review and update the isolation rules periodically,
+        and you can show that when a workload changes (new IP, new service, new environment),
+        the rules are updated accordingly. You have a change log and an owner for
+        each rule.
+      '3': Isolation is enforced and adjusted automatically based on context—using
+        micro-segmentation tools or cloud security groups that respond to workload
+        identity, tags, or threat intelligence. You can show that the enforcement
+        points adapt to changes without manual rule editing, and you have continuous
+        verification that the intended isolation actually holds (e.g., periodic penetration
+        tests or automated connectivity checks).
+    basis: inferred
+  evidence:
+    value: Network architecture diagram showing segments and isolation points; copies
+      of firewall/security group rules with change history; procedure for updating
+      rules when workloads change; records of periodic reviews or tests that confirm
+      isolation is effective; if automated, logs of policy updates and alerts for
+      unexpected communication paths.
+    basis: inferred
+  common_myth:
+    value: Assuming that having a well-designed static network segmentation diagram
+      is enough—when an attacker moves within a segment or a workload gets a new IP/port,
+      the static rules become stale and lateral movement becomes trivial. The control
+      is about ensuring isolation adapts, not just exists.
+    basis: inferred
+  auditor_asks:
+    value:
+    - When did you last review and update your network isolation rules? What triggered
+      that review?
+    - If a new workload is deployed, how does it get the correct isolation rules automatically,
+      or who is responsible for updating them and how is that verified?
+    - How do you verify that a compromise in one segment cannot reach another segment?
+      Show me the test or monitoring evidence.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.712717Z'
+  signed_digest: b7d6db65944381f399dd1a1c8d9df41495dabc2a199b5858cdb348659f1fe56f
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,65 @@
+control_id: NIST-800-53-R5:SC-12.6
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against cryptographic keys being silently compromised in storage—where
+      the control fails is when keys sit in plaintext on a server, in a backup tape,
+      or in a safe that any sysadmin or facility guard can touch, making every 'encrypted'
+      system only as strong as the weakest physical path to the key.
+    basis: inferred
+  plain_zh:
+    value: 'Cryptographic keys must be protected by physical means in addition to
+      logical ones: stored in tamper-resistant hardware, locked rooms, or sealed containers,
+      with strict physical access control and accounting for who can reach the key
+      material.'
+    basis: inferred
+  practice:
+    value:
+      '1': Keys (especially root CAs, KMS master keys, HSM operator cards, escrow
+        copies) are not kept on general-purpose servers or shared drives; they reside
+        in a locked cabinet, safe, or HSM with a known physical custodian.
+      '2': Documented list of physical key locations and custodians; access logged
+        at the container/room level; keys never leave the secure area without check-out
+        records; backups of key material stored with the same physical controls.
+      '3': Tamper-evident seals or hardware security modules with logged physical
+        access; periodic inventory and seal checks; dual-person integrity for key
+        retrieval; physical access events reviewed against logical key-usage logs.
+    basis: inferred
+  evidence:
+    value: Inventory of key storage locations, physical access logs for key containers
+      or rooms, check-out/check-in records for removable key media, tamper-seal inspection
+      logs, and reconciliation of physical access events against key-usage events
+      from the KMS or HSM.
+    basis: inferred
+  common_myth:
+    value: Treating HSM or KMS deployment as automatically satisfying this control—because
+      the appliance enforces logical access, teams assume no further physical story
+      is needed, yet the HSM sits in a server room where any DC operator or cabling
+      vendor can pull a card or a backup token from a shelf.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Where physically is the root key or master key stored, and who can open that
+      container or room without the security team knowing?
+    - Show the last time a key backup was retrieved from physical storage—who signed
+      it out and is there a matching logical key-usage record?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.394055Z'
+  signed_digest: 2f148366bc0fc44cba07408c9a00c04720a46e81c6234fc0eea2560ef87ed52f
+  interview_seconds: null
+  inherited_from: null

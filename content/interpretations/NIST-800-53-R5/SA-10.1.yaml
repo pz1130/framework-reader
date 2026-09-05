@@ -1,0 +1,64 @@
+control_id: NIST-800-53-R5:SA-10.1
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against the assumption that software arriving in production is
+      what the vendor built and you intended to run — without integrity verification,
+      a tampered package, supply-chain compromise, or corrupted update can execute
+      with full trust and you have no way to tell.
+    basis: inferred
+  plain_zh:
+    value: Verify, by cryptographic means, that the software and firmware you actually
+      run matches the known-good version from the vendor — at delivery, before installation,
+      and after updates.
+    basis: inferred
+  practice:
+    value:
+      '1': Document which integrity verification mechanism (hash, signature) the vendor
+        publishes; require it to be checked before any production deployment; reject
+        mismatches.
+      '2': Verification is automated in the deployment pipeline; failures block install;
+        results are logged; key/vendor sources of truth are documented and refreshed.
+      '3': Verification covers the full chain — vendor release, intermediate stages,
+        deployed artifact, and post-update state — with anomaly detection on unexpected
+        changes; mismatches trigger incident response.
+    basis: inferred
+  evidence:
+    value: Vendor integrity attestations (hashes/signatures), deployment-pipeline
+      verification logs, rejected-mismatch records, update verification history, and
+      incident tickets triggered by integrity failures.
+    basis: inferred
+  common_myth:
+    value: Assuming that because the vendor has a signing process on their side, your
+      control is met — without re-checking the signature against the vendor's published
+      key inside your own deployment boundary, you have only transferred trust to
+      whoever set up your pipeline, not verified it.
+    basis: inferred
+  auditor_asks:
+    value:
+    - Show the last deployment where integrity verification failed and what happened
+      to it.
+    - Where in the pipeline does the signature or hash get checked, and against which
+      key source?
+    - How do you handle a vendor who stops publishing signatures or rotates their
+      key?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.998329Z'
+  signed_digest: 4440d69df73dbcd4b4c865ecd3d0385cedb5d5cefd00bcec4a79e79ec310d876
+  interview_seconds: null
+  inherited_from: null

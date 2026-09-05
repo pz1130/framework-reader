@@ -1,0 +1,66 @@
+control_id: NIST-800-53-R5:IR-2.2
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: Defends against incident responders being trained only on slides or outdated
+      tabletop decks while real attackers are using live exploit chains and modern
+      tooling — when an incident hits, muscle memory is on the wrong play, containment
+      takes hours instead of minutes, and the team learns on the job in front of executives
+      and regulators.
+    basis: inferred
+  plain_zh:
+    value: Incident response training must happen inside an automated environment
+      that realistically simulates adversary behavior, not just in a classroom or
+      a static walkthrough. People should be able to fail, repeat, and build reflex
+      in a setting that looks and feels like the real attack surface they will face.
+    basis: inferred
+  practice:
+    value:
+      '1': Designated training environment exists (sandbox, isolated range, or cloud
+        account); responders have documented access; at least basic adversary scenarios
+        can be replayed without touching production.
+      '2': Scenarios cover the organization's actual tech stack and likely threats;
+        runs are scheduled (not ad hoc); results are recorded per participant; gaps
+        feed back into playbooks and individual development plans.
+      '3': Environment mirrors current production topology and is refreshed as the
+        stack changes; scenarios include multi-stage attacks, ransomware, lateral
+        movement, and supply-chain compromise; team metrics (mean time to detect/contain)
+        trend over time; failures trigger re-training and playbook changes.
+    basis: inferred
+  evidence:
+    value: Description and architecture of the automated training environment, scenario
+      catalog linked to current threats, individual and team run records with timestamps
+      and outcomes, before/after incident metrics, and evidence that findings from
+      training runs drove playbook or detection rule changes.
+    basis: inferred
+  common_myth:
+    value: Assuming a cyber range license or a red-team vendor engagement counts as
+      the control — buying or contracting the tool is not the same as responders actually
+      using it on a recurring cadence against scenarios that match the real environment.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Show me the last three training runs for one of your incident handlers: scenario,
+      date, what they did, and the score.'
+    - How is the training environment kept current when we change a major application
+      or move workloads to a new platform?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:53.260759Z'
+  signed_digest: 1fc26cf5097cede3ffdf83d5f56ce380339389b35627737e2fae38c68e43f8d4
+  interview_seconds: null
+  inherited_from: null

@@ -1,0 +1,60 @@
+control_id: NIST-CSF-2.0:PR.PS-06
+locale: en
+state: draft
+fields:
+  intent:
+    value: The concern is that secure development is only a one-time training or a pre-release checklist.
+      If development practices are not continuously monitored from requirements to release, vulnerabilities
+      and non-compliance will silently accumulate over iterations, only to be exposed during audits or
+      incidents.
+    basis: inferred
+  plain_zh:
+    value: Embed secure development practices (such as threat modeling, code review, and security testing)
+      into the entire development lifecycle, and continuously monitor their execution and effectiveness,
+      rather than performing them only once at a specific point.
+    basis: inferred
+  practice:
+    value:
+      '1': There is a secure development policy or guideline; security activities are present at key process
+        points (e.g., requirements review, pre-release); teams know what to do.
+      '2': Security activities are embedded in each phase according to risk levels; execution is documented,
+        such as threat modeling documents and defect tracking; periodic spot checks on execution are conducted,
+        and remediation is driven.
+      '3': Security activities are supported by tools and platforms, such as embedded scanning and gates
+        in CI/CD; metrics (e.g., defect density, fix time) are reported regularly; deviations are automatically
+        blocked when detected.
+    basis: inferred
+  evidence:
+    value: Secure development policy and process documents, threat modeling and code review records, SAST/DAST
+      scan reports, CI/CD gate configuration and blocking logs, metrics dashboards or periodic reports.
+    basis: inferred
+  common_myth:
+    value: The misconception is that 'firmware updates are the supplier's responsibility, and we only
+      do full machine releases, so this does not apply.' As long as you have code or scripts involved
+      in assembly, configuration, or customization, this applies; auditors will ask whether you have performed
+      security verification on these processes.
+    basis: inferred
+  auditor_asks:
+    value:
+    - In your CI/CD pipeline, at which stage do scanning and gates take effect?
+    - Under what circumstances can a release skip security gates? Who has the authority, and what audit
+      records are kept?
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: deepseek
+    model: deepseek-chat
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T13:42:00.604768Z'
+  signed_digest: 77e559fdca2addef886790d20e1746c4b379799b661da62011e271bcacddf77b
+  interview_seconds: null
+  inherited_from: null

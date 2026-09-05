@@ -1,0 +1,61 @@
+control_id: NIST-800-53-R5:SA-8.13
+locale: zh-CN
+state: confirmed
+fields:
+  intent:
+    value: 'Defends against bloated, feature-rich system components becoming their
+      own attack surface: every unnecessary module, service, API, or configurable
+      option is another path an adversary can abuse, and unmaintained security plumbing
+      rots faster than the code it was meant to protect.'
+    basis: inferred
+  plain_zh:
+    value: When you design or buy a system, strip it down to the smallest set of security-relevant
+      parts it actually needs to function, and document why nothing extra is there.
+    basis: inferred
+  practice:
+    value:
+      '1': For each new or changed system, list the security-relevant components (auth
+        modules, crypto libraries, session managers, logging hooks, admin interfaces)
+        and flag anything not justified by a documented business need.
+      '2': Apply a documented minimization review at design and at major release;
+        disable or remove unused modules, services, and admin paths; record justification
+        for what remains.
+      '3': Make minimization a gating step in the SDLC and procurement checklist;
+        verify at build/deploy time that disabled components are not silently re-enabled;
+        periodically re-check production against the baseline.
+    basis: inferred
+  evidence:
+    value: Design-time minimization review records per system, lists of security components
+      and the justification for each, build/deploy configuration showing disabled
+      modules, and periodic re-baseline results.
+    basis: inferred
+  common_myth:
+    value: Believing minimization is just about OS hardening or turning off unused
+      services in a CIS benchmark, when the control actually applies to the system's
+      own security architecture - including third-party security libraries and features
+      the team wrote or pulled in but never uses.
+    basis: inferred
+  auditor_asks:
+    value:
+    - 'Pick one in-house system: what security components did you decide not to include,
+      and where is that justification recorded?'
+    - Show me how a security feature that was turned off stays turned off across upgrades.
+    basis: inferred
+  regional_note:
+    value: null
+    basis: inferred
+interview:
+  questions: []
+  raw: []
+  unplaced: []
+provenance:
+  drafter:
+    provider: minimax
+    model: MiniMax-M3
+    prompt_version: 2026.08-f2+golden:6b896d74
+  extractor: null
+  confirmed_by: publisher
+  confirmed_at: '2026-09-01T14:37:54.225729Z'
+  signed_digest: 53c08b184c077d26dc6a56c7fc8eb7923a871cb1233acda675496c195dd654e4
+  interview_seconds: null
+  inherited_from: null
