@@ -1322,7 +1322,7 @@ def _clause_chat(control_id: str, turns: list) -> str:
         '<textarea name="message" rows="2" placeholder="Ask questions or suggest edits..."></textarea>'
         '<div class="composer-foot">'
         '<span class="cost-hint">Human review required</span>'
-        '<button type="submit">Send</button>'
+        '<button type="submit">Send <svg viewBox="0 0 16 16"><path d="M3 8h9M8.5 3.5L13 8l-4.5 4.5"/></svg></button>'
         '</div>'
         '</div>'
         "</form></div>"
@@ -1363,9 +1363,19 @@ _CHAT_CSS = """
   border:0;outline:none;resize:none;height:2.6rem;min-height:2.6rem;line-height:1.4}
 .doing .composer-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
 .doing .cost-hint{font-size:.72rem;color:var(--muted);margin:0;line-height:1;flex:1}
-.doing .chat-composer button{padding:.35rem .95rem;font-size:.82rem;font-weight:600;
-  border-radius:980px;white-space:nowrap;cursor:pointer;flex:none;height:1.9rem;
-  display:inline-flex;align-items:center;justify-content:center}
+.doing .chat-composer button{padding:.32rem .85rem;font-size:.8rem;font-weight:600;
+  border-radius:980px;white-space:nowrap;cursor:pointer;flex:none;height:1.95rem;
+  background:var(--accent);color:#fff;border:0;
+  display:inline-flex;align-items:center;gap:.35rem;
+  box-shadow:0 2px 8px rgba(66,133,244,.3);
+  transition:all .2s cubic-bezier(.2,0,0,1)}
+.doing .chat-composer button:hover{background:#5b95f7;
+  box-shadow:0 4px 14px rgba(66,133,244,.45);transform:translateY(-1px)}
+.doing .chat-composer button:active{transform:scale(.96)}
+.doing .chat-composer button svg{width:11px;height:11px;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .2s ease}
+.doing .chat-composer button:hover svg{transform:translateX(2px)}
 """
 
 
@@ -1397,7 +1407,7 @@ def _fill_blanks_invite(control_id: str, written: bool) -> str:
         '<h4 class="card-title">Smart Field Completion</h4>'
         '</div>'
         f'<p class="card-desc">Have AI {what} while preserving your custom text.</p>'
-        f'<button type="submit">{button_label}</button>'
+        f'<button type="submit">⚡ {button_label}</button>'
         "</form>"
     )
 
@@ -3158,9 +3168,19 @@ _SPLIT_CSS = """
 .doing .claim .hint{font-size:.76rem;color:var(--muted);background:var(--sunk);
   padding:.4rem .6rem;border-radius:10px;margin:.5rem 0 .85rem;line-height:1.4}
 .doing .claim button{width:auto;display:inline-flex;align-items:center;justify-content:center;
-  gap:.35rem;font-weight:600;padding:.36rem .95rem;font-size:.82rem;border-radius:980px}
-.doing .claim.confirm-card button{background:var(--success);border-color:var(--success)}
-.doing .claim.confirm-card button:hover{box-shadow:0 4px 14px rgba(52,168,83,.35)}
+  gap:.4rem;font-weight:600;padding:.38rem 1rem;font-size:.82rem;border-radius:980px;
+  background:var(--accent-soft);color:var(--accent);
+  border:1px solid rgba(66,133,244,.35);
+  box-shadow:0 1px 4px rgba(0,0,0,.15);
+  cursor:pointer;transition:all .2s cubic-bezier(.2,0,0,1)}
+.doing .claim button:hover{background:var(--accent);color:#fff;
+  border-color:var(--accent);box-shadow:0 4px 14px rgba(66,133,244,.35);
+  transform:translateY(-1px)}
+.doing .claim button:active{transform:scale(.97)}
+.doing .claim.confirm-card button{background:var(--success-soft);color:var(--success);
+  border-color:rgba(52,168,83,.35)}
+.doing .claim.confirm-card button:hover{background:var(--success);color:#fff;
+  border-color:var(--success);box-shadow:0 4px 14px rgba(52,168,83,.35)}
 .doing .chat .thread{overflow-y:auto;max-height:14rem;min-height:2.5rem;padding-right:.3rem;
   scrollbar-width:thin;scrollbar-color:var(--rule) transparent;display:flex;flex-direction:column}
 .doing .chat .thread::-webkit-scrollbar{width:4px}
