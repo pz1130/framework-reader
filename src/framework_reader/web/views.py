@@ -1220,9 +1220,7 @@ def control(
             '<span class="card-badge confirm">🛡️ Verification</span>'
             '<h4 class="card-title">Confirm Control</h4>'
             '</div>'
-            '<p>Do you stand behind the words above? Confirming records that you signed it, and when. '
-            "Any later change voids this sign-off.</p>"
-            '<div class="hint">Records signature timestamp to the audit ledger.</div>'
+            '<p class="card-desc">Do you stand behind these entries? Confirming records your signature in the audit ledger.</p>'
             '<button type="submit">I confirm this control</button>'
             "</form>"
         )
@@ -1298,14 +1296,13 @@ def _clause_chat(control_id: str, turns: list) -> str:
     prompt_chips = (
         '<div class="prompt-chips">'
         '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">💡 Suggest evidence</button>'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">🎯 Refine implementation</button>'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What will auditors verify during examination?">🔍 Auditor questions</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">🎯 Tailor implementation</button>'
         '</div>'
     )
 
     empty_state = (
         '<div class="chat-empty">'
-        '<p class="empty">Ask questions or request scoped rewrites for this clause.</p>'
+        '<p class="empty">Ask questions or request edits for this clause.</p>'
         + prompt_chips +
         '</div>'
     )
@@ -1321,50 +1318,54 @@ def _clause_chat(control_id: str, turns: list) -> str:
         '</div>'
         f'<div class="thread">{thread_content}</div>'
         f'<form method="post" action="/c/{control_id}/chat" class="chat-composer">'
+        '<div class="composer-box">'
         '<textarea name="message" rows="2" placeholder="Ask questions or suggest edits..."></textarea>'
         '<div class="composer-foot">'
-        '<span class="cost-hint">Suggestions only · Human review required</span>'
+        '<span class="cost-hint">Human review required</span>'
         '<button type="submit">Send</button>'
+        '</div>'
         '</div>'
         "</form></div>"
     )
 
 
 _CHAT_CSS = """
-.said{padding:.75rem .95rem;margin:0 0 .85rem;background:var(--surface);
-  border-radius:16px;border:1px solid var(--rule);box-shadow:var(--card-shadow);
+.said{padding:.65rem .85rem;margin:0 0 .75rem;background:var(--surface);
+  border-radius:14px;border:1px solid var(--rule);box-shadow:var(--card-shadow);
   word-break:break-word}
 .said.mine{background:var(--accent-soft);border-color:rgba(66,133,244,.28);
   border-top-right-radius:4px}
 .said.ai{background:var(--sunk);border-color:rgba(155,114,203,.25);
   border-top-left-radius:4px}
-.said .who{font-family:var(--han);font-size:.76rem;font-weight:600;color:var(--muted);
+.said .who{font-family:var(--han);font-size:.74rem;font-weight:600;color:var(--muted);
   display:inline-flex;align-items:center;gap:.35rem}
-.said p{margin:.35rem 0 0;white-space:pre-wrap;font-size:.9rem;line-height:1.55;color:var(--ink)}
-.said form{background:none;border:0;padding:0;box-shadow:none;margin-top:.4rem}
-.said form button.ghost{font-size:.78rem;padding:.25rem .65rem;background:var(--accent);
+.said p{margin:.3rem 0 0;white-space:pre-wrap;font-size:.88rem;line-height:1.5;color:var(--ink)}
+.said form{background:none;border:0;padding:0;box-shadow:none;margin-top:.35rem}
+.said form button.ghost{font-size:.76rem;padding:.2rem .6rem;background:var(--accent);
   border:0;color:#fff;border-radius:6px;cursor:pointer;margin-left:.4rem;font-weight:600}
 .said form button.ghost:hover{opacity:.9}
-.doing .chat-empty{padding:.15rem 0}
-.doing .chat-empty .empty{font-size:.84rem;color:var(--muted);margin:0 0 .85rem;line-height:1.5}
-.doing .prompt-chips{display:flex;flex-direction:column;gap:.45rem}
+.doing .chat-empty{padding:.1rem 0}
+.doing .chat-empty .empty{font-size:.82rem;color:var(--muted);margin:0 0 .65rem;line-height:1.45}
+.doing .prompt-chips{display:flex;flex-direction:column;gap:.35rem}
 .doing .prompt-chips .chip{background:var(--sunk);border:1px solid var(--rule);
-  border-radius:10px;padding:.45rem .7rem;font-size:.8rem;color:var(--body);
+  border-radius:8px;padding:.38rem .65rem;font-size:.78rem;color:var(--body);
   text-align:left;cursor:pointer;transition:all .2s ease;font-weight:500;
   display:flex;align-items:center;line-height:1.3}
 .doing .prompt-chips .chip:hover{background:var(--accent-soft);border-color:var(--accent);
   color:var(--accent);transform:translateX(3px)}
-.doing .chat-composer{background:none;border:0;padding:0;box-shadow:none;margin-top:.85rem}
-.doing .chat-composer textarea{width:100%;box-sizing:border-box;padding:.65rem .8rem;
-  font:inherit;font-size:.88rem;background:var(--sunk);color:var(--ink);
-  border:1px solid var(--rule);border-radius:12px;margin:0 0 .55rem;
-  resize:vertical;min-height:3.2rem;transition:border-color .2s ease,box-shadow .2s ease}
-.doing .chat-composer textarea:focus{outline:none;border-color:var(--accent);
+.doing .chat-composer{background:none;border:0;padding:0;box-shadow:none;margin-top:.7rem}
+.doing .chat-composer .composer-box{background:var(--sunk);border:1px solid var(--rule);
+  border-radius:14px;padding:.55rem .7rem .45rem;transition:border-color .2s ease,box-shadow .2s ease}
+.doing .chat-composer .composer-box:focus-within{border-color:var(--accent);
   box-shadow:0 0 0 3px var(--accent-soft)}
-.doing .composer-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
-.doing .cost-hint{font-size:.73rem;color:var(--muted);margin:0;line-height:1.35;flex:1}
-.doing .chat-composer button{padding:.45rem 1.15rem;font-size:.85rem;font-weight:600;
-  border-radius:980px;white-space:nowrap;cursor:pointer;flex:none}
+.doing .chat-composer textarea{width:100%;box-sizing:border-box;padding:0;margin:0 0 .35rem;
+  font:inherit;font-size:.86rem;background:transparent;color:var(--ink);
+  border:0;outline:none;resize:none;height:2.6rem;min-height:2.6rem;line-height:1.4}
+.doing .composer-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.doing .cost-hint{font-size:.72rem;color:var(--muted);margin:0;line-height:1;flex:1}
+.doing .chat-composer button{padding:.35rem .95rem;font-size:.82rem;font-weight:600;
+  border-radius:980px;white-space:nowrap;cursor:pointer;flex:none;height:1.9rem;
+  display:inline-flex;align-items:center;justify-content:center}
 """
 
 
@@ -1385,8 +1386,8 @@ def _has_blank_field(fields: dict) -> bool:
 
 def _fill_blanks_invite(control_id: str, written: bool) -> str:
     """Fill just this control's blanks. A whole-framework draft costs dozens of controls; someone who wants to try one needs an entry."""
-    what = ("fill in the empty fields above" if written
-            else "draft all seven fields for this control")
+    what = ("fill in empty fields" if written
+            else "draft all seven fields")
     button_label = "Fill the blanks" if written else "Draft this control"
     badge_label = "Smart Completion" if written else "Initial Draft"
     return (
@@ -1395,9 +1396,7 @@ def _fill_blanks_invite(control_id: str, written: bool) -> str:
         f'<span class="card-badge"><span class="gemini-sparkle">✨</span> {badge_label}</span>'
         '<h4 class="card-title">Smart Field Completion</h4>'
         '</div>'
-        f'<p>Have AI {what}. '
-        "<strong>Fields you already wrote will not be touched</strong>, including AI drafts you reviewed and accepted.</p>"
-        '<div class="hint">Preserves your custom text · Uses configured model</div>'
+        f'<p class="card-desc">Have AI {what} while preserving your custom text.</p>'
         f'<button type="submit">{button_label}</button>'
         "</form>"
     )
@@ -3130,38 +3129,39 @@ _POPUP_JS = """
 # JS exception on text selection; sticky layout is enough and should not owe another.
 _SPLIT_CSS = """
 .wrap.wide{max-width:84rem}
-.split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem;align-items:start}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem}
 .split .reading{min-width:0}
-.doing{position:relative}
-.doing .stuck{position:sticky;top:5.25rem;max-height:calc(100vh - 6.2rem);box-sizing:border-box;
-  display:flex;flex-direction:column;gap:1.15rem;padding:.15rem 0;
-  overflow-y:auto;overflow-x:hidden;
+.doing{position:relative;height:100%}
+.doing .stuck{position:sticky;top:4.8rem;box-sizing:border-box;
+  display:flex;flex-direction:column;gap:.9rem;padding:0;
+  max-height:calc(100vh - 5.5rem);overflow-y:auto;overflow-x:hidden;
   scrollbar-width:thin;scrollbar-color:var(--rule) transparent}
 .doing .stuck::-webkit-scrollbar{width:4px}
 .doing .stuck::-webkit-scrollbar-track{background:transparent}
 .doing .stuck::-webkit-scrollbar-thumb{background:var(--rule);border-radius:10px}
 .doing .claim,.doing .chat{margin:0;position:relative;background:var(--surface);
   border:1px solid var(--rule);border-radius:20px;box-shadow:var(--card-shadow);
-  padding:1.35rem 1.4rem;transition:border-color .25s ease,box-shadow .25s ease;
-  overflow:hidden}
+  padding:1.15rem 1.25rem 1.2rem;transition:border-color .25s ease,box-shadow .25s ease;
+  box-sizing:border-box}
 .doing .claim:hover,.doing .chat:hover{border-color:var(--card-hover-line);box-shadow:var(--card-shadow-hover)}
 .doing .claim::before,.doing .chat::before{content:"";position:absolute;top:0;left:0;right:0;
-  height:2.5px;background:var(--g-rainbow);opacity:.85}
+  height:3px;background:var(--g-rainbow);opacity:.9;border-radius:20px 20px 0 0}
 .doing .claim.confirm-card::before{background:linear-gradient(90deg,var(--success),var(--g-blue))}
-.doing .card-head{margin-bottom:.65rem}
+.doing .card-head{margin-bottom:.55rem}
 .doing .card-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;
   font-weight:600;padding:.15rem .55rem;border-radius:980px;
   background:var(--accent-soft);color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
 .doing .card-badge.confirm{background:var(--success-soft);color:var(--success)}
-.doing .card-title{font-size:1.05rem;color:var(--ink);font-weight:600;margin:.4rem 0 0;text-transform:none;letter-spacing:-.01em}
-.doing .claim p{margin:0 0 .75rem;font-size:.88rem;color:var(--body);line-height:1.55}
-.doing .claim .hint{font-size:.78rem;color:var(--muted);background:var(--sunk);
-  padding:.45rem .65rem;border-radius:10px;margin:.65rem 0 .95rem;line-height:1.45}
+.doing .card-title{font-size:1.02rem;color:var(--ink);font-weight:600;margin:.35rem 0 0;text-transform:none;letter-spacing:-.01em}
+.doing .claim .card-desc{margin:.4rem 0 .85rem;font-size:.84rem;color:var(--muted);line-height:1.45}
+.doing .claim p{margin:0 0 .75rem;font-size:.86rem;color:var(--body);line-height:1.5}
+.doing .claim .hint{font-size:.76rem;color:var(--muted);background:var(--sunk);
+  padding:.4rem .6rem;border-radius:10px;margin:.5rem 0 .85rem;line-height:1.4}
 .doing .claim button{width:100%;display:flex;align-items:center;justify-content:center;
-  gap:.4rem;font-weight:600;padding:.65rem 1rem;font-size:.9rem}
+  gap:.4rem;font-weight:600;padding:.6rem 1rem;font-size:.88rem}
 .doing .claim.confirm-card button{background:var(--success);border-color:var(--success)}
 .doing .claim.confirm-card button:hover{box-shadow:0 4px 14px rgba(52,168,83,.35)}
-.doing .chat .thread{overflow-y:auto;max-height:16rem;min-height:3rem;padding-right:.35rem;
+.doing .chat .thread{overflow-y:auto;max-height:14rem;min-height:2.5rem;padding-right:.3rem;
   scrollbar-width:thin;scrollbar-color:var(--rule) transparent;display:flex;flex-direction:column}
 .doing .chat .thread::-webkit-scrollbar{width:4px}
 .doing .chat .thread::-webkit-scrollbar-thumb{background:var(--rule);border-radius:10px}
