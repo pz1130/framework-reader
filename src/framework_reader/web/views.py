@@ -929,6 +929,12 @@ def control(
             + (f' · {escape(signed_at)}' if signed_at else "")
             + "</p>"
         )
+    elif state == "confirmed":
+        # 内容包的确认不带签署人——包 schema 没有 signer 列，publisher 代签
+        # 的那批更是产品签的。fr show 对 confirmed 不打横幅，网页同样闭嘴：
+        # 「AI draft, not yet confirmed · state=confirmed」是自相矛盾的横幅。
+        # 每个字段自己的 AI DRAFT / practitioner 徽标已经交代了成色。
+        pass
     elif state and any(
         (fields.get(n) or {}).get("basis") == "practitioner"
         and (fields.get(n) or {}).get("value") not in (None, "", [], {})

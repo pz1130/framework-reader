@@ -49,3 +49,7 @@ content/interpretations/*/
 # Optional Docker TLS material
 deploy/certs/*
 !deploy/certs/.gitkeep
+
+# 介绍 PPT 及其构建产物——留在本地，不进仓库
+.ppt_build/
+Framework-Reader项目介绍*
