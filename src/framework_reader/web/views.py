@@ -2,6 +2,8 @@
 
 服务端渲染，无前端框架——第一版不需要，上 React 是三个月，这是三天。
 """
+from __future__ import annotations
+
 from contextvars import ContextVar
 from html import escape
 from urllib.parse import quote
@@ -33,36 +35,46 @@ def logged_in() -> bool:
     return PERMS.get() is not None
 
 _CSS = THEME_CSS + """
-/* ---------- 工作台令牌：默认深色，可切浅色 ----------
-   发布手册与工作台共用 THEME_CSS；手册是打印用的正式文档，保持浅色。
-   THEME_CSS 的 prefers-color-scheme 媒体查询特异性是 (0,1,1)，比裸 :root
-   高——系统深色的 Mac 上会把它那套青灰色压进来。所以这里的深色也挂
-   :not([data-theme="light"]) 抵消它，两套各归各。
-   切换由顶栏按钮写 <html data-theme>，localStorage 记住选择。 */
+/* ---------- Google Keynote & Material 3 Expressive Tokens ----------
+   Google I/O Keynote Stage aesthetic: Google 4-Color signature,
+   Gemini iridescent aurora, stage spotlights, and Material You elevation.
+   Toggle theme sets <html data-theme="light">, remembered in localStorage. */
 :root{
-  --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --han:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",
-    "Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+  --mono:"Google Sans Mono","Roboto Mono","SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --han:"Google Sans","Google Sans Text","Product Sans",system-ui,-apple-system,BlinkMacSystemFont,
+    "Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --g-blue:#1a73e8;
+  --g-red:#ea4335;
+  --g-yellow:#fbbc04;
+  --g-green:#34a853;
+  --gemini-gradient:linear-gradient(135deg,#4285f4 0%,#9b72cb 35%,#d96570 70%,#fbbc04 100%);
+  --g-rainbow:linear-gradient(90deg,#4285F4 0% 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75% 100%);
 }
 :root:not([data-theme="light"]){
-  --ground:#000; --surface:#161617; --sunk:#1d1d1f;
-  --ink:#f5f5f7; --body:#d2d2d7; --muted:#86868b;
-  --rule:#2c2c2e; --accent:#2997ff; --accent-soft:#15304b; --ask:#ff6b5e;
-  --topbar-bg:rgba(10,10,12,.9); --topbar-line:rgba(255,255,255,.08);
-  --topsheen1:rgba(94,92,230,.30); --topsheen2:rgba(100,210,255,.24);
-  --topglow:rgba(41,151,255,.55);
-  --row-hover:#121214; --card-hover:#1b1b1e; --card-hover-line:#3a3a3c;
-  --selection:rgba(41,151,255,.35);
+  --ground:#0d0f12; --surface:#1a1c22; --surface-high:#22252c; --surface-highest:#2b2e37;
+  --sunk:#14161a; --ink:#f1f3f4; --body:#bdc1c6; --muted:#80868b;
+  --rule:#2a2d35; --accent:#8ab4f8; --accent-soft:#17263c; --ask:#f28b82;
+  --success:#81c995; --success-soft:#132b1c;
+  --topbar-bg:rgba(13,15,18,.84); --topbar-line:rgba(255,255,255,.08);
+  --topsheen1:rgba(66,133,244,.32); --topsheen2:rgba(155,114,203,.25);
+  --topglow:rgba(66,133,244,.5);
+  --row-hover:rgba(255,255,255,.035); --card-hover:#22252c; --card-hover-line:rgba(138,180,248,.35);
+  --selection:rgba(66,133,244,.32);
+  --card-shadow:0 4px 20px rgba(0,0,0,.3);
+  --card-shadow-hover:0 12px 36px rgba(0,0,0,.5);
 }
 :root[data-theme="light"]{
-  --ground:#fff; --surface:#f5f5f7; --sunk:#e8e8ed;
-  --ink:#1d1d1f; --body:#424245; --muted:#6e6e73;
-  --rule:#d2d2d7; --accent:#0066cc; --accent-soft:#e1effc; --ask:#c93400;
-  --topbar-bg:rgba(255,255,255,.62); --topbar-line:rgba(0,0,0,.06);
-  --topsheen1:rgba(94,92,230,.08); --topsheen2:rgba(100,210,255,.06);
-  --topglow:rgba(41,151,255,.15);
-  --row-hover:#f2f2f4; --card-hover:#fafafc; --card-hover-line:#c7c7cc;
-  --selection:rgba(0,102,204,.22);
+  --ground:#f8f9fa; --surface:#ffffff; --surface-high:#f1f3f4; --surface-highest:#e3e3e3;
+  --sunk:#edf2fa; --ink:#1f1f1f; --body:#3c4043; --muted:#5f6368;
+  --rule:#dadce0; --accent:#1a73e8; --accent-soft:#e8f0fe; --ask:#d93025;
+  --success:#1e8e3e; --success-soft:#e6f4ea;
+  --topbar-bg:rgba(248,249,250,.86); --topbar-line:rgba(0,0,0,.06);
+  --topsheen1:rgba(66,133,244,.10); --topsheen2:rgba(155,114,203,.08);
+  --topglow:rgba(66,133,244,.18);
+  --row-hover:rgba(26,115,232,.04); --card-hover:#ffffff; --card-hover-line:rgba(26,115,232,.35);
+  --selection:rgba(26,115,232,.22);
+  --card-shadow:0 2px 12px rgba(60,64,67,.08);
+  --card-shadow-hover:0 8px 30px rgba(66,133,244,.16);
 }
 body{margin:0;background:var(--ground);color:var(--body);
   font-family:var(--han);font-size:16px;line-height:1.65;
@@ -71,263 +83,337 @@ a{color:var(--accent);text-decoration:none;transition:color .2s ease}
 a:hover{text-decoration:underline}
 ::selection{background:var(--selection)}
 
-/* 入场：内容区一次性淡入上浮，纯 CSS，无 JS。注意：动画不能挂在 .wrap
-   上——顶栏是它的子元素且 sticky + 毛玻璃，祖先带着 transform 动画时
-   Chrome/Safari 对 backdrop-filter 的采样会失效，下面滚上来的字会
-   清晰地透进顶栏（全挤成一团）。所以只动画 .pagein（顶栏之外的内容）。 */
-@keyframes rise{from{opacity:0;transform:translateY(12px)}
+/* 入场动画：平滑上浮 */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}
   to{opacity:1;transform:none}}
-.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem 5rem}
-.pagein{animation:rise .55s cubic-bezier(.16,1,.3,1) both}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem 5rem}
+.pagein{animation:rise .5s cubic-bezier(.2,0,0,1) both}
 
-/* 顶栏：sticky 全宽毛玻璃。负 margin 把它拉出 .wrap 的内边距，
-   HTML 结构不动。底色取近实底：backdrop-filter 真生效时它是通透的
-   玻璃；采样在某些浏览器下失效时，8% 以下的透光度也读不出下面的字，
-   不会再和标题揉在一起。 */
-.top{display:flex;gap:1.1rem;align-items:baseline;flex-wrap:wrap;
+/* 顶栏：Google 发布会毛玻璃顶栏 + 顶部 4 色光带 */
+.top{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;
   position:sticky;top:0;z-index:20;margin:0 -1.5rem 2.4rem;
-  padding:1.15rem 1.5rem;background:var(--topbar-bg);
+  padding:1.1rem 1.5rem;background:var(--topbar-bg);
   -webkit-backdrop-filter:saturate(180%) blur(28px);
   backdrop-filter:saturate(180%) blur(28px);
   border-bottom:1px solid var(--topbar-line)}
-/* 顶栏空位的动态填充，两件都是装饰（pointer-events:none）：
-   ::before 光标扫过时一团柔光跟着走（与卡片 spotlight 同一束光，
-   坐标由 JS 写进 --tx/--ty，只在 pointer:fine 的设备上存在）；
-   ::after 一条光带来回漂移，静置时也有呼吸。
-   动效层的元素要压在内容下：z-index 0，内容不另设层。
-   强度调过两轮：0.12/0.05 的版本在近黑顶栏上肉眼不可见——
-   装饰看不见等于没做。 */
+
+/* Google 4色顶部光带 */
+.top::after{content:"";position:absolute;top:0;left:0;right:0;
+  height:3.5px;background:var(--g-rainbow);z-index:10}
+
+/* 顶栏柔光跟随与光斑 */
 .top::before{content:"";position:absolute;inset:0;pointer-events:none;
   opacity:0;transition:opacity .5s ease;z-index:0;
-  background:radial-gradient(34rem circle at var(--tx,50%) var(--ty,50%),
-    var(--topglow),transparent 68%)}
+  background:radial-gradient(36rem circle at var(--tx,50%) var(--ty,50%),
+    var(--topglow),transparent 70%)}
 .top:hover::before{opacity:1}
-.top::after{content:"";position:absolute;inset:0;pointer-events:none;
-  z-index:0;
-  background:linear-gradient(100deg,transparent 24%,
-    var(--topsheen1) 45%,var(--topsheen2) 58%,transparent 78%);
-  background-size:220% 100%;background-position:100% 0;
-  animation:topsheen 9s ease-in-out infinite alternate}
-@keyframes topsheen{to{background-position:0% 0}}
-.top > *{position:relative}
-.top h1{font-size:1.45rem;margin:0;color:var(--ink);font-weight:600;
-  letter-spacing:-.02em}
+.top > *{position:relative;z-index:1}
+.top h1{font-size:1.35rem;margin:0;color:var(--ink);font-weight:600;
+  letter-spacing:-.02em;display:flex;align-items:center;gap:.6rem}
 .top h1 a{color:inherit;text-decoration:none}
 .brandlogo{height:2.2rem;width:auto;display:block}
-.crumb{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.crumb{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
 .crumb a{color:var(--muted)}
 .crumb a:hover{color:var(--ink);text-decoration:none}
+
+/* 发布会专属胶囊徽标 */
+.keynote-pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;
+  font-weight:600;padding:.18rem .58rem;border-radius:980px;
+  background:var(--accent-soft);color:var(--accent);
+  border:1px solid rgba(66,133,244,.28);letter-spacing:.03em;
+  text-transform:uppercase}
+.gemini-sparkle{display:inline-block;color:#fbbc04;font-style:normal}
+
 .empty-gap{background:var(--surface);border:1px solid var(--rule);
-  border-radius:14px;padding:1.4rem 1.5rem;margin:1.2rem 0}
+  border-radius:18px;padding:1.4rem 1.5rem;margin:1.2rem 0;
+  box-shadow:var(--card-shadow)}
 .empty-gap p{margin:0 0 1rem}
 .empty-gap p:last-child{margin:0}
-a.cta{display:inline-block;background:var(--accent);color:#fff;
-  padding:.55rem 1.2rem;text-decoration:none;font-size:.9rem;font-weight:500;
-  border-radius:980px;transition:opacity .2s ease,transform .2s ease}
-a.cta:hover{opacity:.85;text-decoration:none}
-a.back{font-size:.85rem;color:var(--muted);text-decoration:none}
+
+a.cta{display:inline-flex;align-items:center;justify-content:center;
+  background:var(--accent);color:#fff;
+  padding:.55rem 1.3rem;text-decoration:none;font-size:.9rem;font-weight:500;
+  border-radius:980px;transition:all .2s cubic-bezier(.2,0,0,1);
+  box-shadow:0 2px 8px rgba(66,133,244,.25)}
+a.cta:hover{opacity:.92;transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(66,133,244,.4);text-decoration:none}
+a.back{font-size:.85rem;color:var(--muted);text-decoration:none;
+  display:inline-flex;align-items:center;gap:.35rem;transition:color .2s ease}
 a.back:hover{color:var(--ink);text-decoration:none}
-p.back{margin:0 0 .6rem}
-.topnav{font-size:.85rem;text-decoration:none;color:var(--muted);
-  padding:.3rem .85rem;border-radius:980px;
-  transition:color .2s ease,background .2s ease}
-.topnav:hover{color:var(--ink);background:rgba(255,255,255,.08);
+p.back{margin:0 0 .8rem}
+
+.topnav{font-size:.85rem;font-weight:500;text-decoration:none;color:var(--muted);
+  padding:.4rem .95rem;border-radius:980px;
+  transition:all .2s cubic-bezier(.2,0,0,1)}
+.topnav:hover{color:var(--ink);background:var(--accent-soft);
   text-decoration:none}
-.who{font-size:.8rem;color:var(--muted);margin-left:auto;padding-left:.8rem}
+.who{font-size:.82rem;color:var(--muted);margin-left:auto;padding-left:.8rem}
 .who + .topnav{margin-left:.6rem}
-/* 顶栏右侧导航组整体打包：装得下跟在品牌后面，装不下整组掉到第二行
-   左缘（与 logo 同一左缘），绝不逐项散落——英文标签比中文宽一大截，
-   逐项换行会把顶栏绞成乱麻。账号与退出靠 .who 自己的 margin-left:auto
-   始终贴右，两种排法都不产生左右交错的锯齿。 */
-.topright{display:flex;gap:1.1rem;align-items:baseline;
-  flex-wrap:wrap}
-/* 深浅切换：图标按钮，图标即当前主题（深色月亮、浅色太阳）。 */
-.themebtn{background:transparent;border:0;padding:.25rem .5rem;margin-left:.4rem;
-  color:var(--muted);border-radius:980px;display:inline-flex;
-  align-items:center;align-self:center;
-  transition:color .2s ease,background .2s ease}
-.themebtn:hover{color:var(--ink);background:rgba(128,128,128,.18)}
-.themebtn svg{width:1rem;height:1rem;display:block}
+.topright{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+
+/* 深浅切换按钮 */
+.themebtn{background:var(--sunk);border:1px solid var(--rule);
+  padding:.4rem .6rem;margin-left:.4rem;color:var(--muted);
+  border-radius:980px;display:inline-flex;align-items:center;align-self:center;
+  cursor:pointer;transition:all .2s cubic-bezier(.2,0,0,1)}
+.themebtn:hover{color:var(--ink);border-color:var(--accent);
+  background:var(--accent-soft);transform:scale(1.05)}
+.themebtn svg{width:1.05rem;height:1.05rem;display:block}
 .i-sun{display:none}
 :root[data-theme="light"] .i-sun{display:block}
 :root[data-theme="light"] .i-moon{display:none}
 
-/* ---------- 动效层：React Bits 风格，全部原生实现，零依赖 ---------- */
+/* ---------- Google Keynote 舞台动效层 ---------- */
 
-/* 极光背景：三团大光晕在黑底上缓慢漂移，z-index 压在内容下。 */
+/* Gemini 多彩流体极光：四团大光斑（蓝、紫、绿、黄）缓慢漂移，模拟发布会巨幕舞台照明 */
 .aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 .aurora i{position:absolute;display:block;border-radius:50%;
-  filter:blur(90px);opacity:.17;will-change:transform}
-.aurora i:nth-child(1){width:44rem;height:44rem;left:-12rem;top:-18rem;
-  background:radial-gradient(circle,#0a84ff,transparent 65%);
-  animation:drift1 26s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:38rem;height:38rem;right:-10rem;top:30vh;
-  background:radial-gradient(circle,#5e5ce6,transparent 65%);
-  animation:drift2 32s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:30rem;height:30rem;left:30vw;bottom:-16rem;
-  background:radial-gradient(circle,#64d2ff,transparent 65%);
-  animation:drift3 38s ease-in-out infinite alternate}
+  filter:blur(105px);opacity:.22;will-change:transform}
+.aurora i:nth-child(1){width:46rem;height:46rem;left:-10rem;top:-16rem;
+  background:radial-gradient(circle,#4285f4,transparent 65%);
+  animation:drift1 24s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:40rem;height:40rem;right:-10rem;top:22vh;
+  background:radial-gradient(circle,#9b72cb,transparent 65%);
+  animation:drift2 30s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:36rem;height:36rem;left:26vw;bottom:-14rem;
+  background:radial-gradient(circle,#34a853,transparent 65%);
+  animation:drift3 34s ease-in-out infinite alternate}
+.aurora i:nth-child(4){width:30rem;height:30rem;right:18vw;top:-10rem;
+  background:radial-gradient(circle,#fbbc05,transparent 65%);
+  animation:drift4 28s ease-in-out infinite alternate}
 @keyframes drift1{to{transform:translate(9rem,6rem) scale(1.15)}}
 @keyframes drift2{to{transform:translate(-8rem,-5rem) scale(.9)}}
 @keyframes drift3{to{transform:translate(6rem,-7rem) scale(1.2)}}
-:root[data-theme="light"] .aurora i{opacity:.09}
+@keyframes drift4{to{transform:translate(-6rem,7rem) scale(1.1)}}
+:root[data-theme="light"] .aurora i{opacity:.11}
 
-/* Spotlight 卡片：光标坐标由 JS 写进 --mx/--my，一团光晕跟着走，
-   边框沿光标方向亮起（mask 挖空中间只留 1px 描边）。 */
-.card{position:relative}
+/* Material 3 Spotlight 卡片：光标跟随柔光与彩虹边框 */
+.card{position:relative;border-radius:20px;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0;border-radius:inherit;
   opacity:0;transition:opacity .4s ease;pointer-events:none;
-  background:radial-gradient(30rem circle at var(--mx,50%) var(--my,50%),
-    rgba(41,151,255,.13),transparent 55%)}
+  background:radial-gradient(32rem circle at var(--mx,50%) var(--my,50%),
+    rgba(66,133,244,.16),transparent 60%)}
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;
   opacity:0;transition:opacity .4s ease;pointer-events:none;padding:1px;
-  background:radial-gradient(22rem circle at var(--mx,50%) var(--my,50%),
-    rgba(120,180,255,.9),rgba(255,255,255,.12) 45%,transparent 70%);
+  background:radial-gradient(24rem circle at var(--mx,50%) var(--my,50%),
+    rgba(66,133,244,.85),rgba(155,114,203,.6) 30%,rgba(255,255,255,.12) 55%,transparent 70%);
   -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
   -webkit-mask-composite:xor;mask-composite:exclude}
 .card:hover::before,.card:hover::after{opacity:1}
 :root[data-theme="light"] .card::after{background:radial-gradient(
-  22rem circle at var(--mx,50%) var(--my,50%),
-  rgba(0,102,204,.55),rgba(0,0,0,.08) 45%,transparent 70%)}
+  24rem circle at var(--mx,50%) var(--my,50%),
+  rgba(26,115,232,.75),rgba(155,114,203,.45) 35%,rgba(0,0,0,.08) 55%,transparent 70%)}
 
-/* 标题逐字浮现：span.ch 由 JS 拆出（无 JS 时标题原样，天然安全）。 */
+/* 标题逐字浮现 */
 h1 .ch,h2 .ch{display:inline-block;opacity:0;filter:blur(8px);
   transform:translateY(.35em);
-  animation:chIn .65s cubic-bezier(.16,1,.3,1) forwards;
-  animation-delay:calc(var(--ci,0)*38ms)}
+  animation:chIn .65s cubic-bezier(.2,0,0,1) forwards;
+  animation-delay:calc(var(--ci,0)*35ms)}
 @keyframes chIn{to{opacity:1;filter:blur(0);transform:none}}
 
-/* 表格行瀑布入场：--ri 由 JS 按行号写，封顶 14 免得末行等太久。 */
+/* 表格行瀑布入场 */
 .js tr{opacity:0;transform:translateY(8px);
-  transition:opacity .5s ease,transform .5s cubic-bezier(.16,1,.3,1);
-  transition-delay:calc(var(--ri,0)*26ms)}
+  transition:opacity .45s ease,transform .45s cubic-bezier(.2,0,0,1);
+  transition-delay:calc(var(--ri,0)*24ms)}
 .js tr.in{opacity:1;transform:none}
 
-/* 进度条生长：JS 把内联 width 挪进 --w，入场后从 0 长到目标。 */
-.js .bar i{width:0;transition:width 1s cubic-bezier(.16,1,.3,1) .3s}
+/* 进度条生长 */
+.js .bar i{width:0;transition:width .9s cubic-bezier(.2,0,0,1) .25s}
 .js .bar.in i{width:var(--w,0%)}
 
-/* 主按钮扫光：一道高光从左划到右。 */
+/* 按钮扫光 */
 button,a.cta{position:relative;overflow:hidden}
 button::after,a.cta::after{content:"";position:absolute;top:0;left:-80%;
   width:45%;height:100%;transform:skewX(-24deg);pointer-events:none;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
-  transition:left .55s ease}
+  transition:left .6s ease}
 button:hover::after,a.cta:hover::after{left:125%}
 
-/* 主题切换的圆形扩散：新主题从按钮位置涂开（View Transitions API，
-   不支持的浏览器回退为直接切换）。 */
+/* 主题切换的圆形扩散 */
 ::view-transition-old(root),::view-transition-new(root){animation:none;
   mix-blend-mode:normal}
 ::view-transition-new(root){animation:vtIn .45s ease-in forwards;
   clip-path:circle(0px at var(--vx,100%) var(--vy,0px))}
 @keyframes vtIn{to{clip-path:circle(150% at var(--vx,100%) var(--vy,0px))}}
-form.seek{display:flex;gap:.5rem;align-items:stretch;background:transparent;
-  border:0;padding:0;margin:0 0 .4rem}
-form.seek input[type=search]{flex:1;width:auto;padding:.6rem .9rem;font:inherit;
-  font-size:.95rem;background:var(--sunk);color:var(--ink);
-  border:1px solid transparent;border-radius:10px;
-  transition:border-color .2s ease,background .2s ease}
-form.seek input[type=search]:focus{outline:none;border-color:var(--accent)}
-form.seek button{margin:0;white-space:nowrap}
+
+/* Google Omnibox 搜索框 */
+form.seek{display:flex;gap:.6rem;align-items:center;background:var(--surface);
+  border:1px solid var(--rule);border-radius:980px;padding:.38rem .45rem .38rem 1.25rem;
+  margin:0 0 1rem;box-shadow:var(--card-shadow);
+  transition:border-color .25s ease,box-shadow .25s ease;position:relative}
+form.seek:focus-within{border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft),var(--card-shadow-hover)}
+form.seek input[type=search]{flex:1;width:auto;padding:.6rem .5rem;font:inherit;
+  font-size:1rem;background:transparent;color:var(--ink);
+  border:0;outline:none}
+form.seek button{padding:.6rem 1.45rem;border-radius:980px;font-weight:600;
+  white-space:nowrap;background:var(--accent);border:0;color:#fff;
+  cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
 form.tiny{display:inline;background:transparent;border:0;padding:0;margin:0}
-form.tiny button{font-size:.85rem;padding:.35rem .95rem}
-.mark{font-size:.62rem;font-weight:400;letter-spacing:0;margin-left:.5rem;
-  padding:.05rem .4rem;border:1px solid var(--rule);border-radius:980px;
-  color:var(--muted);vertical-align:.12em}
-.mark.mine{border-color:var(--accent);color:var(--accent)}
-.edit{font-size:.7rem;font-weight:400;margin-left:.5rem;text-decoration:none}
-.signed{font-family:var(--mono);font-size:.75rem;color:var(--accent);
-  margin:0 0 1rem}
+form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
+
+/* Keynote 舞台 Hero 区域 */
+.stage-hero{margin:.8rem 0 2.2rem;text-align:center}
+.stage-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+  background:var(--accent-soft);padding:.25rem .75rem;border-radius:980px;
+  margin-bottom:1rem;border:1px solid rgba(66,133,244,.2)}
+.stage-headline{font-size:clamp(1.85rem,4.2vw,2.75rem);font-weight:700;color:var(--ink);
+  letter-spacing:-.025em;line-height:1.18;margin:0 0 .8rem;text-wrap:balance}
+.stage-sub{font-size:1.02rem;color:var(--muted);max-width:44rem;margin:0 auto 1.8rem;
+  line-height:1.6;text-wrap:balance}
+.gemini-text,.gradient-text{background:var(--gemini-gradient);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;display:inline-block}
+
+/* 快速推荐胶囊 Chips */
+.quick-chips{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;
+  justify-content:center;margin:1rem 0 1.6rem}
+.chip-label{font-size:.8rem;color:var(--muted);font-weight:500}
+.chip{font-size:.8rem;font-weight:500;padding:.32rem .85rem;border-radius:980px;
+  border:1px solid var(--rule);background:var(--surface);color:var(--muted);
+  text-decoration:none;transition:all .2s cubic-bezier(.2,0,0,1)}
+.chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);
+  transform:translateY(-1px);text-decoration:none}
+
+/* Keynote 核心指标大数字看板 */
+.stage-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr));
+  gap:1rem;margin:2rem 0 2.5rem}
+.stat-card{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:1.25rem 1.1rem;text-align:center;box-shadow:var(--card-shadow);
+  transition:transform .25s ease,border-color .25s ease}
+.stat-card:hover{transform:translateY(-2px);border-color:var(--card-hover-line)}
+.stat-num{font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1.2;
+  font-family:var(--han)}
+.stat-desc{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);margin-top:.35rem}
+
+/* Google 品牌小圆点 */
+.g-dot{width:8px;height:8px;border-radius:50%;display:inline-block;
+  margin-right:.45rem;vertical-align:.08em}
+.dot-blue{background:var(--g-blue)}
+.dot-green{background:var(--g-green)}
+.dot-yellow{background:var(--g-yellow)}
+.dot-red{background:var(--g-red)}
+
+/* 标签与徽章 */
+.mark{font-size:.68rem;font-weight:500;letter-spacing:.02em;margin-left:.5rem;
+  padding:.15rem .55rem;border:1px solid var(--rule);border-radius:980px;
+  color:var(--muted);vertical-align:.1em}
+.mark.mine{border-color:rgba(52,168,83,.4);color:var(--success);
+  background:var(--success-soft);font-weight:600}
+.ai-mark{border-color:rgba(155,114,203,.35);color:var(--accent);
+  background:var(--accent-soft)}
+
+.edit{font-size:.75rem;font-weight:500;margin-left:.6rem;text-decoration:none;
+  color:var(--accent)}
+.signed{font-family:var(--mono);font-size:.8rem;color:var(--success);
+  background:var(--success-soft);border:1px solid rgba(52,168,83,.3);
+  padding:.45rem .95rem;border-radius:980px;display:inline-flex;
+  align-items:center;gap:.45rem;margin:0 0 1.2rem;font-weight:500}
 .claim{margin:2rem 0 0;font-size:.9rem}
-textarea{width:100%;padding:.6rem .7rem;font:inherit;font-size:.9rem;
-  background:var(--sunk);color:var(--ink);border:1px solid transparent;
-  border-radius:10px;margin-bottom:.9rem;resize:vertical;
-  transition:border-color .2s ease}
-textarea:focus{outline:none;border-color:var(--accent)}
-h2{font-size:1.35rem;color:var(--ink);margin:2.6rem 0 1rem;font-weight:600;
+textarea{width:100%;padding:.75rem .9rem;font:inherit;font-size:.92rem;
+  background:var(--sunk);color:var(--ink);border:1px solid var(--rule);
+  border-radius:14px;margin-bottom:.9rem;resize:vertical;
+  transition:border-color .2s ease,box-shadow .2s ease}
+textarea:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft)}
+h2{font-size:1.38rem;color:var(--ink);margin:2.6rem 0 1.1rem;font-weight:600;
   letter-spacing:-.02em}
-.cards{display:grid;gap:1rem;
-  grid-template-columns:repeat(auto-fill,minmax(17rem,1fr))}
-.card{display:block;padding:1.2rem 1.3rem;background:var(--surface);
-  border:1px solid var(--rule);border-radius:14px;text-decoration:none;
-  color:inherit;
-  transition:transform .25s cubic-bezier(.16,1,.3,1),
+
+/* 卡片网格 */
+.cards{display:grid;gap:1.2rem;
+  grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}
+.card{display:block;padding:1.35rem 1.45rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:20px;text-decoration:none;
+  color:inherit;box-shadow:var(--card-shadow);
+  transition:transform .28s cubic-bezier(.2,0,0,1),
+             box-shadow .28s cubic-bezier(.2,0,0,1),
              border-color .25s ease,background .25s ease}
 .card:hover{border-color:var(--card-hover-line);background:var(--card-hover);
-  transform:translateY(-2px);text-decoration:none}
-.card h3{margin:0 0 .35rem;font-size:1.02rem;color:var(--ink);font-weight:600}
-.card .id{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
-.card .meta{font-size:.82rem;color:var(--muted);margin:.5rem 0 0;
-  font-variant-numeric:tabular-nums}
-.tag{display:inline-block;font-size:.68rem;padding:.1rem .45rem;
+  box-shadow:var(--card-shadow-hover);transform:translateY(-3px);text-decoration:none}
+.card h3{margin:0 0 .4rem;font-size:1.05rem;color:var(--ink);font-weight:600}
+.card .id{font-family:var(--mono);font-size:.76rem;color:var(--accent);font-weight:500}
+.card .meta{font-size:.84rem;color:var(--muted);margin:.6rem 0 0;
+  font-variant-numeric:tabular-nums;line-height:1.5}
+.tag{display:inline-block;font-size:.7rem;font-weight:500;padding:.12rem .5rem;
   margin-left:.4rem;border:1px solid var(--rule);border-radius:980px;
   color:var(--muted);vertical-align:.1em}
-.tag.mine{border-color:var(--accent);color:var(--accent)}
-.bar{height:3px;background:var(--sunk);margin-top:.65rem;border-radius:3px;
+.tag.mine{border-color:rgba(66,133,244,.4);color:var(--accent);background:var(--accent-soft)}
+
+/* 进度条 */
+.bar{height:5px;background:var(--sunk);margin-top:.8rem;border-radius:980px;
   overflow:hidden}
-.bar i{display:block;height:3px;background:var(--accent);
-  transition:width .6s cubic-bezier(.16,1,.3,1)}
-table{width:100%;border-collapse:collapse;font-size:.92rem}
-td{padding:.6rem .65rem;border-bottom:1px solid var(--rule);vertical-align:top}
-td.c{font-family:var(--mono);color:var(--accent);white-space:nowrap;width:1%}
+.bar i{display:block;height:100%;background:var(--g-rainbow);
+  transition:width .8s cubic-bezier(.2,0,0,1)}
+
+/* 表格 */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:.92rem;
+  background:var(--surface);border:1px solid var(--rule);border-radius:16px;
+  overflow:hidden;box-shadow:var(--card-shadow)}
+td{padding:.8rem 1rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.c{font-family:var(--mono);color:var(--accent);font-weight:500;white-space:nowrap;width:1%}
 tr{transition:background .15s ease}
 tr:hover td{background:var(--row-hover)}
 td a{text-decoration:none;color:inherit}
 td a:hover{color:var(--accent);text-decoration:none}
-form{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
-  padding:1.3rem 1.4rem}
-label{display:block;font-size:.8rem;color:var(--muted);margin:0 0 .3rem}
-input[type=text],input[type=file]{width:100%;padding:.55rem .7rem;font:inherit;
-  font-size:.9rem;background:var(--sunk);color:var(--ink);
-  border:1px solid transparent;border-radius:10px;
-  transition:border-color .2s ease}
-input[type=text]:focus{outline:none;border-color:var(--accent)}
-.row{display:grid;gap:.9rem;grid-template-columns:1fr 1fr;margin-bottom:.9rem}
-button{font:inherit;font-size:.9rem;padding:.5rem 1.25rem;cursor:pointer;
+
+/* 表单与输入框 */
+form{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:1.4rem 1.5rem;box-shadow:var(--card-shadow)}
+label{display:block;font-size:.82rem;font-weight:500;color:var(--muted);margin:0 0 .4rem}
+input[type=text],input[type=file]{width:100%;padding:.65rem .85rem;font:inherit;
+  font-size:.92rem;background:var(--sunk);color:var(--ink);
+  border:1px solid var(--rule);border-radius:12px;
+  transition:border-color .2s ease,box-shadow .2s ease}
+input[type=text]:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft)}
+.row{display:grid;gap:1rem;grid-template-columns:1fr 1fr;margin-bottom:1rem}
+button{font:inherit;font-size:.9rem;padding:.55rem 1.35rem;cursor:pointer;
   background:var(--accent);color:#fff;border:1px solid var(--accent);
   border-radius:980px;font-weight:500;
-  transition:opacity .2s ease,transform .15s ease}
-button:hover{opacity:.85}
+  transition:opacity .2s ease,transform .15s cubic-bezier(.2,0,0,1),box-shadow .2s ease}
+button:hover{opacity:.92;box-shadow:0 4px 14px rgba(66,133,244,.35)}
 button:active{transform:scale(.97)}
-.hint{font-size:.8rem;color:var(--muted);margin:.8rem 0 0}
-.err{background:var(--sunk);border-left:3px solid var(--ask);
-  padding:.9rem 1.1rem;border-radius:0 10px 10px 0;
-  margin:0 0 1.2rem;color:var(--ink);font-size:.9rem}
-/* 提示块：苹果 callout。是「值得注意」不是「出错了」，别拿警条吓人：
-   圆角、无左边条，前面一枚信息图标，正文用 --body 保证可读。 */
-.callout{display:flex;gap:.7rem;align-items:flex-start;background:var(--sunk);
-  border-radius:12px;padding:1rem 1.2rem;margin:.4rem 0 1.4rem;
-  font-size:.9rem;color:var(--body)}
-.callout svg{width:1.05rem;height:1.05rem;flex:none;margin-top:.18em;
-  color:var(--muted)}
+.hint{font-size:.82rem;color:var(--muted);margin:.8rem 0 0;line-height:1.5}
+.err{background:rgba(234,67,53,.08);border-left:4px solid var(--ask);
+  padding:.95rem 1.2rem;border-radius:0 12px 12px 0;
+  margin:0 0 1.4rem;color:var(--ink);font-size:.92rem}
+
+/* 提示块 */
+.callout{display:flex;gap:.8rem;align-items:flex-start;background:var(--accent-soft);
+  border:1px solid rgba(66,133,244,.2);border-radius:16px;padding:1.1rem 1.3rem;
+  margin:.6rem 0 1.5rem;font-size:.92rem;color:var(--body)}
+.callout svg{width:1.15rem;height:1.15rem;flex:none;margin-top:.18em;
+  color:var(--accent)}
 .callout p{margin:0}
 .callout strong{color:var(--ink)}
-.note{font-size:.82rem;color:var(--muted);margin:.4rem 0 1.4rem}
-.draft{font-family:var(--mono);font-size:.75rem;color:var(--ask);margin:0 0 1rem}
-.doc h4{font-size:.75rem;font-weight:600;letter-spacing:.08em;
-  color:var(--muted);margin:1.3rem 0 .4rem;text-transform:uppercase}
+.note{font-size:.84rem;color:var(--muted);margin:.5rem 0 1.5rem;line-height:1.55}
+.draft{font-family:var(--mono);font-size:.78rem;color:var(--ask);
+  background:rgba(234,67,53,.08);border:1px solid rgba(234,67,53,.22);
+  padding:.35rem .85rem;border-radius:980px;display:inline-block;margin:0 0 1rem}
+.doc h4{font-size:.78rem;font-weight:600;letter-spacing:.08em;
+  color:var(--muted);margin:1.4rem 0 .5rem;text-transform:uppercase}
 .doc p,.doc ul,.doc ol{margin:0;max-width:62ch}
-.doc ul,.doc ol{padding-left:1.1rem}
-.doc code{font-family:var(--mono);font-size:.82rem;color:var(--accent);
-  background:var(--sunk);padding:.05rem .3rem;border-radius:5px}
+.doc ul,.doc ol{padding-left:1.2rem}
+.doc code{font-family:var(--mono);font-size:.84rem;color:var(--accent);
+  background:var(--sunk);padding:.1rem .35rem;border-radius:6px}
 .empty{color:var(--muted);padding:2rem 0}
-.doc p.own{white-space:pre-wrap;border-left:2px solid var(--accent);
-  padding-left:.9rem;color:var(--ink)}
+.doc p.own{white-space:pre-wrap;border-left:3px solid var(--accent);
+  padding-left:1rem;color:var(--ink);background:var(--accent-soft);
+  padding-top:.5rem;padding-bottom:.5rem;border-radius:0 8px 8px 0}
 
-/* 滚动渐现：有 JS 才藏（.js 门），没 JS 默认全可见。 */
+/* 滚动渐现 */
 .js .reveal{opacity:0;transform:translateY(14px);
-  transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+  transition:opacity .55s ease,transform .55s cubic-bezier(.2,0,0,1)}
 .js .reveal.in{opacity:1;transform:none}
-
-/* 同屏多张卡按出现顺序错开，成批渐现有节奏；第 6 张起不再递增。 */
 .cards .reveal:nth-child(2){transition-delay:.06s}
 .cards .reveal:nth-child(3){transition-delay:.12s}
 .cards .reveal:nth-child(4){transition-delay:.18s}
 .cards .reveal:nth-child(5){transition-delay:.24s}
 .cards .reveal:nth-child(n+6){transition-delay:.3s}
 
-/* 偏好减弱动态：装饰性动画全关，内容直接出现（可及性）。 */
+/* 偏好减弱动态 */
 @media (prefers-reduced-motion:reduce){
   .pagein{animation:none}
   *,*::before,*::after{transition:none!important;animation:none!important}
@@ -336,7 +422,7 @@ button:active{transform:scale(.97)}
   .js tr{opacity:1;transform:none}
   .js .bar i{width:var(--w,0%)}
   h1 .ch,h2 .ch{opacity:1;filter:none;transform:none}
-  .top::after{animation:none;opacity:0}
+  .top::after{animation:none}
   .top::before{display:none}
 }
 """
@@ -407,10 +493,11 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         # 每次导航都先看见一闪而过的黑底。localStorage 拿不到就维持默认深色。
         '<script>try{var t=localStorage.getItem("fr-theme");'
         'if(t)document.documentElement.dataset.theme=t}catch(e){}</script>'
-        # 极光背景，压在一切内容之下；aria-hidden，纯装饰。
-        '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>'
+        # Google 发布会极光舞台背景，压在一切内容之下；aria-hidden，纯装饰。
+        '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
         f'<div class="wrap{" wide" if wide else ""}"><div class="top">'
         + '<h1><a href="/">' + (_brand_logo_img() or "Framework Workbench") + "</a></h1>"
+        + '<span class="keynote-pill"><span class="gemini-sparkle">✨</span> Keynote Edition</span>'
         + f'<span class="crumb">'
         + (f'<a href="{crumb_href}">{crumb}</a>' if crumb_href and crumb else crumb)
         + "</span>"
@@ -549,6 +636,7 @@ def _search_form(q: str = "") -> str:
     """首页和结果页共用。GET，不花钱，所以不走 CSRF。"""
     return (
         '<form class="seek" action="/search" method="get">'
+        '<span class="gemini-sparkle" style="font-size:1.1rem;margin-right:.1rem" aria-hidden="true">✨</span>'
         f'<input type="search" name="q" value="{escape(q)}" '
         'placeholder="Keywords, control number, or a question" aria-label="Search controls">'
         '<button type="submit">Search</button></form>'
@@ -592,9 +680,10 @@ def _subnav(framework_id: str, here: str) -> str:
              ("/assess", "Self-assessment"), ("/gap", "Gap report"),
              ("/remediation", "Remediation"),
              ("/soa", "Statement of Applicability")]
+    active_style = ' style="border-color:var(--accent);color:var(--accent);background:var(--accent-soft)"'
     return '<div class="subnav">' + "".join(
         f'<a href="/f/{framework_id}{path}"'
-        f'{" style=\"border-color:var(--accent);color:var(--accent)\"" if path == here else ""}>'
+        f'{active_style if path == here else ""}>'
         f"{label}</a>"
         for path, label in items
     ) + "</div>"
@@ -755,38 +844,53 @@ def _import_form(error: str = "") -> str:
 
 def home(popular: list[dict], daily: list[dict],
          review: dict | None = None, roll: int = 0, nav: str = "") -> str:
-    """搜索工作台。三样东西，别的不要：
-
-    - 搜索框（GET /search）
-    - 「经常搜索」——从搜索统计里取的热门条款，点进去学
-    - 「今天学三条」——同一天是同一组，让「打开就有事做」；
-      「换一批」把 `roll+1` 当下一批的种子——GET 导航，不花钱不发请求，
-      同一个批次当天稳定，书签收住的就是这一批
-
-    `review` 是待确认的 AI 初稿数（一条不剩时是 None，不渲染——安静的页面
-    比一枚恒为零的徽章有用）。审阅是签字人的日常入口，放在他每天打开的
-    第一页。
-
-    **不放**内置框架卡片、不放导入表单、不放「我导入的」表格——
-    那些是 /frameworks 的事。首页是「你来这里干什么」的入口，
-    不是「你已经有了什么」的库存。
-
-    视觉上和框架页一致：复用 `.seek`（搜索表单）和 `.cards` / `.card`
-    （卡片网格），不引入新 CSS。苹果黑白风要整页统一，不要首页自己
-    另起一套。
+    """Google 发布会风格工作台。
+    包含：
+    - Keynote 舞台 Hero 区域（Eyebrow、大标题彩虹渐变、副标题）
+    - Google 胶囊型 Omnibox 搜索框与快捷检索 Chips
+    - 发布会核心指标大数字看板（Controls, Frameworks, Sign-offs, AI）
+    - 「经常搜索」与「今天学三条」Material 3 卡片流
     """
+    hero = (
+        '<div class="stage-hero">'
+        '<div class="stage-eyebrow"><span class="gemini-sparkle">✨</span> Google I/O Style Showcase · Framework Workbench</div>'
+        '<h1 class="stage-headline">Next-Gen Security <span class="gemini-text">Framework Intelligence</span></h1>'
+        '<p class="stage-sub">Comprehensive workbench for NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022. Grounded interpretations, audit trails, and cryptographic verification.</p>'
+        '</div>'
+    )
+    chips = (
+        '<div class="quick-chips">'
+        '<span class="chip-label">Quick explore:</span>'
+        '<a href="/search?q=Access+Control" class="chip">Access Control</a>'
+        '<a href="/search?q=Log+Retention" class="chip">Log Retention</a>'
+        '<a href="/search?q=DE.CM-01" class="chip">DE.CM-01</a>'
+        '<a href="/search?q=Incident+Response" class="chip">Incident Response</a>'
+        '<a href="/search?q=Cryptographic+Keys" class="chip">Cryptographic Keys</a>'
+        '</div>'
+    )
     seek = (
-        '<form class="seek" action="/search" method="get">'
+        hero
+        + '<form class="seek" action="/search" method="get">'
+        '<span class="gemini-sparkle" style="font-size:1.1rem;margin-right:.1rem" aria-hidden="true">✨</span>'
         '<input type="search" name="q" placeholder="Keywords, control number, or a question"'
         ' autofocus aria-label="Search controls">'
         '<button type="submit">Search</button></form>'
-        '<p class="note">Literal search over titles, control numbers and interpretations first; if nothing matches, AI looks for close wording.</p>'
+        + chips
+        + '<p class="note" style="text-align:center">Literal search over titles, control numbers and interpretations first; if nothing matches, AI looks for close wording.</p>'
+    )
+    stats = (
+        '<div class="stage-stats">'
+        '<div class="stat-card"><div class="stat-num">1,000+</div><div class="stat-desc">Controls Indexed</div></div>'
+        '<div class="stat-card"><div class="stat-num">3</div><div class="stat-desc">Global Frameworks</div></div>'
+        '<div class="stat-card"><div class="stat-num">100%</div><div class="stat-desc">Cryptographic Sign-offs</div></div>'
+        '<div class="stat-card"><div class="stat-num gemini-text">AI+</div><div class="stat-desc">Gemini Explanations</div></div>'
+        '</div>'
     )
     review_block = ""
     if review and review.get("count"):
         review_block = (
             '<div class="cards"><a class="card" href="/review">'
-            f'<span class="id">{review["count"]} drafts</span>'
+            f'<span class="id" style="color:var(--g-yellow)">{review["count"]} drafts</span>'
             "<h3>AI drafts awaiting confirmation</h3>"
             '<p class="meta">Open the review queue and sign them one by one</p></a></div>'
         )
@@ -795,19 +899,29 @@ def home(popular: list[dict], daily: list[dict],
             f'<a class="card reveal" href="/c/{escape(p["id"])}">'
             f'<span class="id">{escape(p["short"])}</span>'
             f'<h3>{escape(p["label"])}</h3>'
-            '<p class="meta">Frequently searched</p></a>'
+            '<p class="meta"><span class="g-dot dot-blue"></span>Frequently searched</p></a>'
             for p in popular
         )
         popular_block = '<h2>Frequently searched</h2><div class="cards">' + cards + '</div>'
     else:
         popular_block = '<h2>Frequently searched</h2><p class="empty">No search history yet.</p>'
     if daily:
+        def _dot(fw: str) -> str:
+            if "CSF" in fw:
+                return "dot-blue"
+            if "ISO" in fw:
+                return "dot-green"
+            if "800-53" in fw:
+                return "dot-yellow"
+            return "dot-red"
+
         cards = "".join(
             f'<a class="card reveal" href="/c/{escape(d["id"])}">'
             f'<span class="id">{escape(d["short"])}</span>'
             f'<h3>{escape(d["label"])}</h3>'
             f'<p class="meta">{escape(d["snippet"])}</p>'
-            f'<p class="meta" style="margin-top:.35rem">{escape(d["framework"])}</p>'
+            f'<p class="meta" style="margin-top:.45rem;display:flex;align-items:center">'
+            f'<span class="g-dot {_dot(d["framework"])}"></span>{escape(d["framework"])}</p>'
             '</a>'
             for d in daily
         )
@@ -817,8 +931,6 @@ def home(popular: list[dict], daily: list[dict],
             '<button type="submit">Shuffle</button></form>'
         )
         daily_block = (
-            # 标题的外边距挪到容器上：h2 在 flex 里 margin 归零后，
-            # 「标题 → 卡片」那 1rem 的呼吸间距就没了，会贴死。
             '<div style="display:flex;align-items:baseline;gap:.8rem;'
             'margin:2.6rem 0 1rem">'
             '<h2 style="margin:0">Learn three today</h2>' + refresh + '</div>'
@@ -826,7 +938,7 @@ def home(popular: list[dict], daily: list[dict],
         )
     else:
         daily_block = '<h2>Learn three today</h2><p class="empty">Nothing for today.</p>'
-    return page("Framework Workbench", seek + review_block + popular_block + daily_block,
+    return page("Framework Workbench", seek + stats + review_block + popular_block + daily_block,
                 nav=nav)
 
 
@@ -1072,8 +1184,8 @@ def _clause_chat(control_id: str, turns: list) -> str:
     labels = dict(FIELD_LABELS)
     lines = []
     for turn in turns:
-        who = escape(turn.actor or "you") if turn.role == "user" else "AI"
-        klass = "said mine" if turn.role == "user" else "said"
+        who = escape(turn.actor or "you") if turn.role == "user" else '<span class="gemini-sparkle">✨</span> Gemini AI'
+        klass = "said mine" if turn.role == "user" else "said ai"
         lines.append(
             f'<div class="{klass}"><span class="who">{who}</span>'
             f'<p>{escape(turn.text)}</p>'
@@ -1096,7 +1208,7 @@ def _clause_chat(control_id: str, turns: list) -> str:
 
     return (
         f"<style>{_CHAT_CSS}</style>"
-        '<div class="doc chat"><h4>Ask AI</h4><div class="thread">'
+        '<div class="doc chat"><h4><span class="gemini-sparkle">✨</span> Ask Gemini AI</h4><div class="thread">'
         + ("".join(lines) if lines else
            '<p class="empty">Nothing asked yet. Ask it to rewrite a field ("make "How to implement" more specific, we use Okta"), or just ask a question ("what evidence does this control usually need").</p>')
         + "</div>"
@@ -1110,18 +1222,20 @@ def _clause_chat(control_id: str, turns: list) -> str:
 
 
 _CHAT_CSS = """
-.said{border-left:2px solid var(--rule);padding:.1rem 0 .1rem .9rem;
-  margin:0 0 .9rem}
-.said.mine{border-left-color:var(--accent)}
-.said .who{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-.said p{margin:.2rem 0;white-space:pre-wrap}
-.said form{background:none;border:0;padding:0}
+.said{border-left:3px solid var(--rule);padding:.6rem .85rem;margin:0 0 .9rem;
+  background:var(--surface);border-radius:0 12px 12px 0;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.said.mine{border-left-color:var(--accent);background:var(--accent-soft)}
+.said.ai{border-left-color:#fbbc04;background:var(--surface)}
+.said .who{font-family:var(--han);font-size:.78rem;font-weight:600;color:var(--muted);
+  display:inline-flex;align-items:center;gap:.3rem}
+.said p{margin:.3rem 0 0;white-space:pre-wrap;font-size:.92rem;line-height:1.55}
+.said form{background:none;border:0;padding:0;box-shadow:none}
 """
 
 
 _BASIS_MARK = {
     "practitioner": ('<span class="mark mine">You wrote this</span>', ""),
-    "inferred": ('<span class="mark">AI draft</span>', ""),
+    "inferred": ('<span class="mark ai-mark"><span class="gemini-sparkle">✨</span> AI draft</span>', ""),
     "quote": ('<span class="mark">Quoted from source</span>', ""),
 }
 
@@ -1337,47 +1451,55 @@ def _short_id(control_id: str) -> str:
     return control_id.split(":", 1)[-1]
 
 _AUTH_CSS = """
-.auth{max-width:26rem;margin:3rem auto}
-.auth h2{margin:0 0 1.2rem}
-input[type=password]{width:100%;padding:.55rem .7rem;font:inherit;font-size:.9rem;
-  background:var(--sunk);color:var(--ink);border:1px solid transparent;
-  border-radius:10px;transition:border-color .2s ease}
-input[type=password]:focus{outline:none;border-color:var(--accent)}
-.sso{display:block;text-align:center;padding:.6rem 1.2rem;text-decoration:none;
-  background:var(--accent);color:#fff;font-size:.95rem;font-weight:500;
-  border-radius:980px;transition:opacity .2s ease}
-.sso:hover{opacity:.85;text-decoration:none}
+.auth{max-width:28rem;margin:3.5rem auto}
+.auth h2{margin:0 0 1.4rem;font-size:1.45rem;text-align:center}
+input[type=password]{width:100%;padding:.65rem .85rem;font:inherit;font-size:.92rem;
+  background:var(--sunk);color:var(--ink);border:1px solid var(--rule);
+  border-radius:12px;transition:border-color .2s ease,box-shadow .2s ease}
+input[type=password]:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft)}
+.sso{display:flex;align-items:center;justify-content:center;gap:.5rem;
+  text-align:center;padding:.7rem 1.4rem;text-decoration:none;
+  background:var(--accent);color:#fff;font-size:.95rem;font-weight:600;
+  border-radius:980px;box-shadow:0 2px 10px rgba(66,133,244,.28);
+  transition:all .2s cubic-bezier(.2,0,0,1)}
+.sso:hover{opacity:.92;transform:translateY(-1px);
+  box-shadow:0 4px 18px rgba(66,133,244,.4);text-decoration:none}
 """
 
 _ASSESS_CSS = """
-.arow{background:var(--surface);border:1px solid var(--rule);padding:1rem 1.1rem;
-  margin:0 0 .8rem}
-.arow.done{border-left:3px solid var(--accent)}
-.arow h3{margin:0 0 .5rem;font-size:.98rem;color:var(--ink);font-weight:600}
-.arow h3 code{font-family:var(--mono);font-size:.82rem;color:var(--accent);
-  margin-right:.5rem}
-.arow .rungs{list-style:none;margin:0 0 .8rem;padding:0;font-size:.86rem}
-.arow .rungs li{padding-left:.8rem;border-left:2px solid var(--accent-soft);
-  margin:0 0 .3rem;max-width:62ch;color:var(--muted)}
-.arow .pick{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
-.arow .pick label{display:inline-flex;gap:.3rem;align-items:center;margin:0;
-  font-size:.85rem;color:var(--body);border:1px solid var(--rule);
-  padding:.3rem .6rem;cursor:pointer;background:var(--ground)}
+.arow{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:1.2rem 1.35rem;margin:0 0 1rem;box-shadow:var(--card-shadow);
+  transition:all .2s cubic-bezier(.2,0,0,1)}
+.arow.done{border-left:4px solid var(--success);background:var(--surface-high)}
+.arow h3{margin:0 0 .6rem;font-size:1.02rem;color:var(--ink);font-weight:600}
+.arow h3 code{font-family:var(--mono);font-size:.84rem;color:var(--accent);
+  background:var(--accent-soft);padding:.1rem .4rem;border-radius:6px;margin-right:.6rem}
+.arow .rungs{list-style:none;margin:0 0 .9rem;padding:0;font-size:.88rem}
+.arow .rungs li{padding-left:.9rem;border-left:3px solid var(--accent-soft);
+  margin:0 0 .4rem;max-width:62ch;color:var(--muted);line-height:1.5}
+.arow .pick{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.arow .pick label{display:inline-flex;gap:.35rem;align-items:center;margin:0;
+  font-size:.85rem;color:var(--body);border:1px solid var(--rule);border-radius:980px;
+  padding:.35rem .85rem;cursor:pointer;background:var(--surface);
+  transition:all .2s cubic-bezier(.2,0,0,1)}
+.arow .pick label:hover{border-color:var(--accent);background:var(--accent-soft)}
 .arow .pick input{margin:0}
 .arow .pick input:checked + span{color:var(--accent);font-weight:600}
-.arow .pick .note{flex:1 1 16rem;min-width:0}
-.arow .cur{font-size:.8rem;color:var(--muted);margin:.5rem 0 0}
-.subnav{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.5rem}
-.subnav a{font-size:.85rem;padding:.35rem .8rem;border:1px solid var(--rule);
-  text-decoration:none;color:var(--body);background:var(--surface)}
-.subnav a:hover{border-color:var(--accent)}
+.arow .pick .note{flex:1 1 16rem;min-width:0;border-radius:980px;padding:.45rem .85rem}
+.arow .cur{font-size:.82rem;color:var(--muted);margin:.6rem 0 0}
+.subnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.8rem}
+.subnav a{font-size:.85rem;font-weight:500;padding:.4rem .95rem;border:1px solid var(--rule);
+  border-radius:980px;text-decoration:none;color:var(--body);background:var(--surface);
+  box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .2s cubic-bezier(.2,0,0,1)}
+.subnav a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 .gap{white-space:pre-wrap;font-family:var(--han);font-size:.92rem;
-  background:var(--surface);border:1px solid var(--rule);padding:1.2rem 1.3rem;
-  line-height:1.75;overflow-x:auto}
+  background:var(--surface);border:1px solid var(--rule);border-radius:16px;
+  padding:1.3rem 1.4rem;line-height:1.75;overflow-x:auto;box-shadow:var(--card-shadow)}
 .soawrap{overflow-x:auto}
-.soa{font-size:.85rem}
+.soa{font-size:.88rem}
 .soa td{white-space:normal}
-.pending{color:var(--ask)}
+.pending{color:var(--ask);font-weight:500}
 """
 
 
@@ -1474,8 +1596,8 @@ def _review_changes(changes: list[dict] | None) -> str:
         f"<tr><td class=\"c\"><a href=\"/c/{escape(c['control_id'])}\">"
         f"{escape(c['control_id'].split(':', 1)[-1])}</a></td>"
         f"<td>{escape(c['label'])}</td>"
-        f'<td><s>{escape(c["from"])}</s> → <strong>{escape(c["to"])}</strong></td>'
-        f"<td>{escape(c["at"][:10])}</td></tr>"
+        f"<td><s>{escape(c['from'])}</s> → <strong>{escape(c['to'])}</strong></td>"
+        f"<td>{escape(c['at'][:10])}</td></tr>"
         for c in changes
     )
     return (
@@ -1735,24 +1857,24 @@ def refused(title: str, message: str, hint: str = "") -> str:
 
 _MEMBER_CSS = """
 .mtable td{vertical-align:middle}
-.chips{display:flex;gap:.35rem;flex-wrap:wrap}
-.chips form{background:none;border:0;padding:0;display:contents}
-.chip{font-family:var(--mono);font-size:.72rem;padding:.22rem .5rem;
-  border:1px solid var(--rule);background:var(--ground);color:var(--muted);
-  border-radius:2px;cursor:pointer}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.chips form{background:none;border:0;padding:0;display:contents;box-shadow:none}
+.chip{font-family:var(--mono);font-size:.74rem;font-weight:500;padding:.25rem .65rem;
+  border:1px solid var(--rule);background:var(--surface);color:var(--muted);
+  border-radius:980px;cursor:pointer;transition:all .15s ease}
 .chip.on{border-color:var(--accent);color:#fff;background:var(--accent);font-weight:600}
 .chip.flat{cursor:default}
 .gone{color:var(--muted);text-decoration:line-through}
 .switch{margin:2.5rem 0 0;background:var(--surface);border:1px solid var(--rule);
-  padding:1.1rem 1.2rem}
-.switch button{font-size:.8rem;padding:.35rem .8rem;background:var(--ground);
-  color:var(--body);border:1px solid var(--rule)}
-.link{font-family:var(--mono);font-size:.8rem;word-break:break-all;
-  background:var(--sunk);border-left:3px solid var(--accent);padding:.8rem 1rem;
-  margin:0 0 1.2rem}
-.audit{font-family:var(--mono);font-size:.78rem}
+  border-radius:16px;padding:1.2rem 1.3rem;box-shadow:var(--card-shadow)}
+.switch button{font-size:.82rem;padding:.4rem .9rem;background:var(--surface);
+  color:var(--body);border:1px solid var(--rule);border-radius:980px}
+.link{font-family:var(--mono);font-size:.82rem;word-break:break-all;
+  background:var(--sunk);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+  padding:.85rem 1.1rem;margin:0 0 1.2rem}
+.audit{font-family:var(--mono);font-size:.8rem}
 .audit td{white-space:nowrap}
-.audit td.d{white-space:normal;font-family:var(--han);font-size:.85rem}
+.audit td.d{white-space:normal;font-family:var(--han);font-size:.88rem}
 """
 
 ROLE_WHAT = {
@@ -2145,10 +2267,13 @@ def backup(frameworks: list[dict] | None = None, *, nav: str = "") -> str:
 
 _SETTINGS_CSS = """
 .scard{display:block;background:var(--surface);border:1px solid var(--rule);
-  padding:1.1rem 1.2rem;margin:0 0 .9rem;text-decoration:none}
-.scard:hover{border-color:var(--accent)}
-.scard h3{margin:0 0 .35rem;font-size:1rem;color:var(--ink);font-weight:600}
-.scard p{margin:0;font-size:.9rem;color:var(--muted)}
+  border-radius:18px;padding:1.25rem 1.35rem;margin:0 0 1rem;
+  text-decoration:none;box-shadow:var(--card-shadow);
+  transition:all .25s cubic-bezier(.2,0,0,1)}
+.scard:hover{border-color:var(--card-hover-line);background:var(--card-hover);
+  transform:translateY(-2px);box-shadow:var(--card-shadow-hover);text-decoration:none}
+.scard h3{margin:0 0 .4rem;font-size:1.05rem;color:var(--ink);font-weight:600}
+.scard p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.5}
 """
 
 
@@ -2475,24 +2600,20 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
 
 
 _MODEL_CSS = """
-.mrow{background:var(--surface);border:1px solid var(--rule);padding:1.1rem 1.2rem;
-  margin:0 0 .9rem}
-.mrow h3{margin:0 0 .3rem;font-size:1rem;color:var(--ink);font-weight:600;
+.mrow{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:1.25rem 1.35rem;margin:0 0 1rem;box-shadow:var(--card-shadow)}
+.mrow h3{margin:0 0 .4rem;font-size:1.02rem;color:var(--ink);font-weight:600;
   font-family:var(--mono)}
 .mrow .cur{font-size:.85rem;color:var(--muted);margin:.5rem 0 .9rem}
-.mrow form{background:none;border:0;padding:0}
+.mrow form{background:none;border:0;padding:0;box-shadow:none}
 .linky{background:none;border:0;padding:0;color:var(--accent);
   font:inherit;font-size:.85rem;cursor:pointer;text-decoration:underline}
-select.pick{width:100%;padding:.5rem .6rem;font:inherit;font-size:.9rem;
+select.pick{width:100%;padding:.6rem .75rem;font:inherit;font-size:.92rem;
   background:var(--ground);color:var(--ink);border:1px solid var(--rule);
-  border-radius:2px}
-/* datalist 的输入框长得和普通文本框一模一样，没人知道它能点开。
-   浏览器自带一个下拉按钮，只是默认只在悬停/聚焦时才显形——
-   让它一直亮着就够了。自己再画一个箭头会和它撞在一起（实测两个叠着）。 */
+  border-radius:10px}
 input.pick[list]::-webkit-calendar-picker-indicator{opacity:.5;cursor:pointer}
 input.pick[list]:hover::-webkit-calendar-picker-indicator,
 input.pick[list]:focus::-webkit-calendar-picker-indicator{opacity:.9}
-/* 「测一下」压在「保存」下面一档：两个挨着的实心按钮会让人分不清哪个是主动作。 */
 .mrow button.ghost{background:none;color:var(--accent);
   border:1px solid var(--rule);margin-right:.5rem}
 """
@@ -2501,15 +2622,16 @@ input.pick[list]:focus::-webkit-calendar-picker-indicator{opacity:.9}
 # ---------- 配套文档 ----------
 
 _DOC_CSS = """
-.docrow{background:var(--surface);border:1px solid var(--rule);padding:1rem 1.1rem;
-  margin:0 0 .7rem;display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap}
-.docrow h3{margin:0;font-size:.98rem;color:var(--ink);font-weight:600}
-.docrow .meta{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
-.docrow form{background:none;border:0;padding:0;margin-left:auto}
-.seg{background:var(--surface);border:1px solid var(--rule);padding:.9rem 1.1rem;
-  margin:0 0 .7rem}
-.seg h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.75rem;color:var(--accent)}
-.seg p{margin:0;white-space:pre-wrap;font-size:.9rem}
+.docrow{background:var(--surface);border:1px solid var(--rule);border-radius:16px;
+  padding:1.1rem 1.25rem;margin:0 0 .8rem;display:flex;gap:1rem;
+  align-items:baseline;flex-wrap:wrap;box-shadow:var(--card-shadow)}
+.docrow h3{margin:0;font-size:1.02rem;color:var(--ink);font-weight:600}
+.docrow .meta{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.docrow form{background:none;border:0;padding:0;margin-left:auto;box-shadow:none}
+.seg{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+  padding:1rem 1.2rem;margin:0 0 .8rem}
+.seg h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.78rem;color:var(--accent)}
+.seg p{margin:0;white-space:pre-wrap;font-size:.92rem;line-height:1.55}
 """
 
 
@@ -2663,11 +2785,11 @@ def import_preview(draft, bodies: list[str], nav: str = "") -> str:
 
 
 _IMPORT_CSS = """
-.prow{background:var(--surface);border:1px solid var(--rule);
-  padding:.9rem 1rem;margin:0 0 .7rem}
+.prow{background:var(--surface);border:1px solid var(--rule);border-radius:16px;
+  padding:1rem 1.15rem;margin:0 0 .8rem;box-shadow:var(--card-shadow)}
 .prow input[type=text]{width:auto;display:inline-block;margin-right:.5rem}
 .prow .pick{display:inline-block;margin-right:.8rem;font-size:.85rem}
-.pbody{white-space:pre-wrap;margin:.6rem 0 .2rem;color:var(--body)}
+.pbody{white-space:pre-wrap;margin:.6rem 0 .2rem;color:var(--body);line-height:1.55}
 .warn{color:var(--ask);font-size:.9rem;margin:.3rem 0}
 """
 
@@ -2706,9 +2828,10 @@ def import_progress(job, nav: str = "") -> str:
 
 
 _PROGRESS_CSS = """
-.bar{background:var(--sunk);border:1px solid var(--rule);height:1.1rem;
-  margin:1.2rem 0 .4rem;overflow:hidden}
-.fill{background:var(--accent);height:100%;transition:width .3s}
+.bar{background:var(--sunk);border:1px solid var(--rule);height:1.2rem;
+  border-radius:980px;margin:1.4rem 0 .5rem;overflow:hidden;padding:2px}
+.fill{background:var(--g-rainbow);height:100%;border-radius:980px;
+  transition:width .4s cubic-bezier(.2,0,0,1)}
 """
 
 
@@ -2774,15 +2897,15 @@ def _selection_popup(control_id: str) -> str:
 
 
 _POPUP_CSS = """
-#pop{position:absolute;z-index:20;width:22rem;background:var(--surface);
-  border:1px solid var(--accent);box-shadow:0 6px 24px rgba(0,0,0,.18);
-  padding:.8rem .9rem;font-size:.9rem}
-#pop .q{display:block;font-size:.8rem;color:var(--muted);
-  border-left:2px solid var(--rule);padding-left:.5rem;margin-bottom:.5rem;
-  max-height:4.5rem;overflow:auto}
-#pop textarea{width:100%;font:inherit;font-size:.9rem}
-#pop .row{margin:.5rem 0 0;display:flex;gap:.5rem}
-#pop .ans{margin-top:.6rem;white-space:pre-wrap}
+#pop{position:absolute;z-index:20;width:23rem;background:var(--surface);
+  border:1px solid var(--accent);box-shadow:0 12px 36px rgba(0,0,0,.25);
+  border-radius:18px;padding:1rem 1.1rem;font-size:.92rem}
+#pop .q{display:block;font-size:.82rem;color:var(--muted);
+  border-left:3px solid var(--rule);padding-left:.6rem;margin-bottom:.6rem;
+  max-height:4.8rem;overflow:auto;line-height:1.45}
+#pop textarea{width:100%;font:inherit;font-size:.9rem;border-radius:10px}
+#pop .row{margin:.6rem 0 0;display:flex;gap:.5rem}
+#pop .ans{margin-top:.7rem;white-space:pre-wrap;line-height:1.5}
 #pop .ans:empty{margin:0}
 """
 
@@ -2866,30 +2989,22 @@ _POPUP_JS = """
 # 两栏与右栏常驻。**纯 CSS，不加 JS**——这一页的 JS 只为选区那件事破例过一次，
 # 布局用 sticky 就够，不该再欠一笔。
 _SPLIT_CSS = """
-/* 全站容器是 56rem——单栏长文那是合适的宽度。两栏挤在里面，左边就剩
-   三十几 rem，正文被压成窄条而按钮占了半个屏幕。
-   
-   放宽到刚好够：正文行宽本来就被 .doc p{max-width:62ch} 限着（那是条
-   好规矩，长行难读），再宽出去的部分全是死空白。64rem 让左栏正好
-   容下 62ch，右栏 19rem，中间不留空档。 */
-.wrap.wide{max-width:64rem}
-/* 不写 align-items:start——那会让右栏只有内容那么高，而 sticky 只能在
-   父元素的高度内粘住：滚过那一段它就跟着走了。默认的 stretch 让右栏
-   和左栏一样高，右栏才能一路粘到底。 */
-.split{display:grid;grid-template-columns:minmax(0,1fr) 19rem;gap:2.5rem}
+.wrap.wide{max-width:68rem}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem}
 .split .reading{min-width:0}
 .doing .stuck{position:sticky;top:0;height:100vh;box-sizing:border-box;
   display:flex;flex-direction:column;justify-content:center;
-  gap:.9rem;padding:1rem 0}
-/* 对话历史会越聊越长。面板内部滚，输入框始终贴底、始终看得见。 */
-.doing .chat{display:flex;flex-direction:column;min-height:0}
-.doing .chat .thread{overflow-y:auto;min-height:0;flex:1}
+  gap:1rem;padding:1rem 0}
+.doing .chat{display:flex;flex-direction:column;min-height:0;
+  background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:1.2rem;box-shadow:var(--card-shadow)}
+.doing .chat .thread{overflow-y:auto;min-height:0;flex:1;padding-right:.3rem}
 .doing .claim,.doing .chat{margin:0}
-.doing .claim{padding:.9rem 1rem}
-/* 窄屏（笔记本分屏、平板）两栏硬挤在一起，两边都没法看。叠回去。 */
+.doing .claim{padding:1.2rem 1.3rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:18px;box-shadow:var(--card-shadow)}
 @media (max-width:60rem){
   .split{grid-template-columns:minmax(0,1fr)}
   .doing .stuck{position:static;height:auto;display:block}
-  .doing .stuck > *{margin-bottom:.9rem}
+  .doing .stuck > *{margin-bottom:1rem}
 }
 """

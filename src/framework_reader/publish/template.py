@@ -43,12 +43,13 @@ h1{
 /* ---- 框架切换 ---- */
 .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.75rem 0 .9rem}
 .tab{
-  font:inherit;font-size:.95rem;padding:.5rem .95rem;cursor:pointer;
+  font:inherit;font-size:.95rem;padding:.5rem 1rem;cursor:pointer;
   color:var(--body);background:transparent;
-  border:1px solid var(--rule);border-radius:2px
+  border:1px solid var(--rule);border-radius:980px;
+  transition:all .2s cubic-bezier(.2,0,0,1)
 }
 .tab span{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:.4rem}
-.tab:hover{border-color:var(--accent)}
+.tab:hover{border-color:var(--accent);background:var(--accent-soft)}
 .tab[aria-pressed="true"]{
   background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600
 }
@@ -64,26 +65,28 @@ h1{
   display:flex;gap:.75rem;flex-wrap:wrap;align-items:center
 }
 #q{
-  flex:1 1 14rem;min-width:0;padding:.55rem .8rem;font:inherit;font-size:.9rem;
+  flex:1 1 14rem;min-width:0;padding:.55rem .9rem;font:inherit;font-size:.9rem;
   color:var(--ink);background:var(--surface);
-  border:1px solid var(--rule);border-radius:2px
+  border:1px solid var(--rule);border-radius:980px
 }
 #q:focus{outline:2px solid var(--accent);outline-offset:1px}
 .chips{display:flex;gap:.4rem;flex-wrap:wrap}
 .chip{
-  font:inherit;font-size:.82rem;padding:.45rem .7rem;cursor:pointer;
+  font:inherit;font-size:.82rem;padding:.45rem .8rem;cursor:pointer;
   color:var(--body);background:var(--surface);
-  border:1px solid var(--rule);border-radius:2px
+  border:1px solid var(--rule);border-radius:980px;
+  transition:all .2s cubic-bezier(.2,0,0,1)
 }
 .chip span{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:.35rem}
-.chip:hover{border-color:var(--accent)}
+.chip:hover{border-color:var(--accent);background:var(--accent-soft)}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
 .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ---- 条款 ---- */
 .ctl{
-  background:var(--surface);border:1px solid var(--rule);
+  background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
   margin:1.5rem 0 0;padding:1.5rem 1.6rem
 }
 .ctl header{
