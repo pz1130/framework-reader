@@ -1,12 +1,15 @@
-"""网页上起草是个长活儿：一条控制一次模型调用，几十条要跑几分钟。
+"""Drafting on the web is a long job: one model call per control, and dozens of controls take
+minutes to run.
 
-所以不能在请求里跑完再返回——浏览器那边就是一个转圈的白页，用户不知道
-是在跑还是挂了，刷新一下还会再点一次、再花一次钱。做法是后台线程跑，
-页面轮询进度。
+So it cannot run to completion inside the request — the browser would just show a spinning blank
+page, the user cannot tell whether it is running or hung, and a refresh would mean clicking
+again and paying again. The approach: run it on a background thread and let the page poll for
+progress.
 
-进程内状态，不落盘：`fr serve` 重启这些记录就没了，这没关系——起草的结果
-在用户库里，丢的只是「跑到第几条」。真要持久化就得引入任务表和回收逻辑，
-本地单人工作台不值这个价。
+State is in-process and never persisted: restarting `fr serve` loses these records, and that is
+fine — the drafting results live in the user database; all that is lost is "which control it got
+to". Real persistence would mean introducing a job table and reclamation logic, which is not
+worth the price for a local single-user workbench.
 """
 import threading
 from collections.abc import Callable
@@ -37,7 +40,8 @@ def get(framework_id: str) -> Job | None:
 
 
 def start(framework_id: str, total: int, runner: Callable[[str], object]) -> Job:
-    """同一个框架已经在跑就返回那一个——刷新页面不该再点一次钱。"""
+    """If the same framework is already running, return that job — refreshing the page must not
+    mean paying again."""
     with _lock:
         existing = _jobs.get(framework_id)
         if existing is not None and existing.running:
@@ -49,8 +53,9 @@ def start(framework_id: str, total: int, runner: Callable[[str], object]) -> Job
         try:
             report = runner(framework_id)
         except Exception as exc:                      # noqa: BLE001
-            # 缺 key、模型端点变了、框架被删了——都在这里变成一句人话，
-            # 而不是让后台线程默默死掉、页面永远停在「起草中」。
+            # Missing key, changed model endpoint, deleted framework — all of it becomes one
+            # human-readable sentence here, instead of the background thread dying silently and
+            # the page staying on "drafting" forever.
             job.error = f"{type(exc).__name__}: {exc}"
             job.status = "error"
             return
@@ -63,7 +68,7 @@ def start(framework_id: str, total: int, runner: Callable[[str], object]) -> Job
 
 
 def reset() -> None:
-    """测试用：清掉进程内的任务表。"""
+    """For tests: clear the in-process job table."""
     with _lock:
         _jobs.clear()
         _outlines.clear()
@@ -71,20 +76,22 @@ def reset() -> None:
 
 
 def running_count() -> int:
-    """还在跑的起草任务数。花钱那道并发闸拿它当读数。"""
+    """Number of draft jobs still running. The spending concurrency gate takes its reading from
+    this."""
     with _lock:
         return sum(1 for job in _jobs.values() if job.running)
 
 
 @dataclass
 class OutlineJob:
-    """一次文档切分。见 2026-08-25 AI 导入设计 §5.3
+    """One document-splitting job. See the 2026-08-25 AI import design §5.3
 
-    **不复用上面那个 `Job`。** 两者的字段含义不一样——那边是「写了几条」，
-    这边是「跑完几块」，挤在一个 dataclass 里两边都难读。
+    **Does not reuse the `Job` above.** Their fields mean different things — over there it is
+    "how many controls were written", here it is "how many chunks finished"; cramming both into
+    one dataclass makes both hard to read.
 
-    进程内不落盘，理由和起草一样：**结果（草稿）在用户库里**，
-    丢的只是「跑到第几块」。
+    In-process and not persisted, same reason as drafting: **the result (the draft) is in the
+    user database**; all that is lost is "which chunk it got to".
     """
 
     job_id: str
@@ -103,7 +110,7 @@ class OutlineJob:
         return self.status == "running"
 
     def wait(self, timeout: float | None = None) -> bool:
-        """测试用：等它跑完。生产上靠页面自己刷新。"""
+        """For tests: wait for it to finish. In production the page refreshes itself."""
         return self._finished.wait(timeout)
 
 
@@ -118,10 +125,10 @@ def get_outline(job_id: str) -> OutlineJob | None:
 
 def start_outline(framework_id: str, total: int,
                   runner: Callable[[Callable[[int, int], None]], str]) -> OutlineJob:
-    """开一个切分任务。`runner` 收一个 `report(done, total)` 回调。
+    """Starts a splitting job. `runner` receives a `report(done, total)` callback.
 
-    **同一个框架已经在跑就返回那一个**——刷新页面会再花一次钱，
-    是这一页最贵的 bug。
+    **If the same framework is already running, return that job** — refreshing the page would
+    spend money again, the most expensive bug this page can have.
     """
     import uuid
 
@@ -141,7 +148,7 @@ def start_outline(framework_id: str, total: int,
         try:
             job.draft_id = runner(report)
         except Exception as exc:                      # noqa: BLE001
-            # 后台线程默默死掉，页面就永远停在「切分中」。
+            # A background thread dying silently leaves the page on "splitting" forever.
             job.error = f"{type(exc).__name__}: {exc}"
             job.status = "error"
         else:

@@ -1,6 +1,7 @@
-"""packet 与 answer_key。spec §4
+"""packet and answer_key. spec §4
 
-packet 发给评委，answer_key 不发。泄露断言在产出之前跑——不是产出之后再警告。
+The packet goes to the judges; the answer_key does not. The leak assertion runs before
+anything is produced — not a warning after the fact.
 """
 import itertools
 import json
@@ -16,12 +17,13 @@ from framework_reader.blindtest.variants import leak_hits
 LETTERS = ("A", "B", "C")
 VARIANTS = ("product", "bare", "original")
 
-# 逃生口。逼评委三选一的话，三份都是垃圾时产品照样能赢 70%——
-# 那个 70% 量不出任何东西。spec §5、§6
+# The escape hatch. If judges are forced into a three-way pick, the product can still win
+# 70% when all three write-ups are garbage — and that 70% measures nothing. spec §5, §6
 NONE_PICK = "none"
 NONE_VARIANT = "none"
 
-# 六种排列。整批发出去，保证每个变体在每个字母位上的次数被夹住。
+# The six permutations. Sent out as whole blocks, so the count of each variant in each
+# letter position stays pinned.
 _LAYOUTS = tuple(itertools.permutations(VARIANTS))
 
 _FENCE = re.compile(r"^\s*(?:```|~~~)")
@@ -47,7 +49,7 @@ jot down a line or two; that matters more than the choice itself.
 
 
 class PacketLeakError(Exception):
-    """packet 里出现了能暴露变体来源的字样。不产出。"""
+    """The packet contains wording that could expose a variant's origin. Nothing is produced."""
 
 
 class PacketItem(BaseModel):
@@ -63,20 +65,27 @@ class AnswerKey(BaseModel):
     mapping: dict[str, dict[str, str]]
     bare_model: str = ""
     bare_prompt_version: str = ""
-    # 原文含泄露词、进不了抽样框的条款。事后要能回答「为什么这条不可能被抽中」。
+    # Controls whose original text contains leak words and therefore never entered the
+    # sampling frame. Afterwards we must be able to answer "why could this one never have
+    # been sampled".
     excluded: dict[str, list[str]] = {}
-    # 三份材料各自的总字数。篇幅差是本轮最大的混淆变量，量出来才好写进限制。
+    # Total word count of each of the three write-ups. Length difference is the biggest
+    # confounder of this round; measuring it is what makes it writable into the limitations.
     lengths: dict[str, int] = {}
-    # 抽样框的指纹。seed 配上不同的抽样框会抽出另一批题，只记 seed 防不住重抽。
+    # Fingerprint of the sampling frame. The same seed over a different frame samples a
+    # different batch of questions; recording the seed alone does not prevent re-sampling.
     frame_fingerprint: str = ""
 
 
 def _balanced_layouts(n: int, rng: random.Random) -> list[tuple[str, ...]]:
-    """平衡随机：每轮把六种排列整批打乱后发出去。
+    """Balanced randomization: each round, all six permutations are shuffled as one
+    batch and sent out.
 
-    逐条独立 shuffle 在 n=10 时会撞出「甲 有 8 条都是同一个变体」的牌面
-    （seed=42 实测），位置效应就和变体混在一起了。整批发保证每个变体在每个
-    字母位上的次数被夹在窄区间内，顺序对评委仍不可预测。
+    Independent per-item shuffling at n=10 can deal a hand where "A lands the same
+    variant on 8 items" (observed with seed=42), and then position effects get confounded
+    with the variants. Sending whole blocks guarantees the count of each variant in each
+    letter position stays within a narrow band, while the order stays unpredictable to
+    the judges.
     """
     out: list[tuple[str, ...]] = []
     while len(out) < n:
@@ -87,11 +96,12 @@ def _balanced_layouts(n: int, rng: random.Random) -> list[tuple[str, ...]]:
 
 
 def _demote_headings(text: str) -> str:
-    """把变体正文里的标题一律压到字母标题（###）之下。
+    """Pushes every heading in a variant's body below the letter heading (###).
 
-    裸问的回答带 ### 三级小标题，和 packet 用来分隔甲乙丙的 `### 甲` 同级——
-    渲染出来正文小标题会跟另外两份材料平起平坐，既难读，也是一条来源线索。
-    只动井号数量，一个字都不改。
+    The bare write-up's answers carry ### level-3 subheadings — the same level as the
+    `### A` headings the packet uses to separate A/B/C. Rendered, the body subheadings
+    would sit on equal footing with the other two write-ups, which is both hard to read
+    and a source clue. Only the number of hashes changes; not a single word is touched.
     """
     out: list[str] = []
     in_fence = False
@@ -108,10 +118,12 @@ def _demote_headings(text: str) -> str:
 
 
 def load_cached_items(path: Path, control_ids: Sequence[str]) -> list[PacketItem] | None:
-    """复用上一次 prepare 已经落盘的三份变体。抽到同一批条款时返回它们，否则 None。
+    """Reuses the three variants the previous prepare already wrote to disk. Returns them
+    when the same batch of controls was sampled; otherwise None.
 
-    裸问那份每条都要花钱调模型，而且重调会拿到不同的文字——那等于换了一份题。
-    只要抽样没变，就不该再调一次。
+    Every item of the bare write-up costs a paid model call, and calling again returns
+    different wording — which amounts to a different question. As long as the sampling
+    frame has not changed, it should not be called again.
     """
     try:
         raw = json.loads(path.read_text(encoding="utf-8"))

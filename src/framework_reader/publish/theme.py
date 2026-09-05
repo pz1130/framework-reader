@@ -1,4 +1,4 @@
-"""设计令牌。发布页与本地 Web 壳共用——分两处写，两处就会慢慢长得不一样。"""
+"""Design tokens. Shared by the publish page and the local web shell - written twice, the two drift."""
 
 THEME_CSS = """:root{
   --g-blue:#1a73e8; --g-red:#ea4335; --g-yellow:#fbbc04; --g-green:#34a853;
@@ -27,6 +27,6 @@ THEME_CSS = """:root{
   --success:#81C995; --success-soft:#132B1C;
 }
 *{box-sizing:border-box}
-/* .chips 是 flex，会盖掉 hidden 自带的 display:none —— 两组筛选会同时显示。 */
+/* .chips is flex, which overrides hidden's display:none - both filter groups would show at once. */
 [hidden]{display:none !important}
 """

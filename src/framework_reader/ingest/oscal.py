@@ -1,6 +1,6 @@
-"""OSCAL catalog 导入。spec §4.2①
+"""OSCAL catalog import. spec §4.2①
 
-OSCAL catalog 结构：catalog.groups[].controls[]，控制可嵌套 controls[]（enhancement）。
+OSCAL catalog structure: catalog.groups[].controls[]; controls may nest controls[] (enhancements).
 """
 import json
 import re
@@ -34,7 +34,7 @@ _FRAMEWORK_META = {
     },
 }
 
-# 废止条目的去向。CSF 写 incorporated_into / moved_to，800-53 catalog 写连字符版本。
+# Where superseded entries went. CSF writes incorporated_into / moved_to; the 800-53 catalog writes hyphenated versions.
 _SUPERSEDE_RELS = {
     "incorporated_into": SupersedeRelation.INCORPORATED_INTO,
     "moved_to": SupersedeRelation.MOVED_TO,
@@ -82,7 +82,7 @@ def _walk(node: dict, framework_id: str, parent_id: str | None,
                 framework_id=framework_id,
                 parent_id=parent_id,
                 label=_control_label(ctl),
-                label_is_original=True,   # Tier A：公共领域，可用官方标题
+                label_is_original=True,   # Tier A: public domain, the official title may be used
                 framework_tier=LicenseTier.A_EMBEDDABLE,
                 status=_control_status(ctl),
             )
@@ -106,16 +106,16 @@ def _raw_controls(catalog: dict) -> list[dict]:
 
 
 def _href_to_control_id(href: str) -> str:
-    """`#ac-2_smt.k` → `AC-2`：去向可能指向语句片段，落回它所属的控制。"""
+    """`#ac-2_smt.k` -> `AC-2`: a destination may point at a statement fragment; fall back to its control."""
     target = href.lstrip("#").split("_smt", 1)[0]
     return target.upper()
 
 
 def parse_supersessions(path: Path, framework_id: str) -> list[Supersession]:
-    """解析废止条目的去向。spec §8②
+    """Parse where superseded entries went. spec §8②
 
-    href 可能指向 function/family（如 ID.GV → GV），那些在本模型里不是控制；
-    也可能指向本 catalog 之外的条目。两种都丢弃，不在图里留悬空引用。
+    An href may point at a function/family (ID.GV -> GV) - not controls in this model - or at entries
+    outside this catalog. Both are dropped: no dangling references in the graph.
     """
     catalog = json.loads(Path(path).read_text(encoding="utf-8"))["catalog"]
     raw = _raw_controls(catalog)

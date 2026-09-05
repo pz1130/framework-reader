@@ -1,7 +1,8 @@
-"""吃 CSV / XLSX，吐出 (编号, 标题, 上级) 三元组。主 spec §7.3.5
+"""Read CSV / XLSX, emit (number, title, parent) triples. Main spec §7.3.5
 
-安全团队手上的东西就是 Excel，所以不发明新格式。
-**坏行一律报错并指出行号，绝不静默跳过**——静默跳过的结果是用户以为全导进去了。
+What security teams actually have in hand is Excel, so no new format is invented.
+**A bad row is always an error naming its line number, never silently skipped** -
+silent skipping ends with the user believing everything was imported.
 """
 import csv
 from pathlib import Path
@@ -9,8 +10,10 @@ from pathlib import Path
 _ID_HEADERS = {"编号", "控制编号", "条号", "id", "control_id", "ref", "ref_id"}
 _LABEL_HEADERS = {"标题", "名称", "控制", "条款", "label", "name", "title"}
 _PARENT_HEADERS = {"上级", "父级", "上级编号", "parent", "parent_id"}
-# 用户自己公司的制度原文。他的文档、他的机器、他的 key——可以拿去起草。
-# 与 Tier C/D 的受版权标准原文完全是两回事，后者永远不许出网（主 spec §9）。
+# The user's own company policy text. His document, his machine, his key - it may
+# be sent out for drafting. That is a completely different thing from the
+# copyrighted standard text of Tier C/D, which may never leave the network
+# (main spec §9).
 _BODY_HEADERS = {"正文", "描述", "要求", "内容", "条款正文", "body", "text", "description"}
 MAX_SHEETS = 100
 MAX_ROWS = 100_000
@@ -18,7 +21,8 @@ MAX_CELLS = 2_000_000
 
 
 class ImportError_(Exception):
-    """导入失败。消息要能让用户自己改好表，所以一律带行号或列名。"""
+    """Import failed. The message must let the user fix the sheet himself, so it
+    always carries a line number or a column name."""
 
 
 def _bounded_rows(rows) -> list[list[str]]:
@@ -36,11 +40,13 @@ def _bounded_rows(rows) -> list[list[str]]:
 
 
 def read_sheets(path: Path) -> list[tuple[str, list[list[str]]]]:
-    """一个工作簿里的**每一张表**，带名字。
+    """**Every sheet** in a workbook, with its name.
 
-    `book.active` 只读一张，而「说明页在前、真表在后」是最常见的排法——
-    实测一份检查表工作簿的活动表是「Get started」，18 行全是使用说明，
-    真正的检查表在别的 sheet 里。只读一张的结果是整份文件白导。
+    `book.active` reads only one sheet, and "instructions first, real table
+    after" is the most common layout - one checklist workbook observed in
+    practice had "Get started" as its active sheet, 18 rows of usage
+    instructions, with the real checklist in another sheet. Reading only one
+    sheet wastes the whole import.
     """
     suffix = Path(path).suffix.lower()
     if suffix == ".csv":
@@ -63,7 +69,7 @@ def read_sheets(path: Path) -> list[tuple[str, list[list[str]]]]:
 
 
 def read_rows(path: Path) -> list[list[str]]:
-    """第一张表。CLI 与既有调用方还在用它。"""
+    """The first sheet. The CLI and existing callers still use it."""
     sheets = read_sheets(path)
     return sheets[0][1] if sheets else []
 
@@ -71,8 +77,9 @@ def read_rows(path: Path) -> list[list[str]]:
 def parse_any_sheet(
     sheets: list[tuple[str, list[list[str]]]]
 ) -> tuple[str | None, list[tuple[str, str, str | None, str]] | None]:
-    """挨个试，第一张解析得通的赢。全不通就回 (None, None)——
-    那时候该让模型看一眼整个工作簿（见 `web/app.py` 的 `_shape_table`）。
+    """Try them one by one; the first sheet that parses wins. If none parse,
+    return (None, None) - that is when the model should take a look at the whole
+    workbook (see `_shape_table` in `web/app.py`).
     """
     for name, rows in sheets:
         try:
@@ -92,22 +99,24 @@ def _column(header: list[str], names: set[str], what: str, required: bool = True
     return None
 
 
-# 往下找几行。中文单位的表格常常在表头上面压一行标题或一片合并单元格，
-# 再多就不是「表头靠下」而是别的问题了。
+# How many rows down to search. Tables from Chinese organizations often have a
+# title row or a stretch of merged cells sitting on top of the header; any deeper
+# than that and it is no longer "header pushed down" but some other problem.
 _HEADER_SEARCH_ROWS = 10
 
 
 def _missing_header_message(what: str, names: set[str],
                             header: list[str], rows: list[list[str]]) -> str:
-    """**说出它看见了什么。** 只说「找不到编号这一列」，而人看着自己的表
-    明明有「编号」两个字，他只会觉得这工具坏了。
+    """**Say what it actually saw.** If the message only says "the number column
+    was not found" while the person is looking straight at the two characters for
+    "number" in his own sheet, he will conclude the tool is broken.
     """
     seen = "、".join(str(c).strip() for c in header if str(c).strip()) or "(empty)"
     for number, row in enumerate(rows[1:_HEADER_SEARCH_ROWS], start=2):
         if any(str(cell).strip().lower() in names for cell in row):
             return (
                 f'Column "{what}" not found in the header - the first row is: {seen[:60]}.'
-                # 这句话会被 HTML 转义后渲到页面上，写 markdown 只会原样显示星号。
+                # This sentence is HTML-escaped when rendered onto the page; markdown would just show asterisks literally.
                 f"The real header looks like it is on row {number}, "
                 "delete the rows above it and upload again."
             )
@@ -138,7 +147,7 @@ def parse_table(rows: list[list[str]]) -> list[tuple[str, str, str | None, str]]
 
         local, label, parent = cell(id_col), cell(label_col), cell(parent_col)
         if not local and not label:
-            continue          # 整行空白，跳过
+            continue          # entirely blank row, skip
         if not local:
             raise ImportError_(f"Row {number} has no number (title: '{label[:20]}')")
         if not label:

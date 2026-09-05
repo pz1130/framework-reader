@@ -1,7 +1,7 @@
-"""把模型扩出来的词和条号收成可拿去搜的清单。
+"""Collect the model's expanded words and control ids into a searchable list.
 
-模型的输出是不可信输入：会裹围栏、会把 terms 写成一句话、会编造条号。
-这里一条都不信。编造的条号在搜库时自然掉下去——本模块只负责剥出字符串。
+Model output is untrusted input: it wraps fences, turns terms into one sentence, invents ids.
+Nothing here is trusted. Invented ids simply fall through the database search - this module only
 """
 import json
 import re
@@ -11,7 +11,7 @@ _MAX = 8
 
 
 def parse_expansion(raw: str) -> tuple[list[str], list[str], str]:
-    """回 (扩出来的词, 条号, 错误)。**从不抛异常。**"""
+    """Returns (expanded words, ids, error). **Never raises.**"""
     text = _FENCE.sub("", (raw or "").strip())
     if not text:
         return [], [], "The model returned nothing."
@@ -42,7 +42,7 @@ def _strings(value) -> list[str]:
 
 
 def hits_for(api, terms: list[str], ids: list[str], *, limit: int = 20):
-    """拿扩出来的词和条号去图谱里搜。库里没有的条号就此消失。"""
+    """Search the graph with the expanded words and ids. Ids absent from the library just disappear."""
     seen: set[str] = set()
     out = []
 

@@ -1,11 +1,11 @@
-"""把落在内容仓里的用户框架解读搬回用户库。主 spec §7.3.5
+"""Move user-framework interpretations that landed in the content repo back into the user library. Main spec §7.3.5
 
-存储层已经按 tier 分流（`interpret/user_store.store_for`），但**已经写在
-`content/interpretations/` 里的**不会自己长脚：那些解读起草得好好的，
-查询层却从来不读那儿，等于起草了个寂寞。
+The storage layer already routes by tier (`interpret/user_store.store_for`), but what was **already
+written into `content/interpretations/`** does not walk there on its own: those interpretations were
+drafted fine, yet the query layer never reads there - drafting them achieved nothing.
 
-判据只有一条：**这个框架现在在用户库里**。它是用户导入的东西，它的解读
-就该跟它待在一起。内容仓里其余的目录一概不碰——那是我们要发布的内容。
+The criterion is exactly one: **this framework is now in the user library**. It is user-imported; its
+interpretations belong next to it. Every other directory in the content repo is untouched - that is what we publish.
 """
 from pathlib import Path
 
@@ -19,8 +19,8 @@ from framework_reader.interpret.user_store import UserInterpretationStore
 
 class MigrationReport(BaseModel):
     moved: list[str] = []
-    # (control_id 或文件名, 原因)。跳过的必须说得出原因——静默跳过之后
-    # 用户会以为全搬完了，而少的那几条要等到出报告时才发现。
+    # (control_id or filename, reason). Every skip must state its reason - a silent skip reads as
+    # "everything moved", and the missing ones surface only later, in the report.
     skipped: list[tuple[str, str]] = []
     deleted: list[str] = []
 
@@ -28,10 +28,10 @@ class MigrationReport(BaseModel):
 def migrate_user_drafts(
     root: Path = DEFAULT_ROOT, *, force: bool = False, delete: bool = False
 ) -> MigrationReport:
-    """把用户框架的解读 YAML 搬进 `user.sqlite`。
+    """Move user-framework interpretation YAML into `user.sqlite`.
 
-    默认不覆盖用户库里已有的那份（可能是他自己改过的），也不删原件
-    （原件被 git 追踪，删不删是另一个决定）。
+    By default it does not overwrite a copy already in the user library (the user may have edited it),
+    and does not delete the originals (they are git-tracked; deleting them is a separate decision).
     """
     from framework_reader.userframework.store import UserFrameworkStore
 
@@ -66,13 +66,13 @@ def _migrate_one(
     try:
         interp = Interpretation(**yaml.safe_load(path.read_text(encoding="utf-8")))
     except Exception as exc:                          # noqa: BLE001
-        # 坏一份不能把另外一百份一起拖下水。
+        # One bad file must not drag the other hundred down with it.
         report.skipped.append((path.name, f"could not read: {type(exc).__name__}: {exc}"))
         return
 
     if interp.control_id not in known:
-        # 重新导入过表格、编号变了。搬进去也没有页面够得着，与其留个孤儿行，
-        # 不如摆到报告上让人自己看一眼。
+        # The spreadsheet was re-imported and ids changed. No page could reach a moved row anyway -
+        # better on the report where the user can see it than kept as an orphan row.
         report.skipped.append((interp.control_id, "control no longer exists in the user library"))
         return
 
@@ -83,6 +83,6 @@ def _migrate_one(
     store.save(interp)
     report.moved.append(interp.control_id)
     if delete:
-        # 只在确实落地之后才删。顺序反了就是一次数据丢失。
+        # Delete only after the move has truly landed. Reversed order is a data-loss incident.
         path.unlink()
         report.deleted.append(str(path))

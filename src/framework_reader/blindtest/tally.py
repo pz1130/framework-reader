@@ -1,7 +1,8 @@
-"""判定录入、统计与通过线。spec §5、§6
+"""Verdict entry, tallying, and the pass line. spec §5, §6
 
-通过线是模块级常量，任何函数都不接受覆盖它的参数——主 spec §7.3 要求
-「事前定死，事后不得修改」。要改必须改这两行，从而留在 git 记录里。
+The pass line is a module-level constant, and no function accepts a parameter that
+overrides it — main spec §7.3 requires "fixed in advance, never modified after the fact".
+Changing it means editing these lines, and thus leaving a trace in git history.
 """
 import re
 
@@ -14,17 +15,20 @@ from framework_reader.blindtest.packet import (
     AnswerKey,
 )
 
-# ↓↓↓ 通过线。改动必须单独提交并说明理由。spec §6 ↓↓↓
+# ↓↓↓ Pass line. Any change must be a separate commit with a stated reason. spec §6 ↓↓↓
 PASS_RATE = 0.70
 MIN_ADVOCATES = 2
-# ↑↑↑ 不要给它们加参数、加配置、加环境变量 ↑↑↑
+# ↑↑↑ Do not add parameters, config, or environment variables for them ↑↑↑
 
-# 评语里出现这些，算「主动指出价值」。主 spec §7.3 第二条通过线
+# If a judge's note contains these, it counts as "actively pointing out value".
+# Main spec §7.3 second pass line
 ADVOCACY_MARKERS = (
-    "common_myth", "误解",
-    "auditor_asks", "追问",
-    "regional_note", "地域",
-    "映射", "出处",
+    # Field ids first; then the human phrases judges actually use, in both
+    # languages - a Chinese judge's note and an English one must count alike.
+    "common_myth", "misconception", "误解",
+    "auditor_asks", "follow-up", "追问",
+    "regional_note", "regional", "地域",
+    "mapping", "citation", "映射", "出处",
 )
 
 _UNSAFE_IN_FILENAME = re.compile(r"[^\w-]")
@@ -43,7 +47,8 @@ class Report(BaseModel):
     product_picks: int
     bare_picks: int
     original_picks: int
-    # 「三份都没用」。算进分母、不算产品票——弃权不能替产品抬分。
+    # "All three useless". Counts into the denominator, not as a product vote — an
+    # abstention must not lift the product's score.
     none_picks: int = 0
     product_share: float
     product_vs_bare: float
@@ -51,16 +56,19 @@ class Report(BaseModel):
     passed: bool
     bare_model: str
     bare_prompt_version: str
-    # 每人交了几条。漏答会让分母静默变小，这件事必须写在脸上。
+    # How many picks each judge submitted. Missed answers silently shrink the
+    # denominator; that fact has to be written in plain sight.
     picks_by_judge: dict[str, int] = {}
     expected_picks: int = 0
-    # 评语原文。advocates 是子串匹配，分不清褒贬，得留证据给人核。
+    # Verbatim judge notes. advocates is substring matching and cannot tell praise from
+    # dismissal, so the evidence is kept for a human to verify.
     notes: dict[str, str] = {}
     lengths: dict[str, int] = {}
 
 
 def safe_judge_filename(judge: str) -> str:
-    """评委名直接当文件名会写到目录外。只留下当文件名安全的字符。"""
+    """Using a judge's name directly as a filename can write outside the directory. Only
+    filename-safe characters are kept."""
     cleaned = _UNSAFE_IN_FILENAME.sub("_", judge).strip("_.")
     return cleaned or "judge"
 
@@ -104,7 +112,8 @@ def build_report(key: AnswerKey, verdicts: list[Verdict]) -> Report:
     bare = chosen.count("bare")
     none = chosen.count(NONE_VARIANT)
     share = product / total if total else 0.0
-    # 只在 product 与 bare 之间比。原文是英文，中文读者读它天然吃亏。
+    # Only compared between product and bare. The original is in the framework's source
+    # language, which readers of this edition read at a natural disadvantage.
     head_to_head = product / (product + bare) if (product + bare) else 0.0
 
     advocates = sum(

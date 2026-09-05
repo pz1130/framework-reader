@@ -1,4 +1,5 @@
-"""上传体积边界。路由只决定如何处理文件，不能各自忘记限制大小。"""
+"""Upload size boundaries. Routes only decide how to handle a file; none of them should have to
+remember the size limit itself."""
 from collections.abc import AsyncIterator
 from typing import BinaryIO
 

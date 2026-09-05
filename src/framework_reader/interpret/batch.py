@@ -1,4 +1,4 @@
-"""批量起草。W2 spec §2.1：起草与访谈分离，访谈期不等模型。"""
+"""Batch drafting. W2 spec §2.1: drafting and interviewing are separate; the interview phase never waits on a model."""
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -26,7 +26,7 @@ class DraftFailure(BaseModel):
 
 
 class DraftReport(BaseModel):
-    """106 条里有一条模型抽风，不能把另外 105 条一起拖下水。"""
+    """One control out of 106 hits a model hiccup - it must not drag the other 105 down with it."""
 
     written: list[str] = []
     failed: list[DraftFailure] = []
@@ -40,13 +40,13 @@ def _keep_human_content(
     store: InterpretationStore, control_id: str, fresh: dict[str, Field],
     blanks_only: bool = False,
 ) -> tuple[dict[str, Field], InterviewRecord]:
-    """重跑起草只覆盖 AI 写的部分。作者的原话与他改过的字段一律保留。
+    """Re-drafting overwrites only what AI wrote. The author's verbatim answers and hand-edited fields always survive.
 
-    闸的方向是对的（W2 spec §6：作者说过的话不能丢），但粒度应当在字段上，
-    不是整个操作罢工——否则 106 条里只要有一条有 raw，就没法迭代提示词。
+    The gate points the right way (W2 spec §6: nothing the author said may be lost), but the granularity
+    belongs on the field, not on the whole operation going on strike - with that, a single control holding
 
-    `blanks_only`：只补空格。凡是已经有字的字段一概不动，不管是谁写的——
-    用户点「补空缺」的意思就是「别碰我看过的那些」，包括他看过并认可的 AI 初稿。
+    `blanks_only`: fill blanks only. Every field that already has words is untouched, whoever wrote it -
+    "fill the blanks" means "do not touch what I have read", including AI drafts the user accepted.
     """
     if not store.exists(control_id):
         return fresh, InterviewRecord()
@@ -57,18 +57,18 @@ def _keep_human_content(
             if not _is_empty(field.value):
                 merged[name] = field
         elif field.basis is Basis.PRACTITIONER and field.value is not None:
-            merged[name] = field          # 作者亲手写/改过的，不动
+            merged[name] = field          # authored or edited by the author: untouched
     return merged, previous.interview
 
 
 def own_examples(store, framework_id: str, exclude: str, limit: int = 3) -> list:
-    """拿**本组织已确认的条款**当范例。
+    """Use **this organization's confirmed controls** as the examples.
 
-    这是「用户帮 AI 一起解读」的实处：他确认过的那几条就是他公司的口径与颗粒度，
-    模型学它比学 CSF 的黄金样例更贴——后者教的是通用的具体程度，前者教的是
-    「我们这儿把这种事叫什么、写到多细」。
+    This is where "user and AI interpret together" gets real: the controls they confirmed carry their
+    company's tone and granularity, which the model should learn from - the golden samples teach generic
+    concreteness, these teach "what we call this here, and how fine we split it".
 
-    只取**确认过的**。未确认的可能本来就是模型写的，拿它当范例是让模型学自己。
+    Confirmed ones only. An unconfirmed control may itself be model output - learning from it is the
     """
     from framework_reader.interpret.model import InterpretationState
 
@@ -93,10 +93,10 @@ def _has_blank(store, control_id: str) -> bool:
 
 
 def _examples_for(store, framework_id: str, control_id: str, *, own: bool) -> list:
-    """本组织已确认的条款优先，不够三条用手写黄金样例补齐。
+    """The organization's confirmed controls come first; handwritten golden samples top up to three.
 
-    黄金样例教的是通用颗粒度，本组织的范例教的是本组织的口径。两者不冲突，
-    但用户自己那几条更贴，所以排在前面。
+    Golden samples teach generic granularity; the organization's own examples teach its own voice. Not
+    but the organization's own examples are closer to home, so they come first.
     """
     mine = own_examples(store, framework_id, control_id) if own else []
     if len(mine) >= 3:
@@ -105,10 +105,10 @@ def _examples_for(store, framework_id: str, control_id: str, *, own: bool) -> li
 
 
 def _our_practice_for(documents, api, control) -> list[str]:
-    """本组织制度里跟这条控制相关的几段。没上传文档就是空的。
+    """The passages in the organization's own policies relevant to this control. Empty when no documents uploaded.
 
-    检索的问题用「标题 + 条款正文」拼——不是控制编号：编号在谁家的制度里
-    都不会出现，拿它去检索必然一无所获。
+    The retrieval query is built from "title + control body" - never the control number: no internal
+    policy cites foreign control numbers, so searching by one retrieves nothing.
     """
     if documents is None:
         return []
@@ -137,25 +137,25 @@ def draft_all(
     fill_blanks: bool = False,
     documents=None,
 ) -> "DraftReport":
-    """only 非空时只起草指定的几条——厂商还没定之前，不必为 106 条付账。
+    """When `only` is non-empty, draft just those controls - before a vendor is chosen, nobody owes 106 drafts.
 
-    `fill_blanks`：只补空格。目标从「没有解读的条款」放宽到「还有空字段的条款」，
-    落盘时凡是已经有字的字段一概不动。用户自己写了两句、其余想让 AI 补上，
-    走的就是这条——否则那条控制因为「已存在解读」被整条跳过，六个空字段永远空着。
+    `fill_blanks`: fill blanks only. The target widens from "controls without interpretations" to
+    "controls with empty fields", and on write any field that already has words is untouched. A user
+    who wrote two sentences and wants AI to fill the rest takes exactly this path - otherwise the
 
-    `documents`：用户上传的配套文档（`DocumentStore`）。给了的话，每条控制会带上
-    本组织自己制度里最相关的几段（设计 §8 S5）——不给的话起草出来的是通用建议。
+    `documents`: companion documents the user uploaded (`DocumentStore`). When given, each control
+    carries the most relevant passages from the organization's own policies (design §8 S5) - without
     """
     from framework_reader.interpret.grounding import catalog_prose, grounding_lines
     from framework_reader.schema.entities import LicenseTier
 
     leaves = list(api.list_controls(framework_id, active_only=True, leaf_only=True))
     view = api.get_framework(framework_id)
-    # Tier A 的原文是公共领域，可以直接喂给模型；其余框架的原文既不在库里，
-    # 也永远不许出网——那时 label 是我们自写的短标题，不是原文。主 spec §4.1、§9
+    # Tier A source text is public domain and may go straight to the model; other frameworks' source
+    # text is neither in the library nor ever allowed out to the network - there the label is our own
     embeddable = view is not None and view.tier == LicenseTier.A_EMBEDDABLE
-    # 用户自己导入的框架：正文是他自己公司的文档，用他自己的 key 起草，
-    # 与 Tier C/D 的受版权标准原文完全两回事。主 spec §7.3.5
+    # User-imported frameworks: the body is the user's own company document, drafted with the
+    # a different universe from the copyrighted Tier C/D standard texts. Main spec §7.3.5
     own = view is not None and view.tier == LicenseTier.U_USER
     prose = {} if embeddable else catalog_prose()
     if only:
@@ -177,7 +177,7 @@ def draft_all(
                 if n.control_id.startswith("NIST-800-53-R5:")
             ]
             if full:
-                # B 路线：七个字段一次写全，一律 inferred。主 spec §5
+                # Route B: all seven fields written in one pass, all marked inferred. Main spec §5
                 fields = draft_full_fields(
                     client, control_id=control.id,
                     outcome=(
@@ -192,7 +192,7 @@ def draft_all(
                     ),
                     practice=_our_practice_for(documents, worker_api, control),
                     neighbors=neighbors, model=model,
-                    # 目标控制自己的手写版必须排除——那是抄答案，不是学颗粒度
+                    # The target control's own handwritten sample must be excluded - that is copying the answer, not learning granularity
                     examples=_examples_for(
                         store, framework_id, control.id, own=own
                     ),
@@ -222,7 +222,7 @@ def draft_all(
             worker_api._conn.close()
 
     def guarded(control) -> tuple[str, str | None]:
-        """单条失败只记账，不掀桌子。失败的条目不落盘，重跑（不加 --force）即补。"""
+        """A single failure is booked, not a table-flip. Failed controls are not written; re-run (without --force) to fill them."""
         try:
             return one(control), None
         except Exception as exc:

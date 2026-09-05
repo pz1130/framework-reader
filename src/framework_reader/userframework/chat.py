@@ -1,11 +1,13 @@
-"""条款详情页上和 AI 的对话。
+"""Conversation with the AI on the clause detail page.
 
-**对话跟着条款走，不跟着人走。** 这个产品是一个安全团队协作一套材料
-（网页服务化设计 §3），签字的人要能看到「这句话当初是怎么来的」——
-那比任何审计记录都管用。
+**The conversation belongs to the clause, not to the person.** This product is a
+security team collaborating on one body of material (hosted-service design §3);
+the person signing needs to be able to see "where this sentence originally came
+from" - that beats any audit record.
 
-**模型说的话永远不会自己进库。** 它的修改建议存在 `proposal` 里，
-`applied_at` 有值才算写过——中间隔着一次人点头。
+**What the model says never enters the store on its own.** Its edit suggestions
+are kept in `proposal`; only a non-empty `applied_at` counts as written - with
+one human nod in between.
 """
 import json
 import uuid
@@ -29,11 +31,14 @@ class Turn:
 
 
 def mapping_lines(neighbors) -> list[str]:
-    """把官方映射边组装成对话上下文里的几行——一份「只能照抄」的清单。
+    """Assemble the official mapping edges into a few lines for the chat context -
+    a "copy verbatim" list.
 
-    对话引用官方映射是工具和裸问模型的分界线：裸问模型会说
-    「通常对应 A.12.4」，编的。这里每一行都带着库里的出处。
-    清单为空就明说没有——空清单加提示词里那句不许编，才堵得住幻觉。
+    Citing official mappings is the line between a tool and asking a bare model:
+    a bare model will say "usually maps to A.12.4" - invented. Here every line
+    carries its source in the library. When the list is empty, say so plainly -
+    an empty list plus the prompt's "do not invent" is what holds the
+    hallucination back.
     """
     if not neighbors:
         return ["Official mappings: (none found in the library for this control. "
@@ -73,8 +78,10 @@ class ChatStore:
             (control_id,))
 
     def recent(self, control_id: str, turns: int = 6) -> list[Turn]:
-        """给模型看的那几轮。**必须封顶**——每一句都要把历史重新喂一遍，
-        不封顶的话聊得越久每句越贵，三小时前那个已经放弃的说法还会一直跟着。
+        """The turns the model sees. **Must be capped** - every message re-feeds
+        the whole history; uncapped, the longer the chat runs the more each
+        message costs, and an approach abandoned three hours ago keeps tagging
+        along.
         """
         got = self._select(
             "SELECT * FROM control_chat WHERE control_id = ?"
@@ -86,9 +93,10 @@ class ChatStore:
         return found[0] if found else None
 
     def mark_applied(self, turn_id: str) -> bool:
-        """回 False 表示这一条已经写过了。
+        """Returning False means this one was already applied.
 
-        点两次「确定」不该写两次库、记两条审计——而刷新页面就会重发一次 POST。
+        Clicking "Confirm" twice must not write the store twice or log two audit
+        entries - and refreshing the page re-sends the POST.
         """
         conn = self._conn()
         try:

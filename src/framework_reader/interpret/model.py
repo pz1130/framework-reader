@@ -1,4 +1,4 @@
-"""解读的 schema 与状态机。W2 spec §4.2、§4.3；主 spec §3.4"""
+"""The interpretation schema and state machine. W2 spec §4.2, §4.3; main spec §3.4"""
 import hashlib
 import json
 from datetime import datetime
@@ -7,25 +7,25 @@ from typing import Literal
 
 from pydantic import BaseModel, model_validator
 
-# AI 可以起草的四个字段。
+# The four fields AI may draft.
 DRAFTED_FIELDS = ("intent", "plain_zh", "practice", "evidence")
-# AI 不得起草的三个字段——收费理由所在。W2 spec §1 D1
+# The three fields AI must never draft - the reason the product charges money. W2 spec §1 D1
 DIFFERENTIATING_FIELDS = ("common_myth", "auditor_asks", "regional_note")
 ALL_FIELDS = DRAFTED_FIELDS + DIFFERENTIATING_FIELDS
 
 
 class Basis(str, Enum):
-    """该表述的依据。主 spec §3.4 + W2 spec §2.4"""
+    """The grounding of a statement. Main spec §3.4 + W2 spec §2.4"""
 
-    QUOTE = "quote"                # 依据原文某句，值形如 quote:<定位>
-    INFERRED = "inferred"          # 模型推断
-    PRACTITIONER = "practitioner"  # 作者的从业经验
+    QUOTE = "quote"                # grounded in a sentence of the source text, shaped like quote:<locator>
+    INFERRED = "inferred"          # model inference
+    PRACTITIONER = "practitioner"  # the author's practitioner experience
 
 
 class InterpretationState(str, Enum):
-    DRAFT = "draft"                # 起草器跑完，差异化字段为空
-    INTERVIEWED = "interviewed"    # raw 已存且抽取器跑完，未签字
-    CONFIRMED = "confirmed"        # 作者签字，唯一能进构建的状态
+    DRAFT = "draft"                # drafter finished; differentiating fields empty
+    INTERVIEWED = "interviewed"    # raw answers stored, extraction done, not signed
+    CONFIRMED = "confirmed"        # author-signed; the only state that may enter a build
 
 
 FieldValue = str | list[str] | dict[str, str] | None
@@ -50,7 +50,7 @@ class RawAnswer(BaseModel):
 class InterviewRecord(BaseModel):
     questions: list[Question] = []
     raw: list[RawAnswer] = []
-    # 一个字都没进字段的答案编号。落不进可以，静默消失不行。
+    # Answer numbers where not a single word made it into a field. Dropping them is allowed; vanishing silently is not.
     unplaced: list[int] = []
 
 
@@ -65,12 +65,12 @@ class InterpretationProvenance(BaseModel):
     extractor: ModelRef | None = None
     confirmed_by: str | None = None
     confirmed_at: datetime | None = None
-    # 签字时内容的摘要。构建期重算比对——mtime 不是内容有没有变的证据，
-    # git clone / CI checkout / 切分支都会刷新它。W2 spec §4.3
+    # Digest of the content at signing time, recomputed and compared at build. An mtime is not evidence
+    # that content changed - git clone / CI checkout / branch switches all refresh it. W2 spec §4.3
     signed_digest: str | None = None
-    # 本条访谈实际花了多少秒。W2 spec §8.2：这个数字决定 W3 的范围。
+    # How many seconds this interview actually took. W2 spec §8.2: this number scopes W3.
     interview_seconds: float | None = None
-    # 换版继承的来源条款。继承产物永远是 draft：签字是旧条款的，必须重签。
+    # The old control an inheritance came from. Inherited artifacts stay draft forever: the signature was the old control's and must be re-signed.
     inherited_from: str | None = None
 
 
@@ -89,10 +89,10 @@ class Interpretation(BaseModel):
         if missing or extra:
             raise ValueError(f"field set must be exactly the seven fields; missing {sorted(missing)}, extra {sorted(extra)}")
 
-        # B 路线（2026-08-20）：七个字段均可由 AI 撰写，标 inferred；作者亲手写或
-        # 改过的标 practitioner。两者都合法——`basis` 记的是谁写的。主 spec §5
-        # 但 quote 不合法：原文里没有「误解」「审计员追问」「地域差异」这种东西，
-        # 标 quote 要么是建模错了，要么是在伪造出处。
+        # Route B (2026-08-20): all seven fields may be AI-written, marked inferred; fields the
+        # author wrote or edited are practitioner. Both are legal - basis records who wrote it. Main spec §5
+        # But quote is not legal: the source text contains no "misconceptions", "auditor questions",
+        # or "regional differences" - marking quote is either a modelling error or a fabricated citation.
         for name in DIFFERENTIATING_FIELDS:
             if self.fields[name].basis is Basis.QUOTE:
                 raise ValueError(
@@ -109,9 +109,9 @@ class Interpretation(BaseModel):
 
 
 def fields_digest(interp: "Interpretation") -> str:
-    """签字覆盖的内容：控制编号、locale、七个字段、以及作者原话。
+    """What the signature covers: control id, locale, the seven fields, and the author's verbatim answers.
 
-    不含 provenance——这样事后补记耗时不会让签字失效。
+    Provenance is excluded - so backfilling elapsed time later cannot invalidate a signature.
     """
     payload = interp.model_dump(mode="json")
     canonical = {

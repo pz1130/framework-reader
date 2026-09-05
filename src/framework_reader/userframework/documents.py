@@ -1,15 +1,21 @@
-"""用户上传的配套文档，及「哪一段跟这条控制有关」的检索。设计 §8 S5
+"""Supporting documents uploaded by the user, plus the search for "which passage
+relates to this control". Design §8 S5
 
-为什么要它：起草器写出来的是**通用**的落地建议。而这个团队真正的落地方式
-写在他们自己的制度里——「日志留存六个月」还是「一年」，是他们文件里的一行，
-不是模型能猜出来的。把那一行喂给起草器，解读才是这家公司的解读。
+Why it exists: the drafter writes **generic** implementation advice. But the way
+this team actually implements things is written in their own policies - whether
+"logs are kept for six months" or "for a year" is a line in their documents,
+not something the model can guess. Feed that line to the drafter, and the
+interpretation becomes this company's interpretation.
 
-**检索不用向量。** 没有嵌入模型就意味着不出网、不加依赖、不引入一个
-「为什么这段没被检索到」谁也说不清的黑盒。中文按**字符二元组**取交集，
-对「日志留存」「访问控制」这种术语匹配足够准，而且为什么命中一眼能看懂。
+**No vectors in the search.** No embedding model means nothing leaves the
+network, no new dependency, and no black box that nobody can question about
+"why wasn't this passage retrieved". Chinese text is intersected as **character
+bigrams**, which matches terms like "log retention" or "access control"
+accurately enough, and why something hit is obvious at a glance.
 
-**宁可不给，也不给错的。** 交集太少就返回空——噪声接地比没有接地更糟：
-模型会照着不相干的段落编出一条这家公司并不存在的制度。
+**Rather give nothing than give the wrong thing.** Too small an overlap returns
+empty - noisy grounding is worse than no grounding: the model will follow an
+irrelevant passage and invent a policy this company does not have.
 """
 import hashlib
 import re
@@ -20,11 +26,12 @@ from pathlib import Path
 
 from framework_reader.userframework.extract import chunk, extract
 
-# 一条控制最多带几段接地材料、每段最多多长。
-# 放宽只会把 payload 撑大、把信号稀释——七个字段的解读用不到一整章。
+# How many grounding excerpts one control may carry, and how long each may be.
+# Raising the limits only bloats the payload and dilutes the signal - an
+# interpretation of seven fields has no use for a whole chapter.
 MAX_EXCERPTS = 4
 MAX_CHARS = 600
-# 二元组交集低于这个数就当没命中。
+# Below this bigram-overlap count, treat it as no match.
 MIN_OVERLAP = 4
 
 _NOISE = re.compile(r"[\s\W_]+", re.UNICODE)
@@ -63,11 +70,11 @@ class DocumentStore:
         assert conn is not None
         return conn
 
-    # ---------- 写 ----------
+    # ---------- write ----------
 
     def add(self, filename: str, data: bytes, *, by: str = "",
             title: str = "") -> Document:
-        """解析在**落库之前**——解析不了的文件一个字节都不留下。"""
+        """Parse **before** anything is stored - a file that cannot be parsed leaves not a single byte behind."""
         text = extract(filename, data)
         parts = chunk(text)
         if not parts:
@@ -106,7 +113,7 @@ class DocumentStore:
         finally:
             conn.close()
 
-    # ---------- 读 ----------
+    # ---------- read ----------
 
     def get(self, doc_id: str) -> Document | None:
         conn = self._conn()
@@ -137,9 +144,11 @@ class DocumentStore:
         )
 
     def chunks(self, doc_id: str) -> list[tuple[str, str]]:
-        """一份文档切出来的全部段落。**页面要能原样显示它**——
+        """Every chunk cut from one document. **The page must be able to show it
+        verbatim** -
 
-        「模型到底看到了什么」不能只有我们知道。看不见就没人会信它。
+        "What the model actually saw" cannot be something only we know. If it
+        cannot be seen, nobody will trust it.
         """
         conn = self._conn()
         try:
@@ -149,11 +158,13 @@ class DocumentStore:
         finally:
             conn.close()
 
-    # ---------- 检索 ----------
+    # ---------- search ----------
 
     def excerpts(self, query: str, *, limit: int = MAX_EXCERPTS,
                  max_chars: int = MAX_CHARS) -> list[str]:
-        """跟 `query` 最相关的几段，形如「《制度》第一章 日志管理：……」。"""
+        """The excerpts most relevant to `query`, in the form
+        "'Policy' Chapter 1 Log Management: ...".
+        """
         wanted = _grams(query)
         if len(wanted) < 2:
             return []
@@ -171,10 +182,11 @@ class DocumentStore:
             grams = _grams(f"{row['heading']} {body}")
             overlap = len(wanted & grams)
             if overlap < MIN_OVERLAP:
-                # 宁可不给。噪声接地比没有接地更糟。
+                # Rather give nothing. Noisy grounding is worse than no grounding.
                 continue
-            # 除以长度的平方根：不这样的话，最长的那一段永远赢——
-            # 它只是碰巧包含了更多二元组，不是更相关。
+            # Divide by the square root of the length: otherwise the longest
+            # excerpt always wins - it merely happens to contain more bigrams,
+            # not to be more relevant.
             scored.append((overlap / (len(grams) ** 0.5), row))
         scored.sort(key=lambda pair: pair[0], reverse=True)
 

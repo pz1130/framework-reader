@@ -1,12 +1,12 @@
-"""内容包在哪。
+"""Where the content pack lives.
 
-默认是相对路径 `build/content.sqlite`——在仓库里 `make build` 完直接跑，就是这个。
+The default is the relative path `build/content.sqlite` - right for `make build` then run inside the repo.
 
-但 `fr` 装进 PATH 之后，真实使用时的 cwd 是你正在写的那份文档所在的目录，
-相对路径在那里指向一个不存在的文件。`FR_CONTENT_DB` 给一个绝对路径，
-让它在任何目录下都能跑。命名跟着已有的 `FRAMEWORK_READER_HOME` 走，不另起一套。
+But once `fr` is on your PATH, the real cwd is wherever the document you are writing lives,
+and a relative path points at nothing there. `FR_CONTENT_DB` gives an absolute path
+so it runs from any directory. The name follows the existing `FRAMEWORK_READER_HOME`; no second convention.
 
-**只在这一处读。** CLI 与 Web 壳各读各的，两处就会长得不一样。
+**Read in exactly one place.** If the CLI and web shell read it separately, the two drift.
 """
 import os
 from pathlib import Path

@@ -1,50 +1,58 @@
-"""把一份连续正文切成条款。见 2026-08-25 AI 导入设计
+"""Split a continuous body of text into clauses. See the 2026-08-25 AI import design.
 
-**模型只划边界，正文由这里从原文按行号截。** 让模型直接吐正文，它会静默
-把「离职当日停用」润色成「应在员工离职时及时停用其账号」——两句意思差不多，
-但后面起草的解读、自评的证据、差距报告全部基于这段正文，而它不再是这家
-公司的话，且没人分得清哪些字是原文、哪些是当时顺手改的。设计 §1.1
+**The model only marks boundaries; the body is cut here from the source by line
+number.** Let the model emit body text directly and it will silently polish
+"disable the account on the departure date" into "the account must be disabled
+promptly when an employee departs" - the two say roughly the same thing, but
+everything downstream - the drafted interpretation, the self-assessment evidence,
+the gap report - is based on that body text, and it is no longer the company's own
+words, and nobody can tell which characters are original and which were casually
+edited along the way. Design §1.1
 
-模型的输出一律当作不可信输入：解析、校验、合并全在代码里。
+Model output is treated as untrusted input throughout: parsing, validation, and
+merging all happen in code.
 """
 import re
 from dataclasses import dataclass
 
-# 行号宽度。四位够到 9999 行，一份 200 页的制度约 6000 行。
+# Line-number width. Four digits reaches 9999 lines; a 200-page policy is about 6000 lines.
 _WIDTH = 4
 
-# 模型吐了这些键里的任何一个，就说明它在写正文而不是划边界。
+# If the model emitted any of these keys, it is writing body text instead of marking boundaries.
 _BODY_KEYS = {"body", "text", "content", "正文"}
 
-# 「塞得下」的判据是一个固定的保守阈值，**不是模型的真实上下文**——目录接口
-# 只回模型 id，不回上下文长度（模型目录设计 §1），我们无从得知。
-# 估错的后果是多分一次块，不是失败，所以宁可估小。不引 tokenizer：
-# 为一个「宁可估小」的判断引一个依赖不值。
+# The "fits in one shot" test is a fixed conservative threshold, **not the model's
+# real context** - the catalog API returns model ids only, never context lengths
+# (model catalog design §1), so we have no way of knowing. Getting it wrong costs
+# one extra chunk, not a failure, so err on the small side. No tokenizer:
+# pulling in a dependency for an "err small" judgment is not worth it.
 ONE_SHOT_MAX_CHARS = 40000
 
 
 @dataclass(frozen=True)
 class Span:
-    """一条条款的边界。**没有 body**——正文永远从原文截。
+    """The boundary of one clause. **No body** - body text is always cut from the source.
 
-    模型面的 JSON 用 `from` / `to`；这里用 `start` / `end`，因为 `from`
-    是 Python 关键字。两套名字的转换只发生在 `parse_outline()` 一处。
+    The model-facing JSON uses `from` / `to`; this uses `start` / `end`, because
+    `from` is a Python keyword. Converting between the two names happens in exactly
+    one place, `parse_outline()`.
     """
 
     ref: str
     label: str
     parent: str | None
-    start: int          # 1-based，含
-    end: int            # 1-based，含
-    # 这个编号/标题是原文里就有的，还是补出来的。**「谁写的要能看出来」**
-    # 是这个产品的地基，和条款页那套「AI 初稿」一个规矩。
+    start: int          # 1-based, inclusive
+    end: int            # 1-based, inclusive
+    # Whether this number/title exists in the source or was filled in. **"You must
+    # be able to tell who wrote what"** is the foundation of this product - the same
+    # rule as the "AI draft" marking on the clause page.
     ref_from: str = "original"      # original | derived
     label_from: str = "original"
 
 
 @dataclass(frozen=True)
 class Problem:
-    """一条能直接渲到预览页的中文说明。"""
+    """A message that can be rendered straight onto the preview page."""
 
     kind: str           # out_of_range | overlap | bad_parent | not_json | has_body | uncovered | catalog | snapped
     detail: str
@@ -55,7 +63,7 @@ def line_count(text: str) -> int:
 
 
 def numbered(text: str) -> str:
-    """给模型看的那一份：每行前面钉一个行号。"""
+    """The copy the model sees: every line pinned with a line number."""
     return "\n".join(
         f"{index:0{_WIDTH}d}| {line}"
         for index, line in enumerate(text.splitlines(), start=1)
@@ -63,12 +71,15 @@ def numbered(text: str) -> str:
 
 
 def slice_lines(text: str, start: int, end: int) -> str:
-    """截第 start 到第 end 行（1-based，两端含）。**逐字，不做任何加工。**
+    """Cut lines start through end (1-based, both ends inclusive). **Verbatim, no
+    processing of any kind.**
 
-    行内的缩进、全角空格一律保留：那是制度的原样，不是格式噪声。
+    Indentation and full-width spaces within a line are always preserved: that is the
+    policy exactly as written, not formatting noise.
 
-    越界就夹紧而不抛。越界本该被 `validate()` 挡掉，真漏到这儿抛异常
-    炸掉的是后台线程，而用户看到的是一个永远停在「切分中」的页面。
+    Clamp out-of-range values instead of raising. Out-of-range was supposed to be
+    stopped by `validate()`; if one truly leaks through, the exception kills a
+    background thread while the user stares at a page stuck on "splitting" forever.
     """
     lines = text.splitlines()
     lo = max(1, start)
@@ -79,35 +90,39 @@ def slice_lines(text: str, start: int, end: int) -> str:
 
 
 _FENCE = re.compile(r"^\s*```(?:json)?\s*$|^\s*```(?:json)?\s*$", re.MULTILINE)
-# MiniMax-M3 这类带 reasoning trace 的模型会把思考过程塞进 <think>...</think>
-# 里。咱不需要看思考——思考里的中括号会干扰下面最外层数组的配对，先剥光。
+# Models with a reasoning trace, like MiniMax-M3, stuff their thinking inside
+# <think>...</think>. We do not need the thinking - brackets inside it would break
+# the outermost-array matching below, so strip it all away first.
 _THINK = re.compile(r"<think>.*?</think>", re.DOTALL)
-# 思考把 token 用光时 ``</think>`` 永远不出现。probe.py 同一条。
+# When the thinking burns through the tokens, ``</think>`` never appears. Same rule as probe.py.
 _THINK_UNCLOSED = re.compile(r"<think>.*$", re.DOTALL)
 
 
 def _spoken(raw: str) -> str:
-    """思维链剥掉，只留它真正说出口的那部分。
+    """Strip the chain of thought, keeping only what the model actually said out loud.
 
-    闭合的 ``<think>...</think>`` 先剥；还剩一个没闭合的 ``<think>``，
-    说明后面根本没有正文（实测 MiniMax 切 NIST.AI.100-1 就是这样），整段
-    都当草稿纸丢掉。
+    A closed ``<think>...</think>`` is stripped first; a leftover unclosed ``<think>``
+    means there is no body after it at all (observed exactly this way when MiniMax
+    split NIST.AI.100-1), so the whole stretch is discarded as scratch paper.
     """
     text = _THINK.sub("", raw or "")
     return _THINK_UNCLOSED.sub("", text)
 
 
 def _raw_for_debug(raw: str) -> str:
-    """把模型原始回复压成一串能塞进 problems 的样子。
+    """Compress the model's raw reply into a form that fits inside a problems entry.
 
-    **这是唯一一次为下次调试写生率原貌。** 平时 problems 详情都是机器
-    生成的文案——但「模型没有按格式回」这种失败，下次接手的人**必须能
-    看到模型回了什么**，不然在乱猜。
+    **This is the one place that preserves the original appearance for the next
+    debugging session.** Problem details are otherwise machine-generated copy - but
+    for a failure like "the model did not follow the format", whoever picks this up
+    next **must be able to see what the model actually replied**, otherwise they are
+    just guessing blindly.
 
-    先剥 ``<think>`` 标签——minimax 系列模型总是先把思考塞在里面，
-    显示给用户看的时候不能把思考当正文。压成单行是因为 problems 在 UI 上是
-    ``<li>``，多行会带进未转义换行难脱手。错行表示在生原文里全用 U+23CE
-    替换了。
+    ``<think>`` tags are stripped first - minimax-family models always stuff their
+    thinking in there, and it must not be shown to the user as body text. Collapsed
+    to one line because problems render as ``<li>`` in the UI; a multi-line string
+    would carry unescaped newlines that are hard to handle. Newlines from the
+    original are all replaced with U+23CE.
     """
     s = _spoken(raw).replace("\n", "⏎").strip()
     return s[:300] + ("..." if len(s) > 300 else "")
@@ -115,9 +130,10 @@ def _raw_for_debug(raw: str) -> str:
 
 def _balanced_from(text: str, start: int,
                    open_ch: str = "[", close_ch: str = "]") -> str | None:
-    """从 ``text[start]`` 这个开括号起，配对到对应的闭括号。
+    """From the opening bracket at ``text[start]``, match through to its closing bracket.
 
-    字符串里的括号不算。配不上（截断、方括号在思考里没闭合）就回 None。
+    Brackets inside strings do not count. Returns None when they fail to match
+    (truncated output, or a bracket inside thinking that never closed).
     """
     depth = 0
     in_string = False
@@ -144,12 +160,13 @@ def _balanced_from(text: str, start: int,
 
 
 def _salvage_objects(raw: str) -> tuple[list[dict], bool]:
-    """从没写完的回复里救出已经写完的对象。
+    """Salvage the objects that did get finished out of an unfinished reply.
 
-    两种半截都见过：
-    - 数组截断：``[{...}, {...}, {"ref":``
-    - 根本不包数组：一条一个 ``{...}`` 换行拼在一起，最后一条被截断
-      （NIST.AI.100-1 又一次：回了 Framing Risk / 1.1 / 1.2 却判 not_json）
+    Both kinds of half-reply have been seen in the wild:
+    - truncated array: ``[{...}, {...}, {"ref":``
+    - no array at all: one ``{...}`` per line concatenated, the last one cut off
+      (NIST.AI.100-1 yet again: it replied Framing Risk / 1.1 / 1.2 and got judged
+      not_json)
     """
     import json
 
@@ -197,11 +214,11 @@ def _salvage_objects(raw: str) -> tuple[list[dict], bool]:
 
 
 def _first_valid_array(text: str) -> str | None:
-    """跳过解析失败的 ``[``（思考里的 ``[GOVERN]``、``[Section A]``），
-    收下第一个能 ``json.loads`` 成「对象数组」的。
+    """Skip the ``[`` that fail to parse (``[GOVERN]``, ``[Section A]`` inside
+    thinking) and accept the first one that ``json.loads`` into an array of objects.
 
-    空数组 ``[]`` 也算——这一段确实没有条款。纯字符串数组
-    （``["Section A"]``）不算，那是思考里的举例。
+    An empty array ``[]`` counts too - that chunk genuinely has no clauses. A pure
+    string array (``["Section A"]``) does not; that is an example inside thinking.
     """
     import json
 
@@ -225,23 +242,27 @@ def _first_valid_array(text: str) -> str | None:
 
 
 def _extract_json_array(raw: str) -> str | None:
-    """从模型原始回复里抠出最外层的 JSON 数组。
+    """Extract the outermost JSON array from the model's raw reply.
 
-    现实里模型不守约的情况很多：
-    - 前面加 ``Here is the JSON:``、后面加问候
-    - 包在 ```json 围栏里
-    - **在多段间贴补充说明**（minimax 会在 ``<think>...</think>`` 里先写思考）
-    - 思考文本里举例、列表包含方括号
-    - 字符串里出现 ``[`` ``]`` （比如某条 title 是 ``[草稿]``）
-    - **JSON 只写在思考里**，标签外再没吐（MiniMax-M3 切长文档的常态）
-    - **思考没闭合**（max_tokens 用光）
+    In the wild the model breaks the contract in many ways:
+    - prepends ``Here is the JSON:`` or appends a greeting
+    - wraps everything in ```json fences
+    - **interleaves supplementary remarks between segments** (minimax writes its
+      thinking inside ``<think>...</think>`` first)
+    - examples and lists inside the thinking contain square brackets
+    - ``[`` ``]`` appear inside strings (say a clause title is ``[draft]``)
+    - **the JSON is written only inside the thinking**, nothing outside the tags
+      (the normal state of affairs when MiniMax-M3 splits a long document)
+    - **the thinking never closes** (max_tokens ran out)
 
-    单纯的 find("[")/rfind("]") 在这些场景下都会错配——上一次
-    NIST.AI.100-1 重导看到的细节（思考 <think> 里有方括号）证实了这个。
-    必须用平衡配对，并且跳过解析失败的 ``[``。
+    A naive find("[")/rfind("]") mismatches in all of these scenarios - the details
+    seen in the last NIST.AI.100-1 re-import (square brackets inside the <think>
+    thinking) confirmed it. Balanced matching is mandatory, and the ``[`` that fail
+    to parse must be skipped.
 
-    先看剥掉思考之后的正文；没有数组再回过头从思考里找——答案写在
-    草稿纸上总比整段作废强。
+    Look at the text after stripping the thinking first; only if there is no array
+    there, go back and search the thinking - an answer written on scratch paper
+    still beats voiding the whole chunk.
     """
     text = _FENCE.sub("", raw or "").strip()
     spoken = _spoken(text)
@@ -249,12 +270,15 @@ def _extract_json_array(raw: str) -> str | None:
 
 
 def parse_outline(raw: str) -> tuple[list[Span], list[Problem]]:
-    """解析模型回的那一段。**从不抛异常**——调用方是后台线程。
+    """Parse whatever the model replied with. **Never raises** - the caller is a
+    background thread.
 
-    三档处理，别混：
-    - 整块作废：不是 JSON、不是数组、或者吐了正文（它没在按契约干活）
-    - 丢一条：某一条缺字段（其余条款是好的，不该被连累）
-    - 照收：其余
+    Three tiers of handling, kept separate:
+    - void the whole chunk: not JSON, not an array, or it wrote body text (it was
+      not working to the contract)
+    - drop one item: that item is missing fields (the other clauses are fine and
+      must not be dragged down with it)
+    - accept as-is: everything else
     """
     import json
 
@@ -279,8 +303,9 @@ def parse_outline(raw: str) -> tuple[list[Span], list[Problem]]:
                 f" What it actually replied: {_raw_for_debug(raw)}")]
         payload = salvaged
 
-    # 先扫一遍 body：吐了正文就整块作废，不能只丢那一条——
-    # 它已经证明自己没在按契约干活，前面几条看着正常也不能信。
+    # Scan for body keys first: if it wrote body text, void the whole chunk instead
+    # of dropping just that one item - it has proven it is not working to the
+    # contract, so the earlier items that look normal cannot be trusted either.
     for row in payload:
         if isinstance(row, dict) and _BODY_KEYS & set(row):
             return [], [Problem(
@@ -318,8 +343,9 @@ def parse_outline(raw: str) -> tuple[list[Span], list[Problem]]:
 
 
 def _source(value, filled: str) -> str:
-    """模型说这个编号/标题是抄的还是它起的。没说就按「有值即抄的」算——
-    老的回答里没有这个字段，不能因此把原文里的编号标成 AI 起的。
+    """Did the model say this number/title was copied or invented? When it does not
+    say, treat "has a value" as "copied" - old replies lack this field, and it must
+    not mark a number that exists in the source as AI-invented.
     """
     if str(value or "").strip() == "derived":
         return "derived"
@@ -328,15 +354,19 @@ def _source(value, filled: str) -> str:
 
 def validate(spans: list[Span], total_lines: int,
              lines: list[str] | tuple = ()) -> tuple[list[Span], list[Problem]]:
-    """按行号排序，丢掉越界与重叠的，把指不到的上级降成顶层。
+    """Sort by line number, drop the out-of-range and overlapping ones, demote
+    parents that point nowhere to top level.
 
-    **丢和降是两种不同的处理，别混。** 越界的条款没有可信的正文，只能丢；
-    上级指错的条款正文是好的，丢掉它等于把用户的一条制度弄丢了。
+    **Dropping and demoting are two different treatments; do not mix them.** An
+    out-of-range clause has no trustworthy body and can only be dropped; a clause
+    with a wrong parent has perfectly good body text, and dropping it throws away
+    one of the user's policies.
     """
     problems: list[Problem] = []
     ranged: list[Span] = []
     renames: list[tuple[str, str]] = []
-    # 同一起点时**长的排前面**，否则父条款会排在子条款后面，栈就建反了。
+    # On the same start, **sort the longer span first**, otherwise a parent lands
+    # after its child and the stack gets built upside down.
     for span in sorted(spans, key=lambda s: (s.start, -s.end)):
         if span.start < 1 or span.end > total_lines or span.start > span.end:
             problems.append(Problem(
@@ -346,14 +376,16 @@ def validate(spans: list[Span], total_lines: int,
             continue
         ranged.append(span)
 
-    # **条款是树，不是一串。** 一条完全落在另一条区间内，那是嵌套（3.2.2 下面
-    # 的 a/b/c），不是重叠。早先这里一律判重叠丢掉，实测一份国标框架 PDF
-    # 被丢了 184 条子条款——一半内容没进来。
+    # **Clauses are a tree, not a sequence.** A span entirely inside another is
+    # nesting (the a/b/c under 3.2.2), not overlap. This used to flag all of it as
+    # overlap and drop it; in practice a national-standard framework PDF lost 184
+    # sub-clauses that way - half the content never made it in.
     #
-    # 真正的错是**错位相交**（10–20 与 15–25）：那种边界模型划错了，没法救。
-    # 区间完全相同也是错：同一段被切了两次，那是重复不是父子。
+    # The real error is **staggered crossing** (10-20 vs 15-25): the model drew those
+    # boundaries wrong and there is no salvaging them. Identical ranges are wrong
+    # too: the same segment was cut twice - that is duplication, not parent and child.
     kept: list[Span] = []
-    stack: list[Span] = []          # 当前打开着的祖先链，由外到内
+    stack: list[Span] = []          # chain of currently open ancestors, outer to inner
     inferred: dict[int, str | None] = {}
     for span in ranged:
         while stack and span.start > stack[-1].end:
@@ -373,21 +405,21 @@ def validate(spans: list[Span], total_lines: int,
                     f"'{_name(span)}' and '{_name(outer)}' cover the same lines "
                     f"({span.start}-{span.end}), the latter dropped."))
                 continue
-            # 上级取最内层那个祖先。它自己没编号就挂不上去，留空。
+            # The parent is the innermost ancestor. If that one has no number there is nothing to attach to; leave empty.
             inferred[id(span)] = outer.ref or None
         else:
             inferred[id(span)] = None
         kept.append(span)
         stack.append(span)
 
-    # 上级要在**留下来的**里面找：被丢掉的那条不能再当别人的上级。
+    # Parents must be looked up among the **kept** spans: a dropped clause can no longer be anyone's parent.
     refs = {s.ref for s in kept if s.ref}
     fixed: list[Span] = []
     seen: set[str] = set()
     for span in kept:
         parent = span.parent
         if parent is None:
-            # 模型没填就按包含关系推——包含本身就说明了谁是谁的上级。
+            # When the model left it empty, infer from containment - containment itself says who is whose parent.
             parent = inferred.get(id(span))
         elif parent not in refs or parent == span.ref:
             problems.append(Problem(
@@ -395,7 +427,7 @@ def validate(spans: list[Span], total_lines: int,
                 f"'{_name(span)}' names parent '{parent}', "
                 "but no kept clause has that number; demoted to top level."))
             parent = inferred.get(id(span))
-        # 空编号是「原文没编号」，不是同一个号——人会在预览页补。
+        # An empty number means "no number in the source", not a duplicate number - a person will fill it in on the preview page.
         ref = span.ref
         if ref and ref in seen:
             new = _disambiguate_ref(ref, parent, seen)
@@ -420,7 +452,7 @@ def validate(spans: list[Span], total_lines: int,
 
 
 def _disambiguate_ref(ref: str, parent: str | None, seen: set[str]) -> str:
-    """附录里又从 1 数：挂到上级下面（D.1），不要让人改六个输入框。"""
+    """Appendix numbering restarts from 1: hang it under the parent (D.1) instead of making someone edit six input boxes."""
     if parent:
         for cand in (f"{parent}.{ref}", f"{parent}-{ref}"):
             if cand not in seen:
@@ -433,28 +465,35 @@ def _disambiguate_ref(ref: str, parent: str | None, seen: set[str]) -> str:
         n += 1
 
 
-# 一两行的洞折叠成一句，三行以上的点名。
+# Holes of one or two lines fold into a single sentence; three or more get named.
 #
-# 条款标题行不进正文（设计 §1.2），所以**每一条条款都会留下一个单行洞**。
-# 实测一份 31 行的制度报出 7 条未覆盖，其中 5 条就是标题行；一份 600 行的
-# 真制度会报出几十条，而「整章漏了」这种真问题就混在里面看不见了。
+# Clause title lines do not enter the body (design §1.2), so **every clause leaves
+# a one-line hole behind**. In practice a 31-line policy reported 7 uncovered spots,
+# 5 of which were just title lines; a real 600-line policy would report dozens, and
+# the real problem - "a whole chapter is missing" - would be invisible in the noise.
 #
-# 折叠不等于隐瞒：数目照说，只是不再一条一行地占满屏幕。
+# Folding is not hiding: the count is still reported, it just no longer fills the
+# screen one line at a time.
 _HOLE_WORTH_NAMING = 3
 
 
 def _trim_to_own_text(spans: list[Span], lines: list[str]) -> list[Span]:
-    """父条款只留**第一个子条款之前**那一段。
+    """A parent clause keeps only the stretch **before its first child**.
 
-    不截的话，父条款的正文会把整棵子树包一遍——起草时同一段话喂两遍
-    （花两遍钱），自评时同一件事数两遍，导出的 SoA 里一句话出现两次。
-    实测一份国标框架 PDF 里 197 条有 160 条受影响。
+    Without trimming, the parent's body wraps the entire subtree a second time - the
+    same paragraph gets fed to the drafter twice (paying twice), the same thing gets
+    counted twice in the self-assessment, and one sentence appears twice in the
+    exported SoA. In practice, 160 of 197 clauses in a national-standard framework
+    PDF were affected.
 
-    父条款只是个分组标题、下面直接跟子条款时，截完是空的。那就是空的：
-    `slice_lines` 对 start > end 返回空串，预览页照实说这一条没有自己的正文。
+    When a parent is just a grouping heading with children immediately below it, the
+    trimmed result is empty. Empty is correct: `slice_lines` returns "" for
+    start > end, and the preview page states plainly that this clause has no body of
+    its own.
 
-    **末尾的收尾句会掉出来**（父条款最后一个子条款之后那几行）。
-    那不静默消失——`uncovered()` 会报出行号，人自己判断要不要合并回去。
+    **Closing sentences at the end fall out** (the lines after the parent's last
+    child). They do not vanish silently - `uncovered()` reports the line numbers, and
+    a person decides whether to merge them back in.
     """
     out = []
     for span in spans:
@@ -466,12 +505,15 @@ def _trim_to_own_text(spans: list[Span], lines: list[str]) -> list[Span]:
         if children:
             first = min(children, key=lambda s: s.start)
             end = first.start - 1
-            # 子条款的**标题行**也不属于父条款。提示词让 `from` 跳过自己的
-            # 标题，于是那一行落进了上一条——实测「Control Matrix」的正文
-            # 变成了「GOVERN」，而 GOVERN 正是它子条款的标题。
+            # The child's **title line** does not belong to the parent either. The
+            # prompt tells `from` to skip its own title, so that line lands in the
+            # previous clause - in practice "Control Matrix"'s body became "GOVERN",
+            # and GOVERN was exactly its child's title.
             #
-            # 只在那一行确实写着子条款的标题时才多剥一行：少剥是多一行噪声，
-            # 多剥是把用户的正文丢了。标题正文同行的子条款不受影响。
+            # Peel one extra line only when that line really carries the child's title:
+            # peeling too little leaves one line of noise behind, peeling too much
+            # throws away the user's body text. Children whose title shares the line
+            # with the body are unaffected.
             if (first.label and 1 <= end <= len(lines)
                     and first.label in lines[end - 1]):
                 end -= 1
@@ -481,7 +523,8 @@ def _trim_to_own_text(spans: list[Span], lines: list[str]) -> list[Span]:
     return out
 
 
-# 1–2 行的洞是下一条的标题。3–8 行没有新标题，多半是上一条被截短的续行。
+# A 1-2 line hole is the next clause's title. 3-8 lines with no new heading are most
+# likely continuation lines of the clause above that got cut short.
 _MIN_CONTINUE_GAP = 3
 _MAX_CONTINUE_GAP = 8
 
@@ -497,10 +540,11 @@ _SECTION_HEADING = re.compile(
 
 
 def parse_section_heading(line: str) -> tuple[str, str] | None:
-    """附录、Part、Executive Summary、「6. AI RMF Profiles」这种分节标题。
+    """Section headings like Appendix, Part, Executive Summary, "6. AI RMF Profiles".
 
-    目录行末尾带页码（「Appendix A: … 35」），不是正文标题。
-    「6. Be useful to a wide range…」这种带句点的条目也不是新章。
+    A table-of-contents line ends with a page number ("Appendix A: ... 35"); that is
+    not a body heading. An entry with a trailing period, like "6. Be useful to a wide
+    range...", is not a new chapter either.
     """
     text = (line or "").strip()
     if not text or _is_toc_heading(text):
@@ -542,11 +586,13 @@ def _holes(spans: list[Span], total: int) -> list[tuple[int, int]]:
 
 
 def close_small_gaps(spans: list[Span], lines: list[str]) -> list[Span]:
-    """上一条被截短、下一标题还没到：把中间的续行并回去。
+    """The clause above got cut short and the next heading has not arrived yet: merge
+    the continuation lines in between.
 
-    分块会切在句子中间（NIST.AI.100-1 的 3.3 停在第 547 行，续行有 13
-    行才到 3.4）。按「下一条标题出现的前一行」收回去，不设死 8 行上限。
-    1 行的洞仍不并——那是下一条的标题。
+    Chunking can cut mid-sentence (NIST.AI.100-1's 3.3 stops at line 547, and it is
+    13 lines before 3.4 starts). Take the lines back up to "the line before the next
+    clause's heading" instead of a hard 8-line cap. A 1-line hole is still not merged
+    - that is the next clause's title.
     """
     if not spans or not lines:
         return spans
@@ -575,7 +621,7 @@ def close_small_gaps(spans: list[Span], lines: list[str]) -> list[Span]:
 
 
 def _heading_line_of(lines: list[str], lo: int, hi: int, nxt: Span) -> int | None:
-    """洞里哪一行是下一条的标题。找不到就 None。"""
+    """Which line of the hole is the next clause's heading. None when there is none."""
     for index in range(lo, hi + 1):
         line = lines[index - 1].strip()
         if not line:
@@ -592,10 +638,11 @@ def _heading_line_of(lines: list[str], lo: int, hi: int, nxt: Span) -> int | Non
 
 
 def fill_heading_holes(spans: list[Span], lines: list[str]) -> list[Span]:
-    """大段没人认领时，按附录 / Part / 「6. Title」切开。
+    """When a large stretch goes unclaimed, cut it apart by Appendix / Part / "6. Title".
 
-    提示词写了「附件清单不是条款」，模型常把 Appendix A 整章跳过。
-    NIST.AI.100-1 的 1302–1620 行就是这样空掉的。
+    The prompt says "a list of annexes is not clauses", and the model often skips an
+    entire Appendix A chapter. Lines 1302-1620 of NIST.AI.100-1 went empty exactly
+    like that.
     """
     if not lines:
         return spans
@@ -634,7 +681,7 @@ def fill_heading_holes(spans: list[Span], lines: list[str]) -> list[Span]:
 
 
 def _heading_ref_taken(ref: str, refs: set[str]) -> bool:
-    """「D」和「Appendix D」是同一个附录，模型先占了其中一个就别再补。"""
+    """The bare "D" and "Appendix D" name the same appendix; once the model claimed one form, do not add the other."""
     if ref in refs:
         return True
     if len(ref) == 1 and f"Appendix {ref}" in refs:
@@ -653,11 +700,14 @@ def _line_is_chrome(line: str) -> bool:
 
 def uncovered(spans: list[Span], total_lines: int,
               lines: list[str] | tuple = ()) -> list[Problem]:
-    """哪些行没被任何条款收进去。**不静默丢**——用户要知道有内容没进来。
+    """Which lines no clause captured. **Never dropped silently** - the user needs to
+    know that content did not make it in.
 
-    表翻页留下的 Categories / Continued / Page N 四行看起来像「漏切」，
-    其实是版式。有原文行时把这种洞折进「一两行」那句，不单独点名。
-    文首封面/目录单独说，不跟「没切出条款」混在一起。
+    The Categories / Continued / Page N rows left behind by table pagination look
+    like "missed cuts" but are really page furniture. When source lines are
+    available, such holes fold into the "one or two lines" bucket instead of being
+    named individually. The cover page / table of contents at the top is reported
+    separately, not mixed into "could not be cut into clauses".
     """
     holes = _holes(spans, total_lines)
     big: list[tuple[int, int]] = []
@@ -709,15 +759,18 @@ def _is_front_matter_hole(lo: int, hi: int, lines: list[str] | tuple) -> bool:
 
 
 def _name(span: Span) -> str:
-    """报错要能指认是哪一条，否则用户对不上原文。"""
+    """An error must identify which clause it is about, otherwise the user cannot match it against the source."""
     return span.ref or span.label or "an unnamed clause"
 
 
 def plan_calls(text: str) -> list[tuple[int, int]]:
-    """要发几次、每次覆盖哪几行。**每一行恰好落在一个区间里**，不漏不重。
+    """How many calls to make and which lines each one covers. **Every line falls in
+    exactly one range** - nothing missed, nothing doubled.
 
-    塞得下就一次过：模型看得到全文，章节层级和编号体系都在眼前，切得最准，
-    而且没有跨块合并这个问题——那是这条管线里最难写对的一块。设计 §2.1
+    If it fits, do it in one shot: the model sees the full text, the section
+    hierarchy and numbering scheme are right in front of it, the cut is at its most
+    accurate, and the cross-chunk merging problem disappears - that is the hardest
+    part of this pipeline to get right. Design §2.1
     """
     lines = text.splitlines()
     if not lines:
@@ -728,8 +781,10 @@ def plan_calls(text: str) -> list[tuple[int, int]]:
     start = 1
     size = 0
     for index, line in enumerate(lines, start=1):
-        # `size and` 这个条件是给「单独一行就超了」留的（表格被抽成一行）：
-        # 切不动它，就让它自己一块。少了这个判断，这里会空转出一堆空区间。
+        # The `size and` guard exists for "a single line already exceeds the cap"
+        # (a table extracted as one line): it cannot be split, so let it stand as a
+        # chunk of its own. Without this check, the loop spins out a pile of empty
+        # ranges here.
         if size and size + len(line) > ONE_SHOT_MAX_CHARS:
             out.append((start, index - 1))
             start, size = index, 0
@@ -739,10 +794,11 @@ def plan_calls(text: str) -> list[tuple[int, int]]:
 
 
 def shift(spans: list[Span], offset: int) -> list[Span]:
-    """把块内行号搬到整份文档的坐标系里。
+    """Move chunk-local line numbers into the whole-document coordinate system.
 
-    模型看到的是第二块的第 1 行，那在整份文档里是第 301 行。少了这一步，
-    第二块以后的条款正文全都会从文档开头截。
+    What the model saw as line 1 of the second chunk is line 301 of the document.
+    Without this step, every clause from the second chunk onward would be cut from
+    the top of the document.
     """
     if not offset:
         return spans
@@ -770,13 +826,15 @@ def load_prompt() -> str:
 
 def outline_document(text: str, *, client, model: str,
                      on_chunk=None) -> Outline:
-    """跑完整条：分块 → 逐块调模型 → 解析 → 搬坐标 → 校验 → 报未覆盖。
+    """Run the whole pipeline: chunk → call the model per chunk → parse → shift
+    coordinates → validate → report uncovered lines.
 
-    `client` 是任何有 `complete(system, messages, *, model, max_tokens)` 的
-    对象——`GuardedClient` 就是。测试注入假的。
+    `client` is anything with `complete(system, messages, *, model, max_tokens)` -
+    `GuardedClient` qualifies. Tests inject a fake.
 
-    **一块失败不带走其余块。** 重跑一整份文档要重花一次钱，而失败的那一块
-    是哪几行要说出来，否则用户不知道原文的哪一段没进来。
+    **One chunk failing must not take the other chunks down with it.** Re-running an
+    entire document costs the money all over again, and the failed chunk's lines must
+    be spelled out, otherwise the user never learns which part of the source was lost.
     """
     from framework_reader.llm.client import Message
 
@@ -794,9 +852,10 @@ def outline_document(text: str, *, client, model: str,
                 system, [Message(role="user", content=numbered(piece))],
                 model=model, max_tokens=16384)
         except Exception as exc:                  # noqa: BLE001
-            # 不只报异常类名——原因（HTTP 错误、response_format 不被支持、
-            # 厂商返回结构意外……）都在 ``str(exc)`` 里，全拼到 detail 里给
-            # 下次接手的人看。
+            # Do not report just the exception class - the cause (HTTP error,
+            # response_format not supported, unexpected vendor payload ...) is all in
+            # ``str(exc)``; spell the whole thing into the detail for whoever picks
+            # this up next.
             problems.append(Problem(
                 "not_json",
                 f"Lines {lo}–{hi} did not finish;"
@@ -804,24 +863,27 @@ def outline_document(text: str, *, client, model: str,
                 "results from the other chunks were kept."))
         else:
             piece_spans, piece_problems = parse_outline(raw)
-            # 模型看到的是块内行号，落库要的是全文行号。
+            # The model saw chunk-local line numbers; storage needs whole-document ones.
             spans.extend(shift(piece_spans, offset=lo - 1))
             problems.extend(piece_problems)
-        # 失败的那一块也算跑完了——不然进度条会停在那儿不动。
+        # A failed chunk still counts as processed - otherwise the progress bar freezes right there.
         if on_chunk is not None:
             on_chunk(calls, len(pieces))
-    # **先对齐再校验。** 整体差一行的时候，校验会把一堆本来对的条款
-    # 判成越界或重叠——那些「问题」是假的，根源只有一个偏移。
+    # **Snap before validating.** When everything is off by one line, validation
+    # judges a pile of otherwise-correct clauses out-of-range or overlapping - those
+    # "problems" are fake; the root cause is a single offset.
     spans, snapped = snap_to_headings(spans, lines)
     problems.extend(snapped)
-    # 章节号切完再收条款表。模型把 GOVERN 1.1 整张吞进「5.1 Govern」
-    # 时，这里按行首的前缀编号拆开——不靠它下次认对。公司制度没有
-    # 这种前缀，这一步是空操作。
+    # After section numbers are cut, harvest the clause table. When the model
+    # swallowed the whole GOVERN 1.1 table into "5.1 Govern", this splits it apart by
+    # the prefix numbering at line starts - never count on the model getting it right
+    # next time. Company policies have no such prefixes, so for them this is a no-op.
     from framework_reader.userframework.catalog import apply_catalog
 
     spans, cataloged = apply_catalog(spans, lines)
     problems.extend(cataloged)
-    # 上一条被截短的续行并回去；模型跳过的附录/摘要按标题补切。
+    # Merge back the continuation lines of a cut-short clause; re-cut appendices and
+    # summaries the model skipped, from their headings.
     spans = close_small_gaps(spans, lines)
     before = len(spans)
     spans = fill_heading_holes(spans, lines)
@@ -830,7 +892,7 @@ def outline_document(text: str, *, client, model: str,
             "catalog",
             f"Another {len(spans) - before} section(s)/appendix(ices) the model skipped were recovered from headings."))
     kept, validation = validate(spans, total_lines=len(lines), lines=lines)
-    # 补编号与标题**在校验之后**：先把不可信的丢掉，再给留下的补齐标识。
+    # Fill in numbers and titles **after validation**: drop the untrusted first, then complete the identifiers of what remains.
     kept = fill_gaps(kept, lines)
     return Outline(
         spans=kept,
@@ -839,24 +901,29 @@ def outline_document(text: str, *, client, model: str,
     )
 
 
-# 补出来的标题最长这么些字。再长就不是标题是摘要了。
+# The longest a derived title may be. Anything longer is a summary, not a title.
 _LABEL_MAX = 24
 _SENTENCE_END = "。！？；\n"
 
 
 def fill_gaps(spans: list[Span], lines: list[str]) -> list[Span]:
-    """原文没有编号或标题时补上，并标成 `derived`。
+    """Fill in a number or title the source does not have, and mark it `derived`.
 
-    **这条线要划清楚：正文不能由 AI 生成**（它是用户制度的原话，起草的解读、
-    自评的证据全基于它），**编号和标题能**——它们是编目用的标识，不是制度的
-    内容。留空的代价是这条条款根本存不进库（`user_control.id` 是主键），
-    等于把我们的问题推给用户，而他不会改。
+    **This line must be drawn clearly: body text must never be AI-generated** (it is
+    the user policy's own words; the drafted interpretation and the self-assessment
+    evidence are all based on it), **but numbers and titles may be** - they are
+    catalog identifiers, not the content of the policy. Leaving them empty means the
+    clause cannot be stored at all (`user_control.id` is the primary key), which hands
+    our problem to the user, and he will not fix it.
 
-    编号跟随原文的体系：父条款是 `3.2`，补出来的子条款就是 `3.2.1`、`3.2.2`。
-    看起来和原文一体，后面做映射、写报告引用起来自然——代价是光看编号
-    分不出哪个是补的，所以 `ref_from` 必须跟着落库、预览页必须标出来。
+    Numbers follow the source's own scheme: parent `3.2`, filled-in children `3.2.1`,
+    `3.2.2`. They look native to the source, so later mapping and report citations
+    read naturally - the price is that the number alone cannot tell you which ones
+    were filled in, so `ref_from` must be stored alongside and the preview page must
+    flag it.
 
-    **不碰行号，也不碰上级。** 补标识不许动边界。
+    **Never touch line numbers, never touch parents.** Filling in identifiers must
+    not move boundaries.
     """
     taken = {s.ref for s in spans if s.ref}
     counters: dict[str, int] = {}
@@ -865,8 +932,8 @@ def fill_gaps(spans: list[Span], lines: list[str]) -> list[Span]:
         ref, ref_from = span.ref, span.ref_from
         if not ref:
             base = span.parent or ""
-            # 父条款自己也是补的时候 `parent` 是空的——那就退回顶层编号，
-            # 否则会得到「.1」这种东西。
+            # When the parent is itself a filled-in clause, `parent` is empty - fall
+            # back to top-level numbering, otherwise you get things like ".1".
             ref = _next_ref(base, taken, counters)
             taken.add(ref)
             ref_from = "derived"
@@ -884,22 +951,26 @@ def fill_gaps(spans: list[Span], lines: list[str]) -> list[Span]:
     return out
 
 
-# 往条款正文上面看几行——编号和标题按提示词的要求不含在正文里，
-# 它们在上一行（或者，标题正文同行时，就在第一行里）。
+# How many lines above the clause body to look - per the prompt, the number and
+# title are not part of the body; they sit on the line above (or, when title and
+# body share a line, on the first line itself).
 _HEADING_LOOKBACK = 2
 
 
 def _verify(lines: list[str], span: Span, value: str) -> str:
-    """这几个字原文里到底有没有。**模型的自述和它的输出一样不可信。**
+    """Do these characters actually exist in the source? **The model's self-report is
+    exactly as untrustworthy as its output.**
 
-    实测：它给了 `ref="4"`、`label="施行与解释"`，两个都是自己编的，
-    却没填 `ref_from`——按「有值即原文的」算，就成了「原文里就有」。
-    那正是这个产品最不能出的错。
+    Observed in practice: it gave `ref="4"`, `label="Implementation and
+    interpretation"`, both invented by itself, yet left `ref_from` unset - under "has
+    a value means it came from the source", that becomes "was in the original all
+    along". That is precisely the mistake this product must never make.
 
-    正文被截空的分组标题没有原文可核对，那时候只能信它说的。
+    A grouping heading trimmed down to no body has nothing in the source to check
+    against; there, taking its word is the only option.
     """
     if span.end < span.start:
-        # 截成空的分组标题：没有正文可核对，只能信它说的。
+        # Grouping heading trimmed to empty: no body to check against, so take its word.
         return "original"
     lo = max(1, span.start - _HEADING_LOOKBACK)
     window = "\n".join(lines[lo - 1:span.end])
@@ -909,7 +980,7 @@ def _verify(lines: list[str], span: Span, value: str) -> str:
 
 
 def _next_ref(base: str, taken: set[str], counters: dict[str, int]) -> str:
-    """`3.2` 下面依次给 `3.2.1`、`3.2.2`，跳过原文已经占掉的号。"""
+    """Under `3.2`, hand out `3.2.1`, `3.2.2` in turn, skipping numbers the source already uses."""
     while True:
         counters[base] = counters.get(base, 0) + 1
         candidate = f"{base}.{counters[base]}" if base else str(counters[base])
@@ -918,7 +989,7 @@ def _next_ref(base: str, taken: set[str], counters: dict[str, int]) -> str:
 
 
 def _derive_label(lines: list[str], span: Span) -> str:
-    """拿正文第一句当标题。**这是兜底**——正常情况下模型会起一个更好的。"""
+    """Use the body's first sentence as the title. **This is a fallback** - normally the model comes up with a better one."""
     body = slice_lines("\n".join(lines), span.start, span.end).strip()
     if not body:
         return ""
@@ -930,26 +1001,32 @@ def _derive_label(lines: list[str], span: Span) -> str:
     return body[:min(cut, _LABEL_MAX)].strip("，、 　")
 
 
-# 标题行在正文起点附近多远的范围内找。模型差三行以上就不是「算错一位」，
-# 那是切歪了，不该靠整体平移去救。
+# How far from the body's start to search for the title line. Off by more than
+# three lines is not an "off-by-one"; the cut itself is crooked and must not be
+# papered over with a global shift.
 _SNAP_WINDOW = 3
 
 
 def snap_to_headings(spans: list[Span],
                      lines: list[str]) -> tuple[list[Span], list[Problem]]:
-    """拿原文里的标题行把边界对回去。
+    """Use the title lines in the source to snap the boundaries back.
 
-    模型算行号会**系统性地差一行**——实测同一份文档同一个提示词，两次跑
-    一次全对、一次每条都 +1。提示词压得住一时，压不住每一次。
+    The model's line arithmetic is **systematically off by one** - observed on the
+    same document with the same prompt: one run all correct, the next run every
+    clause +1. A prompt suppresses it for a while; it cannot suppress it every time.
 
-    但这件事代码能自己查：模型给了 `ref="3.1"`，那「3.1」那一行在原文里的
-    位置是确定的，正文就该从它的下一行开始（标题正文同行时就是那一行本身）。
-    和核对编号来源同一个思路——**不信模型的自述，拿原文核对。**
+    But code can check this itself: the model said `ref="3.1"`, and where the "3.1"
+    line sits in the source is a fact; the body should start on the next line (or on
+    that very line, when title and body share it). Same idea as verifying where
+    numbers came from - **do not trust the model's self-report; check it against the
+    source.**
 
-    **只在多数条款给出同一个偏移时才整体挪。** 个别条款对不上是它自己切歪了，
-    拿它去挪所有人，会把对的那些也弄错。
+    **Shift everything only when a majority of clauses agree on the same offset.**
+    An individual clause that mismatches is crooked on its own; moving everyone to
+    fit it would break the correct ones too.
 
-    挪了就报出来。悄悄挪一行，用户永远不知道我们动过他的边界。
+    Report it when you move. Shift a line silently and the user never learns that we
+    touched his boundaries.
     """
     if not spans:
         return spans, []
@@ -970,7 +1047,7 @@ def snap_to_headings(spans: list[Span],
         for s in spans
     ]
     if any(s.start < 1 or s.end > len(lines) for s in moved):
-        # 挪完越界说明这个偏移是假的。宁可不挪——校验层会照常报越界。
+        # Out of range after shifting means the offset is bogus. Prefer not shifting - the validation layer will report out-of-range as usual.
         return spans, []
     return moved, [Problem(
         "snapped",
@@ -979,7 +1056,7 @@ def snap_to_headings(spans: list[Span],
 
 
 def _expected_start(span: Span, lines: list[str]) -> int | None:
-    """这一条的正文**本该**从第几行开始。找不到标题行就回 None。"""
+    """Which line this clause's body **should** start on. None when no title line is found."""
     needle = span.ref or span.label
     if not needle:
         return None
@@ -989,7 +1066,7 @@ def _expected_start(span: Span, lines: list[str]) -> int | None:
         line = lines[number - 1]
         if needle not in line:
             continue
-        # 标题行上除了编号和标题还有别的字，说明正文就在这一行里。
+        # Words on the title line beyond the number and title mean the body starts on that very line.
         rest = line.replace(span.ref, "", 1).replace(span.label, "", 1)
         return number if len(rest.strip(" 　、.．：:")) > 6 else number + 1
     return None

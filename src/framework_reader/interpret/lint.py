@@ -1,21 +1,21 @@
-"""抽取忠实度的近似检查。W2 spec §2.3
+"""An approximation of extraction fidelity. W2 spec §2.3
 
-拦得住整段编造，拦不住换近义词。真正的防线是 $EDITOR 里逐条签字。
-不做成构建断言——误报率会毁掉手感。
+It catches wholesale invention, not synonym-swapping. The real defence is signing each field in $EDITOR.
+Deliberately not a build assertion - the false-positive rate would ruin the feel.
 """
 import re
 
 from framework_reader.interpret.model import DIFFERENTIATING_FIELDS, Field, RawAnswer
 
-# 法规条号、百分比、年份——提示词禁止 AI 编造这些，但禁令拦不住模型，
-# 而 106 条没人有精力逐条核。凡命中一律标出来待人工核实。
-# 控制编号（A.5.22 / AC-2 / DE.CM-01）不在此列，那是本产品自己的标识。
+# Regulation clause numbers, percentages, years - the prompts forbid the AI from inventing them,
+# but a ban cannot stop the model, and nobody can hand-check 106 controls. Flag every hit for human verification.
+# Control numbers (A.5.22 / AC-2 / DE.CM-01) are exempt - they are this product's own identifiers.
 _CITATION_RE = re.compile(
-    r"第\s*\d+\s*条"          # 第32条
+    r"第\s*\d+\s*条"          # Chinese "article N" clause pattern
     r"|Art(?:icle)?\.?\s*\d+"  # Article 32 / Art. 32
     r"|§\s*\d+"                # §32
     r"|\d+(?:\.\d+)?\s*%"     # 95%
-    r"|(?:19|20)\d{2}\s*年"     # 2023年
+    r"|(?:19|20)\d{2}\s*年"     # a year like 2023
 )
 
 
@@ -25,7 +25,7 @@ def _bigrams(text: str) -> set[str]:
 
 
 def bigram_overlap(text: str, source: str) -> float:
-    """text 的字符二元组有多大比例能在 source 里找到。空字段记 1.0（留空是信号）。"""
+    """What fraction of text's character bigrams appear in source. Empty fields count 1.0 (empty is a signal)."""
     grams = _bigrams(text)
     if not grams:
         return 1.0
@@ -58,7 +58,7 @@ def flag_low_fidelity(scores: dict[str, float], threshold: float) -> list[str]:
 
 
 def suggest_threshold(scores: list[float], margin: float = 0.05) -> float:
-    """标定：取人工判定为忠实抽取的最低重合度，再下调一档。"""
+    """Calibrate: take the lowest overlap judged a faithful extraction, then step down one notch."""
     if not scores:
         return 0.0
     return max(0.0, min(scores) - margin)
@@ -67,11 +67,11 @@ def suggest_threshold(scores: list[float], margin: float = 0.05) -> float:
 def unplaced_answers(
     fields: dict[str, Field], answers: list[RawAnswer], threshold: float = 0.5
 ) -> list[int]:
-    """哪几答一个字都没进字段。
+    """Which answers never made it into any field.
 
-    抽取器只输出三个差异化字段；自适应的第 3 问可能问出没有落点的内容，
-    此时整条答案会被丢掉。落不进可以，**静默消失不行**——这里把它们报出来，
-    在 $EDITOR 里显示给作者。判定与模型无关，纯按字符二元组重合度算。
+    The extractor outputs only the three differentiating fields; the adaptive third question may
+    elicit content with no landing spot, and that whole answer is then dropped. Dropping is allowed -
+    **vanishing silently is not** - so they are reported here, shown to the author in $EDITOR.
     """
     placed = "".join(_field_text(fields[n]) for n in DIFFERENTIATING_FIELDS if n in fields)
     out: list[int] = []
@@ -84,10 +84,10 @@ def unplaced_answers(
 
 
 def citation_flags(fields: dict[str, Field]) -> dict[str, list[str]]:
-    """标出疑似法规条号、百分比、年份，交人工核实。
+    """Flag suspected clause numbers, percentages, and years for human verification.
 
-    不做成构建断言：有些引用是对的，一刀切会逼人删掉正确内容。
-    但也绝不能不报——B 路线下这些字是卖给合规团队的，编错一个条号是真风险。
+    Deliberately not a build assertion: some citations are correct, and a hard gate would force people
+    to delete correct content. But never silent either - under Route B this text is sold to compliance teams; a wrong clause number is a real risk.
     """
     out: dict[str, list[str]] = {}
     for name, field in sorted(fields.items()):

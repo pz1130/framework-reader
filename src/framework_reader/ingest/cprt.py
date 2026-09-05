@@ -1,7 +1,7 @@
-"""NIST CPRT 交叉映射导入。spec §4.2①
+"""NIST CPRT cross-mapping import. spec §4.2①
 
-来源：csf-2.0-to-sp800-53r5-mappings.xlsx（NIST OLIR #186，公共领域）
-列名与 sheet 名以 Task 6 观察到的真实结构为准，见 tests/fixtures/README.md。
+Source: csf-2.0-to-sp800-53r5-mappings.xlsx (NIST OLIR #186, public domain)
+Column and sheet names follow the real structure observed in Task 6 - see tests/fixtures/README.md.
 """
 from pathlib import Path
 
@@ -17,7 +17,7 @@ from framework_reader.schema.mapping import (
 SOURCE_ID = "NIST-OLIR-csf-2.0-to-sp800-53r5"
 SOURCE_VERSION = "2024-02"
 
-# 这两个键名必须与 Task 6 记录的真实表头逐字一致。
+# These two key names must match the real headers recorded in Task 6 verbatim.
 COL_CSF = "Focal Document\nElement"
 COL_53 = "Reference Document\nElement"
 

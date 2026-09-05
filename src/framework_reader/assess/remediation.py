@@ -1,16 +1,16 @@
-"""整改台账的读写。差距报告说「下一步做什么」，这里记「谁、什么时候、做了没有」。
+"""Read and write the remediation ledger. The gap report says "what next"; this records "who, by when, done or not".
 
-台账是自评的下游：差距报告每一条都可以立项跟进。state 三档**手工扳**，
-不跟自评联动——改完没复评之前，「做了」只是当事人的一面之词，复评的档位
-才是证据。复评把档位提上去之后这条还在不在台账里，由人决定（留着的意义是
-「改了，验证过了」，删掉的意义是「这事完结了」，两边都有道理）。
+The ledger is downstream of self-assessment: any gap-report item can be filed for follow-up. The three
+states are **flipped by hand**, deliberately not linked to assessment - before a re-assessment, "done" is
+only the owner's word; the re-assessed level is the evidence. Whether a row stays in the ledger after a
+re-assessment raises the level is a human decision (keeping it says "fixed and verified"; deleting says "closed").
 """
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from pydantic import BaseModel
 
-# 展示名跟自评页的 SoA 状态用一个词根，人不用学两套话。
+# Display names share a root with the SoA states on the assess page, so nobody learns two vocabularies.
 STATES = ("todo", "doing", "done")
 STATE_LABELS = {"todo": "To do", "doing": "In progress", "done": "Done"}
 
@@ -19,7 +19,7 @@ class Remediation(BaseModel):
     control_id: str
     scope: str = "default"
     owner: str = ""
-    due: str = ""       # ISO 日期，空 = 没定期限
+    due: str = ""       # ISO date; empty = no deadline set
     state: str = "todo"
     note: str = ""
     created_at: str = ""
@@ -27,8 +27,8 @@ class Remediation(BaseModel):
 
 
 class RemediationStore:
-    """表在 user_schema.sql，跟着 userframework.store.connect 的幂等建表走——
-    已有的库打开就补上，不需要迁移命令。"""
+    """The table lives in user_schema.sql, created idempotently by userframework.store.connect -
+    existing databases are patched on open - no migration command needed."""
 
     def __init__(self, path: Path | None = None) -> None:
         self.path = Path(path) if path else _default_path()
@@ -43,8 +43,8 @@ class RemediationStore:
 
     def start(self, control_id: str, *, scope: str = "default",
               owner: str = "", due: str = "") -> bool:
-        """立项。**已立项的条款原样留着**——重复点「立项」不该把人填的
-        负责人跟期限冲掉。返回是不是真建了一行。"""
+        """File it. **An already-filed row is left exactly as it is** - clicking "file" twice must not wipe the
+        owner and deadline the user entered. Returns whether a row was actually created."""
         conn = self._connect()
         now = _now()
         cur = conn.execute(
@@ -64,7 +64,7 @@ class RemediationStore:
         return Remediation(**dict(row)) if row else None
 
     def all(self, scope: str = "default") -> list[Remediation]:
-        """有期限的在前（紧的先做），没期限的按条款号排在其后。"""
+        """Deadline rows first (tightest first); rows without a deadline follow, sorted by control id."""
         rows = self._connect().execute(
             "SELECT * FROM remediation WHERE scope = ? "
             "ORDER BY (due = ''), due, control_id", (scope,),
@@ -76,7 +76,7 @@ class RemediationStore:
         state: str | None = None, owner: str | None = None,
         due: str | None = None, note: str | None = None,
     ) -> Remediation | None:
-        """只改给了的字段。None = 没给，跟「清空」是两回事。"""
+        """Update only the fields given. None = not given, which is not the same as "clear"."""
         if state is not None and state not in STATES:
             raise ValueError(f"Unknown remediation state: {state}")
         current = self.get(control_id, scope)

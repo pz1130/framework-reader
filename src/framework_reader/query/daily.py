@@ -1,7 +1,7 @@
-"""每天三条带解读的条款。种子是日期，同一天打开是同一组。
+"""Three interpreted controls a day. The seed is the date: same day, same three.
 
-「换一批」往种子里掺一个批次号（?roll=N）：同一个批次当天稳定、可书签，
-点一下换一组——随机性在换的那一下，不在每次刷新。
+"Shuffle" mixes a roll number into the seed (?roll=N): one batch is stable within the day and
+bookmarkable; one click swaps the set - the randomness is in the shuffle, not every refresh.
 """
 import random
 from datetime import date
@@ -21,8 +21,8 @@ def daily_controls(api: QueryAPI, *, today: date, n: int = 3,
 
 
 def _seed(today: date, roll: int) -> str:
-    """默认按日期当种子（老契约：同一天同一组，roll=0 保持原种子不变）。
-    roll ≥ 1 是「换一批」的批次号。"""
+    """Default seed is the date (old contract: same day same set; roll=0 keeps the original seed).
+    roll >= 1 is a "shuffle" batch number."""
     return today.isoformat() if roll <= 0 else f"{today.isoformat()}#{roll}"
 
 

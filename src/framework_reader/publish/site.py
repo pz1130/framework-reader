@@ -1,9 +1,9 @@
-"""把 106 条中文解读做成可发布的一页。主 spec §7.3.4
+"""Render 106 interpretations into one publishable page. Main spec §7.3.4
 
-发布的是**我们自己写的解读**，不是标准原文。CSF 2.0 是 NIST 公共领域，
-条款编号与英文标题可以照登；ISO / PCI 那类受版权的东西一个字都不在这里。
+What is published is **our own written interpretations**, not standard text. CSF 2.0 is NIST public
+domain - control numbers and English titles may be reproduced; copyrighted ISO / PCI material has
 
-只渲**可导出**的映射边。L2 推导边 R7 抽样 correct 17%，进不了任何导出物。
+Only **exportable** mapping edges render. L2 derived edges sampled 17% correct in R7; they enter no export.
 """
 from html import escape
 
@@ -19,7 +19,7 @@ FIELD_LABELS = (
     ("regional_note", "Regional notes"),
 )
 
-# CSF 自己的顺序，不是字母序——按字母排 DE 会跑到 GV 前面。
+# CSF's own order, not alphabetical - alphabetically DE would run before GV.
 FUNCTION_ORDER = ("GV", "ID", "PR", "DE", "RS", "RC")
 
 FUNCTION_NAMES = {
@@ -27,8 +27,8 @@ FUNCTION_NAMES = {
     "DE": "Detect", "RS": "Respond", "RC": "Recover",
 }
 
-# 每个框架的分组规则不一样：CSF 按 function（DE.CM-01 → DE），
-# ISO 按主题（A.5.1 → A.5）——按点切第一段会把 93 条全挤成「A」一组。
+# Grouping rules differ per framework: CSF by function (DE.CM-01 -> DE),
+# ISO by theme (A.5.1 -> A.5) - splitting on the first dot would cram all 93 into an "A" group.
 FRAMEWORKS: dict[str, dict] = {
     "NIST-CSF-2.0": {
         "name": "NIST CSF 2.0",
@@ -99,7 +99,7 @@ def collect(api, framework_id: str = "NIST-CSF-2.0") -> list[Entry]:
         for name, _label in FIELD_LABELS:
             value = (raw.get(name) or {}).get("value")
             if value in (None, "", [], {}):
-                continue          # 空字段直接不出现，不渲染成 null
+                continue          # empty fields simply do not appear - never rendered as null
             fields.append((name, value))
         short_id = ctl.id.split(":", 1)[-1]
         entries.append(Entry(
@@ -176,7 +176,7 @@ def _chips(framework_id: str, entries: list[Entry]) -> str:
 
 
 def render_page(entries: list[Entry]) -> str:
-    """单框架页。多框架用 render_multi。"""
+    """Single-framework page. Multiple frameworks use render_multi."""
     framework_id = entries[0].framework if entries else "NIST-CSF-2.0"
     return render_multi([(framework_id, entries)])
 

@@ -1,11 +1,13 @@
-"""文档导入的预览态。见 2026-08-25 AI 导入设计 §3
+"""Preview state for document import. See the 2026-08-25 AI import design §3
 
-**落盘，不在内存。** `web/jobs.py` 的任务状态可以丢，因为起草的结果已经在
-用户库里，丢的只是「跑到第几条」；这里的结果还没进库，丢了就是白花的钱，
-而且用户不会知道为什么，只能再花一次。
+**On disk, not in memory.** The job state in `web/jobs.py` may be lost, because
+the drafting results are already in the user store - all that is lost is "which
+item it got to". Here the results are not in the store yet; losing them is
+money spent for nothing, and the user will not know why, only pay again.
 
-草稿是临时的：确认或放弃后删除。没有过期回收——一期不做，留着的草稿
-在任何页面上都看不见，它只是几行文本。
+Drafts are temporary: deleted once confirmed or abandoned. No expiry sweep -
+out of scope for phase 1. A draft left behind is invisible on every page; it is
+just a few rows of text.
 """
 import json
 import uuid
@@ -25,8 +27,9 @@ class ImportDraft:
     source_text: str
     spans: list[Span]
     problems: list[Problem]
-    # 被取消勾选的条款，存的是**列表下标**的字符串。不用编号当键：
-    # 编号可以为空、也可以重号，拿它当键会撞。
+    # Unchecked clauses are stored as the **string of the list index**. The
+    # number is not used as the key: numbers can be empty or duplicated, and a
+    # key would collide.
     dropped: set[str] = field(default_factory=set)
 
 
@@ -74,7 +77,8 @@ class ImportDraftStore:
         )
 
     def save(self, draft_id: str, *, spans: list[Span], dropped: set[str]) -> None:
-        """只改切分结果与勾选。**原文快照永远不动**——正文还要从它截。"""
+        """Changes only the cut and the checkboxes. **The source snapshot is never
+        touched** - body text still gets cut from it."""
         conn = self._conn()
         try:
             conn.execute(
@@ -97,7 +101,7 @@ def _dump_spans(spans: list[Span]) -> str:
     return json.dumps([
         {"ref": s.ref, "label": s.label, "parent": s.parent,
          "start": s.start, "end": s.end,
-         # 「谁写的」必须跟着落盘——丢了就成了「原文里就有」。
+         # "Who wrote it" must be persisted along - lose it and it becomes "was in the source all along".
          "ref_from": s.ref_from, "label_from": s.label_from}
         for s in spans], ensure_ascii=False)
 

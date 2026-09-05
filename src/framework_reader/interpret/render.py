@@ -1,10 +1,10 @@
-"""一条解读读起来什么样。
+"""What an interpretation looks like when a human reads it.
 
-这里是**唯一**一处决定解读怎么呈现给人看的代码——`fr show` 和盲测的产品变体
-共用它。分成两处写，两处就会慢慢长得不一样。
+This is the **only** place that decides how an interpretation is presented - `fr show` and the
+blind test's product variant share it. Written twice, the two copies slowly drift apart.
 
-原先住在 `blindtest/variants.py`。2026-08-22 自用降级后盲测不再是关卡，
-主查询路径不该反过来依赖它。主 spec §7.3.1
+It used to live in blindtest/variants.py. After the 2026-08-22 self-use downgrade the blind test is
+no longer a gate, and the main query path must not depend back on it. Main spec §7.3.1
 """
 from pydantic import BaseModel
 
@@ -24,8 +24,8 @@ FIELD_LABELS = (
 _MAPPING_LABEL = "Mappings to other frameworks"
 
 
-# 关系与等级都翻成中文再给评委看。原样打印 `related` / `L1_OFFICIAL`
-# 是把内部枚举名甩在读者脸上，且「related」本身也不该出现在中文材料里。
+# Relations and levels are rendered as words for the judges. Printing raw `related` / `L1_OFFICIAL`
+# shoves internal enum names at the reader - and "related" should not appear in reader-facing material.
 _RELATION_LABELS = {
     "equivalent": "Equivalent",
     "subset": "Covered by",
@@ -41,9 +41,9 @@ _LEVEL_LABELS = {
 
 
 class MappingRef(BaseModel):
-    """一条可导出的映射边，已经带上展示所需的全部字段。
+    """One exportable mapping edge, carrying everything display needs.
 
-    由调用方从 QueryAPI 组装——variants 不碰数据库，才能脱库测。
+    Assembled by the caller from QueryAPI - variants never touch the database, so they test detached.
     """
 
     control_id: str
@@ -55,15 +55,15 @@ class MappingRef(BaseModel):
 
 
 def _short_id(control_id: str) -> str:
-    """`NIST-800-53-R5:AC-4` → `AC-4`。框架名已经写在组标题上了。"""
+    """`NIST-800-53-R5:AC-4` -> `AC-4`. The framework name is already in the section heading."""
     return control_id.split(":", 1)[-1]
 
 
 def render_mappings(refs: list[MappingRef]) -> str:
-    """这条对应到哪些别的框架条款，以及对应关系的出处。主 spec §7.3 第二条通过线
+    """Which other frameworks' controls this one maps to, and where that mapping comes from. Main spec §7.3 second pass bar
 
-    出处指的是**映射**的出处，不是字段的——spec §4 把 basis / inferred 列为
-    泄露词，字段级依据本来就不许出现在 packet 里。
+    The provenance in question is the **mapping's**, not the fields' - spec §4 lists basis / inferred as
+    leak words; field-level grounding was never allowed into a packet anyway.
     """
     if not refs:
         return ""
@@ -92,7 +92,7 @@ def render_interpretation(
     for name, label in FIELD_LABELS:
         field = interp.fields.get(name)
         if field is None or field.value in (None, "", [], {}):
-            continue          # 留空的字段直接不出现，不显示 None/null
+            continue          # empty fields simply do not appear - no None/null shown
         lines.append(f"**{label}**")
         value = field.value
         if isinstance(value, dict):

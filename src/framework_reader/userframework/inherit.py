@@ -1,14 +1,20 @@
-"""换版继承：把旧条款上写好的解读复制到新条款名下。
+"""Version-change inheritance: copy an interpretation already written on the old
+clause onto the new clause.
 
-三个不跟随（换版继承计划 Global Constraints）：
-- **签字不跟随**——签字是对着旧条款的原文与字段签的，换条款就得重签，
-  继承产物一律 `draft`，构建闸门因此天然不受影响；
-- **访谈原文不跟随**——RawAnswer 是作者对着旧条款说的话，带过去就是
-  新条款页上的无关问答；字段的 `value` 是抽出来的字面文本，可以带；
-- **旧条款不跟随**——复制不是搬移，旧解读原样保留，无损、可重复继承。
+Three things that do not follow (version-change inheritance plan, Global
+Constraints):
+- **Signatures do not follow** - a signature is made against the old clause's
+  source text and fields; a different clause means signing again. Inherited
+  results are always `draft`, so the build gate is naturally unaffected;
+- **Interview raw answers do not follow** - a RawAnswer is what the author said
+  about the old clause; carrying it over would put unrelated Q&A on the new
+  clause's page. A field's `value` is the extracted literal text, and may carry;
+- **The old clause does not follow** - copying is not moving; the old
+  interpretation stays exactly as it was, lossless and repeatably inheritable.
 
-校验与落库分成两个函数：路由层先 `check()` 拿到拒绝原因，`inherit()`
-只在通过后动手。模型不参与本流程——继承是纯代码复制。
+Validation and persistence are two separate functions: the route layer calls
+`check()` first to get the refusal reason, and `inherit()` only acts once it
+passes. The model takes no part in this flow - inheritance is a pure code copy.
 """
 from framework_reader.interpret.model import (
     Interpretation,
@@ -20,11 +26,11 @@ from framework_reader.query.api import QueryAPI
 
 
 class InheritDenied(Exception):
-    """继承被拒绝。message 是给用户看的中文，直接渲到页面上。"""
+    """Inheritance was refused. `message` is user-facing text, rendered straight onto the page."""
 
 
 def check(old_id: str, new_id: str, store, api: QueryAPI) -> None:
-    """三条硬校验：边存在、旧端有解读、新端没有。"""
+    """Three hard checks: the edge exists, the old side has an interpretation, the new side has none."""
     successors = {v.control_id for v in api.superseded_by(old_id)}
     if new_id not in successors:
         raise InheritDenied(
@@ -37,7 +43,7 @@ def check(old_id: str, new_id: str, store, api: QueryAPI) -> None:
 
 
 def inherit(old_id: str, new_id: str, store, api: QueryAPI) -> Interpretation:
-    """复制并落库，返回落在新条款名下的那条。"""
+    """Copy, persist, and return the interpretation now sitting under the new clause."""
     check(old_id, new_id, store, api)
     old = store.load(old_id)
     interp = Interpretation(

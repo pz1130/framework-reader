@@ -1,20 +1,27 @@
-"""从上传的文档里取出纯文本，再切成段。见网页服务化设计 §8 S5、2026-08-25 AI 导入设计
+"""Pull plain text out of an uploaded document, then split it into chunks. See
+hosted-service design §8 S5 and the 2026-08-25 AI import design.
 
-**认四种格式：.txt / .md / .docx / .pdf。** 每多一种格式就是一条新的解析路径，
-而解析别人的文件是攻击面最集中的地方——所以只加真正躲不开的那些。
-中文安全团队的制度九成是 .docx，其余是 Word 导出的 .pdf。
+**Four formats are recognized: .txt / .md / .docx / .pdf.** Every extra format is
+another parsing path, and parsing other people's files is where the attack surface
+is most concentrated - so only add the ones that truly cannot be avoided. Nine out
+of ten policy documents from security teams are .docx; most of the rest are .pdf
+exported from Word.
 
-**PDF 只收有文字层的。** 图片型扫描件一期不收：抽不出文字就当场说清楚，
-而不是把一串空白喂给模型——模型会照着空白编。OCR 见 AI 导入设计 §0.1（二期）。
+**PDFs are accepted only with a text layer.** Image-only scans are out of scope for
+phase 1: if no text can be extracted, say so on the spot instead of feeding a string
+of blanks to the model - the model will invent policy to match the blanks. OCR: see
+AI import design §0.1 (phase 2).
 
-这个文件先前写着「.pdf 不收，排版件切出来的段落是乱的」。那个顾虑没有消失，
-改由**预览确认**兜住（AI 导入设计 §5.2）：切歪了在预览里一眼看得出来，
-而靠拒收挡住的代价是用户手里那份 PDF 根本进不来。
+This file used to say ".pdf is not accepted; paragraphs cut out of typeset files
+come out a mess". That concern has not gone away; it is now covered by **preview
+confirmation** (AI import design §5.2): a bad cut is obvious at a glance in the
+preview, while refusing the file outright means the user's PDF never gets in at all.
 """
 import re
 import zipfile
 
-# 一段的目标长度。太短模型看不出上下文，太长会把一整章塞进 payload。
+# Target length of one chunk. Too short and the model lacks context; too long and a
+# whole chapter lands in the payload.
 CHUNK_TARGET = 700
 CHUNK_MAX = 1200
 
@@ -29,11 +36,12 @@ _BREAK = re.compile(r"<w:(?:br|tab)\b[^>]*/?>")
 
 
 class UnsupportedDocument(Exception):
-    """能直接给用户看的一句话。"""
+    """A one-liner that can be shown to the user directly."""
 
 
 def extract(filename: str, data: bytes) -> str:
-    """抽出纯文本。归一化与剔除都发生在这里，不能靠调用方记得各调一次。"""
+    """Extract plain text. Normalization and stripping happen here - never rely on
+    callers remembering to invoke each step themselves."""
     lower = (filename or "").lower()
     if lower.endswith(".docx"):
         raw = _from_docx(data)
@@ -50,23 +58,29 @@ def extract(filename: str, data: bytes) -> str:
     return "\n".join(strip_toc_lines(normalize_cjk(raw).splitlines()))
 
 
-# PDF 里的中文常被抽成「康熙部首」或「兼容表意文字」——看着一模一样，
-# 码位完全不同。实测一份 2025 年的国标框架 PDF 里有 2236 处：
-# 「⼈⼯智能」是 U+2F08 + U+2F27，不是 U+4EBA + U+5DE5。
-# 后果是 `fr search 人工智能` 一条都搜不到，模型收到的也是一堆怪字符。
+# Chinese extracted from PDFs often comes out as "Kangxi radicals" or "compatibility
+# ideographs" - visually identical, completely different code points. A 2025
+# national-standard framework PDF had 2236 occurrences in practice: the characters
+# for "artificial intelligence" came out as U+2F08 + U+2F27 (radicals) instead of
+# U+4EBA + U+5DE5 (ideographs).
+# The consequence: a Chinese search for "artificial intelligence" matches nothing,
+# and the model receives a pile of strange characters.
 _COMPAT_RANGES = (
-    (0x2E80, 0x2EFF),   # CJK 部首补充
-    (0x2F00, 0x2FDF),   # 康熙部首
-    (0xF900, 0xFAFF),   # CJK 兼容表意文字
+    (0x2E80, 0x2EFF),   # CJK Radicals Supplement
+    (0x2F00, 0x2FDF),   # Kangxi Radicals
+    (0xF900, 0xFAFF),   # CJK Compatibility Ideographs
 )
 
 
-# 「CJK 部首补充」区（U+2E80–U+2EFF）里的简化字部首**没有兼容分解**，
-# NFKC 对它们无效——`⻛` U+2EDB 归一化之后还是 `⻛`。只能手工映射。
+# The simplified radicals in the "CJK Radicals Supplement" block (U+2E80-U+2EFF)
+# **have no compatibility decomposition**; NFKC does nothing for them - `⻛` U+2EDB
+# is still `⻛` after normalization. Manual mapping is the only way.
 #
-# 这张表只收**真见过的**：来自用户那份《人工智能安全治理框架 2.0》PDF。
-# 不凭空补全整个区——没见过的映射写错了也不会有人发现，而错了就是
-# 在用户的正文里换了一个字。碰到新的就往这儿加，加之前先确认它真出现过。
+# This table holds only mappings **actually observed**: from a user's "AI Safety
+# Governance Framework 2.0" PDF. Do not fill in the whole block from thin air - a
+# wrong unseen mapping would go unnoticed, and a wrong mapping silently swaps a
+# character inside the user's body text. Add new ones here as they appear, after
+# confirming they really occurred.
 _RADICAL_TO_IDEOGRAPH = {
     "\u2ea0": "民",   # CJK RADICAL CIVILIAN
     "\u2ec5": "见",   # C-SIMPLIFIED SEE
@@ -79,10 +93,11 @@ _RADICAL_TO_IDEOGRAPH = {
 
 
 def normalize_cjk(text: str) -> str:
-    """只把部首/兼容区的字换成正字。
+    """Swap only the radical/compatibility-block characters for their proper forms.
 
-    **不整段 NFKC。** 那会把全角「（）：；」转成半角，而全角标点在中文制度里
-    是正规写法——动它就违反了「落库的正文逐字等于原文」。
+    **No whole-string NFKC.** That would turn full-width "（）：；" into half-width,
+    and full-width punctuation is standard writing in Chinese policies - touching it
+    would break "the stored body is verbatim identical to the source".
     """
     import unicodedata
 
@@ -97,22 +112,26 @@ def normalize_cjk(text: str) -> str:
     return "".join(fix(ch) for ch in text)
 
 
-# 目录的引导点：一长串「....」或「‥‥」。中文省略号「……」只有两个字符，
-# 碰不到这个门槛；「见附件 3.2.1」里的点也是零散的。
+# TOC leader dots: a long run of "...." or "‥‥". The Chinese ellipsis "……" is only
+# two characters and never reaches this threshold; the dots in "see annex 3.2.1" are
+# scattered too.
 _TOC_LEADER = re.compile(r"[.．·。]{6,}|[…]{3,}")
 
 
 def strip_toc_lines(lines: list[str]) -> list[str]:
-    """剔掉目录行。它们进模型的 payload 只会占 token，还可能被切成假条款。"""
+    """Drop table-of-contents lines. In the model's payload they only burn tokens,
+    and they can get cut into fake clauses."""
     return [line for line in lines if not _TOC_LEADER.search(line)]
 
 
-# 页眉页脚的判据：在**多数页**上一字不差地重复出现。阈值不是 100%——
-# 首页往往是封面没有页眉，末页往往没有页脚。
+# The test for running heads: repeated verbatim on **most** pages. The threshold is
+# not 100% - the first page is often a cover without a header, the last often has no
+# footer.
 _RUNNING_HEAD_RATIO = 0.6
-# 少于这么多页时不判：三页里出现两次，说明不了任何事。
+# Do not judge below this many pages: twice in three pages proves nothing.
 _RUNNING_HEAD_MIN_PAGES = 3
-# 「第 12 页」「- 12 -」「12 / 88」这类每页都在变的页码，靠重复抓不到，按形状抓。
+# Page numbers change on every page ("Page 12" in Chinese, "- 12 -", "12 / 88"), so
+# repetition cannot catch them; catch them by shape.
 _PAGE_NUMBER = re.compile(
     r"^(第\s*\d+\s*页(\s*/?\s*共\s*\d+\s*页)?|[-—–]\s*\d+\s*[-—–]"
     r"|\d+\s*/\s*\d+|\d{1,4})$"
@@ -120,16 +139,18 @@ _PAGE_NUMBER = re.compile(
 
 
 def strip_running_heads(pages: list[str]) -> list[str]:
-    """剔掉页眉页脚与页码。
+    """Strip running heads, footers, and page numbers.
 
-    **宁可留下也不误删。** 页眉落进条款正文只是噪声，人在预览页看得见；
-    删掉一行真正的正文，是把用户的制度改了，而他不会知道。
+    **Rather keep too much than delete one real line.** A header inside a clause body
+    is just noise, visible to a person on the preview page; deleting a line of
+    genuine body text rewrites the user's policy without him ever knowing.
     """
     if len(pages) < _RUNNING_HEAD_MIN_PAGES:
         return pages
     counts: dict[str, int] = {}
     for page in pages:
-        # 按页去重再计数：同一页里重复三次的一行，不该因此被当成页眉。
+        # Deduplicate within a page before counting: a line repeated three times on
+        # the same page must not be branded a header for that.
         for line in {ln.strip() for ln in page.splitlines() if ln.strip()}:
             counts[line] = counts.get(line, 0) + 1
     threshold = len(pages) * _RUNNING_HEAD_RATIO
@@ -147,9 +168,11 @@ def strip_running_heads(pages: list[str]) -> list[str]:
 
 
 def pdf_pages(data: bytes) -> list[str]:
-    """每页一串。**按页返回**是为了下一步剔页眉页脚——那要靠「跨页重复」判断。
+    """One string per page. **Returning per page** is what lets the next step strip
+    running heads - that detection relies on "repeated across pages".
 
-    整份都没有文字才算扫描件。混排文档里有几页是插图，不该因此整份被拒。
+    Only a document with no text anywhere is a scan. A mixed document with a few
+    image pages must not be rejected wholesale because of them.
     """
     import io
 
@@ -188,7 +211,8 @@ def _from_text(data: bytes) -> str:
             return data.decode(encoding)
         except UnicodeDecodeError:
             continue
-    # 中文文档最常见的两种编码都试过了，再猜下去只会得到乱码。
+    # The two most common encodings for Chinese documents have both been tried;
+    # guessing further only yields mojibake.
     raise UnsupportedDocument("Cannot detect this file's encoding. Re-save it as UTF-8 and upload again.")
 
 
@@ -221,10 +245,13 @@ def _unescape(text: str) -> str:
 
 
 def chunk(text: str) -> list[tuple[str, str]]:
-    """切成 (小标题, 正文) 的段。小标题只是给人看的定位标记。
+    """Split into (subheading, body) chunks. The subheading is only a human-facing
+    locator.
 
-    **按空行与标题切，不按固定字数切。** 固定字数会把一条制度要求拦腰截断，
-    而接地材料最怕的就是半句话——模型会把它补完，补出来的正是幻觉。
+    **Cut on blank lines and headings, not on a fixed character count.** A fixed count
+    slices a policy requirement in half, and nothing poisons grounding material like
+    a half sentence - the model will complete it, and the completion is precisely a
+    hallucination.
     """
     out: list[tuple[str, str]] = []
     heading = ""

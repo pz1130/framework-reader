@@ -1,6 +1,6 @@
-"""ISO 27002:2022 骨架导入。spec §4.1 Tier C、§4.2①
+"""ISO 27002:2022 skeleton import. spec §4.1 Tier C, §4.2①
 
-只导入编号与自写 label。原文一个字都不进本仓库。
+Only ids and self-written labels are imported. Not one word of the standard text enters this repository.
 """
 import csv
 import re
@@ -98,7 +98,7 @@ def parse_iso_skeleton(path: Path) -> tuple[Framework, list[FrameworkControl]]:
                     framework_id=FRAMEWORK_ID,
                     parent_id=f"{FRAMEWORK_ID}:{parent}" if parent else None,
                     label=row["label_zh"].strip(),
-                    label_is_original=False,  # Tier C：必须自写
+                    label_is_original=False,  # Tier C: must be self-written
                     framework_tier=LicenseTier.C_PURCHASE,
                 )
             )
@@ -106,10 +106,10 @@ def parse_iso_skeleton(path: Path) -> tuple[Framework, list[FrameworkControl]]:
 
 
 def parse_800_53_to_iso(path: Path) -> list[Mapping]:
-    """从 NIST 署名的 800-53 ↔ ISO 27001 对照表解析 L1 边。
+    """Parse L1 edges from the NIST-attributed 800-53 <-> ISO 27001 crosswalk.
 
-    源文件为 OLIR #155 xlsx（原随附 docx 已 404）。只读 800-53 与 ISO
-    编号列，不读描述列。Annex A 端点落到骨架命名空间 ISO-27002-2022:。
+    Source: the OLIR #155 xlsx (the originally bundled docx is a 404). Only the 800-53 and ISO id
+    columns are read, not the description columns. Annex A endpoints land in the skeleton namespace ISO-27002-2022:.
     """
     edges: list[Mapping] = []
     for ctl_53, iso_ref in _read_xlsx_id_pairs(path):
@@ -139,7 +139,7 @@ def _cell(value: object) -> str:
 
 
 def _read_xlsx_id_pairs(path: Path) -> list[tuple[str, str]]:
-    """读取各家族 sheet 的 800-53 / ISO 编号列；跳过空行与无对应表头的 sheet。"""
+    """Read the 800-53 / ISO id columns from each family sheet; skip empty rows and sheets without matching headers."""
     wb = load_workbook(Path(path), read_only=True, data_only=True)
     out: list[tuple[str, str]] = []
     for name in wb.sheetnames:
@@ -167,7 +167,7 @@ def _read_xlsx_id_pairs(path: Path) -> list[tuple[str, str]]:
 
 
 def _normalize_iso_endpoint(raw: str) -> str | None:
-    """把 A.8.16 / 8.16 / Annex A.8.16 归一到骨架 ID；跳过无骨架的 27001 条款。"""
+    """Normalise A.8.16 / 8.16 / Annex A.8.16 to a skeleton id; skip 27001 entries with no skeleton control."""
     text = raw.strip()
     if not text:
         return None

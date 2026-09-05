@@ -1,18 +1,18 @@
-"""管理员配的模型、key、限速与预算。见网页服务化设计 §6⑤⑥
+"""Admin-configured models, keys, rate limits, and budgets. See the web service design §6⑤⑥
 
-本地部署时这些都在环境变量里，读一次就完了。联网之后有两件事变了：
+In a local deployment all of this lives in environment variables - read once and done. Going hosted changed two things:
 
-- **key 存在我们的服务器上。** 所以加密落库、只脱敏回显、永不出现在
-  日志与异常里。没有主密钥（`FR_SECRET_KEY`）就拒绝落库——悄悄明文存下来
-  是这里唯一不可接受的失败方式。
-- **起草花的是组织的钱。** 一个没有上限的花钱按钮，第一个手滑的人就能
-  把一个月的预算点完。所以每人每小时、全组织每月、同时几个任务，三道闸。
+- **Keys are stored on our server.** So they are encrypted at rest, echoed back masked only, and never appear in
+  logs or exceptions. Without a master key (`FR_SECRET_KEY`) writes are refused - silently storing plaintext
+  is the one failure mode this module will not accept.
+- **Drafting spends the organization's money.** A spending button with no cap means the first slip of a hand
+  burns a month's budget. Hence three gates: per person per hour, per organization per month, and concurrent jobs.
 
-**账在「条」上，不在「元」上。** 我们没有各家厂商的实时价目，硬折成钱只会
-给人一个精确的错觉。「这个月起草了多少条」是能数准的，也是唯一诚实的度量。
+**The ledger counts items, not currency.** We have no live vendor pricing; forcing a money conversion
+creates an illusion of precision. "How many drafts this month" is countable - and the only honest measure.
 
-**在开跑那一刻记账，不是跑完。** 跑完再记的话，跑到一半的任务不算数，
-而钱已经花掉了。宁可多算失败的那几条。
+**Charge when the job starts, not when it finishes.** Charging on completion would make a job that dies halfway
+cost nothing on the books - but the money is already gone. Better to over-count the failures.
 """
 import sqlite3
 import ipaddress
@@ -25,8 +25,8 @@ from framework_reader import crypto, sqlite_setup
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS provider_key (
     provider TEXT PRIMARY KEY,
-    sealed   TEXT NOT NULL,      -- 密文。主密钥在 FR_SECRET_KEY，不在这张表里
-    masked   TEXT NOT NULL,      -- 回显用，sk-…cdef
+    sealed   TEXT NOT NULL,      -- ciphertext. The master key lives in FR_SECRET_KEY, not in this table
+    masked   TEXT NOT NULL,      -- for display only, sk-…cdef
     set_by   TEXT,
     set_at   TEXT NOT NULL
 );
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS model_role (
     set_at   TEXT NOT NULL
 );
 
--- 预设里没有的厂商：公司内网网关、Azure 部署、本机 vLLM/Ollama。
--- key 不在这里——它和预设厂商共用 provider_key，同一条加密路径。
+-- Vendors beyond the presets: corporate intranet gateways, Azure deployments, local vLLM/Ollama.
+-- Keys are not here - they share provider_key with the preset vendors, same encrypted path.
 CREATE TABLE IF NOT EXISTS custom_provider (
     id            TEXT PRIMARY KEY,
     base_url      TEXT NOT NULL,
@@ -49,13 +49,13 @@ CREATE TABLE IF NOT EXISTS custom_provider (
     added_at      TEXT NOT NULL
 );
 
--- 某厂商此刻有哪些模型可用。**这是这台机器上这把 key 的事实，不是内容**，
--- 所以进用户库，永不进内容包。
+-- Which models a vendor currently offers. **A fact about this machine's key, not content** -
+-- so it goes into the user database, never the content pack.
 CREATE TABLE IF NOT EXISTS model_catalog (
     provider    TEXT PRIMARY KEY,
     models_json TEXT NOT NULL DEFAULT '[]',
     fetched_at  TEXT NOT NULL,
-    error       TEXT NOT NULL DEFAULT ''     -- 空 = 这次拉成功了
+    error       TEXT NOT NULL DEFAULT ''     -- empty = this fetch succeeded
 );
 
 CREATE TABLE IF NOT EXISTS llm_setting (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS llm_setting (
     set_at TEXT NOT NULL
 );
 
--- 起草的账。只追加。
+-- The drafting ledger. Append-only.
 CREATE TABLE IF NOT EXISTS draft_spend (
     id       INTEGER PRIMARY KEY AUTOINCREMENT,
     at       TEXT NOT NULL,
@@ -77,47 +77,48 @@ CREATE TABLE IF NOT EXISTS draft_spend (
 CREATE INDEX IF NOT EXISTS idx_spend_at ON draft_spend(at);
 """
 
-# 默认值决定了没人配置时会发生什么，而没人配置是常态。
-# 这三个数要**够用而有限**：挡得住手滑，挡不住正常工作。
+# Defaults decide what happens when nobody has configured anything - and that is the normal case.
+# These three numbers must be **usable yet bounded**: they stop slips of the hand, not normal work.
 DEFAULT_LIMITS = {
-    "draft_cap_hour": 300,     # 每人每小时多少条
-    "draft_cap_month": 5000,   # 全组织每月多少条
-    "draft_max_jobs": 3,       # 同时几个起草任务
+    "draft_cap_hour": 300,     # items per person per hour
+    "draft_cap_month": 5000,   # items per organization per month
+    "draft_max_jobs": 3,       # concurrent drafting jobs
 }
 
 HOUR = timedelta(hours=1)
 
 
 class CustomProviderError(Exception):
-    """自定义端点配错了。这句话直接给用户看。"""
+    """A custom endpoint was misconfigured. This message is shown to the user verbatim."""
 
 
-# 自定义端点的 key 存在 provider_key 里，但 registry 是按环境变量名取 key 的，
-# 所以给每个自定义端点合成一个名字。本地部署直接设这个环境变量也能跑——
-# 和预设厂商回落环境变量是同一套规矩。
+# A custom endpoint's key is stored in provider_key, but the registry looks keys up by
+# environment variable name - so each custom endpoint gets a synthesized name. Setting that
+# variable directly works for local deployments too - same rule as the presets' fallback.
 def custom_key_env(provider_id: str) -> str:
     return f"FR_CUSTOM_{provider_id.upper().replace('-', '_')}_API_KEY"
 
 
 _ID_OK = re.compile(r"^[a-z0-9][a-z0-9_-]{0,30}$")
 
-# http 只放行这些。Ollama / vLLM / 内网网关正是这一类，一刀切成 https
-# 会把自建部署全堵死——而自建部署恰恰是开这个口子的主要理由。
+# http is allowed for exactly these. Ollama / vLLM / intranet gateways are that kind of
+# deployment; a blanket https rule would lock out every self-hosted setup - and self-hosting
+# is the main reason this opening exists.
 _PRIVATE_HOSTNAMES = {"localhost"}
 
 
 def check_base_url(url: str) -> None:
-    """地址政策。不合规就抛，**在写库之前**。
+    """Address policy. Raises on violation - **before the database write**.
 
-    只看字面量，不做 DNS 解析：一个域名此刻解析到哪、请求发出时解析到哪，
-    可以是两个地址。那不是一道配置期校验能解决的问题，写在这里是免得
-    有人以为它解决了。
+    Literal inspection only, no DNS resolution: where a domain resolves now and where it
+    resolves when the request fires can be two different addresses. That is not a problem a
+    config-time check can solve; it is documented here so nobody believes it was.
     """
     from urllib.parse import urlparse
 
     try:
         parsed = urlparse((url or "").strip())
-    except ValueError as exc:                       # 畸形到 urlparse 都不收
+    except ValueError as exc:                       # too malformed even for urlparse
         raise CustomProviderError(f"not a valid URL: {url}") from exc
     if parsed.scheme not in ("http", "https") or not parsed.hostname:
         raise CustomProviderError(
@@ -141,7 +142,7 @@ def check_base_url(url: str) -> None:
 
 
 class BudgetError(Exception):
-    """超了闸。这句话直接给用户看，所以要带上数字。"""
+    """A gate was exceeded. The message is shown to the user, so it carries the numbers."""
 
 
 def _now() -> datetime:
@@ -151,8 +152,8 @@ def _now() -> datetime:
 def default_path() -> Path:
     from framework_reader import usage
 
-    # 与身份层同一个运营库：这是部署配置，不是业务数据，
-    # 导出「我们的合规材料」时不该顺带把 key 带出去。
+    # Same operations database as the identity layer: this is deployment config, not
+    # business data - exporting "our compliance material" must not carry keys along.
     return usage.home() / "identity.sqlite"
 
 
@@ -176,8 +177,8 @@ class ModelConfig:
     # ---------- key ----------
 
     def set_key(self, provider: str, key: str, *, by: str | None = None) -> None:
-        """先封再写。封不上（没有主密钥）就**什么都不写**。"""
-        sealed = crypto.seal(key)          # 抛 SecretError 时这一行之后都不会跑
+        """Seal first, then write. If sealing fails (no master key), **nothing is written**."""
+        sealed = crypto.seal(key)          # on SecretError nothing after this line runs
         conn = self._conn()
         try:
             conn.execute(
@@ -205,14 +206,14 @@ class ModelConfig:
         conn = self._conn()
         try:
             conn.execute("DELETE FROM provider_key WHERE provider = ?", (provider,))
-            # key 没了，那份清单也失去意义——留着只会让人以为还能选。
+            # Key gone, that catalogue loses its meaning - keeping it suggests it is still selectable.
             conn.execute("DELETE FROM model_catalog WHERE provider = ?", (provider,))
             conn.commit()
         finally:
             conn.close()
 
     def masked(self) -> dict[str, dict]:
-        """给页面的东西里**没有密文，也没有明文**——只有认得出的那几位。"""
+        """What the page gets contains **neither ciphertext nor plaintext** - only the recognizable last four characters."""
         conn = self._conn()
         try:
             return {
@@ -225,10 +226,10 @@ class ModelConfig:
             conn.close()
 
     def key_lookup(self, env_lookup=None):
-        """给 `LLMRegistry.build()` 的取 key 函数：先看库，再回落环境变量。
+        """The key lookup handed to `LLMRegistry.build()`: store first, environment fallback second.
 
-        回落是留给本地部署与首次搭建的——库里还什么都没有的时候，
-        服务器上原来那套环境变量照样能跑。
+        The fallback exists for local deployments and first setup - while the store is still
+        empty, the server's original environment variables keep working.
         """
         import os
 
@@ -249,8 +250,8 @@ class ModelConfig:
                 for preset in registry.providers:
                     if preset.id in sealed:
                         by_env[preset.api_key_env] = sealed[preset.id]
-                # 自定义端点不在 YAML 里，但 key 存在同一张表。漏掉这一段的话
-                # 页面上配得好好的 key，起草时报「没配 key」。
+                # Custom endpoints are not in the YAML, but their keys live in the same table.
+                # Without this branch, a key configured on the page still errors "no key" at draft time.
                 for provider_id in self.custom_providers():
                     if provider_id in sealed:
                         by_env[custom_key_env(provider_id)] = sealed[provider_id]
@@ -260,7 +261,7 @@ class ModelConfig:
 
         return lookup
 
-    # ---------- 角色 ----------
+    # ---------- Roles ----------
 
     def set_role(self, role: str, *, provider: str, model: str,
                  by: str | None = None) -> None:
@@ -278,8 +279,8 @@ class ModelConfig:
             conn.close()
 
     def roles(self) -> dict[str, dict]:
-        """没配的角色**不出现**——回落到 content/llm_providers.yaml，
-        不在这里编一个默认值出来。两处各有一个默认值，迟早对不上。"""
+        """Unconfigured roles **do not appear** - fall back to content/llm_providers.yaml
+        instead of inventing a default here. Two defaults in two places drift apart, eventually."""
         conn = self._conn()
         try:
             return {
@@ -289,11 +290,11 @@ class ModelConfig:
         finally:
             conn.close()
 
-    # ---------- 模型目录 ----------
+    # ---------- Model catalogue ----------
 
     def set_catalog(self, provider: str, models: list[str], *,
                     error: str = "") -> None:
-        """成功与失败都记。页面要说清楚「为什么这儿没有下拉」。"""
+        """Record successes and failures alike. The page must explain "why is there no dropdown here"."""
         import json
 
         conn = self._conn()
@@ -311,8 +312,8 @@ class ModelConfig:
             conn.close()
 
     def catalog(self, provider: str) -> dict | None:
-        """没拉过返回 None。**「没拉过」与「拉到了但是空的」是两件事**——
-        页面上说的话不一样，混成一个空列表就分不出来了。"""
+        """Returns None when never fetched. **Never-fetched and fetched-but-empty are different
+        things** - the page says different words, and merging them into one empty list loses the distinction."""
         import json
 
         conn = self._conn()
@@ -349,11 +350,11 @@ class ModelConfig:
         finally:
             conn.close()
 
-    # ---------- 自定义端点 ----------
+    # ---------- Custom endpoints ----------
 
     def set_custom_provider(self, provider_id: str, *, base_url: str,
                             default_model: str, by: str | None = None) -> None:
-        """先校验，再写。**任何一条不过就什么都不写。**"""
+        """Validate first, then write. **Any single failure writes nothing.**"""
         from framework_reader.llm.registry import DEFAULT_REGISTRY_PATH, LLMRegistry
 
         provider_id = (provider_id or "").strip()
@@ -363,7 +364,7 @@ class ModelConfig:
                 f"{provider_id} is not allowed.")
         presets = {p.id for p in LLMRegistry.load(DEFAULT_REGISTRY_PATH).providers}
         if provider_id in presets:
-            # 撞名的话，谁盖谁全看查表顺序——那种 bug 找起来最贵。
+            # On a name collision, whichever wins depends on lookup order - the most expensive kind of bug to find.
             raise CustomProviderError(f"{provider_id} is the id of a preset provider; pick another.")
         check_base_url(base_url)
         if not (default_model or "").strip():
@@ -397,10 +398,10 @@ class ModelConfig:
             conn.close()
 
     def delete_custom_provider(self, provider_id: str) -> None:
-        """还有角色指着它就拒绝。删掉之后 drafter 指向一个不存在的厂商，
-        下一次起草才会炸——那时候没人记得是这一步干的。
+        """Refuse while any role still points here. Delete it and the drafter points at a nonexistent
+        vendor - the next draft explodes, and by then nobody remembers this step did it.
 
-        跟「撤最后一个 admin 会被拒绝」同一个模式：不变量守在存储层。
+        Same pattern as "revoking the last admin is refused": the invariant lives in the storage layer.
         """
         used_by = [role for role, cfg in self.roles().items()
                    if cfg["provider"] == provider_id]
@@ -417,7 +418,7 @@ class ModelConfig:
         finally:
             conn.close()
 
-    # ---------- 限速与预算 ----------
+    # ---------- Rate limits and budget ----------
 
     def limits(self) -> dict[str, int]:
         conn = self._conn()
@@ -439,7 +440,7 @@ class ModelConfig:
                 if name not in DEFAULT_LIMITS:
                     raise ValueError(f"no such limit: {name}")
                 if int(value) < 1:
-                    # 0 会把起草整个关死，而那件事该由「撤掉 author 角色」来做。
+                    # 0 would switch drafting off entirely - that job belongs to "revoke the author role".
                     raise ValueError("The limit must be at least 1. To stop drafting entirely, remove the author role.")
                 conn.execute(
                     "INSERT INTO llm_setting (key, value, set_by, set_at) "
@@ -454,14 +455,14 @@ class ModelConfig:
 
     def charge_draft(self, actor: str, controls: int, *, what: str = "",
                      running_jobs: int = 0) -> None:
-        """先查三道闸，过了才记账。**拒了不记**——拒了还扣，等于第二次更容易被拒。"""
+        """Check the three gates before booking. **A refusal books nothing** - charging on refusal makes the second attempt likelier to be refused too."""
         limits = self.limits()
         if running_jobs >= limits["draft_max_jobs"]:
             raise BudgetError(
                 f"There are already {running_jobs} drafting jobs running (limit {limits['draft_max_jobs']})."
                 " Wait for one to finish and try again.")
         if controls <= 0:
-            return                      # 一条都不用起草，不该扣额度
+            return                      # nothing to draft; no charge due
 
         now = _now()
         conn = self._conn()
@@ -496,7 +497,7 @@ class ModelConfig:
             conn.close()
 
     def remaining_draft(self, actor: str) -> int:
-        """这一小时、这个月还能起草几条。取更紧的那个。"""
+        """How many drafts remain this hour and this month. The tighter one wins."""
         limits = self.limits()
         now = _now()
         conn = self._conn()
@@ -518,11 +519,11 @@ class ModelConfig:
         return max(0, min(hour_left, month_left))
 
     def refund_draft(self, actor: str, controls: int) -> None:
-        """扣过额度但活儿没跑成，退回去。
+        """Refund a charge whose job never ran.
 
-        `charge_draft` 的规矩是「拒了不记」，那是在**查闸的时候**拒。
-        闸过了、钱记了、然后在更后面一步失败（比如没配 key），
-        那笔账留着就是白扣——下一次更容易被拒，而用户什么都没得到。
+        charge_draft's rule is "a refusal books nothing" - that refusal happens **at the gate**.
+        Pass the gate, book the charge, then fail later (say, no key configured): keeping the
+        charge is a pure loss - the next attempt is likelier to be refused, and the user got nothing.
         """
         if controls <= 0:
             return
@@ -558,13 +559,13 @@ class ModelConfig:
 
 
 def effective_registry(path=None, config: "ModelConfig | None" = None):
-    """把管理员在网页上配的东西盖到 YAML 预设上，返回 (registry, key_lookup)。
+    """Overlay what the admin configured on the web onto the YAML presets; return (registry, key_lookup).
 
-    **只此一处组装。** CLI 与 Web 走同一条起草路径（`interpret/run.py`），
-    所以这里改一次，两边都跟着变——分成两处写，两处就会各自漂。
+    **Assembled in exactly one place.** CLI and web share one drafting path (interpret/run.py),
+    so a change here reaches both - write it twice and the two copies drift apart.
 
-    没在网页上配的角色保持 YAML 预设，没在网页上配的 key 回落环境变量。
-    两处各编一个默认值，迟早对不上。
+    Roles not configured on the web keep their YAML presets; keys not configured fall back to
+    environment variables. Two defaults in two places drift apart, eventually.
     """
     from framework_reader.llm.registry import (
         DEFAULT_REGISTRY_PATH, LLMRegistry, RoleConfig,
@@ -574,16 +575,16 @@ def effective_registry(path=None, config: "ModelConfig | None" = None):
 
     config = config or ModelConfig()
     registry = LLMRegistry.load(path or DEFAULT_REGISTRY_PATH)
-    # 自定义端点合成成 preset 塞进同一份清单——registry.build 与 GuardedClient
-    # 一个字不动，出网仍然只有那一条路径。
+    # Synthesize custom endpoints as presets into the same catalogue - registry.build and
+    # GuardedClient stay untouched; outbound traffic still has exactly one path.
     for provider_id, row in config.custom_providers().items():
         registry.providers.append(ProviderPreset(
             id=provider_id,
-            kind="openai_compat",          # 自定义端点一律走兼容口
+            kind="openai_compat",          # custom endpoints always use the compat interface
             base_url=row["base_url"],
             api_key_env=custom_key_env(provider_id),
             default_model=row["default_model"],
-            explicit_cache=False,          # 显式缓存只有 anthropic 能声称
+            explicit_cache=False,          # only anthropic can claim explicit caching
             note="custom endpoint",
         ))
     for role, chosen in config.roles().items():

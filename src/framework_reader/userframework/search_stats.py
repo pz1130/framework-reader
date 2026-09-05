@@ -1,8 +1,9 @@
-"""网页搜索命中记账。首页「经常搜索」读这里。"""
+"""Bookkeeping for web search hits. The home page's "frequently searched" reads from here."""
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-# 一次搜出二十条，不能把目录前几个全刷成「经常」。只记最靠前的几条。
+# One search can return twenty hits; the first few entries of the catalog must not
+# all get flipped to "frequent". Only the top few are recorded.
 KEEP_PER_SEARCH = 5
 WINDOW_DAYS = 90
 

@@ -1,7 +1,7 @@
-"""组装一次起草。CLI 与 Web 共用同一条路径。
+"""Assemble one drafting run. CLI and web share this single path.
 
-分成两处写的话，两处就会各自漂——比如 CLI 记得按框架分层选存储、Web 忘了，
-导入的框架在网页上起草完又一次进不了用户库。装配只此一处。
+Written twice, the two copies drift apart - say the CLI remembers to pick the store by framework
+tier and the web forgets: an imported framework drafted on the web lands outside the user library
 """
 import re
 import sqlite3
@@ -12,14 +12,14 @@ from framework_reader.query.api import QueryAPI
 
 
 class UnknownFrameworkError(Exception):
-    """框架编号在内容包和用户库里都找不到。"""
+    """The framework id exists in neither the content pack nor the user library."""
 
 
 def documents_for(view, user_db: Path | None):
-    """配套文档只给**用户自己导入的**框架用，内置框架一律 None。
+    """Companion documents serve **frameworks the user imported themselves** only; built-ins always get None.
 
-    内置框架（CSF / ISO / 800-53）的解读是我们要发布的内容，进 git、要评审、
-    会被烘进内容包。里面出现某一家公司的内部制度，既不对，也发不出去。
+    Built-in frameworks (CSF / ISO / 800-53) are interpretations we publish: into git, reviewed, and
+    baked into the content pack. Some company's internal policy inside them is both wrong and unpublishable.
     """
     from framework_reader.schema.entities import LicenseTier
     from framework_reader.userframework.documents import DocumentStore
@@ -41,7 +41,7 @@ def draft_framework(
     user_db: Path | None = None,
     overlay: bool = False,
 ) -> DraftReport:
-    """起草整个框架。缺 API key 会抛 MissingApiKeyError，由调用方决定怎么说。"""
+    """Draft a whole framework. A missing API key raises MissingApiKeyError; the caller words it."""
     from framework_reader.interpret.drafter import DRAFT_FAILURE_DIR
     from framework_reader.interpret.user_store import store_for
     from framework_reader.llm.config import effective_registry
@@ -53,14 +53,14 @@ def draft_framework(
     if view is None:
         raise UnknownFrameworkError(f"No such framework: {framework_id}")
 
-    # 管理员在网页上配的模型与 key 盖在 YAML 预设之上。
+    # The model and keys the admin configured on the web overlay the YAML presets.
     registry, key_lookup = effective_registry()
     role = registry.role("drafter")
     conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     guard = PayloadGuard(forbidden_texts_from_db(conn))
     conn.close()
 
-    # 清掉上一轮的失败样本，否则 build/draft_failures/ 里会混着陈货，误导诊断。
+    # Clear the previous round's failure samples, or build/draft_failures/ mixes stale entries in and misleads diagnosis.
     if DRAFT_FAILURE_DIR.exists():
         for stale in DRAFT_FAILURE_DIR.glob("*.txt"):
             stale.unlink()
@@ -82,7 +82,7 @@ def fill_blanks_one(
     db: Path, control_id: str, user_db: Path | None = None,
     overlay: bool = False,
 ) -> DraftReport:
-    """只补这一条的空字段。用户点某一条的「补空缺」走这里，不跑整个框架。"""
+    """Fill just this control's blank fields. The per-control "Fill the blanks" button lands here - not a whole-framework run."""
     framework_id = control_id.split(":", 1)[0]
     return draft_framework(
         db, framework_id, jobs=1, only=[control_id], full=True, fill_blanks=True,
@@ -92,7 +92,7 @@ def fill_blanks_one(
 
 def rewrite_one(db: Path, control_id: str, field: str, instruction: str,
                 user_db: Path | None = None):
-    """按用户的一句要求重写一个字段，返回新值（不落盘，落盘由调用方决定）。"""
+    """Rewrite one field per the user's one-line instruction; returns the new value (persisting is the caller's call)."""
     from framework_reader.interpret.drafter import rewrite_field
     from framework_reader.interpret.render import FIELD_LABELS
     from framework_reader.llm.config import effective_registry
@@ -100,7 +100,7 @@ def rewrite_one(db: Path, control_id: str, field: str, instruction: str,
 
     api = QueryAPI(db, user_db=user_db)
     current = (api.interpretation(control_id).get(field) or {}).get("value")
-    # 管理员在网页上配的模型与 key 盖在 YAML 预设之上。
+    # The model and keys the admin configured on the web overlay the YAML presets.
     registry, key_lookup = effective_registry()
     role = registry.role("drafter")
     conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
@@ -116,10 +116,10 @@ def rewrite_one(db: Path, control_id: str, field: str, instruction: str,
 
 def rewrite_body(db: Path, control_id: str, instruction: str, current: str,
                  user_db: Path | None = None) -> str:
-    """按用户要求改**他自己导入的**一条正文。只出提议稿，不落盘——
-    写库永远是用户点「保存」那一步的事（和字段重写同一道闸）。
+    """Revise **the user's own imported** control body per their instruction. Proposes only, never persists -
+    writing happens when the user clicks Save (same gate as field rewrites).
 
-    只接用户框架：内置框架的正文是官方文本，这条路由根本不该被调到。
+    User frameworks only: a built-in control's body is official text; this route must never even be reached.
     """
     from framework_reader.llm.client import Message
     from framework_reader.llm.config import effective_registry
@@ -139,8 +139,8 @@ def rewrite_body(db: Path, control_id: str, instruction: str, current: str,
     raw = client.complete(
         load_prompt("body_rewrite"), [Message(role="user", content=user)],
         model=role.model)
-    # 提示词说了只输出正文，但模型偶尔还是裹围栏——剥掉。剥完为空
-    # 就当它没改，原样退回，别拿一个空字符串把用户的正文清了。
+    # The prompt says body-only, but the model occasionally wraps it in fences anyway - strip them. If
+    # nothing survives stripping, treat it as no change and return the original: an empty string must
     text = re.sub(r"^\s*```[a-z]*\s*|\s*```\s*$", "", (raw or "").strip())
     return text if text else current
 
@@ -148,7 +148,7 @@ def rewrite_body(db: Path, control_id: str, instruction: str, current: str,
 def pending_controls(
     db: Path, framework_id: str, user_db: Path | None = None
 ) -> list[str]:
-    """这个框架里还没有解读的叶子控制。起草前要先告诉用户这一趟要花多少钱。"""
+    """Leaf controls in this framework still without interpretations. Say what a drafting run will cost before it starts."""
     api = QueryAPI(db, user_db=user_db)
     return [
         c.id for c in api.list_controls(framework_id, active_only=True, leaf_only=True)

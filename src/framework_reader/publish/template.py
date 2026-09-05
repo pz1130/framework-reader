@@ -1,4 +1,4 @@
-"""发布页的外壳。占位符用注释标记，不用 str.format——CSS 里全是花括号。"""
+"""The publish page shell. Placeholders are marked with comments, not str.format - the CSS is full of braces."""
 
 from framework_reader.publish.theme import THEME_CSS
 
@@ -18,7 +18,7 @@ body{
 }
 .wrap{max-width:53rem;margin:0 auto;padding:0 1.25rem 6rem}
 
-/* ---- 报头 ---- */
+/* ---- Masthead ---- */
 .masthead{padding:4.5rem 0 2rem;border-bottom:2px solid var(--ink)}
 .eyebrow{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;
@@ -31,7 +31,7 @@ h1{
 .sub{margin:1rem 0 0;max-width:38rem;color:var(--muted)}
 .count{font-family:var(--mono);color:var(--ink);font-weight:600}
 
-/* ---- 前言 ---- */
+/* ---- Preamble ---- */
 .colophon{
   margin:2rem 0 0;padding:1.25rem 1.4rem;background:var(--sunk);
   border-left:3px solid var(--accent);font-size:.9rem;line-height:1.7
@@ -40,7 +40,7 @@ h1{
 .colophon p:last-child{margin:0}
 .colophon strong{color:var(--ink)}
 
-/* ---- 框架切换 ---- */
+/* ---- Framework switcher ---- */
 .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.75rem 0 .9rem}
 .tab{
   font:inherit;font-size:.95rem;padding:.5rem 1rem;cursor:pointer;
@@ -58,7 +58,7 @@ h1{
 .fwnote{margin:0;font-size:.84rem;color:var(--muted);max-width:44rem}
 .fwnote strong{color:var(--ink)}
 
-/* ---- 工具条 ---- */
+/* ---- Toolbar ---- */
 .tools{
   position:sticky;top:0;z-index:5;background:var(--ground);
   padding:1rem 0;border-bottom:1px solid var(--rule);
@@ -83,7 +83,7 @@ h1{
 .chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
 .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* ---- 条款 ---- */
+/* ---- Controls ---- */
 .ctl{
   background:var(--surface);border:1px solid var(--rule);border-radius:18px;
   box-shadow:0 2px 10px rgba(0,0,0,.06);

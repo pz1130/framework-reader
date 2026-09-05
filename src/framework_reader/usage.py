@@ -1,10 +1,10 @@
-"""自用日志。主 spec §7.3.1
+"""The self-usage log. Main spec §7.3.1
 
-2026-08-22 起这是本产品**唯一**的验证手段：盲测无评委，日历窗口无场景，
-剩下的只有「下一次真实工作发生时，它被不被想起」。
+Since 2026-08-22 this is the product's **only** validation signal: no judges for the blind test,
+no calendar window for a scenario - all that remains is "when the next piece of real work happens, does this tool come to mind".
 
-日志的作用是**防回忆**——回忆在这件事上系统性偏乐观。判据不在计数器上，
-在 `--note` 手记里的那三问。
+The log exists to **defend against recall** - recall is systematically optimistic here. The verdict
+is not in the counter; it is in the three questions of a `--note`.
 """
 import json
 import os
@@ -14,16 +14,16 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-# 查询才算「用这个工具」。draft / interview / blindtest 是**建**这个工具，
-# 把两者混在一起算，是最舒服的一种自欺。
+# Only queries count as "using the tool". draft / interview / blindtest are **building** the tool;
+# mixing the two is the most comfortable form of self-deception.
 #
-# 2026-08-24 补上 search 与 frameworks。原来只有 {show, stats}，而 `fr search`
-# 是**主入口**——Skill 教的第一句就是「先搜，再看」，条号记不住是常态。
-# 主入口落在「生产」那一边，等于这个仪表把每一次真实使用都记成「你在开发」：
-# 「查询 0 次」会永远是 0，而那个 0 什么也不说明。
+# 2026-08-24: search and frameworks added. It used to be {show, stats} only, yet `fr search` is
+# the **main entrance** - the Skill's first instruction is "search first, then look"; not remembering
+# control numbers is the norm. A main entrance booked under "production" makes this gauge record
+# every real use as "you are developing": "queries: 0" would stay 0 forever, and that 0 means nothing.
 #
-# assess / gap / soa 仍在「生产」那一边——它们是真实使用，但不是查询，
-# 混进来会稀释掉这个计数器唯一要回答的问题（第三问：没有它你会不会直接问模型）。
+# assess / gap / soa stay on the "production" side - real use, but not queries; mixing them in
+# dilutes the one question this counter must answer (the third: without it, would you just ask the model).
 QUERY_COMMANDS = {"show", "stats", "search", "frameworks"}
 
 _THREE_QUESTIONS = (
@@ -41,10 +41,10 @@ class Entry(BaseModel):
 
 
 def target_from_argv(argv: list[str], command: str) -> str:
-    """命令后面第一个不带横杠的参数，就是这次查的东西。
+    """The first argument after the command name is what was queried.
 
-    Click 的 group callback 拿不到子命令的参数（那时还没解析），
-    所以从 argv 取。取错了最坏是记成空字符串，不影响命令本身。
+    Click's group callback cannot see the sub-command's arguments (not parsed yet at that point),
+    so it reads from argv. Worst case it records an empty string; the command itself is unaffected.
     """
     if command not in argv:
         return ""
@@ -53,7 +53,7 @@ def target_from_argv(argv: list[str], command: str) -> str:
         if token.startswith("-"):
             continue
         if index and rest[index - 1].startswith("-"):
-            continue          # 这是上一个 flag 的值，不是目标
+            continue          # that is the previous flag's value, not the target
         return token
     return ""
 
@@ -67,7 +67,7 @@ def log_path() -> Path:
 
 
 def record(command: str, *, target: str = "", note: str = "") -> None:
-    """追一行。**任何失败都不得让命令本身失败**——查一条控制不该因为日志写不进去而崩。"""
+    """Append one line. **No failure here may ever fail the command** - querying a control must not crash because a log write failed."""
     entry = Entry(at=datetime.now(timezone.utc), command=command, target=target, note=note)
     try:
         path = log_path()
@@ -91,7 +91,7 @@ def load() -> list[Entry]:
         try:
             out.append(Entry(**json.loads(line)))
         except ValueError:
-            continue          # 半行、手改坏的行，跳过而不是让报告崩掉
+            continue          # half a line, or hand-mangled - skip rather than crash the report
     return out
 
 

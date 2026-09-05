@@ -1,4 +1,4 @@
-"""解读的 YAML 存储。主 spec §9：内容以 YAML 存于 Git，SQLite 是构建产物。"""
+"""YAML storage for interpretations. Main spec §9: content lives as YAML in git; SQLite is a build artifact."""
 import os
 from collections.abc import Iterator
 from pathlib import Path
@@ -15,7 +15,7 @@ DEFAULT_ROOT = Path("content/interpretations")
 
 
 class UserFrameworkInContentError(Exception):
-    """有人要把用户导入的框架写进产品的内容仓。"""
+    """Someone is trying to write a user-imported framework into the product's content repo."""
 
 
 class InterpretationStore:
@@ -43,14 +43,14 @@ class InterpretationStore:
         return path
 
     def _guard_content_root(self, control_id: str) -> None:
-        """用户导入的框架不许进 `content/interpretations/`。
+        """User-imported frameworks may not enter `content/interpretations/`.
 
-        起草那条路已经按 tier 分流（interpret.user_store.store_for），但分流
-        是**每个调用点各自记得**才成立的事——b971e12 就是漏了一处。门设在写
-        入口本身，下一个写命令的人忘了也撞得回来。
+        The drafting path already routes by tier (interpret.user_store.store_for), but that routing
+        only holds if **every call site remembers to use it** - b971e12 missed one. The gate sits at
+        the write entry itself, so the next write command hits it even if its author forgot.
 
-        守的是这一处目录，不是这个类：测试与迁移都要能把用户框架的 YAML
-        写到别处去。判据是「这个框架在不在用户库里」，不靠编号长相猜。
+        What is guarded is this one directory, not the class: tests and migrations must stay able to
+        write user-framework YAML elsewhere. The test is "is this framework in the user library", not the id's shape.
         """
         if Path(self.root).resolve() != DEFAULT_ROOT.resolve():
             return
@@ -60,7 +60,7 @@ class InterpretationStore:
 
             mine = {f.id for f in UserFrameworkStore().list_frameworks()}
         except Exception:                                   # noqa: BLE001
-            return          # 用户库读不到就不拦——这是第二道门，不是唯一一道
+            return          # user library unreadable: do not block here - this is the second gate, not the only one
         if framework_id not in mine:
             return
         raise UserFrameworkInContentError(
@@ -83,7 +83,7 @@ class InterpretationStore:
         return [i for i in self.iter_all() if i.state is state]
 
     def append_raw(self, control_id: str, n: int, text: str) -> None:
-        """答完一问立刻落盘。同一问重答则覆盖，不追加。W2 spec §6"""
+        """Persist immediately after each answer; re-answering the same question overwrites, never appends. W2 spec §6"""
         interp = self.load(control_id)
         kept = [r for r in interp.interview.raw if r.n != n]
         kept.append(RawAnswer(n=n, text=text))

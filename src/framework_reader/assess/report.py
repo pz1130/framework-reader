@@ -1,7 +1,7 @@
-"""差距报告。主 spec §7.3.3
+"""The gap report. Main spec §7.3.3
 
-「下一步做什么」**不需要任何推理**——`practice` 本来就是 1/2/3 三档写好的，
-你在 1 档，下一步就是 2 档那段话。这里唯一做的事是查表、排序、把证据带上。
+"What to do next" **requires no reasoning at all** - `practice` is already written as levels 1/2/3:
+at level 1, the next step is the level-2 text. All this does is look up, sort, and carry the evidence.
 """
 from pydantic import BaseModel
 
@@ -52,8 +52,8 @@ def build_gap(
             control_id=entry.control_id,
             label=info.get("label", ""),
             level=entry.level,
-            # 下一档的原话。查不到（如 ISO 那 93 条还没有解读）就留空，
-            # 但这条控制仍要出现在报告里——没解读不等于没差距。
+            # The next rung's verbatim text. Leave empty when it cannot be found (say, ISO's 93 controls
+            # with no interpretation yet) - the control still appears in the report: no interpretation is not no gap.
             next_step=str(practice.get(str(entry.level + 1), "")),
             evidence=str(info.get("evidence") or ""),
             note=entry.note,

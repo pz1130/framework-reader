@@ -1,4 +1,4 @@
-"""内容库构建入口。spec §4.2⑤"""
+"""Content library build entry point. spec §4.2⑤"""
 import sqlite3
 import sys
 from pathlib import Path
@@ -38,12 +38,14 @@ C53_PREFIX = "NIST-800-53-R5:"
 ISO_PREFIX = "ISO-27002-2022:"
 
 
-# 800-53 有近千条 enhancement 从未出现在任何交叉表里，逐条打印会把真正的问题淹掉。
+# 800-53 has nearly a thousand enhancements that never appear in any crosswalk table;
+# printing them one by one would drown out the real problems.
 _WARN_SAMPLE = 5
 
 
 def _report(issues: list) -> None:
-    """按 kind 汇总，每类只举几例——警告要能读，否则等于没有。"""
+    """Grouped by kind, a few examples per kind — a warning has to be readable,
+    otherwise it is as good as none."""
     from collections import defaultdict
 
     grouped: dict[str, list[str]] = defaultdict(list)
@@ -119,18 +121,22 @@ def build_content_db(out: Path) -> Path:
     interp_store = InterpretationStore()
     all_items = list(interp_store.iter_all())
     confirmed = [i for i in all_items if i.state is InterpretationState.CONFIRMED]
-    # 签过字的那批，闸门一个都不松：真签了、签完没被改过、术语表干净。
+    # For the signed batch, not a single gate is loosened: genuinely signed, unchanged
+    # since signing, and glossary-clean.
     assert_only_confirmed(confirmed)
     assert_signature_matches_content(confirmed)
     glossary = Glossary.load(Path("content/glossary.zh.yaml"))
     # `publisher` is the product signing the shipped AI drafts so deployers
-    # do not face a 199-item review queue. Substring glossary hits (差异/关联)
-    # already exist in those drafts; they warn, they do not fail the pack.
+    # do not face a 199-item review queue. Substring glossary hits (banned words
+    # such as difference / linkage) already exist in those drafts; they warn,
+    # they do not fail the pack.
     human = [i for i in confirmed if (i.provenance.confirmed_by or "") != PUBLISHER_SIGNER]
     assert_glossary_clean(human, glossary)
-    # 草稿也进包（主 spec §7.3.1 自用降级），但 state 跟着进，读的人看得见成色。
-    # 术语表对草稿只报数不拦：check_text 是子串匹配，分不清「地域差异」和
-    # 「差距分析」，拿它拦住整个构建会让工具对作者自己也是空的。
+    # Drafts go into the pack too (main spec §7.3.1 self-use downgrade), but their state
+    # travels with them so readers can see how mature each one is.
+    # The glossary only counts hits on drafts, it does not block: check_text is substring
+    # matching and cannot tell "regional difference" from "gap analysis"; letting it block
+    # the whole build would leave the tool empty even for its own author.
     drafts = [i for i in all_items if i.state is not InterpretationState.CONFIRMED]
     publisher = [i for i in confirmed if (i.provenance.confirmed_by or "") == PUBLISHER_SIGNER]
     _report_draft_glossary(drafts + publisher, glossary)
@@ -143,7 +149,7 @@ def build_content_db(out: Path) -> Path:
 
 
 def _report_draft_glossary(drafts, glossary) -> None:
-    """草稿里的术语表命中只报数，不抛。主 spec §7.3.1"""
+    """Glossary hits inside drafts are counted, not raised. Main spec §7.3.1"""
     hits = 0
     controls = set()
     for interp in drafts:

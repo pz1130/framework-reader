@@ -1,10 +1,11 @@
-"""口令哈希。scrypt 在标准库里——不为这件事引入新依赖。"""
+"""Password hashing. scrypt is in the standard library - no new dependency for this."""
 import hashlib
 import hmac
 import os
 
-# OWASP 2023 建议的 scrypt 参数下限。改这几个数会让旧哈希验不过，
-# 所以它们跟着哈希一起存，验证时从字符串里读，不从这里读。
+# Lower bound of the scrypt parameters recommended by OWASP 2023. Changing these
+# numbers would make old hashes fail verification, so they are stored alongside
+# each hash and read back from that string at verify time - not from here.
 _N, _R, _P = 2 ** 14, 8, 1
 _SALT_BYTES = 16
 _KEY_LEN = 32
@@ -19,8 +20,9 @@ def hash_password(password: str) -> str:
 
 
 def verify_password(password: str, stored: str) -> bool:
-    """验不过一律返回 False，不抛异常——异常会把「格式坏了」和「口令错了」
-    区分开，而那是一个可观测的差别。"""
+    """Verification failure always returns False, never raises - raising would
+    distinguish "malformed hash" from "wrong password", and that is an
+    observable difference."""
     try:
         scheme, n, r, p, salt_hex, key_hex = stored.split("$")
         if scheme != "scrypt":

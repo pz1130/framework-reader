@@ -1,18 +1,23 @@
-"""Entra ID（AAD）接入：OIDC Authorization Code + PKCE。见网页服务化设计 §5
+"""Entra ID (AAD) integration: OIDC Authorization Code + PKCE. See the
+hosted-service design §5
 
-**这个模块只做一件事：把一串 id_token 变成「这是谁、他有什么角色」。**
-它不碰会话、不碰数据库——那是 `IdentityStore` 的事。分开是因为
-校验的每一条都得能单独被测试盯住（`tests/identity/test_entra.py`）。
+**This module does exactly one thing: turn an id_token into "who is this and
+what roles does he have".** It does not touch sessions or the database - that is
+`IdentityStore`'s business. Kept apart because every single validation rule here
+must be individually watchable by a test (`tests/identity/test_entra.py`).
 
-三条不肯让步的：
+Three things it will not compromise on:
 
-- **端点走发现文档，不硬编码。** 硬编码会在对方改路径的那天全线崩，
-  而且崩得莫名其妙。
-- **§5.2 那张表一条都不能省。** 签名、iss、aud、exp/nbf、nonce、tid——
-  每一条少了都能被冒充。尤其 `tid`：应用注册配成多租户的话，
-  **任何** Entra 用户都能走到你的回调。
-- **主键用 `oid`。** email / upn / preferred_username 都会变（改名、换域、
-  别名），拿它们做主键，用户改个名就成了新人、丢掉全部历史。
+- **Endpoints come from the discovery document, not hardcoded.** Hardcoding
+  collapses across the board the day the other side changes a path, and it
+  fails in the most baffling way.
+- **Not one check from the §5.2 table may be skipped.** Signature, iss, aud,
+  exp/nbf, nonce, tid - missing any one of them allows impersonation. `tid`
+  above all: if the app registration is configured multi-tenant, **any** Entra
+  user can reach your callback.
+- **The primary key is `oid`.** email / upn / preferred_username all change
+  (renames, domain moves, aliases); make any of them the key and a user who
+  renames becomes a new person with all history lost.
 """
 import base64
 import hashlib
@@ -25,16 +30,17 @@ from urllib.parse import urlencode
 
 from framework_reader.identity import DEFAULT_ROLE, ROLES
 
-# 时钟偏移容忍。5 分钟是设计 §5.2 定的上限，不是起点。
+# Clock-skew tolerance. 5 minutes is the ceiling set by design §5.2, not a starting point.
 CLOCK_SKEW = 300
 
-# 未知 kid 触发的 JWKS 刷新，至少间隔这么久。
-# 认不出的 kid 就刷一次；刷到底等于给了对方一个放大器。
+# Minimum interval between JWKS refreshes triggered by an unknown kid.
+# An unrecognized kid earns one refresh; refreshing every time hands the other
+# side an amplifier.
 JWKS_MIN_REFRESH = 60
 
 
 class EntraError(Exception):
-    """能直接给用户看的一句话。细节进日志，不进页面。"""
+    """A single sentence that can be shown to the user directly. Details go to the log, not the page."""
 
 
 @dataclass(frozen=True)
@@ -78,7 +84,7 @@ def new_verifier() -> str:
 
 
 def challenge_for(verifier: str) -> str:
-    """S256。明文送 verifier 等于没做 PKCE。"""
+    """S256. Sending the verifier in plaintext amounts to no PKCE at all."""
     digest = hashlib.sha256(verifier.encode("ascii")).digest()
     return base64.urlsafe_b64encode(digest).decode("ascii").rstrip("=")
 
@@ -93,19 +99,21 @@ def _default_fetch(method: str, url: str, data=None):
 
 
 class EntraClient:
-    """`fetch(method, url, data=None) -> dict` 可注入，测试拿它当假 IdP。"""
+    """`fetch(method, url, data=None) -> dict` is injectable; tests use it as a fake IdP."""
 
     def __init__(self, config: EntraConfig, fetch=None) -> None:
         self.config = config
         self._fetch = fetch or _default_fetch
         self._discovery: dict | None = None
         self._keys: dict[str, dict] = {}
-        # 只记「因为认不出 kid 而刷新」的时刻。None = 还没追过。
-        # 不能写成 0.0：CI 容器的 monotonic 从开机起跳，前 60 秒
-        # `now - 0 > JWKS_MIN_REFRESH` 为假，轮换后的第一张令牌会被节流挡住。
+        # Record only the moment of "refreshed because of an unrecognized kid".
+        # None = never chased yet. Must not be 0.0: in a CI container the
+        # monotonic clock starts at boot, so for the first 60 seconds
+        # `now - 0 > JWKS_MIN_REFRESH` is false and the first token after a
+        # rotation would be blocked by the throttle.
         self._chased_at: float | None = None
 
-    # ---------- 发现 ----------
+    # ---------- discovery ----------
 
     def discovery(self) -> dict:
         if self._discovery is None:
@@ -125,21 +133,22 @@ class EntraClient:
         if kid not in self._keys and (
                 self._chased_at is None
                 or time.monotonic() - self._chased_at > JWKS_MIN_REFRESH):
-            # 微软会轮换签名密钥，缓存跟不上轮换 = 某天早上全员登不进来；
-            # 而每张认不出的令牌都去刷一次，等于给了对方一个放大器。
-            # 所以：追一次，然后按 JWKS_MIN_REFRESH 节流。
+            # Microsoft rotates signing keys; a cache that cannot keep up with
+            # rotation means one morning nobody can sign in. But refreshing on
+            # every unrecognized token hands the other side an amplifier.
+            # So: chase once, then throttle by JWKS_MIN_REFRESH.
             self._chased_at = time.monotonic()
             self._load_keys()
         if kid not in self._keys:
             raise EntraError("This token was signed with a key we do not recognize.")
         return self._keys[kid]
 
-    # ---------- 授权请求 ----------
+    # ---------- authorization request ----------
 
     def authorize_url(self, *, state: str, nonce: str, challenge: str) -> str:
         query = urlencode({
             "client_id": self.config.client_id,
-            # code，不是 id_token：implicit 已废弃
+            # code, not id_token: implicit flow is deprecated
             "response_type": "code",
             "redirect_uri": self.config.redirect_uri,
             "response_mode": "query",
@@ -166,7 +175,7 @@ class EntraClient:
         except Exception as exc:
             raise EntraError("Token exchange with the company login service failed. Go back to the login page and try again.") from exc
 
-    # ---------- 校验 ----------
+    # ---------- validation ----------
 
     def verify_id_token(self, raw: str, *, nonce: str) -> EntraClaims:
         import jwt
@@ -177,7 +186,7 @@ class EntraClient:
             raise EntraError("This token is not a readable JWT.") from exc
         kid = header.get("kid") or ""
         if header.get("alg") not in ("RS256", "RS384", "RS512"):
-            # alg=none 是 JWT 最老的那个洞；对称算法在这里也没有道理。
+            # alg=none is the oldest hole in JWT; symmetric algorithms make no sense here either.
             raise EntraError("This token is signed with the wrong algorithm.")
         key = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(self._key_for(kid)))
 
@@ -192,11 +201,11 @@ class EntraClient:
         except Exception as exc:
             raise EntraError("This login token failed validation. Go back to the login page and try again.") from exc
 
-        # nonce 与 tid 得自己判——PyJWT 不认识它们。
+        # nonce and tid must be judged by hand - PyJWT does not know them.
         if not nonce or claims.get("nonce") != nonce:
             raise EntraError("The one-time nonce for this login did not match; rejected.")
         if claims.get("tid") != self.config.tenant_id:
-            # 单组织形态下这一条就是那扇门本身。
+            # In the single-organization setup, this check IS the door.
             raise EntraError("This account does not belong to this company's directory.")
 
         oid = claims.get("oid") or ""
@@ -212,14 +221,17 @@ class EntraClient:
 
 
 def roles_from(claim) -> frozenset[str]:
-    """App Role → 我们的四个角色。认不出的一概忽略。
+    """App Role → our four roles. Anything unrecognized is ignored.
 
-    用 `roles` 不用 `groups`（设计 §5.4）：groups 有 200 个的溢出限制，
-    超了会变成 `_claim_names` 逼你回头调 Graph；而且组名是客户 AD 的
-    内部约定，和我们的角色不是一回事。
+    `roles` rather than `groups` (design §5.4): groups has a 200-claim overflow
+    limit - exceed it and they turn into `_claim_names`, forcing you back to
+    Graph calls; and group names are the customer AD's internal convention, not
+    the same thing as our roles.
 
-    **一个都认不出时给 `viewer`。** 给空集的话这个人登录成功却处处 403，
-    看起来像系统坏了；给只读则是「配置还没做完」的正确形状。
+    **When nothing is recognized, hand out `viewer`.** An empty set means the
+    person signs in successfully yet gets 403 everywhere, which looks like the
+    system is broken; read-only is the correct shape of "configuration not
+    finished yet".
     """
     known = {r for r in (claim or []) if r in ROLES}
     return frozenset(known or {DEFAULT_ROLE})

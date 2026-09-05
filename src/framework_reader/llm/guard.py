@@ -1,6 +1,7 @@
-"""出口红线：Tier C/D 原文不得进入任何模型调用的 payload。W2 spec §3.4③
+"""Egress red line: Tier C/D original text must not enter the payload of any model call. W2 spec §3.4③
 
-与主 spec §10.A 的两条红线同级：抛异常，不重试、不降级、不降为 warn。
+Same level as the two red lines in main spec §10.A: raise, no retry, no fallback, no
+downgrade to warn.
 """
 import sqlite3
 from collections.abc import Sequence
@@ -9,12 +10,13 @@ from framework_reader.llm.client import LLMClient, Message
 
 
 class OutboundTextError(Exception):
-    """受版权原文即将出圈。构建/运行必须中止。"""
+    """Copyrighted original text was about to leave the perimeter. Build/run must abort."""
 
 
 class PayloadGuard:
     def __init__(self, forbidden: Sequence[str], min_chunk: int = 24) -> None:
-        # 短片段（「组织应定义」之类）在任何中文文本里都会撞上，按整段比对才有意义。
+        # Short fragments ("the organization shall define" and the like) collide in any
+        # compliance text; only matching whole passages is meaningful.
         self._forbidden = [t.strip() for t in forbidden if len(t.strip()) >= min_chunk]
 
     def check(self, *texts: str) -> None:
@@ -32,7 +34,7 @@ def forbidden_texts_from_db(conn: sqlite3.Connection) -> list[str]:
 
 
 class GuardedClient:
-    """唯一的出网路径。registry 组装的每个 client 都被它包住。"""
+    """The only egress path. Every client assembled by the registry is wrapped in it."""
 
     def __init__(self, inner: LLMClient, guard: PayloadGuard) -> None:
         self._inner = inner

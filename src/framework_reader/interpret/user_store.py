@@ -1,12 +1,12 @@
-"""用户导入框架的解读存储。主 spec §7.3.5
+"""Interpretation storage for user-imported frameworks. Main spec §7.3.5
 
-`InterpretationStore` 把解读写进 `content/interpretations/`——那是**我们要发布
-的内容**：进 git、要评审、被 `make build` 烘进内容包。用户自己公司的制度解读
-一个字都不属于那里，写进去等于把别人的内部文件收编进我们的产品仓库。
+`InterpretationStore` writes interpretations into `content/interpretations/` - that is **content we
+publish**: into git, reviewed, baked into the content pack by `make build`. A user company's
+own policy interpretations do not belong there - writing them in would absorb their internal documents.
 
-所以用户层另起一处：落 `user.sqlite`，和自评做邻居。接口刻意与
-`InterpretationStore` 一致（exists / save / load），`draft_all` 换一个 store
-就能起草导入的框架，不必知道两者的区别。
+So the user layer lives elsewhere: `user.sqlite`, next door to self-assessment. The interface is
+deliberately identical to `InterpretationStore` (exists / save / load): `draft_all` can swap the
+store and draft imported frameworks without knowing the difference.
 """
 import json
 from datetime import datetime, timezone
@@ -47,7 +47,7 @@ class UserInterpretationStore:
         return row is not None
 
     def save(self, interp: Interpretation) -> None:
-        """整条替换：字段行先删后插，避免上一轮多出来的字段留成孤儿。"""
+        """Replace whole: field rows are deleted then re-inserted, so fields dropped since last time leave no orphans."""
         conn = self._conn()
         try:
             conn.execute(
@@ -83,7 +83,7 @@ class UserInterpretationStore:
             conn.close()
 
     def iter_all(self):
-        """与 InterpretationStore 对等：按框架遍历的命令要能一视同仁。"""
+        """Parity with InterpretationStore: per-framework commands must treat both stores alike."""
         conn = self._conn()
         try:
             ids = [
@@ -137,14 +137,14 @@ class UserInterpretationStore:
 
 
 def store_for(view, user_db: Path | None = None, *, overlay: bool = False):
-    """按框架的授权分层选解读存储。
+    """Pick the interpretation store by the framework's licensing tier.
 
-    U 层是用户自己导入的东西，只能落用户库；其余是我们自己的内容，落
-    `content/interpretations/`。调用方（CLI、Web）一律走这里选，不要自己
-    `InterpretationStore()`——那正是导入的框架起草完却查不到的成因。
+    U-tier frameworks are user-imported: they can only land in the user library. Everything else is
+    our own content and goes to `content/interpretations/`. Callers (CLI, web) always route through
+    here - never construct InterpretationStore() yourself: that is exactly why a drafted imported
 
-    ``overlay=True``：网页上一键起草内置框架（800-53 等）也落用户库，
-    当工作副本盖在内容包上面，不进 git。
+    ``overlay=True``: one-click drafting of built-in frameworks (800-53 etc.) on the web also lands
+    in the user library as a working copy overlaid on the content pack, never in git.
     """
     from framework_reader.interpret.store import InterpretationStore
     from framework_reader.schema.entities import LicenseTier

@@ -1,13 +1,13 @@
-"""受版权框架的接地材料。主 spec §4.1、§9
+"""Grounding material for copyright-restricted frameworks. Main spec §4.1, §9
 
-ISO / PCI 这类 Tier B/C 框架，条款原文既不在库里，也**永远不许进模型调用的
-payload**。给起草器的东西只有两样：
+For Tier B/C frameworks like ISO / PCI, the standard text is neither in the library nor ever allowed
+into a model payload. The drafter gets exactly two things:
 
-1. 我们自写的中文标题（自己的文字，不是标准原文）
-2. 官方映射到的 NIST SP 800-53 控制及其原文——800-53 是公共领域，可以发
+1. Our self-written Chinese titles (our own words, not the standard text)
+2. The official NIST SP 800-53 mappings with their source text - 800-53 is public domain, safe to send.
 
-第 2 条是这条路走得通的原因：91/93 条 ISO 控制有 NIST 官方署名的 800-53 映射边，
-平均 4.7 条。借的是**公共领域的邻居**，不是受版权的本体。
+Item 2 is why this path works at all: 91 of 93 ISO controls carry an official, NIST-attributed 800-53 mapping edge,
+4.7 on average. What is borrowed is the **public-domain neighbour**, not the copyrighted original.
 """
 import json
 import re
@@ -18,7 +18,7 @@ _PARAM = re.compile(r"\s*\{\{\s*insert:[^}]*\}\}\s*")
 
 
 def strip_oscal_params(text: str) -> str:
-    """OSCAL 的 `{{ insert: param, x }}` 占位符发给模型只会污染输出。"""
+    """OSCAL's {{ insert: param, x }} placeholders only pollute the model's output."""
     return _PARAM.sub(" ", text).replace("  ", " ").strip()
 
 
@@ -32,7 +32,7 @@ def _prose_of(node: dict) -> list[str]:
 
 
 def catalog_prose(path: Path = CATALOG_PATH) -> dict[str, str]:
-    """800-53 控制号（大写）→ 正文。读 vendor 里的公共领域 OSCAL 目录。"""
+    """800-53 control id (uppercase) -> body. Reads the public-domain OSCAL catalogue in vendor."""
     try:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
     except OSError:
@@ -57,7 +57,7 @@ def catalog_prose(path: Path = CATALOG_PATH) -> dict[str, str]:
 def grounding_lines(
     api, control_id: str, prose: dict[str, str], *, limit: int = 6, max_chars: int = 700
 ) -> list[str]:
-    """给起草器的接地行。只取 800-53 邻居——只有它是公共领域。"""
+    """Grounding lines for the drafter. 800-53 neighbours only - the only public-domain tier."""
     lines: list[str] = []
     for neighbor in api.neighbors(control_id, exportable_only=True):
         if not neighbor.control_id.startswith("NIST-800-53-R5:"):

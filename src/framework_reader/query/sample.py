@@ -1,4 +1,4 @@
-"""R7：推导边准确率抽样。spec §11 R7"""
+"""R7: derived-edge accuracy sampling. spec §11 R7"""
 import csv
 import random
 import sqlite3
@@ -54,7 +54,7 @@ def write_review_sheet(samples: list[DerivedSample], out: Path) -> Path:
         w.writeheader()
         for s in samples:
             row = s.model_dump()
-            row["verdict"] = ""      # 由人工填：correct / wrong / partial
+            row["verdict"] = ""      # filled by a human: correct / wrong / partial
             row["comment"] = ""
             w.writerow(row)
     return out

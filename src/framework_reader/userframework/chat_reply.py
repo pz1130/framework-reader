@@ -1,10 +1,12 @@
-"""解析对话里模型的回答。
+"""Parse the model's reply in the conversation.
 
-和这条线上其余每一处一样：**模型的输出是不可信输入**。它会裹围栏、
-会把 `updates` 写成对象、会改一个不存在的字段。这里一条都不信。
+Like every other place on this pipeline: **the model's output is untrusted
+input**. It will wrap things in fences, write `updates` as an object, or edit a
+field that does not exist. Not one word of it is trusted here.
 
-**改一个不存在的字段是最坏的那种**——那一段内容就永远看不见了，
-而页面上什么都不会报。所以字段名只认 `FIELD_LABELS` 里那七个。
+**Editing a nonexistent field is the worst kind** - that content becomes
+invisible forever, and the page reports nothing. So the only field names
+accepted are the seven in `FIELD_LABELS`.
 """
 import json
 import re
@@ -19,7 +21,7 @@ def _known_fields() -> set[str]:
 
 
 def parse_reply(raw: str) -> tuple[str, list[dict], str]:
-    """回 (给人看的话, 修改建议, 错误)。**从不抛异常。**"""
+    """Returns (human-readable reply, edit suggestions, error). **Never raises.**"""
     text = _FENCE.sub("", (raw or "").strip())
     if not text:
         return "", [], "The model returned nothing. Ask again."
@@ -34,7 +36,8 @@ def parse_reply(raw: str) -> tuple[str, list[dict], str]:
     reply = "" if reply is None else str(reply)
     raw_updates = payload.get("updates")
     if not isinstance(raw_updates, list):
-        # 形状不对就当它没提建议——`reply` 还是好的，不该整轮作废。
+        # Wrong shape means it offered no suggestions - `reply` is still good and
+        # the whole turn should not be voided.
         return reply, [], ""
 
     known = _known_fields()

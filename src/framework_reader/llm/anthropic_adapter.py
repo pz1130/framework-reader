@@ -1,6 +1,7 @@
-"""Anthropic 原生适配器。W2 spec §3.1、§3.4①
+"""Native Anthropic adapter. W2 spec §3.1, §3.4①
 
-唯一支持显式 prompt caching 的厂商；缓存命中与否不影响正确性。
+The only vendor supporting explicit prompt caching; a cache hit or miss does not affect
+correctness.
 """
 import json
 from collections.abc import Callable
@@ -72,9 +73,9 @@ class AnthropicClient:
         max_tokens: int = 4096,
         response_format: dict | None = None,
     ) -> str:
-        # Anthropic 不接受 OpenAI 那种 response_format JSON mode。
-        # 调用方开它不会报错只是被丢弃——JSON 输出由提示词里
-        # 「只用 JSON 数组回复」的指令守住。
+        # Anthropic does not accept OpenAI-style response_format JSON mode. If the
+        # caller turns it on there is no error — it is just dropped. JSON output is
+        # guarded by the "reply with a JSON array only" instruction in the prompt.
         del response_format
         data = self._send(
             build_payload(system, messages, model, max_tokens, self._cache_system)

@@ -1,6 +1,6 @@
-"""本地 Web 壳的 HTML。与发布页共用设计令牌（publish/theme.py）。
+"""The local web shell's HTML. Shares design tokens with the publish page (publish/theme.py).
 
-服务端渲染，无前端框架——第一版不需要，上 React 是三个月，这是三天。
+Server-rendered, no frontend framework - v1 does not need one: React is three months, this is three days.
 """
 from __future__ import annotations
 
@@ -11,17 +11,17 @@ from urllib.parse import quote
 from framework_reader.assess.remediation import STATE_LABELS
 from framework_reader.publish.theme import THEME_CSS
 
-# 本次请求的外壳信息：(csrf 令牌, 登录人显示名)。
+# This request's shell info: (csrf token, logged-in user's display name).
 #
-# 不逐个参数往十个 view 函数里穿，是因为**漏一个就是一个 CSRF 洞**，
-# 而且新加的页面一定会漏。page() 是唯一的外壳函数，让它从这里取，
-# 就没有「忘了传」这种失败模式。ContextVar 按任务隔离，并发请求不串。
+# Not threading it through ten view functions as parameters: **missing one is a CSRF hole**,
+# and every new page would miss it. page() is the single shell function; taking it from here
+# removes the "forgot to pass it" failure mode. ContextVar isolates per task - concurrent requests do not cross.
 CHROME: ContextVar[tuple[str, str]] = ContextVar("chrome", default=("", ""))
 
-# 本次请求的权限集合。None = 没启用登录（本机单人用法），一切照旧显示。
+# This request's permission set. None = sign-in not enabled (single-user local use); everything shows as before.
 #
-# 页面上藏按钮是**体验**，不是授权——授权在守卫里判过了（设计 §1.2、§4.1）。
-# 这里只是别让人点了才被拒。
+# Hiding buttons is **UX**, not authorization - authorization was already decided in the guards (design §1.2, §4.1).
+# Here we only avoid letting people click into a rejection.
 PERMS: ContextVar[frozenset[str] | None] = ContextVar("perms", default=None)
 
 
@@ -31,7 +31,7 @@ def may(permission: str) -> bool:
 
 
 def logged_in() -> bool:
-    """身份体系启用了没有。本机单人用法下没有「成员」这回事，别挂那个入口。"""
+    """Is the identity system enabled. In single-user local use there are no "members" - do not render that entry."""
     return PERMS.get() is not None
 
 _CSS = THEME_CSS + """
@@ -83,13 +83,13 @@ a{color:var(--accent);text-decoration:none;transition:color .2s ease}
 a:hover{text-decoration:underline}
 ::selection{background:var(--selection)}
 
-/* 入场动画：平滑上浮 */
+/* Entrance animation: smooth rise */
 @keyframes rise{from{opacity:0;transform:translateY(14px)}
   to{opacity:1;transform:none}}
 .wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem 5rem}
 .pagein{animation:rise .5s cubic-bezier(.2,0,0,1) both}
 
-/* 顶栏：Google 发布会毛玻璃顶栏 + 顶部 4 色光带 */
+/* Top bar: Google-keynote frosted glass + four-colour top light band */
 .top{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;
   position:sticky;top:0;z-index:20;margin:0 -1.5rem 2.4rem;
   padding:1.1rem 1.5rem;background:var(--topbar-bg);
@@ -97,11 +97,11 @@ a:hover{text-decoration:underline}
   backdrop-filter:saturate(180%) blur(28px);
   border-bottom:1px solid var(--topbar-line)}
 
-/* Google 4色顶部光带 */
+/* Google four-colour top light band */
 .top::after{content:"";position:absolute;top:0;left:0;right:0;
   height:3.5px;background:var(--g-rainbow);z-index:10}
 
-/* 顶栏柔光跟随与光斑 */
+/* Top bar soft glow follow and spotlight */
 .top::before{content:"";position:absolute;inset:0;pointer-events:none;
   opacity:0;transition:opacity .5s ease;z-index:0;
   background:radial-gradient(36rem circle at var(--tx,50%) var(--ty,50%),
@@ -116,7 +116,7 @@ a:hover{text-decoration:underline}
 .crumb a{color:var(--muted)}
 .crumb a:hover{color:var(--ink);text-decoration:none}
 
-/* 发布会专属胶囊徽标 */
+/* Keynote-exclusive pill badge */
 .keynote-pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;
   font-weight:600;padding:.18rem .58rem;border-radius:980px;
   background:var(--accent-soft);color:var(--accent);
@@ -151,7 +151,7 @@ p.back{margin:0 0 .8rem}
 .who + .topnav{margin-left:.6rem}
 .topright{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
 
-/* 深浅切换按钮 */
+/* Dark/light toggle button */
 .themebtn{background:var(--sunk);border:1px solid var(--rule);
   padding:.4rem .6rem;margin-left:.4rem;color:var(--muted);
   border-radius:980px;display:inline-flex;align-items:center;align-self:center;
@@ -163,9 +163,9 @@ p.back{margin:0 0 .8rem}
 :root[data-theme="light"] .i-sun{display:block}
 :root[data-theme="light"] .i-moon{display:none}
 
-/* ---------- Google Keynote 舞台动效层 ---------- */
+/* ---------- Google Keynote stage motion layer ---------- */
 
-/* Gemini 多彩流体极光：四团大光斑（蓝、紫、绿、黄）缓慢漂移，模拟发布会巨幕舞台照明 */
+/* Gemini-style fluid aurora: four large light blobs (blue, purple, green, yellow) drifting slowly, like keynote stage lighting */
 .aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 .aurora i{position:absolute;display:block;border-radius:50%;
   filter:blur(105px);opacity:.22;will-change:transform}
@@ -187,7 +187,7 @@ p.back{margin:0 0 .8rem}
 @keyframes drift4{to{transform:translate(-6rem,7rem) scale(1.1)}}
 :root[data-theme="light"] .aurora i{opacity:.11}
 
-/* Material 3 Spotlight 卡片：光标跟随柔光与彩虹边框 */
+/* Material 3 Spotlight cards: cursor-following glow and rainbow border */
 .card{position:relative;border-radius:20px;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0;border-radius:inherit;
   opacity:0;transition:opacity .4s ease;pointer-events:none;
@@ -204,24 +204,24 @@ p.back{margin:0 0 .8rem}
   24rem circle at var(--mx,50%) var(--my,50%),
   rgba(26,115,232,.75),rgba(155,114,203,.45) 35%,rgba(0,0,0,.08) 55%,transparent 70%)}
 
-/* 标题逐字浮现 */
+/* Title reveals character by character */
 h1 .ch,h2 .ch{display:inline-block;opacity:0;filter:blur(8px);
   transform:translateY(.35em);
   animation:chIn .65s cubic-bezier(.2,0,0,1) forwards;
   animation-delay:calc(var(--ci,0)*35ms)}
 @keyframes chIn{to{opacity:1;filter:blur(0);transform:none}}
 
-/* 表格行瀑布入场 */
+/* Table rows cascade in */
 .js tr{opacity:0;transform:translateY(8px);
   transition:opacity .45s ease,transform .45s cubic-bezier(.2,0,0,1);
   transition-delay:calc(var(--ri,0)*24ms)}
 .js tr.in{opacity:1;transform:none}
 
-/* 进度条生长 */
+/* Progress bars grow */
 .js .bar i{width:0;transition:width .9s cubic-bezier(.2,0,0,1) .25s}
 .js .bar.in i{width:var(--w,0%)}
 
-/* 按钮扫光 */
+/* Button shine sweep */
 button,a.cta{position:relative;overflow:hidden}
 button::after,a.cta::after{content:"";position:absolute;top:0;left:-80%;
   width:45%;height:100%;transform:skewX(-24deg);pointer-events:none;
@@ -229,14 +229,14 @@ button::after,a.cta::after{content:"";position:absolute;top:0;left:-80%;
   transition:left .6s ease}
 button:hover::after,a.cta:hover::after{left:125%}
 
-/* 主题切换的圆形扩散 */
+/* Circular reveal on theme switch */
 ::view-transition-old(root),::view-transition-new(root){animation:none;
   mix-blend-mode:normal}
 ::view-transition-new(root){animation:vtIn .45s ease-in forwards;
   clip-path:circle(0px at var(--vx,100%) var(--vy,0px))}
 @keyframes vtIn{to{clip-path:circle(150% at var(--vx,100%) var(--vy,0px))}}
 
-/* Google Omnibox 搜索框 */
+/* Google Omnibox search box */
 form.seek{display:flex;gap:.6rem;align-items:center;background:var(--surface);
   border:1px solid var(--rule);border-radius:980px;padding:.38rem .45rem .38rem 1.25rem;
   margin:0 0 1rem;box-shadow:var(--card-shadow);
@@ -252,7 +252,7 @@ form.seek button{padding:.6rem 1.45rem;border-radius:980px;font-weight:600;
 form.tiny{display:inline;background:transparent;border:0;padding:0;margin:0}
 form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
 
-/* Keynote 舞台 Hero 区域 */
+/* Keynote stage hero area */
 .stage-hero{margin:.8rem 0 2.2rem;text-align:center}
 .stage-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
@@ -265,7 +265,7 @@ form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
 .gemini-text,.gradient-text{background:var(--gemini-gradient);-webkit-background-clip:text;
   -webkit-text-fill-color:transparent;display:inline-block}
 
-/* 快速推荐胶囊 Chips */
+/* Quick-recommend pill chips */
 .quick-chips{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;
   justify-content:center;margin:1rem 0 1.6rem}
 .chip-label{font-size:.8rem;color:var(--muted);font-weight:500}
@@ -275,7 +275,7 @@ form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
 .chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);
   transform:translateY(-1px);text-decoration:none}
 
-/* Keynote 核心指标大数字看板 */
+/* Keynote big-number stats board */
 .stage-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr));
   gap:1rem;margin:2rem 0 2.5rem}
 .stat-card{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
@@ -287,7 +287,7 @@ form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
 .stat-desc{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
   color:var(--muted);margin-top:.35rem}
 
-/* Google 品牌小圆点 */
+/* Google brand dots */
 .g-dot{width:8px;height:8px;border-radius:50%;display:inline-block;
   margin-right:.45rem;vertical-align:.08em}
 .dot-blue{background:var(--g-blue)}
@@ -295,7 +295,7 @@ form.tiny button{font-size:.85rem;padding:.4rem 1rem;border-radius:980px}
 .dot-yellow{background:var(--g-yellow)}
 .dot-red{background:var(--g-red)}
 
-/* 标签与徽章 */
+/* Tags and badges */
 .mark{font-size:.68rem;font-weight:500;letter-spacing:.02em;margin-left:.5rem;
   padding:.15rem .55rem;border:1px solid var(--rule);border-radius:980px;
   color:var(--muted);vertical-align:.1em}
@@ -320,7 +320,7 @@ textarea:focus{outline:none;border-color:var(--accent);
 h2{font-size:1.38rem;color:var(--ink);margin:2.6rem 0 1.1rem;font-weight:600;
   letter-spacing:-.02em}
 
-/* 卡片网格 */
+/* Card grid */
 .cards{display:grid;gap:1.2rem;
   grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}
 .card{display:block;padding:1.35rem 1.45rem;background:var(--surface);
@@ -340,13 +340,13 @@ h2{font-size:1.38rem;color:var(--ink);margin:2.6rem 0 1.1rem;font-weight:600;
   color:var(--muted);vertical-align:.1em}
 .tag.mine{border-color:rgba(66,133,244,.4);color:var(--accent);background:var(--accent-soft)}
 
-/* 进度条 */
+/* Progress bars */
 .bar{height:5px;background:var(--sunk);margin-top:.8rem;border-radius:980px;
   overflow:hidden}
 .bar i{display:block;height:100%;background:var(--g-rainbow);
   transition:width .8s cubic-bezier(.2,0,0,1)}
 
-/* 表格 */
+/* Tables */
 table{width:100%;border-collapse:separate;border-spacing:0;font-size:.92rem;
   background:var(--surface);border:1px solid var(--rule);border-radius:16px;
   overflow:hidden;box-shadow:var(--card-shadow)}
@@ -358,7 +358,7 @@ tr:hover td{background:var(--row-hover)}
 td a{text-decoration:none;color:inherit}
 td a:hover{color:var(--accent);text-decoration:none}
 
-/* 表单与输入框 */
+/* Forms and inputs */
 form{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
   padding:1.4rem 1.5rem;box-shadow:var(--card-shadow)}
 label{display:block;font-size:.82rem;font-weight:500;color:var(--muted);margin:0 0 .4rem}
@@ -380,7 +380,7 @@ button:active{transform:scale(.97)}
   padding:.95rem 1.2rem;border-radius:0 12px 12px 0;
   margin:0 0 1.4rem;color:var(--ink);font-size:.92rem}
 
-/* 提示块 */
+/* Callout blocks */
 .callout{display:flex;gap:.8rem;align-items:flex-start;background:var(--accent-soft);
   border:1px solid rgba(66,133,244,.2);border-radius:16px;padding:1.1rem 1.3rem;
   margin:.6rem 0 1.5rem;font-size:.92rem;color:var(--body)}
@@ -403,7 +403,7 @@ button:active{transform:scale(.97)}
   padding-left:1rem;color:var(--ink);background:var(--accent-soft);
   padding-top:.5rem;padding-bottom:.5rem;border-radius:0 8px 8px 0}
 
-/* 滚动渐现 */
+/* Scroll reveal */
 .js .reveal{opacity:0;transform:translateY(14px);
   transition:opacity .55s ease,transform .55s cubic-bezier(.2,0,0,1)}
 .js .reveal.in{opacity:1;transform:none}
@@ -413,7 +413,7 @@ button:active{transform:scale(.97)}
 .cards .reveal:nth-child(5){transition-delay:.24s}
 .cards .reveal:nth-child(n+6){transition-delay:.3s}
 
-/* 偏好减弱动态 */
+/* Reduced motion preference */
 @media (prefers-reduced-motion:reduce){
   .pagein{animation:none}
   *,*::before,*::after{transition:none!important;animation:none!important}
@@ -429,10 +429,10 @@ button:active{transform:scale(.97)}
 
 
 def _with_csrf(body: str, csrf: str) -> str:
-    """给每个 POST 表单塞一个隐藏令牌。
+    """Stuff a hidden token into every POST form.
 
-    靠「记得在每个表单里加一行」是靠不住的：漏一个就是一个 CSRF 洞，
-    而新加的表单一定会漏。所以在唯一的外壳函数里机械地插。
+    Relying on "remember to add one line to every form" is unreliable: a missed one is a CSRF hole,
+    and every new form would miss it. So it is inserted mechanically in the one shell function.
     """
     import re
 
@@ -445,9 +445,9 @@ def _with_csrf(body: str, csrf: str) -> str:
 
 
 def _brand_logo_img() -> str:
-    """设置里上传了 logo 就顶到品牌位；文件在数据目录 branding/ 下，
-    由公开路由 /branding/logo 伺服（登录页也要显示）。?v= 改版时间戳——
-    换图不换名，浏览器缓存不会把旧 logo 留着。"""
+    """A logo uploaded in settings is promoted to the brand slot; the file lives in the data directory branding/,
+    served by the public route /branding/logo (the login page shows it too). The ?v= version bump -
+    change the image without renaming it, so browser cache never keeps a stale logo."""
     from framework_reader import usage
 
     base = usage.home() / "branding"
@@ -462,17 +462,17 @@ def _brand_logo_img() -> str:
 def page(title: str, body: str, crumb: str = "", nav: str = "",
          csrf: str = "", who: str = "", bare: bool = False,
          crumb_href: str = "", wide: bool = False, topbar: str = "") -> str:
-    """`bare` 给登录与邀请页用：那时顶栏的「导入框架」点了只会弹回登录页。
+    """`bare` is for the login and invite pages: there, clicking "Import framework" in the top bar only bounces to login.
 
-    `crumb_href` 给面包屑一个去处。**没有去处就别给** —— 导入页的面包屑是
-    「导入」，它不对应任何框架，编一个链接出来只会点到一个不相干的地方。
+    `crumb_href` gives the breadcrumb somewhere to go. **Never set it when there is nowhere to go** - the import
+    page's crumb is "Import", which maps to no framework; inventing a link only lands somewhere irrelevant.
     """
     if not csrf and not who:
         csrf, who = CHROME.get()
-    """自评页的样式在 _ASSESS_CSS，统一从这里注入——只有一处 <style>。"""
+    """The assess page's styles live in _ASSESS_CSS, injected from here - exactly one <style>."""
     return (
-        # 缺了它整站落进怪异模式：documentElement 不再代表视口，
-        # 整页截图与 vh／100% 的高度链全按错的尺寸算。见 tests/web/test_doctype.py
+        # Without it the whole site falls into quirks mode: documentElement no longer represents the viewport,
+        # and the full-page-screenshot / vh / 100% height chain all compute on wrong sizes. See tests/web/test_doctype.py
         "<!doctype html>"
         '<meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -480,20 +480,20 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         '<link rel="icon" href="/favicon.svg" type="image/svg+xml">'
         '<link rel="icon" href="/favicon.ico" sizes="any">'
         '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
-        # **不引任何外部资源。** `<link rel=stylesheet>` 是渲染阻塞的：
-        # 外部主机连不上时浏览器要等到超时才继续，那段时间页面是半死的，
-        # 点什么都没反应。而这个产品给中国的安全团队用，
-        # fonts.googleapis.com 在墙内连不上。
+        # **No external resources.** `<link rel=stylesheet>` is render-blocking:
+        # when the external host is unreachable the browser waits out a timeout before continuing, leaving the
+        # page half-dead - clicks do nothing. This product serves security teams in China,
+        # and fonts.googleapis.com is unreachable behind the firewall.
         #
-        # 代价只有两款西文字体（IBM Plex Mono、Spectral）。中文正文本来就是
-        # 系统字体（PingFang SC / 微软雅黑 / 思源黑体），一个字都不受影响；
-        # 那两款也各自有回落链，见 publish/theme.py 的 --mono / --serif。
+        # The cost is two latin fonts (IBM Plex Mono, Spectral). Chinese body text is
+        # system fonts anyway (PingFang SC / Microsoft YaHei / Source Han Sans), untouched;
+        # those two carry their own fallback chains - see publish/theme.py --mono / --serif.
         f"<style>{_CSS}{_ASSESS_CSS}{_AUTH_CSS}</style>"
-        # 首屏防闪：必须在首帧渲染前把主题定下来，否则选了浅色的人
-        # 每次导航都先看见一闪而过的黑底。localStorage 拿不到就维持默认深色。
+        # First-paint anti-flash: the theme must be decided before the first frame, or a light-theme user
+        # sees a flash of black on every navigation. If localStorage is unavailable, keep the default dark.
         '<script>try{var t=localStorage.getItem("fr-theme");'
         'if(t)document.documentElement.dataset.theme=t}catch(e){}</script>'
-        # Google 发布会极光舞台背景，压在一切内容之下；aria-hidden，纯装饰。
+        # Google-keynote aurora stage background, beneath all content; aria-hidden, purely decorative.
         '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
         f'<div class="wrap{" wide" if wide else ""}"><div class="top">'
         + '<h1><a href="/">' + (_brand_logo_img() or "Framework Workbench") + "</a></h1>"
@@ -501,36 +501,36 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         + f'<span class="crumb">'
         + (f'<a href="{crumb_href}">{crumb}</a>' if crumb_href and crumb else crumb)
         + "</span>"
-        # 顶栏动作位：紧跟面包屑，跟 sticky 顶栏一起常驻——拉三屏表格的
-        # 时候按钮不沉底。POST 表单同样要过 _with_csrf——顶栏在 .pagein
-        # 外，包不到。右侧导航组（.topright）装不下时整组掉到第二行右侧，
-        # 绝不逐项散落——英文标签比中文宽一大截，逐项换行会绞成乱麻。
+        # Top bar action slot: right after the breadcrumb, persistent with the sticky top bar - buttons do
+        # not sink to the bottom after three screens of table. POST forms still pass through _with_csrf -
+        # the top bar sits outside .pagein, which cannot wrap it. When the right nav group (.topright) does
+        # not fit, the whole group drops to a second row on the right - never item by item; that tangles.
         + (_with_csrf(topbar, csrf) if topbar else "")
-        # 右侧导航组整体打包：装得下就在第一行右侧，装不下整组掉到第二行
-        # 右侧——绝不逐项散落。组的推靠 .topright 自己的 margin-left:auto，
-        # 原先挂在「导入框架」一个元素上的做法，英文标签一长就失效。
+        # The right nav group moves as one block: fits on row one's right, or the whole group drops to row
+        # two's right - never item by item. The push relies on .topright's own margin-left:auto;
+        # pinning it to the single "Import framework" element broke once English labels grew longer.
         + '<div class="topright">'
-        # 「框架」是顶栏第一个 tab——从任何页面都能跳回框架目录。
+        # "Frameworks" is the top bar's first tab - jump back to the framework catalogue from any page.
         + ("" if bare else
            '<a class="topnav" href="/frameworks">Frameworks</a>')
-        # CSRF 锚点。nav 里塞一个隐藏的 input 就行——
-        # 测试用正则抓 name="csrf" value="..."，任何页面都能抓到，
-        # 不依赖 body 里有没有 POST form。裸页（登录、邀请）不发 token 不渲染。
+        # CSRF anchor. A hidden input inside nav is enough -
+        # tests regex-grab name="csrf" value="..." from any page,
+        # not depending on a POST form existing in the body. Bare pages (login, invite) render no token.
         + (f'<input type="hidden" name="csrf" value="{escape(csrf)}">'
            if csrf and not bare else "")
-        # 导入原先只挂在主页最底下。停在框架页或条款页的人
-        # 整个界面里找不到任何导入的地方——入口必须每页都在。
+        # Import used to sit at the very bottom of the home page only. Someone parked on a framework or
+        # control page could find no import anywhere - the entry must exist on every page.
         + ("" if bare or not may("framework:import") else
            '<a class="topnav" href="/import">Import framework</a>')
-        # 配套文档留在顶栏：它是干活时用的内容（上传本组织制度做接地），
-        # 不是配置。成员、模型与 key、审计日志三样收进「设置」。
+        # Companion documents stay in the top bar: they are working content (upload org policies for grounding),
+        # not configuration. Members, models & keys, and audit log fold into "Settings".
         + ("" if bare or not may("document:read") else
            '<a class="topnav" href="/documents">Documents</a>')
         + ("" if bare or not may("member:read") else
            '<a class="topnav" href="/settings">Settings</a>')
-        # 深浅切换。图标显示当前主题：深色月亮、浅色太阳（与 .themebtn
-        # 的 CSS 显隐规则一致）。bare（登录页）也给——那是进站第一页，
-        # 更该能挑自己看着舒服的。
+        # Dark/light toggle. The icon shows the current theme: dark moon, light sun (matching .themebtn's
+        # CSS show/hide rules). Present on bare (login) too - it is the first page in,
+        # all the more reason to let people pick what is comfortable.
         + ('<button type="button" class="themebtn" aria-label="Toggle dark and light"'
            ' data-toggle-theme>'
            '<svg class="i-moon" viewBox="0 0 24 24" fill="none"'
@@ -548,15 +548,15 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
            '<a class="topnav" href="/logout">Sign out</a>' if who and not bare else "")
         + "</div>"
         + "</div>"
-        # 入场动画的宿主：只包顶栏之外的内容。毛玻璃顶栏的祖先链上
-        # 不能有 transform 动画，否则模糊采样失效（见 .pagein 的注释）。
+        # Host of the entrance animation: wraps everything except the top bar. An ancestor of
+        # the frosted top bar must not carry transform animations, or blur sampling breaks (see .pagein's comment).
         f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
-        # 滚动渐现只用这几行原生脚本——不引任何外部 JS（同 <style> 的理由，
-        # 见上）。没挂 .reveal 的元素不受影响；浏览器没有 JS 时全默认可见。
+        # Scroll-reveal uses only these few lines of native script - no external JS (same reason as <style>,
+        # see above). Elements without .reveal are unaffected; without JS everything defaults to visible.
         + """
 <script>
 document.documentElement.classList.add('js');
-/* 标题拆字：逐字 blur 浮现。只拆文本节点，h1 里的链接保留可点。 */
+/* Title letter-split: per-character blur reveal. Text nodes only; links inside h1 stay clickable. */
 var _ci = 0;
 function _split(el) {
   Array.from(el.childNodes).forEach(function (n) {
@@ -583,7 +583,7 @@ var _io = new IntersectionObserver(function (entries) {
   });
 }, {threshold: 0.08});
 document.querySelectorAll('.reveal').forEach(function (el) { _io.observe(el); });
-/* 表格行瀑布入场 + 进度条生长。行号封顶，末行不用等到天荒地老。 */
+/* Table-row cascade + progress-bar growth. Row number capped, so the last row never waits forever. */
 document.querySelectorAll('.wrap table').forEach(function (t) {
   Array.from(t.querySelectorAll('tr')).forEach(function (tr, ix) {
     tr.style.setProperty('--ri', Math.min(ix, 14)); _io.observe(tr);
@@ -594,7 +594,7 @@ document.querySelectorAll('.bar i').forEach(function (b) {
   b.style.width = '';
   _io.observe(b.parentElement);
 });
-/* Spotlight：光标坐标写进卡片变量，光晕与边框亮起跟着光标走。 */
+/* Spotlight: cursor coordinates go into card variables; glow and border light up accordingly. */
 if (matchMedia('(pointer:fine)').matches)
   document.addEventListener('pointermove', function (e) {
     var c = e.target.closest && e.target.closest('.card');
@@ -603,7 +603,7 @@ if (matchMedia('(pointer:fine)').matches)
       c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
       c.style.setProperty('--my', (e.clientY - r.top) + 'px');
     }
-    /* 顶栏空位的柔光：同一束光扫过顶栏，坐标写进 --tx/--ty。 */
+    /* Soft glow in the top bar's empty slot: one light sweeping the bar, coordinates into --tx/--ty. */
     var top = document.querySelector('.top');
     if (top) {
       var tr = top.getBoundingClientRect();
@@ -619,7 +619,7 @@ if (_tb) _tb.addEventListener('click', function () {
     _r.dataset.theme = _t;
     try { localStorage.setItem('fr-theme', _t); } catch (e) {}
   };
-  /* 支持的话，新主题从按钮位置圆形扩散涂开；否则直接换。 */
+  /* If supported, the new theme circular-reveals from the button; otherwise swap directly. */
   if (document.startViewTransition &&
       !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var _b = _tb.getBoundingClientRect();
@@ -633,7 +633,7 @@ if (_tb) _tb.addEventListener('click', function () {
 
 
 def _search_form(q: str = "") -> str:
-    """首页和结果页共用。GET，不花钱，所以不走 CSRF。"""
+    """Shared by home and results. GET, costs nothing, so no CSRF."""
     return (
         '<form class="seek" action="/search" method="get">'
         '<span class="gemini-sparkle" style="font-size:1.1rem;margin-right:.1rem" aria-hidden="true">✨</span>'
@@ -648,7 +648,7 @@ def search_results(
     q: str, hits: list[dict], *, via: str = "literal",
     expanded: list[str] | None = None, note: str = "",
 ) -> str:
-    """`via` 是「字面」或「ai」。扩了哪些词必须写在页面上——否则相近语义是黑盒。"""
+    """`via` is "literal" or "ai". Which words were expanded must appear on the page - otherwise close-match semantics is a black box."""
     body = [_search_form(q), f'<h2>Search "{escape(q)}"</h2>']
     if via == "ai" and expanded:
         shown = ", ".join(escape(t) for t in expanded)
@@ -690,10 +690,10 @@ def _subnav(framework_id: str, here: str) -> str:
 
 
 def supersession_page(view, edges: list) -> str:
-    """换版对照：这个框架里谁能继承谁，一眼看完。
+    """Supersession map: who inherits from whom in this framework, at one glance.
 
-    `edges` 是 QueryAPI.supersessions_in() 的原样输出。动作列只对
-    「旧有解读、新没有」的行出继承表单——后端校验是底线，前端不渲染是体面。
+    `edges` is QueryAPI.supersessions_in()'s output verbatim. The action column renders the inherit form
+    only for rows of "old has an interpretation, new has none" - backend validation is the floor,
     """
     fid = escape(view.id)
     head = "<h2>Supersession</h2>" + _subnav(fid, "/supersession")
@@ -745,12 +745,12 @@ def _relation_label(relation: str) -> str:
 
 
 def frameworks(items: list[dict], error: str = "", nav: str = "") -> str:
-    """框架都在这一页：内置一段、导入的一段。
+    """Every framework on one page: built-ins in one section, imported in another.
 
-    **两段用不同的形状是有意的。** 内置就那么几个，卡片好看也点得准；
-    导入的会越来越多，卡片十几个就没法看，表格一百行还能翻。
+    **The two sections use different shapes on purpose.** Built-ins are few - cards look good and click true;
+    imports grow without bound - a dozen cards are unreadable, a hundred-row table still scans.
 
-    搜索框放在首页（/）——框架页只管「挑一个进去干活」。
+    The search box lives on the home page (/) - the frameworks page only picks one to work in.
     """
     builtin = [f for f in items if not f.get("mine")]
     mine = [f for f in items if f.get("mine")]
@@ -799,9 +799,9 @@ def frameworks(items: list[dict], error: str = "", nav: str = "") -> str:
 
 
 def import_page(error: str = "", nav: str = "") -> str:
-    """导入自己有一页。顶栏那个链接要指得到一个地方，锚点不够——
+    """Import gets its own page. The top-bar link must point somewhere real; an anchor is not enough -
 
-    出错时得有一页能把错误报在原地，而不是把人踢回主页最底下重新找表单。
+    errors need a page that reports them in place, instead of kicking people to the bottom of the
     """
     return page("Import your own framework", (
         "<h2>Import your own framework</h2>"
@@ -822,14 +822,14 @@ def _import_form(error: str = "") -> str:
         '<input type="text" id="fname" name="name" required></div>'
         "</div>"
         '<label for="file">File (.csv / .xlsx / .docx / .pdf)</label>'
-        # **不写 accept。** 它的唯一好处是方便，代价是「文件在那儿但点不中，
-        # 而且没有任何解释」——实测就是这么表现的：对话框弹出来，
-        # 用户要传的那份是灰的，看起来就是「点了没反应」。
-        # .doc 改名成 .docx、系统 UTI 认不出来、从别处拷来的文件丢了扩展名，
-        # 每一种都会掉进这个坑，而它们在服务端本来就有确切的报错。
-        # 宁可让人选中一个我们不收的文件，然后告诉他为什么不收。
+        # **No accept attribute.** Its only benefit is convenience; the cost is "the file is right there
+        # but unclickable, with no explanation" - measured behaviour: the dialog opens,
+        # the file the user wants is greyed out, and it looks like clicking does nothing.
+        # A .doc renamed to .docx, a UTI the OS cannot recognize, a file that lost its extension in
+        # transit - each falls into this trap, and the server already has an exact error for each.
+        # Better to let people select a file we refuse, then tell them why we refuse it.
         '<input type="file" id="file" name="file" required>'
-        # 两条路的结果不一样，必须说：表格直接进库，文档要先确认。
+        # The two paths have different outcomes and must say so: spreadsheets go straight into the
         '<p class="hint"><strong>Spreadsheets</strong> (.csv / .xlsx) need "ID" and "Title" columns, "Parent" optional, '
         '<strong>"Body" optional but strongly recommended</strong>: with a title alone the draft is a guess; with body text it is an interpretation grounded in your actual requirements. '
         'Spreadsheets go straight into the database.<br>'
@@ -844,12 +844,12 @@ def _import_form(error: str = "") -> str:
 
 def home(popular: list[dict], daily: list[dict],
          review: dict | None = None, roll: int = 0, nav: str = "") -> str:
-    """Google 发布会风格工作台。
-    包含：
-    - Keynote 舞台 Hero 区域（Eyebrow、大标题彩虹渐变、副标题）
-    - Google 胶囊型 Omnibox 搜索框与快捷检索 Chips
-    - 发布会核心指标大数字看板（Controls, Frameworks, Sign-offs, AI）
-    - 「经常搜索」与「今天学三条」Material 3 卡片流
+    """The Google-keynote-style workbench.
+    Contains:
+    - Keynote stage hero area (eyebrow, rainbow-gradient headline, subtitle)
+    - Google pill-shaped Omnibox search box with quick-explore chips
+    - Keynote big-number stats board (Controls, Frameworks, Sign-offs, AI)
+    - "Frequently searched" and "Learn three today" Material 3 card streams
     """
     hero = (
         '<div class="stage-hero">'
@@ -945,11 +945,11 @@ def home(popular: list[dict], daily: list[dict],
 def framework(
     view, controls: list[dict], pending: int | None = None, nav: str = ""
 ) -> str:
-    """`pending` 非 None 时给起草入口，导入的、内置的都一样。
+    """When `pending` is not None, render the drafting entry - imported and built-in alike.
 
-    网页起草一律 overlay 进用户库当工作副本，不进 git；要写内容包
-    （发布用）仍走 `fr draft`。顶栏那份跟着 sticky 顶栏走——800-53
-    一千多条，不该拉到底才找得到按钮。
+    Web drafting always overlays into the user library as a working copy, never into git; writing the
+    (for publishing) still goes through `fr draft`. The top-bar copy follows the sticky bar - 800-53
+    content pack (for publishing) still goes through `fr draft`. The top-bar copy follows the sticky
     """
     rows = "".join(
         f'<tr><td class="c"><a href="/c/{escape(c["id"])}">{escape(c["short"])}</a></td>'
@@ -958,8 +958,8 @@ def framework(
         for c in controls
     )
     head = (
-        # 框架页是层级里唯一没有「返回」的一层：条款页的面包屑能回框架，
-        # 这里也得能回目录——跟条款页的 back 同一个样式。
+        # The framework page is the only tier with no "back": the control page's breadcrumb returns to
+        # the framework, so this must return to the catalogue - same style as the control page's back.
         '<p class="back"><a class="back" href="/frameworks">'
         "← Back to Frameworks</a></p>"
         f"<h2>{escape(view.name)}</h2>"
@@ -980,7 +980,7 @@ def framework(
 
 
 def _state_cell(c: dict) -> str:
-    """哪几条已经有人认领，是这个框架能不能交出去的唯一指标。"""
+    """Which controls already have someone standing behind them - the single indicator of whether this framework can be handed over."""
     if c.get("confirmed"):
         return '<span class="mark mine">Confirmed</span>'
     if c["has_interp"]:
@@ -989,7 +989,7 @@ def _state_cell(c: dict) -> str:
 
 
 def _draft_invite(framework_id: str, pending: int) -> str:
-    """点一下就是一次真花钱。花在几条上、用谁的 key，点之前要看得见。"""
+    """Every click spends real money. On how many controls, with whose key - visible before the click."""
     if pending == 0:
         return (
             '<h2>Draft interpretations</h2>'
@@ -1017,18 +1017,18 @@ def control(
     inherited_from: str = "", superseded: list[dict] | None = None,
     body_label: str = "Your imported text",
 ) -> str:
-    """`fields` 是 QueryAPI.interpretation() 的原样输出：{字段: {value, basis}}。
+    """`fields` is QueryAPI.interpretation()'s output verbatim: {field: {value, basis}}.
 
-    `editable` 只对用户自己导入的框架为真。内置框架的解读是我们要发布的内容，
-    由 fr draft 起草、人工评审、进 git，不在用户的按钮上改。
+    `editable` is true only for frameworks the user imported themselves. Built-in interpretations are
+    drafted by fr draft, human-reviewed, into git - never edited from a user's button.
     """
     from framework_reader.interpret.render import FIELD_LABELS
 
     cid = escape(view.id)
-    # 进得去也得出得来。改字段页和重写页都有「不改了」回条款页，
-    # 唯独条款页自己是死路——换框架要回首页，回本框架得有自己的出口。
+    # In must also mean out. The field-edit and rewrite pages both offer "discard" back to the control,
+    # but the control page itself was a dead end - switching frameworks meant going home; it needs its own exit.
     #
-    # 标**框架名**不标编号：编号已经在顶栏面包屑里，再印一遍没有信息量。
+    # Show the **framework name**, not the id: the id is already in the top-bar breadcrumb; printing it
     parts = [
         f'<p class="back"><a class="back" href="/f/{escape(view.framework_id)}">'
         f'← Back to {escape(framework_name or view.framework_id)}</a></p>',
@@ -1042,17 +1042,17 @@ def control(
             + "</p>"
         )
     elif state == "confirmed":
-        # 内容包的确认不带签署人——包 schema 没有 signer 列，publisher 代签
-        # 的那批更是产品签的。fr show 对 confirmed 不打横幅，网页同样闭嘴：
-        # 「AI draft, not yet confirmed · state=confirmed」是自相矛盾的横幅。
-        # 每个字段自己的 AI DRAFT / practitioner 徽标已经交代了成色。
+        # Content-pack confirmations carry no signer - the pack schema has no signer column, and the
+        # publisher-signed batch is signed by the product itself. fr show banners nothing for confirmed;
+        # the web stays silent the same way: "AI draft, not yet confirmed · state=confirmed" was a
+        # self-contradictory banner. Each field's own AI DRAFT / practitioner chip already tells the story.
         pass
     elif state and any(
         (fields.get(n) or {}).get("basis") == "practitioner"
         and (fields.get(n) or {}).get("value") not in (None, "", [], {})
         for n, _ in FIELD_LABELS
     ):
-        # 七个字段里已经有人写的了，再挂「AI 初稿」就是往反方向撒谎。
+        # When the author already wrote some of the seven fields, hanging "AI draft" on the control lies
         parts.append(
             '<p class="draft">[Unconfirmed · each field below is marked with who wrote it]</p>'
         )
@@ -1077,10 +1077,10 @@ def control(
             "Supersession</a> page for the full picture.</p>"
         )
 
-    # 正文块对所有条款都渲染：内置条款 body 是空的，而「贴一段进去」
-    # 正是给它补起草依据的入口（覆盖层，官方基准不动）。
+    # The body block renders for every control: a built-in control's body is empty, and "paste a
+    # passage in" is exactly the entry that gives drafting its grounding (override layer; official base untouched).
     if body:
-        # 「改」登录就能点——内置条款贴的正文存覆盖层，同解读字段一套哲学。
+        # "Edit" needs only login - pasted bodies for built-in controls go to the override layer, same philosophy as the fields.
         edit = (f' <a class="edit" href="/c/{cid}/edit-body">Edit</a>'
                 if editable else "")
         parts.append(
@@ -1088,9 +1088,9 @@ def control(
             f'<p class="own">{escape(body)}</p></div>'
         )
     elif editable:
-        # 「没有正文」说的是条款原文：ISO 的 label 是自写中文短标题
-        # （原文受版权不进库），800-53 的 label 是控制标题——页面上
-        # 明明有标题有解读，不说清「内置的只是标题」，这句话就像在胡说。
+        # "No body text" refers to the standard's text: ISO's label is a self-written short title
+        # (the copyrighted original never enters the library), 800-53's label is the control title - with
+        # a title and interpretation right there, not saying "built-ins are titles only" reads like nonsense.
         parts.append(
             '<p class="empty">This control has no body text yet: built-in entries are titles only. '
             "From the standard or policy document you have on hand, "
@@ -1103,7 +1103,7 @@ def control(
         for n, _ in FIELD_LABELS
     )
     if editable and not written:
-        # 一个字都还没有的时候，两条路都要说出来：让模型起草，或者自己写。
+        # When not one word exists, both paths must be offered: have the model draft it, or write it yourself.
         parts.append(
             '<p class="empty" style="padding:1rem 0">This control has no interpretation yet. Go to the '
             f'<a href="/f/{escape(view.framework_id)}">framework page</a> and click "Draft interpretations" '
@@ -1123,8 +1123,8 @@ def control(
             'Run <code>fr draft</code> to draft the whole framework.</p>'
         )
 
-    # 「做的事」收成一摞，等下整个放进右栏。**左边只留读的东西**——
-    # 条款很长时，动作按钮跟着滚到看不见的地方，等于每次都要翻回去找。
+    # "Actions" are gathered into a stack for the right column. **The left keeps only reading matter** -
+    # on a long control page, action buttons scrolling out of view means hunting for them every time.
     doing = []
     if editable and _has_blank_field(fields) and may("interpretation:draft"):
         doing.append(_fill_blanks_invite(cid, written))
@@ -1148,13 +1148,13 @@ def control(
             f"<ul>{items}</ul></div>"
         )
     if editable:
-        # **只在自己导入的框架上开。** 内置框架的正文是 Tier C/D 受版权原文，
-        # 一个字不许出网——`editable` 就是「这是你自己的东西」那个判据。
+        # **Only on frameworks the user imported.** A built-in body is Tier C/D copyrighted text - not one
+        # word may leave for the network. `editable` is exactly the "this is your own material" test.
         doing.append(_clause_chat(cid, chat or []))
 
     if doing:
-        # 两栏：左边读的东西，右边做的事。右栏 sticky 常驻——
-        # 条款几十屏长时，滚到哪儿都能直接动手。窄屏叠回下面（见 CSS）。
+        # Two columns: reading on the left, actions on the right. The right column is sticky -
+        # on a control dozens of screens long, you can act from wherever you scrolled. Narrow screens stack it below (see CSS).
         parts = [
             f"<style>{_SPLIT_CSS}</style>",
             '<div class="split"><div class="reading">',
@@ -1171,13 +1171,13 @@ def control(
 
 
 def _clause_chat(control_id: str, turns: list) -> str:
-    """条款页上的对话框。
+    """The dialog on the control page.
 
-    **模型的建议要人点头才写库。** 提议后面挂一个「确定，改」，
-    点了才写——模型说的话永远不会自己进库。
+    **The model's suggestion reaches the database only after a human nods.** Every proposal carries
+    a "Confirm, apply" button; only a click writes - what the model says never reaches the database alone.
 
-    对话跟着条款走，同一个组织里别人看得到：签字的人要能看到
-    「这句话当初是怎么来的」，那比任何审计记录都管用。
+    The conversation follows the control, visible to others in the organization: whoever signs must see
+    "how this sentence came to be" - more useful than any audit record.
     """
     from framework_reader.interpret.render import FIELD_LABELS
 
@@ -1249,7 +1249,7 @@ def _has_blank_field(fields: dict) -> bool:
 
 
 def _fill_blanks_invite(control_id: str, written: bool) -> str:
-    """只补这一条的空字段。整框架起草要为几十条付钱，只想试一条的人得有入口。"""
+    """Fill just this control's blanks. A whole-framework draft costs dozens of controls; someone who wants to try one needs an entry."""
     what = ("fill in the empty fields above" if written
             else "draft all seven fields for this control")
     return (
@@ -1265,7 +1265,7 @@ def _fill_blanks_invite(control_id: str, written: bool) -> str:
 
 def rewrite_field_page(view, field: str, label: str, current, error: str = "",
                        nav: str = "") -> str:
-    """提要求让 AI 重写一个字段。"""
+    """Ask the AI to rewrite one field."""
     cid = escape(view.id)
     return page(f"Rewrite {label}", (
         f'<h2>Have AI rewrite "{escape(label)}"</h2>'
@@ -1286,10 +1286,10 @@ def rewrite_field_page(view, field: str, label: str, current, error: str = "",
 
 
 def _fields(control_id: str, fields: dict, editable: bool) -> str:
-    """逐字段渲染，逐字段标出处。
+    """Render field by field, labelling provenance per field.
 
-    整条一句「AI 初稿」看不出用户改过哪几句——而「哪几句是你自己的话」正是
-    这份材料敢不敢交出去的分界线。
+    One blanket "AI draft" on the control hides which sentences the user edited - and "which words are
+    yours" is the line that decides whether this material dares to be handed over.
     """
     from framework_reader.interpret.render import FIELD_LABELS
 
@@ -1299,14 +1299,14 @@ def _fields(control_id: str, fields: dict, editable: bool) -> str:
         value = data.get("value")
         empty = value in (None, "", [], {})
         if empty and not editable:
-            continue          # 留空的字段不出现，不显示 None/null
+            continue          # empty fields simply do not appear - no None/null shown
         mark = _BASIS_MARK.get(data.get("basis", ""), ("", ""))[0] if not empty else ""
         edit = (
             f'<a class="edit" href="/c/{control_id}/edit/{name}">'
             f'{"Edit" if not empty else "Write"}</a>'
             if editable and may("interpretation:write") else ""
         )
-        # 空字段没有可改写的东西——那是「写」，不是「重写」。
+        # An empty field has nothing to rewrite - that would be "write", not "rewrite".
         rewrite = (
             f'<a class="edit" href="/c/{control_id}/rewrite/{name}">Have AI rewrite</a>'
             if editable and not empty and may("interpretation:draft") else ""
@@ -1330,8 +1330,8 @@ def _value_html(value) -> str:
     return f"<p>{escape(str(value))}</p>"
 
 
-# 三档是字典，追问是清单，其余是一段话。表单得照着形状来，
-# 否则用户改完一次，practice 就从三档塌成一句话。
+# The three rungs are a dict, the follow-up a list, the rest a paragraph. The form must follow the shape,
+# or one user edit collapses practice from three rungs into a single sentence.
 RUNGS = "practice"
 LINES = ("auditor_asks",)
 
@@ -1377,9 +1377,9 @@ def edit_field(view, field: str, label: str, value, nav: str = "") -> str:
 
 
 def edit_body(view, body: str, *, note: str = "") -> str:
-    """改用户自己条款的正文。一个表单两个按钮：保存直接写库；
-    「让 AI 改一版」只把提议稿回显在这个框里，写库仍靠「保存」——
-    和字段重写同一道闸。AI 改写以框里的当前内容为基础。"""
+    """Edit the body of the user's own control. One form, two buttons: Save writes to the database;
+    "Let AI revise" only echoes a proposal back into the box - writing still happens on Save, the
+    same gate as field rewrites. The AI revision builds on the box's current content."""
     cid = escape(view.id)
     back = f"/c/{cid}"
     head = (
@@ -1413,7 +1413,7 @@ def edit_body(view, body: str, *, note: str = "") -> str:
 
 
 def draft_status(title: str, back_url: str, job, nav: str = "", crumb: str = "") -> str:
-    """起草进度。跑着的时候自己刷新——否则用户只能盯着一个不动的页面猜。"""
+    """Drafting progress. Refreshes itself while running - otherwise the user stares at a frozen page guessing."""
     head = f"<h2>{escape(title)} · Draft interpretations</h2>"
     back = f'<p style="margin:1.4rem 0 0"><a href="{escape(back_url)}">Back</a></p>'
 
@@ -1556,15 +1556,15 @@ def assess(view, rows: list[dict], maturity: bool, nav: str = "") -> str:
 
 def gap(view, text: str, nav: str = "", to_assess: int = 0,
         changes: list[dict] | None = None, plan: int | None = None) -> str:
-    """`to_assess` 非 0 表示一条自评都还没有，这一页此刻没有内容可给。
+    """`to_assess` non-zero means not a single self-assessment exists - this page has nothing to offer yet.
 
-    **空态不能照搬 CLI 那句话。** `render_gap` 的空态写的是「先跑 fr assess」——
-    在终端里那是对的答案，渲到网页上就成了一句把人赶去开终端的指令，
-    而正确答案是上面子导航里的「自评」。部署形态已经是一个组织多个用户
-    （见 2026-08-23 网页服务化设计），那些人没有终端。
+    **The empty state must not copy the CLI's line.** render_gap's empty state says "run fr assess first" -
+    correct in a terminal, but rendered on the web it becomes an order to go open a terminal,
+    while the right answer is "Self-assessment" in the sub-navigation above. The deployment shape is
+    already one organization, many users (see the 2026-08-23 web service design) - they have no terminal.
 
-    `changes` 是复评对比（AssessStore.changes() 的输出），`plan` 是报告里
-    还没立项的条数——有差距而没人跟进，报告就只是一张快照。
+    `changes` is the re-assessment comparison (AssessStore.changes() output); `plan` counts report items
+    not yet filed into the remediation ledger - gaps nobody follows make the report a mere snapshot.
     """
     fid = escape(view.id)
     if to_assess:
@@ -1588,8 +1588,8 @@ def gap(view, text: str, nav: str = "", to_assess: int = 0,
 
 
 def _review_changes(changes: list[dict] | None) -> str:
-    """复评对比。历史表是今天才开始记的，多数库第一次打开是空的——
-    空着不渲染，别让一块「暂无数据」占着报告的头部。"""
+    """Re-assessment comparison. The history table only started recording today; most databases open empty -
+    render nothing rather than let a "no data" block squat on the report's top."""
     if not changes:
         return ""
     rows = "".join(
@@ -1610,7 +1610,7 @@ def _review_changes(changes: list[dict] | None) -> str:
 
 
 def _plan_block(fid: str, plan: int | None) -> str:
-    """差距和整改之间就差一步：立项。report 里没有待提升条目时不渲染。"""
+    """The one step between gap and remediation: filing it. Not rendered when the report has no to-improve items."""
     if plan is None:
         return ""
     if plan == 0:
@@ -1626,10 +1626,10 @@ def _plan_block(fid: str, plan: int | None) -> str:
 
 
 def remediation(view, rows: list[dict], nav: str = "") -> str:
-    """整改台账。一行一张表单，负责人/期限/状态/备注当场改完当场存。
+    """The remediation ledger. One row, one form: owner / due date / state / notes edited and saved in place.
 
-    排序是「有期限的在前、紧的先做」，由 store.all() 定——这里不再排一遍，
-    两个排序总有一天会排得不一样。
+    Ordering is "with deadline first, tightest first", decided by store.all() - never sorted again here:
+    two sorts will eventually disagree.
     """
     fid = escape(view.id)
     blocks = "".join(_remediation_row(fid, r) for r in rows) if rows else (
@@ -1695,8 +1695,8 @@ def _due_hint(due: str, updated_at: str) -> str:
 
 
 def review(item: dict | None, *, remaining: int, total: int, nav: str = "") -> str:
-    """审阅队列：一次一条初稿。签字仍是逐条的（批量确认不能有），
-    这里省掉的只是「找下一条」——左右键翻页，确认完原地进下一条。"""
+    """The review queue: one draft at a time. Signing stays per-control (no bulk confirmation) -
+    all this saves is "find the next one" - arrow keys page, confirming advances in place."""
     if item is None:
         body = (
             "<h2>Review queue</h2>"
@@ -1791,12 +1791,12 @@ def soa(view, rows: list[dict], nav: str = "") -> str:
     return page(f"{view.name} · Statement of Applicability", body, crumb=escape(view.id), nav=nav)
 
 
-# ---------- 登录 / 邀请 ----------
+# ---------- Sign-in / invite ----------
 
 def login(error: str = "", next_url: str = "/", entra: bool = False) -> str:
     sso = ""
     if entra:
-        # SSO 在上、口令在下：接了 Entra 的组织里，口令是例外不是常态。
+        # SSO above, passcode below: in an organization with Entra, the passcode is the exception, not the norm.
         sso = (
             f'<p style="margin:0 0 1.4rem"><a class="sso" '
             f'href="/auth/entra?next={escape(next_url)}">Sign in with your company account</a></p>'
@@ -1853,7 +1853,7 @@ def refused(title: str, message: str, hint: str = "") -> str:
     ))
 
 
-# ---------- 成员与审计 ----------
+# ---------- Members and audit ----------
 
 _MEMBER_CSS = """
 .mtable td{vertical-align:middle}
@@ -1884,8 +1884,8 @@ ROLE_WHAT = {
     "viewer": "Browse and export",
 }
 
-# 界面上读中文，但**英文标识符不能藏起来**：CLI 用的是它
-# （`fr account grant 谁 author`），纯中文会让人在终端里对不上号。
+# The UI may read in English, but **the English identifiers must not be hidden**: the CLI uses them
+# (`fr account grant someone author`); identifiers alone let people match terminal records - drop them and nothing lines up.
 ROLE_NAME = {
     "admin": "Admin",
     "author": "Editor",
@@ -1915,10 +1915,10 @@ def _role_chips(row: dict, editable: bool) -> str:
 
 
 def _first_admin(error: str = "", *, nav: str = "") -> str:
-    """一个账号都没有时，成员页就是这张表单。
+    """With zero accounts, the members page is this one form.
 
-    名单和邀请块这时都是空的，摆出来只会让人以为坏了。建完这一个，
-    门就锁上——之后进来的人靠邀请。
+    The roster and invite blocks would both be empty; showing them only suggests breakage. Once this one
+    exists, the door locks - everyone after enters by invitation.
     """
     body = (
         f"<style>{_MEMBER_CSS}</style>"
@@ -1984,9 +1984,9 @@ def members(rows: list[dict], *, can_manage: bool, self_grant_allowed: bool,
     if can_manage:
         from framework_reader.identity import DEFAULT_ROLE
 
-        # 默认选中的是**只读**，不是列表里的第一个（那是 admin）。
-        # 下拉框的默认值和「新账号默认 viewer」是同一条规矩：
-        # 默认值决定了点快了会发生什么，而点快了是常态。
+        # The preselection is **viewer**, not the first list item (that is admin).
+        # The dropdown default and "new accounts default to viewer" are one rule:
+        # defaults decide what a hasty click does - and hasty clicks are the norm.
         options = "".join(
             f'<option value="{r}"{" selected" if r == DEFAULT_ROLE else ""}>'
             f"{ROLE_NAME[r]} ({r}): {escape(ROLE_WHAT[r])}</option>"
@@ -2034,7 +2034,7 @@ def members(rows: list[dict], *, can_manage: bool, self_grant_allowed: bool,
         + '<p class="note">Roles are <strong>additive</strong>, not a tree: a person\'s permissions are the union of their roles. '
         "Administrators do not include drafting or confirming: drafting spends the organization\'s money, "
         "confirming is a professional judgement.</p>"
-        # 不写出来，管理员会以为自己在这一页改的生效了。设计 §5.4
+        # Without writing it out, the admin believes the edit on this page took effect. Design §5.4
         + ('<p class="err">This deployment uses <strong>Entra ID</strong>: for accounts that sign in via SSO, roles come from Entra App Roles and '
            '<strong>changes made on this page are overwritten at their next sign-in</strong>. '
            "For a lasting change, edit the assignment in Entra.</p>" if entra else "")
@@ -2069,7 +2069,7 @@ def audit(entries: list[dict], nav: str = "") -> str:
     return page("Audit log", body, nav=nav)
 
 
-# ---------- 模型与 key ----------
+# ---------- Models and keys ----------
 
 ROLE_WHAT_FOR = {
     "drafter": "Drafts interpretations and rewrites fields. <strong>This role is the product itself</strong>, "
@@ -2080,14 +2080,14 @@ ROLE_WHAT_FOR = {
 
 
 def settings(*, bootstrap: bool = False, nav: str = "") -> str:
-    """把配置类的入口收在一处。
+    """All configuration entries in one place.
 
-    在这之前它们是顶栏上并排的三个链接，而**「模型与 key」那一个从来没显示过**：
-    它被 `logged_in()` 挡着，而那个判断的本意是「本机单人没有成员这回事」——
-    对成员成立，对模型不成立。本机单人恰恰是最需要配自己 key 的那种用法。
+    Before this they were three side-by-side top-bar links, and **"Models & keys" had never once shown**: it
+    was gated by logged_in(), whose intent was "single-user local use has no members" - true for members,
+    false for models. Single-user local is exactly the usage that most needs to configure its own key.
 
-    每一块按权限单独判。一样都看不到的人（viewer 只有 member:read，
-    而成员那块要 logged_in）会看到一句话，不是一个空页面：空页面让人以为坏了。
+    Each block is judged by its own permission. Someone who sees none of them (viewer has only member:read,
+    while the members block needs logged_in) sees one sentence, not a blank page: blank reads as broken.
     """
     cards = []
     if may("model:read"):
@@ -2095,9 +2095,9 @@ def settings(*, bootstrap: bool = False, nav: str = "") -> str:
             "/models", "Models and keys",
             "Which provider and model drafts interpretations, the API keys, and the three spending limits "
             "(per person per hour / per organization per month / concurrent jobs)."))
-    # 一个账号都没有时**更**要挂这个入口：那正是建第一个管理员的时刻。
-    # 原先这里挡着 `logged_in()`，于是本机跑 `fr serve` 的人在界面上
-    # 根本找不到用户管理，只能去终端跑 `fr account invite`。
+    # With zero accounts this entry matters **more**: that is exactly the moment to create the first admin.
+    # It used to be gated by logged_in(), so a person running `fr serve` locally could not find
+    # user management anywhere in the UI and had to run `fr account invite` in a terminal.
     if may("member:read"):
         cards.append((
             "/members", "Members and roles",
@@ -2106,8 +2106,8 @@ def settings(*, bootstrap: bool = False, nav: str = "") -> str:
             "Who can draft, who can sign, who can only look. Send invitations, disable accounts, "
             "and the switch for the no-self-grant lock."))
     if may("member:manage"):
-        # 这两块是系统配置，只有管理员看得到入口；子页路由同样要
-        # member:manage——看见入口和做得了事是同一条权限。
+        # These two blocks are system configuration; only admins see the entries, and the sub-page routes
+        # equally require member:manage - seeing the entry and doing the thing are one permission.
         cards.append((
             "/settings/sso", "Single sign-on (Entra ID)",
             "Let people sign in with their company accounts (OIDC + PKCE). "
@@ -2142,10 +2142,10 @@ def settings(*, bootstrap: bool = False, nav: str = "") -> str:
 
 def sso_settings(saved: dict | None, *, from_env: bool = False,
                  report: dict | None = None, nav: str = "") -> str:
-    """Entra ID 单点登录的配置页。保存且启用的配置优先于环境变量。
+    """The Entra ID single sign-on configuration page. A saved, enabled configuration overrides environment variables.
 
-    `report` 是「Test connection」的结果：problems 是逐项体检清单，
-    discovery_error 是发现文档拉取失败的原因，issuer 是对方自报的门牌。
+    `report` is the "Test connection" result: problems is the itemised checklist, discovery_error is why
+    the discovery document fetch failed, and issuer is the other side's self-reported address.
     """
     status = "Not configured - only email passcode sign-in works."
     if saved and saved.get("enabled"):
@@ -2202,7 +2202,7 @@ def sso_settings(saved: dict | None, *, from_env: bool = False,
 
 
 def branding_settings(logo: dict | None, *, error: str = "", nav: str = "") -> str:
-    """自定义 logo：传一张图，顶栏的品牌名换成它，登录页同样生效。"""
+    """Custom logo: upload one image and it replaces the brand name in the top bar; the login page too."""
     preview = ""
     if logo:
         preview = (f'<p><img class="brandlogo" src="/branding/logo?v={logo["version"]}" '
@@ -2227,7 +2227,7 @@ def branding_settings(logo: dict | None, *, error: str = "", nav: str = "") -> s
 
 
 def backup(frameworks: list[dict] | None = None, *, nav: str = "") -> str:
-    """点一下下载 sqlite；有解读的框架另外各下一份 PDF。"""
+    """One click downloads the sqlite; frameworks with interpretations each get a PDF too."""
     body = [
         "<h2>Back up the user database</h2>",
         '<p class="note">What you download is a consistent snapshot, not the live file. '
@@ -2282,7 +2282,7 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
            catalogs: dict | None = None,
            focus: tuple[str, str, str] | None = None,
            error: str = "", notice: str = "", nav: str = "") -> str:
-    """`keys` 里只有脱敏串。**明文与密文都不到这一层。**"""
+    """`keys` holds only masked strings. **Neither plaintext nor ciphertext reaches this layer.**"""
     warn = ""
     if not master_key:
         warn = (
@@ -2290,15 +2290,15 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
             " Until it is, I will not store a single API key in the database: silently kept plaintext would make you believe it is encrypted when it is not. "
             "Run <code>fr secret new</code> on the server to generate a key, inject it as an environment variable and restart.</p>")
 
-    # ---- 角色 ----
+    # ---- Roles ----
     catalogs = catalogs or {}
 
     def _datalist(list_id: str, values, labels: dict | None = None) -> str:
-        """`<option>` 的正文是候选项的**副标题**，填进框里的只有 value。
+        """The `<option>` text is the candidate's **subtitle**; only the value goes into the box.
 
-        自定义端点靠它标出来——不标的话，自己加的内网网关和二十家预设
-        混在一列里分不出谁是谁。而把「（自定义）」并进 value，
-        选一下就把这四个字填进了表单。
+        Custom endpoints are flagged this way - unflagged, your own intranet gateway and the twenty presets
+        blur into one column. And folding "(custom)" into the value would put those words
+        into the form on every selection.
         """
         labels = labels or {}
         return (f'<datalist id="{escape(list_id)}">'
@@ -2310,16 +2310,16 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
 
     def _model_field(role: str, provider: str, current_model: str,
                      grab_focus: bool = False) -> str:
-        """一个输入框，背后挂目录。**目录是便利，不是唯一入口**——
-        新模型上线永远早于任何目录，自定义端点与内网网关也未必有这个接口。
+        """One input with a catalogue behind it. **The catalogue is a convenience, not the only entry** -
+        new models always ship before any catalogue lists them, and custom endpoints or intranet
 
-        原来这里是「下拉选一个」加「或者手填」两个控件，值还要在服务端二选一。
-        `datalist` 天生就是这两件事的同一个控件：能选，也能填。
-        顺带解决了原生 `<select>` 展开时用系统菜单字号那个问题——
-        datalist 的候选由浏览器画在页面内，字号跟着 input 走。
+        This used to be two controls - "pick from a dropdown" plus "or type one" - with the server
+        `datalist` is natively one control for both: pickable and typable.
+        It also fixes the native `<select>` opening the OS menu with its own font size -
+        datalist renders its candidates inside the page, sized to the input.
 
-        没拉过 / 拉失败 / 目录为空时，只挂一句原因，**不挂一个空目录**——
-        点开什么都没有，比没得点更像坏了。
+        Never fetched / fetch failed / empty catalogue: render one line of reason, **not an empty catalogue** -
+        opening it to nothing looks more broken than not having it.
         """
         cached = catalogs.get(provider)
         options = ""
@@ -2342,9 +2342,9 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
             refresh = (
                 f'<button type="submit" form="refresh-{escape(provider)}" '
                 'class="linky">Refresh</button>')
-        # 刚在这一块里动过手：把焦点放这儿。浏览器会把它滚进视野——
-        # 提交后滚动条被打回顶端的话，上面那条反馈就又看不见了，
-        # 而各家浏览器的滚动恢复行为不归我管。零 JS 的办法只有这一个。
+        # Just acted within this block: put the focus here. The browser scrolls it into view -
+        # if the scroll jumps back to the top after submit, the feedback above becomes invisible again,
+        # and every browser's scroll restoration is out of our hands. This zero-JS trick is the only one.
         focus_attr = " autofocus" if grab_focus else ""
         return (
             f"<label>Model name</label>"
@@ -2355,34 +2355,34 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
         )
 
     def _provider_picker(current: str) -> str:
-        """厂商是**封闭集合**，所以用 `<select>`。
+        """Vendors are a **closed set**, hence `<select>`.
 
-        原来这里和模型名一样是 `<input list>`：可 datalist 的候选**按当前值
-        过滤**——框里已经有「minimax」时点开，就只剩它自己，于是「必须先把
-        现有的删掉才能换一家」。那不是 datalist 的毛病，是控件选错了：
-        datalist 是给**开放集合**做建议用的，而厂商填错了服务端当场退回
-        （`_known_providers()`），这就是封闭集合的定义。
+        This used to be an `<input list>` like the model name: but datalist filters its candidates
+        **by the current value** - with "minimax" already in the box, opening it shows only minimax,
+        so "you must delete the existing one before switching vendors". That is not a datalist defect,
+        it is the wrong control: datalist suggests for **open sets**, while a wrong vendor is rejected
+        server-side on the spot (`_known_providers()`) - the definition of a closed set.
 
-        模型名相反——新模型永远早于任何目录，自定义端点也未必有那个接口——
-        所以那边继续用 datalist，能选也能填。
+        Model names are the opposite - new models always ship before any catalogue, and custom endpoints
+        may not have that interface - so that side keeps datalist: pickable and typable.
 
-        代价是 macOS 的原生 select 展开时用系统菜单字号，CSS 碰不到
-        （见 2026-08-25 那次改动）。那是美观，这是能不能用，不是一回事。
+        The cost: on macOS the native select opens with the OS menu font size, beyond CSS
+        (see the 2026-08-25 change). That is aesthetics; this is usability - not the same thing.
         """
         options = []
         if not current:
             options.append(
                 '<option value="" selected disabled>Pick a provider</option>')
         elif current not in set(provider_ids):
-            # 预设改了名、或者自定义端点被删了。**不能让 select 悄悄换一家**：
-            # select 总会提交点什么，把认不出的值扔掉等于替人改了配置，
-            # 而他可能只是想看看这一页。
+            # A preset was renamed, or a custom endpoint deleted. **The select must not silently switch vendors**: it
+            # always submits something; discarding an unrecognized value edits the config on the user's behalf,
+            # when they may only have been looking at the page.
             options.append(
                 f'<option value="{escape(current)}" selected>'
                 f"{escape(current)} (stale, not in the list)</option>")
         for pid in provider_ids:
-            # 正文只放编号（加一个自定义标记）。塞整句说明进去，浏览器会按
-            # 最长那条撑开弹出层——说明在下面那张一览表里，那儿放得下。
+            # Option text carries the id only (plus a custom marker). Full explanations would stretch the
+            # dropdown to the longest line - the explanations live in the overview table below, which fits them.
             label = pid + (" (custom endpoint)" if pid in provider_labels else "")
             picked = " selected" if pid == current else ""
             options.append(f'<option value="{escape(pid)}"{picked}>'
@@ -2391,13 +2391,13 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
                 f'{"".join(options)}</select>')
 
     def _key_field(provider: str) -> str:
-        """这家还没 key 时，就在这儿填。
+        """When this vendor has no key yet, fill it right here.
 
-        原来 key 要滚到下面「API key」那一栏、再选一次同一个厂商才能填——
-        同一件事分两处做，中间还要重选一遍厂商。
+        Before, entering a key meant scrolling down to the "API key" block and picking the same vendor
+        again - one task split across two places, with a redundant re-selection in between.
 
-        **key 是按厂商存的，不是按角色。** 在 drafter 这块填的 openai key，
-        questioner 用的也是它。这句话必须写在界面上，否则看着像每个角色各存一把。
+        **Keys are stored per vendor, not per role.** The openai key entered in the drafter block is the
+        one the questioner uses too. This sentence must be on the page, or it looks like every role keeps
         """
         if not can_write or not provider or provider in keys:
             return ""
@@ -2409,31 +2409,31 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
             "<div></div></div>"
         )
 
-    # 候选里**只放编号**。把说明塞进候选项，浏览器会按最长那条撑开下拉——
-    # 实测盖住半个屏幕，最长那条还被截成「不建议用作…」。
-    # 说明去下面那张一览表，那里放得下整句，也更显眼。
+    # Candidates carry **the id only**. Explanations inside candidates stretch the dropdown to the longest
+    # line - measured: it covered half the screen and still got truncated to "not recommended for…".
+    # Explanations go to the overview table below, which fits the whole sentence and is more visible.
     provider_ids = [p["id"] for p in presets]
     provider_labels = {p["id"]: "custom endpoint" for p in presets if p.get("custom")}
     role_rows = []
     for name, what in ROLE_WHAT_FOR.items():
-        # `roles` 给的是**实际生效**的值（网页上没配的回落到 YAML 预设）。
-        # 只显示「这里配过的」，会让没配过的角色显示成一片空白——
-        # 而这一页要回答的问题是「现在到底谁在收我们的钱」。
+        # `roles` carries the **effective** values (web-unconfigured roles fall back to YAML presets).
+        # Showing only "configured here" would render unconfigured roles as blank rows -
+        # while this page's question is "who is spending our money right now, exactly".
         current = roles.get(name, {})
         provider = current.get("provider", "")
         model = current.get("model", "")
-        # 刚在这一块里动过手（配 key、或者测了一下）：停在**新**厂商上，
-        # 别弹回旧的——弹回去等于让人再选一遍，这个改动就白做了。
+        # Just acted in this block (key configured, or a probe run): stay on the **new** vendor,
+        # never bounce back to the old one - bouncing means re-selecting, and the edit is wasted.
         #
-        # 第三个元素是模型名：配完 key 时它是空的（那一刻还没选模型），
-        # 测完时它是刚验过的那个——测通了下一步就是点保存，
-        # 这时候把框清空等于逼人再填一遍自己刚验过的字。
+        # The third element is the model name: empty right after configuring a key (no model chosen yet),
+        # the just-probed one after a probe - a passing probe leads straight to Save,
+        # and clearing the box then would force re-typing the very string just verified.
         if focus and focus[0] == name:
             provider, model = focus[1], focus[2]
 
-        # **反馈落在按下去的那一块里。** 只渲在页面顶端的话，按钮在页面中部的人
-        # 提交完什么都看不见——浏览器可能保留滚动位置，那条字在视野上方一千像素。
-        # 这一页已经因为同一个毛病被误读过一次（配 key 那次说「保存没反应」）。
+        # **Feedback lands inside the block that was pressed.** Rendered only at the top of the page,
+        # someone with the button mid-page sees nothing after submitting - the browser may keep scroll
+        # position, leaving the line a thousand pixels above the viewport.
         said = ""
         if focus and focus[0] == name:
             if error:
@@ -2456,14 +2456,14 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
                 f'<div>{_model_field(name, provider, model, bool(said))}</div>'
                 "</div>"
                 f"{_key_field(provider)}"
-                # 「测一下」和「保存」共用这张表单，所以测的就是此刻框里的那组，
-                # 不是库里存着的那组。formaction 覆盖 action，不需要第二张表单。
+                # "Probe" and "Save" share this form, so the probe tests exactly what is in the boxes now,
+                # not what is stored. formaction overrides action - no second form needed.
                 '<button type="submit" class="ghost" '
                 'formaction="/models/role/test">Test</button>'
                 "<button type=\"submit\">Save</button>"
                 '<p class="hint">Run \u300cTest\u300d first: it sends one minimal real request and can tell a wrong key, a model name this provider does not know, and a connection failure apart. '
                 "Save only once the test passes.</p></form>"
-                # 「刷新」按钮借这张隐藏表单提交——它不能嵌在上面那张表单里。
+                # The "Refresh" button submits via this hidden form - it cannot nest inside the one above.
                 f'<form id="refresh-{escape(provider)}" method="post" '
                 f'action="/models/catalog/refresh" style="display:none">'
                 f'<input type="hidden" name="provider" value="{escape(provider)}">'
@@ -2503,7 +2503,7 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
             "the old is overwritten.</p></form>"
         )
 
-    # ---- 闸 ----
+    # ---- Gates ----
     limit_form = ""
     if can_write:
         limit_form = (
@@ -2520,12 +2520,12 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
             '<p class="hint">To stop drafting entirely, revoke that person\'s author role: limits are not an on/off switch.</p></form>'
         )
 
-    # 2026-08-26：「厂商一览」那张 20 行的表按要求整块拿掉。
-    # 连带没了的是每家的 note（含 MiniMax 那句「起草质量实测不合格」），
-    # 以及「我们验过」（预设属性）与「你的 key 此刻拉不拉得通」（运行时事实）
-    # 那两列。presets 里的 note / verified 现在页面上没有出口。
+    # 2026-08-26: the 20-row "vendor overview" table was removed as requested.
+    # Lost with it: each vendor's note (including MiniMax's "draft quality measured as failing"),
+    # and the two columns "we verified it" (a preset property) vs "your key connects right now" (a
+    # runtime fact). The note / verified fields in presets currently have no surface on the page.
 
-    # ---- 自定义端点 ----
+    # ---- Custom endpoints ----
     custom = custom or {}
     rows = "".join(
         f"<tr><td><code>{escape(pid)}</code></td>"
@@ -2570,12 +2570,12 @@ def models(*, roles: dict, presets: list[dict], keys: dict, limits: dict,
 
     body = (
         f"<style>{_MEMBER_CSS}{_MODEL_CSS}</style>"
-        # 厂商候选现在由每块自己的 <select> 带着——它要标出「哪一家是选中的」，
-        # 共用一份就做不到。模型目录那边仍然各自一份 datalist（每家不一样）。
+        # The vendor candidates now ride each block's own <select> - it must show "which one is selected",
+        # impossible with one shared list. Model catalogues keep their own datalists (one per vendor).
         + "<h2>Models and keys</h2>"
         + warn
-        # 有 focus 就说明这句话已经渲在那一块里了。两处各印一遍同样的字，
-        # 正是第一个 bug 的成因：提交前后画面看着一模一样。
+        # A focus means this sentence already rendered inside that block. Printing the same words in both
+        # places caused the first bug: before and after submit the screen looked identical.
         + (f'<p class="err">{escape(error)}</p>' if error and not focus else "")
         + (f'<p class="signed">{escape(notice)}</p>' if notice and not focus else "")
         + '<p class="note">Drafting and rewriting spend the organization\'s money. This page decides <strong>who gets paid</strong> '
@@ -2619,7 +2619,7 @@ input.pick[list]:focus::-webkit-calendar-picker-indicator{opacity:.9}
 """
 
 
-# ---------- 配套文档 ----------
+# ---------- Companion documents ----------
 
 _DOC_CSS = """
 .docrow{background:var(--surface);border:1px solid var(--rule);border-radius:16px;
@@ -2684,7 +2684,7 @@ def documents(docs: list, *, can_write: bool, error: str = "", nav: str = "") ->
 
 
 def document(doc, sections: list, nav: str = "") -> str:
-    """把切出来的段原样显示。**「模型到底看到了什么」不能只有我们知道。**"""
+    """Show the extracted chunks verbatim. **"What exactly did the model see" must not be a secret only we know.**"""
     blocks = "".join(
         f'<div class="seg"><h4>{escape(heading or f"Chunk {i + 1}")}</h4>'
         f"<p>{escape(text)}</p></div>"
@@ -2702,25 +2702,25 @@ def document(doc, sections: list, nav: str = "") -> str:
     return page(doc.title, body, nav=nav)
 
 
-# 这两类是「已自动处理」的结果通知，不是失败——渲染时不给 ⚠。
+# These two are "handled automatically" result notices, not failures - no ⚠ when rendering.
 _AUTO_DONE = {"catalog", "snapped"}
 
 
 def import_preview(draft, bodies: list[str], nav: str = "") -> str:
-    """确认前不写库。见 2026-08-25 AI 导入设计 §5.2
+    """Nothing is written to the database before confirmation. See the 2026-08-25 AI import design §5.2
 
-    **正文只读。** 它是从你的原文逐字截的——能在这儿改，就等于把「模型不许
-    改写正文」那条保证从前门放进来，而且事后没人分得清哪些字是原文、
-    哪些是当时顺手改的。
+    **The body is read-only.** It was cut verbatim from your text - making it editable here would let
+    "the model never rewrites the body" in through the front door, and afterwards nobody could tell
+    which words were edited in passing.
 
-    切歪的主要形式是多切了一刀（一条被劈成两条），「↑合并」把两段行号
-    接起来就按回去了，正文自动重算。少切一刀没法在这儿拆，但它罕见得多。
+    The main form of a bad cut is one cut too many (a control split in two); "↑ merge" rejoins the two
+    rejoins their line ranges and the body recomputes. A missing cut cannot be split here, but it is far rarer.
     """
     did = escape(draft.draft_id)
     rows = []
     for index, (span, body) in enumerate(zip(draft.spans, bodies)):
         key = str(index)
-        # 空标题多半是切歪了，但也可能是真条款——不替人决定，只是不默认勾上。
+        # An empty title is usually a bad cut, but can be a real control - do not decide for the user; just do not pre-check it.
         checked = "" if key in draft.dropped or not span.label else " checked"
         merge = ("" if index == 0 else
                  '<button class="linky" type="submit" name="merge" '
@@ -2733,24 +2733,24 @@ def import_preview(draft, bodies: list[str], nav: str = "") -> str:
             'placeholder="ID" size="10">'
             f'<input type="text" name="label-{key}" value="{escape(span.label)}" '
             'placeholder="Title" size="28">'
-            # 「谁写的要能看出来」——和条款页那套「AI 初稿」一个规矩。
-            # 编号和标题可以由 AI 起（否则条款存不进库），但人要一眼看得出。
+            # "Who wrote it must be visible" - same rule as the control page's AI DRAFT chips.
+            # AI may propose the id and title (otherwise the control cannot be saved), but a human must
             + ('<span class="mark">Named by AI</span>'
                if "derived" in (span.ref_from, span.label_from) else "")
             + f'{merge}'
             + (f'<p class="pbody">{escape(body)}</p>'
                f'<p class="hint">Source lines {span.start}-{span.end}</p>'
                if span.end >= span.start else
-               # 父条款截到第一个子条款之前就是空的——它本来只是个分组标题。
-               # 显示一片空白，人会以为是 bug。
+               # A parent control cut before its first child is empty - it was only ever a grouping title.
+               # Shown blank, people would call it a bug.
                '<p class="hint">This control has no body text of its own: '
                "it is a group heading, and the text lives in its child controls.</p>")
             + "</div>")
     warns = "".join(
         f'<p class="warn">⚠ {escape(p.detail)}</p>'
         for p in draft.problems if p.kind not in _AUTO_DONE)
-    # catalog / snapped 是处理结果不是失败：编号冲突自动改了、行号整体
-    # 偏移对齐了。混进 ⚠ 串里，「拆开了 91 条」会被读成出了 91 个错。
+    # catalog / snapped are handling results, not failures: an id collision was auto-renamed, line
+    # offsets were aligned. Mixed into the ⚠ stream, "split 91 controls" reads as 91 errors.
     auto = "".join(
         f'<p class="note">{escape(p.detail)}</p>'
         for p in draft.problems if p.kind in _AUTO_DONE)
@@ -2795,10 +2795,10 @@ _IMPORT_CSS = """
 
 
 def import_progress(job, nav: str = "") -> str:
-    """切分进度。见 2026-08-25 AI 导入设计 §5.3
+    """Split progress. See the 2026-08-25 AI import design §5.3
 
-    跑着的时候这一页每 3 秒自己刷新——零 JS，和起草那边一个做法。
-    否则人只能盯着一个不动的页面猜是在跑还是挂了。
+    While running, this page refreshes itself every 3 seconds - zero JS, same approach as drafting.
+    Otherwise the user stares at a frozen page guessing whether it is running or hung.
     """
     head = f"<h2>{escape(job.framework_id)} · Splitting</h2>"
     back = '<p style="margin:1.4rem 0 0"><a href="/import">Back to the import page</a></p>'
@@ -2820,8 +2820,8 @@ def import_progress(job, nav: str = "") -> str:
         + f'<p class="note">{scale} Keep this page open: '
         "it refreshes itself every 3 seconds and jumps to the confirmation page when done.</p>"
         + f'<div class="bar"><div class="fill" style="width:{percent}%"></div></div>'
-        # `done` 数的是**已完成**的块。写「第 0 块」读着像还没开始，
-        # 而这会儿它已经在跑第一块了。
+        # `done` counts **completed** chunks. "Chunk 0" reads as not-yet-started,
+        # when in fact the first chunk is already running.
         + f'<p class="hint">Finished {job.done} / {job.total} chunks</p>'
         + back
     ), crumb="Import", nav=nav)
@@ -2837,10 +2837,10 @@ _PROGRESS_CSS = """
 
 
 def framework_delete(found, cost: dict, error: str = "", nav: str = "") -> str:
-    """删框架的确认页。**要输一遍编号。**
+    """The delete-framework confirmation page. **Type the id to confirm.**
 
-    它会连着毁掉这个框架下所有的自评和签字——那可能是几十小时的工作，
-    而删掉的东西找不回来。所以这一步是故意麻烦的。
+    Deleting also destroys every self-assessment and sign-off under this framework - potentially tens
+    of hours of work, unrecoverable. This step is deliberately annoying.
     """
     fid = escape(found.id)
     body = (
@@ -2866,24 +2866,24 @@ def framework_delete(found, cost: dict, error: str = "", nav: str = "") -> str:
 
 
 def _selection_popup(control_id: str) -> str:
-    """选中一段话，就地弹一个小聊天框。
+    """Select a passage and a small chat pops up in place.
 
-    **这一页原本是零 JS 的**（下拉用 datalist、进度条用 meta refresh、
-    滚动定位用 autofocus）。选中文字绕不开 `window.getSelection()`，
-    所以这里破了那条约束——但界限划得很死：
+    **This page used to be zero-JS** (datalist dropdowns, meta-refresh progress, autofocus scrolling).
+    Text selection cannot avoid `window.getSelection()`, so this page breaks that rule - with a hard line drawn:
+    so this page breaks that rule - with a hard line drawn:
 
-    **JS 只负责「问」和「显示」，每一次写库仍然走普通表单 POST。**
-    写库那条路上挂着预检、审计、和「点头才写」那道闸；让 JS 去写库，
-    等于把这三样搬进浏览器。所以浮窗里那个「确定，改」是个真表单，
-    点了整页刷新。
+    **JS only asks and displays; every write still goes through a normal form POST.**
+    The write path carries preflight, audit, and the "no write without a nod" gate; letting JS write
+    would move all three into the browser. So the popup's "Confirm, apply" is a real form,
+    and clicking it reloads the whole page.
 
-    **默认允许，只挡禁区。** 早先的规则是「选区必须整个落在 `.chatty` 里」——
-    那是默认拒绝：从标题拖到正文、跨两个字段、跨段落，任何一种都不弹，
-    而人本来就是那么选的。
+    **Allowed by default; only the forbidden zone is blocked.** The earlier rule - "the selection must sit
+    entirely inside .chatty" - was default-refuse: dragging from title into body, across two fields,
+    across paragraphs - none popped, though that is exactly how people select.
 
-    这一页上真正不能发出去的只有 `.noai`（官方映射那一块，内容来自内置
-    内容包，是别的框架的受版权条款标题）。其余全是这家公司自己的东西。
-    所以规则改成：**选区碰到 `.noai` 就不弹，别的都弹。**
+    The only truly unsendable content here is .noai (the official-mapping block, whose content comes
+    from the built-in content pack - other frameworks' copyrighted control titles). Everything else is
+    this company's own material. So the rule became: **if the selection touches .noai, no popup; otherwise pop.**
     """
     return (
         '<div id="pop" hidden><span class="q"></span>'
@@ -2909,8 +2909,8 @@ _POPUP_CSS = """
 #pop .ans:empty{margin:0}
 """
 
-# 原生 DOM。不引框架、不加构建步骤、不联网拿脚本——
-# 「任何页面都不许引用外部主机」那条守卫还在，这段也不该破它。
+# Native DOM. No framework, no build step, no fetching scripts from the network -
+# the "no page may reference an external host" guard still stands; this snippet should not break it either.
 _POPUP_JS = """
 (function () {
   var pop = document.getElementById('pop');
@@ -2927,8 +2927,8 @@ _POPUP_JS = """
     var sel = window.getSelection();
     var text = sel ? String(sel).trim() : '';
     if (!text) { hide(); return; }
-    // 默认允许，只挡禁区：选区碰到 .noai 就不弹。那一块的内容来自内置
-    // 内容包（别的框架的受版权条款标题），发出去就碰到了那条红线。
+    // Allowed by default, forbidden zone blocked: a selection touching .noai does not pop. That block's
+    // content comes from the built-in pack (other frameworks' copyrighted control titles) - sending it crosses the line.
     var range = sel.getRangeAt(0);
     var blocked = false;
     var zones = document.querySelectorAll('.noai');
@@ -2961,7 +2961,7 @@ _POPUP_JS = """
         busy = false;
         ans.textContent = d.reply || '(no reply)';
         if (d.turn_id && d.fields && d.fields.length) {
-          // 写库仍然走表单。JS 只负责问和显示。
+          // Writes still go through forms. JS only asks and displays.
           var f = document.createElement('form');
           f.method = 'post';
           f.action = '/c/' + cid + '/chat/' + d.turn_id + '/apply';
@@ -2986,8 +2986,8 @@ _POPUP_JS = """
 """
 
 
-# 两栏与右栏常驻。**纯 CSS，不加 JS**——这一页的 JS 只为选区那件事破例过一次，
-# 布局用 sticky 就够，不该再欠一笔。
+# Two columns with a persistent right rail. **Pure CSS, no JS** - this page already spent its one
+# JS exception on text selection; sticky layout is enough and should not owe another.
 _SPLIT_CSS = """
 .wrap.wide{max-width:68rem}
 .split{display:grid;grid-template-columns:minmax(0,1fr) 20.5rem;gap:2.5rem}

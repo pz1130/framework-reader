@@ -1,6 +1,6 @@
-"""起草器：四个非差异化字段。W2 spec §2 表格第一行
+"""The drafter: the four non-differentiating fields. W2 spec §2, first row of the table
 
-三个差异化字段哪怕模型主动给了也丢弃——D1 的第一道闸。
+The three differentiating fields are dropped even when the model offers them - the first gate of D1.
 """
 import json
 from pathlib import Path
@@ -24,16 +24,16 @@ DRAFT_FAILURE_DIR = Path("build/draft_failures")
 
 
 class DrafterOutputError(Exception):
-    """模型输出不符合约定结构。不猜、不修，直接失败。"""
+    """The model output violates the agreed structure. No guessing, no repair: fail directly."""
 
 
 _ESCAPES = {"\n": "\\n", "\r": "\\r", "\t": "\\t"}
 
 
 def _repair_json(text: str) -> str:
-    """只修两类语法毛病：字符串内的裸控制字符、结构里的尾逗号。
+    """Repairs exactly two syntax defects: bare control characters inside strings, and trailing commas.
 
-    逐字符扫描并跟踪是否身处字符串，因此字符串里的逗号、括号一律不动。
+    Scans character by character while tracking string state, so commas and brackets inside strings
     """
     out: list[str] = []
     in_string = False
@@ -56,7 +56,7 @@ def _repair_json(text: str) -> str:
             out.append(ch)
             continue
         if ch in "}]":
-            # 回退掉紧邻的尾逗号（含其间空白）
+            # Fall back over the immediately preceding trailing comma (and any whitespace)
             trailing: list[str] = []
             while out and out[-1].isspace():
                 trailing.append(out.pop())
@@ -68,7 +68,7 @@ def _repair_json(text: str) -> str:
 
 
 def parse_json_object(text: str) -> dict:
-    """容忍 ```json 围栏，其余一律视为格式错误。"""
+    """Tolerates ```json fences; everything else counts as malformed."""
     stripped = text.strip()
     if stripped.startswith("```"):
         stripped = stripped.split("\n", 1)[-1]
@@ -77,8 +77,8 @@ def parse_json_object(text: str) -> dict:
     try:
         data = json.loads(stripped)
     except json.JSONDecodeError:
-        # 纯语法修复：字符串里的裸换行转义、去掉尾逗号。一个字的内容都不改。
-        # 与「抽取器不许自动修复」不冲突——那条禁的是替模型补内容。
+        # Pure syntax repair: escape bare newlines inside strings, drop trailing commas. Not one word of
+        # content changes. This does not contradict "the extractor never auto-repairs" - that bans
         try:
             data = json.loads(_repair_json(stripped))
         except json.JSONDecodeError as exc:
@@ -110,8 +110,8 @@ def draft_fields(
         if name not in data or data[name] in (None, "", {}, []):
             raise DrafterOutputError(f"missing or empty field: {name}")
 
-    # 逐字段验型。Field.value 是 str | list | dict | None，Pydantic 什么形状都收，
-    # 所以 schema 拦不住——实测有厂商会把 evidence 也按三档返回。
+    # Per-field type validation. Field.value is str | list | dict | None and Pydantic accepts any shape,
+    # so the schema cannot catch it - one vendor really did return evidence as three rungs.
     for name in ("intent", "plain_zh", "evidence"):
         if not isinstance(data[name], str):
             raise DrafterOutputError(
@@ -125,7 +125,7 @@ def draft_fields(
     if bad_levels:
         raise DrafterOutputError(f"every level of practice must be a string, got: {bad_levels!r}")
 
-    # 差异化字段一律丢弃，即使模型主动给了。
+    # Differentiating fields are always dropped, even when the model volunteers them.
     return {
         name: Field(value=data[name], basis=Basis.INFERRED) for name in DRAFTED_FIELDS
     }
@@ -143,7 +143,7 @@ def _check_str(data: dict, name: str, *, allow_null: bool) -> None:
 
 
 def _render_examples(examples: list) -> str:
-    """把手写样例渲染成 few-shot。传递的是颗粒度，不是内容。"""
+    """Render handwritten samples as few-shot. What is transmitted is granularity, not content."""
     if not examples:
         return ""
     blocks: list[str] = []
@@ -182,19 +182,19 @@ def draft_full_fields(
     examples: list | None = None,
     failure_dir: Path | None = DRAFT_FAILURE_DIR,
 ) -> dict[str, Field]:
-    """B 路线：七个字段全部由 AI 撰写。主 spec §5（2026-08-20 修订）
+    """Route B: all seven fields written by AI. Main spec §5 (revised 2026-08-20)
 
-    产出一律标 basis=inferred——AI 写的就说是 AI 写的。作者事后在 $EDITOR 里
-    改过的字段，由签字流程改标 practitioner。
+    Output is always marked basis=inferred - AI-written says so. Fields the author later edits in
+    edited by the author are re-marked practitioner by the sign-off flow.
 
-    `outcome` 为空 = 这个框架的原文受版权保护，不给也不许给（主 spec §4.1、§9）。
-    这时接地材料是自写标题 + `grounding`（官方映射到的 800-53 原文，公共领域）。
-    必须把「原文没给」这件事写进 payload——否则模型会把自写标题当标准原文去翻译。
+    An empty `outcome` = this framework's source text is copyrighted: not given, and not allowed
+    The grounding material is then self-written titles + `grounding` (the officially mapped 800-53
+    The payload must say outright that the source text was not given - otherwise the model treats the
 
-    `practice` 是**本组织自己制度里的节选**（用户上传的配套文档，设计 §8 S5）。
-    它和 `grounding` 分开写进 payload，因为两者说的不是一回事：800-53 说的是
-    「应该是什么」，自家制度说的是「现在是什么」。混在一起，模型会把
-    「我们已经这么做了」写成「标准要求这么做」。
+    `practice` holds **excerpts from the organization's own policies** (uploaded companion documents, design §8 S5).
+    It is kept separate from `grounding` in the payload because they are different claims: 800-53 says
+    "what should be"; the house policy says "what is". Mixed together, the model turns
+    "we already do this" into "the standard requires this".
     """
     if outcome:
         user = (
@@ -272,13 +272,13 @@ def rewrite_field(
     model: str,
     outcome: str = "",
 ) -> object:
-    """按用户的一句要求重写一个字段。2026-08-23
+    """Rewrite one field per the user's one-line instruction. 2026-08-23
 
-    这是「用户帮 AI 一起解读」的第三件：用户看得出哪儿不对，但未必想自己动笔。
-    他给方向（「再具体点，带上系统名」），模型执行。
+    The third piece of "user and AI interpret together": the user sees what is wrong but may not want
+    to write it themselves. They give direction ("be more specific, name the systems"); the model executes.
 
-    产出仍然是 AI 写的，落盘时标 `inferred`——**要求是他提的，字是模型写的**。
-    把它记成 practitioner 等于替用户认领了他没写过的话。
+    The output is still AI-written, persisted as `inferred` - **the request was theirs, the words are the model's**.
+    Marking it practitioner would claim words on the user's behalf that they never wrote.
     """
     if not instruction.strip():
         raise DrafterOutputError("the instruction must not be empty; with no instruction there is nothing to rewrite")
@@ -305,10 +305,10 @@ def rewrite_field(
 
 
 def _our_practice(lines: list[str]) -> str:
-    """本组织自己制度里的节选。**必须和标准原文分开标注。**
+    """Excerpts from the organization's own policies. **Must be labelled separately from standard text.**
 
-    不分开的话，模型会把「我们已经这么做了」写成「标准要求这么做」——
-    那正好把这个产品的立身之本（哪句话是谁说的）搞坏。
+    Otherwise the model turns "we already do this" into "the standard requires this" -
+    which breaks the very thing this product stands for: knowing who said what.
     """
     return "\n".join([
         "Excerpts from this organization's own policies (below is what this company **already does**, not what the standard requires):",
@@ -320,7 +320,7 @@ def _our_practice(lines: list[str]) -> str:
 
 
 def _checked_value(field: str, value):
-    """形状不对就退回。形状塌了，practice 会从三档变成一句话。"""
+    """Reject a wrong shape. When the shape collapses, practice degrades from three rungs to one sentence."""
     if field == "practice":
         if not isinstance(value, dict) or set(value) != {"1", "2", "3"}:
             raise DrafterOutputError(f"practice must be a three-level dict, got: {value!r}")

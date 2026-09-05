@@ -1,8 +1,9 @@
-"""三份变体的渲染与泄露检测。spec §4
+"""Rendering and leak detection for the three variants. spec §4
 
-评委看到的每一个字都从这里出去。凡是能暴露「哪份是产品」的词，一律拦在这里。
+Every character the judges see leaves through here. Any word that could expose "which
+one is the product" is blocked here, without exception.
 """
-from framework_reader.interpret.render import (  # noqa: F401  转出口，勿删
+from framework_reader.interpret.render import (  # noqa: F401  re-export, do not remove
     MappingRef,
     render_interpretation as render_product,
     render_mappings,
@@ -10,7 +11,8 @@ from framework_reader.interpret.render import (  # noqa: F401  转出口，勿�
 from framework_reader.llm.client import LLMClient, Message
 from framework_reader.prompts import load_prompt
 
-# 出现即泄露来源。控制编号不在此列——三份变体共享它，评委也需要它。
+# Presence of any of these leaks the origin. Control ids are not on the list — all three
+# variants share them, and the judges need them.
 LEAK_WORDS = (
     "interpretation",
     "basis",
@@ -33,7 +35,7 @@ def render_original(outcome: str) -> str:
     return outcome.strip()
 
 
-# 同行随手会问的那句话。spec §1：朴素，不调优。
+# The question a colleague would fire off casually. spec §1: plain, not tuned.
 _BARE_QUESTION = (
     "{control_id} - what does this control require? I have to prepare audit materials for it next week.\n"
     "The framework text is: {outcome}"
@@ -43,11 +45,11 @@ _BARE_QUESTION = (
 def render_bare(
     client: LLMClient, *, control_id: str, outcome: str, model: str
 ) -> str:
-    """变体 (b)：与起草器同一个模型，朴素提示词，无框架接地、无结构要求。"""
+    """Variant (b): the same model as the drafter, a plain prompt, no framework
+    grounding, no structural requirements."""
     question = _BARE_QUESTION.format(control_id=control_id, outcome=outcome)
     return client.complete(
         load_prompt("bare_llm"),
         [Message(role="user", content=question)],
         model=model,
     ).strip()
-

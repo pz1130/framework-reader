@@ -1,6 +1,7 @@
-"""退避重试。W2 spec §6
+"""Backoff retry. W2 spec §6
 
-红线异常不重试——那不是瞬时故障，是设计违规。
+Red-line exceptions are not retried — that is not a transient fault, it is a design
+violation.
 """
 import time
 from collections.abc import Callable
@@ -39,7 +40,7 @@ class RetryingClient:
                     system, messages, model=model, max_tokens=max_tokens,
                     response_format=response_format)
             except OutboundTextError:
-                raise                      # 红线不是瞬时故障，一次也不重试
+                raise                      # the red line is not a transient fault; do not retry even once
             except Exception as exc:
                 last = exc
                 if attempt < self._attempts - 1:

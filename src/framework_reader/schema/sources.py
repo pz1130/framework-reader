@@ -1,6 +1,6 @@
-"""来源授权白名单。spec §4.3、§10.A
+"""The source-authorisation allowlist. spec §4.3, §10.A
 
-以「NIST 署名文件」为单位登记，不以站点为单位。
+Registered per "NIST-attributed file", not per site.
 """
 from pathlib import Path
 
@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 
 class DisallowedSourceError(Exception):
-    """provenance.source 不在白名单内。"""
+    """provenance.source is not on the allowlist."""
 
 
 class SourceEntry(BaseModel):

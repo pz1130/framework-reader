@@ -1,7 +1,9 @@
-"""盲测抽样。spec §3
+"""Blind-test sampling. spec §3
 
-按 CSF 六个 function 分层：纯随机可能抽出一堆治理条款，分层保证覆盖面。
-配额按最大余数法从实际构成算出，不写死——106 条的构成若变，配额自动跟着变。
+Stratified by the six CSF functions: pure random could draw a pile of governance
+controls; stratification guarantees coverage. Quotas are computed from the actual
+composition by the largest-remainder method and are not hard-coded — if the composition
+of the 106 controls changes, the quotas follow automatically.
 """
 import hashlib
 import random
@@ -18,7 +20,8 @@ def function_of(control_id: str) -> str:
 
 
 def quotas(counts: dict[str, int], total: int) -> dict[str, int]:
-    """最大余数法：先取整数部分，余下的名额按小数部分从大到小分配。"""
+    """Largest-remainder method: take the integer parts first, then assign the remaining
+    seats by fractional part, largest first."""
     population = sum(counts.values())
     if population == 0:
         return {}
@@ -37,7 +40,8 @@ def quotas(counts: dict[str, int], total: int) -> dict[str, int]:
 def eligible_for_sample(
     control_ids: list[str], outcomes: dict[str, str]
 ) -> list[str]:
-    """原文含泄露词的条款不能进抽样框，否则 build_packet 会拒出题。spec §4"""
+    """Controls whose original text contains leak words must stay out of the sampling
+    frame, otherwise build_packet refuses to produce the questions. spec §4"""
     return [cid for cid in control_ids if not leak_hits(outcomes.get(cid, ""))]
 
 
@@ -61,17 +65,20 @@ def stratified_sample(control_ids: list[str], n: int, seed: int) -> list[str]:
 
 
 def frame_fingerprint(control_ids: Iterable[str]) -> str:
-    """抽样框的指纹。
+    """Fingerprint of the sampling frame.
 
-    seed 单独一个数字保证不了复现——同一个 seed 配上不同的抽样框会抽出另一批题。
-    spec §3 记 seed 是为了防止「结果难看再换一批重抽」，那道防线要靠这个指纹才站得住。
+    The seed alone cannot guarantee reproducibility — the same seed over a different
+    frame samples a different batch of questions. spec §3 records the seed to prevent
+    "re-sampling a new batch when the results look bad"; that line of defense only holds
+    up with this fingerprint behind it.
     """
     joined = "\n".join(sorted(set(control_ids)))
     return hashlib.sha256(joined.encode("utf-8")).hexdigest()[:16]
 
 
 def frame_drift(key: AnswerKey, control_ids: Iterable[str]) -> str | None:
-    """既有 answer_key 与当前抽样框对不上时给出说明，对得上返回 None。"""
+    """Explains when the existing answer_key does not match the current sampling frame;
+    returns None when it does."""
     now = frame_fingerprint(control_ids)
     if not key.frame_fingerprint:
         return (

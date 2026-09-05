@@ -1,6 +1,7 @@
-"""模型客户端协议。W2 spec §3.1
+"""Model client protocol. W2 spec §3.1
 
-所有适配器实现同一个 complete()；调用方永远不直接碰厂商 SDK。
+All adapters implement the same complete(); the caller never touches a vendor SDK
+directly.
 """
 import threading
 from typing import Literal, Protocol
@@ -26,7 +27,7 @@ class LLMClient(Protocol):
 
 
 class FakeClient:
-    """测试用。公有 CI 零网络，全部模型调用走它。W2 spec §7"""
+    """For tests. Public CI is zero-network; every model call goes through it. W2 spec §7"""
 
     def __init__(self, responses: list[str]) -> None:
         self._responses = list(responses)

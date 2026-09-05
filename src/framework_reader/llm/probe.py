@@ -1,17 +1,21 @@
-"""「测一下」：拿一组厂商+模型真发一次最小请求，回答「它到底能不能用」。
+"""The "Probe" button: takes a provider+model pair and actually sends one minimal request,
+answering "can it actually be used?".
 
-目录（`catalog.py`）回答的是「这家有哪些模型」，那是**第二类出网**，不带内容。
-探针走的是 chat 端点，和起草同一条路——所以它是**第一类出网**，照样被
-`GuardedClient` 包着。区别只在 payload：一句固定的问候，一个字的框架内容都没有。
-`tests/llm/test_probe.py` 逐字钉住了发出去的是什么。
+The catalog (`catalog.py`) answers "which models does this vendor offer" — that is
+**category-2 egress**, carrying no content. The probe goes through the chat endpoint, the
+same path as drafting — so it is **category-1 egress** and is still wrapped in
+`GuardedClient`. The only difference is the payload: one fixed greeting, without a single
+word of framework content. `tests/llm/test_probe.py` pins down verbatim what gets sent.
 
-这个文件自己不发请求：真实请求仍然收在两个适配器各自的 `_default_*` 里，
-探针只是组装 client。所以出网点清单（`tests/test_no_network_in_tests.py`
-里那份白名单）**一个字都不用改**——要是它红了，说明这个设计走错了。
+This file does not send requests itself: real requests still live in each adapter's own
+`_default_*`, and the probe only assembles the client. So the egress-point list (the
+whitelist in `tests/test_no_network_in_tests.py`) **does not need to change by a single
+entry** — if it goes red, this design has gone off the rails.
 
-**不重试。** `registry.build()` 会包一层 `RetryingClient`——那是给批量起草用的，
-三次退避加起来能拖上几分钟。按下「测一下」的人在盯着屏幕等，而三次 500
-和一次 500 说明的是同一件事。所以这里自己组装 client，不走 `build()`。
+**No retries.** `registry.build()` wraps a `RetryingClient` — that is for batch drafting,
+where three backoff attempts combined can drag on for minutes. The person who clicked
+"Probe" is staring at the screen waiting, and three 500s tell them the same thing as one
+500. So the client is assembled here directly instead of going through `build()`.
 """
 import time
 from dataclasses import dataclass
@@ -20,18 +24,21 @@ from framework_reader.llm.client import Message
 from framework_reader.llm.guard import GuardedClient, PayloadGuard
 from framework_reader.llm.registry import ProviderPreset
 
-# 探针问的这一句。**它必须与任何框架内容无关**，且短到一眼能看出无关。
+# The sentence the probe asks. **It must be unrelated to any framework content**, and
+# short enough that the unrelatedness is obvious at a glance.
 #
-# 用中文而不是 `ping`，因为这个产品的正文全是中文：一个连中文都回不利索的
-# 模型，「端点通了」并不说明它能用来起草。让人**看见它回的字**，比看见一个
-# 绿勾多说明一件事。
+# A real question rather than a bare `ping`, because everything this product writes is in
+# one language: a model that cannot manage a fluent reply in it does not become usable for
+# drafting just because "the endpoint is up". Letting the person **see the words it
+# replied with** says more than a green checkmark.
 PROBE_PROMPT = "Reply with one word: ok"
 
-# 回显截断。探针只要证明「它说话了」，不是一个聊天窗。
+# Reply truncation. The probe only needs to prove "it spoke"; it is not a chat window.
 REPLY_LIMIT = 120
 
-# 目录查询 15 秒，起草 120 秒。探针介于两者之间：它要发一次真实推理，
-# 但按钮不能挂着不动。见 `catalog.TIMEOUT_SECONDS` 同一套取舍。
+# Catalog queries get 15 s, drafting 120 s. The probe sits in between: it must run one
+# real inference, but the button cannot just hang there. Same trade-off as
+# `catalog.TIMEOUT_SECONDS`.
 TIMEOUT_SECONDS = 20.0
 
 MAX_TOKENS = 16
@@ -39,7 +46,7 @@ MAX_TOKENS = 16
 
 @dataclass(frozen=True)
 class ProbeResult:
-    """`message` 与 `reply` 都会被原样渲到页面上。**两者都不许出现 key。**"""
+    """`message` and `reply` are both rendered verbatim on the page. **Neither may ever contain a key.**"""
 
     ok: bool
     kind: str  # ok | auth | unsupported | unreachable
@@ -64,8 +71,9 @@ def _build(preset: ProviderPreset, api_key: str, http_post, send) -> GuardedClie
 
         inner = OpenAICompatClient(
             preset.base_url, api_key, http_post=http_post, timeout=TIMEOUT_SECONDS)
-    # 空守卫：payload 是上面那个常量，不含任何原文。包着它是为了让
-    # 「所有 chat 出网都过 GuardedClient」这句话没有例外——有例外的规矩记不住。
+    # Empty guard: the payload is the constant above and contains no source text. It is
+    # wrapped anyway so that the rule "every chat egress goes through GuardedClient"
+    # has no exceptions — a rule with exceptions is a rule nobody remembers.
     return GuardedClient(inner, PayloadGuard([]))
 
 
@@ -77,9 +85,11 @@ def probe_model(
     http_post=None,
     send=None,
 ) -> ProbeResult:
-    """发一次最小请求。**从不抛异常**——调用方是一个按钮，它要的是一句话。
+    """Sends one minimal request. **Never raises** — the caller is a button, and what it
+    wants is a sentence.
 
-    `http_post` / `send` 只为测试注入，与 `catalog.fetch_models` 同一个模式。
+    `http_post` / `send` exist only for test injection; same pattern as
+    `catalog.fetch_models`.
     """
     client = _build(preset, api_key, http_post, send)
     started = time.monotonic()
@@ -88,7 +98,7 @@ def probe_model(
             "", [Message(role="user", content=PROBE_PROMPT)],
             model=model, max_tokens=MAX_TOKENS,
         )
-    except Exception as exc:  # noqa: BLE001 —— 任何失败都要翻译成三种之一
+    except Exception as exc:  # noqa: BLE001 —— any failure must map to one of the three kinds
         elapsed = int((time.monotonic() - started) * 1000)
         return _failure(preset, model, exc, elapsed)
 
@@ -102,15 +112,17 @@ def probe_model(
 
 
 def _spoken(reply: str | None) -> str:
-    """把思维链剥掉，只留它真正说出口的那部分。
+    """Strips the chain of thought, keeping only what the model actually said out loud.
 
-    推理模型（deepseek-reasoner、MiniMax-M2.7 等）把草稿纸塞在正文里。
-    实测 MiniMax-M2.7 用这十几个 token 想了一半就被截断，回显于是变成
-    「它回了：`<think>The user is speaking Chinese…`」——那不是它的答话。
+    Reasoning models (deepseek-reasoner, MiniMax-M2.7, etc.) put their scratchpad in the
+    message body. In practice MiniMax-M2.7 burned these few tokens thinking and got cut
+    off halfway, so the echo became "it replied: `<think>The user is speaking Chinese…`"
+    — that is not its answer.
 
-    没闭合的 `<think>` 说明后面根本没有正文，整段都是草稿：剥成空的。
-    页面对空回复有话说（「它没回字」），那句话是诚实的；
-    把半句草稿端出去不是。
+    An unclosed `<think>` means there is no body at all after it and the whole thing is
+    scratchpad: strip it to empty. The page has something to say about an empty reply
+    ("it returned no words"), and that message is honest; serving up half a scratchpad
+    is not.
     """
     import re
 
@@ -121,7 +133,8 @@ def _spoken(reply: str | None) -> str:
 def _failure(
     preset: ProviderPreset, model: str, exc: Exception, elapsed: int
 ) -> ProbeResult:
-    """**异常原文一律不进 message。** 它可能带上请求细节，而人只需要知道哪一环坏了。"""
+    """**Exception text never goes into message verbatim.** It may carry request details,
+    and a person only needs to know which link in the chain broke."""
     status = _status_of(exc)
     if status in (401, 403):
         return ProbeResult(
@@ -136,7 +149,8 @@ def _failure(
             'or click "Refresh" to pull the catalog again.',
             elapsed_ms=elapsed)
     if status is None and isinstance(exc, RuntimeError):
-        # 适配器解不出结构时抛的就是 RuntimeError。端点回了 200，但不是我们认识的形状。
+        # RuntimeError is what an adapter raises when it cannot parse the structure. The
+        # endpoint replied 200, but not in a shape we recognize.
         return ProbeResult(
             False, "unsupported",
             f"{preset.id} replied, but the structure is unrecognized - this endpoint is probably not "

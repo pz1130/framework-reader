@@ -1,4 +1,4 @@
-"""映射边与出处。spec §3.2③、§3.3"""
+"""Mapping edges and provenance. spec §3.2③, §3.3"""
 from datetime import datetime
 from enum import Enum
 
@@ -6,14 +6,14 @@ from pydantic import BaseModel, Field, model_validator
 
 
 class ProvenanceLevel(str, Enum):
-    L1_OFFICIAL = "L1_OFFICIAL"      # NIST 自身署名的映射、框架官方附录
-    L2_DERIVED = "L2_DERIVED"        # 两条 L1 边传递推导
-    L2_PUBLIC = "L2_PUBLIC"          # 授权明确允许衍生与商用的公开交叉表
-    L3_CONFIRMED = "L3_CONFIRMED"    # 人工确认
-    L4_AI = "L4_AI"                  # 模型推测
+    L1_OFFICIAL = "L1_OFFICIAL"      # mappings attributed by NIST itself, official framework annexes
+    L2_DERIVED = "L2_DERIVED"        # transitively derived across two L1 edges
+    L2_PUBLIC = "L2_PUBLIC"          # public crosswalks licensed for derivation and commercial use
+    L3_CONFIRMED = "L3_CONFIRMED"    # human-confirmed
+    L4_AI = "L4_AI"                  # model guess
 
 
-# 可进入导出物的等级。spec §3.3
+# The levels allowed into exports. spec §3.3
 EXPORTABLE_LEVELS = frozenset(
     {ProvenanceLevel.L1_OFFICIAL, ProvenanceLevel.L2_PUBLIC, ProvenanceLevel.L3_CONFIRMED}
 )

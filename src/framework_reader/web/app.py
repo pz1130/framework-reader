@@ -1,10 +1,11 @@
-"""本地 Web 壳。主 spec §7.3.6
+"""Local web shell. Main spec §7.3.6
 
-**只包一层。** 数据与业务逻辑全在 QueryAPI 与既有模块里；这里不许写裸 SQL
-（主 spec §8①），也不许有业务判断——那样 Web 与 CLI 会慢慢长出两套行为。
+**A thin wrapper, nothing more.** Data and business logic live entirely in QueryAPI and the
+existing modules; no raw SQL may be written here (main spec §8①) and no business decisions
+either — otherwise the web and the CLI slowly grow two divergent sets of behaviour.
 
-本地部署：不做账号、不做租户隔离。用户导入的东西写进他自己机器上的用户库，
-一个字节都不出网。主 spec §7.3.5
+Local deployment: no accounts, no tenant isolation. What the user imports goes into the user
+database on their own machine, and not a single byte leaves it. Main spec §7.3.5
 """
 from pathlib import Path
 from urllib.parse import quote
@@ -24,14 +25,15 @@ def _short(control_id: str) -> str:
 
 
 def _is_mine(view) -> bool:
-    """用户自己导入的框架。tier 是唯一判据，别拿编号前缀猜。"""
+    """Frameworks the user imported themselves. `tier` is the only test; do not guess from ID prefixes."""
     from framework_reader.schema.entities import LicenseTier
 
     return view is not None and view.tier == LicenseTier.U_USER
 
 
-# 给模型看的对话轮数。**必须封顶**——每一句都要把历史重新喂一遍，
-# 不封顶的话聊得越久每句越贵，三小时前那个已经放弃的说法还会一直跟着。
+# Number of conversation turns shown to the model. **Must be capped** — every message re-feeds
+# the whole history; uncapped, the longer the chat the more each message costs, and the approach
+# you abandoned three hours ago keeps tagging along forever.
 CHAT_CONTEXT_TURNS = 6
 
 
@@ -42,16 +44,17 @@ def create_app(
     http_get=None, probe_runner=None, outline_runner=None, shape_runner=None,
     chat_runner=None, search_runner=None, body_rewrite_runner=None,
 ) -> FastAPI:
-    """`user_db` 是这套部署的用户库。整个组织**共用一个**——
+    """`user_db` is the user database of this deployment. The whole organisation **shares one** —
 
-    这个产品是一个安全团队协作一套材料，不是多个客户公司各管各的。
-    用户之间不隔离数据，隔离的是**动作**（谁能改、谁能签字），见
-    `docs/superpowers/specs/2026-08-23-hosted-service-rbac-aad-design.md` §3。
+    This product is one security team collaborating on one body of material, not several customer
+    companies each keeping their own. Data is not isolated between users; what is isolated is
+    **actions** (who may edit, who may sign off), see
+    `docs/superpowers/specs/2026-08-23-hosted-service-rbac-aad-design.md` §3.
 
-    参数化只为可测：默认仍是 `$FRAMEWORK_READER_HOME/user.sqlite`。
+    The parameter exists only for testability: the default is still `$FRAMEWORK_READER_HOME/user.sqlite`.
 
-    `draft_runner` / `rewrite_runner` / `search_runner` 同样只为测试留：
-    默认就是真调模型，测试塞一个不出网的替身。
+    `draft_runner` / `rewrite_runner` / `search_runner` likewise exist only for tests:
+    by default the real model is called; tests plug in a stand-in that never touches the network.
     """
     from framework_reader import usage
     from framework_reader.identity.store import IdentityStore
@@ -66,13 +69,14 @@ def create_app(
     from framework_reader.identity.entra import EntraClient, EntraConfig
     from framework_reader.llm.config import BudgetError, ModelConfig
 
-    # 与身份层同一个运营库：这是部署配置，不是业务数据。
+    # Same operational database as the identity layer: this is deployment configuration, not business data.
     models_config = ModelConfig(identity_db)
 
     entra_config = entra if entra is not None else EntraConfig.from_env()
 
-    # 设置里保存且启用的单点登录配置优先，环境变量兜底。**每个请求现取**——
-    # 管理员在设置页存完配置，下一个请求就要生效，不能吃启动时的快照。
+    # SSO configuration saved and enabled on the settings page wins; environment variables are
+    # the fallback. **Fetched fresh on every request** — once the admin saves the configuration
+    # on the settings page it must take effect on the next request, not on a startup snapshot.
     def _entra_client():
         saved = identity.sso_config()
         if saved and saved.get("enabled"):
@@ -81,8 +85,9 @@ def create_app(
             try:
                 secret = identity.sso_secret()
             except crypto.SecretError:
-                # 主密钥没配或解不开：签名交换反正做不成，按没配置处理，
-                # 让登录页回到口令登录，而不是让整个站点 500。
+                # Master key missing or undecryptable: the token exchange cannot succeed anyway,
+                # so treat it as unconfigured and let the sign-in page fall back to passphrase
+                # sign-in instead of 500-ing the whole site.
                 secret = ""
             cfg = EntraConfig(
                 tenant_id=saved.get("tenant_id", ""),
@@ -102,18 +107,22 @@ def create_app(
         return bool(saved and saved.get("enabled")
                     and saved.get("redirect_uri", "").startswith("https://"))
 
-    # 启动时的环境变量快照仍然负责 cookie Secure 的兜底；设置里保存的
-    # https 回调地址每个请求现判（见 _set_cookie）。
+    # The startup environment-variable snapshot still covers the cookie Secure fallback; the
+    # https callback address saved on the settings page is judged fresh on every request
+    # (see _set_cookie).
     secure_cookies = secure_cookies or entra_config.redirect_uri.startswith("https://")
 
-    # 门设在一处：对每条路由都生效，新加的路由自动被挡住。
-    # 靠「记得加装饰器」的写法，漏一条就是一个未鉴权入口。设计 §1.5
+    # The gate lives in one place: it applies to every route, and newly added routes are blocked
+    # automatically. A "remember to add the decorator" scheme means one missed route is an
+    # unauthenticated entrance. Design §1.5
     #
-    # 配了 Entra 也算锁门：接了 IdP 就说明这是联网部署，这时还敞着，
-    # 等于第一个走进来的是任何人。传 callable 是因为设置页里的单点登录
-    # 配置是运行时改的，锁门状态不能吃启动快照。
-    # 关掉 Swagger 与 openapi.json：它们由 FastAPI 特殊注册，**绕过上面这道门**，
-    # 等于一个不需要登录就能拿到的完整路由清单。内部工具不需要它们。
+    # Entra being configured also counts as locking the gate: an IdP in the picture means this is
+    # an online deployment, and leaving it open then means the first person to walk in could be
+    # anyone. A callable is passed because the single sign-on configuration on the settings page
+    # changes at runtime; the locked state cannot be a startup snapshot.
+    # Swagger and openapi.json are switched off: FastAPI registers them specially and they
+    # **bypass the gate above**, amounting to a complete route list anyone could fetch without
+    # signing in. An internal tool does not need them.
     app = FastAPI(title="Framework Reader",
                   docs_url=None, redoc_url=None, openapi_url=None,
                   dependencies=[Depends(make_guard(
@@ -141,8 +150,9 @@ def create_app(
 
     @app.exception_handler(Unlabelled)
     async def _unlabelled(_request: Request, exc: Unlabelled):
-        # 路由忘了标权限。这是代码缺陷，所以拒绝而不是放行——
-        # 坏在测试里最好，坏在生产上也比悄悄放行强。设计 §1.5
+        # The route forgot to declare its permission. That is a code defect, so refuse instead
+        # of letting it through — best if it breaks in tests, but even in production that beats
+        # silently letting it through. Design §1.5
         return HTMLResponse(views.refused(
             "This route has no permission declared",
             f"{exc.args[0] if exc.args else ''} does not declare what permission it needs; refused.",
@@ -165,7 +175,7 @@ def create_app(
         return session.account.email if session else ""
 
     def _account_id(request: Request) -> str | None:
-        """「不能给自己加角色」比的是 account_id。没登录（本机用法）时给 None。"""
+        """The "must not grant yourself a role" rule compares account_id. Returns None when not signed in (local usage)."""
         session = getattr(request.state, "session", None)
         return session.account.id if session else None
 
@@ -175,17 +185,19 @@ def create_app(
         return getpass.getuser()
 
     def _default_runner(key: str, user_db: Path | None = None, only=None):
-        """key 带冒号就是一条控制，否则是一个框架。任务表用同一个键。
+        """A key with a colon is one control; otherwise it is a framework. The job table uses the same key.
 
-        `user_db` 由发起请求的那一刻算好传进来——后台线程里没有请求上下文，
-        在线程里再解析租户会解析成默认那个，等于把 A 的活干到 B 的库里。
+        `user_db` is resolved at the moment the request arrives and passed in — there is no
+        request context on a background thread, and resolving the tenant again inside the thread
+        yields the default one, i.e. doing A's work into B's database.
         """
         from framework_reader.interpret.run import draft_framework, fill_blanks_one
 
         if ":" in key:
             return fill_blanks_one(db, key, user_db, overlay=True)
-        # 网页上一律七个字段写全。内置框架也 overlay 到用户库——那是工作
-        # 副本，不进 content/interpretations/。
+        # From the web, all seven fields are always drafted in full. Built-in frameworks are also
+        # overlaid into the user database — that is the working copy, and it never enters
+        # content/interpretations/.
         return draft_framework(db, key, full=True, user_db=user_db, overlay=True,
                                only=only)
 
@@ -203,7 +215,7 @@ def create_app(
         return rewrite_body(db, control_id, instruction, current, _user_db())
 
     def api() -> QueryAPI:
-        # 每个请求一个连接：底层驱动默认禁止跨线程共享连接。
+        # One connection per request: the underlying driver forbids sharing connections across threads by default.
         return QueryAPI(db, user_db=library)
 
     def _frameworks(reader: QueryAPI) -> list[dict]:
@@ -223,10 +235,10 @@ def create_app(
 
     @app.exception_handler(404)
     async def not_found(_request: Request, _exc) -> HTMLResponse:
-        """默认的 {"detail":"Not Found"} 看起来就是「点了没东西」。
+        """The default {"detail":"Not Found"} just reads as "clicked and got nothing".
 
-        最常见的成因是服务还跑着旧代码——uvicorn 不带 --reload，
-        路由在启动那一刻定死。所以这一页要把「重启一下」直接说出来。
+        The most common cause is the service still running old code — without --reload, uvicorn
+        fixes the routes at startup. So this page says "restart it" outright.
         """
         return HTMLResponse(views.page(
             "Not found",
@@ -236,15 +248,17 @@ def create_app(
             '<p><a href="/">Back to home</a></p>',
         ), 404)
 
-    # ---------- 登录 / 邀请 ----------
+    # ---------- Sign-in / invitations ----------
 
     def _set_cookie(response: Response, token: str) -> Response:
-        # Secure 只在 https 下有意义；本机 http 调试时带上会让 cookie 直接不发。
-        # 所以按部署方式给，不写死。反向代理终止 TLS 时会带 x-forwarded-proto。
+        # Secure is only meaningful over https; sending it while debugging over local http stops
+        # the cookie from being delivered at all. So set it according to the deployment mode,
+        # never hardcoded. A reverse proxy terminating TLS passes x-forwarded-proto.
         response.set_cookie(
             COOKIE, token, httponly=True, samesite="lax", path="/",
-            # 设置里保存的单点登录配置每个请求现判：管理员存了 https 回调
-            # 地址，下一个登录的 cookie 就该带上 Secure，不等重启。
+            # The single sign-on configuration saved on the settings page is judged fresh on
+            # every request: once the admin saves an https callback address, the very next
+            # sign-in cookie should carry Secure, without waiting for a restart.
             secure=secure_cookies or _saved_sso_is_https(),
         )
         return response
@@ -271,12 +285,12 @@ def create_app(
             RedirectResponse(_inside(next), status_code=303), session.token)
 
     def _inside(target: str) -> str:
-        """只跳站内路径。放行任意 next 就是一个开放重定向。"""
+        """Only follow in-site paths. Letting an arbitrary next through is an open redirect."""
         return target if target.startswith("/") and not target.startswith("//") else "/"
 
     @app.get("/auth/entra")
     def entra_start(next: str = "/"):
-        """点「用公司账号登录」。state / nonce / verifier 都存服务端，用一次即删。"""
+        """Clicking "sign in with your company account". state / nonce / verifier are all stored server-side and deleted after a single use."""
         client = _entra_client()
         if client is None:
             return RedirectResponse("/login", status_code=303)
@@ -304,14 +318,14 @@ def create_app(
         if client is None:
             return RedirectResponse("/login", status_code=303)
         if error:
-            # Entra 自己说不行（没被指派 App Role 是最常见的一种）。
-            # 原样把它的代号显出来——管理员要拿它去 Entra 里查。
+            # Entra itself said no (not being assigned the App Role is the most common case).
+            # Show its error code verbatim — the administrator needs it to investigate inside Entra.
             return refuse(f"The company sign-in service refused this sign-in: {error}",
                           error_description or "Show this message to an administrator.")
         flow = identity.take_oidc_flow(state)
         if flow is None:
-            # state 认不出 = 这次回调不是我们发起的那一次。拿别人的 code
-            # 配自己的 state，能把你登进他的账号。
+            # Unrecognised state = this callback is not the flow we started. Pairing someone
+            # else's code with your own state could sign you into their account.
             return refuse(
                 "This sign-in has expired, or it was not started from here.",
                 "Go back to the sign-in page and start again.")
@@ -382,12 +396,12 @@ def create_app(
     @app.get("/", response_class=HTMLResponse)
     @needs(perm.CONTENT_READ)
     def home(roll: int = 0):
-        """搜索工作台。三样东西：搜索框、经常搜索、今天学三条。
+        """Search workbench. Three things: the search box, frequently searched, three to learn today.
 
-        不要在 / 上再摆一个「内置框架 + 我导入的」的目录页——那是
-        /frameworks 的事。本页是「你来这个系统要做什么」，不是「你已
-        经有什么」。`roll` 是「换一批」的批次号：0 是按日期的默认三条，
-        ≥1 换一组，同一个批次当天稳定。"""
+        Do not put another "built-in frameworks + my imports" catalogue page on / — that is
+        /frameworks' job. This page answers "what did you come here to do", not "what do you
+        already have". `roll` is the "shuffle" batch number: 0 is the default three by date,
+        ≥1 swaps in another set, and the same batch stays stable for the day."""
         from datetime import date
 
         from framework_reader.query.daily import daily_controls
@@ -402,8 +416,9 @@ def create_app(
             popular.append({
                 "id": view.id, "short": _short(view.id), "label": view.label,
             })
-        # 待确认的初稿数。审阅是签字人的日常入口，放在他每天打开的第一页；
-        # 一条不剩时不渲染——安静的页面比一枚恒为零的徽章有用。
+        # Number of drafts awaiting confirmation. Review is the signer's daily entry point, so
+        # it sits on the first page they open each day; when nothing is left, render nothing —
+        # a quiet page is more useful than a badge permanently stuck at zero.
         review = reader.pending_review()
         return HTMLResponse(views.home(
             popular=popular,
@@ -428,8 +443,9 @@ def create_app(
             }
             for c in reader.control_summaries(framework_id)
         ]
-        # 网页起草一律 overlay 到用户库当工作副本——导入的、内置的都一样，
-        # 不进 git。views.framework 看 pending 决定画不画「起草 N 条」。
+        # Web drafting always overlays into the user database as the working copy — imported
+        # and built-in alike; nothing enters git. views.framework reads pending to decide
+        # whether to draw "N controls to draft".
         pending = sum(1 for c in controls if not c["has_interp"])
         return HTMLResponse(views.framework(view, controls, pending))
 
@@ -483,11 +499,12 @@ def create_app(
             view, reader.interpretation(control_id),
             reader.interpretation_state(control_id), mappings,
             body=reader.control_body(control_id),
-            # CSF 的正文是官方 label 兑现的；用户贴/导入的标「你导入的原文」。
+            # CSF's body text comes from the official label; user-pasted/imported text is labelled "Your imported text".
             body_label=("Official text" if reader.body_is_official(control_id)
                         else "Your imported text"),
-            # 内置框架也能改了（见 `_mine_or_400` 的说明）。
-            # 用户改过的字段逐字段盖住内容包那一版，见 query/api.py 的合并视图。
+            # Built-in frameworks can be edited now too (see the `_mine_or_400` notes).
+            # Fields the user changed override the content package's version field by field; see
+            # the merged view in query/api.py.
             editable=True,
             signer=signer, signed_at=signed_at,
             framework_name=getattr(framework, "name", ""),
@@ -501,7 +518,7 @@ def create_app(
         ))
 
     def _signature(reader: QueryAPI, framework_id: str, control_id: str):
-        """谁签的、什么时候签的。只有用户库存得下这个——内容包里没有这一栏。"""
+        """Who signed, and when. Only the user database can hold this — the content package has no such column."""
         if not _is_mine(reader.get_framework(framework_id)):
             return "", ""
         from framework_reader.interpret.user_store import UserInterpretationStore
@@ -516,10 +533,12 @@ def create_app(
         return provenance.confirmed_by, when.strftime("%Y-%m-%d %H:%M") if when else ""
 
     def _inherited_from(control_id: str) -> str:
-        """这条解读是从哪条旧条款继承来的。继承产物落用户库，这里跟着查用户库。
+        """Which older control this interpretation was inherited from. Inherited artefacts land
+        in the user database, so this reads the user database as well.
 
-        不看 `_is_mine`：继承对内置框架开放（纯复制不花钱、不绕签字），
-        拦显示等于把官方映射的价值藏一半。
+        It deliberately ignores `_is_mine`: inheritance is open to built-in frameworks (pure
+        copying costs nothing and bypasses no sign-off), and blocking the display would hide
+        half the value of the official mappings.
         """
         from framework_reader.interpret.user_store import UserInterpretationStore
 
@@ -529,21 +548,24 @@ def create_app(
         return store.load(control_id).provenance.inherited_from or ""
 
     def _mine_or_400(control_id: str):
-        """这条控制在不在。返回 (view, 错误响应)。
+        """Whether this control exists. Returns (view, error response).
 
-        **早先这里还拦着内置框架**，理由写的是「受版权原文不得出网」。
-        查下来那个理由不成立：
+        **This used to block built-in frameworks too**, on the stated grounds that "copyrighted
+        original text must not leave the network". That rationale does not hold up:
 
-        - NIST CSF 2.0 与 800-53 是 tier A（美国政府作品，公共领域）
-        - ISO 27002 是 tier C，但库里存的是**自写** label（`label_is_original=0`），
-          不是 ISO 原文
-        - `original_text` 表 0 条——受版权原文根本没进过库
+        - NIST CSF 2.0 and 800-53 are tier A (US government works, public domain)
+        - ISO 27002 is tier C, but what the database stores is a **self-written** label
+          (`label_is_original=0`), not ISO's original text
+        - the `original_text` table has 0 rows — copyrighted original text never entered the
+          database at all
 
-        出网守卫（`PayloadGuard` 拿 `original_text` 当禁词表）留着当拦网：
-        哪天真有 C/D 原文进库，它会拦住。但拿「是不是内置」当判据是错的，
-        代价是团队九成时间在用的 CSF 和 800-53 上一句都问不了。
+        The outbound guard (`PayloadGuard` uses `original_text` as its blocklist) stays in place
+        as the safety net: if C/D original text ever does enter the database, it will catch it.
+        But using "is it built-in" as the test is wrong, and the price is not being able to ask
+        a single question about CSF and 800-53, which the team uses ninety percent of the time.
 
-        名字留着不改：调用点太多，而它现在的语义就是「这条在不在」。
+        The name stays unchanged: too many call sites, and its meaning today is exactly "does
+        this one exist".
         """
         reader = api()
         view = reader.get_control(control_id)
@@ -569,8 +591,9 @@ def create_app(
             view, field, labels[field], current))
 
     def _size_of(value) -> str:
-        """一个字段「多大」。**只记大小，不记正文**——审计日志是只追加的，
-        把制度正文灌进去就等于给它做一个永久副本：删不掉，导出时一并出去。
+        """How "big" a field is. **Record the size only, never the text** — the audit log is
+        append-only, and pouring policy text into it amounts to making a permanent copy: it can
+        never be deleted and rides along in every export.
         """
         if value in (None, "", [], {}):
             return "cleared"
@@ -608,14 +631,17 @@ def create_app(
         _log_field(request, "interpretation.edit", control_id, field, before, value)
         return RedirectResponse(f"/c/{control_id}", status_code=303)
 
-    # ---------- 条款正文（内置条款贴覆盖层，导入条款改本行） ----------
+    # ---------- Control body text (built-in controls get an override layer pasted on; imported controls edit their own row) ----------
 
     def _editable_control(control_id: str):
-        """正文编辑的准入：这条存在即可——内置、导入都放行。
+        """Admission for body editing: the control only has to exist — built-in and imported
+        are both allowed through.
 
-        _mine_or_400 只查「这条在不在」，正合需要。内置条款的正文写
-        control_body_override 覆盖层（用户库），内容库的官方基准一个字节
-        不动；original_text 那块墓碑照旧——贴进来的原文进的是用户自己的库。
+        _mine_or_400 checks exactly "does this control exist", which is precisely what is needed.
+        A built-in control's body is written to the control_body_override overlay (user database)
+        and the official baseline in the content database is not moved by a single byte; the
+        original_text tombstone stays as it is — pasted-in original text goes into the user's
+        own database.
         """
         return _mine_or_400(control_id)
 
@@ -633,8 +659,9 @@ def create_app(
     @app.post("/c/{control_id}/edit-body/ai")
     @needs(perm.INTERPRETATION_WRITE)
     async def edit_body_ai(control_id: str, request: Request):
-        """AI 帮改正文：只出提议稿回显在编辑框里，**一个字都不写库**——
-        写库永远是「保存」那一下，和字段重写同一道闸。"""
+        """AI revises the body: it only produces a proposal echoed back into the edit box,
+        **not a single character is written to the database** — writes always happen on "Save",
+        behind the same gate as field rewrites."""
         view, refused = _editable_control(control_id)
         if refused is not None:
             return refused
@@ -680,17 +707,20 @@ def create_app(
         if body == before.strip():
             return RedirectResponse(f"/c/{control_id}", status_code=303)
         store.update_body(control_id, body)
-        # 审计只记大小不记正文——跟字段编辑同一个理由：审计日志只追加，
-        # 把正文灌进去就等于给它做一个删不掉的永久副本。
+        # The audit log records the size, not the text — same reason as field edits: the audit
+        # log is append-only, and pouring the body into it amounts to a permanent copy that can
+        # never be deleted.
         identity.log("control.body_edit", actor=_who(request) or _local_user(),
                      detail=f"{control_id}: {len(before)} chars -> {len(body)} chars")
         return RedirectResponse(f"/c/{control_id}", status_code=303)
 
     def _charge(request: Request, controls: int, what: str):
-        """花钱之前过三道闸：每人每小时、全组织每月、同时几个任务。
+        """Three gates before any money is spent: per person per hour, per organisation per
+        month, and how many jobs may run at once.
 
-        返回 None 表示放行；否则返回那一页拒绝。**拒了不记账**——
-        拒了还扣，等于第二次更容易被拒。
+        Returning None means allowed; otherwise the refusal page is returned. **A refusal is
+        not charged** — charging on refusal would make the second attempt even more likely to
+        be refused.
         """
         from framework_reader.web import jobs
 
@@ -715,8 +745,8 @@ def create_app(
         over = _charge(request, 1, control_id)
         if over is not None:
             return over
-        # 记在**开跑的那一刻**，不是跑完之后。跑完记的话，跑挂了就没有任何
-        # 痕迹说明有人按过这个按钮、花过这笔钱。
+        # Log at **the moment it starts**, not after it finishes. Logged on completion, a
+        # crashed run would leave no trace that someone pressed this button and spent this money.
         identity.log("interpretation.draft", actor=_who(request),
                      detail=f"{control_id}: have AI draft all seven fields")
         jobs.start(control_id, 1, lambda key: run_draft(key, library))
@@ -780,28 +810,32 @@ def create_app(
 
         if not instruction:
             return back("Write an instruction first; with no instruction there is nothing to rewrite.")
-        # 重写和起草共用一道闸：它们的共同点不是「都用 AI」，是**都花钱**。
+        # Rewrites and drafting share one gate: what they have in common is not "both use AI"
+        # but **both spend money**.
         over = _charge(request, 1, f"{control_id} · {field}")
         if over is not None:
             return over
         try:
             value = run_rewrite(control_id, field, instruction)
         except Exception as exc:                              # noqa: BLE001
-            # 形状不对、key 没设、模型抽风——都不落盘，原样退回让用户再提一次。
+            # Wrong shape, missing key, model misbehaving — nothing is persisted; the failure is
+            # handed straight back so the user can submit it again.
             return back(f"Rewrite failed: {exc}")
-        # 要求是他提的，字是模型写的，所以标 inferred。
+        # The instruction came from the user and the words were written by the model, so mark it inferred.
         write_field(UserInterpretationStore(_user_db()), control_id, field, value,
                     basis=Basis.INFERRED)
-        # **和手改分成两个事件。** 谁写的要能分出来，这是这个产品的地基。
-        # 要求本身不进日志——那是他打的字，可能带公司内部系统名。
+        # **Kept as a separate event from manual edits.** Who wrote what must be tellable apart;
+        # that is this product's foundation. The instruction itself does not enter the log —
+        # it is the user's own typing and may name internal company systems.
         _log_field(request, "interpretation.rewrite", control_id, field,
                    current, value)
         return RedirectResponse(f"/c/{control_id}", status_code=303)
 
-    # ---------- 条款页上的 AI 对话 ----------
+    # ---------- AI chat on the control page ----------
     #
-    # **只在自己导入的框架上开。** 内置框架的正文是 Tier C/D 受版权原文，
-    # 一个字不许出网（主 spec §9）。判据用 `_mine_or_400`，和改解读同一个。
+    # **Enabled only on frameworks the user imported themselves.** Built-in frameworks' body
+    # text is Tier C/D copyrighted original, and not a word of it may leave the network
+    # (main spec §9). The test is `_mine_or_400`, the same one as for editing interpretations.
 
     def _chat_store():
         from framework_reader.userframework.chat import ChatStore
@@ -836,8 +870,9 @@ def create_app(
         lines += ["", f"The user now says: {message}"]
 
         client, model = _extractor_client()
-        # 守卫用**真的**受版权原文清单，不是空守卫：这条路径上正文来自
-        # 用户自己的框架，但守卫是最后一道拦网，不该因为「应该不会有」就撤掉。
+        # The guard uses the **real** copyrighted-original list, not an empty guard: on this
+        # path the body text comes from the user's own framework, but the guard is the last line
+        # of defence and should not be withdrawn just because "there shouldn't be any".
         guard = PayloadGuard(reader.forbidden_outbound_texts())
         from framework_reader.llm.guard import GuardedClient
 
@@ -848,10 +883,10 @@ def create_app(
             model=model, max_tokens=4096)
 
     def _one_turn(request: Request, control_id: str, said: str):
-        """跑一轮对话，回 (给人看的话, 提议, turn_id)。
+        """Runs one conversation turn, returns (text for the person, proposal, turn_id).
 
-        表单那条路和浮窗那条 JSON 路**共用这一个**——两条路各写一遍，
-        迟早一条有闸另一条没有。
+        The form path and the floating widget's JSON path **share this one** — write the two
+        paths separately and sooner or later one of them has the gate and the other does not.
         """
         from framework_reader.userframework.chat_reply import parse_reply
 
@@ -880,7 +915,7 @@ def create_app(
         said = message.strip()
         if not said:
             return RedirectResponse(f"/c/{control_id}", status_code=303)
-        # 问一句 = 一次调用 = 一笔钱。和起草同一本账、同一道闸。
+        # One question = one call = one charge. Same ledger and same gate as drafting.
         over = _charge(request, 1, f"{control_id} · chat")
         if over is not None:
             return over
@@ -891,8 +926,9 @@ def create_app(
     @needs(perm.INTERPRETATION_DRAFT)
     async def clause_chat_json(control_id: str, request: Request,
                                message: str = Form(""), quote: str = Form("")):
-        """浮窗用的。**它一个字都不写解读**——写库仍然走上面那条表单路，
-        那条路上挂着预检、审计、和「点头才写」那道闸。
+        """For the floating widget. **It writes not a single character of any interpretation** —
+        writes still go through the form path above, which carries the pre-check, the audit
+        trail, and the "nothing is written until you nod" gate.
         """
         from framework_reader.interpret.render import FIELD_LABELS
 
@@ -903,7 +939,7 @@ def create_app(
         said = message.strip()
         if not said:
             return JSONResponse({"reply": "", "turn_id": "", "fields": []})
-        # 选中的那段话是这次提问的上下文，不带上就白选了。
+        # The selected passage is context for this question; leave it out and the selection was wasted.
         if quote.strip():
             said = f'About this passage: "{quote.strip()}"\n{said}'
         over = _charge(request, 1, f"{control_id} · chat")
@@ -920,7 +956,8 @@ def create_app(
     @app.post("/c/{control_id}/chat/{turn_id}/apply")
     @needs(perm.INTERPRETATION_WRITE)
     def clause_chat_apply(control_id: str, turn_id: str, request: Request):
-        """**模型说的话到这一步才进库。** 中间隔着人点的这一下。"""
+        """**Only at this step does what the model said enter the database.** In between stands
+        this human click."""
         from framework_reader.interpret.authoring import write_field
         from framework_reader.interpret.model import Basis
         from framework_reader.interpret.user_store import UserInterpretationStore
@@ -932,7 +969,8 @@ def create_app(
         turn = store.turn(turn_id)
         if turn is None or turn.control_id != control_id or not turn.proposal:
             return RedirectResponse(f"/c/{control_id}", status_code=303)
-        # 刷新页面就会重发一次 POST。写两次库、记两条审计是最难查的那种重复。
+        # Refreshing the page resends the POST. Writing to the database twice and logging two
+        # audit entries is the hardest kind of duplicate to hunt down.
         if not store.mark_applied(turn_id):
             return RedirectResponse(f"/c/{control_id}", status_code=303)
 
@@ -940,7 +978,7 @@ def create_app(
         for update in turn.proposal:
             field = update["field"]
             before = (api().interpretation(control_id).get(field) or {}).get("value")
-            # 要求是人提的，字是模型写的，所以标 inferred。
+            # The instruction came from a human and the words were written by the model, so mark it inferred.
             write_field(written, control_id, field, update["value"],
                         basis=Basis.INFERRED)
             _log_field(request, "interpretation.chat", control_id, field,
@@ -957,9 +995,10 @@ def create_app(
         if refused is not None:
             return refused
 
-        # 签字人是**登录的那个人**，不是跑服务器的系统账号。
-        # 用 getpass.getuser() 的话，全组织的签名都会写成同一个名字——
-        # 而「这段话有人认领」正是这个产品的立身之本。
+        # The signer is **the person who is signed in**, not the system account running the
+        # server. With getpass.getuser(), every signature in the organisation would carry the
+        # same name — yet "a named person stands behind this text" is what this product is
+        # built on.
         signer = _who(request) or _local_user()
         try:
             confirm(UserInterpretationStore(_user_db()), control_id, signer=signer)
@@ -970,10 +1009,11 @@ def create_app(
                 '<p class="note">Draft it or write a few fields first, then come back to confirm.</p>'
                 f'<p><a href="/c/{control_id}">Back to the control</a></p>',
             ), 400)
-        # 确认是产品的核心动作，「谁认领的」必须可追溯。设计 §4.4
+        # Confirmation is the product's core action; "who claimed it" must be traceable. Design §4.4
         identity.log("interpretation.confirm", actor=signer, detail=control_id)
-        # 审阅队列里点的确认直接翻到下一条——一条条点进条款页再出来，
-        # 一千条的初稿就把人磨没了。签字本身没变快，变快的只是找下一条。
+        # A confirmation clicked in the review queue jumps straight to the next control —
+        # dipping into each control page and back, a thousand drafts would grind a person down.
+        # Signing itself did not get faster; only finding the next one did.
         if next:
             return RedirectResponse("/review", status_code=303)
         return RedirectResponse(f"/c/{control_id}", status_code=303)
@@ -981,11 +1021,12 @@ def create_app(
     @app.get("/review", response_class=HTMLResponse)
     @needs(perm.CONTENT_READ)
     def review_queue(after: str = "", before: str = ""):
-        """审阅队列：一次一条 AI 初稿，确认或跳过，键盘左右翻。
+        """Review queue: one AI draft at a time, confirm or skip, page through with the keyboard.
 
-        签字必须一条一条签（批量一键确认等于把「逐条过眼」从前门放出去），
-        但「找下一条看什么」不该花人的时间。确认按钮 POST 的是既有的
-        /c/{id}/confirm，带 next=1 翻下一条——签字逻辑只有一份。
+        Signing must happen one control at a time (batch one-click confirmation would let "every
+        control passes a human eye" out the front door), but "find the next thing to look at"
+        should not cost a human their time. The confirm button POSTs to the existing
+        /c/{id}/confirm with next=1 to advance — there is exactly one copy of the signing logic.
         """
         reader = api()
         pending = reader.pending_review()
@@ -1010,9 +1051,10 @@ def create_app(
         ))
 
     def _queue_pick(ids: list[str], *, after: str = "", before: str = "") -> str:
-        """队列里的定位。after/before 是上一页的当前条——跳过、确认之后
-        从它旁边接着走，翻到头就绕回另一端。找不到参照（链接太旧、
-        条款已删）就回到队头。"""
+        """Positioning within the queue. after/before is the previous page's current item —
+        after skipping or confirming, continue from beside it, wrapping around to the other end
+        at the edge. If the reference cannot be found (stale link, control deleted), return to
+        the head of the queue."""
         if before:
             older = [i for i in ids if i < before]
             if older:
@@ -1117,7 +1159,7 @@ def create_app(
         }
         entries = [a for a in AssessStore(_user_db()).all() if a.control_id in content]
         if not entries:
-            # 一条自评都没有：这一页没有内容可给，只有下一步可指。
+            # Not a single self-assessment yet: this page has no content to show, only a next step to point to.
             return HTMLResponse(views.gap(
                 view, "", to_assess=len(controls)))
         report = build_gap(entries, content, total=len(controls))
@@ -1183,11 +1225,13 @@ def create_app(
         due: str = Form(""),
         note: str = Form(""),
     ):
-        """一行一份表单：control_id 已立项就是改，没立项就是补录一条。
+        """One form per row: if control_id is already tracked this updates it, otherwise it
+        backfills a new entry.
 
-        补录表单里人填的是短编号（`4.1`），这里拼回完整 id——条款号的
-        稳定前缀就是框架 id，见 spec §8②。授权矩阵的逐格测试会带着
-        空表单打进来——control_id 为空时原地回台账页，别让人看到 500。"""
+        The backfill form collects the short number (`4.1`); it is reassembled into the full id
+        here — the stable prefix of a control number is the framework id, see spec §8②. The
+        authorisation matrix's cell-by-cell tests hit every route with empty forms — when
+        control_id is empty, return straight back to the register page instead of showing a 500."""
         from framework_reader.assess.remediation import RemediationStore, STATES
 
         store = RemediationStore(_user_db())
@@ -1222,8 +1266,9 @@ def create_app(
     @app.post("/f/{framework_id}/remediation/plan")
     @needs(perm.ASSESSMENT_WRITE)
     def remediation_plan(framework_id: str):
-        """把差距报告里还没立项的条目一次立项。已经立项的不动——
-        重复点这个按钮不会把人填的负责人跟期限冲掉。"""
+        """Creates entries in one go for every gap-report item not yet tracked. Items already
+        tracked are left alone — repeated clicks on this button never wipe the owner and due
+        date a person filled in."""
         from framework_reader.assess.remediation import RemediationStore
         from framework_reader.assess.report import build_gap
         from framework_reader.assess.store import AssessStore
@@ -1304,8 +1349,9 @@ def create_app(
         pending = pending_controls(db, framework_id, _user_db())
         if not pending:
             return RedirectResponse(f"/f/{framework_id}", status_code=303)
-        # 800-53 有一千多条叶子。每人每小时默认 300，一次点完会撞上限。
-        # 这一趟只跑预算里还能装下的，跑完再点。
+        # 800-53 has over a thousand leaf controls. The default is 300 per person per hour;
+        # drafting them all in one click would hit the cap. This pass runs only what still fits
+        # in the budget; click again when it finishes.
         room = models_config.remaining_draft(_who(request) or _local_user())
         batch = pending[:room] if room else pending
         over = _charge(request, len(batch), framework_id)
@@ -1317,7 +1363,7 @@ def create_app(
             try:
                 return run_draft(key, library, only=batch)
             except TypeError:
-                # 测试注入的 runner 只有两个参数。
+                # The runner injected by tests only takes two arguments.
                 return run_draft(key, library)
 
         jobs.start(framework_id, len(batch), go)
@@ -1339,7 +1385,7 @@ def create_app(
             view.name, f"/f/{framework_id}", job, crumb=view.id))
 
     def _framework_rows():
-        """两段共用一份数据。导入的那几行多带导入时间与来源文件名。"""
+        """The two callers share one data set. The imported rows additionally carry the import time and the source filename."""
         from framework_reader.userframework.store import UserFrameworkStore
 
         reader = api()
@@ -1361,7 +1407,7 @@ def create_app(
         return HTMLResponse(views.frameworks(_framework_rows()))
 
     def _expand_query(query: str) -> str:
-        """字面没命中时才走到这里。只把用户那句话发给模型，不把条款目录送出去。"""
+        """Only reached when the literal search found nothing. Sends just the user's sentence to the model; the control catalogue never goes out."""
         from framework_reader.llm.client import Message
         from framework_reader.llm.config import effective_registry
         from framework_reader.llm.guard import PayloadGuard
@@ -1431,11 +1477,11 @@ def create_app(
     @app.get("/mine")
     @needs(perm.CONTENT_READ)
     def mine_moved():
-        """收藏夹里可能存着旧地址。别让人撞一个 404。"""
+        """Bookmarks may still hold the old address. Do not let people run into a 404."""
         return RedirectResponse("/frameworks", status_code=303)
 
     def _deletable(framework_id: str):
-        """(框架, 错误响应)。只有自己导入的能删——内置框架随内容包走。"""
+        """(framework, error response). Only self-imported frameworks can be deleted — built-in ones ship with the content package."""
         from framework_reader.userframework.store import UserFrameworkStore
 
         mine = {f.id: f for f in UserFrameworkStore(_user_db()).list_frameworks()}
@@ -1466,8 +1512,9 @@ def create_app(
     @needs(perm.FRAMEWORK_DELETE)
     def framework_delete(request: Request, framework_id: str,
                          confirm: str = Form("")):
-        """**必须把编号原样打一遍。** 它会连着毁掉这个框架下所有的自评和签字，
-        一个手滑点不掉几十小时的工作。和 `fr` 那套删除动作一个规矩。
+        """**The ID must be typed out exactly.** Deleting takes every self-assessment and
+        sign-off under this framework down with it, and one accidental click must not be able
+        to destroy dozens of hours of work. Same rule as the `fr` delete commands.
         """
         from framework_reader.userframework.store import UserFrameworkStore
 
@@ -1493,13 +1540,14 @@ def create_app(
     def import_page(error: str = "") -> str:
         return views.import_page(error=error)
 
-    # 文档（.docx / .pdf / .txt / .md）走 AI 切分那条管线；表格直接落库。
-    # 见 2026-08-25 AI 导入设计 §5.1
+    # Documents (.docx / .pdf / .txt / .md) go through the AI splitting pipeline; spreadsheets
+    # go straight into the database.
+    # See the 2026-08-25 AI import design §5.1
     _DOCUMENT_SUFFIXES = (".docx", ".pdf", ".txt", ".md", ".markdown")
 
     def _extractor_client():
-        """抽结构用的 client。空守卫：payload 是用户自己的制度，
-        不是 Tier C/D 原文——与 `fr llm check` 的探针同一个用法。设计 §6"""
+        """Client for structure extraction. Empty guard: the payload is the user's own policy,
+        not Tier C/D original text — same usage as the `fr llm check` probe. Design §6"""
         from framework_reader.llm.config import effective_registry
         from framework_reader.llm.guard import PayloadGuard
 
@@ -1510,10 +1558,12 @@ def create_app(
 
     def _shape_table(request: Request, framework_id: str, name: str,
                      filename: str, sheets, fail):
-        """表头认不出来：让模型看一眼这张表长什么样。设计 §5.1
+        """The header could not be recognised: have the model take a look at what this table
+        looks like. Design §5.1
 
-        **只在确定性解析失败后才走这里。** 表头在第一行那条路是免费的、
-        瞬时的、不会错，没理由换成一次模型调用。
+        **Only reached after deterministic parsing has failed.** The header-on-the-first-row
+        path is free, instantaneous, and never wrong; there is no reason to swap it for a model
+        call.
         """
         from framework_reader.llm.config import BudgetError
         from framework_reader.llm.registry import MissingApiKeyError
@@ -1521,8 +1571,9 @@ def create_app(
         from framework_reader.userframework.import_draft import ImportDraftStore
         from framework_reader.web import jobs
 
-        # 认不出表头时**为什么没让 AI 帮忙**，要说出来。不说的话，
-        # 管理员只会看到一句「表头里找不到编号」，而他有别的路可走。
+        # When the header cannot be recognised, say **why AI was not asked to help**. Unspoken,
+        # the administrator sees only "no control number found in the header", even though
+        # another route is open to them.
         if not views.may(perm.INTERPRETATION_DRAFT):
             return None, ("Having AI read this table's structure calls the model and spends the organization's money; "
                           "it needs the author role.")
@@ -1552,18 +1603,20 @@ def create_app(
         by_name = dict(sheets)
         shape, error = table_ai.parse_shape(raw)
         if shape is not None:
-            # 模型指了哪张表就校验哪张。没指就用第一张。
+            # Validate whichever sheet the model pointed at; if it named none, use the first.
             chosen = by_name.get(shape.sheet, sheets[0][1] if sheets else [])
             shape, error = table_ai.validate_shape(shape, chosen, sheet_names=names)
         identity.log("framework.tableshape", actor=actor,
                      detail=f"{framework_id} <- {filename}, read as "
                             f"{shape.kind if shape else 'nothing recognisable'}")
         if shape is None:
-            # 模型也没认出来。退回那条人话报错，让人看见它到底看见了什么。
+            # The model could not read it either. Fall back to that human-readable error, so
+            # the person can see what the model was actually looking at.
             return None, f"AI could not read this table's structure either ({error})."
         if shape.kind == "document":
-            # 一份制度贴进了 Excel。硬凑列映射会生成一整张假清单。
-            # 指了工作表就只摊那一张，没指就整本摊平。
+            # A policy document got pasted into Excel. Forcing a column mapping onto it would
+            # fabricate an entire bogus control list. If a worksheet was named, flatten only
+            # that one; if not, flatten the whole workbook.
             flat = (table_ai.rows_to_text(by_name[shape.sheet])
                     if shape.sheet in by_name else table_ai.sheets_to_text(sheets))
             return _outline_upload(request, framework_id, name, filename,
@@ -1577,7 +1630,8 @@ def create_app(
 
     def _outline_upload(request: Request, framework_id: str, name: str,
                         filename: str, data: bytes, fail, text: str | None = None):
-        """文档导入：抽文本 → 预检 → 切分 → 落预览态。**确认前不写框架库。**"""
+        """Document import: extract text → pre-check → split → land in preview state.
+        **Nothing is written to the framework library before confirmation.**"""
         from framework_reader.llm.config import BudgetError, effective_registry
         from framework_reader.llm.guard import PayloadGuard
         from framework_reader.llm.registry import MissingApiKeyError
@@ -1588,8 +1642,10 @@ def create_app(
         from framework_reader.userframework.import_draft import ImportDraftStore
         from framework_reader.web import jobs
 
-        # 文档导入调模型，花的是组织的钱，所以门槛比表格导入高一档。
-        # permissions.py：admin 管系统，**不含起草与确认**。设计 §4.1
+        # Document import calls the model and spends the organisation's money, so its bar sits
+        # one notch above spreadsheet import.
+        # permissions.py: admin runs the system, **which does not include drafting or
+        # confirming**. Design §4.1
         if not views.may(perm.INTERPRETATION_DRAFT):
             return fail(
                 "Importing from Word / PDF calls the model and spends the organization's money, so this step needs "
@@ -1602,7 +1658,8 @@ def create_app(
         if not text.strip():
             return fail("This document contains no text.")
 
-        # 预检：先算要发几次，闸不过就一个请求都不发。设计 §4
+        # Pre-check: count how many calls will be sent first; if the gate refuses, not a single
+        # request is sent. Design §4
         planned = len(outline_mod.plan_calls(text))
         actor = _who(request)
         try:
@@ -1615,18 +1672,21 @@ def create_app(
         try:
             client, model = _extractor_client()
         except MissingApiKeyError as exc:
-            # 没配 key 不该是一个 500。**这一步在扣额度之后**，所以要退回来。
+            # A missing key must not surface as a 500. **This step runs after the budget was
+            # charged**, so it has to be refunded.
             models_config.refund_draft(actor, planned)
             return fail(f"{exc}")
         run = outline_runner or outline_mod.outline_document
 
         def work(report) -> str:
-            """后台跑。**预检、权限、key 都在上面同步做完了**——
-            那些是立刻能知道的，扔进后台只会让人先看三秒转圈再看到
-            「你没权限」。这里剩下的只有真正耗时的那一段。
+            """Runs in the background. **The pre-check, the permission check, and the key are
+            all done synchronously above** — those can be known immediately; pushing them into
+            the background only makes people watch a spinner for three seconds before seeing
+            "you have no permission". All that remains here is the genuinely slow part.
             """
             result = run(text, client=client, model=model, on_chunk=report)
-            # 审计只记发生了这件事。**制度正文一个字都不进日志。**
+            # The audit log records only that this happened. **Not a single character of policy
+            # text enters the log.**
             identity.log("framework.outline", actor=actor,
                          detail=f"{framework_id} <- {filename}, "
                                 f"{planned} calls, cut into {len(result.spans)} controls")
@@ -1657,8 +1717,9 @@ def create_app(
         if not framework_id.strip() or not name.strip():
             return fail("Both the ID and the display name are required.")
 
-        # 每次上传一个独立的临时文件。原先是固定文件名 `_upload{后缀}`——
-        # 单人时无害，两个人同时导入就是一个人的表被另一个人的覆盖掉。
+        # A separate temporary file per upload. The original fixed name `_upload{suffix}` was
+        # harmless for a single person; with two people importing at once, one person's sheet
+        # got overwritten by the other's.
         import tempfile
 
         suffix = Path(file.filename or "").suffix
@@ -1675,11 +1736,13 @@ def create_app(
                     request, framework_id.strip(), name.strip(),
                     file.filename or "", tmp.read_bytes(), fail)
             sheets = read_sheets(tmp)
-            # 挨个工作表试。「说明页在前、真表在后」是最常见的排法，
-            # 只读 book.active 的结果是整份文件白导。
+            # Try the worksheets one by one. "Instructions page first, real table after" is the
+            # most common layout; reading only book.active means the whole file imports to
+            # nothing.
             _, controls = parse_any_sheet(sheets)
             if controls is None:
-                # 都认不出来。让用户去改自己的表，就是把我们的问题推给他。
+                # None of them could be recognised. Making the user go fix their own sheet
+                # means pushing our problem onto them.
                 answered, note = _shape_table(
                     request, framework_id.strip(), name.strip(),
                     file.filename or "", sheets, fail)
@@ -1707,7 +1770,8 @@ def create_app(
     @app.get("/import/job/{job_id}", response_class=HTMLResponse)
     @needs(perm.FRAMEWORK_IMPORT)
     def import_job(job_id: str):
-        """切分进度。跑着的时候自己刷新——否则人只能盯着一个不动的页面猜。"""
+        """Splitting progress. The page refreshes itself while running — otherwise all a person
+        can do is stare at a frozen page and guess."""
         from framework_reader.web import jobs
 
         job = jobs.get_outline(job_id)
@@ -1732,8 +1796,9 @@ def create_app(
                 "Not found",
                 "<p>No such import draft; it may already be confirmed or discarded.</p>",
                 crumb="Import"), 404)
-        # 正文在这儿才从原文截出来。草稿里存的是行号，不是正文——
-        # 存一份正文的副本，就等于给了它一个可以和原文对不上的机会。
+        # Only here is the body text sliced out of the source. The draft stores line numbers,
+        # not text — storing a copy of the body hands it a chance to drift out of sync with the
+        # source.
         bodies = [slice_lines(draft.source_text, s.start, s.end)
                   for s in draft.spans]
         return HTMLResponse(views.import_preview(draft, bodies))
@@ -1752,8 +1817,9 @@ def create_app(
                 "Not found", "<p>No such import draft.</p>", crumb="Import"), 404)
 
         form = await request.form()
-        # 每次提交都把框里的编号与标题写回草稿——合并和确认都要它们，
-        # 而「改完标题再点合并」不能把改动丢掉。
+        # Every submission writes the IDs and titles from the boxes back into the draft —
+        # merging and confirming both need them, and "edit the title, then click merge" must
+        # not throw the edit away.
         edited = [_with_edits(s, form, i) for i, s in enumerate(draft.spans)]
         kept_keys = set(form.getlist("keep"))
 
@@ -1761,8 +1827,9 @@ def create_app(
             index = int(form["merge"])
             if index < 1 or index >= len(edited):
                 return RedirectResponse(f"/import/{draft_id}", status_code=303)
-            # 与紧邻的上一条合并，不管它勾没勾。行号取并集——两段之间
-            # 没被覆盖的行一并并进来，那正是想要的。编号与标题取上一条的。
+            # Merge with the immediately preceding entry, ticked or not. The line ranges are
+            # unioned — lines between the two spans that nothing else covered come along too,
+            # which is exactly what is wanted. ID and title come from the preceding entry.
             above, here = edited[index - 1], edited[index]
             merged = Span(ref=above.ref, label=above.label, parent=above.parent,
                           start=min(above.start, here.start),
@@ -1781,9 +1848,11 @@ def create_app(
                 f'<p><a href="/import/{draft_id}">Go back and choose</a></p>',
                 crumb="Import"), 400)
 
-        # 编号是控制 ID 的一半，而 user_control.id 是主键——重号和空号都会在
-        # `add_framework` 里炸成 IntegrityError。那一刻人已经在预览页改了半天，
-        # 而炸完什么都没落库。**在这儿拦住，并说清楚是哪一个。**
+        # The number is half of the control ID, and user_control.id is the primary key —
+        # duplicates and blanks alike would blow up as an IntegrityError inside
+        # `add_framework`. By that point the person has spent ages editing the preview page,
+        # and after the crash nothing is saved. **Catch it here, and say exactly which one it
+        # is.**
         blank = [s.label or "(no title)" for s in chosen if not s.ref]
         if blank:
             return _confirm_refused(
@@ -1811,8 +1880,9 @@ def create_app(
         return RedirectResponse(f"/f/{draft.framework_id}", status_code=303)
 
     def _with_edits(span, form, index: int):
-        """把框里的编号标题写回。**人改过的就归人**——AI 起的名字被改掉之后
-        再标「AI 起的」，是把功劳和责任都记错了。
+        """Writes the IDs and titles from the boxes back. **Whatever a human changed belongs
+        to the human** — marking a replaced title as "AI-named" afterwards mis-attributes both
+        the credit and the responsibility.
         """
         from framework_reader.userframework.outline import Span
 
@@ -1826,7 +1896,8 @@ def create_app(
         )
 
     def _confirm_refused(draft_id: str, title: str, detail: str):
-        """确认被拦下。**一条都不写库**——半张框架比没有框架糟。"""
+        """Confirmation refused. **Not one entry is written to the database** — half a framework
+        is worse than no framework."""
         return HTMLResponse(views.page(
             title, f"<h2>{title}</h2>"
             f'<p class="note">{detail}</p>'
@@ -1841,10 +1912,11 @@ def create_app(
         ImportDraftStore(_user_db()).delete(draft_id)
         return RedirectResponse("/import", status_code=303)
 
-    # ---------- 成员与审计 ----------
+    # ---------- Members and audit ----------
     #
-    # 管账号原先只有 CLI（`fr account grant`）。托管服务里管理员未必有
-    # 服务器的 shell——能在 CLI 做而界面上做不了的管理动作，等于没做。
+    # Account management used to be CLI-only (`fr account grant`). On a hosted service the
+    # admin may not have a shell on the server — a management action possible in the CLI but
+    # not in the UI is as good as not done.
 
     def _members_page(invite_link: str = "", error: str = "", status: int = 200):
         rows = [
@@ -1871,15 +1943,17 @@ def create_app(
     def members_bootstrap(request: Request, email: str = Form(""),
                           display_name: str = Form(""),
                           password: str = Form(""), again: str = Form("")):
-        """第一个管理员。在这之前只有 CLI 一条路。
+        """The first administrator. Until this exists, the CLI is the only way in.
 
-        **门闩是 `configured()`，不是页面上藏起表单。** 一旦有了账号（或者
-        发出过邀请），这条路由必须死透：否则它就是一条绕开邀请、给自己发
-        管理员的路，而且守卫在本机模式下连 CSRF 都不校验。
+        **The latch is `configured()`, not hiding the form on the page.** Once any account
+        exists (or an invitation has been sent), this route must be dead: otherwise it is a way
+        around the invitation flow to hand yourself admin, and in local mode the guard does not
+        even check CSRF.
 
-        关门后拒的是 **409 不是 403**：403 在这套代码里专指「你这个角色不能
-        做这件事」，授权矩阵的遍历测试靠这条约定分辨真假。这里拒的理由和
-        角色无关，占了 403 就等于在那张矩阵上戳个假洞。
+        Once closed it refuses with **409, not 403**: in this codebase 403 means exactly "your
+        role cannot do this", and the authorisation matrix's exhaustive tests rely on that
+        convention to tell real denials from spurious ones. The reason for refusing here has
+        nothing to do with roles; occupying 403 would punch a fake hole in that matrix.
         """
         from framework_reader.identity.store import IdentityError
 
@@ -1903,8 +1977,9 @@ def create_app(
             return _members_page(error=str(exc), status=400)
         identity.log("account.bootstrap", actor=account.email,
                      detail="first administrator, created on the web; the identity system is now enabled")
-        # 直接种会话：门在这一刻锁上，让人刚建完就被踢回登录页很蠢。
-        # 和 invite_submit 是同一个路子。
+        # Start the session directly: the gate locks at this moment, and kicking someone
+        # straight back to the sign-in page right after they created the first account would be
+        # silly. Same approach as invite_submit.
         session = identity.start_session(account)
         return _set_cookie(RedirectResponse("/", status_code=303), session.token)
 
@@ -1919,7 +1994,8 @@ def create_app(
         except IdentityError as exc:
             return _members_page(error=str(exc), status=400)
         identity.log("account.invite", actor=_who(request), detail=f"{email} {role}")
-        # 链接直接渲染，不走重定向——令牌进 URL 就会躺在代理日志与浏览器历史里。
+        # The link is rendered directly, not via a redirect — once the token is in a URL it
+        # sits in proxy logs and browser history.
         return _members_page(
             invite_link=f"{request.base_url}".rstrip("/") + f"/invite/{token}")
 
@@ -1968,14 +2044,15 @@ def create_app(
     @app.post("/members/self-grant")
     @needs(perm.ROLE_GRANT)
     def members_self_grant(request: Request, allowed: str = Form("0")):
-        """开关本身归 role:grant 管，因为它管的就是授权。关掉会留痕。设计 §4.3"""
+        """The switch itself falls under role:grant, because what it governs is authorisation.
+        Turning it off leaves an audit trail. Design §4.3"""
         identity.set_self_grant(allowed == "1", by=_who(request))
         return RedirectResponse("/members", status_code=303)
 
-    # ---------- 配套文档 ----------
+    # ---------- Supporting documents ----------
     #
-    # 起草器写出来的是通用建议。这个团队真正的落地方式写在他们自己的制度里，
-    # 而那一行不是模型能猜出来的。
+    # What the drafter produces is generic advice. How this team actually implements controls
+    # is written in their own policies, and that line is not something a model can guess.
 
     def _documents():
         from framework_reader.userframework.documents import DocumentStore
@@ -2008,7 +2085,8 @@ def create_app(
             return HTMLResponse(views.documents(
                 _documents().list_documents(), can_write=True,
                 error=str(exc)), 400)
-        # 内部制度进了服务器、并且会进模型的 payload。谁传的必须留痕。
+        # Internal policy has now entered the server and will enter the model's payload. Who
+        # uploaded it must leave a trace.
         identity.log("document.upload", actor=_who(request),
                      detail=f"{doc.filename} ({doc.chars} chars)")
         return RedirectResponse("/documents", status_code=303)
@@ -2035,10 +2113,11 @@ def create_app(
         identity.log("document.delete", actor=_who(request), detail=doc.filename)
         return RedirectResponse("/documents", status_code=303)
 
-    # ---------- 模型与 key ----------
+    # ---------- Models and keys ----------
     #
-    # 「用户接入自己的 AI」的正解：不是把 key 写进服务器的环境变量（那要
-    # shell，改一次还要重启），是管理员在界面上填、加密落库、脱敏回显。
+    # The right answer to "bring your own AI": not writing the key into the server's
+    # environment variables (that needs a shell, and every change needs a restart), but the
+    # admin filling it in through the UI, storing it encrypted, and echoing it back masked.
 
     def _models_page(error: str = "", notice: str = "", status: int = 200,
                      focus: tuple[str, str, str] | None = None):
@@ -2050,13 +2129,15 @@ def create_app(
                     "custom": False}
                    for p in LLMRegistry.load(DEFAULT_REGISTRY_PATH).providers]
         custom = models_config.custom_providers()
-        # 自定义端点也要能在角色下拉里选中——否则配了也用不上。
-        # verified=True：它是你自己的端点，「我们验没验过」这个问题不适用。
+        # Custom endpoints must also be selectable in the role dropdown — otherwise
+        # configuring one is useless. verified=True: it is your own endpoint; "have we vetted
+        # it" does not apply.
         presets += [{"id": pid, "note": row["base_url"], "verified": True,
                      "custom": True}
                     for pid, row in custom.items()]
-        # 显示**实际生效**的值，不只是这一页配过的：这一页要回答的问题是
-        # 「现在到底谁在收我们的钱」，而不是「我在这儿点过什么」。
+        # Show the values **actually in effect**, not just what was configured on this page:
+        # the question this page must answer is "who is really taking our money right now", not
+        # "what did I once click here".
         registry, _ = effective_registry(config=models_config)
         overridden = set(models_config.roles())
         roles = {
@@ -2076,7 +2157,8 @@ def create_app(
         ), status)
 
     def _probe(provider: str, model: str):
-        """「测一下」：真发一次最小请求。`probe_runner` 只为测试注入。"""
+        """The "test it" action: really sends one minimal request. `probe_runner` is injected
+        for tests only."""
         from framework_reader.llm import probe as probe_mod
         from framework_reader.llm.config import effective_registry
 
@@ -2085,8 +2167,9 @@ def create_app(
         run = probe_runner or (
             lambda preset, model, api_key: probe_mod.probe_model(
                 preset, model, api_key))
-        # **和起草走同一个取 key 路径**（先库、后环境变量）。只看库的话，
-        # 服务器上用环境变量配好的厂商会被报成「还没配 key」，而它跑得好好的。
+        # **Takes the same key-lookup path as drafting** (database first, then environment
+        # variables). Looking only at the database, a provider configured on the server via
+        # environment variables would be reported as "no key yet" while working perfectly well.
         return run(preset, model, _key_for(preset))
 
     def _key_for(preset) -> str | None:
@@ -2099,11 +2182,12 @@ def create_app(
                 | set(models_config.custom_providers()))
 
     def _fetch_catalog(provider: str) -> None:
-        """拉一次目录并落库。**任何失败都不得让调用方失败**——
-        保存 key 是主动作，拉目录是搭便车的那一个。
+        """Fetches the model catalogue once and stores it. **No failure may ever fail the
+        caller** — saving the key is the main action; fetching the catalogue is the free rider.
 
-        `http_get` 只为测试注入（与 `entra_fetch` 同一个模式）。默认 None →
-        catalog 用它自己的 `_default_get`：真实出网收在那一个函数里。
+        `http_get` exists for test injection only (same pattern as `entra_fetch`). Default
+        None → the catalog module uses its own `_default_get`: real network access is contained
+        in that one function.
         """
         from framework_reader.llm.catalog import CatalogError, fetch_models
         from framework_reader.llm.config import effective_registry
@@ -2111,7 +2195,7 @@ def create_app(
         registry, _ = effective_registry(config=models_config)
         try:
             preset = registry.preset(provider)
-        except Exception:  # noqa: BLE001 —— 厂商刚被删掉之类
+        except Exception:  # noqa: BLE001 - e.g. the provider was just deleted
             return
         key = models_config.key(provider)
         if not key:
@@ -2131,10 +2215,12 @@ def create_app(
     @app.get("/settings", response_class=HTMLResponse)
     @needs(perm.MEMBER_READ)
     def settings_page():
-        """门槛取 member:read——四个角色都有它，本机单人模式 `may()` 恒真。
+        """The gate is member:read — all four roles hold it, and in local single-user mode
+        `may()` is always true.
 
-        页面内每一块再按权限单独判：这一页本身不是一个动作，
-        它只是把入口收在一处（§1.2 权限的单位是动作，不是页面）。
+        Each block inside the page is then judged against its own permission: the page itself
+        is not an action, it only gathers the entrances in one place (§1.2 — the unit of
+        permission is the action, not the page).
         """
         return HTMLResponse(views.settings(bootstrap=not identity.configured()))
 
@@ -2184,7 +2270,8 @@ def create_app(
             return HTMLResponse(views.page("Not found", "<p>No custom logo.</p>"), 404)
         media = {"png": "image/png", "jpg": "image/jpeg", "webp": "image/webp",
                  "gif": "image/gif", "svg": "image/svg+xml"}[found.suffix.lstrip(".")]
-        # CSP 连栅格图一起给：直接在地址栏打开 logo 也不许执行任何脚本。
+        # The CSP is sent for raster images too: opening the logo directly in the address bar
+        # must not be able to run any scripts.
         return FileResponse(found, media_type=media, headers={
             "Cache-Control": "public, max-age=600",
             "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox",
@@ -2197,7 +2284,7 @@ def create_app(
             identity.sso_config(), from_env=entra_config.configured()))
 
     def _form_secret_or_saved(form_secret: str) -> str:
-        """表单里 secret 留空 = 沿用已保存的那份，不是清掉。"""
+        """Leaving the secret blank on the form = keep the saved one, not clear it."""
         return form_secret.strip() or identity.sso_secret()
 
     @app.post("/settings/sso")
@@ -2207,7 +2294,8 @@ def create_app(
                  redirect_uri: str = Form(""), authority: str = Form(""),
                  enabled: str = Form("")):
         if not (tenant_id.strip() or client_id.strip() or client_secret.strip()):
-            # 授权矩阵会拿空表单打每一条路由：空表单不许把已存的好配置抹掉。
+            # The authorisation matrix hits every route with empty forms: an empty form must
+            # not wipe out a saved, working configuration.
             return RedirectResponse("/settings/sso", status_code=303)
         from framework_reader import crypto
 
@@ -2218,8 +2306,9 @@ def create_app(
                 secret=_form_secret_or_saved(client_secret),
                 authority=authority, enabled=enabled == "on", by=_who(request))
         except crypto.SecretError as exc:
-            # 没配主密钥就拒绝落库（和模型 key 同一条规矩）：悄悄明文存，
-            # 你会以为它是加密的，而它不是。
+            # Refuse to store anything when the master key is not configured (same rule as
+            # model keys): silently storing plaintext would make you believe it is encrypted
+            # when it is not.
             return HTMLResponse(views.refused("Cannot store the client secret",
                                               str(exc)), 400)
         identity.log("sso.configured", actor=_who(request), detail=tenant_id.strip())
@@ -2231,8 +2320,9 @@ def create_app(
                   client_id: str = Form(""), client_secret: str = Form(""),
                   redirect_uri: str = Form(""), authority: str = Form(""),
                   enabled: str = Form("")):
-        """测的是**表单里现填的这一份**（空 secret 用已存的补上）——
-        测完再存，存的就是测过的。出网只发一次发现文档请求。"""
+        """Tests **the copy currently filled in on the form** (a blank secret is filled in
+        from the saved one) — test first, then save, so what gets saved is what was tested.
+        Exactly one discovery-document request goes out."""
         from framework_reader.identity.entra import EntraClient, EntraConfig, EntraError
 
         from framework_reader import crypto
@@ -2263,8 +2353,9 @@ def create_app(
         elif not cfg.redirect_uri.endswith("/auth/entra/callback"):
             problems.append(f"Redirect URI should end with /auth/entra/callback: {cfg.redirect_uri}")
 
-        # 别的体检项没过也照样拉一次发现文档——一次把所有问题都亮出来，
-        # 不让人改一项、测一次、再发现下一项。出网只这一发。
+        # Even when the other checks fail, the discovery document is still fetched once —
+        # surface every problem in one pass, instead of fix one item, retest, discover the
+        # next. Only this one request leaves the network.
         discovery_error, issuer = "", ""
         if cfg.configured():
             try:
@@ -2400,7 +2491,8 @@ def create_app(
         from framework_reader import crypto
 
         if provider not in _known_providers():
-            # 预设里没有的厂商，端点是空的——存了也只是一个用不了的 key。
+            # A provider outside the presets has an empty endpoint — the key would be saved
+            # only to sit there unusable.
             return _models_page(
                 error=f"Provider not in the presets: {provider}", status=400)
         if clear:
@@ -2414,10 +2506,12 @@ def create_app(
             models_config.set_key(provider, key.strip(), by=_who(request))
         except crypto.SecretError as exc:
             return _models_page(error=str(exc), status=400)
-        # 审计里**只记发生了这件事**。key 一个字符都不进日志。
+        # The audit log **records only that this happened**. Not a single character of the key
+        # enters the log.
         identity.log("model.key", actor=_who(request),
                      detail=f"set {provider}")
-        # 配完就顺手问一次「你这儿有哪些模型」。失败不影响 key 已经存好这件事。
+        # With the key saved, ask once, while we are at it, "which models do you have". A
+        # failure does not undo the fact that the key is already stored.
         _fetch_catalog(provider)
         return RedirectResponse("/models", status_code=303)
 
@@ -2429,13 +2523,16 @@ def create_app(
         from framework_reader import crypto
         from framework_reader.web.views import ROLE_WHAT_FOR
 
-        # 模型名现在只有一个框（datalist 既能选也能填），不再有「下拉 vs 手填」
-        # 二选一那回事。从目录里复制粘贴常带尾空格，所以照样要 strip。
+        # The model name now has a single box (a datalist you can pick from or type into); the
+        # "dropdown vs typed" either/or is gone. Copy-pasting from the catalogue often drags in
+        # a trailing space, so it is stripped all the same.
         model = model.strip()
 
         if key.strip():
-            # 在这一块里填了 key：先存 key、拉目录，**这一次不改角色**。
-            # 模型名框里此刻装的多半还是上一家的模型，拿它去配新厂商是错的。
+            # A key was filled in within this block: save the key and fetch the catalogue
+            # first, **and do not change the role this time**. The model-name box most likely
+            # still holds the previous provider's model; pairing it with the new provider would
+            # be wrong.
             if role not in ROLE_WHAT_FOR:
                 return _models_page(
                     error=f"No such calling role: {role}", status=400)
@@ -2469,7 +2566,8 @@ def create_app(
             return _models_page(error="The model name cannot be empty.", status=400)
         models_config.set_role(role, provider=provider, model=model.strip(),
                                by=_who(request))
-        # 换 endpoint = 数据流向变了。这一条必须留痕。设计 §4.4
+        # Changing the endpoint = the data flow changed. This one must leave a trace.
+        # Design §4.4
         identity.log("model.role", actor=_who(request),
                      detail=f"{role} → {provider} / {model.strip()}")
         return RedirectResponse("/models", status_code=303)
@@ -2478,14 +2576,17 @@ def create_app(
     @needs(perm.MODEL_WRITE)
     def models_role_test(request: Request, role: str = Form(""),
                          provider: str = Form(""), model: str = Form("")):
-        """测这一组能不能用。**测的是表单里此刻选的那组，不是库里存的那组。**
+        """Tests whether this combination works. **It tests the combination currently chosen
+        on the form, not the one stored in the database.**
 
-        「选 → 测 → 存」比「存 → 测」少一步错误状态：不用先把一个没验证过的
-        配置写进库，再回头验它。所以这条路径一个字都不写库。
+        "Pick → test → save" has one fewer error state than "save → test": no need to write an
+        unverified configuration into the database first, then go back and validate it. So this
+        path writes not a single character to the database.
 
-        返回页 `focus` 到被测的那家，它的模型目录跟着渲出来——换厂商时
-        「要选模型必须先有目录、要有目录必须先提交、提交又要求模型名非空」
-        那个环，就是在这儿断开的。
+        The returned page `focus`es on the provider under test and renders its model catalogue
+        along with it — when switching providers, the loop of "to pick a model you need a
+        catalogue, to have a catalogue you must submit, and submitting demands a non-empty
+        model name" is broken exactly here.
         """
         from framework_reader.web.views import ROLE_WHAT_FOR
 
@@ -2498,8 +2599,8 @@ def create_app(
             return _models_page(
                 error=f"Provider not in the presets: {provider}", status=400)
         if not model:
-            # **不回落到 default_model。** 那样人会以为测的是自己填的那个，
-            # 而绿勾说的其实是另一个模型的事。
+            # **No fallback to default_model.** Otherwise people believe they tested the model
+            # they typed, while the green tick was actually about a different model.
             return _models_page(
                 error="Pick a model name (or type one) before testing; without it there is nothing to test.",
                 status=400, focus=(role, provider, model))
@@ -2512,8 +2613,10 @@ def create_app(
                 status=400, focus=(role, provider, model))
 
         result = _probe(provider, model)
-        # 留痕：这是一次真实出网，花的是组织的钱。设计 §4.4 同一条理由。
-        # **模型回的内容不进日志**——万一有人拿这个框当聊天窗。
+        # Trace it: this is a real outbound call spending the organisation's money. Same
+        # reasoning as design §4.4.
+        # **What the model replied does not enter the log** — in case someone uses this box as
+        # a chat window.
         identity.log("model.test", actor=_who(request),
                      detail=f"{provider} / {model} -> "
                             f"{'ok' if result.ok else result.kind}")
@@ -2530,9 +2633,11 @@ def create_app(
     @needs(perm.MODEL_WRITE)
     def models_provider(request: Request, provider: str = Form(""),
                         base_url: str = Form(""), default_model: str = Form("")):
-        """预设里没有的厂商：内网网关、Azure 部署、本机 vLLM/Ollama。
+        """Providers that are not in the presets: intranet gateways, Azure deployments, local
+        vLLM/Ollama.
 
-        加端点 = 决定框架正文发往哪里，所以只有 admin 能做，且必须留痕。
+        Adding an endpoint = deciding where framework body text gets sent, so only admin may do
+        it, and it must leave a trace.
         """
         from framework_reader.llm.config import CustomProviderError
 
@@ -2542,7 +2647,8 @@ def create_app(
                 by=_who(request))
         except CustomProviderError as exc:
             return _models_page(error=str(exc), status=400)
-        # 数据流向进审计。base_url 记下来，key 不在这条路径上。设计 §4.4
+        # The data flow goes into the audit log. The base_url is recorded; the key is not on
+        # this path. Design §4.4
         identity.log("model.provider", actor=_who(request),
                      detail=f"custom endpoint {provider.strip()} -> {base_url.strip()}")
         return RedirectResponse("/models", status_code=303)
@@ -2603,7 +2709,8 @@ def create_app(
 
 
 def _parse_field(field: str, form):
-    """按字段的形状读表单。形状读错，practice 会从三档塌成一句话。"""
+    """Reads the form according to the field's shape. Read with the wrong shape, practice
+    collapses from three rungs into one sentence."""
     from framework_reader.interpret.model import ALL_FIELDS
     from framework_reader.web.views import LINES, RUNGS
 

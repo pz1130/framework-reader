@@ -1,4 +1,4 @@
-"""黄金样例 diff、跨厂商对比与 lint 配置。W2 spec §3.5、§8"""
+"""Golden-sample diff, cross-vendor comparison, and lint config. W2 spec §3.5, §8"""
 from pathlib import Path
 
 import yaml
@@ -83,7 +83,7 @@ def cross_provider_extract(
     models: dict[str, str],
     failure_dir: Path | None = None,
 ) -> dict[str, dict[str, Field]]:
-    """同一批答案跑多家厂商，供作者在 W3 前定厂商。W2 spec §3.5"""
+    """Run one batch of answers through multiple vendors so the author can pick one before W3. W2 spec §3.5"""
     return {
         provider: extract_fields(
             client, control_id=control_id, questions=questions,

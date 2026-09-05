@@ -1,4 +1,4 @@
-"""SQLite 构建。spec §6.2：SQLite 是构建产物，YAML 才是真相源。"""
+"""SQLite build. spec §6.2: SQLite is a build artifact; YAML is the source of truth."""
 import sqlite3
 
 from framework_reader.interpret.model import Interpretation
@@ -30,7 +30,7 @@ CREATE TABLE framework_control (
     status TEXT NOT NULL
 );
 
--- 废止控制的去向。多对多，故独立成表。spec §8②
+-- Where superseded controls went. Many-to-many, hence its own table. spec §8②
 CREATE TABLE control_supersession (
     old_id TEXT NOT NULL,
     new_id TEXT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE mapping (
     PRIMARY KEY (from_id, to_id, source)
 );
 
--- 原文表：内容包中永远为空，仅供用户本地注入。spec §3.2②
+-- Original-text table: always empty in the content pack, for local injection by the user only. spec §3.2②
 CREATE TABLE original_text (
     control_id TEXT NOT NULL,
     locale TEXT NOT NULL,
@@ -66,8 +66,10 @@ CREATE TABLE original_text (
     PRIMARY KEY (control_id, locale)
 );
 
--- 解读。草稿也进包，但 state 必须跟着走，读的人要看得见成色。
--- 主 spec §7.3.1（2026-08-22 自用降级）；原「只有签过字的进包」见 W2 spec §4.3
+-- Interpretations. Drafts go into the pack too, but state must travel with them:
+-- readers have to be able to see how mature each entry is.
+-- Main spec §7.3.1 (2026-08-22 self-use downgrade); the original "only signed entries
+-- enter the pack" is in W2 spec §4.3
 CREATE TABLE interpretation (
     control_id TEXT NOT NULL,
     locale TEXT NOT NULL,
@@ -132,7 +134,8 @@ def insert_unified(conn: sqlite3.Connection, items: list[UnifiedControl]) -> Non
 def insert_mappings(
     conn: sqlite3.Connection, items: list[Mapping], registry: SourceRegistry
 ) -> None:
-    # 先全量断言，再写库——任何一条不合规则整批不写。spec §10.A
+    # Assert over the whole batch first, then write — if any single entry breaks the
+    # rules, none of the batch gets written. spec §10.A
     for m in items:
         registry.assert_allowed(m.provenance.source)
     conn.executemany(

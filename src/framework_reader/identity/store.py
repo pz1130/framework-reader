@@ -1,7 +1,9 @@
-"""账号、角色、邀请、会话、审计的存储。见网页服务化设计 §2、§4
+"""Storage for accounts, roles, invites, sessions, audit. See the hosted-service
+design §2, §4
 
-**令牌只存哈希。** 会话令牌与邀请令牌都是「拿到就等于是你」的东西，
-明文落库的话，一次库泄漏就等于所有会话被接管、所有邀请被冒用。
+**Tokens are stored hashed only.** Session tokens and invite tokens are both
+"whoever holds it IS you" objects; stored in plaintext, one database leak equals
+every session taken over and every invite abused.
 """
 import hashlib
 import json
@@ -17,20 +19,22 @@ from framework_reader.identity import DEFAULT_ROLE, ROLES
 
 SCHEMA = Path(__file__).resolve().parent / "schema.sql"
 
-# 会话：绝对 8 小时、空闲 1 小时（设计 §5.5）
+# Sessions: 8 hours absolute, 1 hour idle (design §5.5)
 ABSOLUTE_TTL = timedelta(hours=8)
 IDLE_TTL = timedelta(hours=1)
 SESSION_TOUCH_INTERVAL = timedelta(minutes=1)
 INVITE_TTL = timedelta(days=7)
 LOGIN_FAILURE_WINDOW = timedelta(minutes=5)
 MAX_LOGIN_FAILURES = 5
-# 从点「用公司账号登录」到 Entra 把人送回来。十分钟够慢的人输密码加二次验证，
-# 又短到那串一次性状态不会在库里躺一天。
+# From clicking "sign in with the company account" to Entra sending the person
+# back. Ten minutes is long enough for a slow person to type a password plus a
+# second factor, and short enough that the one-time state does not lie around
+# in the database for a day.
 FLOW_TTL = timedelta(minutes=10)
 
 
 class IdentityError(Exception):
-    """能直接给用户看的一句话。"""
+    """A single sentence that can be shown to the user directly."""
 
 
 @dataclass(frozen=True)
@@ -48,7 +52,7 @@ class Account:
 
 @dataclass(frozen=True)
 class Session:
-    token: str          # 只在**新建**时有值，之后库里只剩哈希
+    token: str          # has a value only on **creation**; afterwards only the hash remains in the store
     account: Account
     csrf: str
 
@@ -68,8 +72,9 @@ def _digest(token: str) -> str:
 
 
 class IdentityStore:
-    # 建表脚本每个进程对每个库只跑一次。守卫在**每个请求**上都要开这个库，
-    # 每次重跑六条 DDL 是白付的开销。
+    # The schema script runs once per process per database. The guard opens this
+    # database on **every request**; re-running six DDL statements each time is
+    # overhead paid for nothing.
     _ready: set[Path] = set()
 
     def __init__(self, path: Path | None = None) -> None:
@@ -87,12 +92,15 @@ class IdentityStore:
         return conn
 
     def configured(self) -> bool:
-        """身份体系启用了没有——决定门锁不锁。每个请求都问一次，所以要便宜。
+        """Whether the identity system is enabled - decides whether the door is
+        locked. Asked on every request, so it must be cheap.
 
-        判据是「有账号**或**发过邀请」，不是「有账号」。只看账号的话，
-        从管理员发出第一个邀请、到对方接受之间，整个工作台对所有人敞开——
-        本机无所谓，联网部署就是一个实打实的窗口。邀请页本身在白名单里，
-        所以这时锁门不会把被邀请的人挡在外面。
+        The test is "has an account **or** an invite was sent", not "has an
+        account". Looking only at accounts, the whole workbench stands open to
+        everyone between the admin sending the first invite and the invite being
+        accepted - irrelevant on localhost, a very real window on a networked
+        deployment. The invite page itself is on the whitelist, so locking the
+        door at that point does not shut out the invited person.
         """
         conn = self._conn()
         try:
@@ -105,7 +113,7 @@ class IdentityStore:
         finally:
             conn.close()
 
-    # ---------- 账号 ----------
+    # ---------- accounts ----------
 
     BOOTSTRAP_ROLES = ("admin", "author", "approver")
 
@@ -202,14 +210,17 @@ class IdentityStore:
                        display_name=row["display_name"], status=row["status"],
                        roles=frozenset(roles))
 
-    # ---------- 角色 ----------
+    # ---------- roles ----------
 
     def grant(self, account_id: str, role: str, *, by: str | None = None) -> None:
-        """`by` 是**动作发起人的 account_id**（CLI 传 "cli"，那不是任何人）。
+        """`by` is the **account_id of whoever initiated the action** (the CLI
+        passes "cli", which is nobody).
 
-        自己给自己加角色默认被拒（设计 §4.3）：admin 要起草或签字，得另一个
-        admin 点头。单 admin 的组织会被这条挡住，所以留了开关和 CLI 两条路，
-        而走开关要留痕。**只挡 grant 不挡 revoke**——降权不是提权。
+        Granting a role to yourself is refused by default (design §4.3): for an
+        admin to draft or sign, another admin has to nod. A single-admin
+        organization would be blocked by this, so there are two ways around it -
+        a switch and the CLI - and using the switch leaves a trail. **Only grant
+        is blocked, not revoke** - lowering privilege is not raising it.
         """
         if role not in ROLES:
             raise IdentityError(f"no such role: {role}")
@@ -229,9 +240,11 @@ class IdentityStore:
             conn.close()
 
     def revoke(self, account_id: str, role: str, *, by: str | None = None) -> None:
-        """撤销最后一个 admin 会被拒绝——否则第一次误操作就把所有人锁在门外。
+        """Revoking the last admin is refused - otherwise the first mistake locks
+        everyone out.
 
-        设计 §4.3。这条不变量在**存储层**而不是路由层，因为 CLI 也能撤角色。
+        Design §4.3. This invariant lives in the **storage layer**, not the route
+        layer, because the CLI can revoke roles too.
         """
         conn = self._conn()
         try:
@@ -260,7 +273,7 @@ class IdentityStore:
                     raise IdentityError("This is the last admin; deactivating it would leave the system unmanaged.")
             conn.execute("UPDATE account SET status = ? WHERE id = ?",
                          (status, account_id))
-            # 停用即刻断线：留着会话等于停用没生效
+            # Deactivation cuts connections immediately: keeping sessions means the deactivation never took effect
             if status == "disabled":
                 conn.execute("DELETE FROM session WHERE account_id = ?", (account_id,))
             conn.commit()
@@ -273,15 +286,17 @@ class IdentityStore:
             "WHERE m.role = 'admin' AND a.status = 'active'"
         ).fetchone()[0]
 
-    # ---------- 开关 ----------
+    # ---------- switches ----------
 
     def self_grant_allowed(self) -> bool:
-        """默认 False——默认值决定了没人配置时会发生什么，而没人配置是常态。"""
+        """Defaults to False - the default decides what happens when nobody
+        configures anything, and nobody configuring is the norm."""
         return self._setting("allow_self_grant") == "1"
 
     def set_self_grant(self, allowed: bool, *, by: str | None = None) -> None:
         self._set_setting("allow_self_grant", "1" if allowed else "0", by=by)
-        # 关掉这道锁必须留痕，否则「谁把门打开的」无从查起。设计 §4.3
+        # Turning this lock off must leave a trail, otherwise "who opened the
+        # door" is unanswerable. Design §4.3
         self.log("setting.self_grant", actor=by,
                  detail="self role grant allowed" if allowed else "self role grant forbidden")
 
@@ -307,13 +322,15 @@ class IdentityStore:
         finally:
             conn.close()
 
-    # ---- SSO（Entra ID）的设置页配置：环境变量之外的第二个来源。----
-    # 存在 setting 表（key='sso_entra'）里，client secret 与模型 API key
-    # 走同一条加密路径（FR_SECRET_KEY）。生效优先级：这里保存且启用的
-    # 配置 > 环境变量；两处都没配 = 单点登录关闭。
+    # ---- SSO (Entra ID) settings-page configuration: a second source besides
+    # ---- environment variables.----
+    # Kept in the setting table (key='sso_entra'); the client secret travels the
+    # same encryption path as the model API key (FR_SECRET_KEY). Precedence: a
+    # configuration saved here and enabled > environment variables; neither
+    # configured = single sign-on off.
 
     def sso_config(self) -> dict | None:
-        """已保存的配置。**secret 不出库**——页面只需要知道「已保存」。"""
+        """The saved configuration. **The secret never leaves the store** - the page only needs to know "a secret is saved"."""
         raw = self._setting("sso_entra")
         if not raw:
             return None
@@ -328,8 +345,9 @@ class IdentityStore:
         }
 
     def sso_secret(self) -> str:
-        """解出已保存的 client secret。没配主密钥或解不开就抛
-        SecretError，由调用方决定怎么降级——这里不吞。"""
+        """Unseal the saved client secret. With no master key configured, or if
+        it will not open, raise SecretError and let the caller decide how to
+        degrade - nothing is swallowed here."""
         from framework_reader import crypto
 
         raw = self._setting("sso_entra")
@@ -349,7 +367,7 @@ class IdentityStore:
         if secret.strip():
             sealed = crypto.seal(secret.strip())
         elif previous:
-            # 表单里 secret 留空 = 保留已存的那份，不是清掉。
+            # Leaving the secret blank in the form = keep the saved one, not clear it.
             sealed = json.loads(previous).get("sealed", "")
         self._set_setting("sso_entra", json.dumps({
             "tenant_id": tenant_id.strip(), "client_id": client_id.strip(),
@@ -365,11 +383,11 @@ class IdentityStore:
         finally:
             conn.close()
 
-    # ---------- 邀请 ----------
+    # ---------- invites ----------
 
     def invite(self, *, email: str, role: str = DEFAULT_ROLE,
                by: str | None = None) -> str:
-        """返回**明文令牌**，只此一次。库里只留哈希。"""
+        """Returns the **plaintext token**, this one time only. Only the hash stays in the store."""
         if role not in ROLES:
             raise IdentityError(f"no such role: {role}")
         email = email.strip().lower()
@@ -392,7 +410,8 @@ class IdentityStore:
         return token
 
     def peek_invite(self, token: str) -> dict | None:
-        """看邀请是否可用，不消费它——渲染「设置口令」那一页要用。"""
+        """Check whether an invite is usable without consuming it - the "set
+        password" page needs it for rendering."""
         conn = self._conn()
         try:
             row = conn.execute(
@@ -419,7 +438,7 @@ class IdentityStore:
         )
         conn = self._conn()
         try:
-            # 一次性：接受之后立刻作废，重放同一个链接不再有效
+            # One-time: voided the moment it is accepted; replaying the same link no longer works
             conn.execute("UPDATE invite SET used_at = ? WHERE token_hash = ?",
                          (_now().isoformat(), _digest(token)))
             conn.commit()
@@ -427,15 +446,18 @@ class IdentityStore:
             conn.close()
         return account
 
-    # ---------- Entra（设计 §5） ----------
+    # ---------- Entra (design §5) ----------
 
     def sign_in_entra(self, claims) -> "Session":
-        """SSO 登录：按 `oid` 找人，找不到就按 email 认领，再没有就建号。
+        """SSO sign-in: find the person by `oid`; if not found, claim the account
+        by email; if still none, create one.
 
-        **主键是 `oid`。** email 会变（改名、换域、别名），拿它做主键，
-        用户改个名就成了新人、丢掉全部历史。email 只用于显示，以及
-        认领那个「先发了邮箱邀请、人还没接受就先走了 SSO」的账号——
-        不认这条会长出两个同名账号，而谁都说不清哪个是他。
+        **The primary key is `oid`.** email changes (renames, domain moves,
+        aliases); make it the primary key and a user who renames becomes a new
+        person with all history lost. email is used only for display, and for
+        claiming the account of someone who "was emailed an invite and went
+        through SSO before accepting it" - refuse that and two same-named
+        accounts grow, with nobody able to say which one is him.
         """
         account = self.by_entra_oid(claims.oid)
         if account is None:
@@ -476,13 +498,15 @@ class IdentityStore:
             conn.close()
 
     def _sync_entra(self, account: Account, claims) -> None:
-        """Entra App Role → membership，**只在登录时单向同步**。
+        """Entra App Role → membership, **a one-way sync at sign-in only**.
 
-        这边的手工调整会在该用户下次登录时被覆盖——这一条必须写在界面上，
-        不然管理员会以为自己改生效了。
+        Manual adjustments made on this side are overwritten the next time that
+        user signs in - this rule must be written on the interface, or the admin
+        will believe his change took effect.
 
-        唯一的例外：**同步不会撤掉最后一个 admin**。Entra 那边少配一个
-        App Role，就没人能管系统了——那不能是一次登录的副作用。
+        The one exception: **the sync never revokes the last admin**. One
+        missing App Role assignment on the Entra side and nobody can run the
+        system - that must not be a side effect of one login.
         """
         conn = self._conn()
         try:
@@ -505,17 +529,17 @@ class IdentityStore:
             try:
                 self.revoke(account.id, role, by="entra")
             except IdentityError:
-                # 最后一个 admin。留着，并把这件事说出来。
+                # The last admin. Keep the role, and say out loud that this happened.
                 self.log("role.sync_refused", actor=account.email,
                          detail=f"Entra did not grant {role}, but revoking it would leave the system unmanaged")
         self.log("role.sync", actor=account.email,
                  detail=f"{', '.join(sorted(account.roles)) or '(none)'} → "
                         f"{', '.join(sorted(target))}")
 
-    # ---------- 登录途中的一次性状态 ----------
+    # ---------- one-time state during login ----------
 
     def start_oidc_flow(self, next_url: str = "/") -> tuple[str, str, str]:
-        """返回 (state, nonce, verifier)。三样都只此一份，用一次即删。"""
+        """Returns (state, nonce, verifier). Each exists exactly once and is deleted on first use."""
         from framework_reader.identity.entra import new_verifier
 
         state = secrets.token_urlsafe(32)
@@ -534,7 +558,7 @@ class IdentityStore:
         return state, nonce, verifier
 
     def take_oidc_flow(self, state: str) -> dict | None:
-        """取出并**立刻删掉**。重放同一个 state 拿不到第二次。"""
+        """Fetch it and **delete it immediately**. Replaying the same state gets nothing a second time."""
         if not state:
             return None
         conn = self._conn()
@@ -542,7 +566,7 @@ class IdentityStore:
             row = conn.execute(
                 "SELECT * FROM oidc_flow WHERE state = ?", (state,)).fetchone()
             conn.execute("DELETE FROM oidc_flow WHERE state = ?", (state,))
-            # 顺手清掉过期的。没有别的地方会去扫这张表。
+            # Sweep expired rows while here. Nothing else ever scans this table.
             conn.execute("DELETE FROM oidc_flow WHERE created_at < ?",
                          ((_now() - FLOW_TTL).isoformat(),))
             conn.commit()
@@ -555,7 +579,7 @@ class IdentityStore:
         return {"nonce": row["nonce"], "verifier": row["verifier"],
                 "next_url": row["next_url"]}
 
-    # ---------- 会话 ----------
+    # ---------- sessions ----------
 
     def login(self, email: str, password: str) -> Session:
         from framework_reader.identity.passwords import verify_password
@@ -575,8 +599,8 @@ class IdentityStore:
         finally:
             conn.close()
 
-        # 邮箱不存在与口令不对给同一句话、走同样的代价——
-        # 区别开就是一个账号枚举接口。
+        # Unknown email and wrong password get the same message at the same cost -
+        # telling them apart is an account-enumeration interface.
         ok = bool(stored) and verify_password(password, stored)
         if account is None or not account.active or not ok:
             self.log("login.failed", actor=email, detail="wrong email or password")
@@ -614,7 +638,7 @@ class IdentityStore:
         return Session(token=token, account=account, csrf=csrf)
 
     def resume(self, token: str) -> Session | None:
-        """按令牌取回会话，并推进 last_seen。过期的就地删掉。"""
+        """Fetch the session by token and advance last_seen. Expired ones are deleted in place."""
         if not token:
             return None
         conn = self._conn()
@@ -655,7 +679,7 @@ class IdentityStore:
         finally:
             conn.close()
 
-    # ---------- 审计 ----------
+    # ---------- audit ----------
 
     def log(self, event: str, *, actor: str | None = None, detail: str = "") -> None:
         conn = self._conn()

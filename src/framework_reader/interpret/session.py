@@ -1,4 +1,4 @@
-"""访谈会话：可测的纯逻辑，与终端 IO 分离。W2 spec §5、§6"""
+"""Interview session: testable pure logic, separate from terminal IO. W2 spec §5, §6"""
 from collections.abc import Callable
 
 from framework_reader.interpret.extractor import extract_fields
@@ -68,7 +68,7 @@ class InterviewSession:
         self._store.save(interp)
 
     def record(self, control_id: str, n: int, text: str) -> None:
-        """答完一问立刻落盘。W2 spec §6"""
+        """Persist immediately after each answer. W2 spec §6"""
         self._store.append_raw(control_id, n, text)
 
     def finish(self, control_id: str, *, force: bool = False) -> Interpretation:

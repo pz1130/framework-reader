@@ -1,12 +1,14 @@
-"""厂商模型目录：问「你这儿有哪些模型」。见 2026-08-24 模型目录设计
+"""Vendor model catalog: asks "which models do you have". See the 2026-08-24 model catalog design
 
-**这是第二类出网。** 携带内容（控制条款、解读、配套文档节选）的出网只有
-`llm/registry.py` 组装、被 `GuardedClient` 包住那一条；这里一个字的内容都不带，
-只发一个 GET 和一把 key。同类的还有 `identity/entra.py` 的 OIDC。
-规矩是一样的：真实请求收在 `_default_get` 一个函数里，可注入替换，
-且有测试断言没有任何测试碰它。
+**This is category-2 egress.** Egress that carries content (control clauses,
+interpretations, companion-document excerpts) exists in exactly one place: assembled by
+`llm/registry.py` and wrapped in `GuardedClient`. This module carries not a single word of
+content — it sends one GET and one key. In the same category is the OIDC in
+`identity/entra.py`. The rule is the same: the real request lives in the single function
+`_default_get`, injectable and replaceable, and a test asserts that no test ever touches it.
 
-不碰数据库。缓存是 `llm/config.py` 的事——这里只负责「问到了什么」。
+Does not touch the database. Caching is `llm/config.py`'s business — this module is only
+responsible for "what came back from the question".
 """
 from collections.abc import Callable
 
@@ -14,19 +16,22 @@ from framework_reader.llm.registry import ProviderPreset
 
 HttpGet = Callable[[str, dict], dict]
 
-# 目录查询等 15 秒还不回，就当它不支持。chat 那边是 120 秒，
-# 那是给模型生成留的时间，跟列目录不是一回事。
+# If a catalog query gets no reply within 15 s, treat it as unsupported. Chat gets 120 s —
+# that is time left for the model to generate, which is a different thing from listing a
+# catalog.
 TIMEOUT_SECONDS = 15.0
 
 ANTHROPIC_MODELS_URL = "https://api.anthropic.com/v1/models"
 ANTHROPIC_VERSION = "2023-06-01"
 
-# 按 id 子串剔除。siliconflow 与 openrouter 的目录里有一两百条这类模型，
-# 它们永远不会被用作 drafter，留在下拉里只会让人翻不到想要的那条。
+# Filtered out by id substring. The siliconflow and openrouter catalogs carry a hundred or
+# two of these models; they will never be used as a drafter, and leaving them in the
+# dropdown just buries the entry a person is looking for.
 #
-# **这份清单会误伤**：某天某家把对话模型起名带 `vision-ocr`，它就被吃掉了。
-# 代价可接受，因为手填框永远保留——误伤的后果是「下拉里没有，手填一下」，
-# 不是「用不了」。
+# **This list will over-match**: someday some vendor names a chat model with `vision-ocr`
+# in it, and it gets swallowed. The cost is acceptable, because the manual-entry box is
+# kept forever — the consequence of over-matching is "not in the dropdown, type it in by
+# hand", not "cannot be used".
 NON_CHAT_MARKERS = (
     "embed", "rerank", "tts", "whisper", "audio", "moderation",
     "image", "vision-ocr", "stable-diffusion", "flux",
@@ -34,11 +39,11 @@ NON_CHAT_MARKERS = (
 
 
 class CatalogError(Exception):
-    """拉目录失败。`kind` 决定页面上说什么话。
+    """Fetching the catalog failed. `kind` decides what the page says.
 
-    - `auth`        —— 这把 key 被拒了（401/403）
-    - `unsupported` —— 这家不提供目录，或返回的形状我们不认识（404/解析不出）
-    - `unreachable` —— 超时、连不上、5xx
+    - `auth`        —— this key was rejected (401/403)
+    - `unsupported` —— this vendor offers no catalog, or the returned shape is one we do not recognize (404 / unparseable)
+    - `unreachable` —— timeout, connection failure, 5xx
     """
 
     def __init__(self, kind: str, message: str) -> None:
@@ -78,15 +83,17 @@ def is_chat_model(model_id: str) -> bool:
 def fetch_models(
     preset: ProviderPreset, api_key: str, *, http_get: HttpGet | None = None
 ) -> list[str]:
-    """问一次目录，回一份排好序、去过重、滤掉非对话模型的 id 列表。
+    """Asks the catalog once and returns a sorted, deduplicated list of ids with
+    non-chat models filtered out.
 
-    **异常消息里绝不出现 key。** 这个消息会被原样渲到页面上。
+    **The key must never appear in an exception message.** That message is rendered
+    verbatim on the page.
     """
     get = http_get or _default_get
     url, headers = _request(preset, api_key)
     try:
         payload = get(url, headers)
-    except Exception as exc:  # noqa: BLE001 —— 任何失败都要翻译成三种之一
+    except Exception as exc:  # noqa: BLE001 —— any failure must map to one of the three kinds
         status = _status_of(exc)
         if status in (401, 403):
             raise CatalogError(

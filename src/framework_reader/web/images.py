@@ -1,4 +1,4 @@
-"""管理员上传的品牌图片：识别栅格格式并净化 SVG。"""
+"""Brand images uploaded by an administrator: detect raster formats and sanitize SVG."""
 import xml.etree.ElementTree as ET
 
 _SVG_FORBID = {
@@ -26,7 +26,7 @@ def looks_like_svg(data: bytes) -> bool:
 
 
 def sanitize_svg(data: bytes) -> bytes:
-    """剥掉脚本、事件属性、外链引用与危险 CSS。"""
+    """Strips scripts, event-handler attributes, external references, and dangerous CSS."""
     svg = "http://www.w3.org/2000/svg"
     ET.register_namespace("", svg)
     ET.register_namespace("xlink", "http://www.w3.org/1999/xlink")

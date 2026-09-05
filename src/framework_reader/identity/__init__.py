@@ -1,9 +1,11 @@
-"""身份层：账号、角色、会话、邀请、审计。
+"""Identity layer: accounts, roles, sessions, invites, audit.
 
-见 `docs/superpowers/specs/2026-08-23-hosted-service-rbac-aad-design.md`。
-S1 只做**身份**（你是谁）；**授权**（你能干什么）是 S2 的事。
+See `docs/superpowers/specs/2026-08-23-hosted-service-rbac-aad-design.md`.
+S1 does **identity** only (who you are); **authorization** (what you can do) is
+S2's job.
 """
 ROLES = ("admin", "author", "approver", "viewer")
 
-# 新账号默认只读。默认值决定了忘记配置时会发生什么，而忘记配置是常态。
+# New accounts default to read-only. The default decides what happens when
+# configuration is forgotten, and forgetting to configure is the norm.
 DEFAULT_ROLE = "viewer"

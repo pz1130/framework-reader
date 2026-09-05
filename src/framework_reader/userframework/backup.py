@@ -1,7 +1,9 @@
-"""把用户库拷成一份一致性快照。网页服务化设计没写这一段——
+"""Copy the user store into a consistent snapshot. The hosted-service design does
+not cover this -
 
-服务开着时 WAL 在旁边长文件，直接读 `user.sqlite` 可能半截。
-SQLite 自己的 backup API 会把 WAL 一并折进目标文件。
+While the service is running, WAL keeps growing in a side file, and reading
+`user.sqlite` directly may catch it half-written. SQLite's own backup API folds
+the WAL into the destination file.
 """
 import sqlite3
 import tempfile
@@ -9,7 +11,7 @@ from pathlib import Path
 
 
 def snapshot(path: Path | None = None) -> bytes:
-    """打开用户库（没有就建空表），拷一份完整文件的字节。"""
+    """Open the user store (creating empty tables if absent) and copy the complete file's bytes."""
     from framework_reader.userframework.store import connect, default_path
 
     src_path = Path(path) if path else default_path()

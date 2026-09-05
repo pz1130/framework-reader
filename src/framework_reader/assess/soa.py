@@ -1,10 +1,10 @@
-"""适用性声明（SoA）。主 spec §7.3.3
+"""The Statement of Applicability (SoA). Main spec §7.3.3
 
-SoA 是 ISO 27001 认证要交的文件。两条硬规则：
+The SoA is the document an ISO 27001 certification submits. Two hard rules:
 
-1. **93 条一条都不能少。** 没填的标成「待填」摆在表里，不能悄悄消失——
-   漏掉的行不是「没问题」，是「没人看过」。
-2. **推导边绝不进这张表。** 它们准确率 17%，只配在录入时当填写提示。§3.3
+1. **All 93 controls, none missing.** Unfilled ones are marked TBD in the table - they may not
+   quietly disappear. A missing row is not "no problem"; it is "nobody looked".
+2. **Derived edges never enter this table.** At 17% accuracy they only deserve to be entry-time hints. §3.3
 """
 import csv
 import io
@@ -20,7 +20,7 @@ PENDING = "TBD"
 class SoaRow(BaseModel):
     control_id: str
     label: str
-    applicable: bool | None = None      # None = 还没评
+    applicable: bool | None = None      # None = not yet assessed
     reason: str = ""
     status: str = ""
     note: str = ""
@@ -61,7 +61,7 @@ def _cells(row: SoaRow) -> tuple[str, ...]:
 
 def render_soa_markdown(rows: list[SoaRow]) -> str:
     def escape(text: str) -> str:
-        # 竖线不转义会把这一行的列数撑开，整张表错位。
+        # An unescaped pipe would widen this row's column count and misalign the whole table.
         return text.replace("|", "\\|").replace("\n", " ")
 
     lines = [
@@ -83,13 +83,13 @@ def render_soa_csv(rows: list[SoaRow]) -> str:
 
 
 def fill_hints(api, control_id: str, limit: int = 4) -> list[str]:
-    """录入 SoA 时的填写提示：这条和别的框架的哪些条款对得上。
+    """Entry-time hints for the SoA: which controls in other frameworks this one corresponds to.
 
-    **只在录入时出现，绝不进交付物。** 官方映射（L1）与推导边（L2）分开标——
-    推导边 R7 抽样 correct 17%，给人回忆用可以，当依据不行。主 spec §3.3
+    **Entry-time only; never reaches the deliverable.** Official mappings (L1) and derived edges (L2)
+    are labelled separately - derived edges sampled 17% correct in R7: fine for recall, not as evidence. Main spec §3.3
 
-    同标题只留一条：800-53 每个族都有一条 `-1 Policy and Procedures`，
-    不去重的话四条提示会是同一句话。
+    Same title keeps one entry: every 800-53 family has an "-1 Policy and Procedures"; without
+    without deduplication those four hints would all be the same sentence.
     """
     neighbors = sorted(api.neighbors(control_id), key=lambda n: not n.exportable)
     seen: set[str] = set()

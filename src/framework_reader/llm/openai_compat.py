@@ -1,7 +1,7 @@
-"""OpenAI 兼容适配器。W2 spec §3.1
+"""OpenAI-compatible adapter. W2 spec §3.1
 
-一个适配器覆盖 deepseek / qwen / glm / kimi / doubao / hunyuan / minimax /
-baichuan / siliconflow / openai —— 它们都提供 /chat/completions。
+One adapter covers deepseek / qwen / glm / kimi / doubao / hunyuan / minimax /
+baichuan / siliconflow / openai — they all offer /chat/completions.
 """
 import json
 from collections.abc import Callable
@@ -24,22 +24,25 @@ def build_payload(
         body.append({"role": "system", "content": system})
     body.extend(m.model_dump() for m in messages)
     payload = {"model": model, "messages": body, "max_tokens": max_tokens}
-    # response_format 是 OpenAI 兼容厂商广泛支持的可选字段（minimax、
-    # deepseek、qwen、glm、kimi…几乎都跟了）。开了 ``json_object`` 模型
-    # 强制只回 JSON，drafting 那种「写一段散文」的调用不应该传——在
-    # 调用方决定要不要传，这里只负责透传。
+    # response_format is an optional field widely supported by OpenAI-compatible
+    # vendors (minimax, deepseek, qwen, glm, kimi… nearly all followed along). With
+    # ``json_object`` on, the model is forced to reply with JSON only; a drafting call
+    # like "write a passage of prose" should not pass it — the caller decides whether
+    # to pass it, and this function only forwards it.
     if response_format is not None:
         payload["response_format"] = response_format
-    # MiniMax-M3 默认开 thinking，思考写进 content 的 <think> 里。
-    # NIST.AI.100-1 导入时 8192 token / 120s 全烧在思考上，JSON 出不来，
-    # 第三块直接 ReadTimeout。M3 可以关；M2.x 关不掉，别的厂商带这个
-    # 字段会 400——所以只钉 M3。
+    # MiniMax-M3 turns thinking on by default, and the thinking lands in the <think>
+    # section of content. During NIST.AI.100-1 import, all 8192 tokens / 120 s were
+    # burned on thinking, no JSON came out, and the third chunk died with ReadTimeout.
+    # M3 can turn it off; M2.x cannot, and other vendors 400 on this field — so it is
+    # pinned to M3 only.
     if _is_minimax_m3(model):
         payload["thinking"] = {"type": "disabled"}
     return payload
 
 
-# 起草一条解读要模型写好几百字，两分钟不算久。探针另有取舍，见 probe.py。
+# Drafting one interpretation asks the model to write several hundred words; two minutes
+# is not long. The probe makes its own trade-off — see probe.py.
 CHAT_TIMEOUT_SECONDS = 120.0
 
 
@@ -64,7 +67,8 @@ class OpenAICompatClient:
     ) -> None:
         self._base_url = base_url.rstrip("/")
         self._api_key = api_key
-        # 注入的假 post 只有三个参数（测试不该关心超时），所以超时在这里绑上去。
+        # An injected fake post takes only three arguments (tests should not care about
+        # timeouts), so the timeout is bound on here.
         self._post = http_post or (
             lambda url, headers, body: _default_post(url, headers, body, timeout))
 
@@ -89,9 +93,10 @@ class OpenAICompatClient:
             raise RuntimeError(
                 f"provider returned an unexpected structure: {json.dumps(data, ensure_ascii=False)[:300]}"
             ) from exc
-        # MiniMax 开 reasoning_split 时 content 可能是 null，JSON 在
-        # reasoning_content 里。content 优先——那才是「说出口的」。
-        # 空字符串是合法回复（探针那次「思考把 token 用光、正文为空」）。
+        # With reasoning_split on, MiniMax may return content as null with the JSON in
+        # reasoning_content. content wins — that is the "said out loud" part.
+        # An empty string is a legitimate reply (the probe run where thinking burned all
+        # the tokens and the body came back empty).
         if not isinstance(message, dict):
             raise RuntimeError(
                 f"provider returned an unexpected structure: {json.dumps(data, ensure_ascii=False)[:300]}"

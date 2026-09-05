@@ -1,4 +1,4 @@
-"""结构校验与构建断言。spec §4.2⑤、§10.A"""
+"""Structural validation and build assertions. spec §4.2⑤, §10.A"""
 import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class BuildAssertionError(Exception):
-    """违反构建期不变式，构建必须失败。"""
+    """A build-time invariant was violated; the build must fail."""
 
 
 class ValidationIssue(BaseModel):
@@ -57,7 +57,8 @@ def validate_graph(conn: sqlite3.Connection) -> list[ValidationIssue]:
             kind="dangling_supersession_endpoint", detail=f"{old_id} -> {new_id}"
         ))
 
-    # 废止条目本来就不该有映射边，不计入 orphan——否则真正的漏网控制会被淹没。
+    # Deprecated entries should not have mapping edges in the first place, so they do not
+    # count as orphans — otherwise the genuinely missed controls would be drowned out.
     orphans = conn.execute(
         """
         SELECT id FROM framework_control
@@ -78,7 +79,7 @@ def assert_build_invariants(
     registry: SourceRegistry,
     baseline_path: Path | None = None,
 ) -> None:
-    # ① 原文表必须为空。spec §3.2②、§4.2⑤
+    # ① The original_text table must be empty. spec §3.2②, §4.2⑤
     (count,) = conn.execute("SELECT COUNT(*) FROM original_text").fetchone()
     if count:
         raise BuildAssertionError(
@@ -86,7 +87,7 @@ def assert_build_invariants(
             f" Copyrighted original text may only be injected locally by the user."
         )
 
-    # ② 所有映射来源必须在白名单内。spec §4.3、§10.A
+    # ② Every mapping source must be on the allowlist. spec §4.3, §10.A
     sources = [r[0] for r in conn.execute("SELECT DISTINCT source FROM mapping").fetchall()]
     for src in sources:
         try:
@@ -94,8 +95,9 @@ def assert_build_invariants(
         except DisallowedSourceError as exc:
             raise BuildAssertionError(str(exc)) from exc
 
-    # ③ control_id 稳定性。spec §8②
-    # R13：仅当传入 baseline_path 时检查；省略则跳过（夹具库对照全量基线会误报）。
+    # ③ control_id stability. spec §8②
+    # R13: only checked when baseline_path is passed; skipped otherwise (comparing a
+    # fixture database against the full baseline would false-positive).
     if baseline_path is None:
         return
 
@@ -111,10 +113,11 @@ def assert_build_invariants(
 
 
 def assert_only_confirmed(items: list["Interpretation"]) -> None:
-    """进包的每一条都必须由人签过字。主 spec §5、W2 spec §4.3
+    """Every interpretation entering the pack must have been signed off by a human. Main spec §5, W2 spec §4.3
 
-    调用方只把 confirmed 的传进来（W3 期间大量条目还是 draft，构建不该因此失败），
-    所以这里既检查 state 也检查签字人——前者防调用方漏筛，后者才是真正的闸。
+    The caller only passes in confirmed ones (during W3 many entries are still draft, and
+    the build should not fail over that), so this checks both the state and the signer —
+    the former guards against the caller skipping the filter, the latter is the real gate.
     """
     from framework_reader.interpret.model import InterpretationState
 
@@ -130,7 +133,7 @@ def assert_only_confirmed(items: list["Interpretation"]) -> None:
 
 
 def assert_glossary_clean(items: list["Interpretation"], glossary) -> None:
-    """术语表覆盖解读文本，不只覆盖 label。主 spec §10.B3"""
+    """The glossary covers interpretation text, not just the label. Main spec §10.B3"""
     for interp in items:
         for name, field in sorted(interp.fields.items()):
             value = field.value
@@ -150,10 +153,11 @@ def assert_glossary_clean(items: list["Interpretation"], glossary) -> None:
 
 
 def assert_signature_matches_content(items: list["Interpretation"]) -> None:
-    """签完字又改了内容的，必须重新签。W2 spec §4.3
+    """Anything whose content changed after signing must be signed again. W2 spec §4.3
 
-    比对的是内容摘要，不是文件 mtime——git 恢复文件时打的是当前时间，
-    用 mtime 判断内容有没有变，在任何一次 clone / checkout 之后都会误报。
+    The comparison is over the content digest, not the file mtime — git restores files
+    stamped with the current time, so using mtime to decide whether content changed would
+    false-positive after any clone / checkout.
     """
     from framework_reader.interpret.model import fields_digest
 

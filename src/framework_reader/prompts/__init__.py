@@ -1,4 +1,4 @@
-"""提示词与版本号。W2 spec §3.4② —— prompt_version 必须随解读一起留痕。"""
+"""Prompts and their versions. W2 spec §3.4② - prompt_version must be recorded alongside every interpretation."""
 from pathlib import Path
 
 PROMPT_DIR = Path(__file__).parent
@@ -20,10 +20,10 @@ def load_prompt(name: str) -> str:
 
 
 def golden_digest() -> str:
-    """手写黄金样例内容的短指纹。
+    """A short fingerprint of the handwritten golden-sample content used.
 
-    few-shot 变了，提示词就变了，provenance 必须能区分——否则无法回答
-    「这批解读是在哪版范例下生成的」。
+    Change the few-shot and the prompt has changed; provenance must tell them apart - otherwise
+    nobody can answer "under which version of the examples was this batch generated".
     """
     import hashlib
 

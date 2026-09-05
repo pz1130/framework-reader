@@ -1,7 +1,7 @@
-"""厂商预设与按角色组装 client。W2 spec §3.2、§3.3
+"""Vendor presets and per-role client assembly. W2 spec §3.2, §3.3
 
-这是唯一组装 client 的地方，且每个 client 都被 GuardedClient 包住——
-出网只有一条路径。
+This is the only place that assembles a client, and every client is wrapped in a
+GuardedClient — egress has exactly one path.
 """
 import os
 from collections.abc import Callable
@@ -20,11 +20,11 @@ KeyLookup = Callable[[str], str | None]
 
 
 class MissingApiKeyError(Exception):
-    """预设声明的环境变量没设。"""
+    """The environment variable a preset declares is not set."""
 
 
 class UnknownProviderError(Exception):
-    """role 指向了不存在的 provider id。"""
+    """A role points at a provider id that does not exist."""
 
 
 class ProviderPreset(BaseModel):
@@ -34,8 +34,9 @@ class ProviderPreset(BaseModel):
     api_key_env: str
     default_model: str
     explicit_cache: bool = False
-    # 我们自己有没有拿真 key ping 过（`fr llm check`）。没验过的照样能用，
-    # 但页面上要标出来——端点和模型名会漂，标记是给挑厂商的人看的。
+    # Whether we ourselves have pinged it with a real key (`fr llm check`). Unverified
+    # presets still work, but they must be flagged on the page — endpoints and model
+    # names drift, and the flag is for whoever is picking a vendor.
     verified: bool = True
     note: str = ""
 
@@ -90,5 +91,6 @@ class LLMRegistry(BaseModel):
             inner = OpenAICompatClient(preset.base_url, key)
         from framework_reader.llm.retry import RetryingClient
 
-        # 重试在 guard 里面：红线断言只跑一次，且在任何请求发出之前。
+        # Retry inside the guard: the red-line assertion runs exactly once, and before
+        # any request goes out.
         return GuardedClient(RetryingClient(inner), guard)

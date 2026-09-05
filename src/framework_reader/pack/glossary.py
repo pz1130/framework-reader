@@ -1,4 +1,4 @@
-"""中文术语表与一致性校验。spec §4.2④、§10.B3"""
+"""Terminology glossary and consistency checking. spec §4.2④, §10.B3"""
 from pathlib import Path
 
 import yaml

@@ -1,10 +1,10 @@
-"""落库的密文。见 2026-08-23 网页服务化设计 §6⑥
+"""Ciphertext at rest. See the 2026-08-23 web service design §6⑥
 
-**主密钥不在库里。** 在库里就等于没加密——一次库泄漏连密文带钥匙一起走。
-它走 `FR_SECRET_KEY`（生产上应当来自密钥管理服务，注入成环境变量）。
+**The master key is never in the database.** In the database equals not encrypted - one leak walks off with both.
+It comes from `FR_SECRET_KEY` (in production, injected from a secrets manager as an environment variable).
 
-**没配主密钥就拒绝落库。** 悄悄明文存下来是这里唯一不可接受的失败方式：
-管理员会以为自己配的 key 是加密的，而它不是。
+**Refuse to persist without a master key.** Silently storing plaintext is the one unacceptable
+failure here: the admin would believe their configured key is encrypted when it is not.
 """
 import os
 
@@ -12,7 +12,7 @@ MASTER_ENV = "FR_SECRET_KEY"
 
 
 class SecretError(Exception):
-    """能直接给用户看的一句话。**永远不要把明文 key 放进这句话里。**"""
+    """One sentence safe to show the user. **Never put the plaintext key in it.**"""
 
 
 def new_master_key() -> str:
@@ -32,7 +32,7 @@ def _fernet():
     try:
         return Fernet(raw.encode("ascii"))
     except Exception as exc:
-        # 随手写一句口令当密钥，加密就只是个说法。宁可不收。
+        # A casual passphrase as the key makes "encrypted" a figure of speech. Rather refuse.
         raise SecretError(
             f"{MASTER_ENV} is not a valid key (want 32 bytes base64)."
             "Generate one with `fr secret new`; do not invent one.") from exc
@@ -56,17 +56,17 @@ def open_secret(sealed: str) -> str:
     try:
         return _fernet().decrypt(sealed.encode("ascii")).decode("utf-8")
     except (InvalidToken, ValueError) as exc:
-        # 换过主密钥、或者密文被改过。两种都不能「尽力而为地解出点什么」。
+        # The master key was rotated, or the ciphertext was altered. Neither may "best-effort decrypt something".
         raise SecretError(
             "Could not decrypt the stored API key - FR_SECRET_KEY has probably changed."
             "Re-enter the key on the Models page.") from exc
 
 
 def mask(key: str) -> str:
-    """回显用。`sk-…cdef`——够认出「是不是我上次填的那把」，不够拿去用。"""
+    """For display. `sk-…cdef` - enough to recognise "was it the one I entered", not enough to use."""
     if not key:
         return ""
     if len(key) < 12:
-        # 短 key 按「留头留尾」露出来的比例太高，不如什么都不说。
+        # A short key revealed head-and-tail is too high a fraction; saying nothing is better.
         return "(set)"
     return f"{key[:3]}...{key[-4:]}"

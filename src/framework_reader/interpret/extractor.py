@@ -1,6 +1,6 @@
-"""抽取器：严格抽取三个差异化字段。W2 spec §2.3
+"""The extractor: strictly extracts the three differentiating fields. W2 spec §2.3
 
-只许删、切、重排；输出不合结构时不写盘、不自动修复。
+Only deletions, splits, and reordering; malformed output is neither written nor auto-repaired.
 """
 from pathlib import Path
 
@@ -19,7 +19,7 @@ FAILURE_DIR = Path("build/extract_failures")
 
 
 class ExtractorOutputError(Exception):
-    """抽取器输出不合结构。不修、不写盘。"""
+    """The extractor's output was malformed. No repair, no write."""
 
 
 def _dump_failure(failure_dir: Path | None, control_id: str, raw: str) -> None:

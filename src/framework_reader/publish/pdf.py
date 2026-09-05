@@ -1,7 +1,7 @@
-"""把一个框架里已经有解读的条款做成 PDF。
+"""Turn the interpreted controls of one framework into a PDF.
 
-只收有解读的条款。空字段不出现。映射只带可导出的边（L2 推导边不进）。
-成色写在每条前面：AI 初稿必须让读这份文件的人看得见。
+Only controls with interpretations are included. Empty fields do not appear. Mappings carry exportable
+edges only (L2 derived edges excluded). The state banner precedes each control: a reader of this file
 """
 from datetime import date
 from io import BytesIO
@@ -51,7 +51,7 @@ def _value_html(value: object) -> str:
 
 
 def render_framework_pdf(api, framework_id: str) -> bytes:
-    """没有这个框架、或一条解读都没有，抛 LookupError。"""
+    """No such framework, or not a single interpretation: raises LookupError."""
     view = api.get_framework(framework_id)
     if view is None:
         raise LookupError(framework_id)

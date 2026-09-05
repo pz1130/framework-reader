@@ -1,16 +1,21 @@
-"""从原文里收「带字母前缀的条款编号」。见 2026-08-29 NIST.AI.100-1 导入
+"""Harvest "letter-prefixed clause numbers" from the source text. See the
+2026-08-29 NIST.AI.100-1 import
 
-框架 PDF 常有两套编号：章节号（5.1 Govern）和条款号（GOVERN 1.1、
-PR.AA-01、AC-2、A.5.1、Article 9）。条款号经常排成表。模型跟章节号走，
-会把整张表吞进一条——NIST.AI.100-1 的 5.1 一条 7223 字，里面埋了 19 条
-GOVERN subcategory。
+Framework PDFs often carry two numbering schemes: section numbers (5.1 Govern)
+and clause numbers (GOVERN 1.1, PR.AA-01, AC-2, A.5.1, Article 9). Clause
+numbers are frequently laid out as a table. Following the section numbers, the
+model swallows the whole table into one clause - NIST.AI.100-1's 5.1 came out
+as a single clause of 7223 characters with 19 GOVERN subcategories buried
+inside.
 
-**不按框架名字特判。** 判据是形状：行首是「字母前缀 + 数字」，并且
-全文里至少攒够几条，才当成一张条款表。公司制度的 5.1 / 3.2 没有字母
-前缀，这里碰不到它们。
+**No special-casing by framework name.** The test is shape: a line starts with
+"letter prefix + number", and enough of them accumulate across the document
+before it counts as a clause table. A company policy's 5.1 / 3.2 has no letter
+prefix, so this code never touches it.
 
-模型怎么切都可以，这一步在校验之前跑，用原文行号把表行拆开。
-正文仍然按行号从原文截，不经过模型。
+However the model cuts, this step runs before validation and splits the table
+rows apart using the source line numbers. Body text is still cut from the
+source by line number, never through the model.
 """
 from __future__ import annotations
 
@@ -19,10 +24,11 @@ from dataclasses import dataclass
 
 from framework_reader.userframework.outline import Problem, Span
 
-# 少于此数不收。正文里偶尔引用一句「见 Article 9」不够成一张表。
+# Below this count, nothing is harvested. An occasional "see Article 9"
+# reference in body text does not make a table.
 MIN_HARVEST = 3
 
-# 版式词：TABLE 1、FIGURE 5、PAGE 22 形状像条款号，但不是。
+# Layout words: TABLE 1, FIGURE 5, PAGE 22 look like clause numbers but are not.
 _LAYOUT = {
     "table", "figure", "fig", "page", "section", "chapter", "part",
     "appendix", "note", "notes", "box", "step", "phase", "volume",
@@ -30,7 +36,8 @@ _LAYOUT = {
     "list", "item", "row", "column",
 }
 
-# 按「更具体的先匹配」。捕获组 1 = 编号，组 2 = 行上剩下的字。
+# Ordered "most specific pattern first". Capture group 1 = the number,
+# group 2 = the rest of the line.
 _PATTERNS = (
     re.compile(r"^([A-Z]{2}\.[A-Z]{2}-\d{2})\W*(.*)$"),          # GV.OC-01
     re.compile(r"^([A-Z]{2}-\d+\s*\(\d+\))\W*(.*)$"),            # AC-2(1)
@@ -48,9 +55,10 @@ _CHROME = re.compile(
     re.I,
 )
 
-# 新的一章 / 新的一张表（不是 Continued）。到这儿就不是上一条的正文了。
-# 「6. AI RMF Profiles」这种多词标题也要认——`\\S{1,30}` 只吃一个词，
-# 会让最后一条条款把下一章简介吞进去。
+# A new chapter / a new table (not Continued). Past this point it is no longer
+# the previous clause's body. Multi-word headings like "6. AI RMF Profiles" must
+# be recognized too - `\\S{1,30}` eats only one word, which would let the last
+# clause swallow the next chapter's introduction.
 _SECTION_BREAK = re.compile(
     r"^(第[一二三四五六七八九十百零〇\d]+[章节条]|"
     r"\d+(?:\.\d+)*[、.．]?\s+\S.{0,40}$|"
@@ -58,8 +66,9 @@ _SECTION_BREAK = re.compile(
     re.I,
 )
 
-# GOVERN 1.1 这种「单词 + 数字」容易误伤行首的「RMF 1.0」。
-# 同一前缀至少两条才算一张表；AC-2 / Article 9 / A.5.1 形状更窄，单条也收。
+# "Word + number" shapes like GOVERN 1.1 easily catch false positives such as
+# "RMF 1.0" at a line start. The same prefix needs at least two hits to count as
+# a table; AC-2 / Article 9 / A.5.1 are narrower shapes, so a single hit is taken.
 _GENERIC_WORD_NUM = re.compile(r"^[A-Z]{3,}\s+\d")
 _NAMED_WORD_NUM = re.compile(r"^(Article|Control|Safeguard)\s", re.I)
 
@@ -84,7 +93,7 @@ class CatalogEntry:
 
 
 def parse_catalog_line(line: str) -> tuple[str, str] | None:
-    """行首是条款编号就回 (编号, 行上剩下的字)，否则 None。"""
+    """If the line starts with a clause number, return (number, rest of the line); otherwise None."""
     text = (line or "").strip()
     if not text:
         return None
@@ -102,8 +111,9 @@ def parse_catalog_line(line: str) -> tuple[str, str] | None:
 
 
 def find_catalog_entries(lines: list[str]) -> list[CatalogEntry]:
-    """全文扫描。每一条从自己的编号行到下一条编号之前，
-    碰到新章节或表题就停，末尾的版式行（Continued on next page）剥掉。
+    """Scan the whole document. Each entry runs from its own number line to just
+    before the next number, stopping at a new chapter or table title, with the
+    trailing layout lines ("Continued on next page") peeled off.
     """
     hits: list[tuple[int, str, str]] = []
     for index, line in enumerate(lines, start=1):
@@ -122,7 +132,7 @@ def find_catalog_entries(lines: list[str]) -> list[CatalogEntry]:
         end = _entry_end(start, next_start, lines)
         continuation = ""
         if not rest and start < end:
-            continuation = lines[start].strip()  # 下一行，0-based = start
+            continuation = lines[start].strip()  # next line, 0-based = start
         out.append(CatalogEntry(
             ref=ref,
             label=_label(rest, continuation),
@@ -135,7 +145,7 @@ def find_catalog_entries(lines: list[str]) -> list[CatalogEntry]:
 
 def apply_catalog(spans: list[Span],
                   lines: list[str]) -> tuple[list[Span], list[Problem]]:
-    """把条款表拆进已有的切分结果。条目不够就当没看见。"""
+    """Split the clause table into the existing cut. Too few entries and it is ignored entirely."""
     entries = find_catalog_entries(lines)
     if len(entries) < MIN_HARVEST:
         return spans, []
@@ -174,8 +184,9 @@ def _is_section_break(line: str) -> bool:
     text = line.strip()
     if not text or parse_catalog_line(text):
         return False
-    # 新表题不论长短（「Table 2: Categories and subcategories for the MAP
-    # function.」超过 40 字）。Continued 是同一张表翻页，不是分界。
+    # A new table title counts no matter how long ("Table 2: Categories and
+    # subcategories for the MAP function." is over 40 characters). Continued is
+    # the same table flowing onto the next page, not a boundary.
     if re.match(r"^table\s+\d+\s*:", text, re.I) and "continued" not in text.lower():
         return True
     if len(text) > 40:
@@ -196,7 +207,7 @@ def _label(rest: str, continuation: str) -> str:
 def _drop_singleton_generic_families(
     hits: list[tuple[int, str, str]],
 ) -> list[tuple[int, str, str]]:
-    """「RMF 1.0」这种换行残留只有一条，GOVERN 1 / 1.1 / 1.2 才是表。"""
+    """A line-wrap leftover like "RMF 1.0" appears only once; GOVERN 1 / 1.1 / 1.2 is a table."""
     from collections import Counter
 
     counts = Counter(

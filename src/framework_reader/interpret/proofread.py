@@ -1,10 +1,10 @@
-"""校对 pass：只改语言，不改内容。
+"""The proofread pass: language only, never content.
 
-起草出来的 106 条里约两三成带可见语病（句子断裂、语域错词、引号混用）。
-内容层够用，坏在语言层——这一遍专治语言。
+Roughly a third of the drafted 106 controls carried visible language defects (broken sentences, wrong register, mixed quote marks).
+The content layer is fine; the language layer is not - this pass treats language only.
 
-**风险与对策**：让模型重写文字，它顺手改掉意思是必然会发生的。因此每一处改动
-都要过 `classify_edit`：只有判定为纯语言修正才自动落盘，其余一律拦下来交人看。
+**Risk and countermeasure**: ask a model to rewrite prose and it will quietly change meaning - guaranteed.
+So every single edit must pass classify_edit: only verdicts of pure language correction auto-persist;
 """
 import re
 
@@ -16,15 +16,15 @@ from framework_reader.interpret.model import ALL_FIELDS, Basis, Field
 from framework_reader.llm.client import LLMClient, Message
 from framework_reader.prompts import load_prompt
 
-# 事实性记号：数字、年份、百分比、以及 GDPR / NIS2 / SIEM / DBA 这类拉丁串。
-# 校对前后这些必须一个不多一个不少。
+# Factual markers: numbers, years, percentages, and latin strings like GDPR / NIS2 / SIEM / DBA.
+    # Before and after proofreading these must match exactly - none added, none lost.
 _TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z0-9.-]{1,}|\d+")
 
-# 语言修正不该把句子改得面目全非。低于此重合度即视为改写而非校对。
+# A language fix should not mangle the sentence. Below this overlap it is a rewrite, not a proofread.
 _MIN_OVERLAP = 0.6
 
-# 语域漂移：口语 → 书面语。分类器抓不到这类，因为内容没动——但 auditor_asks
-# 的价值恰恰在于它像人说出口的话，书面化等于把卖点抹掉。实测校对模型会这么干。
+# Register drift: colloquial -> formal. The classifier cannot catch it, because the content did not
+# change - but auditor_asks is valuable exactly because it sounds spoken; formalising it erases the selling point.
 _DRIFT_PAIRS = (
     ("在哪", "在何处"),
     ("问", "询问"),
@@ -38,12 +38,12 @@ _DRIFT_PAIRS = (
 
 
 def _register_drift(before: str, after: str) -> list[str]:
-    """列出「口语被改成书面语」的位置。只在原文有、改文没有时才算。"""
+    """List spots where colloquial wording was formalised. Counts only when the original had it and the edit does not."""
     hits: list[str] = []
     for spoken, formal in _DRIFT_PAIRS:
         if formal not in after or formal in before:
             continue
-        # 书面词常把口语词整个包住（询问 ⊃ 问），先把它抠掉再数，否则数不出减少。
+        # The formal word often contains the colloquial one entirely; carve it out before counting, or the
         if after.replace(formal, "").count(spoken) < before.replace(formal, "").count(spoken):
             hits.append(f"{spoken}→{formal}")
     return hits
@@ -72,7 +72,7 @@ def _text(value) -> str:
 
 
 def classify_edit(before: str, after: str) -> EditVerdict:
-    """判断一处改动是纯语言修正，还是动了内容。"""
+    """Decide whether one edit is pure language correction or touched the content."""
     if before == after:
         return EditVerdict(ok=True)
     if before.strip() and not after.strip():
@@ -107,7 +107,7 @@ def proofread_fields(
     fields: dict[str, Field],
     model: str,
 ) -> tuple[dict[str, Field], list[EditFlag]]:
-    """返回（校对后的字段, 被拦下的可疑改动）。可疑改动不落盘。"""
+    """Returns (proofread fields, blocked suspicious edits). Suspicious edits are never persisted."""
     payload = {name: fields[name].value for name in ALL_FIELDS if name in fields}
     user = f"Control: {control_id}\n\n" + _as_json(payload)
     data = parse_json_object(
@@ -122,7 +122,7 @@ def proofread_fields(
         if name not in fields or name not in data:
             continue
         original = fields[name]
-        # 作者亲手写的，模型一个字都不许碰。
+        # Practitioner-written: the model may not touch a single word.
         if original.basis is Basis.PRACTITIONER:
             continue
         before, after = _text(original.value), _text(data[name])
