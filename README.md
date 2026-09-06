@@ -13,6 +13,8 @@ such; do not hand them to an auditor as-is.
 
 ![One control: what it defends against, plain words, how to implement, what serves as evidence — each field marked with who wrote it](docs/screenshots/control.jpg)
 
+![Cross-Framework Relationship Graph: dynamic force-directed network showing mappings across NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022 with anti-clustering physics and 1-hop inspection drawer](docs/screenshots/graph.jpg)
+
 ## Why
 
 Asking a model "which controls cover log retention?" gets a plausible
@@ -293,13 +295,20 @@ for external auditors.
 fr serve                      # -> http://127.0.0.1:8765
 ```
 
-The web shell is built as an expressive **Keynote Studio Bento Grid UI**:
+The web shell is built as an expressive **Bento Grid UI**:
 
-- **Keynote Studio Stage Aesthetic**: Full-bleed frosted glass navbar (`100vw`), signature 4-color glowing laser stripe (`#4285F4`, `#EA4335`, `#FBBC05`, `#34A853`), and smooth transition between **Obsidian Dark** and **Ceramic Light** modes.
+- **Modern Stage Aesthetic**: Full-bleed frosted glass navbar (`100vw`), signature 4-color glowing laser stripe (`#4285F4`, `#EA4335`, `#FBBC05`, `#34A853`), and smooth transition between **Obsidian Dark** and **Ceramic Light** modes.
 - **Omnibox 2.0 & Keyboard Shortcut**: Floating search capsule with contextual prompt suggestions and an instant **`/` keyboard shortcut** to focus the search bar from anywhere on the page.
 - **Asymmetric Bento Grid Dashboard**:
   - **Main Stage (Left)**: Hot-tracked security controls with quick jump tags, plus **Learn Three Today** floating study cards with framework badges, concise intent snippets, and an animated `🎲 Shuffle` button.
-  - **Intelligence HUD (Right)**: **Live Telemetry** meters monitoring compliance coverage across NIST CSF 2.0, ISO/IEC 27002:2022, and NIST SP 800-53 Rev.5, an amber alert card for pending AI drafts, and quick-launch shortcuts to documents and frameworks.
+  - **Intelligence HUD (Right)**: **Live Telemetry** meters monitoring compliance coverage across NIST CSF 2.0, ISO/IEC 27002:2022, and NIST SP 800-53 Rev.5, an amber alert card for pending AI drafts, and quick-launch shortcuts to documents, frameworks, and the relationship graph.
+- **Interactive Cross-Framework Relationship Graph (`/graph`)**:
+  - **Force-Directed Network Visualization**: Real-time canvas-rendered graph depicting relationships and overlaps between NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022 controls.
+  - **Anti-Clustering Physics Engine**: Degree-aware spring equilibrium and pairwise collision buffers prevent high-density clusters from bunching up, spreading tightly mapped controls into radial starburst patterns.
+  - **Real-Time Spacing Control**: Interactive slider (0.7x – 2.6x) to smoothly adjust node repulsion and distribution distance.
+  - **1-Hop Subgraph & Inspector Drawer**: Click any control node to spotlight its immediate cross-framework mappings with an interactive drawer showing full titles, mapping types, and one-click navigation to control details.
+  - **Omnibox Graph Search & Framework Filters**: Quick autocomplete search to smoothly fly and focus camera on target controls, plus one-click framework filter chips.
+  - **Zero External CDN**: 100% pure client-side HTML5 canvas and vanilla physics engine; strictly adheres to offline invariants.
 - **Interactive Clause Chat**: Conversational AI assistant cards on control pages for context-aware Q&A, evidence brainstorming, and policy alignment.
 
 Built-in and imported frameworks live under "Frameworks" in the top bar, with "has
