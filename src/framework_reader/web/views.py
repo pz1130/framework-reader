@@ -550,7 +550,6 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
         f'<div class="wrap{" wide" if wide else ""}"><div class="top">'
         + '<h1><a href="/">' + (_brand_logo_img() or "Framework Workbench") + "</a></h1>"
-        + '<span class="keynote-pill"><span class="gemini-sparkle">✨</span> Keynote Studio</span>'
         + f'<span class="crumb">'
         + (f'<a href="{crumb_href}">{crumb}</a>' if crumb_href and crumb else crumb)
         + "</span>"
@@ -866,7 +865,7 @@ def home(popular: list[dict], daily: list[dict],
     """
     hero = (
         '<div class="stage-hero">'
-        '<div class="stage-eyebrow"><span class="gemini-sparkle">✨</span> Keynote Studio Edition · Framework Intelligence</div>'
+        '<div class="stage-eyebrow"><span class="gemini-sparkle">✨</span> Framework Intelligence</div>'
         '<h1 class="stage-headline">Next-Gen Security <span class="gemini-text">Framework Intelligence</span></h1>'
         '<p class="stage-sub">Comprehensive workbench for NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022. Grounded interpretations, audit trails, and cryptographic verification.</p>'
         '</div>'
@@ -1004,6 +1003,8 @@ def home(popular: list[dict], daily: list[dict],
         '<div style="display:flex;flex-direction:column;gap:.65rem">'
         '<a class="chip" href="/frameworks" style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem">'
         '<span>📁 Browse Frameworks</span><span style="color:var(--muted)">3</span></a>'
+        '<a class="chip" href="/graph" style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem">'
+        '<span>🕸️ Relationship Graph</span><span>➔</span></a>'
         '<a class="chip" href="/import" style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem">'
         '<span>📥 Import Custom Framework</span><span>➔</span></a>'
         '<a class="chip" href="/documents" style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem">'
@@ -3684,7 +3685,7 @@ def graph_page(graph_data: dict) -> str:
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="graph-search" class="graph-search-input" placeholder="搜索条款 (如 AC-1, 备份)..." autocomplete="off">
+        <input type="text" id="graph-search" class="graph-search-input" placeholder="Search controls (e.g. AC-1, backup)..." autocomplete="off">
         <div id="search-dropdown" class="search-dropdown hidden"></div>
       </div>
       <div class="framework-chips" id="framework-chips">
@@ -3693,21 +3694,21 @@ def graph_page(graph_data: dict) -> str:
     </div>
 
     <div class="graph-hud-right">
-      <div class="spacing-control" title="调整密切关联条款的分散间距，防止过度拥挤">
-        <span style="font-weight: 500;">节点间距</span>
+      <div class="spacing-control" title="Adjust repulsion and orbital distance between closely related controls">
+        <span style="font-weight: 500;">Spacing</span>
         <input type="range" id="spacing-slider" min="0.7" max="2.6" step="0.1" value="1.3">
         <span class="val" id="spacing-val">1.3x</span>
       </div>
 
       <div class="hud-btn-group">
-        <button type="button" class="hud-btn" id="btn-zoom-in" title="放大">+</button>
-        <button type="button" class="hud-btn" id="btn-zoom-out" title="缩小">−</button>
-        <button type="button" class="hud-btn" id="btn-zoom-fit" title="自适应居中">⛶</button>
-        <button type="button" class="hud-btn" id="btn-physics" title="暂停/继续动画">⏸</button>
+        <button type="button" class="hud-btn" id="btn-zoom-in" title="Zoom in">+</button>
+        <button type="button" class="hud-btn" id="btn-zoom-out" title="Zoom out">−</button>
+        <button type="button" class="hud-btn" id="btn-zoom-fit" title="Fit view">⛶</button>
+        <button type="button" class="hud-btn" id="btn-physics" title="Pause / Resume animation">⏸</button>
       </div>
 
       <div class="stats-badge" id="graph-stats-badge">
-        <span>{node_count}</span> 节点 · <span>{link_count}</span> 关联
+        <span>{node_count}</span> nodes · <span>{link_count}</span> links
       </div>
     </div>
   </div>
@@ -3718,16 +3719,16 @@ def graph_page(graph_data: dict) -> str:
   <aside id="graph-drawer" class="graph-drawer">
     <div class="drawer-head">
       <span id="drawer-badge" class="drawer-badge">Framework</span>
-      <button type="button" class="drawer-close" id="drawer-close" aria-label="关闭">✕</button>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="Close">✕</button>
     </div>
     <div id="drawer-cid" class="drawer-cid">Control ID</div>
     <div id="drawer-title" class="drawer-title">Control Label</div>
     <a href="#" id="drawer-link" class="drawer-link-btn" target="_self">
-      查看条款详情
+      View control details
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <div class="drawer-mappings-title">
-      <span>关联条款</span>
+      <span>Mapped Controls</span>
       <span id="drawer-mappings-count" style="font-family: var(--mono); color: var(--accent);">0</span>
     </div>
     <div id="drawer-mappings-list" class="drawer-mappings-list"></div>
@@ -3944,7 +3945,7 @@ def graph_page(graph_data: dict) -> str:
       v.vy -= sfy;
     }}
 
-    // 4. Pairwise Collision Buffer Enforcement ("如果他们关系很密切的话，要注意关系图谱中的点不要靠点很紧密")
+    // 4. Pairwise Collision Buffer Enforcement (ensures closely related nodes do not bunch up)
     for (var i = 0; i < vLen; i++) {{
       var a = visibleNodes[i];
       for (var j = i + 1; j < vLen; j++) {{
@@ -4161,7 +4162,7 @@ def graph_page(graph_data: dict) -> str:
     drawerMappingsList.innerHTML = '';
 
     if (node.mappings.length === 0) {{
-      drawerMappingsList.innerHTML = '<p style="color:var(--muted);font-size:0.8rem;margin:0.5rem 0;">无跨框架直接关联条款。</p>';
+      drawerMappingsList.innerHTML = '<p style="color:var(--muted);font-size:0.8rem;margin:0.5rem 0;">No direct cross-framework mappings.</p>';
     }} else {{
       node.mappings.forEach(function(m) {{
         var t = m.target;
@@ -4321,7 +4322,7 @@ def graph_page(graph_data: dict) -> str:
         tooltip.innerHTML = 
           '<div class="tt-header" style="color:' + hit.color + '">' + hit.short + ' <span style="font-size:0.7rem;opacity:0.75;">[' + hit.framework_id + ']</span></div>' +
           '<div class="tt-title">' + (hit.label || hit.id) + '</div>' +
-          '<div style="font-size:0.7rem;opacity:0.65;margin-top:2px;">' + hit.degree + ' 个关联条款</div>';
+          '<div style="font-size:0.7rem;opacity:0.65;margin-top:2px;">' + hit.degree + ' mapped controls</div>';
         tooltip.style.left = (sPos.x - rect.left) + 'px';
         tooltip.style.top = (sPos.y - rect.top) + 'px';
         tooltip.classList.remove('hidden');
@@ -4423,7 +4424,7 @@ def graph_page(graph_data: dict) -> str:
       // Update stats badge
       var statsBadge = document.getElementById('graph-stats-badge');
       if (statsBadge) {{
-        statsBadge.innerHTML = '<span>' + visibleCount + '</span> 节点 · <span>' + links.filter(function(l) {{ return l.source.visible && l.target.visible; }}).length + '</span> 关联';
+        statsBadge.innerHTML = '<span>' + visibleCount + '</span> nodes · <span>' + links.filter(function(l) {{ return l.source.visible && l.target.visible; }}).length + '</span> links';
       }}
 
       if (selectedNode && !selectedNode.visible) {{
@@ -4460,7 +4461,7 @@ def graph_page(graph_data: dict) -> str:
     matches = matches.slice(0, 8);
 
     if (matches.length === 0) {{
-      searchDropdown.innerHTML = '<div style="padding:0.5rem;font-size:0.75rem;color:var(--muted);">无匹配条款</div>';
+      searchDropdown.innerHTML = '<div style="padding:0.5rem;font-size:0.75rem;color:var(--muted);">No matching controls</div>';
     }} else {{
       searchDropdown.innerHTML = '';
       matches.forEach(function(m) {{
@@ -4514,9 +4515,9 @@ def graph_page(graph_data: dict) -> str:
 </script>
 """
     return page(
-        title="关系图谱",
+        title="Relationship Graph",
         body=body,
-        crumb="关系图谱",
+        crumb="Relationship Graph",
         wide=True,
     )
 

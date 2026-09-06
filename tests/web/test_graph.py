@@ -56,7 +56,7 @@ def test_graph_page_renders_ok(client):
     res = client.get("/graph")
     assert res.status_code == 200
     html = res.text
-    assert "关系图谱" in html
+    assert "Relationship Graph" in html
     assert 'id="graph-canvas"' in html
     assert 'href="/graph"' in html
     assert 'id="spacing-slider"' in html
