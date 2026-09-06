@@ -492,3 +492,98 @@ class QueryAPI:
                 (control_id,),
             ).fetchone()
         return row["state"] if row else None
+
+    def graph_data(self, framework_ids: list[str] | None = None) -> dict:
+        """Data for the relationship graph across frameworks.
+
+        Returns:
+            frameworks: metadata including display colors.
+            nodes: controls involved in cross-framework mappings, with degree.
+            links: mapping relationships between controls.
+        """
+        palette_map = {
+            "NIST-CSF-2.0": "#4285f4",
+            "ISO-27002-2022": "#34a853",
+            "NIST-800-53-R5": "#fbbc04",
+        }
+        fallback_colors = ["#9b72cb", "#ea4335", "#00acc1", "#ff7043", "#ab47bc", "#26a69a"]
+
+        fw_rows = self._conn.execute(
+            "SELECT id, name, version, tier FROM all_framework"
+        ).fetchall()
+        frameworks = []
+        fb_idx = 0
+        for r in fw_rows:
+            fid = r["id"]
+            if fid in palette_map:
+                c = palette_map[fid]
+            else:
+                c = fallback_colors[fb_idx % len(fallback_colors)]
+                fb_idx += 1
+            frameworks.append({
+                "id": fid,
+                "name": r["name"],
+                "version": r["version"],
+                "tier": r["tier"],
+                "color": c,
+            })
+
+        links_rows = self._conn.execute(
+            "SELECT from_id, to_id, relation, level, source FROM mapping"
+        ).fetchall()
+
+        if framework_ids:
+            allowed = set(framework_ids)
+            frameworks = [f for f in frameworks if f["id"] in allowed]
+            filtered = []
+            for r in links_rows:
+                f1 = r["from_id"].split(":", 1)[0] if ":" in r["from_id"] else ""
+                f2 = r["to_id"].split(":", 1)[0] if ":" in r["to_id"] else ""
+                if f1 in allowed and f2 in allowed:
+                    filtered.append(r)
+            links_rows = filtered
+
+        node_ids = set()
+        links = []
+        degrees: dict[str, int] = {}
+
+        for r in links_rows:
+            s, t = r["from_id"], r["to_id"]
+            node_ids.add(s)
+            node_ids.add(t)
+            degrees[s] = degrees.get(s, 0) + 1
+            degrees[t] = degrees.get(t, 0) + 1
+            links.append({
+                "source": s,
+                "target": t,
+                "relation": r["relation"],
+                "level": r["level"],
+            })
+
+        nodes = []
+        if node_ids:
+            node_list = list(node_ids)
+            chunk_size = 500
+            for i in range(0, len(node_list), chunk_size):
+                chunk = node_list[i : i + chunk_size]
+                placeholders = ",".join("?" for _ in chunk)
+                rows = self._conn.execute(
+                    f"SELECT id, framework_id, label FROM all_control WHERE id IN ({placeholders})",
+                    chunk,
+                ).fetchall()
+                for r in rows:
+                    cid = r["id"]
+                    short = cid.split(":", 1)[-1] if ":" in cid else cid
+                    nodes.append({
+                        "id": cid,
+                        "short": short,
+                        "label": r["label"],
+                        "framework_id": r["framework_id"],
+                        "degree": degrees.get(cid, 0),
+                    })
+
+        return {
+            "frameworks": frameworks,
+            "nodes": nodes,
+            "links": links,
+        }

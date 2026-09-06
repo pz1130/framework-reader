@@ -4,6 +4,7 @@ Server-rendered, no frontend framework - v1 does not need one: React is three mo
 """
 from __future__ import annotations
 
+import json
 from contextvars import ContextVar
 from html import escape
 from urllib.parse import quote
@@ -556,7 +557,9 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         + (_with_csrf(topbar, csrf) if topbar else "")
         + '<div class="topright">'
         + ("" if bare else
-           '<a class="topnav" href="/frameworks">Frameworks</a>')
+           '<a class="topnav" href="/frameworks">Frameworks</a>'
+           '<a class="topnav" href="/graph">Graph</a>')
+
         + (f'<input type="hidden" name="csrf" value="{escape(csrf)}">'
            if csrf and not bare else "")
         + ("" if bare or not may("framework:import") else
@@ -3191,3 +3194,1330 @@ _SPLIT_CSS = """
   .doing .stuck > *{margin-bottom:1.2rem}
 }
 """
+
+_GRAPH_CSS = """
+.graph-viewport {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 7.2rem);
+  min-height: 640px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  user-select: none;
+  touch-action: none;
+}
+.graph-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+.graph-canvas:active {
+  cursor: grabbing;
+}
+.graph-canvas.node-hover {
+  cursor: pointer;
+}
+
+/* Floating HUD */
+.graph-hud {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 20;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.graph-hud > * {
+  pointer-events: auto;
+}
+.graph-hud-left, .graph-hud-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* Search Box */
+.graph-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--rule);
+  border-radius: 980px;
+  padding: 0.35rem 0.85rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  width: 250px;
+  transition: all 0.2s ease;
+}
+.graph-search-box:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(66,133,244,0.18);
+  width: 290px;
+}
+.graph-search-box svg {
+  color: var(--muted);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-right: 0.4rem;
+}
+.graph-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.82rem;
+  color: var(--ink);
+  width: 100%;
+}
+.graph-search-input::placeholder {
+  color: var(--muted);
+}
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem;
+}
+.search-item {
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--ink);
+  transition: background 0.15s ease;
+}
+.search-item:hover, .search-item.active {
+  background: var(--sunk);
+}
+.search-item .item-short {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--accent);
+}
+.search-item .item-label {
+  color: var(--muted);
+  font-size: 0.74rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 130px;
+}
+
+/* Framework Filter Chips */
+.framework-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 980px;
+  border: 1px solid var(--rule);
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
+}
+.chip:hover {
+  border-color: var(--card-hover-line);
+}
+.chip .chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.chip.active {
+  background: var(--surface);
+  border-color: currentColor;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.chip.inactive {
+  opacity: 0.4;
+  filter: grayscale(0.8);
+  background: var(--sunk);
+}
+
+/* Spacing Control Slider */
+.spacing-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--rule);
+  border-radius: 980px;
+  padding: 0.32rem 0.8rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+.spacing-control input[type=range] {
+  width: 80px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+.spacing-control .val {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  min-width: 2.1rem;
+}
+
+/* HUD Buttons */
+.hud-btn-group {
+  display: flex;
+  align-items: center;
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--rule);
+  border-radius: 980px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.hud-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.hud-btn:hover {
+  background: var(--sunk);
+  color: var(--accent);
+}
+.hud-btn + .hud-btn {
+  border-left: 1px solid var(--rule);
+}
+
+/* Stats Pill */
+.stats-badge {
+  font-size: 0.74rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--rule);
+  border-radius: 980px;
+  padding: 0.35rem 0.75rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  white-space: nowrap;
+}
+
+/* Inspector Drawer */
+.graph-drawer {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  width: 350px;
+  max-width: calc(100vw - 2rem);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  transform: translateX(112%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), opacity 0.2s ease;
+}
+.graph-drawer.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.drawer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 980px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.drawer-close {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+.drawer-close:hover {
+  background: var(--sunk);
+  color: var(--ink);
+}
+.drawer-cid {
+  font-family: var(--mono);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.35rem;
+  word-break: break-all;
+}
+.drawer-title {
+  font-size: 0.88rem;
+  color: var(--body);
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+.drawer-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.48rem 1rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(66,133,244,0.3);
+  border-radius: 12px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  margin-bottom: 1.1rem;
+}
+.drawer-link-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(66,133,244,0.3);
+  text-decoration: none;
+}
+.drawer-mappings-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer-mappings-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-right: 0.2rem;
+}
+.drawer-mapping-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  background: var(--ground);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.drawer-mapping-row:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  transform: translateX(2px);
+}
+.drawer-mapping-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.drawer-mapping-target {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink);
+}
+.drawer-mapping-name {
+  font-size: 0.72rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.drawer-rel-tag {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  background: var(--sunk);
+  color: var(--muted);
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+
+/* Tooltip */
+.graph-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--ground);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  z-index: 40;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: opacity 0.15s ease;
+  transform: translate(-50%, -125%);
+}
+.graph-tooltip .tt-header {
+  font-family: var(--mono);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.graph-tooltip .tt-title {
+  opacity: 0.88;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.graph-tooltip.hidden {
+  display: none;
+}
+.hidden {
+  display: none !important;
+}
+"""
+
+
+def graph_page(graph_data: dict) -> str:
+    """Dynamic, interactive, zoomable cross-framework relationship graph view.
+
+    Implements a pure HTML5 Canvas force-directed graph with anti-clustering physics,
+    pairwise collision buffer enforcement, degree-aware radial starburst distribution,
+    pan/zoom navigation, 1-hop neighborhood highlighting, and inspector slide-out drawer.
+    Zero external scripts or CDN dependencies.
+    """
+    raw_json = json.dumps(graph_data, ensure_ascii=False)
+    frameworks = graph_data.get("frameworks", [])
+    node_count = len(graph_data.get("nodes", []))
+    link_count = len(graph_data.get("links", []))
+
+    chips = []
+    for fw in frameworks:
+        fid = escape(fw["id"])
+        color = escape(fw.get("color", "#4285f4"))
+        chips.append(
+            f'<button type="button" class="chip active" data-fid="{fid}" style="color:{color}">'
+            f'<span class="chip-dot" style="background:{color}"></span>'
+            f'<span>{fid}</span>'
+            f'</button>'
+        )
+    chips_html = "".join(chips)
+
+    body = f"""
+<style>{_GRAPH_CSS}</style>
+<script type="application/json" id="graph-data">{raw_json}</script>
+
+<div class="graph-viewport">
+  <div class="graph-hud">
+    <div class="graph-hud-left">
+      <div class="graph-search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="graph-search" class="graph-search-input" placeholder="搜索条款 (如 AC-1, 备份)..." autocomplete="off">
+        <div id="search-dropdown" class="search-dropdown hidden"></div>
+      </div>
+      <div class="framework-chips" id="framework-chips">
+        {chips_html}
+      </div>
+    </div>
+
+    <div class="graph-hud-right">
+      <div class="spacing-control" title="调整密切关联条款的分散间距，防止过度拥挤">
+        <span style="font-weight: 500;">节点间距</span>
+        <input type="range" id="spacing-slider" min="0.7" max="2.6" step="0.1" value="1.3">
+        <span class="val" id="spacing-val">1.3x</span>
+      </div>
+
+      <div class="hud-btn-group">
+        <button type="button" class="hud-btn" id="btn-zoom-in" title="放大">+</button>
+        <button type="button" class="hud-btn" id="btn-zoom-out" title="缩小">−</button>
+        <button type="button" class="hud-btn" id="btn-zoom-fit" title="自适应居中">⛶</button>
+        <button type="button" class="hud-btn" id="btn-physics" title="暂停/继续动画">⏸</button>
+      </div>
+
+      <div class="stats-badge" id="graph-stats-badge">
+        <span>{node_count}</span> 节点 · <span>{link_count}</span> 关联
+      </div>
+    </div>
+  </div>
+
+  <canvas id="graph-canvas" class="graph-canvas"></canvas>
+  <div id="graph-tooltip" class="graph-tooltip hidden"></div>
+
+  <aside id="graph-drawer" class="graph-drawer">
+    <div class="drawer-head">
+      <span id="drawer-badge" class="drawer-badge">Framework</span>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="关闭">✕</button>
+    </div>
+    <div id="drawer-cid" class="drawer-cid">Control ID</div>
+    <div id="drawer-title" class="drawer-title">Control Label</div>
+    <a href="#" id="drawer-link" class="drawer-link-btn" target="_self">
+      查看条款详情
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="drawer-mappings-title">
+      <span>关联条款</span>
+      <span id="drawer-mappings-count" style="font-family: var(--mono); color: var(--accent);">0</span>
+    </div>
+    <div id="drawer-mappings-list" class="drawer-mappings-list"></div>
+  </aside>
+</div>
+
+<script>
+(function() {{
+  var rawDataEl = document.getElementById('graph-data');
+  if (!rawDataEl) return;
+  var rawData = JSON.parse(rawDataEl.textContent);
+
+  var canvas = document.getElementById('graph-canvas');
+  var ctx = canvas.getContext('2d');
+  var tooltip = document.getElementById('graph-tooltip');
+  var drawer = document.getElementById('graph-drawer');
+  var drawerClose = document.getElementById('drawer-close');
+  var drawerBadge = document.getElementById('drawer-badge');
+  var drawerCid = document.getElementById('drawer-cid');
+  var drawerTitle = document.getElementById('drawer-title');
+  var drawerLink = document.getElementById('drawer-link');
+  var drawerMappingsList = document.getElementById('drawer-mappings-list');
+  var drawerMappingsCount = document.getElementById('drawer-mappings-count');
+  var spacingSlider = document.getElementById('spacing-slider');
+  var spacingVal = document.getElementById('spacing-val');
+  var searchInput = document.getElementById('graph-search');
+  var searchDropdown = document.getElementById('search-dropdown');
+  var btnZoomIn = document.getElementById('btn-zoom-in');
+  var btnZoomOut = document.getElementById('btn-zoom-out');
+  var btnZoomFit = document.getElementById('btn-zoom-fit');
+  var btnPhysics = document.getElementById('btn-physics');
+  var chipButtons = document.querySelectorAll('.framework-chips .chip');
+
+  var frameworks = rawData.frameworks || [];
+  var fwColorMap = {{}};
+  frameworks.forEach(function(fw) {{
+    fwColorMap[fw.id] = fw.color || '#4285f4';
+  }});
+
+  var activeFrameworks = new Set(frameworks.map(function(f) {{ return f.id; }}));
+
+  // Build node map & adjacency
+  var nodeMap = new Map();
+  var nodes = (rawData.nodes || []).map(function(n, idx) {{
+    var node = {{
+      id: n.id,
+      short: n.short || n.id,
+      label: n.label || '',
+      framework_id: n.framework_id || '',
+      degree: n.degree || 0,
+      color: fwColorMap[n.framework_id] || '#4285f4',
+      radius: 2.8 + Math.min(10, Math.sqrt(n.degree || 0) * 1.8),
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      fx: null,
+      fy: null,
+      visible: true,
+      neighbors: new Set(),
+      mappings: []
+    }};
+    nodeMap.set(n.id, node);
+    return node;
+  }});
+
+  var links = [];
+  (rawData.links || []).forEach(function(l) {{
+    var s = nodeMap.get(l.source);
+    var t = nodeMap.get(l.target);
+    if (s && t) {{
+      s.neighbors.add(t.id);
+      t.neighbors.add(s.id);
+      s.mappings.push({{ target: t, relation: l.relation, level: l.level }});
+      t.mappings.push({{ target: s, relation: l.relation, level: l.level }});
+      links.push({{ source: s, target: t, relation: l.relation, level: l.level }});
+    }}
+  }});
+
+  // Position initialization: frameworks clustered radially
+  var fwList = frameworks.map(function(f) {{ return f.id; }});
+  var fwCount = fwList.length || 1;
+  nodes.forEach(function(n, i) {{
+    var fwIdx = fwList.indexOf(n.framework_id);
+    if (fwIdx < 0) fwIdx = 0;
+    var baseAngle = (2 * Math.PI * fwIdx) / fwCount;
+    var clusterR = 320;
+    var cx = Math.cos(baseAngle) * clusterR;
+    var cy = Math.sin(baseAngle) * clusterR;
+    var jitterR = 40 + (i % 30) * 10 + Math.sqrt(n.degree) * 12;
+    var jitterAngle = (i * 1.6180339887) * 2 * Math.PI;
+    n.x = cx + Math.cos(jitterAngle) * jitterR;
+    n.y = cy + Math.sin(jitterAngle) * jitterR;
+  }});
+
+  // Physics simulation state
+  var spacingMult = parseFloat(spacingSlider.value) || 1.3;
+  var alpha = 1.0;
+  var isSimRunning = true;
+  var panX = 0;
+  var panY = 0;
+  var zoom = 1.0;
+
+  var selectedNode = null;
+  var hoveredNode = null;
+  var isDraggingNode = false;
+  var draggedNode = null;
+  var isPanning = false;
+  var startMouseX = 0;
+  var startMouseY = 0;
+  var startPanX = 0;
+  var startPanY = 0;
+  var dragMoved = false;
+
+  // Viewport dimensions
+  var width = 800;
+  var height = 600;
+  var dpr = window.devicePixelRatio || 1;
+
+  function resize() {{
+    var rect = canvas.parentElement.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }}
+  window.addEventListener('resize', resize);
+  resize();
+
+  function toWorld(screenX, screenY) {{
+    var rect = canvas.getBoundingClientRect();
+    var x = screenX - rect.left - width / 2 - panX;
+    var y = screenY - rect.top - height / 2 - panY;
+    return {{ x: x / zoom, y: y / zoom }};
+  }}
+
+  function toScreen(worldX, worldY) {{
+    var rect = canvas.getBoundingClientRect();
+    var sx = worldX * zoom + width / 2 + panX;
+    var sy = worldY * zoom + height / 2 + panY;
+    return {{ x: rect.left + sx, y: rect.top + sy }};
+  }}
+
+  function findNodeAt(worldX, worldY) {{
+    for (var i = nodes.length - 1; i >= 0; i--) {{
+      var n = nodes[i];
+      if (!n.visible) continue;
+      var dx = n.x - worldX;
+      var dy = n.y - worldY;
+      var hitRadius = Math.max(n.radius + 6 / zoom, 12 / zoom);
+      if (dx * dx + dy * dy <= hitRadius * hitRadius) {{
+        return n;
+      }}
+    }}
+    return null;
+  }}
+
+  // Simulation physics tick
+  function tickPhysics() {{
+    if (!isSimRunning || alpha < 0.001) return;
+
+    var visibleNodes = nodes.filter(function(n) {{ return n.visible; }});
+    var vLen = visibleNodes.length;
+
+    // 1. Centering gravity (gentle, keeps clusters in field)
+    for (var i = 0; i < vLen; i++) {{
+      var n = visibleNodes[i];
+      n.vx -= n.x * 0.003 * alpha;
+      n.vy -= n.y * 0.003 * alpha;
+    }}
+
+    // 2. Pairwise electrostatic repulsion
+    for (var i = 0; i < vLen; i++) {{
+      var a = visibleNodes[i];
+      for (var j = i + 1; j < vLen; j++) {{
+        var b = visibleNodes[j];
+        var dx = b.x - a.x;
+        var dy = b.y - a.y;
+        var d2 = dx * dx + dy * dy + 1;
+        if (d2 > 280000) continue;
+        var d = Math.sqrt(d2);
+        var force = (130 * spacingMult * (1 + Math.sqrt(a.degree)) * (1 + Math.sqrt(b.degree))) / (d2 * d) * alpha;
+        var rfx = dx * force;
+        var rfy = dy * force;
+        a.vx -= rfx;
+        a.vy -= rfy;
+        b.vx += rfx;
+        b.vy += rfy;
+      }}
+    }}
+
+    // 3. Degree-aware Spring forces (Hubs get spacious radial separation)
+    for (var i = 0; i < links.length; i++) {{
+      var l = links[i];
+      var u = l.source;
+      var v = l.target;
+      if (!u.visible || !v.visible) continue;
+
+      var dx = v.x - u.x;
+      var dy = v.y - u.y;
+      var dist = Math.sqrt(dx * dx + dy * dy) || 0.01;
+      var targetDist = (48 + (Math.sqrt(u.degree) + Math.sqrt(v.degree)) * 13) * spacingMult;
+      var disp = dist - targetDist;
+      var springForce = disp * 0.03 * alpha;
+      var sfx = (dx / dist) * springForce;
+      var sfy = (dy / dist) * springForce;
+      u.vx += sfx;
+      u.vy += sfy;
+      v.vx -= sfx;
+      v.vy -= sfy;
+    }}
+
+    // 4. Pairwise Collision Buffer Enforcement ("如果他们关系很密切的话，要注意关系图谱中的点不要靠点很紧密")
+    for (var i = 0; i < vLen; i++) {{
+      var a = visibleNodes[i];
+      for (var j = i + 1; j < vLen; j++) {{
+        var b = visibleNodes[j];
+        var minDist = (a.radius + b.radius + 18) * spacingMult;
+        var dx = b.x - a.x;
+        var dy = b.y - a.y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < minDist * minDist) {{
+          var d = Math.sqrt(d2) || 0.001;
+          var overlap = (minDist - d) * 0.5;
+          var nx = dx / d;
+          var ny = dy / d;
+          if (a.fx == null) {{ a.x -= nx * overlap; a.y -= ny * overlap; }}
+          if (b.fx == null) {{ b.x += nx * overlap; b.y += ny * overlap; }}
+        }}
+      }}
+    }}
+
+    // 5. Velocity & Position update with friction
+    for (var i = 0; i < vLen; i++) {{
+      var n = visibleNodes[i];
+      if (n.fx != null) {{
+        n.x = n.fx;
+        n.y = n.fy;
+        n.vx = 0;
+        n.vy = 0;
+      }} else {{
+        n.vx *= 0.84;
+        n.vy *= 0.84;
+        n.x += n.vx;
+        n.y += n.vy;
+      }}
+    }}
+
+    alpha *= 0.985;
+  }}
+
+  // Pre-warm layout before first render so graph is immediately clear and separated
+  for (var k = 0; k < 80; k++) {{
+    tickPhysics();
+  }}
+  alpha = Math.max(alpha, 0.35);
+  fitView(true);
+
+  function wake() {{
+    if (!isSimRunning) return;
+    alpha = Math.max(alpha, 0.45);
+  }}
+
+  // Drawing
+  function render() {{
+    var isDark = document.documentElement.dataset.theme === 'dark';
+
+    ctx.save();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    // Subtle background grid
+    ctx.save();
+    var dotSpacing = 32 * zoom;
+    if (dotSpacing >= 16) {{
+      var dotColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
+      ctx.fillStyle = dotColor;
+      var startX = (width / 2 + panX) % dotSpacing;
+      var startY = (height / 2 + panY) % dotSpacing;
+      for (var x = startX; x < width; x += dotSpacing) {{
+        for (var y = startY; y < height; y += dotSpacing) {{
+          ctx.beginPath();
+          ctx.arc(x, y, 1.2, 0, 2 * Math.PI);
+          ctx.fill();
+        }}
+      }}
+    }}
+    ctx.restore();
+
+    // World transformation
+    ctx.translate(width / 2 + panX, height / 2 + panY);
+    ctx.scale(zoom, zoom);
+
+    // 1. Draw Links
+    var hasSelection = selectedNode != null;
+    var baseLinkColor = isDark ? 'rgba(180, 200, 230, 0.13)' : 'rgba(100, 115, 140, 0.18)';
+    var dimLinkColor = isDark ? 'rgba(100, 110, 130, 0.03)' : 'rgba(160, 170, 185, 0.05)';
+
+    for (var i = 0; i < links.length; i++) {{
+      var l = links[i];
+      var u = l.source;
+      var v = l.target;
+      if (!u.visible || !v.visible) continue;
+
+      var isHighlighted = hasSelection && (u === selectedNode || v === selectedNode);
+      if (hasSelection && !isHighlighted) {{
+        ctx.strokeStyle = dimLinkColor;
+        ctx.lineWidth = 0.5;
+      }} else if (isHighlighted) {{
+        ctx.strokeStyle = '#4285f4';
+        ctx.lineWidth = 2.0;
+      }} else {{
+        ctx.strokeStyle = baseLinkColor;
+        ctx.lineWidth = 0.7;
+      }}
+
+      ctx.beginPath();
+      ctx.moveTo(u.x, u.y);
+      ctx.lineTo(v.x, v.y);
+      ctx.stroke();
+    }}
+
+    // 2. Draw Nodes
+    for (var i = 0; i < nodes.length; i++) {{
+      var n = nodes[i];
+      if (!n.visible) continue;
+
+      var isSel = (n === selectedNode);
+      var isHov = (n === hoveredNode);
+      var isNeighbor = hasSelection && selectedNode.neighbors.has(n.id);
+
+      var opacity = 1.0;
+      if (hasSelection && !isSel && !isNeighbor) {{
+        opacity = 0.12;
+      }}
+
+      ctx.save();
+      ctx.globalAlpha = opacity;
+
+      // Hub node aura ring (Obsidian style)
+      if (n.degree > 10) {{
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius + 3.5, 0, 2 * Math.PI);
+        ctx.fillStyle = n.color;
+        ctx.globalAlpha = opacity * 0.18;
+        ctx.fill();
+        ctx.globalAlpha = opacity;
+      }}
+
+      // Selected / Hovered ring
+      if (isSel) {{
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius + 5, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#4285f4';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+      }} else if (isHov) {{
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius + 4, 0, 2 * Math.PI);
+        ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.5)';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      }}
+
+      // Node Body
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = n.color;
+      ctx.fill();
+      ctx.strokeStyle = isDark ? '#1a1c22' : '#ffffff';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Labels (Clean, uncluttered, Obsidian style)
+      var showLabel = isSel || isHov || (zoom >= 1.5 && (n.degree >= 8 || zoom >= 2.0));
+      if (showLabel && opacity > 0.3) {{
+        var fontSize = Math.max(9, Math.min(12, 10 / Math.sqrt(zoom)));
+        ctx.font = '500 ' + fontSize + 'px ui-monospace, SFMono-Regular, Menlo, monospace';
+        var text = n.short;
+        var textMetrics = ctx.measureText(text);
+        var textW = textMetrics.width;
+        var textH = fontSize;
+        var labelY = n.y + n.radius + textH + 2;
+
+        if (isSel || isHov) {{
+          // Pill background for active labels
+          ctx.fillStyle = isDark ? 'rgba(20,22,28,0.85)' : 'rgba(255,255,255,0.92)';
+          ctx.fillRect(n.x - textW / 2 - 4, labelY - textH + 1, textW + 8, textH + 4);
+          ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.12)';
+          ctx.lineWidth = 0.8;
+          ctx.strokeRect(n.x - textW / 2 - 4, labelY - textH + 1, textW + 8, textH + 4);
+        }}
+
+        ctx.fillStyle = isDark ? '#e4e6eb' : '#1f2937';
+        ctx.textAlign = 'center';
+        ctx.fillText(text, n.x, labelY);
+      }}
+
+      ctx.restore();
+    }}
+
+
+    ctx.restore();
+  }}
+
+  // Animation Loop
+  function loop() {{
+    tickPhysics();
+    render();
+    requestAnimationFrame(loop);
+  }}
+  requestAnimationFrame(loop);
+
+  // Inspector Drawer Handler
+  function openDrawer(node) {{
+    selectedNode = node;
+    drawerBadge.textContent = node.framework_id;
+    drawerBadge.style.color = node.color;
+    drawerBadge.style.background = node.color + '22';
+    drawerBadge.style.border = '1px solid ' + node.color + '44';
+
+    drawerCid.textContent = node.id;
+    drawerTitle.textContent = node.label || '(No label available)';
+    drawerLink.href = '/c/' + encodeURIComponent(node.id);
+
+    drawerMappingsCount.textContent = node.mappings.length;
+    drawerMappingsList.innerHTML = '';
+
+    if (node.mappings.length === 0) {{
+      drawerMappingsList.innerHTML = '<p style="color:var(--muted);font-size:0.8rem;margin:0.5rem 0;">无跨框架直接关联条款。</p>';
+    }} else {{
+      node.mappings.forEach(function(m) {{
+        var t = m.target;
+        var row = document.createElement('div');
+        row.className = 'drawer-mapping-row';
+        row.innerHTML = 
+          '<div class="drawer-mapping-left">' +
+            '<div class="drawer-mapping-target" style="color:' + t.color + '">' + t.short + ' <span style="font-size:0.7rem;opacity:0.75;">(' + t.framework_id + ')</span></div>' +
+            '<div class="drawer-mapping-name">' + (t.label || t.id) + '</div>' +
+          '</div>' +
+          '<span class="drawer-rel-tag">' + (m.relation || m.level) + '</span>';
+
+        row.addEventListener('click', function(e) {{
+          e.stopPropagation();
+          flyToNode(t);
+          openDrawer(t);
+        }});
+        drawerMappingsList.appendChild(row);
+      }});
+    }}
+
+    drawer.classList.add('open');
+  }}
+
+  function closeDrawer() {{
+    selectedNode = null;
+    drawer.classList.remove('open');
+  }}
+
+  drawerClose.addEventListener('click', function(e) {{
+    e.stopPropagation();
+    closeDrawer();
+  }});
+
+  // Camera Zoom & Fly
+  function flyToNode(node) {{
+    var targetPanX = -node.x * 1.5;
+    var targetPanY = -node.y * 1.5;
+    var targetZoom = 1.5;
+
+    var startPX = panX;
+    var startPY = panY;
+    var startZ = zoom;
+    var startTime = performance.now();
+    var duration = 400;
+
+    function step(now) {{
+      var elapsed = now - startTime;
+      var t = Math.min(1, elapsed / duration);
+      var ease = t * (2 - t);
+      panX = startPX + (targetPanX - startPX) * ease;
+      panY = startPY + (targetPanY - startPY) * ease;
+      zoom = startZ + (targetZoom - startZ) * ease;
+      if (t < 1) {{
+        requestAnimationFrame(step);
+      }}
+    }}
+    requestAnimationFrame(step);
+  }}
+
+  function fitView(immediate) {{
+    var visible = nodes.filter(function(n) {{ return n.visible; }});
+    if (visible.length === 0) return;
+    var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    visible.forEach(function(n) {{
+      if (n.x < minX) minX = n.x;
+      if (n.x > maxX) maxX = n.x;
+      if (n.y < minY) minY = n.y;
+      if (n.y > maxY) maxY = n.y;
+    }});
+
+    var graphW = (maxX - minX) + 120;
+    var graphH = (maxY - minY) + 120;
+    var scaleX = width / graphW;
+    var scaleY = height / graphH;
+    var targetZoom = Math.min(Math.max(Math.min(scaleX, scaleY), 0.35), 2.2);
+
+    var centerX = (minX + maxX) / 2;
+    var centerY = (minY + maxY) / 2;
+    var targetPanX = -centerX * targetZoom;
+    var targetPanY = -centerY * targetZoom;
+
+    if (immediate) {{
+      panX = targetPanX;
+      panY = targetPanY;
+      zoom = targetZoom;
+      return;
+    }}
+
+    var startPX = panX, startPY = panY, startZ = zoom;
+    var startTime = performance.now();
+    var duration = 350;
+
+    function step(now) {{
+      var elapsed = now - startTime;
+      var t = Math.min(1, elapsed / duration);
+      var ease = t * (2 - t);
+      panX = startPX + (targetPanX - startPX) * ease;
+      panY = startPY + (targetPanY - startPY) * ease;
+      zoom = startZ + (targetZoom - startZ) * ease;
+      if (t < 1) {{
+        requestAnimationFrame(step);
+      }}
+    }}
+    requestAnimationFrame(step);
+  }}
+
+  // Pointer Interaction
+  canvas.addEventListener('pointerdown', function(e) {{
+    var wPos = toWorld(e.clientX, e.clientY);
+    var targetNode = findNodeAt(wPos.x, wPos.y);
+
+    dragMoved = false;
+    startMouseX = e.clientX;
+    startMouseY = e.clientY;
+
+    if (targetNode) {{
+      isDraggingNode = true;
+      draggedNode = targetNode;
+      draggedNode.fx = wPos.x;
+      draggedNode.fy = wPos.y;
+      wake();
+      canvas.setPointerCapture(e.pointerId);
+    }} else {{
+      isPanning = true;
+      startPanX = panX;
+      startPanY = panY;
+      canvas.setPointerCapture(e.pointerId);
+    }}
+  }});
+
+  canvas.addEventListener('pointermove', function(e) {{
+    var dx = e.clientX - startMouseX;
+    var dy = e.clientY - startMouseY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {{
+      dragMoved = true;
+    }}
+
+    var wPos = toWorld(e.clientX, e.clientY);
+
+    if (isDraggingNode && draggedNode) {{
+      draggedNode.fx = wPos.x;
+      draggedNode.fy = wPos.y;
+      wake();
+      tooltip.classList.add('hidden');
+    }} else if (isPanning) {{
+      panX = startPanX + dx;
+      panY = startPanY + dy;
+      tooltip.classList.add('hidden');
+    }} else {{
+      var hit = findNodeAt(wPos.x, wPos.y);
+      hoveredNode = hit;
+      if (hit) {{
+        canvas.classList.add('node-hover');
+        var sPos = toScreen(hit.x, hit.y);
+        var rect = canvas.getBoundingClientRect();
+        tooltip.innerHTML = 
+          '<div class="tt-header" style="color:' + hit.color + '">' + hit.short + ' <span style="font-size:0.7rem;opacity:0.75;">[' + hit.framework_id + ']</span></div>' +
+          '<div class="tt-title">' + (hit.label || hit.id) + '</div>' +
+          '<div style="font-size:0.7rem;opacity:0.65;margin-top:2px;">' + hit.degree + ' 个关联条款</div>';
+        tooltip.style.left = (sPos.x - rect.left) + 'px';
+        tooltip.style.top = (sPos.y - rect.top) + 'px';
+        tooltip.classList.remove('hidden');
+      }} else {{
+        canvas.classList.remove('node-hover');
+        tooltip.classList.add('hidden');
+      }}
+    }}
+  }});
+
+  function onPointerEnd(e) {{
+    if (isDraggingNode && draggedNode) {{
+      draggedNode.fx = null;
+      draggedNode.fy = null;
+      isDraggingNode = false;
+      draggedNode = null;
+      wake();
+    }}
+    if (isPanning) {{
+      isPanning = false;
+    }}
+
+    if (!dragMoved) {{
+      var wPos = toWorld(e.clientX, e.clientY);
+      var hit = findNodeAt(wPos.x, wPos.y);
+      if (hit) {{
+        openDrawer(hit);
+      }} else {{
+        closeDrawer();
+      }}
+    }}
+  }}
+
+  canvas.addEventListener('pointerup', onPointerEnd);
+  canvas.addEventListener('pointercancel', onPointerEnd);
+
+  // Wheel Zoom
+  canvas.addEventListener('wheel', function(e) {{
+    e.preventDefault();
+    var rect = canvas.getBoundingClientRect();
+    var mx = e.clientX - rect.left - width / 2 - panX;
+    var my = e.clientY - rect.top - height / 2 - panY;
+
+    var factor = e.deltaY < 0 ? 1.14 : 0.88;
+    var newZoom = Math.min(Math.max(zoom * factor, 0.15), 4.5);
+    var actualFactor = newZoom / zoom;
+
+    panX -= mx * (actualFactor - 1);
+    panY -= my * (actualFactor - 1);
+    zoom = newZoom;
+    tooltip.classList.add('hidden');
+  }}, {{ passive: false }});
+
+  // HUD Button actions
+  btnZoomIn.addEventListener('click', function() {{
+    zoom = Math.min(zoom * 1.25, 4.5);
+  }});
+  btnZoomOut.addEventListener('click', function() {{
+    zoom = Math.max(zoom * 0.8, 0.15);
+  }});
+  btnZoomFit.addEventListener('click', fitView);
+
+  btnPhysics.addEventListener('click', function() {{
+    isSimRunning = !isSimRunning;
+    btnPhysics.textContent = isSimRunning ? '⏸' : '▶';
+    if (isSimRunning) wake();
+  }});
+
+  // Spacing Slider (Anti-clustering control)
+  spacingSlider.addEventListener('input', function() {{
+    spacingMult = parseFloat(spacingSlider.value);
+    spacingVal.textContent = spacingMult.toFixed(1) + 'x';
+    wake();
+  }});
+
+  // Framework Chips Filter
+  chipButtons.forEach(function(btn) {{
+    btn.addEventListener('click', function() {{
+      var fid = btn.getAttribute('data-fid');
+      if (activeFrameworks.has(fid)) {{
+        if (activeFrameworks.size > 1) {{
+          activeFrameworks.delete(fid);
+          btn.classList.remove('active');
+          btn.classList.add('inactive');
+        }}
+      }} else {{
+        activeFrameworks.add(fid);
+        btn.classList.remove('inactive');
+        btn.classList.add('active');
+      }}
+
+      // Update node visibility
+      var visibleCount = 0;
+      nodes.forEach(function(n) {{
+        n.visible = activeFrameworks.has(n.framework_id);
+        if (n.visible) visibleCount++;
+      }});
+
+      // Update stats badge
+      var statsBadge = document.getElementById('graph-stats-badge');
+      if (statsBadge) {{
+        statsBadge.innerHTML = '<span>' + visibleCount + '</span> 节点 · <span>' + links.filter(function(l) {{ return l.source.visible && l.target.visible; }}).length + '</span> 关联';
+      }}
+
+      if (selectedNode && !selectedNode.visible) {{
+        closeDrawer();
+      }}
+      wake();
+    }});
+  }});
+
+  // Search Input Autocomplete
+  searchInput.addEventListener('input', function() {{
+    var val = searchInput.value.trim().toLowerCase();
+    if (!val) {{
+      searchDropdown.classList.add('hidden');
+      searchDropdown.innerHTML = '';
+      return;
+    }}
+
+    var matches = [];
+    for (var i = 0; i < nodes.length; i++) {{
+      var n = nodes[i];
+      if (!n.visible) continue;
+      var matchScore = 0;
+      if (n.short.toLowerCase().indexOf(val) >= 0) matchScore += 10;
+      if (n.id.toLowerCase().indexOf(val) >= 0) matchScore += 5;
+      if (n.label && n.label.toLowerCase().indexOf(val) >= 0) matchScore += 3;
+      if (matchScore > 0) {{
+        matches.push({{ node: n, score: matchScore }});
+      }}
+      if (matches.length > 20) break;
+    }}
+
+    matches.sort(function(a, b) {{ return b.score - a.score; }});
+    matches = matches.slice(0, 8);
+
+    if (matches.length === 0) {{
+      searchDropdown.innerHTML = '<div style="padding:0.5rem;font-size:0.75rem;color:var(--muted);">无匹配条款</div>';
+    }} else {{
+      searchDropdown.innerHTML = '';
+      matches.forEach(function(m) {{
+        var item = document.createElement('div');
+        item.className = 'search-item';
+        item.innerHTML = 
+          '<span class="item-short">' + m.node.short + ' <span style="font-size:0.7rem;color:var(--muted);">[' + m.node.framework_id + ']</span></span>' +
+          '<span class="item-label">' + (m.node.label || m.node.id) + '</span>';
+
+        item.addEventListener('click', function(e) {{
+          e.stopPropagation();
+          flyToNode(m.node);
+          openDrawer(m.node);
+          searchInput.value = '';
+          searchDropdown.classList.add('hidden');
+        }});
+        searchDropdown.appendChild(item);
+      }});
+    }}
+    searchDropdown.classList.remove('hidden');
+  }});
+
+  document.addEventListener('click', function(e) {{
+    if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {{
+      searchDropdown.classList.add('hidden');
+    }}
+  }});
+
+  window.graphView = {{
+    openDrawer: openDrawer,
+    closeDrawer: closeDrawer,
+    flyToNode: flyToNode,
+    nodeMap: nodeMap
+  }};
+
+  try {{
+    var urlParams = new URLSearchParams(window.location.search);
+    var focusId = urlParams.get('focus');
+    if (focusId && nodeMap.has(focusId)) {{
+      setTimeout(function() {{
+        var target = nodeMap.get(focusId);
+        flyToNode(target);
+        openDrawer(target);
+      }}, 180);
+    }}
+  }} catch (e) {{}}
+
+  // Re-fit once after mount
+  setTimeout(fitView, 120);
+}})();
+</script>
+"""
+    return page(
+        title="关系图谱",
+        body=body,
+        crumb="关系图谱",
+        wide=True,
+    )
+
+

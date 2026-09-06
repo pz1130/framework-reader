@@ -1406,6 +1406,22 @@ def create_app(
     def frameworks_page():
         return HTMLResponse(views.frameworks(_framework_rows()))
 
+    @app.get("/graph", response_class=HTMLResponse)
+    @needs(perm.CONTENT_READ)
+    def graph_page(framework_id: str | None = None):
+        reader = api()
+        fids = [f.strip() for f in framework_id.split(",") if f.strip()] if framework_id else None
+        data = reader.graph_data(fids)
+        return HTMLResponse(views.graph_page(data))
+
+    @app.get("/api/graph-data")
+    @needs(perm.CONTENT_READ)
+    def api_graph_data(framework_id: str | None = None):
+        reader = api()
+        fids = [f.strip() for f in framework_id.split(",") if f.strip()] if framework_id else None
+        return JSONResponse(reader.graph_data(fids))
+
+
     def _expand_query(query: str) -> str:
         """Only reached when the literal search found nothing. Sends just the user's sentence to the model; the control catalogue never goes out."""
         from framework_reader.llm.client import Message
