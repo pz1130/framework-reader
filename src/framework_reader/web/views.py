@@ -11,6 +11,7 @@ from urllib.parse import quote
 
 from framework_reader.assess.remediation import STATE_LABELS
 from framework_reader.publish.theme import THEME_CSS
+from framework_reader.web import skin
 
 # This request's shell info: (csrf token, logged-in user's display name).
 #
@@ -480,14 +481,14 @@ button:active{transform:scale(.97)}
 .cards .reveal:nth-child(5){transition-delay:.24s}
 .cards .reveal:nth-child(n+6){transition-delay:.3s}
 
-/* Reduced motion preference */
-@media (prefers-reduced-motion:reduce){
+/* Motion off (in-app setting; OS reduce-motion is deliberately ignored) */
+:root.motion-off{
   .pagein{animation:none}
   *,*::before,*::after{transition:none!important;animation:none!important}
-  .js .reveal{opacity:1;transform:none}
+  &.js .reveal{opacity:1;transform:none}
   .aurora{display:none}
-  .js tr{opacity:1;transform:none}
-  .js .bar i{width:var(--w,0%)}
+  &.js tr{opacity:1;transform:none}
+  &.js .bar i{width:var(--w,0%)}
   h1 .ch,h2 .ch{opacity:1;filter:none;transform:none}
   .top::after{animation:none}
   .top::before{display:none}
@@ -547,7 +548,10 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         f"<style>{_CSS}{_ASSESS_CSS}{_AUTH_CSS}</style>"
         '<script>try{var t=localStorage.getItem("fr-theme");'
         'if(t)document.documentElement.dataset.theme=t}catch(e){}</script>'
-        '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
+        + skin.head()
+        + '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
+        + skin.chrome(bare=bare, may=may, who=who, title=title)
+        +
         f'<div class="wrap{" wide" if wide else ""}"><div class="top">'
         + '<h1><a href="/">' + (_brand_logo_img() or "Framework Workbench") + "</a></h1>"
         + f'<span class="crumb">'
@@ -579,12 +583,18 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
            '<circle cx="12" cy="12" r="4"/>'
            '<path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4'
            'M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
-           '</button>')
+           '</button>'
+           '<button type="button" class="motionbtn" aria-label="Toggle animations"'
+           ' data-toggle-motion title="Animations">'
+           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"'
+           ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+           '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></button>')
         + (f'<span class="who">{escape(who)}</span>'
            '<a class="topnav" href="/logout">Sign out</a>' if who and not bare else "")
         + "</div>"
         + "</div>"
         f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
+        + skin.tail()
         + """
 <script>
 document.documentElement.classList.add('js');
@@ -635,13 +645,18 @@ if (_tb) _tb.addEventListener('click', function () {
     try { localStorage.setItem('fr-theme', _t); } catch (e) {}
   };
   if (document.startViewTransition &&
-      !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      !_r.classList.contains('motion-off')) {
     var _b = _tb.getBoundingClientRect();
     _r.style.setProperty('--vx', (_b.left + _b.width / 2) + 'px');
     _r.style.setProperty('--vy', (_b.top + _b.height / 2) + 'px');
     document.startViewTransition(_apply);
   } else _apply();
 });
+var _mb = document.querySelector('[data-toggle-motion]');
+if (_mb) { var _sync = function(){ _mb.setAttribute('aria-pressed', document.documentElement.classList.contains('motion-off') ? 'false' : 'true'); };
+  _sync(); _mb.addEventListener('click', function () {
+  var off = document.documentElement.classList.toggle('motion-off');
+  try { localStorage.setItem('fr-motion', off ? 'off' : 'on'); } catch (e) {} _sync(); }); }
 </script>"""
     )
 
@@ -3765,7 +3780,7 @@ def graph_page(graph_data: dict) -> str:
   var frameworks = rawData.frameworks || [];
   var fwColorMap = {{}};
   frameworks.forEach(function(fw) {{
-    fwColorMap[fw.id] = fw.color || '#4285f4';
+    fwColorMap[fw.id] = (window.FR_FW_COLORS || {{}})[fw.id] || fw.color || '#4285f4';
   }});
 
   var activeFrameworks = new Set(frameworks.map(function(f) {{ return f.id; }}));
@@ -4042,7 +4057,7 @@ def graph_page(graph_data: dict) -> str:
         ctx.strokeStyle = dimLinkColor;
         ctx.lineWidth = 0.5;
       }} else if (isHighlighted) {{
-        ctx.strokeStyle = '#4285f4';
+        ctx.strokeStyle = (window.FR_ACCENT || '#4285f4');
         ctx.lineWidth = 2.0;
       }} else {{
         ctx.strokeStyle = baseLinkColor;
@@ -4086,7 +4101,7 @@ def graph_page(graph_data: dict) -> str:
       if (isSel) {{
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius + 5, 0, 2 * Math.PI);
-        ctx.strokeStyle = '#4285f4';
+        ctx.strokeStyle = (window.FR_ACCENT || '#4285f4');
         ctx.lineWidth = 2.5;
         ctx.stroke();
       }} else if (isHov) {{
