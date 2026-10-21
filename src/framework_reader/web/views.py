@@ -1477,8 +1477,13 @@ def _fields(control_id: str, fields: dict, editable: bool) -> str:
             f'<a class="edit" href="/c/{control_id}/rewrite/{name}">Have AI rewrite</a>'
             if editable and not empty and may("interpretation:draft") else ""
         )
-        out.append(f"<h4>{escape(label)}{mark}{edit}{rewrite}</h4>")
+        acts = f'<span class="fsec-act">{edit}{rewrite}</span>' if edit or rewrite else ""
+        out.append(
+            f'<section class="fsec" data-f="{name}"><h4>'
+            '<span class="fsec-ic" aria-hidden="true"></span>'
+            f'<span class="fsec-t">{escape(label)}</span>{mark}{acts}</h4>')
         out.append(_value_html(value))
+        out.append("</section>")
     return "".join(out)
 
 
