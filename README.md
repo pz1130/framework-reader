@@ -9,11 +9,27 @@ not the official standard text. NIST material is U.S. government work
 (public domain). Interpretations currently ship as AI drafts, marked as
 such; do not hand them to an auditor as-is.
 
-![The search workbench: a sentence or a control number, with three interpreted controls a day](docs/screenshots/workbench.jpg)
+![Home: the 3D crosswalk orbit and the search box — a sentence or a control number](docs/screenshots/home.jpg)
 
-![One control: what it defends against, plain words, how to implement, what serves as evidence — each field marked with who wrote it](docs/screenshots/control.jpg)
+![One control: section headings for what it defends against, plain words, how to implement and evidence, each marked with who wrote it, plus the Ask AI copilot](docs/screenshots/control.jpg)
 
-![Cross-Framework Relationship Graph: dynamic force-directed network showing mappings across NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022 with anti-clustering physics and 1-hop inspection drawer](docs/screenshots/graph.jpg)
+![Cross-Framework Relationship Graph: force-directed network of mappings across NIST CSF 2.0, SP 800-53 Rev.5 and ISO/IEC 27002:2022](docs/screenshots/graph.jpg)
+
+### The interface
+
+- **Sign-in** is a split page: the crosswalk on one side, the form on the other.
+- **Home** shows the three frameworks as a 3D crosswalk orbit around the search box.
+- **Frameworks** opens with a crosswalk overview: a matrix of mapping edges between
+  frameworks, mapped-control counts, and the most connected controls.
+- **A control page** shows each field as its own section, a flowing view of its
+  official mappings, and the Ask AI copilot beside it.
+- **Light and dark themes** switch from the top bar and are remembered per browser.
+- **Animations** can be turned off under *Settings → Preferences*; they are on by
+  default, independent of the operating system's reduce-motion setting.
+
+| Sign-in | Frameworks | Settings |
+|---|---|---|
+| ![Split sign-in page](docs/screenshots/login.jpg) | ![Frameworks with the crosswalk overview](docs/screenshots/frameworks.jpg) | ![Settings with the Animations preference](docs/screenshots/settings.jpg) |
 
 ## Why
 
@@ -295,13 +311,22 @@ for external auditors.
 fr serve                      # -> http://127.0.0.1:8765
 ```
 
-The web shell is built as an expressive **Bento Grid UI**:
+The web shell uses a calm "Crosswalk Atlas" look (mist blue, sage and slate, in
+light and dark themes) with large 44px controls:
 
-- **Modern Stage Aesthetic**: Full-bleed frosted glass navbar (`100vw`), signature 4-color glowing laser stripe (`#4285F4`, `#EA4335`, `#FBBC05`, `#34A853`), and smooth transition between **Obsidian Dark** and **Ceramic Light** modes.
-- **Omnibox 2.0 & Keyboard Shortcut**: Floating search capsule with contextual prompt suggestions and an instant **`/` keyboard shortcut** to focus the search bar from anywhere on the page.
-- **Asymmetric Bento Grid Dashboard**:
-  - **Main Stage (Left)**: Hot-tracked security controls with quick jump tags, plus **Learn Three Today** floating study cards with framework badges, concise intent snippets, and an animated `🎲 Shuffle` button.
-  - **Intelligence HUD (Right)**: **Live Telemetry** meters monitoring compliance coverage across NIST CSF 2.0, ISO/IEC 27002:2022, and NIST SP 800-53 Rev.5, an amber alert card for pending AI drafts, and quick-launch shortcuts to documents, frameworks, and the relationship graph.
+- **Top bar**: Frameworks, Graph, Import framework, Documents and Settings, with a
+  light/dark theme toggle that is remembered per browser.
+- **Home**: a 3D crosswalk orbit of the three frameworks around the search box,
+  "Frequently searched" quick links, **Learn three today** study cards with a
+  Shuffle button, and coverage meters per framework.
+- **Frameworks**: a crosswalk overview (mapping-edge matrix, mapped controls per
+  framework, most connected controls) above the framework cards.
+- **Control pages**: each field is its own section with an icon, a "who wrote
+  it" badge and Edit / Have AI rewrite actions; official mappings are drawn as
+  flowing lines to the mapped controls.
+- **Settings → Preferences → Animations**: turns page transitions, the 3D
+  crosswalk, count-ups and flowing lines off. On by default and independent of
+  the operating system's reduce-motion setting.
 - **Interactive Cross-Framework Relationship Graph (`/graph`)**:
   - **Force-Directed Network Visualization**: Real-time canvas-rendered graph depicting relationships and overlaps between NIST CSF 2.0, SP 800-53 Rev.5, and ISO/IEC 27002:2022 controls.
   - **Anti-Clustering Physics Engine**: Degree-aware spring equilibrium and pairwise collision buffers prevent high-density clusters from bunching up, spreading tightly mapped controls into radial starburst patterns.
@@ -309,7 +334,7 @@ The web shell is built as an expressive **Bento Grid UI**:
   - **1-Hop Subgraph & Inspector Drawer**: Click any control node to spotlight its immediate cross-framework mappings with an interactive drawer showing full titles, mapping types, and one-click navigation to control details.
   - **Omnibox Graph Search & Framework Filters**: Quick autocomplete search to smoothly fly and focus camera on target controls, plus one-click framework filter chips.
   - **Zero External CDN**: 100% pure client-side HTML5 canvas and vanilla physics engine; strictly adheres to offline invariants.
-- **Interactive Clause Chat**: Conversational AI assistant cards on control pages for context-aware Q&A, evidence brainstorming, and policy alignment.
+- **Ask AI copilot**: a chat card beside each control for questions and suggested edits; proposed changes come with an Apply button and are marked "AI draft".
 
 Built-in and imported frameworks live under "Frameworks" in the top bar, with "has
 interpretation N/M" coverage; you can also upload your own spreadsheet there.
@@ -471,3 +496,11 @@ letters in a judge's hands change, every already-returned verdict is void.
 not guarantee reproduction - the same seed over a different frame draws a
 different set. If `prepare` finds a fingerprint mismatch it stops and says so;
 it never quietly swaps the question set.
+
+## Contributors
+
+- Codex
+- Gemini
+- Grok
+- GLM
+- MiniMax
