@@ -583,17 +583,13 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
            '<circle cx="12" cy="12" r="4"/>'
            '<path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4'
            'M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
-           '</button>'
-           '<button type="button" class="motionbtn" aria-label="Toggle animations"'
-           ' data-toggle-motion title="Animations">'
-           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"'
-           ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-           '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></button>')
+           '</button>')
         + (f'<span class="who">{escape(who)}</span>'
            '<a class="topnav" href="/logout">Sign out</a>' if who and not bare else "")
         + "</div>"
         + "</div>"
-        f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
+        + skin.after_top()
+        + f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
         + skin.tail()
         + """
 <script>
@@ -2295,9 +2291,23 @@ def settings(*, bootstrap: bool = False, nav: str = "") -> str:
             "Download a snapshot of the user database: imported frameworks, edited interpretations, self-assessments, documents. "
             "The identity database is not included."))
 
+    # Personal preferences live in this browser only (localStorage), so every role sees them.
+    prefs = (
+        '<section class="prefs"><h3 class="prefs-h">Preferences</h3>'
+        '<div class="prow"><div class="prow-tx"><b>Animations</b>'
+        '<p>Page transitions, the 3D crosswalk, count-ups and flowing mapping lines. '
+        'On by default and independent of the operating system\'s reduce-motion setting; '
+        'remembered in this browser.</p></div>'
+        '<button type="button" class="sk-switch" role="switch" aria-checked="true" '
+        'aria-label="Animations" data-toggle-motion>'
+        '<span class="sk-switch-knob"></span><span class="sk-switch-on">On</span>'
+        '<span class="sk-switch-off">Off</span></button></div></section>'
+    )
     body = (
         f"<style>{_SETTINGS_CSS}</style>"
         "<h2>Settings</h2>"
+        + prefs
+        + ('<h3 class="prefs-h">Administration</h3>' if cards else "")
         + ("".join(
             f'<a class="scard" href="{href}"><h3>{escape(title)}</h3>'
             f"<p>{escape(what)}</p></a>"
