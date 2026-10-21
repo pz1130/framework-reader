@@ -1310,14 +1310,16 @@ def _clause_chat(control_id: str, turns: list) -> str:
 
     prompt_chips = (
         '<div class="prompt-chips">'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">💡 Suggest evidence</button>'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">🎯 Tailor implementation</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">Suggest evidence</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">Tailor implementation</button>'
         '</div>'
     )
 
     empty_state = (
         '<div class="chat-empty">'
-        '<p class="empty">Ask questions or request edits for this clause.</p>'
+        '<p class="chat-empty-tx">Ask a question about this control, or ask for an edit. '
+        'Suggested changes come back with an Apply button.</p>'
+        '<p class="chat-try">Try</p>'
         + prompt_chips +
         '</div>'
     )
@@ -1334,9 +1336,9 @@ def _clause_chat(control_id: str, turns: list) -> str:
         f'<div class="thread">{thread_content}</div>'
         f'<form method="post" action="/c/{control_id}/chat" class="chat-composer">'
         '<div class="composer-box">'
-        '<textarea name="message" rows="2" placeholder="Ask questions or suggest edits..."></textarea>'
+        '<textarea name="message" rows="3" placeholder="Ask a question or suggest an edit…" aria-label="Message to AI"></textarea>'
         '<div class="composer-foot">'
-        '<span class="cost-hint">Human review required</span>'
+        '<span class="cost-hint">You review every AI change before it counts.</span>'
         '<button type="submit">Send <svg viewBox="0 0 16 16"><path d="M3 8h9M8.5 3.5L13 8l-4.5 4.5"/></svg></button>'
         '</div>'
         '</div>'
