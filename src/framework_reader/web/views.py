@@ -4013,7 +4013,7 @@ def graph_page(graph_data: dict) -> str:
 
   // Drawing
   function render() {{
-    var isDark = document.documentElement.dataset.theme === 'dark';
+    var isDark = document.documentElement.dataset.theme !== 'light';
 
     ctx.save();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -4091,7 +4091,7 @@ def graph_page(graph_data: dict) -> str:
       if (n.degree > 10) {{
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius + 3.5, 0, 2 * Math.PI);
-        ctx.fillStyle = n.color;
+        ctx.fillStyle = (window.FR_fwColor ? window.FR_fwColor(n.framework_id, n.color) : n.color);
         ctx.globalAlpha = opacity * 0.18;
         ctx.fill();
         ctx.globalAlpha = opacity;
@@ -4115,7 +4115,7 @@ def graph_page(graph_data: dict) -> str:
       // Node Body
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.radius, 0, 2 * Math.PI);
-      ctx.fillStyle = n.color;
+      ctx.fillStyle = (window.FR_fwColor ? window.FR_fwColor(n.framework_id, n.color) : n.color);
       ctx.fill();
       ctx.strokeStyle = isDark ? '#1a1c22' : '#ffffff';
       ctx.lineWidth = 1.2;
