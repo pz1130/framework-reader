@@ -11,6 +11,7 @@ from urllib.parse import quote
 
 from framework_reader.assess.remediation import STATE_LABELS
 from framework_reader.publish.theme import THEME_CSS
+from framework_reader.web import skin
 
 # This request's shell info: (csrf token, logged-in user's display name).
 #
@@ -480,14 +481,14 @@ button:active{transform:scale(.97)}
 .cards .reveal:nth-child(5){transition-delay:.24s}
 .cards .reveal:nth-child(n+6){transition-delay:.3s}
 
-/* Reduced motion preference */
-@media (prefers-reduced-motion:reduce){
+/* Motion off (in-app setting; OS reduce-motion is deliberately ignored) */
+:root.motion-off{
   .pagein{animation:none}
   *,*::before,*::after{transition:none!important;animation:none!important}
-  .js .reveal{opacity:1;transform:none}
+  &.js .reveal{opacity:1;transform:none}
   .aurora{display:none}
-  .js tr{opacity:1;transform:none}
-  .js .bar i{width:var(--w,0%)}
+  &.js tr{opacity:1;transform:none}
+  &.js .bar i{width:var(--w,0%)}
   h1 .ch,h2 .ch{opacity:1;filter:none;transform:none}
   .top::after{animation:none}
   .top::before{display:none}
@@ -547,7 +548,10 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
         f"<style>{_CSS}{_ASSESS_CSS}{_AUTH_CSS}</style>"
         '<script>try{var t=localStorage.getItem("fr-theme");'
         'if(t)document.documentElement.dataset.theme=t}catch(e){}</script>'
-        '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
+        + skin.head()
+        + '<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'
+        + skin.chrome(bare=bare, may=may, who=who, title=title)
+        +
         f'<div class="wrap{" wide" if wide else ""}"><div class="top">'
         + '<h1><a href="/">' + (_brand_logo_img() or "Framework Workbench") + "</a></h1>"
         + f'<span class="crumb">'
@@ -584,7 +588,9 @@ def page(title: str, body: str, crumb: str = "", nav: str = "",
            '<a class="topnav" href="/logout">Sign out</a>' if who and not bare else "")
         + "</div>"
         + "</div>"
-        f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
+        + skin.after_top()
+        + f'<div class="pagein">{nav}{_with_csrf(body, csrf)}</div></div>'
+        + skin.tail()
         + """
 <script>
 document.documentElement.classList.add('js');
@@ -635,13 +641,18 @@ if (_tb) _tb.addEventListener('click', function () {
     try { localStorage.setItem('fr-theme', _t); } catch (e) {}
   };
   if (document.startViewTransition &&
-      !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      !_r.classList.contains('motion-off')) {
     var _b = _tb.getBoundingClientRect();
     _r.style.setProperty('--vx', (_b.left + _b.width / 2) + 'px');
     _r.style.setProperty('--vy', (_b.top + _b.height / 2) + 'px');
     document.startViewTransition(_apply);
   } else _apply();
 });
+var _mb = document.querySelector('[data-toggle-motion]');
+if (_mb) { var _sync = function(){ _mb.setAttribute('aria-pressed', document.documentElement.classList.contains('motion-off') ? 'false' : 'true'); };
+  _sync(); _mb.addEventListener('click', function () {
+  var off = document.documentElement.classList.toggle('motion-off');
+  try { localStorage.setItem('fr-motion', off ? 'off' : 'on'); } catch (e) {} _sync(); }); }
 </script>"""
     )
 
@@ -1299,14 +1310,16 @@ def _clause_chat(control_id: str, turns: list) -> str:
 
     prompt_chips = (
         '<div class="prompt-chips">'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">💡 Suggest evidence</button>'
-        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">🎯 Tailor implementation</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="What evidence does this control usually require?">Suggest evidence</button>'
+        '<button type="button" class="chip" onclick="var t=this.closest(\'.chat\').querySelector(\'textarea\');t.value=this.dataset.p;t.focus();" data-p="Make \'How to implement\' more specific for our infrastructure">Tailor implementation</button>'
         '</div>'
     )
 
     empty_state = (
         '<div class="chat-empty">'
-        '<p class="empty">Ask questions or request edits for this clause.</p>'
+        '<p class="chat-empty-tx">Ask a question about this control, or ask for an edit. '
+        'Suggested changes come back with an Apply button.</p>'
+        '<p class="chat-try">Try</p>'
         + prompt_chips +
         '</div>'
     )
@@ -1323,9 +1336,9 @@ def _clause_chat(control_id: str, turns: list) -> str:
         f'<div class="thread">{thread_content}</div>'
         f'<form method="post" action="/c/{control_id}/chat" class="chat-composer">'
         '<div class="composer-box">'
-        '<textarea name="message" rows="2" placeholder="Ask questions or suggest edits..."></textarea>'
+        '<textarea name="message" rows="3" placeholder="Ask a question or suggest an edit…" aria-label="Message to AI"></textarea>'
         '<div class="composer-foot">'
-        '<span class="cost-hint">Human review required</span>'
+        '<span class="cost-hint">You review every AI change before it counts.</span>'
         '<button type="submit">Send <svg viewBox="0 0 16 16"><path d="M3 8h9M8.5 3.5L13 8l-4.5 4.5"/></svg></button>'
         '</div>'
         '</div>'
@@ -1464,8 +1477,13 @@ def _fields(control_id: str, fields: dict, editable: bool) -> str:
             f'<a class="edit" href="/c/{control_id}/rewrite/{name}">Have AI rewrite</a>'
             if editable and not empty and may("interpretation:draft") else ""
         )
-        out.append(f"<h4>{escape(label)}{mark}{edit}{rewrite}</h4>")
+        acts = f'<span class="fsec-act">{edit}{rewrite}</span>' if edit or rewrite else ""
+        out.append(
+            f'<section class="fsec" data-f="{name}"><h4>'
+            '<span class="fsec-ic" aria-hidden="true"></span>'
+            f'<span class="fsec-t">{escape(label)}</span>{mark}{acts}</h4>')
         out.append(_value_html(value))
+        out.append("</section>")
     return "".join(out)
 
 
@@ -2280,9 +2298,23 @@ def settings(*, bootstrap: bool = False, nav: str = "") -> str:
             "Download a snapshot of the user database: imported frameworks, edited interpretations, self-assessments, documents. "
             "The identity database is not included."))
 
+    # Personal preferences live in this browser only (localStorage), so every role sees them.
+    prefs = (
+        '<section class="prefs"><h3 class="prefs-h">Preferences</h3>'
+        '<div class="prow"><div class="prow-tx"><b>Animations</b>'
+        '<p>Page transitions, the 3D crosswalk, count-ups and flowing mapping lines. '
+        'On by default and independent of the operating system\'s reduce-motion setting; '
+        'remembered in this browser.</p></div>'
+        '<button type="button" class="sk-switch" role="switch" aria-checked="true" '
+        'aria-label="Animations" data-toggle-motion>'
+        '<span class="sk-switch-knob"></span><span class="sk-switch-on">On</span>'
+        '<span class="sk-switch-off">Off</span></button></div></section>'
+    )
     body = (
         f"<style>{_SETTINGS_CSS}</style>"
         "<h2>Settings</h2>"
+        + prefs
+        + ('<h3 class="prefs-h">Administration</h3>' if cards else "")
         + ("".join(
             f'<a class="scard" href="{href}"><h3>{escape(title)}</h3>'
             f"<p>{escape(what)}</p></a>"
@@ -3765,7 +3797,7 @@ def graph_page(graph_data: dict) -> str:
   var frameworks = rawData.frameworks || [];
   var fwColorMap = {{}};
   frameworks.forEach(function(fw) {{
-    fwColorMap[fw.id] = fw.color || '#4285f4';
+    fwColorMap[fw.id] = (window.FR_FW_COLORS || {{}})[fw.id] || fw.color || '#4285f4';
   }});
 
   var activeFrameworks = new Set(frameworks.map(function(f) {{ return f.id; }}));
@@ -3998,7 +4030,7 @@ def graph_page(graph_data: dict) -> str:
 
   // Drawing
   function render() {{
-    var isDark = document.documentElement.dataset.theme === 'dark';
+    var isDark = document.documentElement.dataset.theme !== 'light';
 
     ctx.save();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -4042,7 +4074,7 @@ def graph_page(graph_data: dict) -> str:
         ctx.strokeStyle = dimLinkColor;
         ctx.lineWidth = 0.5;
       }} else if (isHighlighted) {{
-        ctx.strokeStyle = '#4285f4';
+        ctx.strokeStyle = (window.FR_ACCENT || '#4285f4');
         ctx.lineWidth = 2.0;
       }} else {{
         ctx.strokeStyle = baseLinkColor;
@@ -4076,7 +4108,7 @@ def graph_page(graph_data: dict) -> str:
       if (n.degree > 10) {{
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius + 3.5, 0, 2 * Math.PI);
-        ctx.fillStyle = n.color;
+        ctx.fillStyle = (window.FR_fwColor ? window.FR_fwColor(n.framework_id, n.color) : n.color);
         ctx.globalAlpha = opacity * 0.18;
         ctx.fill();
         ctx.globalAlpha = opacity;
@@ -4086,7 +4118,7 @@ def graph_page(graph_data: dict) -> str:
       if (isSel) {{
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius + 5, 0, 2 * Math.PI);
-        ctx.strokeStyle = '#4285f4';
+        ctx.strokeStyle = (window.FR_ACCENT || '#4285f4');
         ctx.lineWidth = 2.5;
         ctx.stroke();
       }} else if (isHov) {{
@@ -4100,7 +4132,7 @@ def graph_page(graph_data: dict) -> str:
       // Node Body
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.radius, 0, 2 * Math.PI);
-      ctx.fillStyle = n.color;
+      ctx.fillStyle = (window.FR_fwColor ? window.FR_fwColor(n.framework_id, n.color) : n.color);
       ctx.fill();
       ctx.strokeStyle = isDark ? '#1a1c22' : '#ffffff';
       ctx.lineWidth = 1.2;
